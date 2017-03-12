@@ -1,0 +1,7951 @@
+﻿1
+00:00:00,401 --> 00:00:04,869
+[MUSIC]                         
+
+2
+00:00:04,938 --> 00:00:07,906
+Stanford University.            
+>> So                           
+
+3
+00:00:07,974 --> 00:00:12,577
+welcome to Stanford CS193P,     
+this is Developing iOS          
+
+4
+00:00:12,646 --> 00:00:17,115
+Applications, winter of 2017.   
+So today I'm gonna give         
+
+5
+00:00:17,184 --> 00:00:20,918
+another brief set of slides on  
+Model View Controller, this     
+
+6
+00:00:20,987 --> 00:00:24,355
+design methodology that we're   
+gonna use to build all of our   
+
+7
+00:00:24,424 --> 00:00:27,825
+iOS apps. And then I'm gonna    
+continue the demo that we       
+
+8
+00:00:27,894 --> 00:00:31,196
+started on Monday. We're gonna  
+actually incorporate MVC into   
+
+9
+00:00:31,265 --> 00:00:33,931
+the calculator. And it's also   
+gonna be an opportunity for     
+
+10
+00:00:34,000 --> 00:00:38,870
+me to show you a lot of other   
+cool Swift, language features.  
+
+11
+00:00:38,939 --> 00:00:42,373
+So what is MVC? Model view      
+controller, what is that?       
+
+12
+00:00:42,442 --> 00:00:46,477
+Basically, it starts out        
+being a way that we divide up   
+
+13
+00:00:46,546 --> 00:00:51,182
+all of the code in our app      
+into three different camps.     
+
+14
+00:00:51,251 --> 00:00:54,453
+These three different camps     
+are the model camp, the model   
+
+15
+00:00:54,521 --> 00:00:59,057
+is the "what" of your app,      
+so what your app is. So,        
+
+16
+00:00:59,126 --> 00:01:02,261
+in the calculator case, i's     
+the brains of the calculator,   
+
+17
+00:01:02,329 --> 00:01:04,496
+i's the thing that              
+calculates, tha's the model,    
+
+18
+00:01:04,564 --> 00:01:08,500
+and tha's a UI independent      
+part. I's what the app is,      
+
+19
+00:01:08,569 --> 00:01:10,569
+not how it displays or          
+anything like that.             
+
+20
+00:01:10,637 --> 00:01:13,838
+How it displays is              
+the controlle's job. So         
+
+21
+00:01:13,907 --> 00:01:16,508
+the controller decides how      
+to take this UI independent     
+
+22
+00:01:16,577 --> 00:01:18,610
+thing, the model, and           
+display it on your screen and   
+
+23
+00:01:18,679 --> 00:01:21,580
+interact with the user. That's  
+what the controller job does.   
+
+24
+00:01:21,648 --> 00:01:25,683
+It's the, how it displays.      
+Model is the what it is.        
+
+25
+00:01:25,752 --> 00:01:27,352
+Controller is how it displays.  
+
+26
+00:01:27,421 --> 00:01:31,723
+The view is the minions         
+of the controller, okay?        
+
+27
+00:01:31,792 --> 00:01:34,726
+Things that the controller      
+uses to do its job,             
+
+28
+00:01:34,795 --> 00:01:39,231
+almost always, these things     
+in the view are generic,        
+
+29
+00:01:39,299 --> 00:01:42,968
+things like UIButton or         
+UIScrollView, okay?             
+
+30
+00:01:43,037 --> 00:01:45,303
+Things that come from Apple or  
+somewhere else,                 
+
+31
+00:01:45,372 --> 00:01:48,306
+even things you write, and you  
+generally try to write them to  
+
+32
+00:01:48,375 --> 00:01:52,010
+be pretty generic reusable UI   
+things. And the controller is   
+
+33
+00:01:52,079 --> 00:01:56,214
+trying to use those generic     
+things to build a specific UI.  
+
+34
+00:01:56,283 --> 00:01:59,551
+Now the key to making MVC work  
+is managing the communication   
+
+35
+00:01:59,620 --> 00:02:02,220
+between these camps             
+because if we don't manage      
+
+36
+00:02:02,289 --> 00:02:03,488
+that communication,             
+
+37
+00:02:03,557 --> 00:02:06,224
+we might as well just put       
+them all in the big camp.       
+
+38
+00:02:06,293 --> 00:02:08,726
+And they can all talk to each   
+other however they want. So     
+
+39
+00:02:08,795 --> 00:02:09,627
+if we're gonna                  
+have three camps,               
+
+40
+00:02:09,696 --> 00:02:11,230
+we gotta think about            
+how they communicate.           
+
+41
+00:02:11,298 --> 00:02:14,799
+So I've used this road sign     
+kind of imagery here, okay,     
+
+42
+00:02:14,868 --> 00:02:17,669
+the roads, like the road        
+lines in the middle of a road   
+
+43
+00:02:17,737 --> 00:02:21,406
+between them to help you        
+visualize what is allowed       
+
+44
+00:02:21,475 --> 00:02:22,740
+in terms of communication.      
+
+45
+00:02:22,809 --> 00:02:25,677
+So, let's talk about every      
+boundary here between all of    
+
+46
+00:02:25,745 --> 00:02:29,280
+these camps. Let's start with   
+the controller talking to       
+
+47
+00:02:29,349 --> 00:02:31,783
+the model, okay.                
+Can the controller talk to      
+
+48
+00:02:31,852 --> 00:02:34,920
+the model? Absolutely, it can   
+say anything to the model that  
+
+49
+00:02:34,989 --> 00:02:38,590
+the model publicly allows       
+to be said to itself. So,       
+
+50
+00:02:38,658 --> 00:02:41,893
+it's a green arrow. It's a      
+dashed white line on the road.  
+
+51
+00:02:41,962 --> 00:02:43,428
+You can go across               
+there all you want.             
+
+52
+00:02:43,497 --> 00:02:44,930
+And you can see why this is.    
+
+53
+00:02:44,998 --> 00:02:48,300
+It is the controller job to     
+get that model onto screen.     
+
+54
+00:02:48,369 --> 00:02:50,702
+It has to be able to talk to    
+it all at once. So, there's no  
+
+55
+00:02:50,770 --> 00:02:53,238
+restriction of the controller   
+talking to the model. And       
+
+56
+00:02:53,307 --> 00:02:56,741
+similarly, there's no           
+restriction of the controller   
+
+57
+00:02:56,810 --> 00:02:59,912
+talking to the view, because    
+the view are the controller's   
+
+58
+00:02:59,980 --> 00:03:02,480
+minions. Right, so you gotta    
+be able to tell your minions    
+
+59
+00:03:02,549 --> 00:03:04,917
+what to do without              
+restriction. Now,               
+
+60
+00:03:04,985 --> 00:03:07,285
+these connections between       
+the controller and              
+
+61
+00:03:07,354 --> 00:03:10,255
+a view, we call them outlets.   
+And you've already seen one in  
+
+62
+00:03:10,324 --> 00:03:13,058
+the calculator, we created      
+an outlet, if you remember,     
+
+63
+00:03:13,127 --> 00:03:15,426
+it was called display, right?   
+
+64
+00:03:15,495 --> 00:03:18,162
+It was an instance variable in  
+our controller. Remember that   
+
+65
+00:03:18,231 --> 00:03:20,265
+class ViewController            
+we saw on Monday,               
+
+66
+00:03:20,333 --> 00:03:24,069
+that's the controller of the    
+MVC that we built on Monday.    
+
+67
+00:03:24,138 --> 00:03:26,238
+And that display var,           
+was an outlet,                  
+
+68
+00:03:26,306 --> 00:03:30,508
+and it's just wired up to       
+a UILabel in our view. UILabel  
+
+69
+00:03:30,577 --> 00:03:34,045
+is one of the minions for the   
+controller in the view. Okay,   
+
+70
+00:03:34,114 --> 00:03:38,450
+so you've already seen that     
+happen. The model and the view  
+
+71
+00:03:38,518 --> 00:03:43,355
+can never speak to each other.  
+Double orange line there,       
+
+72
+00:03:43,424 --> 00:03:46,892
+no crossing either way across   
+here. And this makes perfect    
+
+73
+00:03:46,961 --> 00:03:50,128
+sense because the model is      
+completely UI independent,      
+
+74
+00:03:50,197 --> 00:03:53,064
+and the view is completely UI.  
+That's all the view is.         
+
+75
+00:03:53,133 --> 00:03:54,299
+So, they have nothing           
+to talk about,                  
+
+76
+00:03:54,367 --> 00:03:58,170
+these two guys, okay? Cuz       
+they're completely, you know,   
+
+77
+00:03:58,238 --> 00:04:00,372
+different camps that make no    
+sense to talk to each other.    
+
+78
+00:04:00,440 --> 00:04:03,574
+It's up to the controller to    
+manage communication between    
+
+79
+00:04:03,643 --> 00:04:08,113
+these two. So, never shall you  
+just communicate between those  
+
+80
+00:04:08,181 --> 00:04:13,018
+two camps, all right? How       
+about the view talking back to  
+
+81
+00:04:13,087 --> 00:04:16,288
+its controller? Can the view,   
+those minions, can they talk    
+
+82
+00:04:16,357 --> 00:04:18,890
+to its controller? Now this is  
+something you would clearly     
+
+83
+00:04:18,959 --> 00:04:21,993
+want because the minions gotta  
+work with the controller, but   
+
+84
+00:04:22,062 --> 00:04:23,895
+it's a bit of a problem here.   
+
+85
+00:04:23,964 --> 00:04:26,498
+Because these things in         
+the view are generic.           
+
+86
+00:04:26,566 --> 00:04:30,035
+They're things like UIButton.   
+The class UIButton shipped      
+
+87
+00:04:30,104 --> 00:04:33,338
+from Apple last year. It knows  
+nothing about a calculator,     
+
+88
+00:04:33,407 --> 00:04:37,843
+so how can that UIButton talk   
+to a calculator? Well, we can   
+
+89
+00:04:37,911 --> 00:04:41,513
+do it. We just have to sort     
+of do it in a blind, meaning    
+
+90
+00:04:41,582 --> 00:04:43,815
+we don't know the class of      
+the thing we're talking to.     
+
+91
+00:04:43,884 --> 00:04:47,385
+And structured manner, so that  
+we can clearly understand what  
+
+92
+00:04:47,454 --> 00:04:50,189
+communication is happening.     
+So you've already seen a blind  
+
+93
+00:04:50,257 --> 00:04:51,957
+structured communication        
+between the view and            
+
+94
+00:04:52,025 --> 00:04:54,926
+the controller.                 
+It's target action, okay. So    
+
+95
+00:04:54,995 --> 00:04:57,529
+the controller can              
+drop a target on itself         
+
+96
+00:04:57,598 --> 00:05:00,665
+by basically creating a method  
+with that acts on IBAction,     
+
+97
+00:05:00,734 --> 00:05:05,303
+remember that from Monday? And  
+then you just control drag and  
+
+98
+00:05:05,372 --> 00:05:08,006
+that lets the view              
+UIButton talk,                  
+
+99
+00:05:08,074 --> 00:05:11,509
+basically connect up to         
+that target. And now every      
+
+100
+00:05:11,578 --> 00:05:14,279
+time that the UIButton wants    
+to talk to the controller,      
+
+101
+00:05:14,348 --> 00:05:17,382
+it's just sending that          
+target action. So that is       
+
+102
+00:05:17,451 --> 00:05:21,920
+super simple blind structured   
+communication from the view     
+
+103
+00:05:21,989 --> 00:05:26,425
+back to the controller. But,    
+that's a little too simple for  
+
+104
+00:05:26,493 --> 00:05:30,128
+all the communication that      
+these minions might wanna do.   
+
+105
+00:05:30,197 --> 00:05:32,697
+For example, sometimes,         
+something in the view wants to  
+
+106
+00:05:32,766 --> 00:05:34,799
+synchronize itself              
+with the controller.            
+
+107
+00:05:34,868 --> 00:05:37,903
+Or it wants to know what        
+the controller intends as it's  
+
+108
+00:05:37,972 --> 00:05:41,239
+being used. Let's use           
+the example of a scroll view.   
+
+109
+00:05:41,308 --> 00:05:43,108
+Okay, a scroll view,            
+
+110
+00:05:43,177 --> 00:05:44,709
+when it's scrolling around,     
+
+111
+00:05:44,778 --> 00:05:46,444
+might wanna ask                 
+the controller,                 
+
+112
+00:05:46,513 --> 00:05:48,914
+should I allow the user         
+to scroll over here? Or         
+
+113
+00:05:48,982 --> 00:05:51,750
+they might just wanna tell      
+the controller, hey, the user   
+
+114
+00:05:51,819 --> 00:05:55,486
+scrolled down here. These       
+kind of notifications and       
+
+115
+00:05:55,555 --> 00:05:58,957
+questions about whether it can  
+do things, they kind of end up  
+
+116
+00:05:59,026 --> 00:06:01,760
+in things that start with       
+these words I have up here,     
+
+117
+00:06:01,828 --> 00:06:03,996
+"will," "should," and           
+"did." Like,                    
+
+118
+00:06:04,064 --> 00:06:07,399
+should I scroll to here?        
+I will scroll right here,       
+
+119
+00:06:07,468 --> 00:06:08,800
+if the scroll view was          
+about to scroll. And            
+
+120
+00:06:08,869 --> 00:06:11,637
+then I did scroll down here     
+after the scroll view is done.  
+
+121
+00:06:11,705 --> 00:06:14,373
+So those kinds of               
+communications.                 
+
+122
+00:06:14,441 --> 00:06:16,641
+And the way we make that        
+communication work,             
+
+123
+00:06:16,710 --> 00:06:19,377
+we can't just do this simple    
+one method control drag,        
+
+124
+00:06:19,446 --> 00:06:22,380
+instead we use what's called    
+a delegate. And I'm gonna talk  
+
+125
+00:06:22,449 --> 00:06:25,984
+a lot more about a delegate in  
+future lectures. But basically  
+
+126
+00:06:26,053 --> 00:06:29,788
+the idea of a delegate is,      
+it's a var in the view, so      
+
+127
+00:06:29,857 --> 00:06:34,192
+like a var on scroll view. And  
+it's of a special type; that    
+
+128
+00:06:34,261 --> 00:06:37,295
+type is called a protocol.      
+I know that a lot of you,       
+
+129
+00:06:37,364 --> 00:06:38,664
+even though you have object     
+oriented experience,            
+
+130
+00:06:38,732 --> 00:06:40,699
+maybe you don't have            
+experience with protocols. But  
+
+131
+00:06:40,768 --> 00:06:42,000
+essentially, a protocol         
+is a way of                     
+
+132
+00:06:42,069 --> 00:06:45,804
+saying that this type, this     
+thing that I'm talking about,   
+
+133
+00:06:45,873 --> 00:06:49,908
+it responds to a certain set    
+of methods. I don't know what   
+
+134
+00:06:49,977 --> 00:06:52,344
+classage it is, I don't know    
+if it's a view controller,      
+
+135
+00:06:52,413 --> 00:06:53,678
+I don't know what it is, but    
+
+136
+00:06:53,747 --> 00:06:56,215
+I know it's gonna respond       
+to these methods like will      
+
+137
+00:06:56,283 --> 00:06:58,783
+scroll, did scroll,             
+should scroll,                  
+
+138
+00:06:58,852 --> 00:07:01,420
+those kinds of methods.         
+That's all I know about it. So  
+
+139
+00:07:01,488 --> 00:07:05,423
+the controller, it signs up     
+to listen to those methods,     
+
+140
+00:07:05,492 --> 00:07:08,994
+and then it sets itself as      
+the delegate in the view.       
+
+141
+00:07:09,062 --> 00:07:10,862
+Okay, and we're gonna           
+see this in action, so          
+
+142
+00:07:10,931 --> 00:07:13,097
+don't worry about too much      
+now, but that's how we can      
+
+143
+00:07:13,166 --> 00:07:15,534
+have structured communication   
+where they're agreeing.         
+
+144
+00:07:15,602 --> 00:07:18,136
+The view, this generic          
+object is agreeing to           
+
+145
+00:07:18,205 --> 00:07:20,605
+send certain messages           
+to the controller,              
+
+146
+00:07:20,674 --> 00:07:23,208
+not where the controller        
+can be of any type and          
+
+147
+00:07:23,277 --> 00:07:26,144
+still serve this purpose        
+of controlling its view.        
+
+148
+00:07:26,213 --> 00:07:30,616
+Now there's a special kind of   
+communication between the view  
+
+149
+00:07:30,684 --> 00:07:34,686
+and the controller that arises  
+because a view cannot own       
+
+150
+00:07:34,755 --> 00:07:38,356
+the data it displays. And what  
+does that mean? That means you  
+
+151
+00:07:38,425 --> 00:07:41,460
+don't want to have inside your  
+view class, and remember, view  
+
+152
+00:07:41,528 --> 00:07:43,928
+classes are like scroll views,  
+buttons, things like that.      
+
+153
+00:07:43,997 --> 00:07:46,531
+You don't wanna have            
+data in there that is           
+
+154
+00:07:46,600 --> 00:07:49,701
+the data you're displaying.     
+I'll give you an example.       
+
+155
+00:07:49,770 --> 00:07:51,870
+Let's say your entire           
+iPod music library,             
+
+156
+00:07:51,939 --> 00:07:54,640
+let's say you have hundreds of  
+thousands of songs in there.    
+
+157
+00:07:54,708 --> 00:07:58,410
+Okay, so I wanna have a list    
+of them on screen. So           
+
+158
+00:07:58,479 --> 00:08:02,314
+I'm gonna use a generic item    
+in my view called table view.   
+
+159
+00:08:02,383 --> 00:08:04,783
+Table view just shows a big     
+long list of something.         
+
+160
+00:08:04,852 --> 00:08:08,320
+It can be a list a million      
+items long, okay? So            
+
+161
+00:08:08,388 --> 00:08:11,422
+if I really had to take my      
+entire iPod library and         
+
+162
+00:08:11,491 --> 00:08:13,592
+put it in the value             
+of a var of                     
+
+163
+00:08:13,660 --> 00:08:17,696
+the table view to display it,   
+that would be ridiculous.       
+
+164
+00:08:17,764 --> 00:08:20,131
+Not just from a performance     
+standpoint, but                 
+
+165
+00:08:20,200 --> 00:08:22,000
+now I have two copies           
+of my iPad, or                  
+
+166
+00:08:22,069 --> 00:08:25,003
+my iPod music library, one      
+inside this table view, and     
+
+167
+00:08:25,072 --> 00:08:27,973
+one in some database somewhere  
+in my phone. That's bad, where  
+
+168
+00:08:28,041 --> 00:08:30,742
+they could get out of sync,     
+managing the synchronicity,     
+
+169
+00:08:30,811 --> 00:08:32,644
+what if I have multiple         
+apps doing that? Ugh,           
+
+170
+00:08:32,713 --> 00:08:36,481
+it's a mess, so the view never  
+wants to own that data, okay?   
+
+171
+00:08:36,550 --> 00:08:38,483
+So how the heck is it           
+gonna get the data then?        
+
+172
+00:08:38,551 --> 00:08:41,486
+I've got 100,000 songs, I need  
+to show it in this table,       
+
+173
+00:08:41,555 --> 00:08:45,123
+how's it gonna do it? Well,     
+it's gonna use another one of   
+
+174
+00:08:45,191 --> 00:08:49,227
+these protocol based vars,      
+okay, called the data source.   
+
+175
+00:08:49,296 --> 00:08:51,496
+And the data source has         
+different methods in it,        
+
+176
+00:08:51,565 --> 00:08:54,666
+it's not will, should, did,     
+it's how many items are in      
+
+177
+00:08:54,735 --> 00:08:59,904
+this piece of data? Give me     
+the data at this location. And  
+
+178
+00:08:59,973 --> 00:09:03,508
+that, again,                    
+is a var that controllers       
+
+179
+00:09:03,576 --> 00:09:06,444
+set in the table view, let's    
+say, that points back to it.    
+
+180
+00:09:06,513 --> 00:09:08,380
+And so now every time           
+the table view wants data,      
+
+181
+00:09:08,448 --> 00:09:11,182
+it asks the controller.         
+And the controller almost       
+
+182
+00:09:11,251 --> 00:09:14,886
+always turns around and asks    
+the model, give me that data.   
+
+183
+00:09:14,955 --> 00:09:17,789
+Now this also allows something  
+like table view that's showing  
+
+184
+00:09:17,857 --> 00:09:21,760
+100,000 items. It can only      
+show 10 on a screen at a time,  
+
+185
+00:09:21,828 --> 00:09:25,163
+so it only asks for 10 and      
+shows them. And if you scroll   
+
+186
+00:09:25,232 --> 00:09:28,167
+down to somewhere else,         
+it's gonna ask for that 10.     
+
+187
+00:09:28,235 --> 00:09:31,135
+And it's only keeping           
+the ones it's displaying. So    
+
+188
+00:09:31,204 --> 00:09:34,105
+it's transferring a lot less    
+data, only the data you're      
+
+189
+00:09:34,174 --> 00:09:37,642
+actually viewing, 10 out of     
+100,000 songs. And so it's      
+
+190
+00:09:37,711 --> 00:09:40,779
+a lot more efficient, both      
+in terms of memory usage and    
+
+191
+00:09:40,848 --> 00:09:42,848
+everything. Now you might       
+be a little scared,             
+
+192
+00:09:42,917 --> 00:09:44,749
+like, every single              
+time I'm gonna scroll,          
+
+193
+00:09:44,818 --> 00:09:45,583
+I'm gonna be asking for         
+
+194
+00:09:45,652 --> 00:09:48,152
+this data. But                  
+keep in mind, the model for     
+
+195
+00:09:48,221 --> 00:09:51,290
+the iPod's music library is     
+probably a SQL database or      
+
+196
+00:09:51,358 --> 00:09:54,626
+something, something that can   
+serve up data super fast.       
+
+197
+00:09:54,695 --> 00:09:58,564
+That's it's job as a model to   
+be the source of that data,     
+
+198
+00:09:58,632 --> 00:10:02,167
+okay? So that is usually not    
+your performance bottleneck.    
+
+199
+00:10:02,236 --> 00:10:03,936
+We're gonna talk about          
+performance later in this       
+
+200
+00:10:04,004 --> 00:10:06,104
+class, by the way. Usually      
+the performance bottleneck is   
+
+201
+00:10:06,173 --> 00:10:08,707
+drawing on the screen. Things   
+like getting data out of        
+
+202
+00:10:08,776 --> 00:10:12,243
+databases, forget it. Drawing   
+on the screen is much slower    
+
+203
+00:10:12,312 --> 00:10:14,880
+and then going over             
+the network is even slower.     
+
+204
+00:10:14,949 --> 00:10:17,082
+So those things tend to         
+dominate the performance of     
+
+205
+00:10:17,150 --> 00:10:20,418
+your app. Okay, so don't worry  
+about that. So anyway, so       
+
+206
+00:10:20,487 --> 00:10:23,021
+that's a couple of examples     
+how we have the structured      
+
+207
+00:10:23,090 --> 00:10:25,056
+communication from generic      
+objects back to our             
+
+208
+00:10:25,125 --> 00:10:30,696
+controller. Now what about      
+sorry, one statement that's     
+
+209
+00:10:30,764 --> 00:10:33,198
+good to put in your mind that   
+has all three camps in it,      
+
+210
+00:10:33,266 --> 00:10:37,035
+is that the controller          
+interprets and formats          
+
+211
+00:10:37,103 --> 00:10:40,939
+the model for its views. Cuz    
+its views are generic, they     
+
+212
+00:10:41,007 --> 00:10:43,175
+don't really know how to deal   
+with any particular model.      
+
+213
+00:10:43,243 --> 00:10:46,011
+A controller knows about both,  
+so that's part of its job.      
+
+214
+00:10:46,079 --> 00:10:47,846
+So a lot of times               
+I'll be saying,                 
+
+215
+00:10:47,915 --> 00:10:50,882
+the controller's job is to      
+do this, and you'll be like,    
+
+216
+00:10:50,951 --> 00:10:53,886
+yeah, I remember him saying     
+that. All right, now what       
+
+217
+00:10:53,954 --> 00:10:56,422
+about the model communicating   
+with the controller?            
+
+218
+00:10:57,991 --> 00:11:02,060
+Now this can never happen as    
+well because the model is       
+
+219
+00:11:02,129 --> 00:11:04,796
+UI independent. It knows        
+nothing about any particular    
+
+220
+00:11:04,865 --> 00:11:07,298
+UI, so there's no way it        
+could talk to a UI guy like     
+
+221
+00:11:07,367 --> 00:11:11,803
+the controller, okay? So what   
+happens, though, if the model   
+
+222
+00:11:11,871 --> 00:11:15,741
+changes, the data changes?      
+That controller needs to know,  
+
+223
+00:11:15,809 --> 00:11:18,243
+because it wants to update      
+the screen in that case.        
+
+224
+00:11:18,311 --> 00:11:20,813
+Well, the way we do that        
+is with a model that            
+
+225
+00:11:20,881 --> 00:11:24,049
+kind of looks like a radio      
+station, okay? The model        
+
+226
+00:11:24,117 --> 00:11:26,985
+basically has a radio station,  
+and it broadcasts on that       
+
+227
+00:11:27,054 --> 00:11:31,289
+radio station, hey, I changed,  
+or this about me changed. And   
+
+228
+00:11:31,358 --> 00:11:34,926
+then the controller tunes in    
+to that radio station. And      
+
+229
+00:11:34,995 --> 00:11:38,997
+when it hears a broadcast, it   
+asks the model what changed,    
+
+230
+00:11:39,066 --> 00:11:42,400
+down that green arrow there,    
+you see? Okay, so               
+
+231
+00:11:42,469 --> 00:11:45,670
+that's the model we're gonna    
+use, that's the mechanism       
+
+232
+00:11:45,739 --> 00:11:49,141
+we're gonna use to get stuff    
+for our model that changes      
+
+233
+00:11:49,210 --> 00:11:52,610
+to notify our controller.       
+Some people ask, can            
+
+234
+00:11:52,679 --> 00:11:55,347
+a view tune in to a radio       
+station? And the answer is,     
+
+235
+00:11:55,415 --> 00:11:58,216
+yeah, it probably could. It     
+wouldn't necessarily violate    
+
+236
+00:11:58,285 --> 00:12:01,052
+MVC,. But the problem is        
+a generic view wouldn't know    
+
+237
+00:12:01,121 --> 00:12:03,888
+what radio station to tune      
+into anyway, so it's really     
+
+238
+00:12:03,957 --> 00:12:07,726
+not an issue there. All right,  
+so an MVC like this, though,    
+
+239
+00:12:07,795 --> 00:12:11,897
+really is not, like your        
+whole app isn't one big MVC.    
+
+240
+00:12:11,965 --> 00:12:15,166
+Each MVC controls either        
+one screen on an iPhone or      
+
+241
+00:12:15,235 --> 00:12:18,103
+maybe even a subpart of         
+a screen on an iPhone or        
+
+242
+00:12:18,172 --> 00:12:19,338
+an iPad. Maybe there's two or   
+
+243
+00:12:19,406 --> 00:12:23,442
+three MVCs controlling what's   
+going on on the screen, so      
+
+244
+00:12:23,510 --> 00:12:25,977
+how do we build a big app?      
+An app, you know,               
+
+245
+00:12:26,046 --> 00:12:29,214
+it's building an Instagram      
+app. I gotta have MVCs for      
+
+246
+00:12:29,283 --> 00:12:32,117
+posting, I gotta have MVCs for  
+image editing so                
+
+247
+00:12:32,186 --> 00:12:35,653
+I can do my sepia tone.         
+I gotta have an MVC for         
+
+248
+00:12:35,722 --> 00:12:37,856
+scrolling through the latest    
+posts that are coming up.       
+
+249
+00:12:37,925 --> 00:12:40,793
+I mean, I need all kinds of     
+MVCs. How do these things, how  
+
+250
+00:12:40,861 --> 00:12:43,696
+do we combine them together?    
+Well, looks like this.          
+
+251
+00:12:45,466 --> 00:12:50,235
+MVCs, when other MVCs point     
+to them, it's always as         
+
+252
+00:12:50,304 --> 00:12:54,573
+part of another MVC's view.     
+So look at the three            
+
+253
+00:12:56,076 --> 00:12:58,242
+MVCs that are down here in      
+the lower right corner.         
+
+254
+00:12:58,311 --> 00:13:01,579
+You see these three MVCs? See   
+this MVC up here, this purple   
+
+255
+00:13:01,648 --> 00:13:05,049
+one? Look how it points to      
+them as if they were part of    
+
+256
+00:13:05,118 --> 00:13:09,655
+its view. You see that? There   
+are no other arrows that point  
+
+257
+00:13:09,723 --> 00:13:12,725
+from one controller to          
+another MVC except for          
+
+258
+00:13:12,793 --> 00:13:16,394
+that goes through this          
+view side of the MVC.           
+
+259
+00:13:16,463 --> 00:13:21,599
+Let me help you make that       
+more concrete why that is.      
+
+260
+00:13:21,668 --> 00:13:24,136
+Let's say I had an app and it   
+was a calendar app, and it was  
+
+261
+00:13:24,205 --> 00:13:27,973
+showing me the year, okay,      
+a whole year's worth of my      
+
+262
+00:13:28,042 --> 00:13:31,743
+calendar entries. Well, on a    
+tiny screen it's barely gonna   
+
+263
+00:13:31,811 --> 00:13:34,212
+be able to show me the 12       
+months, let alone the days and  
+
+264
+00:13:34,281 --> 00:13:36,715
+the things, right? So it's got  
+this picture of the months.     
+
+265
+00:13:36,783 --> 00:13:40,352
+So that's a year MVC, let's     
+say, in my calendar app. So     
+
+266
+00:13:40,420 --> 00:13:42,821
+I click on one of the months    
+cuz I want some more detail.    
+
+267
+00:13:42,890 --> 00:13:45,623
+And now that year MVC           
+moves out of the way and        
+
+268
+00:13:45,692 --> 00:13:49,761
+puts up an MVC that's showing   
+all the days of a month, okay?  
+
+269
+00:13:49,830 --> 00:13:53,031
+Well, that month MVC, which     
+is a totally separate MVC,      
+
+270
+00:13:53,100 --> 00:13:55,833
+do you see how it's part        
+of the year MVC's view?         
+
+271
+00:13:55,902 --> 00:13:58,136
+Because the year MVC            
+is showing months.              
+
+272
+00:13:58,205 --> 00:14:00,438
+You wanna look at it,           
+it's trying to zoom in on it,   
+
+273
+00:14:00,507 --> 00:14:03,808
+it does it with another MVC.    
+And same thing, in the month,   
+
+274
+00:14:03,877 --> 00:14:06,745
+if I click on a day, the month  
+MVC's gonna move out of         
+
+275
+00:14:06,814 --> 00:14:11,983
+the way. Put a day MVC that     
+shows me all my appointments,   
+
+276
+00:14:12,052 --> 00:14:15,721
+for a day and that day MVC      
+would be part of the view of    
+
+277
+00:14:15,790 --> 00:14:19,157
+the month MVC, okay,            
+make sense? So that's why,      
+
+278
+00:14:19,226 --> 00:14:21,860
+that's the only relationship    
+we have between MVCs is across  
+
+279
+00:14:21,929 --> 00:14:24,662
+this view boundary. Now there   
+can be other communication,     
+
+280
+00:14:24,731 --> 00:14:26,798
+however. Look right here.       
+
+281
+00:14:26,867 --> 00:14:29,634
+This MVC, the purple one        
+in the top middle there,        
+
+282
+00:14:29,703 --> 00:14:32,905
+it's communicating to a model   
+that is the same model as some  
+
+283
+00:14:32,973 --> 00:14:36,542
+other MVC. So MVCs can share    
+the same model. That's          
+
+284
+00:14:36,610 --> 00:14:38,944
+perfectly fine. The models      
+are completely UI independent.  
+
+285
+00:14:39,012 --> 00:14:42,014
+They don't care how many MVCs   
+are looking at them, okay?      
+
+286
+00:14:42,082 --> 00:14:45,050
+Cuz they don't even             
+know about controllers.         
+
+287
+00:14:45,119 --> 00:14:46,985
+Right, they're completely       
+independent of that.            
+
+288
+00:14:47,054 --> 00:14:49,421
+Also notice these two           
+models down at the bottom,      
+
+289
+00:14:49,489 --> 00:14:52,890
+they're talking to each other.  
+That's okay, too, because       
+
+290
+00:14:52,959 --> 00:14:56,794
+a model can be defined any way  
+it wants. It's UI independent,  
+
+291
+00:14:56,863 --> 00:14:58,196
+it can talk to other models,    
+whatever.                       
+
+292
+00:14:58,264 --> 00:15:00,966
+Now of course, it's still       
+gonna wanna radio broadcast if  
+
+293
+00:15:01,034 --> 00:15:04,203
+maybe this model changes        
+something in it. But            
+
+294
+00:15:04,271 --> 00:15:06,004
+it still can talk               
+directly to the model, so       
+
+295
+00:15:06,072 --> 00:15:08,941
+that's the other communication  
+that can happen. But            
+
+296
+00:15:09,009 --> 00:15:10,675
+no other communication          
+can happen.                     
+
+297
+00:15:10,744 --> 00:15:13,545
+We do not want our apps         
+to look like this. Okay,        
+
+298
+00:15:13,613 --> 00:15:17,048
+we've got these MVCs, and       
+look, see this view over here?  
+
+299
+00:15:17,117 --> 00:15:19,984
+It's talking to a different     
+controller. This controller is  
+
+300
+00:15:20,053 --> 00:15:22,554
+talking directly to another     
+one, not out of view, but       
+
+301
+00:15:22,623 --> 00:15:25,691
+just off to this side. You      
+don't want this mess. If you    
+
+302
+00:15:25,759 --> 00:15:28,594
+do this mess, you really,       
+you're not even doing an MVC.   
+
+303
+00:15:28,662 --> 00:15:29,694
+Cuz everybody's                 
+in the same camp,               
+
+304
+00:15:29,763 --> 00:15:31,463
+they're all just                
+talking to each other,          
+
+305
+00:15:31,532 --> 00:15:34,967
+okay? So this is a no-go.       
+And, of course,                 
+
+306
+00:15:35,035 --> 00:15:37,769
+I'll be showing you, not next   
+week, but the week after,       
+
+307
+00:15:37,838 --> 00:15:40,672
+how we build these connections  
+between MVCs. For the first     
+
+308
+00:15:40,741 --> 00:15:42,874
+two weeks, we're just gonna     
+focus on building one MVC,      
+
+309
+00:15:42,943 --> 00:15:44,976
+our calculators, one MVC. But   
+
+310
+00:15:45,045 --> 00:15:48,146
+we're gonna add another MVC to  
+our calculator in week three.   
+
+311
+00:15:48,214 --> 00:15:52,283
+And you're gonna see, that's    
+how we wire these things up,    
+
+312
+00:15:52,352 --> 00:15:54,953
+okay? So that's MVCs.           
+We're gonna dive back into      
+
+313
+00:15:55,021 --> 00:15:57,155
+continuing our calculator       
+demo here. Again,               
+
+314
+00:15:57,224 --> 00:15:59,058
+this is a slide you're          
+gonna look at later and         
+
+315
+00:15:59,126 --> 00:16:02,194
+say, did I learn all            
+these things? I hope so.        
+
+316
+00:16:02,263 --> 00:16:03,962
+And I'm not going               
+back to these slides.           
+
+317
+00:16:04,031 --> 00:16:06,631
+So let me talk about what's     
+coming up. On Friday, we have   
+
+318
+00:16:06,700 --> 00:16:09,367
+this debugging Friday session.  
+I still don't have a room for   
+
+319
+00:16:09,436 --> 00:16:10,769
+it, but it will be              
+announced on Piazza.            
+
+320
+00:16:10,837 --> 00:16:13,371
+It's gonna be around noon,      
+maybe 1 o' clock,               
+
+321
+00:16:13,440 --> 00:16:15,907
+maybe 11. I know some of        
+you have conflicting things     
+
+322
+00:16:15,976 --> 00:16:17,943
+in that time and                
+might not be able to make it.   
+
+323
+00:16:18,012 --> 00:16:21,045
+It's optional, I hope you're    
+all able to make it, however.   
+
+324
+00:16:21,114 --> 00:16:24,082
+We'll also in that one,         
+be going over some like Xcode   
+
+325
+00:16:24,151 --> 00:16:27,753
+shortcuts, how to get around    
+in Xcode a little more easily.  
+
+326
+00:16:27,822 --> 00:16:29,621
+Cuz I always end up             
+clicking on everything, so      
+
+327
+00:16:29,690 --> 00:16:30,455
+you can see what I'm doing.     
+But                             
+
+328
+00:16:30,524 --> 00:16:34,092
+there's command keys you can    
+do to really master Xcode. And  
+
+329
+00:16:34,161 --> 00:16:35,426
+then don't forget               
+Monday's a holiday, so          
+
+330
+00:16:35,495 --> 00:16:36,661
+don't show up here.             
+
+331
+00:16:36,730 --> 00:16:39,798
+And then next Wednesday,        
+the reading assignment I        
+
+332
+00:16:39,866 --> 00:16:42,267
+assigned on Monday, plus the    
+programming assignment that     
+
+333
+00:16:42,336 --> 00:16:44,836
+I just put on Piazza today,     
+are both due                    
+
+334
+00:16:44,905 --> 00:16:47,405
+next Wednesday. And then next   
+Wednesday, you'll get another   
+
+335
+00:16:47,474 --> 00:16:49,074
+reading assignment and another  
+programming assignment,         
+
+336
+00:16:49,143 --> 00:16:53,712
+which will be due a week        
+later, okay? Okay,              
+
+337
+00:16:53,780 --> 00:16:58,550
+here we go, back to our         
+calculator, here's where,       
+
+338
+00:16:58,618 --> 00:17:03,221
+exactly where we left off       
+right here. And as I said when  
+
+339
+00:17:03,290 --> 00:17:07,058
+we were there, this is          
+a great little calculator,      
+
+340
+00:17:07,127 --> 00:17:11,963
+it's nice. But it's kind of     
+bad that this code right here,  
+
+341
+00:17:12,032 --> 00:17:15,734
+which is the what of this       
+calculator, what is this?       
+
+342
+00:17:15,802 --> 00:17:18,737
+This is a calculator. Here's    
+the calculations happening.     
+
+343
+00:17:18,805 --> 00:17:20,905
+That really needs to be         
+in a different camp.            
+
+344
+00:17:20,974 --> 00:17:24,342
+It can't be in the controller   
+like this. So that's the main   
+
+345
+00:17:24,411 --> 00:17:26,511
+thing we're gonna do in         
+this demo right here,           
+
+346
+00:17:26,580 --> 00:17:28,080
+is we're gonna                  
+create a model for              
+
+347
+00:17:28,148 --> 00:17:28,981
+this calculator,                
+
+348
+00:17:29,049 --> 00:17:31,149
+where we're gonna put           
+all this calculation.           
+
+349
+00:17:31,217 --> 00:17:33,685
+And then we're gonna make this  
+model really powerful and       
+
+350
+00:17:33,754 --> 00:17:35,687
+extensible as you'll see. So,   
+
+351
+00:17:35,755 --> 00:17:39,657
+we need to create a new data    
+structure for our model, and    
+
+352
+00:17:39,726 --> 00:17:41,927
+we do that with                 
+File > New File.                
+
+353
+00:17:41,995 --> 00:17:44,396
+Any time we wanna create a new  
+class or new structure or       
+
+354
+00:17:44,464 --> 00:17:46,764
+any kinda new data structure,   
+this is what we do.             
+
+355
+00:17:46,833 --> 00:17:51,937
+So we hit this, it's gonna      
+be a Swift File right here.     
+
+356
+00:17:52,005 --> 00:17:53,472
+We'll look at it, maybe one or  
+two of these others,            
+
+357
+00:17:53,541 --> 00:17:54,940
+actually we probably            
+won't even look at those.       
+
+358
+00:17:55,008 --> 00:17:57,675
+It's almost always gonna be     
+a Swift File that you create    
+
+359
+00:17:57,744 --> 00:18:01,547
+here. Here it is, it wants      
+to know the name. So this is    
+
+360
+00:18:01,615 --> 00:18:04,015
+the brain of my calculator,     
+right, the guts of it.          
+
+361
+00:18:04,084 --> 00:18:06,818
+So I'm gonna call this          
+CalculatorBrain. That's gonna   
+
+362
+00:18:06,887 --> 00:18:10,088
+be the name of the data         
+structure that I'm gonna use    
+
+363
+00:18:10,157 --> 00:18:13,992
+here. And I'm gonna make sure   
+I put it in the same group,     
+
+364
+00:18:14,061 --> 00:18:16,861
+down here,                      
+as all the rest of my           
+
+365
+00:18:16,930 --> 00:18:19,431
+classes like ViewController,    
+see that ViewController.swift?  
+
+366
+00:18:19,500 --> 00:18:22,034
+I'm gonna put it in             
+the same place there.           
+
+367
+00:18:22,103 --> 00:18:24,236
+All right, so here it is        
+on the left and right,          
+
+368
+00:18:24,305 --> 00:18:27,139
+actually, let's just make       
+it fill the whole screen.       
+
+369
+00:18:27,208 --> 00:18:30,175
+If we look in the navigator,    
+now we have three files,        
+
+370
+00:18:30,244 --> 00:18:33,512
+okay, there's our controller,   
+there's our view, and           
+
+371
+00:18:33,580 --> 00:18:38,216
+there's our model, MVC, voila,  
+okay, it's that easy. Now,      
+
+372
+00:18:38,285 --> 00:18:42,854
+we need in this model to think  
+a little bit about what its     
+
+373
+00:18:42,922 --> 00:18:46,457
+public API is. In other words,  
+what does this model allow      
+
+374
+00:18:46,526 --> 00:18:48,393
+other people,                   
+like controllers,               
+
+375
+00:18:48,462 --> 00:18:51,896
+to do? Okay, that's one of the  
+most fundamental things that    
+
+376
+00:18:51,965 --> 00:18:54,166
+you wanna do whenever           
+you're doing design.            
+
+377
+00:18:54,234 --> 00:18:57,636
+Just think about what the       
+public API, does everyone know  
+
+378
+00:18:57,704 --> 00:19:00,538
+what API means? Application     
+programming interface.          
+
+379
+00:19:00,607 --> 00:19:03,508
+It's all the methods and        
+properties. Snd so              
+
+380
+00:19:03,577 --> 00:19:06,744
+your public API is the methods  
+and properties you're gonna     
+
+381
+00:19:06,813 --> 00:19:09,848
+allow other classes or other    
+data structures to access.      
+
+382
+00:19:09,916 --> 00:19:13,051
+So we really, really wanna      
+think about that. Quickly also  
+
+383
+00:19:13,120 --> 00:19:16,254
+notice that we've imported      
+Foundation here, not UIKit,     
+
+384
+00:19:16,323 --> 00:19:20,258
+because this is not going to    
+be a UI class, right? This      
+
+385
+00:19:20,327 --> 00:19:24,630
+is UI independent, this is the  
+model. Now I could say here,    
+
+386
+00:19:24,698 --> 00:19:28,433
+okay, let's create a class      
+called CalculatorBrain. Nope,   
+
+387
+00:19:28,502 --> 00:19:32,203
+not Brian, brain. So I could    
+do that, but I'm actually not   
+
+388
+00:19:32,272 --> 00:19:35,307
+going to do that. I'm gonna     
+use a different data structure  
+
+389
+00:19:35,376 --> 00:19:39,711
+here than a class, all right?   
+I'm gonna use a struct. Now,    
+
+390
+00:19:39,780 --> 00:19:42,347
+you're probably used to using   
+struct in other languages, but  
+
+391
+00:19:42,416 --> 00:19:44,983
+you probably think of it as     
+just like a little collection   
+
+392
+00:19:45,052 --> 00:19:48,753
+of other variables is           
+a struct. In Swift,             
+
+393
+00:19:48,822 --> 00:19:50,889
+struct is a first               
+class citizen,                  
+
+394
+00:19:50,957 --> 00:19:53,691
+very much like the class,       
+okay? And I'm gonna talk about  
+
+395
+00:19:53,760 --> 00:19:55,928
+the difference between that     
+in a second. And in fact,       
+
+396
+00:19:55,996 --> 00:20:00,298
+most of the commonly used       
+classes in Swift are structs,   
+
+397
+00:20:00,367 --> 00:20:04,202
+like string, double,            
+array, dictionary,              
+
+398
+00:20:04,271 --> 00:20:07,005
+these are all structs,          
+they're not classes. So         
+
+399
+00:20:07,074 --> 00:20:09,340
+what's the difference           
+between a struct and a class?   
+
+400
+00:20:09,409 --> 00:20:11,143
+I'm gonna talk in detail        
+about it next week, but         
+
+401
+00:20:11,211 --> 00:20:12,978
+I'm gonna tell you two          
+important differences,          
+
+402
+00:20:13,046 --> 00:20:14,880
+the two most important          
+differences.                    
+
+403
+00:20:14,949 --> 00:20:18,217
+One thing,                      
+classes have inheritance,       
+
+404
+00:20:18,285 --> 00:20:21,386
+structs do not, okay?           
+So if you're building           
+
+405
+00:20:21,454 --> 00:20:23,956
+something that you think is     
+gonna need to be sub classed    
+
+406
+00:20:24,024 --> 00:20:26,658
+to be extensible, you probably  
+wanna make it a class. I'm      
+
+407
+00:20:26,727 --> 00:20:29,194
+gonna make my CalculatorBrain   
+extensible in a different way   
+
+408
+00:20:29,263 --> 00:20:30,195
+as you'll see, so               
+
+409
+00:20:30,264 --> 00:20:33,265
+it doesn't need to be a class.  
+I could possibly change         
+
+410
+00:20:33,333 --> 00:20:35,534
+it back to a class if I         
+change my idea later, but       
+
+411
+00:20:35,602 --> 00:20:38,303
+my current architecture does    
+not need to be sub classed,     
+
+412
+00:20:38,372 --> 00:20:41,239
+so that's one difference.       
+The other difference,           
+
+413
+00:20:41,308 --> 00:20:42,073
+huge difference, and            
+
+414
+00:20:42,142 --> 00:20:44,343
+the one that's gonna take       
+the most getting used to for    
+
+415
+00:20:44,411 --> 00:20:49,180
+you conceptually, is that       
+classes live in the heap, and   
+
+416
+00:20:49,249 --> 00:20:53,151
+you have pointers to them.      
+Structs do not live in          
+
+417
+00:20:53,220 --> 00:20:58,156
+the heap, and they are passed   
+around by copying them, okay?   
+
+418
+00:20:58,225 --> 00:21:02,293
+We call the copying             
+style value types.              
+
+419
+00:21:02,362 --> 00:21:06,564
+We call the, in the heap file,  
+style, reference types.         
+
+420
+00:21:06,633 --> 00:21:09,067
+Because we have a reference     
+to them in the class case,      
+
+421
+00:21:09,136 --> 00:21:10,902
+we actually copy them           
+around in the struct case.      
+
+422
+00:21:10,971 --> 00:21:14,105
+Now, you know, that might       
+seem like a big restriction.    
+
+423
+00:21:14,174 --> 00:21:16,207
+I gotta copy these things       
+around, what if they're big?    
+
+424
+00:21:16,276 --> 00:21:19,912
+But as I mentioned on Monday,   
+these things are passed around  
+
+425
+00:21:19,980 --> 00:21:23,048
+copy on right. So when you      
+pass them around, if you don't  
+
+426
+00:21:23,117 --> 00:21:26,819
+actually change them, then no   
+copy is actually made. Okay,    
+
+427
+00:21:26,887 --> 00:21:30,155
+but it's all behind the scenes  
+for you, all right?             
+
+428
+00:21:30,224 --> 00:21:31,155
+So that's a huge difference.    
+
+429
+00:21:31,224 --> 00:21:33,992
+Now why would I want my         
+CalculatorBrain to be a struct  
+
+430
+00:21:34,060 --> 00:21:37,095
+instead of a class? Well,       
+I don't imagine I'm gonna have  
+
+431
+00:21:37,164 --> 00:21:39,064
+a whole bunch of different      
+people referencing it.          
+
+432
+00:21:39,133 --> 00:21:42,334
+The CalculatorBrain is          
+a brain for an MVC.             
+
+433
+00:21:42,402 --> 00:21:45,137
+So that MVC is gonna access     
+it, but I, I don't see a lot    
+
+434
+00:21:45,205 --> 00:21:49,008
+of other entities somehow       
+trying to point to this thing.  
+
+435
+00:21:49,076 --> 00:21:50,875
+So I don't really need          
+to be reference type,           
+
+436
+00:21:50,944 --> 00:21:55,814
+okay. I can have it be a value  
+type from that standpoint. So   
+
+437
+00:21:55,883 --> 00:21:58,250
+it's probably fine. Also        
+it's a great opportunity for    
+
+438
+00:21:58,319 --> 00:22:01,286
+me to show you what it looks    
+like to make a struct because   
+
+439
+00:22:01,355 --> 00:22:03,621
+making a struct looked almost   
+just like being a class,        
+
+440
+00:22:03,690 --> 00:22:05,024
+but there's a couple            
+minor differences,              
+
+441
+00:22:05,092 --> 00:22:07,726
+which you're gonna see          
+real soon here, okay?           
+
+442
+00:22:07,795 --> 00:22:09,895
+So now back to the public API,  
+
+443
+00:22:09,963 --> 00:22:12,764
+what is the public API of       
+this? Well, I know that         
+
+444
+00:22:12,832 --> 00:22:15,466
+this CalculatorBrain is gonna   
+need a func that performs       
+
+445
+00:22:15,535 --> 00:22:19,304
+operation. Okay, for sure       
+because that's fundamentally    
+
+446
+00:22:19,373 --> 00:22:22,508
+what it does. It performs       
+an operation. And we'll use     
+
+447
+00:22:22,576 --> 00:22:25,210
+the same mechanism we used      
+on Monday to define it.         
+
+448
+00:22:25,279 --> 00:22:29,982
+I will have some mathematical   
+symbol be the thing that        
+
+449
+00:22:30,050 --> 00:22:35,620
+defines what operation we're    
+performing, okay? And notice    
+
+450
+00:22:35,689 --> 00:22:40,125
+that I made the external name   
+be blank. It's a close call     
+
+451
+00:22:40,194 --> 00:22:42,561
+here as whether you would       
+want it to be symbol.           
+
+452
+00:22:42,629 --> 00:22:45,697
+In other words, would I call    
+performOperation like this,     
+
+453
+00:22:45,766 --> 00:22:48,567
+okay, performOperation(symbol,  
+whatever. Or                    
+
+454
+00:22:48,636 --> 00:22:53,939
+whether I want it to be blank,  
+and I say performOperation,     
+
+455
+00:22:54,007 --> 00:22:56,475
+and I just put the string,      
+the symbol in here like pi or   
+
+456
+00:22:56,543 --> 00:22:59,244
+whatever.                       
+It's a close call here,         
+
+457
+00:22:59,313 --> 00:23:02,014
+this is a close judgement       
+call as to which is better.     
+
+458
+00:23:02,082 --> 00:23:04,015
+I'm gonna go with this because  
+I think reading this code,      
+
+459
+00:23:04,084 --> 00:23:07,586
+performOperation pi makes       
+perfect sense to me.            
+
+460
+00:23:07,655 --> 00:23:10,121
+Adding the word symbol          
+in there doesn't really         
+
+461
+00:23:10,190 --> 00:23:11,489
+make it any clearer to me, so   
+
+462
+00:23:11,558 --> 00:23:14,492
+that's the way I'm gonna        
+go with this one. Okay,         
+
+463
+00:23:14,561 --> 00:23:17,228
+what else do I need? Well, if   
+you're performing operations,   
+
+464
+00:23:17,297 --> 00:23:19,531
+you have to have operands       
+to perform one, right?          
+
+465
+00:23:19,600 --> 00:23:20,365
+If you're doing square root,    
+
+466
+00:23:20,434 --> 00:23:22,234
+you have to do square root      
+of something, whatever. So      
+
+467
+00:23:22,303 --> 00:23:25,236
+I'm gonna have to have some     
+func that sets the operand as   
+
+468
+00:23:25,305 --> 00:23:28,206
+well, okay? And again, I'm      
+gonna have no external name,    
+
+469
+00:23:28,275 --> 00:23:32,544
+and we'll call it the operand.  
+And I'm gonna have my           
+
+470
+00:23:32,612 --> 00:23:35,814
+entire CalculatorBrain          
+work in doubles. It's           
+
+471
+00:23:35,883 --> 00:23:39,084
+gonna be a double precision     
+CalculatorBrain, so I'm gonna   
+
+472
+00:23:39,152 --> 00:23:42,120
+have the operand be a double.   
+Now, here's a case where I      
+
+473
+00:23:42,188 --> 00:23:45,223
+definitely know that I don't    
+wanna have an external name,    
+
+474
+00:23:45,292 --> 00:23:48,393
+because saying setOperand       
+(operand: 5.0), that's          
+
+475
+00:23:48,461 --> 00:23:51,830
+ridiculous, that's completely   
+redundant, don't need it.       
+
+476
+00:23:51,899 --> 00:23:55,467
+It's very clear, if I do this,  
+setOperand(5.0).                
+
+477
+00:23:55,536 --> 00:23:58,102
+That's clear what I'm talking   
+about. So no question in my     
+
+478
+00:23:58,171 --> 00:24:01,173
+mind that that's better.        
+And then you set the operand,   
+
+479
+00:24:01,242 --> 00:24:03,775
+you perform operations,         
+guess what? You gotta           
+
+480
+00:24:03,843 --> 00:24:08,013
+get the result. Now, I could    
+have a func to getResult or     
+
+481
+00:24:08,081 --> 00:24:12,150
+something like that.            
+That returns a double, right?   
+
+482
+00:24:12,218 --> 00:24:15,420
+That's one thing I do. But      
+that's really not very Swift.   
+
+483
+00:24:15,489 --> 00:24:18,556
+Really in Swift what you would  
+do is you say, here's a result  
+
+484
+00:24:18,625 --> 00:24:24,128
+var, that returns result. Now   
+the only problem with that UI,  
+
+485
+00:24:24,197 --> 00:24:28,800
+or that API rather, is I don't  
+want anyone to set my result.   
+
+486
+00:24:28,869 --> 00:24:31,670
+I'm the calculator brain,       
+I calculate the result. So      
+
+487
+00:24:31,739 --> 00:24:33,438
+this needs to be read-only.     
+
+488
+00:24:33,507 --> 00:24:38,210
+Anyone remember how we          
+can make a var read-only?       
+
+489
+00:24:38,279 --> 00:24:44,349
+No? Someone suggest let.        
+And that's kinda                
+
+490
+00:24:44,418 --> 00:24:47,819
+not exactly what let does.      
+Let makes it to constant,       
+
+491
+00:24:47,888 --> 00:24:50,922
+meaning that it's read-only.    
+But it can only set once.       
+
+492
+00:24:50,991 --> 00:24:54,059
+Whereas result is constantly    
+changing. So we can't do let,   
+
+493
+00:24:54,127 --> 00:24:56,528
+unfortunately.                  
+But it's a really good guess.   
+
+494
+00:24:56,596 --> 00:25:00,365
+Actually we do it with the      
+computed property thing. Okay,  
+
+495
+00:25:00,434 --> 00:25:02,467
+remember we computed            
+that display value and          
+
+496
+00:25:02,536 --> 00:25:05,170
+we had get and set? Well, we    
+just don't do the set, right?   
+
+497
+00:25:05,239 --> 00:25:07,706
+In this case we're just not     
+gonna do. Just not put that on  
+
+498
+00:25:07,775 --> 00:25:09,741
+there. Boom,                    
+this is a read-only property.   
+
+499
+00:25:09,810 --> 00:25:13,945
+Everybody got that? It's        
+like currentTitle on button.    
+
+500
+00:25:14,014 --> 00:25:15,981
+It's get only. All right now,   
+
+501
+00:25:16,050 --> 00:25:18,917
+I'm gonna think a little        
+bit about the internal          
+
+502
+00:25:18,985 --> 00:25:22,287
+implementation of this before   
+I go and start using this       
+
+503
+00:25:22,355 --> 00:25:26,091
+thing. I know that a            
+calculator brain, internally,   
+
+504
+00:25:26,160 --> 00:25:30,728
+it kind of accumulates its      
+answer as it's going. And       
+
+505
+00:25:30,797 --> 00:25:34,700
+so I'm actually gonna have an   
+internal var, and watch this,   
+
+506
+00:25:34,769 --> 00:25:40,004
+private var. I'm gonna          
+call it accumulator, I'm        
+
+507
+00:25:40,073 --> 00:25:43,441
+gonna make it a double, okay?   
+So this is gonna be internal.   
+
+508
+00:25:43,510 --> 00:25:46,178
+So now, other people            
+can't access this.              
+
+509
+00:25:46,246 --> 00:25:49,414
+That's what private means.      
+And for all your homeworks for  
+
+510
+00:25:49,483 --> 00:25:52,184
+this entire quarter, I want     
+you to put private in front of  
+
+511
+00:25:52,252 --> 00:25:56,087
+things that you think           
+are internal implementation.    
+
+512
+00:25:56,156 --> 00:25:59,191
+To any class you've create in   
+this, in this course, okay?     
+
+513
+00:25:59,260 --> 00:26:01,326
+So get used to doing that.      
+It's very important.            
+
+514
+00:26:01,394 --> 00:26:04,529
+These three are not private.    
+They're public.                 
+
+515
+00:26:04,598 --> 00:26:07,065
+I'm gonna allow other           
+people to call these. But       
+
+516
+00:26:07,133 --> 00:26:12,070
+this one is internal.           
+Now, one thing you notice is    
+
+517
+00:26:12,138 --> 00:26:16,441
+I don't have any error up here  
+that says no initializer.       
+
+518
+00:26:16,510 --> 00:26:18,810
+Remember that when              
+I created a var in              
+
+519
+00:26:18,879 --> 00:26:20,178
+the view controller,            
+
+520
+00:26:20,247 --> 00:26:22,714
+and it said that there's no     
+initializers. And I had to      
+
+521
+00:26:22,782 --> 00:26:25,984
+make userInTheMiddleOfTyping    
+equal false. Why don't          
+
+522
+00:26:26,053 --> 00:26:30,255
+I have to do it here? That's    
+because this is a struct. And   
+
+523
+00:26:30,324 --> 00:26:33,258
+structs automatically           
+get an initializer.             
+
+524
+00:26:33,327 --> 00:26:36,495
+That will initialize all of     
+their uninitialized vars,       
+
+525
+00:26:36,563 --> 00:26:38,163
+okay?                           
+You get a free initializer.     
+
+526
+00:26:38,231 --> 00:26:40,365
+You don't get that with class.  
+Only with the structs, so       
+
+527
+00:26:40,433 --> 00:26:42,033
+there is one difference         
+between class and structs.      
+
+528
+00:26:42,102 --> 00:26:44,570
+So we're gonna have a struct,   
+for CalculatorBrain, or         
+
+529
+00:26:44,638 --> 00:26:47,139
+an initializer for              
+CalculatorBrain. That will      
+
+530
+00:26:47,207 --> 00:26:50,375
+take a double and it'll         
+initialize as accumulator.      
+
+531
+00:26:50,444 --> 00:26:52,344
+But actually,                   
+I don't wanna do that.          
+
+532
+00:26:52,413 --> 00:26:56,114
+Because let me think of what    
+is accumulator's initial value  
+
+533
+00:26:56,182 --> 00:26:59,084
+really wanna be? When someone   
+creates a CalculatorBrain,      
+
+534
+00:26:59,152 --> 00:27:02,020
+I don't wanna have them to      
+tell me what the accumulator's  
+
+535
+00:27:02,089 --> 00:27:02,854
+initial value is.               
+
+536
+00:27:02,923 --> 00:27:05,724
+Because I know what the         
+initial accumulator internally  
+
+537
+00:27:05,793 --> 00:27:10,929
+its initial value is when       
+I start up. It's not set.       
+
+538
+00:27:10,998 --> 00:27:13,098
+So I'm gonna make               
+this be an optional.            
+
+539
+00:27:13,167 --> 00:27:15,467
+Do you see why I'm              
+making that an optional?        
+
+540
+00:27:15,535 --> 00:27:18,102
+Because the accumulator when    
+I create my brain. I haven't    
+
+541
+00:27:18,171 --> 00:27:21,306
+accumulated any result.         
+So I'm in this not set state.   
+
+542
+00:27:21,375 --> 00:27:24,009
+So, it's a perfect opportunity  
+to make this a double or        
+
+543
+00:27:24,078 --> 00:27:29,147
+an optional so I can express    
+that in my code. All right? So  
+
+544
+00:27:29,216 --> 00:27:31,549
+if I have this internal         
+accumulator right here,         
+
+545
+00:27:31,618 --> 00:27:33,218
+how can I use that              
+to implement these?             
+
+546
+00:27:33,286 --> 00:27:36,354
+Well, two of them are easy.     
+Okay, setOperand                
+
+547
+00:27:36,423 --> 00:27:39,958
+just sets the accumulator       
+equal to that operand. Okay,    
+
+548
+00:27:40,026 --> 00:27:42,227
+cuz when you set a new          
+operand to operate on,          
+
+549
+00:27:42,296 --> 00:27:45,096
+that replaces anything you      
+have on your accumulator.       
+
+550
+00:27:45,165 --> 00:27:47,999
+It's what you're now            
+accumulating. So that, that     
+
+551
+00:27:48,068 --> 00:27:52,604
+could be any, any easier than   
+that. And then we get results,  
+
+552
+00:27:52,673 --> 00:27:57,842
+you're just gonna return        
+the accumulator. Now,           
+
+553
+00:27:57,911 --> 00:27:59,544
+we've got a couple of           
+errors here that we             
+
+554
+00:27:59,613 --> 00:28:01,813
+have to deal with.              
+What's this one right here?     
+
+555
+00:28:01,882 --> 00:28:03,381
+This looks perfectly fine.      
+How could this be bad?          
+
+556
+00:28:03,450 --> 00:28:06,284
+Accumulator is an optional      
+double, I'm setting it to       
+
+557
+00:28:06,353 --> 00:28:09,287
+a double. It's gotta work,      
+what's the problem?             
+
+558
+00:28:09,356 --> 00:28:13,758
+Says I cannot assign to this    
+property, because self is       
+
+559
+00:28:13,827 --> 00:28:18,296
+immutable. Self meaning the     
+calculator brain is immutable.  
+
+560
+00:28:18,365 --> 00:28:21,834
+And it's saying, do you wanna   
+fix this by making this method  
+
+561
+00:28:21,902 --> 00:28:25,403
+be mutating? You see he's       
+trying to add this here.        
+
+562
+00:28:25,472 --> 00:28:26,738
+Another difference              
+between structs and             
+
+563
+00:28:26,806 --> 00:28:30,475
+classes, if you have a method,  
+okay? Or a property             
+
+564
+00:28:30,543 --> 00:28:33,879
+that you're setting, that       
+well, if you have a method and  
+
+565
+00:28:33,947 --> 00:28:36,715
+it changes the value            
+of this thing,                  
+
+566
+00:28:36,784 --> 00:28:41,753
+you have to mark it mutating.   
+You have to tell Swift, this    
+
+567
+00:28:41,821 --> 00:28:45,924
+method can change the value     
+of this struct. Why is that?    
+
+568
+00:28:45,993 --> 00:28:48,627
+It's because of that copy       
+on write thing. Remember,       
+
+569
+00:28:48,696 --> 00:28:51,530
+I told you that structs are     
+passed around by copying them.  
+
+570
+00:28:51,598 --> 00:28:53,632
+And when you write to them,     
+then it copies it. So           
+
+571
+00:28:53,700 --> 00:28:56,067
+it has to know you're writing   
+it by calling setOperand.       
+
+572
+00:28:56,136 --> 00:28:58,036
+So, you have to make            
+setOperand be mutating func.    
+
+573
+00:28:58,105 --> 00:29:02,807
+So that's the difference        
+between class and a struct.     
+
+574
+00:29:02,876 --> 00:29:05,644
+With that, what's this error    
+down here? A different error.   
+
+575
+00:29:05,713 --> 00:29:11,550
+Anyone know what this           
+error is? Louder? Okay,         
+
+576
+00:29:11,619 --> 00:29:15,754
+the problem here is we're       
+trying to return a double,      
+
+577
+00:29:15,822 --> 00:29:20,893
+an accumulator is an optional.  
+Okay, so it's saying here,      
+
+578
+00:29:20,961 --> 00:29:25,797
+hey unwrap this. Now, I do      
+not wanna do this here. Okay,   
+
+579
+00:29:25,866 --> 00:29:28,800
+because it's perfectly valid    
+for the accumulator to be not   
+
+580
+00:29:28,869 --> 00:29:31,603
+set. In fact, this starts       
+out not set. And in fact,       
+
+581
+00:29:31,672 --> 00:29:34,406
+I can think already of another  
+case where the accumulator is   
+
+582
+00:29:34,475 --> 00:29:38,743
+gonna be not set. What if I     
+say, five times three equals,   
+
+583
+00:29:38,812 --> 00:29:42,180
+in my calculator?               
+After I say five times,         
+
+584
+00:29:42,249 --> 00:29:44,883
+my accumulator is               
+not set right now.              
+
+585
+00:29:44,952 --> 00:29:49,187
+Cuz I need the three equals     
+until I can get the result. So  
+
+586
+00:29:49,256 --> 00:29:52,657
+my accumulator's often gonna    
+be going back to not set.       
+
+587
+00:29:52,726 --> 00:29:56,228
+When we're in that weird five   
+times three equals five times,  
+
+588
+00:29:56,296 --> 00:29:58,897
+the accumulator's not set       
+right now. Three, okay,         
+
+589
+00:29:58,966 --> 00:30:00,599
+the accumulator's set again,    
+equals, okay,                   
+
+590
+00:30:00,668 --> 00:30:02,233
+here's the result. Okay,        
+
+591
+00:30:02,302 --> 00:30:04,536
+so I can't have this            
+be exclamation point.           
+
+592
+00:30:04,604 --> 00:30:06,804
+Or this thing is gonna crash    
+every time someone asks for     
+
+593
+00:30:06,873 --> 00:30:10,542
+the result after they say five  
+times. So we can't have that.   
+
+594
+00:30:10,611 --> 00:30:15,614
+So instead, I'm going to turn   
+result into an optional. And    
+
+595
+00:30:15,682 --> 00:30:16,514
+that makes sense too.           
+
+596
+00:30:16,583 --> 00:30:20,419
+Because if someone using this   
+object in the middle of five    
+
+597
+00:30:20,487 --> 00:30:24,156
+times says, what's the          
+results? It'll tell you it's    
+
+598
+00:30:24,224 --> 00:30:26,925
+not set, because I'm in the     
+middle of five times, right?    
+
+599
+00:30:26,994 --> 00:30:30,128
+And in your homework, you're    
+even gonna make it clearer to   
+
+600
+00:30:30,197 --> 00:30:33,298
+users of this why this          
+might not be set, okay? So      
+
+601
+00:30:33,367 --> 00:30:35,968
+you'll see that. All right, so  
+
+602
+00:30:36,036 --> 00:30:40,005
+that's a good start to the      
+implementation of this thing.   
+
+603
+00:30:40,074 --> 00:30:42,841
+But before we go into deeper    
+in this implementation,         
+
+604
+00:30:42,909 --> 00:30:45,944
+let's go back to our            
+controller and use this public  
+
+605
+00:30:46,012 --> 00:30:48,813
+API that I just designed.       
+Okay, I wanna use this.         
+
+606
+00:30:48,882 --> 00:30:50,615
+So I'm gonna go back            
+to my controller. Now,          
+
+607
+00:30:50,684 --> 00:30:53,819
+I wanna have my controller and  
+my model on screen on the same  
+
+608
+00:30:53,888 --> 00:30:56,654
+time. Just so I can see         
+them side by side. And          
+
+609
+00:30:56,723 --> 00:30:59,291
+the best way to do that is      
+to bring out this assistant     
+
+610
+00:30:59,359 --> 00:31:03,094
+editor thing again, right?      
+And you can go up to the top.   
+
+611
+00:31:03,163 --> 00:31:06,264
+And you can actually            
+manually pick. Or               
+
+612
+00:31:06,333 --> 00:31:08,866
+I'm gonna teach you             
+one little Alt thing.           
+
+613
+00:31:08,935 --> 00:31:14,005
+If you hold down Alt and click  
+on some other file over here,   
+
+614
+00:31:14,074 --> 00:31:15,840
+you'll get that to              
+appear on the right.            
+
+615
+00:31:15,909 --> 00:31:18,110
+So Alt-clicking means           
+bring it up on the right.       
+
+616
+00:31:19,546 --> 00:31:23,348
+Okay, so here I have            
+my model on the left.           
+
+617
+00:31:23,417 --> 00:31:25,651
+And here I have my              
+controller on the right.        
+
+618
+00:31:25,719 --> 00:31:29,821
+So what I need to do now is     
+fix this broken code that is    
+
+619
+00:31:29,890 --> 00:31:34,726
+doing model stuff inside the    
+controller by using the public  
+
+620
+00:31:34,795 --> 00:31:37,963
+API of my model.                
+Now, notice that                
+
+621
+00:31:38,032 --> 00:31:41,967
+touchDigit does nothing when    
+it comes to calculating.        
+
+622
+00:31:42,036 --> 00:31:44,002
+All it does is get the digits   
+from the keyboard and           
+
+623
+00:31:44,071 --> 00:31:46,304
+put them in the display. It's   
+not doing any calculating, so   
+
+624
+00:31:46,373 --> 00:31:47,639
+we don't have to touch that.    
+
+625
+00:31:47,708 --> 00:31:50,575
+Same thing here with this       
+display value computed var.     
+
+626
+00:31:50,644 --> 00:31:51,843
+All it's doing is converting    
+
+627
+00:31:51,912 --> 00:31:53,745
+the display from                
+a double to a string and        
+
+628
+00:31:53,814 --> 00:31:54,346
+back. That's all it does.       
+
+629
+00:31:54,414 --> 00:31:56,515
+It has nothing to do            
+with being a calculator.        
+
+630
+00:31:56,584 --> 00:31:59,585
+That's just the UI for          
+this particular calculator. So  
+
+631
+00:31:59,653 --> 00:32:02,154
+the only thing we actually      
+have to change is this method,  
+
+632
+00:32:02,223 --> 00:32:07,025
+performOperation. Now,          
+we know that this part in here  
+
+633
+00:32:07,093 --> 00:32:10,229
+does not belong in here. And    
+in fact, I'll throw it over     
+
+634
+00:32:10,297 --> 00:32:12,630
+here in my model. Even though   
+it's not gonna work there.      
+
+635
+00:32:12,699 --> 00:32:15,333
+But we'll throw it over there   
+for now just to get it out of   
+
+636
+00:32:15,402 --> 00:32:20,405
+the way, okay? So now we        
+need to somehow use this        
+
+637
+00:32:20,474 --> 00:32:23,241
+API over here in this           
+implementation. So,             
+
+638
+00:32:23,310 --> 00:32:25,743
+let's look at all three         
+parts of what has to do,        
+
+639
+00:32:25,812 --> 00:32:28,513
+what we have to do in perform   
+operation. First of all,        
+
+640
+00:32:28,582 --> 00:32:30,515
+if we're in the middle          
+of typing a number,             
+
+641
+00:32:30,584 --> 00:32:33,819
+we need to set that number      
+as an operand, okay?            
+
+642
+00:32:33,887 --> 00:32:36,120
+Because obviously, the user     
+typing in a number and          
+
+643
+00:32:36,189 --> 00:32:38,857
+they perform an operation       
+that number they were typing    
+
+644
+00:32:38,926 --> 00:32:41,192
+needs to be an operand.         
+So, right off the bat here.     
+
+645
+00:32:41,261 --> 00:32:44,996
+I'm gonna say, if the user      
+is in the middle of typing,     
+
+646
+00:32:45,065 --> 00:32:48,733
+then I'm going to set           
+the operand. Now, how do I      
+
+647
+00:32:48,802 --> 00:32:51,837
+communicate to my brain here?   
+Where is my brain? [LAUGH] I    
+
+648
+00:32:51,905 --> 00:32:54,806
+don't have a var for my brain.  
+So let's create a var, and      
+
+649
+00:32:54,875 --> 00:32:58,743
+it will be private. Because     
+the model is almost always      
+
+650
+00:32:58,812 --> 00:33:01,947
+private to the controller. Cuz  
+you don't want someone else     
+
+651
+00:33:02,015 --> 00:33:05,216
+reaching in and messing with    
+this controller's model. So     
+
+652
+00:33:05,285 --> 00:33:06,851
+I'm gonna make it               
+a private var.                  
+
+653
+00:33:06,920 --> 00:33:11,890
+I'm gonna call it brain. Its    
+type is CalculatorBrain, okay?  
+
+654
+00:33:11,958 --> 00:33:14,793
+That's good. Now, as soon as    
+I put this line of code in,     
+
+655
+00:33:14,862 --> 00:33:18,297
+look what I get. The old, you   
+don't have any initializers.    
+
+656
+00:33:18,366 --> 00:33:20,732
+That's because this             
+is not initialized.             
+
+657
+00:33:20,801 --> 00:33:23,802
+So I'm gonna initialize it by   
+creating a CalculatorBrain.     
+
+658
+00:33:23,871 --> 00:33:26,104
+And you create                  
+a CalculatorBrain in exactly    
+
+659
+00:33:26,173 --> 00:33:29,608
+the same way that you           
+create as a class.              
+
+660
+00:33:29,677 --> 00:33:32,477
+With the name of the type and   
+then the parentheses.           
+
+661
+00:33:32,546 --> 00:33:36,080
+Now we have no arguments        
+in here. Because we have no     
+
+662
+00:33:36,149 --> 00:33:39,384
+uninitialized var. Since we     
+made this be an optional,       
+
+663
+00:33:39,453 --> 00:33:41,987
+it's initialized to nil         
+automatically for us for free,  
+
+664
+00:33:42,056 --> 00:33:44,389
+remember? So we have no         
+uninitialized vars, so          
+
+665
+00:33:44,458 --> 00:33:46,858
+we just do open parentheses,    
+closed parentheses. And         
+
+666
+00:33:46,927 --> 00:33:49,895
+of course, we don't             
+need this type, right?          
+
+667
+00:33:49,963 --> 00:33:54,099
+Because it gets inferred. So    
+if we ask what type is this?    
+
+668
+00:33:54,167 --> 00:33:56,735
+It says, that's a calculator    
+brain. Has to be cuz that's     
+
+669
+00:33:56,804 --> 00:34:00,272
+what you set it to. All right,  
+so now that we have a model,    
+
+670
+00:34:00,341 --> 00:34:03,408
+our controller. This is the     
+green arrow, talking from our   
+
+671
+00:34:03,476 --> 00:34:07,212
+controller to the model.        
+We can say, brain set your      
+
+672
+00:34:07,281 --> 00:34:11,616
+operand to be whatever          
+the display value is. And       
+
+673
+00:34:11,685 --> 00:34:14,452
+of course now we are not in     
+the middle of typing, so I'll   
+
+674
+00:34:14,521 --> 00:34:17,989
+put that in here. So that's     
+all we need to do to set        
+
+675
+00:34:18,058 --> 00:34:20,492
+the brain's operand. We only    
+need to do if these are in      
+
+676
+00:34:20,560 --> 00:34:21,860
+the middle of typing            
+something new,                  
+
+677
+00:34:21,929 --> 00:34:23,095
+and they hit                    
+an operation button.            
+
+678
+00:34:23,164 --> 00:34:26,031
+We need to give them            
+that operand, okay?             
+
+679
+00:34:26,099 --> 00:34:28,433
+Now, what about the stuff       
+that was in here, okay?         
+
+680
+00:34:28,502 --> 00:34:30,935
+We get this mathematical        
+symbol of the operation to do.  
+
+681
+00:34:31,004 --> 00:34:32,471
+Now I'm just gonna              
+let the brain do it.            
+
+682
+00:34:32,540 --> 00:34:35,107
+So I'm just gonna say           
+brain perform operation,        
+
+683
+00:34:35,175 --> 00:34:37,942
+the mathematical symbol.        
+That's it.                      
+
+684
+00:34:38,011 --> 00:34:40,745
+I'm just handing that off to    
+the model. Because that's,      
+
+685
+00:34:40,814 --> 00:34:44,115
+this is not my job as a         
+controller to do calculation.   
+
+686
+00:34:44,184 --> 00:34:45,718
+Okay I'm a UI guy.              
+
+687
+00:34:47,054 --> 00:34:49,954
+Now of course after the         
+operation is done I need to     
+
+688
+00:34:50,023 --> 00:34:55,427
+set my display value equal      
+to the brain's result.          
+
+689
+00:34:55,495 --> 00:34:58,730
+But of course I can't do        
+this because displayValue       
+
+690
+00:34:58,799 --> 00:35:02,801
+is a double.                    
+And the result, might be        
+
+691
+00:35:02,870 --> 00:35:05,837
+not set cuz it's an optional.   
+So I'm gonna say here,          
+
+692
+00:35:05,906 --> 00:35:08,173
+if I can let the result         
+equal the brain to results.     
+
+693
+00:35:08,242 --> 00:35:12,443
+In other words, if the brain's  
+result is determined. Then I    
+
+694
+00:35:12,512 --> 00:35:17,983
+will let the displayValue       
+equal the result. That's it.    
+
+695
+00:35:18,052 --> 00:35:21,787
+Okay, so that little piece of   
+code to input has completely    
+
+696
+00:35:21,855 --> 00:35:24,823
+taken all calculation           
+out of the controller.          
+
+697
+00:35:24,891 --> 00:35:26,725
+And put you into this           
+other camp the model.           
+
+698
+00:35:26,794 --> 00:35:29,294
+And now we can spend the rest   
+of this lecture making this     
+
+699
+00:35:29,362 --> 00:35:30,695
+really powerful model.          
+
+700
+00:35:30,764 --> 00:35:32,397
+And nothing is gonna            
+change over here.               
+
+701
+00:35:32,466 --> 00:35:37,035
+I'm literally never gonna edit  
+this code ever again. In fact,  
+
+702
+00:35:37,104 --> 00:35:38,470
+I'm just gonna get it           
+off the screen. And             
+
+703
+00:35:38,538 --> 00:35:42,674
+we're gonna spend all of our    
+time over here in the model.    
+
+704
+00:35:42,743 --> 00:35:45,510
+So, let's start by making       
+kind of a really dirt simple    
+
+705
+00:35:45,579 --> 00:35:48,213
+implementation of               
+performOperation here. Which    
+
+706
+00:35:48,282 --> 00:35:51,483
+is try to get this code that    
+was already there to work.      
+
+707
+00:35:51,551 --> 00:35:53,785
+And mostly, that's just a       
+matter of changing the names.   
+
+708
+00:35:53,854 --> 00:35:55,520
+Because this                    
+argument is symbol,             
+
+709
+00:35:55,589 --> 00:35:58,056
+not mathematical symbol.        
+So, we'll do that.              
+
+710
+00:35:58,125 --> 00:36:00,658
+And instead of setting a        
+display value cuz we're not in  
+
+711
+00:36:00,727 --> 00:36:01,560
+a UI any more.                  
+
+712
+00:36:01,628 --> 00:36:04,462
+Now we're just setting the      
+accumulator to that double pi.  
+
+713
+00:36:04,531 --> 00:36:07,365
+Right, and the same thing here  
+we're setting the accumulator   
+
+714
+00:36:07,434 --> 00:36:11,270
+to be the square root of        
+the accumulator. Okay,          
+
+715
+00:36:11,338 --> 00:36:12,604
+now this is a problem           
+right here.                     
+
+716
+00:36:12,672 --> 00:36:16,441
+This line, why?                 
+Accumulator is an optional.     
+
+717
+00:36:16,510 --> 00:36:20,479
+You can't take the square root  
+of an optional. So I could say  
+
+718
+00:36:20,547 --> 00:36:24,082
+for example, if let operand     
+equal the accumulator.          
+
+719
+00:36:24,151 --> 00:36:29,054
+So if my accumulator is set,    
+then I can tap the accumulator  
+
+720
+00:36:29,123 --> 00:36:33,024
+be the square root of           
+the operand, okay? Now,         
+
+721
+00:36:33,093 --> 00:36:35,427
+we have another warning right   
+here on both of these lines.    
+
+722
+00:36:35,496 --> 00:36:40,398
+Why do you think, does anyone   
+know why this is? We seen it    
+
+723
+00:36:40,467 --> 00:36:46,004
+before, five minutes ago. This  
+
+724
+00:36:46,073 --> 00:36:49,708
+modifies this CalculatorBrain.  
+So this method,                 
+
+725
+00:36:49,777 --> 00:36:53,478
+perfomOperation, also needs     
+mutating in front of it,        
+
+726
+00:36:53,547 --> 00:36:55,881
+okay? So I'll fix that,         
+add mutating.                   
+
+727
+00:36:58,184 --> 00:37:00,018
+Adding this mutating takes      
+a little bit getting used to.   
+
+728
+00:37:00,086 --> 00:37:03,054
+But it's great because its      
+compiler notices it. And it's   
+
+729
+00:37:03,123 --> 00:37:08,126
+gonna always be reminding you   
+to do that. So believe it or    
+
+730
+00:37:08,195 --> 00:37:11,964
+not we now have an MVC version  
+of this calculator and if we    
+
+731
+00:37:12,032 --> 00:37:21,707
+run it should just work.        
+All right,                      
+
+732
+00:37:21,775 --> 00:37:24,109
+here we go. Let's see.          
+7, 8, that's still working.     
+
+733
+00:37:24,177 --> 00:37:26,712
+Okay, that was in               
+the controller. Pi, woah,       
+
+734
+00:37:26,780 --> 00:37:29,347
+that's working.                 
+It's going off to the model.    
+
+735
+00:37:29,416 --> 00:37:32,517
+And this is actually            
+executing. And it's causing     
+
+736
+00:37:32,586 --> 00:37:36,521
+the accumulator to get set      
+to that double pi. And          
+
+737
+00:37:36,590 --> 00:37:40,125
+then flicking at the result     
+and putting it in display. How  
+
+738
+00:37:40,193 --> 00:37:44,896
+about 81 square root, square    
+root? All right, excellent,     
+
+739
+00:37:44,965 --> 00:37:47,532
+okay. So now we're starting in  
+a place where exactly where we  
+
+740
+00:37:47,601 --> 00:37:50,969
+were before. But we split off   
+all of our calculating code     
+
+741
+00:37:51,037 --> 00:37:54,640
+into this little class          
+right here. So this is          
+
+742
+00:37:54,708 --> 00:37:57,408
+a great opportunity now to      
+enhance this to the max.        
+
+743
+00:37:57,477 --> 00:38:00,512
+So we are gonna use all kinds   
+of cool, Swift stuff that you   
+
+744
+00:38:00,581 --> 00:38:02,814
+probably did not see            
+in other languages.             
+
+745
+00:38:02,883 --> 00:38:06,385
+To make this a much more        
+extensible calculator.          
+
+746
+00:38:06,453 --> 00:38:09,454
+Cuz right now, man, if I        
+wanna add more operations.      
+
+747
+00:38:09,523 --> 00:38:12,223
+I just get this huge switch     
+statement case, this case,      
+
+748
+00:38:12,292 --> 00:38:15,160
+that case. I'm gonna have       
+to do if let operand equals     
+
+749
+00:38:15,229 --> 00:38:16,761
+accumulator every single time.  
+
+750
+00:38:16,830 --> 00:38:20,866
+For the things that are unary   
+operations like square root.    
+
+751
+00:38:20,934 --> 00:38:23,569
+Imagine when I have the binary  
+case like five times three      
+
+752
+00:38:23,637 --> 00:38:26,371
+equals. I'm gonna have to do    
+the figuring out how to deal    
+
+753
+00:38:26,440 --> 00:38:28,973
+with the times and the equals   
+for every single case.          
+
+754
+00:38:29,042 --> 00:38:32,110
+Forget it. I can't do that. I   
+need to build an engine here.   
+
+755
+00:38:32,179 --> 00:38:33,545
+That can deal with constants.   
+
+756
+00:38:33,614 --> 00:38:35,880
+That can deal with these unary  
+operations like square root.    
+
+757
+00:38:35,949 --> 00:38:39,150
+That can deal with binary       
+operations like multiply and    
+
+758
+00:38:39,219 --> 00:38:42,053
+plus and things like that.      
+Okay? So that's exactly what    
+
+759
+00:38:42,122 --> 00:38:44,389
+we're going to do. We're going  
+to enhance this model. Now,     
+
+760
+00:38:44,458 --> 00:38:47,592
+as we do all this enhancement,  
+we're not going to change it    
+
+761
+00:38:47,661 --> 00:38:50,061
+externally at all. And so the   
+controller will not change.     
+
+762
+00:38:50,130 --> 00:38:51,930
+That's what's really cool       
+about this. We can do our       
+
+763
+00:38:51,999 --> 00:38:53,898
+model development               
+independent of our UI.          
+
+764
+00:38:53,967 --> 00:38:57,603
+Once we have the UI, that kind  
+of does the basics, all right.  
+
+765
+00:38:57,671 --> 00:39:00,638
+So what are we going to do      
+here? Let's focus first.        
+
+766
+00:39:00,707 --> 00:39:02,774
+Let's get rid of this code,     
+cuz we know that's a mess.      
+
+767
+00:39:02,843 --> 00:39:06,144
+We're not going to do that.     
+Let's focus on constants.       
+
+768
+00:39:06,213 --> 00:39:10,315
+Wouldn't it be kind of cool if  
+I could like, build a table.    
+
+769
+00:39:10,384 --> 00:39:12,951
+Okay, I'll do square brackets   
+to hold my table. And           
+
+770
+00:39:13,020 --> 00:39:18,623
+in this table, I had, like pi   
+and double dot pi. And then,    
+
+771
+00:39:18,692 --> 00:39:22,060
+maybe I had e's does everyone   
+know what the constant e is.    
+
+772
+00:39:22,129 --> 00:39:24,262
+Mathematic 2.71 one something.  
+
+773
+00:39:24,331 --> 00:39:25,397
+We have a nice symbol for       
+
+774
+00:39:25,465 --> 00:39:28,233
+that and not quite as nice as   
+Double.pi. But it's called      
+
+775
+00:39:28,301 --> 00:39:33,005
+M under bar E. So, and I put    
+all my constants in a table.    
+
+776
+00:39:33,073 --> 00:39:35,040
+And then here in                
+performOperation,               
+
+777
+00:39:35,109 --> 00:39:37,576
+I'll just look up the symbol    
+in that table and               
+
+778
+00:39:37,644 --> 00:39:40,245
+get the value. Wouldn't that    
+be a lot more extensible for    
+
+779
+00:39:40,313 --> 00:39:42,514
+constants? Right, I could add   
+all the constants I want.       
+
+780
+00:39:42,582 --> 00:39:45,350
+I just, one line of code each.  
+That would be a lot better      
+
+781
+00:39:45,419 --> 00:39:48,253
+than putting extra case this    
+blah blah blah. Okay, so        
+
+782
+00:39:48,322 --> 00:39:50,822
+how can we do that?             
+We need to create a table.      
+
+783
+00:39:50,891 --> 00:39:52,891
+So how do we create             
+a table in Swift?               
+
+784
+00:39:52,959 --> 00:39:56,995
+We use the struct called        
+dictionary, okay? So            
+
+785
+00:39:57,064 --> 00:39:59,865
+dictionary is how you create    
+a hash table of things. And so  
+
+786
+00:39:59,934 --> 00:40:03,401
+I'm gonna create                
+a private var.                  
+
+787
+00:40:03,470 --> 00:40:05,870
+I'm gonna call it,              
+I could call it Constants, but  
+
+788
+00:40:05,939 --> 00:40:08,506
+I'm gonna call it Operations    
+cuz I'm basically, eventually   
+
+789
+00:40:08,575 --> 00:40:12,143
+going to enhance it to work     
+for all of our operations.      
+
+790
+00:40:12,212 --> 00:40:16,147
+And it's gonna be of type       
+Dictionary. Now Dictionary,     
+
+791
+00:40:16,216 --> 00:40:18,716
+you're gonna see a new feature  
+in Swift right here. It, this,  
+
+792
+00:40:18,785 --> 00:40:22,554
+you have this feature in Java,  
+as well. It is a generic type.  
+
+793
+00:40:22,623 --> 00:40:25,157
+So a dictionary, it can be      
+a dictionary that goes from     
+
+794
+00:40:25,226 --> 00:40:28,460
+almost any kind of key to       
+almost any kind of value.       
+
+795
+00:40:28,528 --> 00:40:30,995
+Okay, the key has to            
+implement a certain protocol.   
+
+796
+00:40:31,064 --> 00:40:32,797
+It basically has to             
+be hashable. Okay,              
+
+797
+00:40:32,866 --> 00:40:35,534
+so as long as it's hashable,    
+then it can be a key and        
+
+798
+00:40:35,603 --> 00:40:38,336
+then the value can be any       
+type. So you specify that,      
+
+799
+00:40:38,405 --> 00:40:40,339
+same as in Java, the key type.  
+
+800
+00:40:40,407 --> 00:40:42,975
+So I'm gonna have my key        
+be a string like pi or e.       
+
+801
+00:40:43,043 --> 00:40:46,477
+And then the value is           
+going to be a double,           
+
+802
+00:40:46,546 --> 00:40:50,982
+like Double.pi here, or _E,     
+okay? And believe it or         
+
+803
+00:40:51,051 --> 00:40:54,019
+not, I can actually say         
+equals this syntax and          
+
+804
+00:40:54,088 --> 00:40:57,822
+it will create one for me with  
+that step in there, okay? So    
+
+805
+00:40:57,891 --> 00:41:00,693
+open square bracket, key colon  
+value comma key colon value,    
+
+806
+00:41:02,029 --> 00:41:04,696
+that's how you can              
+put a dictionary.               
+
+807
+00:41:04,765 --> 00:41:06,798
+Now of course, you can add      
+things to a dictionary and      
+
+808
+00:41:06,867 --> 00:41:08,367
+remove things, and              
+get things out of dictionary.   
+
+809
+00:41:08,435 --> 00:41:09,934
+I'll show you that              
+in a second. But                
+
+810
+00:41:10,003 --> 00:41:13,304
+this is a nice way to do this.  
+So                              
+
+811
+00:41:13,373 --> 00:41:17,843
+let's do that. Okay, so         
+we have this nice dictionary.   
+
+812
+00:41:17,912 --> 00:41:20,011
+So now we could use this        
+dictionary of operations and    
+
+813
+00:41:20,080 --> 00:41:21,714
+performOperation.               
+I'm gonna say,                  
+
+814
+00:41:23,316 --> 00:41:30,054
+if I can let the constant that  
+I want equal the operation      
+
+815
+00:41:30,123 --> 00:41:35,293
+that matches that symbol then,  
+now why am I doing if let here  
+
+816
+00:41:35,362 --> 00:41:40,265
+for operations sub-symbol?      
+This operation sub-symbol,      
+
+817
+00:41:40,334 --> 00:41:44,002
+that's how you look up a        
+symbol in a dictionary, right?  
+
+818
+00:41:44,071 --> 00:41:46,437
+Operation to the dictionary,    
+click on it, right?             
+
+819
+00:41:46,506 --> 00:41:49,574
+To dictionary, strings and      
+doubles. So you look it up.     
+
+820
+00:41:49,643 --> 00:41:52,444
+When you look it up,            
+it returns an optional of       
+
+821
+00:41:52,512 --> 00:41:55,980
+the value. Why, anyone          
+think why it would do that?     
+
+822
+00:41:56,049 --> 00:41:56,948
+>> It might not be there.       
+
+823
+00:41:57,017 --> 00:41:58,149
+>> Exactly, it might not be in  
+
+824
+00:41:58,218 --> 00:42:01,353
+the table. Okay, what if        
+I say operations sub X,         
+
+825
+00:42:01,422 --> 00:42:04,522
+that's gonna return not set,    
+because there's no              
+
+826
+00:42:04,591 --> 00:42:08,126
+X in this table. Only pi and e  
+are in there, okay? So that's   
+
+827
+00:42:08,195 --> 00:42:11,163
+why I have to do if let there,  
+and if the constant is there,   
+
+828
+00:42:11,232 --> 00:42:13,865
+now I can set my accumulator    
+equal to that constant,         
+
+829
+00:42:13,934 --> 00:42:17,135
+okay? Because this constant     
+is gonna be a Double, because   
+
+830
+00:42:17,204 --> 00:42:21,239
+this is a Dictionary that has   
+Doubles as its values, okay?    
+
+831
+00:42:21,308 --> 00:42:22,140
+That's cool. Let's go ahead.    
+
+832
+00:42:22,209 --> 00:42:23,909
+Let's run it.                   
+That's all we need to do. So    
+
+833
+00:42:23,978 --> 00:42:27,579
+now we've built, for constants  
+only, a much more extensible    
+
+834
+00:42:27,648 --> 00:42:30,983
+internal architecture here,     
+to our calculator brain.        
+
+835
+00:42:31,051 --> 00:42:33,384
+So of course, square root's     
+not gonna work, okay,           
+
+836
+00:42:33,453 --> 00:42:38,123
+but pi works, and if I add an   
+e button, it would do e. Okay,  
+
+837
+00:42:38,192 --> 00:42:40,658
+everybody cool with             
+what I did there? But           
+
+838
+00:42:40,727 --> 00:42:44,363
+of course, that's kind of       
+useless just for constants.     
+
+839
+00:42:44,431 --> 00:42:48,066
+We wanna be something like      
+this, watch this. Quote,        
+
+840
+00:42:48,135 --> 00:42:51,770
+do my Emoji & Symbols here.     
+
+841
+00:42:51,839 --> 00:42:55,106
+There's our square root,        
+square root colon,              
+
+842
+00:42:55,175 --> 00:43:00,913
+what do we wanna put over       
+here? How about square root?    
+
+843
+00:43:00,981 --> 00:43:05,217
+Okay, and maybe a cosine.       
+Put cosine there.               
+
+844
+00:43:05,286 --> 00:43:09,121
+And wouldn't that be cool       
+if we could do that, okay?      
+
+845
+00:43:09,189 --> 00:43:10,922
+Because now we'd really         
+have an extensible table,       
+
+846
+00:43:10,991 --> 00:43:14,492
+it can do constant and also     
+can do these unary functions.   
+
+847
+00:43:14,561 --> 00:43:17,696
+But we got a problem here,      
+because square root is most     
+
+848
+00:43:17,765 --> 00:43:21,900
+definitely not a Double,        
+right? Square root              
+
+849
+00:43:21,969 --> 00:43:25,337
+is like a function, so that's   
+no good. So we're gonna,        
+
+850
+00:43:25,406 --> 00:43:28,674
+if we wanna have a dictionary   
+that has mixed things in it,    
+
+851
+00:43:28,742 --> 00:43:31,577
+we need to create a type        
+here that represents those      
+
+852
+00:43:31,645 --> 00:43:34,112
+mixed things. So that's what    
+we're gonna do, we're gonna     
+
+853
+00:43:34,181 --> 00:43:37,315
+create a new type, okay? This   
+is gonna have a data type that  
+
+854
+00:43:37,384 --> 00:43:39,784
+you're gonna be somewhat used   
+to, to other languages, but     
+
+855
+00:43:39,853 --> 00:43:42,287
+you're gonna see it much        
+more powerful in Swift.         
+
+856
+00:43:42,356 --> 00:43:46,058
+I'm gonna make it a private     
+type that's embedded inside my  
+
+857
+00:43:46,126 --> 00:43:49,127
+CalculatorBrain, so you can     
+have types within types and     
+
+858
+00:43:49,196 --> 00:43:51,563
+it's just a scoping issue,      
+that's just a naming issue,     
+
+859
+00:43:51,632 --> 00:43:54,165
+okay? The name of this is       
+gonna be CalculatorBrain,       
+
+860
+00:43:54,234 --> 00:43:57,368
+the dot, what I call it here.   
+And it's not gonna be a struct  
+
+861
+00:43:57,437 --> 00:44:01,940
+or a class, it's gonna be       
+an enum. Does everyone          
+
+862
+00:44:02,009 --> 00:44:04,943
+know what an enum is in other   
+classes? It's basically a data  
+
+863
+00:44:05,012 --> 00:44:07,646
+structure that has              
+discrete values. Right,         
+
+864
+00:44:07,714 --> 00:44:10,015
+it can only be one, like case   
+this, case that, whatever.      
+
+865
+00:44:10,084 --> 00:44:11,950
+It can only be one of           
+a discrete value and            
+
+866
+00:44:12,019 --> 00:44:15,653
+the same thing here in Swift.   
+I'm gonna call it Operation,    
+
+867
+00:44:15,722 --> 00:44:18,456
+and it's gonna have             
+case constant and               
+
+868
+00:44:18,525 --> 00:44:22,994
+case unaryOperation. So those   
+are the two kinds of things.    
+
+869
+00:44:23,063 --> 00:44:26,798
+And then I'm gonna make this    
+Dictionary return an Operation  
+
+870
+00:44:26,867 --> 00:44:31,370
+instead of a Double. Okay, so   
+that means I have change all    
+
+871
+00:44:31,438 --> 00:44:34,772
+of these, to say                
+Operation.constant, because     
+
+872
+00:44:34,841 --> 00:44:39,044
+this is a constant. We'll just  
+comment that out for a second.  
+
+873
+00:44:39,112 --> 00:44:42,147
+And then this is also           
+an Operation.constant.          
+
+874
+00:44:42,215 --> 00:44:46,384
+This one will be                
+an Operation.unaryOperation.    
+
+875
+00:44:46,453 --> 00:44:49,854
+I can just call that            
+Operation.unary.                
+
+876
+00:44:49,923 --> 00:44:51,289
+We'll say unary operation.      
+
+877
+00:44:51,358 --> 00:44:55,160
+Operation.unaryOperation,       
+okay?                           
+
+878
+00:44:55,228 --> 00:44:58,763
+Cool! Okay, we can't do this    
+anymore, of course, cuz now     
+
+879
+00:44:58,832 --> 00:45:01,299
+it's not a constant that        
+we're pulling out of there.     
+
+880
+00:45:01,368 --> 00:45:05,237
+It's actually an operation,     
+okay? And obviously,            
+
+881
+00:45:05,305 --> 00:45:08,439
+we can't do that because        
+this constant here,             
+
+882
+00:45:08,508 --> 00:45:12,277
+is now an operation not         
+a double. So we can't say that  
+
+883
+00:45:12,346 --> 00:45:16,582
+equals that, okay? So this is   
+good. This is getting better.   
+
+884
+00:45:16,650 --> 00:45:19,084
+We've got our table to be       
+able to have both things. But   
+
+885
+00:45:19,153 --> 00:45:22,954
+in doing this, I've lost        
+the fundamental meaning         
+
+886
+00:45:23,023 --> 00:45:25,757
+of all of these things.         
+I commented it out. So          
+
+887
+00:45:25,826 --> 00:45:29,227
+now this table is kind          
+of useless, right?              
+
+888
+00:45:29,296 --> 00:45:30,929
+It knows that pi                
+is a constant.                  
+
+889
+00:45:30,998 --> 00:45:33,631
+It knows that square root       
+is a unary operation.           
+
+890
+00:45:33,700 --> 00:45:36,668
+But it's so what? Because we    
+can't do any of them. And       
+
+891
+00:45:36,737 --> 00:45:40,773
+this is where, something        
+you've heard of before,         
+
+892
+00:45:40,841 --> 00:45:44,242
+associated values comes in.     
+Remember optional has           
+
+893
+00:45:44,311 --> 00:45:46,845
+this thing where when it's      
+in the set stage it has this    
+
+894
+00:45:46,914 --> 00:45:49,681
+associated value that's         
+associated with the set state,  
+
+895
+00:45:49,750 --> 00:45:54,953
+but is not associated with the  
+not set state? Okay, optional   
+
+896
+00:45:55,022 --> 00:45:59,925
+is an enum. It's an enum with   
+two cases. The not set case,    
+
+897
+00:45:59,994 --> 00:46:03,094
+which is called none and the    
+set case, which is called sum.  
+
+898
+00:46:03,163 --> 00:46:06,398
+And in the sum case, it has     
+a little associated value with  
+
+899
+00:46:06,467 --> 00:46:10,034
+it. And we can do the exact     
+same thing, okay? In our enum,  
+
+900
+00:46:10,103 --> 00:46:13,739
+when the case is a constant,    
+we can have an associated       
+
+901
+00:46:13,807 --> 00:46:16,441
+Double. And that's,             
+we just put it right there and  
+
+902
+00:46:16,510 --> 00:46:19,344
+we can actually could have      
+multiple associated values.     
+
+903
+00:46:19,413 --> 00:46:21,880
+We only need one for            
+constants. But we can have      
+
+904
+00:46:21,949 --> 00:46:25,550
+this associated value.          
+Okay, so associated values      
+
+905
+00:46:25,619 --> 00:46:28,587
+are something not specific      
+to optionals. It's for          
+
+906
+00:46:28,656 --> 00:46:33,525
+all enums in Swift. So this     
+is super powerful because now   
+
+907
+00:46:33,593 --> 00:46:37,295
+when I add a constant into      
+this table, for example,        
+
+908
+00:46:37,364 --> 00:46:41,699
+I can just associate            
+Double.pi with it.              
+
+909
+00:46:41,768 --> 00:46:47,205
+Same thing with this constant,  
+I'll just associate the value   
+
+910
+00:46:47,274 --> 00:46:50,575
+of e with it. Okay, now we'll   
+get to these ones in a second.  
+
+911
+00:46:50,644 --> 00:46:53,111
+A little more complicated       
+there. All right, so            
+
+912
+00:46:53,180 --> 00:46:56,314
+now I've got a table with       
+got constants in there and      
+
+913
+00:46:56,383 --> 00:46:57,649
+I actually know the values.     
+
+914
+00:46:57,718 --> 00:47:00,685
+So down here, when I get the    
+operation out of here, right,   
+
+915
+00:47:00,754 --> 00:47:02,187
+this is a type Operation,       
+
+916
+00:47:02,255 --> 00:47:06,057
+it's one of these enums. How    
+do I look at each of these,     
+
+917
+00:47:06,126 --> 00:47:09,428
+and like get this associated    
+value? Well, how would you      
+
+918
+00:47:09,496 --> 00:47:11,796
+look at the values of           
+an enum in another language?    
+
+919
+00:47:11,865 --> 00:47:14,265
+You would probably              
+switch on them. So              
+
+920
+00:47:14,334 --> 00:47:16,268
+I'm gonna switch on             
+this operation and              
+
+921
+00:47:16,336 --> 00:47:20,939
+I'm gonna do a case for         
+when it's a constant. And       
+
+922
+00:47:21,008 --> 00:47:25,444
+I'm gonna do a case,            
+we'll do colon and break.       
+
+923
+00:47:25,512 --> 00:47:27,445
+And I'm gonna do a case for     
+when it's a unaryOperation,     
+
+924
+00:47:27,514 --> 00:47:31,650
+and break on that case, okay?   
+And I don't even have to        
+
+925
+00:47:31,718 --> 00:47:34,286
+say default here, because       
+these are the only two values   
+
+926
+00:47:34,354 --> 00:47:36,087
+that an operation can be,       
+cuz it's an enum,               
+
+927
+00:47:36,156 --> 00:47:39,591
+it only has one of these two    
+values. Now here, you can see,  
+
+928
+00:47:39,660 --> 00:47:42,327
+it already put this in          
+parentheses right here.         
+
+929
+00:47:42,395 --> 00:47:46,264
+Okay, it wants to help you get  
+that associated value out.      
+
+930
+00:47:46,333 --> 00:47:47,866
+Okay, awesome,                  
+how do we do that?              
+
+931
+00:47:47,935 --> 00:47:51,536
+We say let                      
+associatedConstantValue or      
+
+932
+00:47:51,605 --> 00:47:55,940
+whatever we wanna call          
+this variable. And              
+
+933
+00:47:56,009 --> 00:47:59,044
+that means inside here,         
+associatedConstantValue         
+
+934
+00:47:59,113 --> 00:48:01,813
+is gonna be that associated     
+value. Now we would never call  
+
+935
+00:48:01,881 --> 00:48:04,783
+it associatedConstantValue.     
+We'll rename it in a second.    
+
+936
+00:48:04,851 --> 00:48:06,585
+But now what are we             
+gonna do with it? Well,         
+
+937
+00:48:06,653 --> 00:48:09,454
+in the constant case we're      
+just gonna set our accumulator  
+
+938
+00:48:09,522 --> 00:48:12,924
+to that associated value.       
+Now, why we wouldn't call this  
+
+939
+00:48:12,993 --> 00:48:15,494
+associatedConstantValue? Well,  
+first of all, anyone reading    
+
+940
+00:48:15,562 --> 00:48:18,129
+this code knows that this       
+is the associated value,        
+
+941
+00:48:18,198 --> 00:48:21,466
+so you don't need to say        
+associated. And we know i's     
+
+942
+00:48:21,535 --> 00:48:24,002
+a constant because we're        
+in the constant case, so        
+
+943
+00:48:24,071 --> 00:48:25,737
+i's really a waste              
+to say that.                    
+
+944
+00:48:25,805 --> 00:48:29,074
+So, we would just say value     
+here. Cuz that's what it is,    
+
+945
+00:48:29,143 --> 00:48:33,712
+i's the constant value that's   
+associated with it, okay?       
+
+946
+00:48:33,781 --> 00:48:37,415
+We don't need break.            
+Everybody got that?             
+
+947
+00:48:37,484 --> 00:48:39,917
+By the way, switches are        
+slightly different in Swift in  
+
+948
+00:48:39,986 --> 00:48:42,921
+that they don't fall into each  
+other. When you have constant,  
+
+949
+00:48:42,990 --> 00:48:45,957
+it does this, and it's done.    
+It doesn't go down, fall down   
+
+950
+00:48:46,026 --> 00:48:49,161
+to the next case, okay? So you  
+don't need break at the end     
+
+951
+00:48:49,230 --> 00:48:51,697
+of every single one, which      
+is really nice. All right?      
+
+952
+00:48:51,765 --> 00:48:54,032
+So this is great. So            
+should this work? I think so.   
+
+953
+00:48:54,101 --> 00:49:03,208
+Let's try it. All right.        
+
+954
+00:49:03,276 --> 00:49:05,711
+So. Pi, okay, square root we    
+haven't done anything with,     
+
+955
+00:49:05,779 --> 00:49:08,514
+but pi should work.             
+Let's try. Bingo, okay.         
+
+956
+00:49:08,582 --> 00:49:10,748
+So you see how pi               
+is working here?                
+
+957
+00:49:10,817 --> 00:49:14,852
+We're saying to look up pi      
+in this table. It finds that    
+
+958
+00:49:14,921 --> 00:49:17,756
+it's a constant operation with  
+this as the associated value.   
+
+959
+00:49:17,825 --> 00:49:21,893
+We switch on that operation.    
+Find out that it's a constant.  
+
+960
+00:49:21,962 --> 00:49:25,364
+We let value equal              
+the associated value,           
+
+961
+00:49:25,432 --> 00:49:27,099
+and then we just set            
+that to the accumulator.        
+
+962
+00:49:28,568 --> 00:49:31,470
+And now that's our result, the  
+next time they ask for result   
+
+963
+00:49:31,538 --> 00:49:33,572
+that's what we got. Okay,       
+now let's do unary operation.   
+
+964
+00:49:33,641 --> 00:49:35,740
+Okay, this one's                
+a little tougher, okay?         
+
+965
+00:49:35,809 --> 00:49:41,846
+Cuz really what I wanna         
+do is this. Right?              
+
+966
+00:49:41,915 --> 00:49:45,851
+The associated value wants      
+to be those functions.          
+
+967
+00:49:47,220 --> 00:49:50,021
+Can I do that in Swift?         
+Of course!                      
+
+968
+00:49:50,090 --> 00:49:52,924
+We wouldn't be here if          
+we couldn't do that.            
+
+969
+00:49:52,993 --> 00:49:55,861
+How do we make an associated    
+value be a function?            
+
+970
+00:49:55,929 --> 00:49:58,997
+Well the cool thing about       
+Swift is that functions         
+
+971
+00:49:59,066 --> 00:50:03,802
+are normal types. Just          
+like a double, any struct,      
+
+972
+00:50:03,871 --> 00:50:06,905
+a class, no difference          
+between that and a double.      
+
+973
+00:50:06,974 --> 00:50:09,608
+So how do I go back up          
+to my enum, and it have         
+
+974
+00:50:09,676 --> 00:50:12,677
+an associated type here be      
+a double? How do I say,         
+
+975
+00:50:12,746 --> 00:50:15,514
+the type which is a function    
+that takes a double and         
+
+976
+00:50:15,582 --> 00:50:17,415
+returns a double? Cuz           
+that's what I want in here.     
+
+977
+00:50:17,484 --> 00:50:18,750
+This is a unary operation, so   
+
+978
+00:50:18,819 --> 00:50:21,419
+I need this to be a function    
+that takes a double and         
+
+979
+00:50:21,488 --> 00:50:24,489
+returns a double. We just       
+type it, function that takes    
+
+980
+00:50:24,557 --> 00:50:27,226
+a double, returns a double.     
+Just type it right in there.    
+
+981
+00:50:28,596 --> 00:50:32,364
+This is a type.                 
+Just a type, just like string,  
+
+982
+00:50:32,433 --> 00:50:35,133
+but it happens to be            
+a function. Now I'm             
+
+983
+00:50:35,202 --> 00:50:37,669
+going to take a time-out right  
+here just to show you a little  
+
+984
+00:50:37,738 --> 00:50:39,237
+bit more about this             
+function types,                 
+
+985
+00:50:39,306 --> 00:50:41,906
+to make sure you're getting     
+this. And what I'm gonna do is  
+
+986
+00:50:41,975 --> 00:50:44,476
+I'm gonna create a new          
+thing called a playground.      
+
+987
+00:50:44,544 --> 00:50:46,978
+So a playground is just a       
+place we can play around with   
+
+988
+00:50:47,047 --> 00:50:49,948
+iOS code. Okay? So              
+you just say new playground,    
+
+989
+00:50:50,017 --> 00:50:52,884
+this is gonna be an iOS         
+playground. I'm gonna call it   
+
+990
+00:50:52,953 --> 00:50:55,420
+my CalculatorPlayground,        
+I can call it anything I want.  
+
+991
+00:50:55,489 --> 00:50:57,355
+Just gonna save it on disk so   
+that what I                     
+
+992
+00:50:57,424 --> 00:50:59,791
+type in here when I'm playing   
+gets saved for the next time.   
+
+993
+00:50:59,860 --> 00:51:01,593
+You can put it                  
+anywhere you want.              
+
+994
+00:51:01,662 --> 00:51:04,863
+I recommend the same place,     
+home directory, Developer.      
+
+995
+00:51:04,932 --> 00:51:07,598
+Okay, don't put it inside       
+another project or whatever.    
+
+996
+00:51:07,667 --> 00:51:10,535
+And you can see the playground  
+looks like this. On the left,   
+
+997
+00:51:10,604 --> 00:51:14,039
+you can type any iOS code       
+you want. And on the right,     
+
+998
+00:51:14,108 --> 00:51:17,442
+it's going to evaluate what's   
+on the left and show you not    
+
+999
+00:51:17,511 --> 00:51:19,845
+only, well, it's basically      
+gonna show you the result or    
+
+1000
+00:51:19,913 --> 00:51:22,013
+the value of any                
+var that it finds.              
+
+1001
+00:51:22,082 --> 00:51:24,916
+So here it found this var       
+string, str, and it's           
+
+1002
+00:51:24,985 --> 00:51:28,587
+showing you the value of str    
+over here. Okay? So I can say,  
+
+1003
+00:51:28,656 --> 00:51:33,125
+for example, let i = 27 and     
+it's gonna say that 27 is what  
+
+1004
+00:51:33,194 --> 00:51:38,763
+it sees there. But              
+I'm gonna create a new var.     
+
+1005
+00:51:38,832 --> 00:51:42,601
+I'm gonna call it f. Its type   
+is gonna be a function that     
+
+1006
+00:51:42,670 --> 00:51:46,671
+takes a double and returns a    
+double. Okay, that's its type.  
+
+1007
+00:51:46,740 --> 00:51:49,808
+I could have said f,            
+var f string, but               
+
+1008
+00:51:49,877 --> 00:51:52,043
+I said it's a function          
+that takes a double and         
+
+1009
+00:51:52,112 --> 00:51:54,346
+returns a double. And           
+I'm gonna set the value of f.   
+
+1010
+00:51:54,414 --> 00:51:58,316
+I'm gonna set it equal          
+to square root. Okay,           
+
+1011
+00:51:58,385 --> 00:51:59,684
+I mean it's a function          
+that takes a double and         
+
+1012
+00:51:59,753 --> 00:52:02,688
+returns a double. So I can say  
+f = square root. Now how do I   
+
+1013
+00:52:02,756 --> 00:52:07,493
+actually call this function?    
+Well I'm gonna let x equal f    
+
+1014
+00:52:07,561 --> 00:52:12,598
+of 81, for example.             
+Okay, so I call this variable,  
+
+1015
+00:52:12,666 --> 00:52:14,466
+right here, which is a double   
+that takes a double,            
+
+1016
+00:52:14,534 --> 00:52:17,269
+just like it was a function.    
+And if I were to go back and    
+
+1017
+00:52:17,338 --> 00:52:22,674
+change this to cosine,          
+look what happens. Okay,        
+
+1018
+00:52:22,742 --> 00:52:25,510
+so now f is cosine so now I'm   
+getting the cosine of 81.       
+
+1019
+00:52:25,579 --> 00:52:27,078
+I can even write                
+my own function,                
+
+1020
+00:52:27,147 --> 00:52:29,748
+how bout func changeSign,       
+
+1021
+00:52:29,817 --> 00:52:33,752
+let's say it takes              
+a double and                    
+
+1022
+00:52:33,821 --> 00:52:37,222
+returns a double, okay.         
+So it's a regular function,     
+
+1023
+00:52:37,291 --> 00:52:40,125
+returns the changeSigned        
+operand, right,                 
+
+1024
+00:52:40,194 --> 00:52:43,261
+operand changed sign. So        
+now I could go down here and    
+
+1025
+00:52:43,330 --> 00:52:47,666
+change this to be changeSign,   
+function I wrote. And           
+
+1026
+00:52:47,734 --> 00:52:50,536
+now I'm getting minus 81.       
+Okay? So everyone's seeing how  
+
+1027
+00:52:50,604 --> 00:52:53,538
+this type functions as a type?  
+They're just normal type.       
+
+1028
+00:52:53,607 --> 00:52:56,341
+Absolutely, you can use         
+a function as a type anywhere   
+
+1029
+00:52:56,409 --> 00:52:59,344
+you can use any other type.     
+Argument to a method,           
+
+1030
+00:52:59,413 --> 00:53:03,215
+associated value in an enum,    
+local variable, anything.       
+
+1031
+00:53:03,284 --> 00:53:06,451
+No restriction on it, okay?     
+I'm even gonna take the,        
+
+1032
+00:53:06,520 --> 00:53:09,287
+note also, by the way, the      
+change sign has an external     
+
+1033
+00:53:09,356 --> 00:53:11,823
+name, operand. When you tall,   
+call change sign,               
+
+1034
+00:53:11,891 --> 00:53:15,493
+looks like this. See? We've     
+got this operand. It's okay,    
+
+1035
+00:53:15,562 --> 00:53:18,296
+when I call it down here, I     
+don't have to say f(operand).   
+
+1036
+00:53:18,365 --> 00:53:21,166
+In fact, I can't say that.      
+And that's because f            
+
+1037
+00:53:21,235 --> 00:53:23,835
+is just a function that takes   
+a double, returns a double.     
+
+1038
+00:53:23,904 --> 00:53:25,403
+It can be any function          
+that takes a double and         
+
+1039
+00:53:25,472 --> 00:53:27,940
+returns a double, so you can't  
+have those external names in    
+
+1040
+00:53:28,008 --> 00:53:29,741
+there, cuz it can               
+be any function.                
+
+1041
+00:53:29,809 --> 00:53:33,678
+As you change it you can't be   
+changing this, so, anyway,      
+
+1042
+00:53:33,747 --> 00:53:37,315
+just a minor note there.        
+So I'm gonna take changeSign,   
+
+1043
+00:53:37,384 --> 00:53:40,952
+actually, and copy and paste    
+it back into my code up here,   
+
+1044
+00:53:41,021 --> 00:53:44,056
+so I just made a new function,  
+it's even a nice global         
+
+1045
+00:53:44,124 --> 00:53:46,458
+to this file, function          
+called changeSign. And          
+
+1046
+00:53:46,527 --> 00:53:49,894
+I can go back here and say,     
+changeSign, let's do something  
+
+1047
+00:53:49,963 --> 00:53:54,232
+for changeSign. I think I       
+can remember how to do this,    
+
+1048
+00:53:54,301 --> 00:53:57,435
+there, Ctrl + C, Cmd + Ctrl +   
+Space, something like that,     
+
+1049
+00:53:57,504 --> 00:54:01,606
+let's go here. Edit, Okay,      
+we need something for           
+
+1050
+00:54:01,675 --> 00:54:03,942
+changeSign, I think I have      
+one here, this one, okay?       
+
+1051
+00:54:04,011 --> 00:54:06,445
+It's not really change          
+sign [LAUGH] but,               
+
+1052
+00:54:06,513 --> 00:54:09,747
+it's all right we'll use        
+it for that. And, so            
+
+1053
+00:54:09,816 --> 00:54:17,256
+this is an operation, an        
+Operation.unaryOperation(chan-  
+
+1054
+00:54:17,324 --> 00:54:21,460
+geSign). Okay? Perfectly        
+legal. Okay, everybody got      
+
+1055
+00:54:21,528 --> 00:54:26,531
+that? So now, down here in      
+our switch, in the same         
+
+1056
+00:54:26,600 --> 00:54:29,501
+way that we grabbed the         
+constant value with let value,  
+
+1057
+00:54:29,570 --> 00:54:33,371
+let's grab that associated      
+function with let function.     
+
+1058
+00:54:33,440 --> 00:54:35,207
+And again we can call, this     
+doesn't have to be a function.  
+
+1059
+00:54:35,275 --> 00:54:38,777
+This could be f. It could be    
+func. Can't be func, because    
+
+1060
+00:54:38,846 --> 00:54:42,480
+that's a keyword, but function  
+it could be. Okay? So we got    
+
+1061
+00:54:42,549 --> 00:54:45,650
+this unary operation. What are  
+we gonna do? Well we just want  
+
+1062
+00:54:45,719 --> 00:54:49,954
+to call this thing with         
+the accumulator. Okay?          
+
+1063
+00:54:50,023 --> 00:54:52,657
+But of course we'd better, I'm  
+sorry, we want our accumulator  
+
+1064
+00:54:52,726 --> 00:54:55,093
+to equal, calling that          
+function with the accumulator.  
+
+1065
+00:54:55,162 --> 00:54:57,963
+We'd better check though to     
+make sure this is not nil. So   
+
+1066
+00:54:58,032 --> 00:54:59,531
+I'm actually gonna do           
+something a little different.   
+
+1067
+00:54:59,599 --> 00:55:02,267
+Instead of if let, I'm gonna    
+say if the accumulator does     
+
+1068
+00:55:02,335 --> 00:55:07,272
+not equal nil. Then we'll       
+do this. This is another        
+
+1069
+00:55:07,341 --> 00:55:12,677
+way to protect against this     
+crashing your app. Okay,        
+
+1070
+00:55:12,746 --> 00:55:16,648
+somewhat similar to if let      
+operand equal accumulator,      
+
+1071
+00:55:16,717 --> 00:55:20,285
+but I'm just actually checking  
+to see if accumulator is in     
+
+1072
+00:55:20,354 --> 00:55:21,220
+the not set state,              
+
+1073
+00:55:21,288 --> 00:55:23,888
+accumulator isn't optional,     
+so it can be equal to nil or    
+
+1074
+00:55:23,957 --> 00:55:26,325
+it's equal to something else,   
+and it has an associated value  
+
+1075
+00:55:26,393 --> 00:55:30,929
+like these things. All right?   
+That's all we need to do.       
+
+1076
+00:55:30,998 --> 00:55:33,231
+Let's take a look. Whoops,      
+we, we have errors there?       
+
+1077
+00:55:33,300 --> 00:55:39,771
+No, we don't. Okay. All right.  
+
+1078
+00:55:39,840 --> 00:55:45,076
+So, pi, still good.             
+81, square root.                
+
+1079
+00:55:45,145 --> 00:55:49,180
+Working like a charm. Okay,     
+and again if we add cosine and  
+
+1080
+00:55:49,249 --> 00:55:51,016
+those which we are going to     
+add those in a second, but for  
+
+1081
+00:55:51,085 --> 00:55:53,618
+time I'm not adding them in.    
+But we'll add cosine and        
+
+1082
+00:55:53,687 --> 00:55:55,653
+all, actually I'm,              
+forget it, let's do it.         
+
+1083
+00:55:55,722 --> 00:55:59,357
+Let's go back to our UI right   
+here and let's add those other  
+
+1084
+00:55:59,426 --> 00:56:04,495
+buttons. Let's put              
+cosine in here. Cosine,         
+
+1085
+00:56:04,564 --> 00:56:09,301
+and let's even put our little   
+change sign that we did there.  
+
+1086
+00:56:09,370 --> 00:56:14,472
+Ctrl+Cmd+Space, there we go.    
+Change sign.                    
+
+1087
+00:56:14,541 --> 00:56:17,475
+Put the change sign in there.   
+So we'll put those in there     
+
+1088
+00:56:17,544 --> 00:56:19,144
+and that's all we               
+need to do in my UI.            
+
+1089
+00:56:19,213 --> 00:56:21,046
+It can just run again,          
+because my brain,               
+
+1090
+00:56:21,114 --> 00:56:23,348
+my model already knows how      
+to do those operations.         
+
+1091
+00:56:23,416 --> 00:56:26,018
+So I can put any operation      
+my brain knows how to do        
+
+1092
+00:56:26,086 --> 00:56:28,386
+into my calculator's UI and     
+it'll just work.                
+
+1093
+00:56:28,455 --> 00:56:32,524
+So here we got, you know,       
+how about pi cosine, -1.0,      
+
+1094
+00:56:32,593 --> 00:56:38,029
+all right? Change sign,         
+positive 1.0. All right, so     
+
+1095
+00:56:38,098 --> 00:56:42,300
+this is really looking nice,    
+because our calculator brain,   
+
+1096
+00:56:42,369 --> 00:56:44,903
+still hardly any code in here,  
+and yet                         
+
+1097
+00:56:44,972 --> 00:56:48,373
+now it's fully extensible for   
+both constants and              
+
+1098
+00:56:48,442 --> 00:56:52,711
+unary operations. What's next?  
+Binary operations.              
+
+1099
+00:56:52,780 --> 00:56:57,382
+5 times 3 equals, okay,         
+much more difficult, right?     
+
+1100
+00:56:57,451 --> 00:57:01,286
+Because there's actually two    
+operations there when we do 5   
+
+1101
+00:57:01,355 --> 00:57:05,323
+times 3 equals. There's the     
+times, which puts you in this   
+
+1102
+00:57:05,392 --> 00:57:09,160
+weird pending state, and        
+then there's the equals which   
+
+1103
+00:57:09,229 --> 00:57:13,364
+actually finishes the 5 times   
+3 equals, right? So I'm         
+
+1104
+00:57:13,433 --> 00:57:17,535
+gonna need some data structure  
+to remember the 5 times         
+
+1105
+00:57:17,604 --> 00:57:20,805
+until the equals comes along.   
+Okay, so let's do that,         
+
+1106
+00:57:20,874 --> 00:57:23,608
+let's add a data structure for  
+that. Actually, before we even  
+
+1107
+00:57:23,677 --> 00:57:26,945
+do that, let's back up here     
+and talk about all this mess.   
+
+1108
+00:57:27,014 --> 00:57:29,848
+What's this gonna be like for   
+binary operations? So we need   
+
+1109
+00:57:29,917 --> 00:57:34,753
+a binary operation here.        
+And what's its type gonna be?   
+
+1110
+00:57:34,821 --> 00:57:39,491
+What's its associated value     
+gonna be? What do you think?    
+
+1111
+00:57:41,295 --> 00:57:44,195
+How about a function            
+that takes two double and       
+
+1112
+00:57:44,264 --> 00:57:47,432
+returns a double? All right,    
+and we're also gonna need       
+
+1113
+00:57:47,500 --> 00:57:50,602
+an equals operation as well.    
+And so                          
+
+1114
+00:57:50,671 --> 00:57:53,438
+we can just go down here and    
+do, for example, times,         
+
+1115
+00:57:53,507 --> 00:57:57,542
+let's do times.                 
+Oops, space, there we go.       
+
+1116
+00:57:57,611 --> 00:58:01,747
+I've got a nice mathematical    
+times symbol here. Okay,        
+
+1117
+00:58:01,815 --> 00:58:05,851
+we have to enter in             
+Operation.binaryOperation. And  
+
+1118
+00:58:05,919 --> 00:58:09,821
+we need multiply basically      
+here. So I'm gonna make my own  
+
+1119
+00:58:09,890 --> 00:58:13,058
+multiply function.              
+We'll just put multiply there.  
+
+1120
+00:58:13,126 --> 00:58:18,563
+Also of course, I need equals   
+which is Operation.equals.      
+
+1121
+00:58:18,632 --> 00:58:21,600
+Okay, put those on my table.    
+So this multiply,               
+
+1122
+00:58:21,668 --> 00:58:24,903
+where's that? There's no        
+function called multiply.       
+
+1123
+00:58:24,972 --> 00:58:26,605
+Well, just like I did           
+changeSign up here,             
+
+1124
+00:58:26,674 --> 00:58:28,406
+I'm gonna create my             
+own little func,                
+
+1125
+00:58:28,475 --> 00:58:32,144
+multiply. It's gonna take op1,  
+which is a Double,              
+
+1126
+00:58:32,213 --> 00:58:34,012
+and op2,                        
+which is a Double. And          
+
+1127
+00:58:34,081 --> 00:58:39,451
+it's gonna return a Double,     
+of course. Oops, and            
+
+1128
+00:58:39,520 --> 00:58:41,954
+it's just gonna return          
+op1 times op2, okay?            
+
+1129
+00:58:42,022 --> 00:58:45,190
+So I got this nice function     
+up here. Fits in here nice,     
+
+1130
+00:58:45,259 --> 00:58:48,727
+no error, everything's          
+fine there, got that. So        
+
+1131
+00:58:48,795 --> 00:58:52,898
+now we have the hard part of    
+what do we do with the case     
+
+1132
+00:58:52,966 --> 00:58:56,701
+here that is binary operation?  
+We still have a function,       
+
+1133
+00:58:56,770 --> 00:58:59,337
+but now it's a function that    
+takes two doubles and returns   
+
+1134
+00:58:59,406 --> 00:59:04,042
+a double. All right, so what    
+are we gonna do here? Get,      
+
+1135
+00:59:04,111 --> 00:59:08,046
+like I said, we're gonna need   
+some kind of data structure     
+
+1136
+00:59:08,115 --> 00:59:09,848
+to remember five times and      
+
+1137
+00:59:09,917 --> 00:59:13,518
+wait till we get another        
+case which is equals, okay?     
+
+1138
+00:59:13,587 --> 00:59:16,187
+And we're gonna have to         
+do something in here. So        
+
+1139
+00:59:16,256 --> 00:59:19,758
+let's take a time out here and  
+create another data structure   
+
+1140
+00:59:19,827 --> 00:59:22,994
+to remember five times          
+while we're waiting for         
+
+1141
+00:59:23,063 --> 00:59:26,097
+three equals to happen.         
+So I'm gonna make it a struct.  
+
+1142
+00:59:26,166 --> 00:59:29,434
+It's also gonna be an embedded  
+private struct, just like this  
+
+1143
+00:59:29,503 --> 00:59:33,805
+was embedded private enum.      
+So the name of this enum,       
+
+1144
+00:59:33,874 --> 00:59:36,975
+its full name is                
+CalculatorBrain.Operation, but  
+
+1145
+00:59:37,044 --> 00:59:39,410
+as long as I'm using            
+it inside this struct,          
+
+1146
+00:59:39,479 --> 00:59:42,447
+we can just call it operation,  
+like we did right here.         
+
+1147
+00:59:42,516 --> 00:59:44,315
+Okay, so same thing here.       
+
+1148
+00:59:44,384 --> 00:59:48,186
+I'm gonna call this one         
+PendingBinaryOperation.         
+
+1149
+00:59:48,255 --> 00:59:50,255
+Okay, it's gonna be             
+a PendingBinaryOperation.       
+
+1150
+00:59:50,324 --> 00:59:54,326
+And it's gonna have two vars.   
+One is the function which is    
+
+1151
+00:59:54,395 --> 00:59:59,231
+gonna be, it takes two          
+Doubles, returns a Double. And  
+
+1152
+00:59:59,299 --> 01:00:03,368
+it's going to have the first    
+operand, which is a Double.     
+
+1153
+01:00:03,437 --> 01:00:06,904
+So it's just gonna be a struct  
+that holds those two things.    
+
+1154
+01:00:06,973 --> 01:00:10,842
+Now never forget that structs   
+in Swift can have methods and   
+
+1155
+01:00:10,911 --> 01:00:11,877
+things like that. In fact,      
+
+1156
+01:00:11,945 --> 01:00:13,745
+I'm gonna put a method on here  
+just to remind us of that.      
+
+1157
+01:00:13,814 --> 01:00:16,749
+I'm gonna have a func           
+called perform which will       
+
+1158
+01:00:16,817 --> 01:00:19,684
+perform this binary operation.  
+Now what does                   
+
+1159
+01:00:19,753 --> 01:00:23,689
+it need to perform it?          
+It needs a second operand.      
+
+1160
+01:00:26,126 --> 01:00:29,260
+Okay? And it's gonna            
+return a double. Okay,          
+
+1161
+01:00:29,329 --> 01:00:32,497
+now, notice the naming here.    
+Why did I use this naming,      
+
+1162
+01:00:32,566 --> 01:00:36,735
+with as my external and here    
+secondOperand as my internal?   
+
+1163
+01:00:36,804 --> 01:00:38,336
+Well, secondOperand             
+is the internal,                
+
+1164
+01:00:38,405 --> 01:00:40,071
+because that's what             
+this argument is.               
+
+1165
+01:00:40,140 --> 01:00:42,574
+And in my code here,            
+I want the firstOperand and     
+
+1166
+01:00:42,643 --> 01:00:44,643
+secondOperand to have           
+the right names. But            
+
+1167
+01:00:44,711 --> 01:00:47,713
+I'm using with because when     
+someone calls this, they're     
+
+1168
+01:00:47,781 --> 01:00:50,482
+gonna say perform(with: 5.0).   
+And of course,                  
+
+1169
+01:00:50,551 --> 01:00:53,284
+if they're performing           
+a pending binary operation, so  
+
+1170
+01:00:53,353 --> 01:00:56,221
+this makes perfect sense.       
+If you say binary operation,    
+
+1171
+01:00:56,290 --> 01:01:00,859
+perform(with: 5.0). It makes    
+sense, right? And these         
+
+1172
+01:01:00,928 --> 01:01:03,228
+internal names, even though     
+they're only used internally,   
+
+1173
+01:01:03,296 --> 01:01:05,797
+you can think of them as        
+part of the documentation.      
+
+1174
+01:01:05,866 --> 01:01:08,833
+Cuz anyone who sees the         
+documentation of this method,   
+
+1175
+01:01:08,902 --> 01:01:12,070
+he's gonna see both with and    
+secondOperand, see? So they're  
+
+1176
+01:01:12,139 --> 01:01:14,773
+kind of getting a little bit    
+of documentation that that      
+
+1177
+01:01:14,841 --> 01:01:18,577
+with is with the secondOperand  
+to this binary operation.       
+
+1178
+01:01:18,645 --> 01:01:23,882
+Okay, and how would we perform  
+this? Well, we would just       
+
+1179
+01:01:23,951 --> 01:01:30,255
+return the firstOperand times   
+the secondOperand, okay? But    
+
+1180
+01:01:30,324 --> 01:01:33,525
+we're not doing times here,     
+we're doing this function.      
+
+1181
+01:01:33,593 --> 01:01:37,696
+So I'm gonna call it that       
+function with the firstOperand  
+
+1182
+01:01:37,765 --> 01:01:40,799
+and the secondOperand. Okay,    
+this is a really simple little  
+
+1183
+01:01:40,868 --> 01:01:42,667
+method, but I just              
+wanted to make it clear.        
+
+1184
+01:01:42,736 --> 01:01:46,604
+Notice this method doesn't      
+have mutating on it. Because    
+
+1185
+01:01:46,673 --> 01:01:49,374
+it doesn't actually change      
+the PendingBinaryOperation,     
+
+1186
+01:01:49,443 --> 01:01:52,044
+right? It just returns to the   
+evaluation of the function,     
+
+1187
+01:01:52,112 --> 01:01:56,882
+but it doesn't change any       
+internal values. Also notice,   
+
+1188
+01:01:56,951 --> 01:02:01,253
+these are lets. That's          
+because I'm gonna create this   
+
+1189
+01:02:01,321 --> 01:02:04,256
+PendingBinaryOperation in       
+a moment with these two things  
+
+1190
+01:02:04,325 --> 01:02:06,225
+set and                         
+I'm never gonna change them.    
+
+1191
+01:02:06,293 --> 01:02:10,596
+So they are constants in this   
+struct. Now, also notice,       
+
+1192
+01:02:10,664 --> 01:02:13,398
+no error that says you don't    
+have an initializer and you     
+
+1193
+01:02:13,467 --> 01:02:17,569
+have these two uninitialized    
+vars. Again, this is a struct.  
+
+1194
+01:02:17,637 --> 01:02:20,105
+Structs automatically           
+get a free initializer          
+
+1195
+01:02:20,174 --> 01:02:23,041
+which will initialize           
+all of these things. And        
+
+1196
+01:02:23,109 --> 01:02:25,110
+in fact,                        
+let's use that right now.       
+
+1197
+01:02:25,178 --> 01:02:29,814
+I'm gonna create a private      
+var, which I'm gonna call pbo,  
+
+1198
+01:02:29,883 --> 01:02:33,551
+PendingBinaryOperation, but     
+only temporarily, because       
+
+1199
+01:02:33,620 --> 01:02:36,354
+this is a bad name. I'm mostly  
+doing it so things won't        
+
+1200
+01:02:36,423 --> 01:02:38,890
+wrap, cuz I'm using a big font  
+so you can see here. I'm gonna  
+
+1201
+01:02:38,959 --> 01:02:41,726
+go actually change this back    
+to a better name in a second.   
+
+1202
+01:02:41,795 --> 01:02:46,431
+But this pbo is                 
+a PendingBinaryOperation,       
+
+1203
+01:02:46,500 --> 01:02:48,366
+and optional.                   
+
+1204
+01:02:48,435 --> 01:02:50,936
+Why is this an optional         
+PendingBinaryOperation?         
+
+1205
+01:02:51,004 --> 01:02:53,538
+Cuz we're not always in the     
+middle of a binaryOperation.    
+
+1206
+01:02:53,607 --> 01:02:56,174
+Only when the person            
+taps five times. Okay,          
+
+1207
+01:02:56,243 --> 01:02:57,575
+if we'd said five square root,  
+
+1208
+01:02:57,644 --> 01:03:00,078
+we're not in the middle of      
+a PendingBinaryOperation, so    
+
+1209
+01:03:00,147 --> 01:03:02,914
+this has to be not set. Are     
+you starting to get a feel for  
+
+1210
+01:03:02,983 --> 01:03:05,250
+how we use optionals            
+all over the place,             
+
+1211
+01:03:05,318 --> 01:03:09,354
+to be semantically exactly      
+what we mean? And here,         
+
+1212
+01:03:09,423 --> 01:03:11,056
+if we're not in the middle      
+of PendingBinaryOperation,      
+
+1213
+01:03:11,124 --> 01:03:14,893
+this is not set. So it's        
+an optional. All right, so      
+
+1214
+01:03:14,962 --> 01:03:17,128
+when you've pressed the times,  
+
+1215
+01:03:17,197 --> 01:03:21,065
+5 times, all I'm gonna do       
+here is remember, or create,    
+
+1216
+01:03:21,134 --> 01:03:23,068
+a PendingBinaryOperation.       
+
+1217
+01:03:23,137 --> 01:03:26,371
+So I'm gonna say pbo =          
+PendingBinaryOperation.         
+
+1218
+01:03:26,440 --> 01:03:30,942
+Now when I tab here, and I do   
+the open parentheses. Look,     
+
+1219
+01:03:31,011 --> 01:03:34,446
+it's showing me that there's    
+already an initializer,         
+
+1220
+01:03:34,515 --> 01:03:37,682
+one that, tab, takes            
+function and firstOperand.      
+
+1221
+01:03:37,751 --> 01:03:41,453
+Woo-hoo! So this is that        
+free initializer I get,         
+
+1222
+01:03:41,521 --> 01:03:45,224
+because I'm a struct down       
+here, not a class. So what is   
+
+1223
+01:03:45,292 --> 01:03:47,792
+the function? Well, that's      
+just this function right here,  
+
+1224
+01:03:47,861 --> 01:03:49,394
+that we got as our              
+associated value.               
+
+1225
+01:03:49,463 --> 01:03:51,396
+That's the function in          
+the binaryOperation.            
+
+1226
+01:03:51,465 --> 01:03:52,864
+And what's the firstOperand?    
+
+1227
+01:03:52,933 --> 01:03:55,567
+Well, it's our current          
+accumulator, right,             
+
+1228
+01:03:55,636 --> 01:04:00,639
+five times are equal if         
+it's a five, okay? Now,         
+
+1229
+01:04:00,708 --> 01:04:04,843
+here I'm unwrapping it, so      
+I better do if accumulator      
+
+1230
+01:04:04,912 --> 01:04:08,213
+does not equal nil. Cuz I       
+don't want to crash here and    
+
+1231
+01:04:08,282 --> 01:04:10,983
+I'm, so that means I'm gonna    
+ignore times. If you've         
+
+1232
+01:04:11,051 --> 01:04:12,984
+pressed times and you           
+haven't given me an operand,    
+
+1233
+01:04:13,053 --> 01:04:15,520
+we're just gonna ignore that.   
+It's like if you start up your  
+
+1234
+01:04:15,588 --> 01:04:18,290
+calculator and say, times 3     
+equals, I'm gonna ignore it,    
+
+1235
+01:04:18,358 --> 01:04:21,426
+because I don't have any        
+operands who times it by.       
+
+1236
+01:04:21,495 --> 01:04:25,530
+Okay, so that's good, that's    
+what I want. Also, when I       
+
+1237
+01:04:25,599 --> 01:04:29,768
+have this times, I'm gonna set  
+my accumulator here to nil.     
+
+1238
+01:04:29,837 --> 01:04:33,671
+Because I'm in this weird       
+half state five times,          
+
+1239
+01:04:33,740 --> 01:04:35,874
+my accumulator is waiting for   
+
+1240
+01:04:35,943 --> 01:04:38,410
+the three equals to             
+be set to anything.             
+
+1241
+01:04:38,479 --> 01:04:42,814
+So I'm setting it to nil not    
+set for the moment. All right,  
+
+1242
+01:04:42,882 --> 01:04:45,750
+so that's it, that's all I      
+need to do when times is hit.   
+
+1243
+01:04:45,819 --> 01:04:49,454
+But now when equals is hit,     
+I have the the three, and       
+
+1244
+01:04:49,523 --> 01:04:51,223
+I need to calculate             
+five times three.               
+
+1245
+01:04:51,292 --> 01:04:54,325
+So I need to actually call      
+this perform down here. So      
+
+1246
+01:04:54,394 --> 01:04:56,862
+I'm gonna put this in its own   
+little method. I'm gonna call   
+
+1247
+01:04:56,930 --> 01:05:01,133
+it performBinaryOperation,      
+actually, we'll even say        
+
+1248
+01:05:01,201 --> 01:05:05,604
+performPendingBinary, oops,     
+BinaryOperation, okay.          
+
+1249
+01:05:05,672 --> 01:05:06,638
+I'm putting it in               
+another method,                 
+
+1250
+01:05:06,707 --> 01:05:09,775
+you'll see why in a moment.     
+Okay, so I'm gonna do private   
+
+1251
+01:05:09,843 --> 01:05:14,513
+func which is that, now what    
+am I gonna do in here? Well,    
+
+1252
+01:05:14,581 --> 01:05:18,516
+here I'm going to perform that  
+pendingBinaryOperation. So      
+
+1253
+01:05:18,585 --> 01:05:22,988
+I'm gonna do pbo.perform, and   
+what am I gonna perform with?   
+
+1254
+01:05:23,057 --> 01:05:26,591
+I'm gonna perform with          
+the current accumulator, okay?  
+
+1255
+01:05:26,660 --> 01:05:30,662
+Now notice this put a question  
+mark right there, okay?         
+
+1256
+01:05:30,731 --> 01:05:32,231
+The reason I need a question    
+mark there, really,             
+
+1257
+01:05:32,299 --> 01:05:35,767
+what I wanted was exclamation   
+point. Because pbo, here,       
+
+1258
+01:05:35,836 --> 01:05:38,103
+is an optional, and             
+I need to unwrap it.            
+
+1259
+01:05:38,172 --> 01:05:40,773
+But what's really cool is if    
+instead of exclamation point,   
+
+1260
+01:05:40,841 --> 01:05:44,410
+you put question mark,          
+then it will unwrap it, but     
+
+1261
+01:05:44,478 --> 01:05:47,479
+it's not set,                   
+it will just ignore this line.  
+
+1262
+01:05:47,548 --> 01:05:51,216
+Ignore the rest of the line,    
+okay? So                        
+
+1263
+01:05:51,284 --> 01:05:53,185
+that's kind of a cool feature.  
+But I'm not gonna do that,      
+
+1264
+01:05:53,254 --> 01:05:55,353
+cuz I didn't really talked      
+enough about it, so             
+
+1265
+01:05:55,422 --> 01:05:58,523
+I'm gonna unwrap it. So here I  
+need to make sure pbo is not    
+
+1266
+01:05:58,591 --> 01:06:02,327
+nil. And I need to make sure    
+that the accumulator is also    
+
+1267
+01:06:02,395 --> 01:06:05,463
+not nil, okay? So if those      
+two things aren't true,         
+
+1268
+01:06:05,532 --> 01:06:06,899
+I don't really want to be       
+
+1269
+01:06:06,967 --> 01:06:08,967
+doing this line of              
+code right here,                
+
+1270
+01:06:09,035 --> 01:06:11,737
+right? So I'm performing it,    
+I get the results and           
+
+1271
+01:06:11,806 --> 01:06:16,141
+I'm going to put that in        
+my accumulator, okay?           
+
+1272
+01:06:16,210 --> 01:06:21,146
+So my accumulator is no longer  
+nil, why is this happening?     
+
+1273
+01:06:21,215 --> 01:06:24,716
+It's the third time, mutating,  
+all right, excellent,           
+
+1274
+01:06:24,785 --> 01:06:28,153
+I love it when people catch     
+on real quick. So, yeah, that   
+
+1275
+01:06:28,222 --> 01:06:30,288
+needs to be mutating, cuz this  
+is changing the accumulator.    
+
+1276
+01:06:30,357 --> 01:06:33,325
+So it's modifying the internal  
+state of the calculator brain.  
+
+1277
+01:06:33,394 --> 01:06:36,828
+Now, the other thing is no      
+longer am I in the middle       
+
+1278
+01:06:36,897 --> 01:06:39,231
+of a pendingBinaryOperation,    
+so I have to set that to nil.   
+
+1279
+01:06:40,468 --> 01:06:42,900
+Okay, cuz I wanna be            
+consistent in all my            
+
+1280
+01:06:42,969 --> 01:06:45,604
+code that when that's nil, I'm  
+not in the middle of a pending  
+
+1281
+01:06:45,673 --> 01:06:49,608
+operation. I just had           
+the three equals, okay,         
+
+1282
+01:06:49,677 --> 01:06:53,945
+everybody set? Now, I told you  
+I didn't like pbo as a name.    
+
+1283
+01:06:54,014 --> 01:06:56,648
+It's a bad name, okay? Someone  
+looking at it would have to go  
+
+1284
+01:06:56,717 --> 01:06:58,316
+look at the declaration         
+to figure out it.               
+
+1285
+01:06:58,385 --> 01:07:01,386
+A better name here would be     
+pendingBinaryOperation, so      
+
+1286
+01:07:01,455 --> 01:07:04,522
+I'm gonna change it to that.    
+And here's how you can change   
+
+1287
+01:07:04,591 --> 01:07:07,058
+the name of something all       
+throughout the context          
+
+1288
+01:07:07,127 --> 01:07:08,760
+that it's in.                   
+You just mouse over it,         
+
+1289
+01:07:08,829 --> 01:07:10,395
+I haven't clicked on it,        
+I moused over it.               
+
+1290
+01:07:10,464 --> 01:07:13,598
+You see that little arrow that  
+appears? If you click on that   
+
+1291
+01:07:13,667 --> 01:07:17,001
+you get a menu and you can      
+say, Edit All in Scope. And     
+
+1292
+01:07:17,070 --> 01:07:22,674
+now when you change this, it's  
+changing it everywhere. Okay,   
+
+1293
+01:07:22,742 --> 01:07:25,077
+so I changed it from pbo        
+to PendingBinaryOperation.      
+
+1294
+01:07:25,145 --> 01:07:27,946
+You can see why I did that,     
+because I didn't want           
+
+1295
+01:07:28,015 --> 01:07:31,416
+the wrapping to happen when     
+we were first doing it, okay?   
+
+1296
+01:07:31,485 --> 01:07:34,085
+So that's it,                   
+that's all we need to do for    
+
+1297
+01:07:34,154 --> 01:07:36,721
+our little                      
+Pending BinaryOperation, so     
+
+1298
+01:07:36,790 --> 01:07:40,626
+let's go ahead and add some     
+pending, some binary, so let'a  
+
+1299
+01:07:40,694 --> 01:07:43,928
+add some binary operations to   
+our UI. In fact, I'm going      
+
+1300
+01:07:43,997 --> 01:07:46,264
+to add a few that we don't      
+even have in our table yet.     
+
+1301
+01:07:46,333 --> 01:07:51,003
+So let's do times,              
+come up in the space.           
+
+1302
+01:07:51,071 --> 01:07:54,839
+Yeah, so here's times, but      
+I'm also going to do the other  
+
+1303
+01:07:54,908 --> 01:07:58,476
+ones here divide and plus and   
+it's just so we don't have to   
+
+1304
+01:07:58,545 --> 01:08:03,148
+come back here again to do      
+that. So there's divide, and    
+
+1305
+01:08:03,216 --> 01:08:08,120
+that there, I'll do             
+another one, do plus and        
+
+1306
+01:08:08,189 --> 01:08:13,491
+minus here. So I'm doing        
+command control space,          
+
+1307
+01:08:13,560 --> 01:08:17,729
+I guess,                        
+to get this little emojis and   
+
+1308
+01:08:17,798 --> 01:08:23,769
+symbols thing and               
+a plus, okay?                   
+
+1309
+01:08:23,837 --> 01:08:28,607
+And we need one other thing,    
+equals, gotta have an equals    
+
+1310
+01:08:28,676 --> 01:08:32,844
+button. So we'll put that down  
+there, okay? So now we only     
+
+1311
+01:08:32,913 --> 01:08:35,580
+have times, so times is the     
+only one that should work but   
+
+1312
+01:08:35,649 --> 01:08:38,450
+let's see. Actually I'm gonna   
+bring back that code so         
+
+1313
+01:08:38,518 --> 01:08:42,520
+you can see it at the same      
+time. It's hard to see it all   
+
+1314
+01:08:42,589 --> 01:08:46,658
+at once, but.                   
+All right here we go, okay?     
+
+1315
+01:08:46,726 --> 01:08:50,161
+4 square root, that's still     
+working, pi, still working.     
+
+1316
+01:08:50,230 --> 01:08:56,201
+How about 8 times 6 equals,     
+wahoo, square root?             
+
+1317
+01:08:56,269 --> 01:09:00,939
+Nice, okay, so times is         
+working there beautifully.      
+
+1318
+01:09:01,008 --> 01:09:03,575
+Now the only thing is,          
+we have to do divide and        
+
+1319
+01:09:03,644 --> 01:09:06,478
+all that, so                    
+I guess what I have to do is,   
+
+1320
+01:09:06,547 --> 01:09:09,747
+I go create this four times.    
+And I'm gonna have to go        
+
+1321
+01:09:09,816 --> 01:09:14,720
+here again and Ctrl+Space       
+again, we'll do divide. And     
+
+1322
+01:09:14,788 --> 01:09:19,324
+we'll go here and Ctrl+Space    
+and we'll do plus. And          
+
+1323
+01:09:19,392 --> 01:09:23,361
+then we're gonna go here and    
+we'll do command, space, and    
+
+1324
+01:09:23,430 --> 01:09:26,898
+we'll do minus, okay?           
+Now, am I gonna have to write,  
+
+1325
+01:09:26,967 --> 01:09:29,467
+write a method divide and       
+go up here and                  
+
+1326
+01:09:29,536 --> 01:09:32,871
+copy and paste this and         
+do one with divide? You know,   
+
+1327
+01:09:32,939 --> 01:09:35,674
+if I have to do that, all of    
+a sudden, I'm feeling like,     
+
+1328
+01:09:35,743 --> 01:09:38,210
+this whole table business       
+really didn't buy me that       
+
+1329
+01:09:38,278 --> 01:09:41,313
+much, right? Cuz I'm still      
+having to create a method for   
+
+1330
+01:09:41,381 --> 01:09:44,082
+every single binary operation   
+I want to do? I mean, for       
+
+1331
+01:09:44,151 --> 01:09:47,085
+unary operations it was nice    
+because I had all these built   
+
+1332
+01:09:47,153 --> 01:09:50,388
+in ones, I did have to make     
+this one method. Yeah, I can    
+
+1333
+01:09:50,457 --> 01:09:52,958
+even see with unary operations  
+I wanna create a bunch more     
+
+1334
+01:09:53,027 --> 01:09:54,826
+and I'm having to create        
+these other functions.          
+
+1335
+01:09:54,895 --> 01:09:56,795
+It's not really                 
+working out for me.             
+
+1336
+01:09:56,864 --> 01:10:00,932
+Okay, so how are we gonna fix   
+this? Well, we're gonna use     
+
+1337
+01:10:01,001 --> 01:10:04,736
+a feature in Swift,             
+which is really powerful.       
+
+1338
+01:10:04,805 --> 01:10:06,204
+And you're gonna have           
+to get used to it,              
+
+1339
+01:10:06,273 --> 01:10:07,706
+cuz it's not in a lot           
+of other languages.             
+
+1340
+01:10:07,775 --> 01:10:08,574
+It is in some other languages,  
+
+1341
+01:10:08,642 --> 01:10:09,975
+I don't wanna make it sound     
+like it's not around,           
+
+1342
+01:10:10,043 --> 01:10:13,078
+it's definitely around. But     
+may not be something you've     
+
+1343
+01:10:13,147 --> 01:10:16,882
+used in any languages you've    
+used and it's called closures.  
+
+1344
+01:10:16,951 --> 01:10:18,783
+Okay, how many people           
+know what a closure is,         
+
+1345
+01:10:18,852 --> 01:10:19,651
+have heard that before?         
+
+1346
+01:10:19,719 --> 01:10:24,556
+See, almost none of you,        
+so a closure is a function      
+
+1347
+01:10:24,624 --> 01:10:29,394
+embedded right in line of       
+your code, okay? And so,        
+
+1348
+01:10:29,463 --> 01:10:33,665
+we can actually take multiply   
+right here, select its code.    
+
+1349
+01:10:33,734 --> 01:10:38,737
+I'm gonna cut it, go down       
+here to where I used it and     
+
+1350
+01:10:38,805 --> 01:10:41,973
+paste it in there.              
+Now if didn't quite work,       
+
+1351
+01:10:42,042 --> 01:10:45,744
+there's two things we need to   
+do. One, this open curly brace  
+
+1352
+01:10:45,813 --> 01:10:50,348
+needs to be at the beginning.   
+So, we're going to              
+
+1353
+01:10:50,417 --> 01:10:54,453
+replace this open curly brace   
+with the keyword in, and        
+
+1354
+01:10:54,522 --> 01:10:56,855
+put the curly brace             
+at the beginning. So            
+
+1355
+01:10:56,923 --> 01:10:59,691
+that's how you take a function  
+and put it right in line.       
+
+1356
+01:10:59,760 --> 01:11:02,427
+Just literally copy and         
+paste to write in there.        
+
+1357
+01:11:02,496 --> 01:11:05,997
+Change the curly brace to in    
+and move it to the beginning,   
+
+1358
+01:11:06,066 --> 01:11:09,635
+okay, got that? So now we       
+don't even need multiply,       
+
+1359
+01:11:09,703 --> 01:11:13,839
+all gone. Now this              
+doesn't look much better.       
+
+1360
+01:11:15,242 --> 01:11:17,742
+It's still a lot of             
+typing stuff in, but            
+
+1361
+01:11:17,811 --> 01:11:24,015
+let's use Swift's inference of  
+type to make this a lot nicer.  
+
+1362
+01:11:24,084 --> 01:11:29,288
+Swift knows that this,          
+right here is this,             
+
+1363
+01:11:29,356 --> 01:11:33,358
+the associated value of that    
+type. So it knows that this     
+
+1364
+01:11:33,426 --> 01:11:36,261
+down here is a function         
+that takes two doubles and      
+
+1365
+01:11:36,330 --> 01:11:40,298
+returns a double. So we don't   
+need these types right here,    
+
+1366
+01:11:40,367 --> 01:11:43,134
+get rid of those. Okay,         
+
+1367
+01:11:43,203 --> 01:11:45,037
+now it's starting to            
+look better. In fact,           
+
+1368
+01:11:45,105 --> 01:11:49,908
+maybe if I go here and put      
+some things on the same line.   
+
+1369
+01:11:53,480 --> 01:11:56,615
+Yeah, now I'm liking it, okay.  
+But we can do even better than  
+
+1370
+01:11:56,684 --> 01:12:00,953
+this. Swift also knows that     
+this returns something.         
+
+1371
+01:12:01,021 --> 01:12:05,424
+So we don't overturn, okay.     
+Swift also will let you have    
+
+1372
+01:12:05,492 --> 01:12:09,594
+any number of arguments you     
+want. Called $0, $1, $2 $3,     
+
+1373
+01:12:09,663 --> 01:12:12,864
+for however how many.           
+So I don't need that or that.   
+
+1374
+01:12:12,932 --> 01:12:17,770
+I can say $0 times $1.          
+
+1375
+01:12:19,807 --> 01:12:24,409
+Okay, now I'm winning. Now,     
+
+1376
+01:12:24,477 --> 01:12:27,513
+the essentials of what is       
+going on here is right there.   
+
+1377
+01:12:27,581 --> 01:12:29,481
+And there's no                  
+extraneous types and            
+
+1378
+01:12:29,550 --> 01:12:31,983
+all that business.              
+And of course, that means for   
+
+1379
+01:12:32,052 --> 01:12:36,087
+these other cases like divide,  
+I can say divide.               
+
+1380
+01:12:36,156 --> 01:12:40,992
+And for add, here I can see     
+plus, and for subtract,         
+
+1381
+01:12:41,061 --> 01:12:45,163
+I can do minus, even for our    
+friend change sign right here.  
+
+1382
+01:12:45,232 --> 01:12:49,101
+Okay, we can take               
+this copy it paste,             
+
+1383
+01:12:49,169 --> 01:12:54,506
+get rid of all this junk        
+because this is just -$0,       
+
+1384
+01:12:54,574 --> 01:13:01,479
+okay? So, this closures allow   
+you to do this thing where      
+
+1385
+01:13:01,548 --> 01:13:04,749
+you get the essentials of what  
+you're doing, right in there    
+
+1386
+01:13:04,818 --> 01:13:07,419
+in line. So, you're not having  
+to go look at some other        
+
+1387
+01:13:07,488 --> 01:13:09,788
+method somewhere like           
+changeSign up here.             
+
+1388
+01:13:09,857 --> 01:13:13,558
+The other thing closures allow  
+you to do, is to pass off to    
+
+1389
+01:13:13,627 --> 01:13:18,296
+methods some piece of code to   
+execute if something fails,     
+
+1390
+01:13:18,365 --> 01:13:21,966
+or when something completes.    
+Or do this and                  
+
+1391
+01:13:22,035 --> 01:13:24,636
+animate it, while you're doing  
+it, for example. You're gonna   
+
+1392
+01:13:24,705 --> 01:13:27,439
+see API like that. So, being    
+able to pass these methods      
+
+1393
+01:13:27,507 --> 01:13:31,276
+around, you're gonna see.       
+Really makes for great, great   
+
+1394
+01:13:31,344 --> 01:13:34,145
+API. So, you're just seeing     
+the simplest possible use of    
+
+1395
+01:13:34,214 --> 01:13:37,448
+it here. We just using as the   
+associated value, but imagine   
+
+1396
+01:13:37,517 --> 01:13:40,084
+it as function, parameters and  
+things like that. It's,         
+
+1397
+01:13:40,153 --> 01:13:43,922
+it's pretty incredible. Okay,   
+so let's go see if that works.  
+
+1398
+01:13:52,166 --> 01:13:57,001
+All right, 4 x 5 = 20,          
+square root, cosine,            
+
+1399
+01:13:57,070 --> 01:14:03,074
+change sign, pi, cosine,        
+this all working beautifully.   
+
+1400
+01:14:03,143 --> 01:14:06,278
+And now, we can add as many     
+new operations as we want,      
+
+1401
+01:14:06,347 --> 01:14:10,715
+with one line each, okay. So,   
+you see how I built a struct    
+
+1402
+01:14:10,784 --> 01:14:13,385
+here that's extensible without  
+having to do sub-classing, and  
+
+1403
+01:14:13,453 --> 01:14:16,054
+all that stuff. I can just add  
+thing, and I could even go      
+
+1404
+01:14:16,122 --> 01:14:19,791
+further and make this public.   
+If I make this operations       
+
+1405
+01:14:19,860 --> 01:14:23,561
+table public. I also have       
+to make operation public,       
+
+1406
+01:14:23,630 --> 01:14:27,666
+then other people can get       
+my calculator brain int and     
+
+1407
+01:14:27,735 --> 01:14:31,603
+add operations to it,           
+okay? So very,                  
+
+1408
+01:14:31,671 --> 01:14:36,140
+very sensible, not requiring    
+any subclassing whatsoever.     
+
+1409
+01:14:36,209 --> 01:14:38,577
+So, structs can often           
+be just as good,                
+
+1410
+01:14:38,645 --> 01:14:41,547
+if not a little bit             
+better design point for         
+
+1411
+01:14:41,615 --> 01:14:45,851
+classes. All right, the last    
+thing that I wanna do here.     
+
+1412
+01:14:45,919 --> 01:14:50,955
+Let's go back to our            
+simulator. Is talk about        
+
+1413
+01:14:51,024 --> 01:14:54,726
+the layout of the UI. You see   
+I have this layout right here.  
+
+1414
+01:14:54,795 --> 01:14:57,662
+Let's look what happens if I    
+rotate this into landscape      
+
+1415
+01:14:57,731 --> 01:15:01,166
+mode. So, I'm gonna go up       
+here in the simulator, and      
+
+1416
+01:15:01,234 --> 01:15:04,870
+go to Hardware, Rotate Left.    
+Okay, my calculator is          
+
+1417
+01:15:04,938 --> 01:15:08,507
+now completely unusable. Okay,  
+cuz there's no equals, so       
+
+1418
+01:15:08,575 --> 01:15:10,909
+I can't even do five times      
+three equals, right? So         
+
+1419
+01:15:10,977 --> 01:15:13,411
+it's completely useless,        
+I guess I can still do pi,      
+
+1420
+01:15:13,480 --> 01:15:16,247
+mm, but it's clear that's       
+not what you want, right?       
+
+1421
+01:15:16,316 --> 01:15:20,652
+When you rotate, you wanna use  
+that space in that way, okay?   
+
+1422
+01:15:20,721 --> 01:15:23,555
+And I promised you we were      
+gonna build a UI that would     
+
+1423
+01:15:23,624 --> 01:15:24,789
+work in all those things,       
+and, in fact,                   
+
+1424
+01:15:24,858 --> 01:15:28,127
+we're gonna do that right now.  
+Let's go back to our UI,        
+
+1425
+01:15:28,195 --> 01:15:31,063
+and doing this is not gonna     
+require any change to           
+
+1426
+01:15:31,131 --> 01:15:33,098
+our controller or               
+our model. Okay,                
+
+1427
+01:15:33,166 --> 01:15:35,734
+this is purely something we're  
+gonna do in the view, and       
+
+1428
+01:15:35,802 --> 01:15:38,837
+we're gonna do it with this     
+business up down here. Okay,    
+
+1429
+01:15:38,906 --> 01:15:41,840
+this multiple phones that       
+we'll be able to click here,    
+
+1430
+01:15:41,909 --> 01:15:43,575
+and see how things look         
+in all these different          
+
+1431
+01:15:43,644 --> 01:15:46,811
+orientations right here.        
+And out basic strategy          
+
+1432
+01:15:46,880 --> 01:15:51,049
+is we're gonna stack all these  
+buttons into rows, and then     
+
+1433
+01:15:51,118 --> 01:15:54,953
+we're gonna stack all those     
+rows on top of each other.      
+
+1434
+01:15:55,021 --> 01:15:58,257
+And then we're gonna stack      
+that with the display, to make  
+
+1435
+01:15:58,325 --> 01:16:02,294
+this kind of block that has     
+our UI. Then we're gonna tie    
+
+1436
+01:16:02,362 --> 01:16:06,698
+the edges of that block, to     
+the edges of the device. So,    
+
+1437
+01:16:06,767 --> 01:16:10,636
+that as the device changes,     
+that block of stuff, gets       
+
+1438
+01:16:10,704 --> 01:16:13,939
+stretched out, or whatever.     
+And the stuff inside,           
+
+1439
+01:16:14,007 --> 01:16:17,142
+is gonna automatically now      
+how to resize the buttons and   
+
+1440
+01:16:17,210 --> 01:16:20,112
+stuff to lay out. Okay, so      
+that's all that we need to do   
+
+1441
+01:16:20,180 --> 01:16:23,214
+to make that happen. To have    
+nice rows and columns here,     
+
+1442
+01:16:23,283 --> 01:16:25,984
+I'm gonna add one more          
+button which you need for       
+
+1443
+01:16:26,052 --> 01:16:29,487
+your homework anyway. Which     
+is a dot button. One of your    
+
+1444
+01:16:29,556 --> 01:16:33,324
+homework assignment items, is   
+to make floating point input    
+
+1445
+01:16:33,393 --> 01:16:35,727
+possible. This is already       
+a floating point calculator.    
+
+1446
+01:16:35,796 --> 01:16:39,431
+I can say 4, 45. Well,          
+I can't type here, sorry.       
+
+1447
+01:16:39,500 --> 01:16:41,699
+But I can type 45 and           
+hit square root. And            
+
+1448
+01:16:41,768 --> 01:16:43,902
+it would give me a floating     
+point number, right?            
+
+1449
+01:16:43,971 --> 01:16:45,837
+But you can't enter any         
+floating point numbers,         
+
+1450
+01:16:45,906 --> 01:16:47,639
+'cuz there's no dot,            
+right? So,                      
+
+1451
+01:16:47,708 --> 01:16:48,506
+that's part of                  
+your assignment.                
+
+1452
+01:16:48,575 --> 01:16:51,710
+So, I'll put that in there for  
+you. Okay, so now,              
+
+1453
+01:16:51,779 --> 01:16:55,614
+I'm gonna take this row. And    
+I'm gonna put it into a stack.  
+
+1454
+01:16:55,682 --> 01:16:58,116
+It's gonna be a horizontal      
+stack on its side. And you do   
+
+1455
+01:16:58,185 --> 01:17:03,922
+that up here with editor.       
+Embed in Stack View, okay?      
+
+1456
+01:17:03,990 --> 01:17:07,559
+So, when I do that, see, it     
+stacks them up horizontally.    
+
+1457
+01:17:07,627 --> 01:17:10,762
+And I can inspect that stack,   
+it's selected right here.       
+
+1458
+01:17:10,830 --> 01:17:14,065
+And you can see Stack View      
+right there, it's horizontal.   
+
+1459
+01:17:14,134 --> 01:17:17,902
+I'm gonna put some spacing in   
+there, 10 points of spacing.    
+
+1460
+01:17:17,971 --> 01:17:20,872
+I'm also gonna make sure,       
+that they're equally spaced.    
+
+1461
+01:17:20,941 --> 01:17:24,142
+So, I want each of the squares  
+in there to be the same width.  
+
+1462
+01:17:24,211 --> 01:17:26,979
+All right, so same thing here.  
+Let's go this one.              
+
+1463
+01:17:27,047 --> 01:17:29,047
+Now, there's actually another   
+way besides going up here,      
+
+1464
+01:17:29,115 --> 01:17:31,883
+editor, embed in. There's       
+a button right here for it. So  
+
+1465
+01:17:31,952 --> 01:17:34,119
+common, there's a button        
+right there, Embed in Stack,    
+
+1466
+01:17:34,187 --> 01:17:38,090
+so boom, I'll do that. Again,   
+I'll put a space in here.       
+
+1467
+01:17:38,158 --> 01:17:41,326
+Notice that the cosine button   
+is wider than the 1, 2, 3.      
+
+1468
+01:17:41,394 --> 01:17:43,728
+So, I'm gonna say               
+fill equally and                
+
+1469
+01:17:43,797 --> 01:17:46,265
+make them all                   
+the same width again,           
+
+1470
+01:17:49,269 --> 01:17:53,772
+Oops, sorry, again,             
+so we'll do 10 and              
+
+1471
+01:17:53,841 --> 01:17:58,343
+fill equally. Same thing here,  
+
+1472
+01:17:58,411 --> 01:18:02,314
+stack. Fill equally, 10 and     
+we'll stack this one.           
+
+1473
+01:18:07,887 --> 01:18:12,624
+Oops, dammit. Okay, now I'm     
+gonna take these horizontal     
+
+1474
+01:18:12,693 --> 01:18:16,194
+stacks. These five horizontal   
+and stack them vertically. So,  
+
+1475
+01:18:16,263 --> 01:18:19,731
+I'm gonna embed.                
+Notice that it's pretty smart.  
+
+1476
+01:18:19,800 --> 01:18:20,965
+It noticed they were            
+above each other so             
+
+1477
+01:18:21,034 --> 01:18:23,301
+it would automatically put      
+it in a vertical stack. But,    
+
+1478
+01:18:23,370 --> 01:18:25,837
+it pushed them all over to      
+the left in the stack, and I    
+
+1479
+01:18:25,906 --> 01:18:29,107
+want them to spread out across  
+the stack. So, I'm gonna have   
+
+1480
+01:18:29,176 --> 01:18:34,179
+the alignment here, instead     
+of leading, be fill, and        
+
+1481
+01:18:34,247 --> 01:18:36,882
+that's gonna fill the whole     
+width. And of course I want     
+
+1482
+01:18:36,950 --> 01:18:39,718
+spacing here as well, so we'll  
+do that. So look at this,       
+
+1483
+01:18:39,787 --> 01:18:42,553
+I got this beautiful keyboard,  
+keypad right here for           
+
+1484
+01:18:42,622 --> 01:18:47,292
+my calculator. Now, I'm gonna   
+hook that up to this display.   
+
+1485
+01:18:47,361 --> 01:18:48,760
+I'm just gonna select           
+them both, and                  
+
+1486
+01:18:48,829 --> 01:18:52,865
+say stack them. Okay, puts      
+them into a stack. The left     
+
+1487
+01:18:52,933 --> 01:18:55,267
+line aligned it again,          
+leading aligned it there so     
+
+1488
+01:18:55,336 --> 01:18:59,437
+I'm gonna say fill, I don't     
+want fill equally here though.  
+
+1489
+01:18:59,506 --> 01:19:02,507
+Cuz if I do fill equally here,  
+it's gonna make this display    
+
+1490
+01:19:02,576 --> 01:19:04,776
+the same height as              
+the whole keypad, so            
+
+1491
+01:19:04,845 --> 01:19:06,344
+I don't want that.              
+So I just want fill,            
+
+1492
+01:19:06,413 --> 01:19:08,980
+I want to fill this space, but  
+I do want the spacing here so   
+
+1493
+01:19:09,049 --> 01:19:12,985
+we'll do 10 points again. So,   
+now that my whole UI in a nice  
+
+1494
+01:19:13,053 --> 01:19:16,855
+whole rectangle here. And       
+I'm just gonna tie the edges,   
+
+1495
+01:19:18,759 --> 01:19:23,996
+of this UI to the edges of      
+the device basically, okay.     
+
+1496
+01:19:24,064 --> 01:19:26,898
+Now, I'm gonna start here,      
+whoops, I'm gonna start, yeah   
+
+1497
+01:19:26,967 --> 01:19:29,601
+be careful a little about that  
+too. If you click on something  
+
+1498
+01:19:29,670 --> 01:19:32,470
+and drag it, see you might try  
+to drag the inner one away.     
+
+1499
+01:19:32,539 --> 01:19:34,539
+A trick for not doing that,     
+there's two tricks.             
+
+1500
+01:19:34,608 --> 01:19:39,611
+One, is you can do command      
+shift I believe it is, yeah.    
+
+1501
+01:19:39,679 --> 01:19:41,980
+Command shift will let you      
+pick which one you want,        
+
+1502
+01:19:42,048 --> 01:19:44,415
+under the mouse.                
+Actually it's control shift.    
+
+1503
+01:19:44,484 --> 01:19:47,052
+Control shift under the mouse   
+let's you pick it. But,         
+
+1504
+01:19:47,121 --> 01:19:49,888
+another easy way is             
+to use drag select,             
+
+1505
+01:19:49,957 --> 01:19:52,056
+to select the one you want,     
+and then pick it up.            
+
+1506
+01:19:52,125 --> 01:19:56,395
+Okay, so I'm gonna use the      
+blue lines, actually, to put    
+
+1507
+01:19:56,463 --> 01:19:59,164
+this at the proper space        
+on the left edge and top.       
+
+1508
+01:19:59,232 --> 01:20:03,435
+And now I'm gonna do the magic  
+to hook it to an edge. And      
+
+1509
+01:20:03,504 --> 01:20:06,437
+I do that with the Ctrl key,    
+just like we did dragging into  
+
+1510
+01:20:06,506 --> 01:20:10,308
+the code. But here, I'm gonna   
+drag from this selected thing.  
+
+1511
+01:20:10,377 --> 01:20:12,344
+Make sure the whole             
+thing is selected. And          
+
+1512
+01:20:12,413 --> 01:20:16,615
+Ctrl+Drag up to the top.        
+So we can tie it to the top.    
+
+1513
+01:20:16,684 --> 01:20:18,850
+And when you let go,            
+it's gonna say,                 
+
+1514
+01:20:18,919 --> 01:20:22,053
+what relationship do you want   
+between this big box and        
+
+1515
+01:20:22,122 --> 01:20:26,791
+the top? And, and really it's   
+talking about the outer edge.   
+
+1516
+01:20:26,860 --> 01:20:28,626
+And you can try and             
+make them the same width, or    
+
+1517
+01:20:28,695 --> 01:20:30,628
+the same height, which really   
+doesn't make sense here.        
+
+1518
+01:20:30,697 --> 01:20:33,565
+Or you can pin this             
+vertical spacing to the top     
+
+1519
+01:20:33,634 --> 01:20:34,532
+layout guide.                   
+
+1520
+01:20:34,601 --> 01:20:37,770
+So I basically pinned it to     
+the top. And same thing here,   
+
+1521
+01:20:37,838 --> 01:20:41,840
+I can go to the left and        
+pin the leading space. And      
+
+1522
+01:20:41,909 --> 01:20:45,543
+I can go to the right and pin,  
+pin the trailing space. And     
+
+1523
+01:20:45,612 --> 01:20:50,616
+I can go to the bottom and      
+sorry, yes, the bottom, and     
+
+1524
+01:20:50,684 --> 01:20:53,585
+pin the bottom space, the       
+vertical space in the bottom.   
+
+1525
+01:20:53,654 --> 01:20:56,822
+Now we're just seeing pinning   
+it to edges, but you can use    
+
+1526
+01:20:56,890 --> 01:21:00,058
+this mechanism to Ctrl+Drag     
+between any two elements and    
+
+1527
+01:21:00,127 --> 01:21:03,428
+say, make these two the same    
+width, line up the left edges,  
+
+1528
+01:21:03,497 --> 01:21:04,429
+line up the tops.               
+
+1529
+01:21:04,498 --> 01:21:05,897
+You see what I'm saying? And    
+
+1530
+01:21:05,966 --> 01:21:10,102
+once you have that ability to   
+have all your items have rules  
+
+1531
+01:21:10,170 --> 01:21:12,671
+of their relation to each       
+other, now you can imagine how  
+
+1532
+01:21:12,739 --> 01:21:16,174
+you can rotate the whole thing  
+and have it all look good,      
+
+1533
+01:21:16,243 --> 01:21:19,010
+because it's following          
+rules about what to do.         
+
+1534
+01:21:19,079 --> 01:21:22,647
+Now one thing about these two   
+pins, okay, those I pinned to   
+
+1535
+01:21:22,716 --> 01:21:25,650
+where I wanted them. But these  
+two pins are not what I want.   
+
+1536
+01:21:25,719 --> 01:21:28,320
+It's pinning it this            
+far from the edge. So           
+
+1537
+01:21:28,388 --> 01:21:30,822
+how do I fix that? You can      
+actually double-click on that.  
+
+1538
+01:21:30,891 --> 01:21:32,890
+If you double-click             
+on this I-beam,                 
+
+1539
+01:21:32,959 --> 01:21:36,962
+it says, yes, I'm pinning this  
+113 points from the edge. And   
+
+1540
+01:21:37,030 --> 01:21:40,032
+you can go up here and          
+try to pick Standard Value.     
+
+1541
+01:21:40,100 --> 01:21:42,601
+But that's grayed out,          
+so we're gonna use 0.           
+
+1542
+01:21:42,669 --> 01:21:46,104
+So you almost want either       
+Standard Value, if available,   
+
+1543
+01:21:46,172 --> 01:21:47,939
+or 0. So in this case,          
+
+1544
+01:21:48,008 --> 01:21:52,844
+0 means 0 points from this      
+layout guide edge, okay? And    
+
+1545
+01:21:52,913 --> 01:21:55,280
+same thing with this one down   
+here, I'm gonna double-click.   
+
+1546
+01:21:55,349 --> 01:21:57,950
+By the way, we can also         
+see these things, okay?         
+
+1547
+01:21:58,018 --> 01:22:01,386
+If we select this, we can go    
+over to the size inspector.     
+
+1548
+01:22:01,455 --> 01:22:04,189
+You can see all these things    
+down at the bottom here,        
+
+1549
+01:22:04,258 --> 01:22:07,492
+okay, all these connections     
+to the edges, right?            
+
+1550
+01:22:07,561 --> 01:22:10,929
+See this one's 301. So          
+I'm gonna double-click on this  
+
+1551
+01:22:10,998 --> 01:22:14,299
+I-beam, and here, standard      
+value is available. So I'm      
+
+1552
+01:22:14,368 --> 01:22:17,669
+gonna pick the standard value,  
+okay? And it puts it there.     
+
+1553
+01:22:17,737 --> 01:22:20,806
+Now so they tied it to the      
+bottom and stretched this out.  
+
+1554
+01:22:20,874 --> 01:22:23,609
+Now it didn't quite stretch     
+out the way we wanted here,     
+
+1555
+01:22:23,677 --> 01:22:27,545
+right? So some of these,        
+rows in the inside,             
+
+1556
+01:22:27,614 --> 01:22:30,048
+we didn't get the right         
+attributes on.                  
+
+1557
+01:22:30,116 --> 01:22:32,951
+So let's go back and check      
+them all. We got fill equally,  
+
+1558
+01:22:33,019 --> 01:22:36,187
+horizontally, and all of them,  
+yeah? We do, right?             
+
+1559
+01:22:36,256 --> 01:22:40,258
+And how about this? Here I'm    
+gonna use the Ctrl+Click.       
+
+1560
+01:22:40,327 --> 01:22:44,029
+We'll pick this stack view.     
+See this one, okay,             
+
+1561
+01:22:44,097 --> 01:22:47,499
+this is this inner one, wants   
+to also be filled equally,      
+
+1562
+01:22:47,568 --> 01:22:50,769
+right? We want all these rows,  
+not including this top guy,     
+
+1563
+01:22:50,838 --> 01:22:53,338
+but all these inner interior    
+rows to be the same.            
+
+1564
+01:22:53,407 --> 01:22:58,109
+So I'm gonna go fill            
+equally here to fix that,       
+
+1565
+01:22:58,178 --> 01:23:01,447
+okay? So now I have this        
+thing that can stretch out,     
+
+1566
+01:23:01,515 --> 01:23:04,115
+because it's got these          
+stacks that have rules about    
+
+1567
+01:23:04,184 --> 01:23:07,952
+how to fill. And then I've      
+hooked them to the edges, so    
+
+1568
+01:23:08,021 --> 01:23:11,389
+that now when I switch          
+orientations, it adjusts,       
+
+1569
+01:23:11,458 --> 01:23:17,762
+even if I go to a smaller       
+device, okay? Or                
+
+1570
+01:23:17,831 --> 01:23:22,534
+a large device.                 
+Now one thing that's            
+
+1571
+01:23:22,602 --> 01:23:26,004
+interesting about the very      
+smallest device, an iPhone 4,   
+
+1572
+01:23:26,072 --> 01:23:29,641
+is that in this orientation,    
+it can't fit everything. You    
+
+1573
+01:23:29,710 --> 01:23:34,279
+see that? The display is just,  
+it can't fit it. So this is     
+
+1574
+01:23:34,348 --> 01:23:36,515
+why it's great to be able to    
+see this in Interface Builder,  
+
+1575
+01:23:36,584 --> 01:23:39,517
+cuz we can go back here and     
+pick a smaller font, for        
+
+1576
+01:23:39,586 --> 01:23:42,153
+example. We can even,           
+you know, have our font be      
+
+1577
+01:23:42,222 --> 01:23:45,224
+variable, but there's no way    
+to have the font automatically  
+
+1578
+01:23:45,292 --> 01:23:48,426
+squinched down, unfortunately.  
+There's no autoshrink for       
+
+1579
+01:23:48,495 --> 01:23:51,596
+buttons like there is for       
+labels. So sorry about that.    
+
+1580
+01:23:51,665 --> 01:23:54,266
+But we would pick a smaller     
+font that would work upon all   
+
+1581
+01:23:54,335 --> 01:23:57,936
+of our platforms maybe, okay?   
+All right, so we have this.     
+
+1582
+01:23:58,005 --> 01:24:01,472
+And, of course, now if we run   
+it in the simulator, we can     
+
+1583
+01:24:01,541 --> 01:24:05,210
+rotate it in the simulator as   
+well and see it working there.  
+
+1584
+01:24:05,278 --> 01:24:07,645
+And if we had a device, we      
+could run it on our device and  
+
+1585
+01:24:07,714 --> 01:24:09,380
+do it there. So here we go.     
+Here's our iPhone 7.            
+
+1586
+01:24:09,449 --> 01:24:12,451
+7 times 9 equals.               
+It's still working.             
+
+1587
+01:24:12,520 --> 01:24:14,586
+Square root, that's good.       
+And when we rotate,             
+
+1588
+01:24:14,655 --> 01:24:16,554
+by the way, I'm gonna           
+rotate using Command key.       
+
+1589
+01:24:16,623 --> 01:24:19,557
+Okay, Command left and right    
+arrows, you'll see it down in   
+
+1590
+01:24:19,626 --> 01:24:22,060
+the lower left corner here,     
+but Command Rotate.             
+
+1591
+01:24:22,129 --> 01:24:27,399
+See that? Okay, so you can      
+see we had to do very little    
+
+1592
+01:24:27,468 --> 01:24:30,702
+to make this thing adapt. And   
+this is a fairly simple UI,     
+
+1593
+01:24:30,771 --> 01:24:32,938
+a lot of rectangles.            
+More complicated UI,            
+
+1594
+01:24:33,007 --> 01:24:36,041
+we'd do a little bit more. And  
+in about week five, four or     
+
+1595
+01:24:36,109 --> 01:24:39,611
+five, I'll go into detail       
+about how we build these, even  
+
+1596
+01:24:39,679 --> 01:24:42,447
+for complicated UIs how we      
+build these rotatable things,   
+
+1597
+01:24:42,516 --> 01:24:45,951
+etc. Okay, so that's it.        
+Your homework                   
+
+1598
+01:24:46,019 --> 01:24:48,353
+is basically to reproduce       
+what I did in these first two   
+
+1599
+01:24:48,422 --> 01:24:50,255
+lectures and                    
+then add a couple of things.    
+
+1600
+01:24:50,324 --> 01:24:53,391
+Add a little label up there,    
+add some buttons, change some   
+
+1601
+01:24:53,460 --> 01:24:56,662
+colors, that kind of business,  
+pretty straightforward.         
+
+1602
+01:24:56,730 --> 01:24:59,497
+Make it work with               
+floating point inputs and       
+
+1603
+01:24:59,566 --> 01:25:02,901
+that's due next Wednesday. I'm  
+here if you have questions,     
+
+1604
+01:25:02,969 --> 01:25:05,804
+and I'll see you then.          
+>> For more,                    
+
+1605
+01:25:05,873 --> 01:25:14,379
+please visit us                 
+at stanford.edu.                
+
