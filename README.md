@@ -16,8 +16,8 @@ Stanford 公开课，Developing iOS 10 Apps with Swift 字幕
 
 - [Developing iOS 9 Apps with Swift 字幕翻译](https://github.com/SwiftGGTeam/Developing-iOS-9-Apps-with-Swift)
 - [Developing iOS 8 Apps with Swift 字幕翻译](https://github.com/X140Yu/Developing_iOS_8_Apps_With_Swift)
-- [提取字幕：CCExtractor]()
-- [字幕排版(如需翻译)：X140Yu/Developing_iOS_8_Apps_With_Swift/tools/trim.rb](https://github.com/X140Yu/Developing_iOS_8_Apps_With_Swift/blob/master/tools/trim.rb)|
+- [提取字幕：CCExtractor](https://www.ccextractor.org/)
+- [字幕重排：X140Yu/Developing_iOS_8_Apps_With_Swift/tools/trim.rb](https://github.com/X140Yu/Developing_iOS_8_Apps_With_Swift/blob/master/tools/trim.rb)|
 
 ### 版权说明
 
