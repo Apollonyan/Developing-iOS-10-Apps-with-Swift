@@ -9,71 +9,35 @@
 import Foundation
 import AppKit
 
-/*
- # Video // src: 4. Views
- 4. [Views](url)
+// itunes.apple.com/us/course/developing-ios-10-apps-with-swift/id<#iTunesUCourseID#>
+let iTunesUCourseID = 1198467120
 
- # Slides // src: Lecture 6 Slides
- 6. [title](url)
+enum ResourceType: String, CustomStringConvertible {
+    // Raw Type: video/x-m4v
+    case video = "Video"
+    // Raw Type: application/pdf
+    case slides = "Slides"
+    case demoCode = "Demo Code"
+    case readingAssignment = "Reading Assignment"
+    case programmingProject = "Programming Project"
 
- # Demo Code // src: Lecture 9 Demo Code: Smashtag
- 9. [title](url)
-
- # Reading Assignment // src: Reading Assignment 2: More Swift
- 2. [More Swift](url)
-
- # Programming Project // src: Programming Project 2: Calculator Brain
- 2. [Calculator Brain](url)
- */
-enum ResourceType: CustomStringConvertible, Hashable {
-    // video/x-m4v
-    case video
-    // application/pdf
-    case slides
-    case demoCode
-    case readingAssignment
-    case programmingProject
     static let all: [ResourceType] = [.video, .slides, .demoCode, .readingAssignment, .programmingProject]
+
     var description: String {
-        switch self {
-        case .video: return "Video"
-        case .slides: return "Slides"
-        case .demoCode: return "Demo Code"
-        case .readingAssignment: return "Reading Assignment"
-        case .programmingProject: return "Programming Project"
-        }
-    }
-    var hashValue: Int {
-        return description.hashValue
+        return self.rawValue
     }
 }
 
-/* Example XML
- <entry>
- <author>
- <name>Paul Hegarty</name>
- </author>
- <title type="html">
- <![CDATA[ Lecture 9 Demo Code: Smashtag ]]>
- </title>
- <id>1/COETAIHAJLZIQXJI/MAEC2FBSEERRMTUH</id>
- <updated>2017-03-10T18:19:21PST</updated>
- <published>2017-03-10T17:36:29PST</published>
- <summary type="html">
- <![CDATA[ Lecture 9 Demo Code: Smashtag ]]>
- </summary>
- <link rel="enclosure" type="application/pdf" href="https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/bd/b9/a3/bdb9a33e-0801-7cd3-5afc-849b44b0fa6d/316-1975239713004461915-L9_Demo_Code.pdf" length="63449"/>
- </entry>
- */
 struct Resource: CustomStringConvertible {
     let index: Int
     let title: String
     let type: ResourceType
     let url: String
-    init?(title: String?, rawtype: String?, url: String?) {
-        guard let title = title, let rawtype = rawtype, let url = url else { return nil }
+
+    init(title: String, rawType: String, url: String) {
         self.url = url
-        if rawtype == "video/x-m4v" {
+
+        if rawType == "video/x-m4v" {
             type = .video
         } else if title.contains("Reading Assignment") {
             type = .readingAssignment
@@ -84,24 +48,47 @@ struct Resource: CustomStringConvertible {
         } else {
             type = .slides
         }
-        var parts = [String]()
+
+        var parts: [String]
         if type == .video {
+            // 4. Views -> index: 4, title: Views
             parts = title.components(separatedBy: ". ")
         } else if [.readingAssignment, .programmingProject].contains(type) {
+            // Reading Assignment 2: More Swift -> index: 2, title: More Swift
+            // Programming Project 2: Calculator Brain -> index: 2, title: Calculator Brain
             parts = title.components(separatedBy: ": ")
             parts[0] = parts[0].components(separatedBy: " ")[2]
         } else {
-            parts.append(title.components(separatedBy: " ")[1])
-            parts.append(title)
+            // Lecture 6 Slides -> index: 6, title: Lecture 6 Slides
+            // Lecture 9 Demo Code: Smashtag -> index: 9, title: Lecture 9 Demo Code: Smashtag
+            parts = [title.components(separatedBy: " ")[1], title]
         }
         self.index = Int(parts[0])!
         self.title = parts[1]
     }
+
     var description: String {
         return "\(index). [\(title)](\(url))"
     }
 }
 
+/* Example XML
+ <entry>
+ <author>
+ <name>Paul Hegarty</name>
+ </author>
+ <title type="html">
+ <![CDATA[ <#Title#> ]]>
+ </title>
+ <id>1/COETAIHAJLZIQXJI/MAEC2FBSEERRMTUH</id>
+ <updated>2017-03-10T18:19:21PST</updated>
+ <published>2017-03-10T17:36:29PST</published>
+ <summary type="html">
+ <![CDATA[ Lecture 9 Demo Code: Smashtag ]]>
+ </summary>
+ <link rel="enclosure" type="<#Raw Type#>" href="<#URL#>" length="63449"/>
+ </entry>
+ */
 class ParsingDelegate: NSObject, XMLParserDelegate {
     var resources = [Resource]()
 
@@ -111,55 +98,57 @@ class ParsingDelegate: NSObject, XMLParserDelegate {
     var url: String?
 
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        switch elementName {
-        case "entry":
-            if let resource = Resource(title: title, rawtype: type, url: url) {
-                resources.append(resource)
-            }
-            title = nil
-            isParsingTitle = false
-            type = nil
-            url = nil
-        case "link":
+        if elementName == "link" {
             type = attributeDict["type"]
             url = attributeDict["href"]
-        case "title":
+        } else if elementName == "title" {
             isParsingTitle = true
-        default:
-            break
         }
     }
+
     func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
         if isParsingTitle {
             title = String(data: CDATABlock, encoding: .utf8) ?? "\(CDATABlock)"
         }
     }
+
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "title" {
             isParsingTitle = false
+        } else if elementName == "entry" {
+            // nil value means we have to update logic
+            resources.append(Resource(title: title!, rawType: type!, url: url!))
+            title = nil
+            isParsingTitle = false
+            type = nil
+            url = nil
         }
     }
 
     func parserDidEndDocument(_ parser: XMLParser) {
-        var out = ""
         let sorted = ResourceType.all.map { type in
             resources.filter({ $0.type == type }).sorted { $0.index < $1.index }
         }
+
+        var out = ""
         for (index, type) in ResourceType.all.enumerated() {
             out += "# \(type)\n\n"
-            out += sorted[index].reduce("") { $0+"\($1)\n" }
-            out += "\n"
+                + "\(sorted[index].reduce("") { "\($0)\($1)\n" })\n"
         }
 
         let cwd = CommandLine.arguments.first { $0.contains("main.swift") } ?? FileManager.default.currentDirectoryPath
         let url = URL(fileURLWithPath: cwd).deletingLastPathComponent().appendingPathComponent("download.md")
-        try! out.write(to: url, atomically: true, encoding: .utf8)
-        NSWorkspace.shared().activateFileViewerSelecting([url])
+        do {
+            try out.write(to: url, atomically: true, encoding: .utf8)
+            NSWorkspace.shared().activateFileViewerSelecting([url])
+        } catch {
+            print(out)
+        }
     }
 }
 
-if let url = URL(string: "https://p1-u.itunes.apple.com/WebObjects/LZStudent.woa/ra/feed/COETAIHAJLZIQXJI"), let parser = XMLParser(contentsOf: url) {
-    let delegate = ParsingDelegate()
-    parser.delegate = delegate
-    parser.parse()
-}
+let url = URL(string: "https://itunesu.itunes.apple.com/WebObjects/LZDirectory.woa/ra/directory/courses/\(iTunesUCourseID)/feed")!
+let parser = XMLParser(contentsOf: url)!
+let delegate = ParsingDelegate()
+parser.delegate = delegate
+parser.parse()

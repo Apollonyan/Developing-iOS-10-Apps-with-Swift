@@ -34,6 +34,7 @@
 # Reading Assignment
 
 1. [Intro to Swift](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/7d/38/f2/7d38f27a-3b82-de90-2f2c-2ee40514a56b/329-3366122602226359241-CS193P_Winter_17_Reading_1.pdf)
+2. [More Swift](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/50/27/6e/50276e9c-bb5a-2cd8-db64-c027a1f98507/318-8166708043639963524-CS193P_Winter_17_Reading_2.pdf)
 3. [The Rest of Swift](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/81/cf/fd/81cffd52-6c5a-1ecb-7366-875a41ad6465/303-5453919407785590613-CS193P_Winter_17_Reading_3.pdf)
 
 # Programming Project
