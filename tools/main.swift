@@ -151,7 +151,8 @@ class ParsingDelegate: NSObject, XMLParserDelegate {
             out += "\n"
         }
 
-        let url = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).deletingLastPathComponent().appendingPathComponent("download.md")
+        let cwd = CommandLine.arguments.first { $0.contains("main.swift") } ?? FileManager.default.currentDirectoryPath
+        let url = URL(fileURLWithPath: cwd).deletingLastPathComponent().appendingPathComponent("download.md")
         try! out.write(to: url, atomically: true, encoding: .utf8)
         NSWorkspace.shared().activateFileViewerSelecting([url])
     }
