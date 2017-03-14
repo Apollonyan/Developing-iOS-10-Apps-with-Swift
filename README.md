@@ -1,16 +1,33 @@
-# Developing iOS 10 Apps with Swift
+# Developing iOS 10 Apps with Swift 字幕简体中文翻译项目
 
-Stanford 公开课，Developing iOS 10 Apps with Swift 字幕
+### 下载字幕
+
+直接点击 [项目 Zip 包](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/archive/master.zip) 下载全部已有字幕。
+
+字幕的格式是 `.srt`，所以您可能需要用带外挂字幕功能的视频播放器，比如 [VLC](http://www.videolan.org/vlc/index.html) 等才可使用。如果字幕有乱码，请点击 [中文乱码报错用 Issue](https://github.com/x140yu/Developing_iOS_8_Apps_With_Swift/issues/131) 进行报错和寻求解决方案。
+
+### 下载视频及课件
+
+从 iTunes U 提取出的：[下载列表](./tools/download.md)
 
 ### 相关链接
 
-- iTunes U
-	- 课程地址：[Developing iOS 10 Apps with Swift - Free Course by Stanford on iTunes U](https://itunes.apple.com/us/course/developing-ios-10-apps-with-swift/id1198467120)
+- iTunes U：[Developing iOS 10 Apps with Swift - Free Course by Stanford](https://itunes.apple.com/us/course/developing-ios-10-apps-with-swift/id1198467120)
 	- [RSS 源](https://itunesu.itunes.apple.com/WebObjects/LZDirectory.woa/ra/directory/courses/1198467120/feed)
 	- [课程专辑封面](http://a2.mzstatic.com/us/r30/CobaltPublic122/v4/6b/66/d0/6b66d0af-d47f-37d6-9993-9c5237401a49/d3_64_2x.png)
 	- [首页推广图片](http://a2.mzstatic.com/us/r30/Features122/v4/79/cb/ce/79cbce27-b961-9dfb-f044-21686543edf8/flowcase_1360_520_2x.jpeg)
 - CS 193P 课程地址：[CS 193P iPhone Application Development](http://web.stanford.edu/class/cs193p/cgi-bin/drupal/)
-- [视频及课件下载](./tools/download.md)
+
+----
+
+### 翻译及校对
+
+如果您仅仅是想了解翻译的进度，您可以
+
+- [关注项目的更新](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/subscription)
+- [查看进度跟踪看板](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/projects/1)
+
+如果您想参与项目，请提前阅读 [翻译指南／校对规则](./translation-instructions.md)，然后再在 [Issues](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues) 区发言。不遵守该规定的翻译可能被直接关闭，请大家认真对待。
 
 ### 其他资源
 
@@ -18,6 +35,8 @@ Stanford 公开课，Developing iOS 10 Apps with Swift 字幕
 - [Developing iOS 8 Apps with Swift 字幕翻译](https://github.com/X140Yu/Developing_iOS_8_Apps_With_Swift)
 - [提取字幕：CCExtractor](https://www.ccextractor.org/)
 - [字幕重排：X140Yu/Developing_iOS_8_Apps_With_Swift/tools/trim.rb](https://github.com/X140Yu/Developing_iOS_8_Apps_With_Swift/blob/master/tools/trim.rb)
+
+----
 
 ### 版权说明
 
