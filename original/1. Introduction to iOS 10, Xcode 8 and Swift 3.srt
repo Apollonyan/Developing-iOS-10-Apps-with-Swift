@@ -1,0 +1,8060 @@
+﻿1
+00:00:00,401 --> 00:00:04,402
+[MUSIC]                         
+
+2
+00:00:04,471 --> 00:00:07,239
+Stanford University.            
+
+3
+00:00:07,308 --> 00:00:11,877
+Okay, well, welcome to CS193P,  
+Stanford CS193P.                
+
+4
+00:00:13,481 --> 00:00:17,515
+This is Developing              
+Applications for iOS, winter    
+
+5
+00:00:17,584 --> 00:00:21,553
+of 2017. Today we're going to   
+talk a little bit about what    
+
+6
+00:00:21,622 --> 00:00:23,955
+this class is about, and        
+the prerequisites you need.     
+
+7
+00:00:24,024 --> 00:00:28,427
+Then I'm, really fast, gonna    
+go over iOS and what's in it.   
+
+8
+00:00:28,496 --> 00:00:32,330
+And then, I'm gonna dive        
+into a big, long demo.          
+
+9
+00:00:32,399 --> 00:00:34,833
+And this demo is gonna really   
+quickly let you see what it's   
+
+10
+00:00:34,902 --> 00:00:37,402
+like to develop an application  
+for iOS, so you can decide,     
+
+11
+00:00:37,471 --> 00:00:40,738
+is this for me, or not?         
+So, what are you gonna learn?   
+
+12
+00:00:40,807 --> 00:00:43,441
+Well you're gonna learn to      
+build cool apps, all right,     
+
+13
+00:00:43,510 --> 00:00:46,778
+that's, that's what we're here  
+for. Why are these apps in iOS  
+
+14
+00:00:46,847 --> 00:00:48,947
+cool? Well for                  
+a number of reasons, okay?      
+
+15
+00:00:49,016 --> 00:00:50,982
+One is they're in               
+your back pocket,               
+
+16
+00:00:51,051 --> 00:00:54,085
+you can pull them out and show  
+your friends on your phone,     
+
+17
+00:00:54,154 --> 00:00:57,288
+a lot of them are networked so  
+there're kind of social         
+
+18
+00:00:57,357 --> 00:01:00,525
+apps and a lot of that          
+can be a lot of fun.            
+
+19
+00:01:00,594 --> 00:01:03,595
+Also if you decide to turn      
+your app into a product it's    
+
+20
+00:01:03,663 --> 00:01:06,030
+really easy to get it out to    
+customers via the app store.    
+
+21
+00:01:06,099 --> 00:01:07,900
+You don't have to               
+wrap it in a box and            
+
+22
+00:01:07,968 --> 00:01:10,468
+put it on a shelf somewhere     
+anymore. You can get it out     
+
+23
+00:01:10,537 --> 00:01:12,971
+there real quick.               
+And also you're going to see,   
+
+24
+00:01:13,040 --> 00:01:16,608
+today even, it's really easy    
+to build pretty complex         
+
+25
+00:01:16,677 --> 00:01:20,012
+app pretty quickly. So you get  
+a lot of instant gratification  
+
+26
+00:01:20,080 --> 00:01:22,548
+from building iOS apps.         
+For those of you in             
+
+27
+00:01:22,616 --> 00:01:25,751
+computer science there's also   
+this huge benefit, you're       
+
+28
+00:01:25,819 --> 00:01:28,820
+gonna get to see a real life    
+object-oriented programming     
+
+29
+00:01:28,889 --> 00:01:31,623
+system. And not just            
+object-oriented programming,    
+
+30
+00:01:31,691 --> 00:01:34,192
+but we're going to use          
+databases in this class, and    
+
+31
+00:01:34,261 --> 00:01:37,362
+graphics, and multimedia,       
+multi-threading, animation,     
+
+32
+00:01:37,430 --> 00:01:39,364
+networking, all these things.   
+And                             
+
+33
+00:01:39,433 --> 00:01:40,932
+you're going to see it in       
+a real world environment.       
+
+34
+00:01:41,001 --> 00:01:43,635
+So you take a lot of            
+classes on these subjects       
+
+35
+00:01:43,704 --> 00:01:46,137
+and sometimes you get maybe     
+a little disconnected from      
+
+36
+00:01:46,206 --> 00:01:47,472
+what's this like in             
+the real world, well,           
+
+37
+00:01:47,541 --> 00:01:52,211
+you're gonna get to see it all  
+in action here. Prerequisites,  
+
+38
+00:01:52,279 --> 00:01:55,414
+just boiling it down really     
+easily. The prerequisite for    
+
+39
+00:01:55,483 --> 00:01:57,282
+the class is object-oriented    
+programming.                    
+
+40
+00:01:57,350 --> 00:01:59,151
+You have to know                
+object-oriented programming,    
+
+41
+00:01:59,219 --> 00:02:01,586
+I'm not gonna teach that in     
+the class, I completely and     
+
+42
+00:02:01,655 --> 00:02:04,289
+utterly assume it. And not      
+only do you have to know it,    
+
+43
+00:02:04,358 --> 00:02:06,057
+you have to have some           
+experience doing it.            
+
+44
+00:02:06,126 --> 00:02:09,260
+So that's why here at           
+Stanford CS106 A and            
+
+45
+00:02:09,329 --> 00:02:12,131
+B are a hard prerequisite. You  
+have to have taken those two,   
+
+46
+00:02:12,199 --> 00:02:14,733
+those are object-oriented       
+programming classes. And        
+
+47
+00:02:14,801 --> 00:02:16,535
+then I just want to make sure   
+you have some programming       
+
+48
+00:02:16,603 --> 00:02:19,338
+experience, so either you've    
+done something outside          
+
+49
+00:02:19,406 --> 00:02:22,608
+of school, or you've taken      
+CS107 or CS108 or CS110.        
+
+50
+00:02:22,676 --> 00:02:25,310
+CS108 is a particularly         
+great prerequisite,             
+
+51
+00:02:25,378 --> 00:02:27,646
+that's object-oriented          
+programming.                    
+
+52
+00:02:27,715 --> 00:02:29,614
+So if you have a chance         
+to take CS108 and               
+
+53
+00:02:29,683 --> 00:02:32,216
+you haven't taken it yet,       
+yeah, maybe taken it, and       
+
+54
+00:02:32,285 --> 00:02:35,520
+then take this class the next   
+time it's offered, all right?   
+
+55
+00:02:35,588 --> 00:02:41,025
+So let's dive through what's    
+in iOS really quickly here.     
+
+56
+00:02:41,094 --> 00:02:43,595
+I've divided it here            
+into four layers.               
+
+57
+00:02:43,664 --> 00:02:46,531
+These layers are roughly        
+close to the hardware.          
+
+58
+00:02:46,600 --> 00:02:49,968
+And then up close to the user.  
+So that bottom layer close to   
+
+59
+00:02:50,037 --> 00:02:53,238
+the hardware, that's actually   
+a Unix operating system, okay?  
+
+60
+00:02:53,306 --> 00:02:56,941
+Just like macOS, iOS is         
+a Unix operating system at      
+
+61
+00:02:57,010 --> 00:02:59,444
+the bottom. None of these       
+APIs are object oriented or     
+
+62
+00:02:59,513 --> 00:03:01,280
+anything, they're basically C,  
+okay? For                       
+
+63
+00:03:01,348 --> 00:03:05,551
+the Unix pretty much written    
+in C, these API's are in C.     
+
+64
+00:03:05,619 --> 00:03:10,122
+We're gonna do no work at that  
+level in this class, okay?      
+
+65
+00:03:10,190 --> 00:03:10,989
+This is an object-oriented      
+programming only class,         
+
+66
+00:03:11,057 --> 00:03:11,690
+so we're not gonna be           
+doing anything there.           
+
+67
+00:03:11,758 --> 00:03:14,659
+So there's another layer right  
+on top of that called core      
+
+68
+00:03:14,728 --> 00:03:17,662
+services. Sometimes people      
+refer to this as foundation,    
+
+69
+00:03:17,731 --> 00:03:21,333
+but there's other things        
+in this lever, layer,           
+
+70
+00:03:21,401 --> 00:03:24,836
+besides foundation. And this    
+is an object oriented layer     
+
+71
+00:03:24,905 --> 00:03:27,539
+on top of those things that     
+were lower down. Okay, so       
+
+72
+00:03:27,607 --> 00:03:30,875
+now you can do networking,      
+file system, things like that,  
+
+73
+00:03:30,944 --> 00:03:34,512
+using object oriented API. But  
+this is still non UI layer,     
+
+74
+00:03:34,581 --> 00:03:38,283
+right? It's still kinda closer  
+to the hardware. So I'll        
+
+75
+00:03:38,351 --> 00:03:40,619
+definitely be teaching you      
+a lot of stuff at this layer,   
+
+76
+00:03:40,688 --> 00:03:43,721
+'cause you just need it to do   
+the things you're gonna do.     
+
+77
+00:03:43,790 --> 00:03:47,059
+Now, there's another layer      
+here, the media layer here I    
+
+78
+00:03:47,127 --> 00:03:51,262
+call it. This is a huge layer,  
+which has 3D graphics, and      
+
+79
+00:03:51,331 --> 00:03:55,533
+audio playback and recording,   
+image processing, video,        
+
+80
+00:03:55,602 --> 00:03:58,470
+all that stuff. Unfortunately   
+I'm not gonna have a lot of     
+
+81
+00:03:58,538 --> 00:04:01,006
+time to spend here, even        
+though it's a huge part of      
+
+82
+00:04:01,074 --> 00:04:05,977
+what an iOS device does. iOS    
+devices all pretty much have    
+
+83
+00:04:06,046 --> 00:04:09,681
+iPods in them, video iPods      
+if you wanna think about it.    
+
+84
+00:04:09,749 --> 00:04:12,584
+And so there's a lot here.      
+Unfortunately I can't cover it  
+
+85
+00:04:12,653 --> 00:04:15,454
+all. Because I'm gonna spend    
+most of my time up here,        
+
+86
+00:04:15,523 --> 00:04:17,189
+which is                        
+the Cocoa Touch layer.          
+
+87
+00:04:17,257 --> 00:04:20,058
+This is where buttons and text  
+fields and things are, but      
+
+88
+00:04:20,127 --> 00:04:22,727
+also much more powerful         
+objects like maps.              
+
+89
+00:04:22,796 --> 00:04:26,131
+There's an object in Cocoa      
+Touch which is a map object,    
+
+90
+00:04:26,200 --> 00:04:29,368
+it's pretty much the entire     
+Maps application on             
+
+91
+00:04:29,436 --> 00:04:32,704
+an iOS device, that you can     
+drop right into a rectangle     
+
+92
+00:04:32,773 --> 00:04:35,573
+in your app.                    
+With almost no work.            
+
+93
+00:04:35,642 --> 00:04:38,676
+So, very powerful object to     
+this layer. This is where       
+
+94
+00:04:38,745 --> 00:04:40,779
+we're gonna spend the vast      
+majority of our time,           
+
+95
+00:04:40,847 --> 00:04:43,315
+building user interface         
+apps at this layer.             
+
+96
+00:04:44,618 --> 00:04:47,886
+That's a rough overview.        
+Trying to explain all           
+
+97
+00:04:47,955 --> 00:04:50,655
+of iOS in two minutes is        
+pretty much impossible, but     
+
+98
+00:04:50,724 --> 00:04:53,825
+that's kind of what we're       
+doing in this class. We're      
+
+99
+00:04:53,894 --> 00:04:57,029
+gonna use all these components  
+to get our work done.           
+
+100
+00:04:57,098 --> 00:04:59,431
+Top level there,                
+Xcode 8, is gonna be...         
+
+101
+00:04:59,500 --> 00:05:01,766
+everything we do is             
+gonna be in Xcode 8.            
+
+102
+00:05:01,835 --> 00:05:04,802
+The debugger, the editor,       
+everything, building,           
+
+103
+00:05:04,871 --> 00:05:08,173
+it's all in Xcode 8. There's    
+a little app, Instruments,      
+
+104
+00:05:08,242 --> 00:05:10,742
+that goes along with it, for    
+performance and stuff, but      
+
+105
+00:05:10,811 --> 00:05:13,845
+pretty much it's all Xcode 8.   
+Two, I'm gonna teach you        
+
+106
+00:05:13,914 --> 00:05:17,349
+a new programming language.     
+So if you're computer science   
+
+107
+00:05:17,418 --> 00:05:20,052
+people, you know that learning  
+different programming           
+
+108
+00:05:20,120 --> 00:05:22,354
+languages, really               
+valuable skill.                 
+
+109
+00:05:22,423 --> 00:05:24,056
+Not because you're necessarily  
+gonna use all of them,          
+
+110
+00:05:24,124 --> 00:05:27,158
+some you might or might not     
+use. But just the process of    
+
+111
+00:05:27,227 --> 00:05:30,896
+seeing how language designers   
+pick and choose their syntax    
+
+112
+00:05:30,965 --> 00:05:33,732
+and, and the feature set,       
+is really valuable.             
+
+113
+00:05:33,800 --> 00:05:36,702
+So you'll get that I would      
+think. It's a great language.   
+
+114
+00:05:36,770 --> 00:05:38,770
+It was just invented in the     
+last two or three years, so     
+
+115
+00:05:38,839 --> 00:05:40,806
+it kind of incorporates         
+the best of a lot of different  
+
+116
+00:05:40,874 --> 00:05:44,475
+languages. So I'm gonna kind    
+of blitzkrieg teach that to     
+
+117
+00:05:44,544 --> 00:05:48,547
+you in the first couple weeks.  
+Frameworks: That's essentially  
+
+118
+00:05:48,615 --> 00:05:51,450
+things like the Cocoa           
+Touch UIKit framework.          
+
+119
+00:05:51,519 --> 00:05:52,884
+It's where all the buttons and  
+stuff are.                      
+
+120
+00:05:52,953 --> 00:05:54,452
+Foundation is that, kind of,    
+
+121
+00:05:54,521 --> 00:05:56,021
+mostly that core                
+services layer.                 
+
+122
+00:05:56,089 --> 00:05:58,356
+But there's a lot of other      
+ones like Core Data framework,  
+
+123
+00:05:58,425 --> 00:05:59,625
+object-oriented database,       
+
+124
+00:05:59,694 --> 00:06:01,293
+we'll be doing that             
+in assignment five.             
+
+125
+00:06:01,361 --> 00:06:05,730
+Also I talked about that map    
+thing, that's in a framework    
+
+126
+00:06:05,799 --> 00:06:08,534
+called MapKit. And there's      
+also things in core motion,     
+
+127
+00:06:08,602 --> 00:06:11,470
+like the accelerometer and      
+the gyro in the device.         
+
+128
+00:06:11,538 --> 00:06:13,071
+All those things, I'm gonna     
+be teaching you many,           
+
+129
+00:06:13,140 --> 00:06:15,540
+many of these frameworks        
+as we go on. And                
+
+130
+00:06:15,609 --> 00:06:17,676
+last, but definitely            
+not least, and very,            
+
+131
+00:06:17,745 --> 00:06:20,145
+very important,                 
+is the design strategy for      
+
+132
+00:06:20,214 --> 00:06:23,315
+how to build apps, it's called  
+MVC, model-view-controller.     
+
+133
+00:06:23,384 --> 00:06:25,484
+How many people already         
+know MVC, have,                 
+
+134
+00:06:25,552 --> 00:06:27,152
+have learned in                 
+a different class?              
+
+135
+00:06:27,220 --> 00:06:30,288
+See, so maybe half of you.      
+I will spend the first part of  
+
+136
+00:06:30,357 --> 00:06:33,659
+Wednesday's lecture telling     
+you about MVC and what it is.   
+
+137
+00:06:33,727 --> 00:06:38,696
+We 100.0% have to use MVC       
+when we develop apps for iOS.   
+
+138
+00:06:38,765 --> 00:06:41,300
+There's really no other way to  
+do it, if you do it any other   
+
+139
+00:06:41,368 --> 00:06:43,902
+way, you're swimming so up      
+stream against the current of   
+
+140
+00:06:43,970 --> 00:06:47,239
+iOS, it's... You'll end up      
+with a mess of an application,  
+
+141
+00:06:47,308 --> 00:06:50,275
+okay, so we'll be going over    
+that as well. This demo         
+
+142
+00:06:50,343 --> 00:06:53,045
+that I'm gonna do, we're        
+gonna build a calculator.       
+
+143
+00:06:53,113 --> 00:06:56,181
+A calculator's great because    
+it's got a fairly simple UI,    
+
+144
+00:06:56,250 --> 00:06:58,617
+but it's got a little bit       
+of guts on the inside,          
+
+145
+00:06:58,686 --> 00:07:00,319
+the actual calculating part.    
+So                              
+
+146
+00:07:00,387 --> 00:07:03,355
+it's just complicated enough    
+to start showing you MVC and    
+
+147
+00:07:03,424 --> 00:07:06,557
+a lot of language features and  
+things like that. But not so    
+
+148
+00:07:06,626 --> 00:07:09,928
+complicated that I can't do an  
+entire calculator, basically,   
+
+149
+00:07:09,997 --> 00:07:13,131
+in two lectures, okay, start    
+to finish. All these topics up  
+
+150
+00:07:13,200 --> 00:07:14,933
+here, you don't have            
+to look at them now.            
+
+151
+00:07:15,002 --> 00:07:18,203
+This is the slide to go look    
+at after my lecture today and   
+
+152
+00:07:18,272 --> 00:07:20,239
+say, hmm did I learn that,      
+yeah,                           
+
+153
+00:07:20,307 --> 00:07:22,173
+I think I got that. So          
+
+154
+00:07:22,242 --> 00:07:25,177
+it's kind of a summary of what  
+I'm gonna do. Since I'm not     
+
+155
+00:07:25,246 --> 00:07:27,045
+gonna get back to the slides    
+from the end of my demo,        
+
+156
+00:07:27,114 --> 00:07:28,614
+it's just gonna be              
+the end of the lecture.         
+
+157
+00:07:28,682 --> 00:07:30,615
+I'll tell you a little          
+bit what's coming up.           
+
+158
+00:07:30,684 --> 00:07:33,251
+On Wednesday, I'll be           
+continuing this demo, but       
+
+159
+00:07:33,320 --> 00:07:35,654
+not until after I give          
+you this talk about MVC,        
+
+160
+00:07:35,723 --> 00:07:38,690
+because what we're gonna do in  
+the calculator is apply MVC     
+
+161
+00:07:38,758 --> 00:07:41,760
+to it, on Wednesday.            
+And your first                  
+
+162
+00:07:41,829 --> 00:07:44,696
+programming assignment will     
+go out on Wednesday, which is   
+
+163
+00:07:44,765 --> 00:07:47,198
+pretty much to replicate        
+what I'm doing today and        
+
+164
+00:07:47,267 --> 00:07:51,069
+on Wednesday, okay? And I'll    
+give you a video of the demo,   
+
+165
+00:07:51,138 --> 00:07:54,840
+so you'll see it, and you'll    
+be able to watch it. And        
+
+166
+00:07:54,908 --> 00:07:57,709
+then on Friday,                 
+we have an optional section.    
+
+167
+00:07:57,778 --> 00:07:59,211
+So the Friday sections          
+in this course,                 
+
+168
+00:07:59,280 --> 00:08:01,046
+you don't have to go to         
+if you don't want to.           
+
+169
+00:08:01,115 --> 00:08:03,248
+But a lot of times,             
+they're very valuable.          
+
+170
+00:08:03,317 --> 00:08:07,085
+Feature so if you have not      
+used the debugger in Xcode 8    
+
+171
+00:08:07,154 --> 00:08:10,022
+you really might wanna          
+go to Friday's lecture.         
+
+172
+00:08:10,090 --> 00:08:12,790
+The location and time of it     
+will be posted on the class     
+
+173
+00:08:12,859 --> 00:08:15,994
+forums hopefully tomorrow.      
+I've asked for the room and     
+
+174
+00:08:16,062 --> 00:08:18,196
+haven't quite got it yet        
+so hopefully tomorrow. And      
+
+175
+00:08:18,264 --> 00:08:20,565
+then don't forget next Monday   
+is a holiday so we're not       
+
+176
+00:08:20,634 --> 00:08:23,067
+meeting on Monday. Our next     
+class after this Wednesday      
+
+177
+00:08:23,136 --> 00:08:28,540
+will be next Wednesday.         
+So let's hop into the demo...   
+
+178
+00:08:28,608 --> 00:08:31,743
+I said we were gonna build      
+a calculator, let me actually   
+
+179
+00:08:31,811 --> 00:08:36,315
+show you a calculator. This     
+is the MacOS calculator and     
+
+180
+00:08:36,383 --> 00:08:39,050
+our calculator is gonna look    
+very similar to this, right?    
+
+181
+00:08:39,119 --> 00:08:42,520
+It has to display along         
+the top, it has the keypad for  
+
+182
+00:08:42,589 --> 00:08:46,058
+typing numbers in and it's got  
+these operation buttons. And    
+
+183
+00:08:46,126 --> 00:08:49,294
+then you can just multiply,     
+times eight, you hit equals,    
+
+184
+00:08:49,362 --> 00:08:50,395
+it does the operation,          
+
+185
+00:08:50,464 --> 00:08:52,463
+that's pretty much what our     
+calculator is gonna do.         
+
+186
+00:08:52,532 --> 00:08:55,100
+It's not gonna look exactly     
+like this. It's gonna have      
+
+187
+00:08:55,169 --> 00:08:58,370
+a look that's a little more     
+appropriate for a iOS device,   
+
+188
+00:08:58,439 --> 00:09:03,041
+but it's generally this. And    
+I promised that Xcode would be  
+
+189
+00:09:03,110 --> 00:09:05,210
+your one-stop shop for          
+doing all development, so       
+
+190
+00:09:05,278 --> 00:09:08,847
+we're gonna spend our entire    
+time here working in Xcode.     
+
+191
+00:09:08,916 --> 00:09:12,117
+Now Xcode is an app that you    
+just go to the Mac App Store,   
+
+192
+00:09:12,186 --> 00:09:13,952
+and you download it.            
+It's free.                      
+
+193
+00:09:14,020 --> 00:09:16,688
+When you first launch it,       
+it's gonna put up this splash   
+
+194
+00:09:16,757 --> 00:09:18,724
+screen like you                 
+see right here.                 
+
+195
+00:09:18,792 --> 00:09:21,927
+And all of your projects are    
+going to start accumulating     
+
+196
+00:09:21,995 --> 00:09:26,265
+here over on this right side    
+where this gray area is. And    
+
+197
+00:09:26,333 --> 00:09:29,634
+you can basically do three      
+other things here. You can use  
+
+198
+00:09:29,703 --> 00:09:32,004
+a playground, which I'll show   
+the playgrounds on Wednesday,   
+
+199
+00:09:32,072 --> 00:09:35,440
+it's kind of a little play      
+area for iOS programming. You   
+
+200
+00:09:35,509 --> 00:09:38,911
+can check a existing project    
+out of a source control         
+
+201
+00:09:38,979 --> 00:09:41,079
+management system which         
+we're not gonna be doing.       
+
+202
+00:09:41,148 --> 00:09:44,249
+Although we're probably         
+have a Friday section           
+
+203
+00:09:44,318 --> 00:09:48,186
+on doing a source code          
+control. So we're gonna be      
+
+204
+00:09:48,255 --> 00:09:50,956
+doing this option right here,   
+create a new X code project.    
+
+205
+00:09:51,024 --> 00:09:53,158
+And in fact, when I do          
+demos in this course,           
+
+206
+00:09:53,227 --> 00:09:55,760
+I almost always                 
+start from scratch.             
+
+207
+00:09:55,829 --> 00:09:56,895
+Cuz I don't want you            
+to have to like,                
+
+208
+00:09:56,963 --> 00:09:59,430
+come up to speed on some code   
+that I give you first, and      
+
+209
+00:09:59,499 --> 00:10:03,368
+then, learn from there. So we   
+try to start from scratch, and  
+
+210
+00:10:03,436 --> 00:10:06,271
+see what we can do that way.    
+So I'm gonna click on this,     
+
+211
+00:10:06,340 --> 00:10:09,107
+to start a new app.             
+It's asking, what kind          
+
+212
+00:10:09,175 --> 00:10:11,176
+of app do we want to build,     
+or what kind of project, and    
+
+213
+00:10:11,245 --> 00:10:13,979
+here you can see, we can do     
+Watch apps, Apple TV apps,      
+
+214
+00:10:14,048 --> 00:10:17,616
+even Mac OS apps, but           
+we're doing iOS, and in fact,   
+
+215
+00:10:17,684 --> 00:10:21,453
+we're always going to choose    
+this single view application    
+
+216
+00:10:21,522 --> 00:10:23,322
+template. It's                  
+the simplest template, and      
+
+217
+00:10:23,390 --> 00:10:25,290
+some of these other templates   
+have code in there that I       
+
+218
+00:10:25,359 --> 00:10:27,525
+actually want to show you how   
+to write yourself instead of    
+
+219
+00:10:27,594 --> 00:10:30,195
+having the template just make   
+that code appear, all right?    
+
+220
+00:10:30,264 --> 00:10:32,464
+So we're gonna do single        
+view application.               
+
+221
+00:10:32,532 --> 00:10:35,000
+Now it wants some particulars   
+on our application,             
+
+222
+00:10:35,068 --> 00:10:37,302
+most importantly at             
+the top its name. Well,         
+
+223
+00:10:37,371 --> 00:10:39,470
+we're building a calculator so  
+we're gonna call this           
+
+224
+00:10:39,539 --> 00:10:42,341
+Calculator, okay, that's        
+gonna be the name of our app.   
+
+225
+00:10:42,409 --> 00:10:45,343
+Now this second line here,      
+team, that's the team of        
+
+226
+00:10:45,412 --> 00:10:48,547
+developers who are gonna work   
+on this project, that's gonna   
+
+227
+00:10:48,616 --> 00:10:52,050
+be a team of one, which is      
+you. Okay, when you launch      
+
+228
+00:10:52,119 --> 00:10:54,486
+Xcode, this is probably not     
+going to be a pull down list.   
+
+229
+00:10:54,555 --> 00:10:57,021
+It's gonna be a button          
+that says Add Account or        
+
+230
+00:10:57,090 --> 00:11:00,925
+something like that, Add Team.  
+You click on that, all you'll   
+
+231
+00:11:00,994 --> 00:11:04,696
+need is an Apple ID, any Apple  
+ID will do, won't cost you any  
+
+232
+00:11:04,765 --> 00:11:07,866
+money. And go through           
+the dialog there and            
+
+233
+00:11:07,935 --> 00:11:11,636
+it'll add a team for you, and   
+you use that here. Alright?     
+
+234
+00:11:11,705 --> 00:11:13,838
+This organization name          
+can be anything you want.       
+
+235
+00:11:13,907 --> 00:11:16,408
+It's just gonna appear on the   
+copyright symbol at the top of  
+
+236
+00:11:16,477 --> 00:11:19,510
+your source code files,         
+that's it. But this one,        
+
+237
+00:11:19,579 --> 00:11:24,316
+it's super important that this  
+be a unique identifier of you.  
+
+238
+00:11:24,384 --> 00:11:30,021
+Okay? So I strongly recommend   
+doing edu.stanford.cs193p.      
+
+239
+00:11:30,090 --> 00:11:35,160
+You're SUNet ID here, okay?     
+If you put that in there,       
+
+240
+00:11:35,228 --> 00:11:36,895
+you're almost guaranteed,       
+if you're a Stanford student,   
+
+241
+00:11:36,963 --> 00:11:38,830
+for that to be unique. If       
+you're not a Stanford student,  
+
+242
+00:11:38,899 --> 00:11:41,733
+you're watching this on iTunes  
+U, pick something else that     
+
+243
+00:11:41,801 --> 00:11:43,768
+uniquely identifies you.        
+Hopefully,                      
+
+244
+00:11:43,837 --> 00:11:46,638
+reverse DNS notation will work  
+in your circumstance as well.   
+
+245
+00:11:48,575 --> 00:11:51,009
+The language we're gonna        
+use like I said is Swift.       
+
+246
+00:11:51,078 --> 00:11:53,812
+iOS was originally written in   
+a different language called     
+
+247
+00:11:53,880 --> 00:11:56,681
+Objective-C. Turns out you      
+can use Objective-C and         
+
+248
+00:11:56,750 --> 00:11:59,384
+Swift in the same application.  
+
+249
+00:11:59,453 --> 00:12:04,222
+They use the exact same         
+underlying iOS API. So          
+
+250
+00:12:04,291 --> 00:12:06,257
+everything you're gonna learn   
+in this class in Swift,         
+
+251
+00:12:06,326 --> 00:12:09,495
+if you later went and learned   
+Objective-C, all that learning  
+
+252
+00:12:09,563 --> 00:12:11,863
+would be valid, okay?           
+Cuz it's the exact, in fact,    
+
+253
+00:12:11,932 --> 00:12:15,367
+it's the exact same code base,  
+it's not just same API.         
+
+254
+00:12:15,435 --> 00:12:18,437
+Swift was designed in a way     
+to be quite compatible with     
+
+255
+00:12:18,505 --> 00:12:20,639
+Objective-C's APIs.             
+And in the last couple years,   
+
+256
+00:12:20,707 --> 00:12:23,742
+they've even enhanced           
+Objective-C to catch up with    
+
+257
+00:12:23,810 --> 00:12:27,078
+some of the advanced stuff      
+that Swift does. Our app that   
+
+258
+00:12:27,147 --> 00:12:29,081
+we're going to build,           
+our calculator is going to      
+
+259
+00:12:29,149 --> 00:12:31,549
+be universal. That means it's   
+going to run on iPhone and      
+
+260
+00:12:31,618 --> 00:12:36,255
+on iPad. First couple weeks,    
+it will be iPhone only but      
+
+261
+00:12:36,323 --> 00:12:40,158
+then, eventually, we'll         
+add iPad support, as well.      
+
+262
+00:12:40,227 --> 00:12:42,127
+We're not gonna be using        
+a database in the calculator,   
+
+263
+00:12:42,195 --> 00:12:45,297
+but we will in your assignment  
+five. And when it comes to      
+
+264
+00:12:45,366 --> 00:12:47,499
+testing, which is super         
+important, again, I'm hoping    
+
+265
+00:12:47,568 --> 00:12:49,634
+to have a Friday section to     
+tell you a lot about testing,   
+
+266
+00:12:49,703 --> 00:12:53,238
+especially the UI testing       
+framework is really awesome,    
+
+267
+00:12:53,307 --> 00:12:55,874
+okay, so hopefully we'll get    
+a chance to show you that. So   
+
+268
+00:12:55,943 --> 00:12:58,777
+I'm just gonna click next       
+here to create my app.          
+
+269
+00:12:58,846 --> 00:13:01,746
+It says, where do you wanna     
+put this project? I recommend   
+
+270
+00:13:01,815 --> 00:13:06,952
+you put it home directory in a  
+folder called Developer. Okay?  
+
+271
+00:13:07,021 --> 00:13:09,688
+Then all your apps will         
+just pile up in here.           
+
+272
+00:13:09,756 --> 00:13:12,324
+This is pretty much             
+a canonical place to put it so  
+
+273
+00:13:12,393 --> 00:13:13,658
+I strongly recommend it. And    
+
+274
+00:13:13,727 --> 00:13:17,429
+then again source control is    
+more for teams working on it.   
+
+275
+00:13:17,497 --> 00:13:18,897
+You're gonna be working         
+this by yourself so             
+
+276
+00:13:18,966 --> 00:13:20,332
+you can leave this              
+switched off.                   
+
+277
+00:13:21,569 --> 00:13:24,202
+All right, here's our,          
+there's your load.              
+
+278
+00:13:24,271 --> 00:13:25,670
+There's your first IOS app,     
+
+279
+00:13:25,739 --> 00:13:29,141
+okay? Now let me explain        
+a little bit about Xcode and    
+
+280
+00:13:29,210 --> 00:13:32,144
+how it's laid out here.         
+So if you haven't seen it...    
+
+281
+00:13:32,213 --> 00:13:35,546
+How many people have worked     
+in Xcode before? See, so        
+
+282
+00:13:35,615 --> 00:13:38,584
+again probably half of you so   
+quite a few. For those of you   
+
+283
+00:13:38,652 --> 00:13:41,620
+who haven't, it's divided into  
+these three main sections       
+
+284
+00:13:41,689 --> 00:13:46,525
+here. This main section in the  
+middle is the primary place     
+
+285
+00:13:46,594 --> 00:13:48,760
+you're going to do all your     
+source code editing and         
+
+286
+00:13:48,828 --> 00:13:52,264
+things like that. That's where  
+you do most of your work.       
+
+287
+00:13:52,332 --> 00:13:55,600
+This section over here on       
+the left, this blue section is  
+
+288
+00:13:55,669 --> 00:13:59,871
+called the navigator. You use   
+it to navigate your project.    
+
+289
+00:13:59,940 --> 00:14:02,140
+And here you're seeing          
+it in a file based view,        
+
+290
+00:14:02,209 --> 00:14:04,242
+where I'm looking at all        
+my files. And we'll look at     
+
+291
+00:14:04,311 --> 00:14:06,778
+those in a second. But          
+you can navigate by searching,  
+
+292
+00:14:06,847 --> 00:14:09,314
+okay, there's a search panel.   
+If you, if you're debugging,    
+
+293
+00:14:09,383 --> 00:14:11,183
+you can navigate through all    
+the break points that you       
+
+294
+00:14:11,252 --> 00:14:15,120
+have, etc. So, you'll learn     
+all about the different         
+
+295
+00:14:15,189 --> 00:14:18,389
+ways that you can navigate,     
+as the quarter goes on.         
+
+296
+00:14:18,458 --> 00:14:22,127
+On the right hand side here     
+you see this little area,       
+
+297
+00:14:22,196 --> 00:14:23,729
+this is called                  
+the utilities window.           
+
+298
+00:14:23,797 --> 00:14:26,398
+And I'm gonna talk all about    
+this in about five minutes,     
+
+299
+00:14:26,467 --> 00:14:29,234
+okay, we're gonna use this      
+in great detail. I want to      
+
+300
+00:14:29,303 --> 00:14:32,837
+show you a little bit how you   
+can manage your space here.     
+
+301
+00:14:32,906 --> 00:14:35,407
+If you look in the upper right  
+you see these buttons here.     
+
+302
+00:14:35,475 --> 00:14:38,010
+You can click this one          
+over here to hide and           
+
+303
+00:14:38,078 --> 00:14:41,280
+show. That utilities window.    
+And same thing over here for    
+
+304
+00:14:41,348 --> 00:14:45,650
+the navigator. So that can      
+make more space for you.        
+
+305
+00:14:45,719 --> 00:14:48,253
+All right, and there's another  
+one here, this middle.          
+
+306
+00:14:48,322 --> 00:14:50,122
+That hides something            
+from the bottom.                
+
+307
+00:14:51,324 --> 00:14:53,892
+This is your debugger           
+window on the left and          
+
+308
+00:14:53,961 --> 00:14:56,595
+your console, which is          
+a place where you can log       
+
+309
+00:14:56,663 --> 00:14:59,631
+strings out to while you're     
+debugging, on the right. And    
+
+310
+00:14:59,700 --> 00:15:03,335
+we'll see that in a moment      
+as well. All right, so          
+
+311
+00:15:03,404 --> 00:15:04,636
+let's go look at these files,   
+right?                          
+
+312
+00:15:04,704 --> 00:15:07,071
+We're in the file navigator     
+here on the left. And           
+
+313
+00:15:07,140 --> 00:15:08,874
+there's six files here but      
+
+314
+00:15:08,942 --> 00:15:11,343
+four of them are really         
+just supporting files, and      
+
+315
+00:15:11,411 --> 00:15:13,778
+we're not not even gonna look   
+at them in the calculator.      
+
+316
+00:15:13,847 --> 00:15:16,914
+We'll look at a couple of them  
+as the quarter goes on but,     
+
+317
+00:15:16,983 --> 00:15:18,850
+they're not primary files.      
+
+318
+00:15:18,918 --> 00:15:24,088
+And for example, this one       
+Assets.xcassets, Xcode assets.  
+
+319
+00:15:24,157 --> 00:15:27,492
+This is images and videos that  
+might be embedded in your app.  
+
+320
+00:15:27,561 --> 00:15:29,027
+You can see it's the app icon,  
+
+321
+00:15:29,095 --> 00:15:34,699
+I haven't set any of my app     
+icons, you can see them. But    
+
+322
+00:15:34,768 --> 00:15:39,570
+this xcassets and the Launch    
+Screen and this Info.plist and  
+
+323
+00:15:39,639 --> 00:15:43,007
+this AppDelegate here. By the   
+way, I'm pulling down command,  
+
+324
+00:15:43,076 --> 00:15:45,644
+you see in the lower left you   
+can see any command keys that   
+
+325
+00:15:45,713 --> 00:15:48,947
+I press right down there cuz    
+I'm gonna use command keys for  
+
+326
+00:15:49,016 --> 00:15:51,182
+various things that we do. So   
+
+327
+00:15:51,251 --> 00:15:52,784
+I use command to                
+select all these. And           
+
+328
+00:15:52,853 --> 00:15:54,653
+I'm just gonna right click and  
+
+329
+00:15:54,721 --> 00:15:57,289
+go down to here, New Group      
+From Selection. And it's gonna  
+
+330
+00:15:57,357 --> 00:16:00,291
+put these four files into       
+their own little folder.        
+
+331
+00:16:00,360 --> 00:16:03,796
+There, it did it, I'm gonna     
+call it Supporting Files,       
+
+332
+00:16:03,864 --> 00:16:06,898
+okay. And I can move these      
+around in the navigator.        
+
+333
+00:16:06,967 --> 00:16:09,501
+See there they are, hidden in   
+there. We're not gonna look at  
+
+334
+00:16:09,569 --> 00:16:12,471
+those. We're gonna focus in     
+these two files right here,     
+
+335
+00:16:12,539 --> 00:16:18,209
+okay? This file, is your first  
+look at Swift. Here it is.      
+
+336
+00:16:18,278 --> 00:16:20,979
+It's got some very important    
+methods right here, which I'm   
+
+337
+00:16:21,047 --> 00:16:24,850
+gonna delete. Okay? They are    
+important, but the fact that    
+
+338
+00:16:24,919 --> 00:16:26,151
+I deleted them doesn't          
+make them not important.        
+
+339
+00:16:26,220 --> 00:16:28,220
+It's just that I'm not gonna    
+teach you about them for        
+
+340
+00:16:28,288 --> 00:16:28,987
+another couple weeks.           
+
+341
+00:16:29,056 --> 00:16:31,824
+So we're not gonna use them in  
+the calculator. And in fact,    
+
+342
+00:16:31,892 --> 00:16:35,460
+I'm gonna go into detail        
+about this Swift code more      
+
+343
+00:16:35,528 --> 00:16:37,128
+in a moment.                    
+But before I do that,           
+
+344
+00:16:37,197 --> 00:16:41,332
+I wanna focus on this file      
+right here, Main.storyboard.    
+
+345
+00:16:41,401 --> 00:16:44,703
+This is your user interface.    
+This is calculator's user       
+
+346
+00:16:44,771 --> 00:16:47,406
+interface. And one thing you    
+notice when I click on that,    
+
+347
+00:16:47,474 --> 00:16:51,710
+there's no code here. When      
+you build your user interface   
+
+348
+00:16:51,779 --> 00:16:55,280
+in iOS app in Xcode,            
+you do not write code.          
+
+349
+00:16:55,348 --> 00:16:57,216
+We're just gonna to build it    
+with the mouse. We're gonna     
+
+350
+00:16:57,284 --> 00:16:59,651
+drag some things out. We're     
+gonna use some inspectors to    
+
+351
+00:16:59,719 --> 00:17:03,188
+set the objects we want. The    
+way we want them. That's how    
+
+352
+00:17:03,256 --> 00:17:06,024
+we're gonna build our UI.       
+That code that you saw.         
+
+353
+00:17:06,092 --> 00:17:09,094
+That is only gonna control      
+the behavior of the UI.         
+
+354
+00:17:09,163 --> 00:17:11,864
+What happens when you touch on  
+a button? Things like that.     
+
+355
+00:17:11,932 --> 00:17:13,699
+That's what's gonna be          
+controlled by that code. But    
+
+356
+00:17:13,767 --> 00:17:16,468
+the actual layout of all the    
+buttons and all that stuff.     
+
+357
+00:17:16,537 --> 00:17:19,671
+Is gonna be done here           
+in this graphical view.         
+
+358
+00:17:19,739 --> 00:17:22,841
+Now you can see there's this    
+area here on the left, okay?    
+
+359
+00:17:22,910 --> 00:17:25,277
+This is like, this is           
+called document outline.        
+
+360
+00:17:25,346 --> 00:17:27,546
+If you're down here you'll      
+see a little button there.      
+
+361
+00:17:27,615 --> 00:17:29,514
+The document outline.           
+The document outline has        
+
+362
+00:17:29,582 --> 00:17:32,918
+all the things in the user      
+interface in an outline form.   
+
+363
+00:17:32,986 --> 00:17:34,486
+And that's gonna                
+be very useful for              
+
+364
+00:17:34,554 --> 00:17:37,856
+us. Later in the quarter.       
+So, I'm gonna hide that.        
+
+365
+00:17:37,925 --> 00:17:39,858
+That's this little button       
+down here is. It hides and      
+
+366
+00:17:39,926 --> 00:17:42,026
+shows it. We're gonna hide      
+that to make more space.        
+
+367
+00:17:42,095 --> 00:17:45,430
+We're not gonna use that in     
+the calculator either. So       
+
+368
+00:17:45,499 --> 00:17:47,165
+that leaves this                
+space here in,                  
+
+369
+00:17:47,233 --> 00:17:49,101
+if I zoom in on                 
+a little bit here,              
+
+370
+00:17:49,169 --> 00:17:52,671
+or zoom out rather. You can     
+see I start to see something    
+
+371
+00:17:52,739 --> 00:17:55,941
+that looks like an iPhone.      
+Okay, it's kinda iPhone         
+
+372
+00:17:56,010 --> 00:18:00,211
+shaped, I can also by the way   
+hold down the option key and    
+
+373
+00:18:00,280 --> 00:18:04,316
+use my mouse wheel to zoom in   
+here. Okay, so this is like     
+
+374
+00:18:04,384 --> 00:18:06,985
+an iPhone, in particular        
+it looks like an iPhone 7.      
+
+375
+00:18:07,054 --> 00:18:09,788
+You see down here at the        
+bottom it says view as iPhone   
+
+376
+00:18:09,857 --> 00:18:14,493
+7, all right? And if I          
+click on view as iPhone 7,      
+
+377
+00:18:14,561 --> 00:18:19,531
+you'll see all the other        
+iOS devices appear- iPads,      
+
+378
+00:18:19,600 --> 00:18:24,202
+for example. Or old iPhone 4s,  
+they're really kinda little.    
+
+379
+00:18:24,271 --> 00:18:26,938
+And not only are they there     
+but you can switch their        
+
+380
+00:18:27,007 --> 00:18:31,209
+orientation, okay?              
+Now when you build an iOS app,  
+
+381
+00:18:31,278 --> 00:18:35,414
+you want the UI to look good    
+on all these devices. And       
+
+382
+00:18:35,482 --> 00:18:37,482
+you don't wanna have to         
+write a lot of special if,      
+
+383
+00:18:37,550 --> 00:18:41,720
+then code all over the place    
+to make them work. So, this     
+
+384
+00:18:41,788 --> 00:18:45,390
+whole system that, of building  
+our UI, which by the way,       
+
+385
+00:18:45,459 --> 00:18:48,426
+is call Interface Builder.      
+This part of Xcode is called    
+
+386
+00:18:48,495 --> 00:18:52,030
+Interface Builder, is oriented  
+with a lot of functionality     
+
+387
+00:18:52,099 --> 00:18:55,567
+to make you, make it so         
+you can build your UI once and  
+
+388
+00:18:55,636 --> 00:18:59,037
+it will work on all these       
+devices. Now, I'm not gonna     
+
+389
+00:18:59,106 --> 00:19:01,540
+actually start doing that       
+until the end of the lecture    
+
+390
+00:19:01,608 --> 00:19:04,643
+on Wednesday. So, for now,      
+we're just gonna build our UI,  
+
+391
+00:19:04,711 --> 00:19:07,279
+it's gonna be kinda a mess.     
+We'll throw buttons anywhere    
+
+392
+00:19:07,347 --> 00:19:11,250
+we want. We're not really,      
+really working in               
+
+393
+00:19:11,318 --> 00:19:14,319
+landscape mode like this        
+vs portrait or small            
+
+394
+00:19:14,387 --> 00:19:17,289
+device or large device, ok?     
+We're not gonna worry about     
+
+395
+00:19:17,358 --> 00:19:19,925
+that right off the bat but you  
+just wanna preview the fact     
+
+396
+00:19:19,994 --> 00:19:22,427
+that we are eventually gonna    
+build this universal UI         
+
+397
+00:19:22,495 --> 00:19:26,365
+that works on all of them.      
+So here's our iPhone 7.         
+
+398
+00:19:26,433 --> 00:19:30,969
+We wanna start building our     
+UI. What do we need? We need    
+
+399
+00:19:31,038 --> 00:19:33,871
+buttons and we need a kinda     
+a display across the top.       
+
+400
+00:19:33,940 --> 00:19:36,641
+Let's start with the buttons.   
+Where do we get these buttons?  
+
+401
+00:19:36,710 --> 00:19:39,711
+Well, as promised. I'm gonna    
+talk about this utilities area  
+
+402
+00:19:39,779 --> 00:19:42,414
+right here. Now, this           
+utilities area has a top and    
+
+403
+00:19:42,483 --> 00:19:45,316
+a bottom. You see that?         
+And in the bottom,              
+
+404
+00:19:45,385 --> 00:19:50,121
+right here, under this region   
+called the object library, is   
+
+405
+00:19:50,190 --> 00:19:53,759
+a library of IOS objects that   
+you can build your app out of.  
+
+406
+00:19:53,827 --> 00:19:57,262
+And it has things like          
+buttons. Text fields,           
+
+407
+00:19:57,331 --> 00:20:00,298
+it has more complicated         
+things like image views and     
+
+408
+00:20:00,367 --> 00:20:04,102
+text views, which are multi     
+line and editable text ,and it  
+
+409
+00:20:04,171 --> 00:20:07,239
+even has things like that map   
+thing I was telling you about.  
+
+410
+00:20:07,308 --> 00:20:10,242
+Or a web view, which is         
+basically Safari in a little    
+
+411
+00:20:10,310 --> 00:20:13,511
+rectangle. So it's got a lot    
+of powerful things and          
+
+412
+00:20:13,580 --> 00:20:16,481
+there's a lot of them in here.  
+And we will try to cover        
+
+413
+00:20:16,549 --> 00:20:19,551
+the vast majority of these in   
+the course of the quarter.      
+
+414
+00:20:19,619 --> 00:20:22,888
+But it's almost really          
+too much to cover. So           
+
+415
+00:20:22,956 --> 00:20:25,557
+we're gonna start though        
+simple with a button. And       
+
+416
+00:20:25,625 --> 00:20:27,959
+if I want a button in my UI,    
+I just pick it up with          
+
+417
+00:20:28,028 --> 00:20:32,630
+the mouse, okay, and drag it    
+in. Now when I drag it in, see  
+
+418
+00:20:32,699 --> 00:20:37,536
+these blue lines are trying to  
+help me put it in a good spot.  
+
+419
+00:20:37,604 --> 00:20:40,839
+You see that? Now, we're not    
+gonna pay attention to that     
+
+420
+00:20:40,907 --> 00:20:43,007
+right now because I told you    
+we're doing this thing where    
+
+421
+00:20:43,076 --> 00:20:45,577
+we're building the app that'll  
+work on all devices. But        
+
+422
+00:20:45,646 --> 00:20:47,012
+when we start thinking about    
+
+423
+00:20:47,080 --> 00:20:49,180
+putting it on an app that       
+works on all devices we         
+
+424
+00:20:49,249 --> 00:20:52,751
+really wanna use these dashed   
+blue lines. Okay, because if    
+
+425
+00:20:52,819 --> 00:20:55,320
+you say something like I want   
+this to be in the center.       
+
+426
+00:20:55,389 --> 00:20:57,389
+Well now it'll be on            
+the center on every device,     
+
+427
+00:20:57,457 --> 00:21:00,025
+no matter what this size        
+of the screen, you see? So      
+
+428
+00:21:00,093 --> 00:21:03,461
+these blue lines help you       
+communicate that to interface   
+
+429
+00:21:03,530 --> 00:21:07,032
+builder, that you wanna it in   
+the exact center. So again,     
+
+430
+00:21:07,100 --> 00:21:08,500
+we're not gonna worry           
+about that for now, so          
+
+431
+00:21:08,569 --> 00:21:11,303
+I'm just gonna drop this in     
+the middle of nowhere. But      
+
+432
+00:21:11,371 --> 00:21:14,473
+again, those blue lines are     
+gonna be very important down    
+
+433
+00:21:14,541 --> 00:21:17,542
+the road. All right so          
+we've got this button here.     
+
+434
+00:21:17,611 --> 00:21:20,179
+It's not [LAUGH]                
+a very good button,             
+
+435
+00:21:20,247 --> 00:21:24,383
+because it's kinda small and    
+it says button on it.           
+
+436
+00:21:24,451 --> 00:21:27,186
+And we want it to be let's say  
+one of our number buttons.      
+
+437
+00:21:27,254 --> 00:21:28,520
+Okay, so                        
+how are we gonna do that?       
+
+438
+00:21:28,589 --> 00:21:31,590
+Well, we can double             
+click on it. And                
+
+439
+00:21:31,659 --> 00:21:34,860
+type one of our numbers, I'll   
+make this be my 7 button, so    
+
+440
+00:21:34,928 --> 00:21:38,330
+this is gonna be my 7 button    
+on my calculator. And I can     
+
+441
+00:21:38,398 --> 00:21:40,899
+resize it, you see when I       
+select it I get these handles.  
+
+442
+00:21:40,967 --> 00:21:43,168
+So I can just pick it up        
+by a corner and resize it.      
+
+443
+00:21:43,236 --> 00:21:45,837
+And when I do, it even          
+tells me exactly what size.     
+
+444
+00:21:45,906 --> 00:21:48,840
+So let's pick maybe             
+a size like mm, 64 by 64?       
+
+445
+00:21:48,909 --> 00:21:53,678
+That's a pretty good            
+computer science size can be    
+
+446
+00:21:53,747 --> 00:21:57,916
+a little tricky then. Do it     
+there, there, there we go.      
+
+447
+00:21:57,985 --> 00:21:59,050
+Okay, so we get 64 by 64 now.   
+
+448
+00:21:59,119 --> 00:22:01,586
+Actually the size is not even   
+gonna matter in the long term,  
+
+449
+00:22:01,655 --> 00:22:04,156
+because on a smaller device     
+like an iPhone 4 it's gonna be  
+
+450
+00:22:04,224 --> 00:22:05,357
+shrunk down and                 
+
+451
+00:22:05,425 --> 00:22:08,060
+on another device it's gonna    
+be shrunk out. But for now,     
+
+452
+00:22:08,128 --> 00:22:11,196
+will pick some that's kinda     
+using a reasonable amount of    
+
+453
+00:22:11,264 --> 00:22:14,366
+the screen real state on        
+an iPhone 7. This is still      
+
+454
+00:22:14,435 --> 00:22:17,469
+kinda a small seven. We want    
+it larger. So when we wanna do  
+
+455
+00:22:17,538 --> 00:22:20,472
+things like that that's         
+when we go to the top half.     
+
+456
+00:22:20,541 --> 00:22:22,874
+I'm just gonna get rid of this  
+bottom half by scrolling it     
+
+457
+00:22:22,943 --> 00:22:26,711
+down here. We're gonna the top  
+half of this utilities pane.    
+
+458
+00:22:26,780 --> 00:22:28,647
+And this is inspector and       
+there's different kinds of      
+
+459
+00:22:28,715 --> 00:22:31,382
+inspectors. We're gonna be      
+using the attribute inspector   
+
+460
+00:22:31,451 --> 00:22:34,018
+here, but there's also, for     
+example, a size inspector.      
+
+461
+00:22:34,087 --> 00:22:36,688
+And when I click on that, you   
+see that there's the 64 by 64,  
+
+462
+00:22:36,757 --> 00:22:39,524
+I could have just typed         
+it in instead of trying         
+
+463
+00:22:39,593 --> 00:22:43,528
+to get it exactly on there.     
+Okay. The attributes inspector  
+
+464
+00:22:43,597 --> 00:22:45,330
+is kinda an object              
+oriented inspector.             
+
+465
+00:22:45,398 --> 00:22:47,732
+You can see that it knows       
+a button is selected, so        
+
+466
+00:22:47,801 --> 00:22:49,268
+it's showing you                
+button things.                  
+
+467
+00:22:49,336 --> 00:22:51,069
+Things that you can set         
+about a button. But             
+
+468
+00:22:51,137 --> 00:22:53,872
+a button is a class, object     
+ordinate class that inherits    
+
+469
+00:22:53,940 --> 00:22:56,574
+from control, so you're         
+seeing control things, and      
+
+470
+00:22:56,643 --> 00:22:58,910
+that inherits from view, so     
+you're seeing view things.      
+
+471
+00:22:58,979 --> 00:23:01,112
+So this inspector is            
+object orientated and           
+
+472
+00:23:01,181 --> 00:23:03,815
+shows you all the things that   
+can be inspected about this     
+
+473
+00:23:03,884 --> 00:23:06,919
+object even using inheritance.  
+So if I wanna change something  
+
+474
+00:23:06,987 --> 00:23:10,355
+like the font, I just look      
+down here, title, here it is.   
+
+475
+00:23:10,424 --> 00:23:12,791
+Font. Right here.               
+I'm gonna click on this and     
+
+476
+00:23:12,859 --> 00:23:15,660
+I'm gonna change this to        
+30 point let's say. Okay.       
+
+477
+00:23:15,729 --> 00:23:18,730
+That looks pretty good.         
+Now, maybe I wanna have         
+
+478
+00:23:18,799 --> 00:23:23,501
+a background for this button.   
+So, if I look in here there's   
+
+479
+00:23:23,570 --> 00:23:25,970
+that background image. I don't  
+want a background image.        
+
+480
+00:23:26,039 --> 00:23:27,572
+I actually want                 
+a background color. So          
+
+481
+00:23:27,641 --> 00:23:29,274
+there's nothing in              
+button that does that.          
+
+482
+00:23:29,343 --> 00:23:32,277
+But, If I go down to view. I    
+can see background right here   
+
+483
+00:23:32,346 --> 00:23:35,447
+that's a color. And if I click  
+on this, I can pick a color,    
+
+484
+00:23:35,516 --> 00:23:38,049
+one of these pre-defined        
+colors, or other colors, let    
+
+485
+00:23:38,118 --> 00:23:41,519
+me choose from Color Picker a   
+little crayon box or whatever.  
+
+486
+00:23:41,588 --> 00:23:46,057
+So I'm just gonna pick          
+from here the light gray.       
+
+487
+00:23:46,126 --> 00:23:48,193
+That looks like a good          
+background color. So            
+
+488
+00:23:48,261 --> 00:23:50,629
+now I've got a button, okay?    
+Here's a nice button.           
+
+489
+00:23:50,697 --> 00:23:53,798
+In fact, we could even run,     
+see what our app looks like.    
+
+490
+00:23:53,867 --> 00:23:56,902
+Just with one button.           
+Now when it comes to running,   
+
+491
+00:23:56,971 --> 00:23:59,671
+the way you decide where        
+you wanna run your program,     
+
+492
+00:23:59,740 --> 00:24:02,240
+because you can run it on your  
+device or you can actually run  
+
+493
+00:24:02,309 --> 00:24:04,843
+it on a simulator. Okay, and    
+for the first few weeks in      
+
+494
+00:24:04,912 --> 00:24:06,611
+this class you can              
+use the simulator.              
+
+495
+00:24:06,680 --> 00:24:07,812
+Towards the end of              
+the class I'm gonna             
+
+496
+00:24:07,881 --> 00:24:09,414
+ask you to start running        
+on your device so               
+
+497
+00:24:09,483 --> 00:24:12,383
+you get used to doing that as   
+well. But the way you do that   
+
+498
+00:24:12,452 --> 00:24:15,853
+is you go up here. You see it   
+says calculator iPhone 7 plus.  
+
+499
+00:24:15,922 --> 00:24:18,523
+If you click on that            
+you'll see a whole              
+
+500
+00:24:18,592 --> 00:24:21,493
+bunch of simulators. These are  
+all simulators of all those     
+
+501
+00:24:21,562 --> 00:24:25,530
+different devices that can run  
+iOS 10. And then right up at    
+
+502
+00:24:25,599 --> 00:24:28,333
+the top here, you could pick,   
+if you had an actual device     
+
+503
+00:24:28,401 --> 00:24:31,236
+connected to your Mac, you      
+could pick a physical device.   
+
+504
+00:24:31,304 --> 00:24:33,105
+And I'll be showing you         
+that in a couple of weeks,      
+
+505
+00:24:33,173 --> 00:24:36,240
+as well. So, let's run          
+it on iPhone 7, okay,           
+
+506
+00:24:36,309 --> 00:24:39,744
+so I just picked iPhone 7, now  
+I'm going to press this little  
+
+507
+00:24:39,813 --> 00:24:43,382
+play button right here to run   
+it. Okay, now it's going to     
+
+508
+00:24:43,450 --> 00:24:47,753
+launch the simulator. Now that  
+simulator is a full iPhone      
+
+509
+00:24:47,821 --> 00:24:52,357
+simulator, so it's not just     
+running our app in a window.    
+
+510
+00:24:52,426 --> 00:24:55,327
+Let's go find it here.          
+It's over here, and             
+
+511
+00:24:55,396 --> 00:25:00,699
+it's kind of big here, we'll    
+make it small in a second. So,  
+
+512
+00:25:00,768 --> 00:25:03,301
+this, and in fact, there it     
+is. You can see it zoomed in,   
+
+513
+00:25:03,370 --> 00:25:05,604
+now the iPhone 7 has            
+very high resolution, and       
+
+514
+00:25:05,672 --> 00:25:07,772
+I'm running on a small          
+resolution screen. But          
+
+515
+00:25:07,841 --> 00:25:10,542
+you can actually go down        
+here to scale, and scale it     
+
+516
+00:25:10,610 --> 00:25:14,846
+down a bit. Maybe that's too    
+much. Let' scale it to here.    
+
+517
+00:25:14,915 --> 00:25:19,150
+Yeah. So we're seeing 50%       
+size here of an iPhone 7.       
+
+518
+00:25:19,219 --> 00:25:21,520
+And there's our 7 button        
+right there. Okay,              
+
+519
+00:25:21,588 --> 00:25:24,056
+now, you can press              
+the Home button                 
+
+520
+00:25:24,124 --> 00:25:28,026
+on this iPhone 7 by going       
+to Hardware > Home. And         
+
+521
+00:25:28,095 --> 00:25:30,796
+when you do that, look. This    
+looks just like an iPhone.      
+
+522
+00:25:30,864 --> 00:25:33,332
+You've got settings. You can    
+go in and set some settings.    
+
+523
+00:25:33,401 --> 00:25:36,968
+Okay? Do home again.            
+Cmd+Shift+H is home.            
+
+524
+00:25:37,037 --> 00:25:38,269
+And then you can go             
+back to your app,               
+
+525
+00:25:38,338 --> 00:25:41,373
+which is the calculator         
+right here. So                  
+
+526
+00:25:41,441 --> 00:25:45,543
+if you're writing an app, for   
+example, that uses GPS and      
+
+527
+00:25:45,612 --> 00:25:49,414
+you need to go to the settings  
+to enable GPS location.         
+
+528
+00:25:49,483 --> 00:25:52,951
+You can do that here on         
+your simulator, okay?           
+
+529
+00:25:53,019 --> 00:25:56,855
+All right, so we got the 7      
+button, let's click it. Okay,   
+
+530
+00:25:56,924 --> 00:26:01,326
+well, It's flashing, so it      
+looks like it's working, but    
+
+531
+00:26:01,394 --> 00:26:04,196
+of course, it's not doing       
+anything. We haven't told our   
+
+532
+00:26:04,264 --> 00:26:07,599
+7 button what to do, so it's    
+doing nothing, all right? So    
+
+533
+00:26:07,668 --> 00:26:10,301
+let's go make it do something.  
+Now I told                      
+
+534
+00:26:10,370 --> 00:26:15,139
+you that the behavior of        
+the UI is written in code. So   
+
+535
+00:26:15,208 --> 00:26:20,278
+that's what this guy over here  
+is, this ViewController.swift.  
+
+536
+00:26:20,347 --> 00:26:23,615
+That's the code where we're     
+gonna do the behavior. And so,  
+
+537
+00:26:23,683 --> 00:26:29,988
+how do we hook up this UI to    
+this code? Well to do that,     
+
+538
+00:26:30,057 --> 00:26:31,990
+we need to get them both        
+on screen at the same time,     
+
+539
+00:26:32,059 --> 00:26:35,193
+all right? And the way we do    
+that is with this button,       
+
+540
+00:26:35,262 --> 00:26:37,362
+right here,                     
+assistant editor button.        
+
+541
+00:26:37,431 --> 00:26:41,599
+So I'm gonna click it, and we   
+get both. And I can click for   
+
+542
+00:26:41,668 --> 00:26:44,969
+example, on one side            
+to show my UI. And              
+
+543
+00:26:45,038 --> 00:26:47,539
+it's automatically going to     
+show the code on the other      
+
+544
+00:26:47,608 --> 00:26:49,341
+side. Okay, cuz it already,     
+
+545
+00:26:49,410 --> 00:26:51,910
+it knows that I probably        
+wanted to do that. And          
+
+546
+00:26:51,979 --> 00:26:54,212
+it does that because, up here   
+at the top you see it says,     
+
+547
+00:26:54,281 --> 00:26:57,749
+automatic. It's automatically   
+picking it. Now you can go to   
+
+548
+00:26:57,818 --> 00:27:00,752
+manual and manually pick the    
+file you want to appear here,   
+
+549
+00:27:00,820 --> 00:27:03,721
+but most of the times you're    
+leave this on automatic. And    
+
+550
+00:27:03,790 --> 00:27:06,525
+it's gonna pick automatically   
+the thing that makes the most   
+
+551
+00:27:06,594 --> 00:27:08,960
+sense to be on the right        
+hand side. Okay,                
+
+552
+00:27:09,029 --> 00:27:12,231
+we'll make some more space      
+there. All right? So            
+
+553
+00:27:12,299 --> 00:27:14,866
+let's zoom this in              
+a little bit so                 
+
+554
+00:27:14,935 --> 00:27:17,536
+we can see the whole iPhone 7,  
+
+555
+00:27:17,604 --> 00:27:20,372
+all right, so let's look at     
+this code first because this    
+
+556
+00:27:20,441 --> 00:27:22,007
+is the first time               
+you've seen Swift.              
+
+557
+00:27:22,075 --> 00:27:24,910
+Swift is really nice, because   
+it's kind of succinct and       
+
+558
+00:27:24,979 --> 00:27:28,914
+kind of very obvious in the     
+keywords it's chosen, etc. So   
+
+559
+00:27:28,982 --> 00:27:31,717
+import is like include in       
+a lot of languages, it's        
+
+560
+00:27:31,785 --> 00:27:34,920
+just basically saying I want    
+to use this framework UIKit.    
+
+561
+00:27:34,989 --> 00:27:39,124
+Now, this is our UI             
+behavior controlling code.      
+
+562
+00:27:39,193 --> 00:27:41,793
+So of course,                   
+it needs to use UIKit,          
+
+563
+00:27:41,861 --> 00:27:44,896
+okay? If we were to write       
+an object that's more of like   
+
+564
+00:27:44,965 --> 00:27:46,899
+the internals of                
+the calculator that's           
+
+565
+00:27:46,967 --> 00:27:47,966
+UI independent,                 
+
+566
+00:27:48,035 --> 00:27:50,401
+then we would probably          
+import foundation here.         
+
+567
+00:27:50,470 --> 00:27:52,804
+Foundation to kind of get to    
+that core services layer,       
+
+568
+00:27:52,873 --> 00:27:55,840
+not UI. You would never want    
+to import UIKit in one of       
+
+569
+00:27:55,909 --> 00:27:59,978
+those non-UI kind of classes.   
+And you'll see that when we do  
+
+570
+00:28:00,047 --> 00:28:04,082
+the MVC on Wednesday. There's   
+of course other things we can   
+
+571
+00:28:04,151 --> 00:28:07,753
+import too, like map kit,       
+things like that. All right,    
+
+572
+00:28:07,821 --> 00:28:11,190
+so here you're seeing           
+your first declaration          
+
+573
+00:28:11,258 --> 00:28:15,393
+of a Swift class. Okay?         
+Keyword class, of course.       
+
+574
+00:28:15,462 --> 00:28:19,364
+Name, this is the name of       
+the class. ViewController is    
+
+575
+00:28:19,433 --> 00:28:21,966
+name of class,                  
+it's kind of a generic name.    
+
+576
+00:28:22,035 --> 00:28:24,302
+Probably would have given it    
+a better name if I had had      
+
+577
+00:28:24,371 --> 00:28:27,205
+a chance, but this is what      
+the template gave me.           
+
+578
+00:28:27,274 --> 00:28:29,541
+You can't unfortunately         
+just rename this by typing,     
+
+579
+00:28:29,609 --> 00:28:33,044
+because it's linked up to your  
+UI. I will show you how to      
+
+580
+00:28:33,113 --> 00:28:37,115
+rename this class later. But    
+for now, we're going to stick   
+
+581
+00:28:37,183 --> 00:28:42,120
+with this generic name. This    
+colon UI view controller is     
+
+582
+00:28:42,189 --> 00:28:45,623
+the class that view controller  
+inherits from, okay? This is    
+
+583
+00:28:45,692 --> 00:28:47,960
+object oriented programming,    
+this is inheritance.            
+
+584
+00:28:48,028 --> 00:28:49,895
+Again, you have to know object  
+oriented programming to be      
+
+585
+00:28:49,963 --> 00:28:52,931
+sitting in this room.           
+So you know what that means?    
+
+586
+00:28:52,999 --> 00:28:56,201
+Swift is single inheritance.    
+So you can only inherit from    
+
+587
+00:28:56,269 --> 00:28:59,070
+one class. And view controller  
+inherits from this class.       
+
+588
+00:28:59,139 --> 00:29:03,608
+This class' capabilities are,   
+it knows how to control a UI.   
+
+589
+00:29:03,677 --> 00:29:06,811
+That's why it's called a view   
+controller. We call this our    
+
+590
+00:29:06,880 --> 00:29:09,114
+view over here, and             
+it knows how to control it.     
+
+591
+00:29:09,182 --> 00:29:12,017
+So this view controller is      
+inheriting all the capability   
+
+592
+00:29:12,086 --> 00:29:13,351
+of how to control this.         
+Which is great,                 
+
+593
+00:29:13,420 --> 00:29:16,120
+because that's exactly          
+what we want it to do. And      
+
+594
+00:29:16,189 --> 00:29:18,790
+then inside the curly braces,   
+here we're going to put all of  
+
+595
+00:29:18,859 --> 00:29:23,161
+our instance variables and      
+methods. Okay?                  
+
+596
+00:29:23,230 --> 00:29:25,430
+Hopefully everyone knows what   
+an instance variable and        
+
+597
+00:29:25,499 --> 00:29:27,199
+An instance variable is like    
+storage of variables inside of  
+
+598
+00:29:27,200 --> 00:29:28,900
+a method is, right?             
+
+599
+00:29:28,969 --> 00:29:32,270
+our class, and a method is      
+just a function in there.       
+
+600
+00:29:32,339 --> 00:29:35,640
+By the way, we call instance    
+variables in Swift properties.  
+
+601
+00:29:35,709 --> 00:29:37,108
+So if you hear me               
+think properties,               
+
+602
+00:29:37,177 --> 00:29:39,411
+I mean like instance            
+variables. Okay,                
+
+603
+00:29:39,480 --> 00:29:44,049
+we call methods, methods.       
+So what I really want now       
+
+604
+00:29:44,117 --> 00:29:47,853
+is that when this button is     
+touched, I want it to invoke    
+
+605
+00:29:47,921 --> 00:29:52,424
+a method in my class, right?    
+I want it to call a method.     
+
+606
+00:29:52,493 --> 00:29:54,625
+That would be perfect cuz       
+then I could put whatever       
+
+607
+00:29:54,694 --> 00:29:55,794
+code I want in there. And       
+
+608
+00:29:55,863 --> 00:29:56,928
+that's exactly what             
+we're gonna do.                 
+
+609
+00:29:56,997 --> 00:30:01,266
+Now the way we link that up is  
+kinda kooky. Here we go, I'm    
+
+610
+00:30:01,335 --> 00:30:03,935
+gonna hold down Ctrl. You see   
+I'm holding Ctrl down there.    
+
+611
+00:30:04,004 --> 00:30:09,808
+I'm going to drag from          
+this button into my code,       
+
+612
+00:30:09,877 --> 00:30:13,611
+okay? This is how I'm gonna     
+connect it. And when I let go,  
+
+613
+00:30:13,680 --> 00:30:17,349
+it says you wanna make a        
+connection between your UI and  
+
+614
+00:30:17,418 --> 00:30:19,284
+this code, what kinda           
+connection do you want?         
+
+615
+00:30:19,353 --> 00:30:20,952
+And there's really              
+two choices.                    
+
+616
+00:30:21,021 --> 00:30:23,722
+There's Outlet,                 
+that means make a property or   
+
+617
+00:30:23,790 --> 00:30:25,857
+an instance variable that       
+points to this thing, so        
+
+618
+00:30:25,926 --> 00:30:28,793
+I can talk to it.               
+And then there's action,        
+
+619
+00:30:28,862 --> 00:30:31,896
+which means make a method,      
+and when the buttons touch,     
+
+620
+00:30:31,965 --> 00:30:35,066
+call this method.               
+Everybody got that?             
+
+621
+00:30:35,135 --> 00:30:37,169
+All right, so here it's asking  
+for the name of this method.    
+
+622
+00:30:37,238 --> 00:30:40,105
+I'm going to call this          
+method touchDigit.              
+
+623
+00:30:40,173 --> 00:30:44,909
+Okay, touchDigit. And this      
+method, it can have arguments,  
+
+624
+00:30:44,978 --> 00:30:47,612
+it could have no arguments,     
+or one argument which is,       
+
+625
+00:30:47,681 --> 00:30:50,582
+the button sending me           
+this message. Now I need        
+
+626
+00:30:50,651 --> 00:30:53,151
+that argument because I         
+want to have one touch          
+
+627
+00:30:53,220 --> 00:30:56,088
+digit method that all my        
+buttons set. So I'm going to    
+
+628
+00:30:56,156 --> 00:30:59,157
+ask the button who's sending    
+it to me, who are you?          
+
+629
+00:30:59,225 --> 00:31:00,759
+What title,                     
+are you the 7 button?           
+
+630
+00:31:00,828 --> 00:31:02,427
+Are you the five button,        
+what are you? So                
+
+631
+00:31:02,496 --> 00:31:05,430
+I want that sender.             
+This type right here,           
+
+632
+00:31:05,498 --> 00:31:09,101
+it says Any, that's the type    
+of the argument. Very, okay,    
+
+633
+00:31:09,169 --> 00:31:12,237
+wake-up if you're taking a nap  
+right now, and when you're      
+
+634
+00:31:12,306 --> 00:31:14,706
+doing your homework,            
+you cannot lead this to any.    
+
+635
+00:31:14,775 --> 00:31:17,342
+Because we know what kind of    
+thing is sending you this       
+
+636
+00:31:17,411 --> 00:31:20,312
+message, it's a UI button, so   
+you're gonna wanna change this  
+
+637
+00:31:20,381 --> 00:31:23,448
+to any to UI button.            
+If you miss that step and       
+
+638
+00:31:23,516 --> 00:31:26,018
+when you go in there, your      
+code's all gonna be messed up,  
+
+639
+00:31:26,086 --> 00:31:29,121
+because the argument type of    
+the sender is gonna be any,     
+
+640
+00:31:29,189 --> 00:31:32,223
+which it just basically         
+means untyped, almost. So       
+
+641
+00:31:32,292 --> 00:31:34,426
+that's no good. So make sure    
+you change this to UI button.   
+
+642
+00:31:35,695 --> 00:31:37,695
+Now, when we connect this,      
+it creates a method. So         
+
+643
+00:31:37,764 --> 00:31:41,133
+you're getting your first look  
+right here at a Swift method.   
+
+644
+00:31:41,202 --> 00:31:44,202
+Now, this is actually           
+not part of Swift, okay.        
+
+645
+00:31:44,271 --> 00:31:47,372
+This is something Xcode drops   
+in there. And it does it so     
+
+646
+00:31:47,440 --> 00:31:49,641
+that it can put this little     
+circle in the gutter.           
+
+647
+00:31:49,710 --> 00:31:51,410
+You see that circle             
+right there?                    
+
+648
+00:31:51,479 --> 00:31:54,546
+If I mouse over that circle,    
+look what happens.              
+
+649
+00:31:54,615 --> 00:31:57,449
+I didn't click on it, I just    
+put my mouse over it. You see,  
+
+650
+00:31:57,518 --> 00:32:00,118
+it tells me what this           
+method is hooked up to.         
+
+651
+00:32:00,187 --> 00:32:03,956
+In other words, what user       
+interface element. Sends me     
+
+652
+00:32:04,024 --> 00:32:08,961
+this message, okay? So this     
+is purely not a Swift thing,    
+
+653
+00:32:09,029 --> 00:32:15,334
+this is purely an Xcode thing.  
+So this is a Swift method,      
+
+654
+00:32:15,402 --> 00:32:18,737
+okay? So let's look at          
+the parts of a Swift method,    
+
+655
+00:32:18,806 --> 00:32:20,571
+the syntax of it, so you        
+understand a little better.     
+
+656
+00:32:20,640 --> 00:32:23,775
+And I'm gonna use a different   
+method that I'm just going to   
+
+657
+00:32:23,844 --> 00:32:26,778
+make up for this.               
+Let's say I had some            
+
+658
+00:32:26,847 --> 00:32:31,983
+function called                 
+a drawHorizontalLine and        
+
+659
+00:32:32,052 --> 00:32:36,054
+it draws from some              
+starting position,              
+
+660
+00:32:36,123 --> 00:32:39,691
+which would be a Double         
+to some ending position,        
+
+661
+00:32:39,759 --> 00:32:42,627
+which also be a Double.         
+And maybe it does it using      
+
+662
+00:32:42,696 --> 00:32:46,865
+some color, which would         
+be a UI color. Okay? So         
+
+663
+00:32:46,934 --> 00:32:50,468
+there's an example of a Swift   
+method. Notice that it,         
+
+664
+00:32:50,537 --> 00:32:54,006
+this has three parameters. You  
+see? This one, this one and     
+
+665
+00:32:54,074 --> 00:32:59,645
+this one. This ": Double" is    
+the type of this parameter.     
+
+666
+00:32:59,713 --> 00:33:02,147
+So it's a double-precision      
+floating-point number. That's   
+
+667
+00:33:02,216 --> 00:33:05,083
+the type of that parameter.     
+This one's also Double.         
+
+668
+00:33:05,152 --> 00:33:09,854
+This one is a UIColor. Okay,    
+which is a different type.      
+
+669
+00:33:09,923 --> 00:33:12,891
+Now what's really interesting   
+about parameters is that you    
+
+670
+00:33:12,960 --> 00:33:17,930
+have two names for each one.    
+See, from startX,               
+
+671
+00:33:17,998 --> 00:33:21,233
+to endX, using a color,         
+each one has two, so what       
+
+672
+00:33:21,301 --> 00:33:25,937
+the heck is going on there      
+with those two? Well this one,  
+
+673
+00:33:26,006 --> 00:33:29,741
+the first one, is the external  
+name of this parameter. And     
+
+674
+00:33:29,809 --> 00:33:33,912
+this is the internal name.      
+So these internal names,        
+
+675
+00:33:33,980 --> 00:33:35,546
+like startX, endX, and          
+
+676
+00:33:35,615 --> 00:33:38,884
+color. You would use those in   
+your code inside this method.   
+
+677
+00:33:38,953 --> 00:33:42,721
+Like, I might say,              
+distance = endX- startX, or     
+
+678
+00:33:42,789 --> 00:33:46,057
+something like that.            
+See I'm using endX and startX   
+
+679
+00:33:46,126 --> 00:33:50,095
+inside this method, right?      
+Part of it's implementation.    
+
+680
+00:33:50,163 --> 00:33:52,764
+These external names            
+are used by the callers,        
+
+681
+00:33:52,833 --> 00:33:55,500
+the people who call this        
+method. So I'm gonna call this  
+
+682
+00:33:55,569 --> 00:33:58,537
+method from touchDigit here,    
+drawHorizontalLine.             
+
+683
+00:33:58,605 --> 00:34:01,006
+Now, by the way,                
+Xcode loves to type for you.    
+
+684
+00:34:01,075 --> 00:34:04,776
+So I just type drawH and now    
+I'm hitting tab. And tab, and   
+
+685
+00:34:04,845 --> 00:34:07,345
+it's not only filling           
+out drawHorizontalLine,         
+
+686
+00:34:07,414 --> 00:34:09,481
+but it's showing me             
+all the arguments and           
+
+687
+00:34:09,550 --> 00:34:13,385
+tabbing to the first one so     
+I can type it. So notice that   
+
+688
+00:34:13,453 --> 00:34:16,054
+when it said that, the from,    
+the to, and the using           
+
+689
+00:34:16,123 --> 00:34:20,758
+were put in there for me. So    
+if I say from 5.0 to 8.5 using  
+
+690
+00:34:20,827 --> 00:34:25,930
+the color UIColor.blue          
+let's say, okay?                
+
+691
+00:34:25,999 --> 00:34:30,335
+These from and to and using     
+are what the caller uses.       
+
+692
+00:34:30,404 --> 00:34:34,706
+Notice also, that these things  
+are mandatory. They have to go  
+
+693
+00:34:34,774 --> 00:34:38,043
+in here. You can not call       
+drawHorizontalLine like this,   
+
+694
+00:34:38,112 --> 00:34:42,714
+drawHorizontalLine 5.0, this    
+would be, look like most other  
+
+695
+00:34:42,783 --> 00:34:46,685
+languages, you know, blue.      
+You can't call it like that.    
+
+696
+00:34:46,754 --> 00:34:48,987
+You have to put these           
+external names in there.        
+
+697
+00:34:50,290 --> 00:34:52,357
+Also notice that the external   
+names are picked so             
+
+698
+00:34:52,425 --> 00:34:57,329
+this reads like English. Draw   
+a horizontal line from 5.0      
+
+699
+00:34:57,398 --> 00:35:01,700
+to 8.5 using blue, okay?        
+Swift endeavors                 
+
+700
+00:35:01,769 --> 00:35:05,604
+to be as kind of                
+conversational in the language  
+
+701
+00:35:05,673 --> 00:35:09,141
+of English as it can be. So     
+
+702
+00:35:09,209 --> 00:35:13,445
+that's kinda crash course.      
+You're gonna be reading, your   
+
+703
+00:35:13,513 --> 00:35:15,747
+reading assignment's gonna      
+tell you more about that, but   
+
+704
+00:35:15,816 --> 00:35:18,750
+that's the crash course. But    
+now let's take a look at thi-,  
+
+705
+00:35:18,819 --> 00:35:21,553
+by the way, if your             
+function returns something,     
+
+706
+00:35:21,622 --> 00:35:26,191
+you just go like this, okay?    
+-> String. It's kind of like,   
+
+707
+00:35:26,260 --> 00:35:29,861
+the arrow is saying, out of     
+this comes a String, okay?      
+
+708
+00:35:29,930 --> 00:35:34,132
+So this would be                
+the return value, okay?         
+
+709
+00:35:34,201 --> 00:35:36,501
+All right, now, let's look      
+at touchDigit though,           
+
+710
+00:35:36,570 --> 00:35:40,205
+touchDigit is weird. Look at    
+its two things here, okay?      
+
+711
+00:35:40,274 --> 00:35:43,408
+The external one is_, okay?     
+
+712
+00:35:43,477 --> 00:35:47,212
+So does that mean I call        
+it by saying, touchDigit_:      
+
+713
+00:35:47,281 --> 00:35:51,783
+whatever? No, underbar means    
+there is no external. So        
+
+714
+00:35:51,852 --> 00:35:53,952
+you would call touchDigit       
+by just saying,                 
+
+715
+00:35:54,021 --> 00:35:56,821
+touchDigit (someButton)         
+cuz that's the argument,        
+
+716
+00:35:56,890 --> 00:35:59,558
+it's a button or whatever.      
+Okay, there's no, you won't,    
+
+717
+00:35:59,627 --> 00:36:01,693
+you don't put anything in       
+here, it's not like a foo.      
+
+718
+00:36:01,762 --> 00:36:03,628
+If we had this it               
+would be foo, okay?             
+
+719
+00:36:03,697 --> 00:36:06,831
+That's not in there. Instead,   
+it's this underbar, so          
+
+720
+00:36:06,900 --> 00:36:11,703
+you have nothing. Okay?         
+Now, why do we sometimes have   
+
+721
+00:36:11,772 --> 00:36:15,173
+nothing? Because sometimes,     
+it's implicit in either         
+
+722
+00:36:15,242 --> 00:36:18,242
+the name of the function or     
+the type of the argument,       
+
+723
+00:36:18,311 --> 00:36:20,879
+what you're supposed to pass,   
+so you don't need that little   
+
+724
+00:36:20,947 --> 00:36:24,916
+thing. By the way underbar,     
+we almost never use that for    
+
+725
+00:36:24,985 --> 00:36:27,018
+the second, third,              
+or fourth argument.             
+
+726
+00:36:27,087 --> 00:36:29,588
+It's occasionally used for the  
+first argument, not always,     
+
+727
+00:36:29,657 --> 00:36:32,190
+occasionally. But never for     
+second, third, fourth, fifth,   
+
+728
+00:36:32,258 --> 00:36:36,194
+okay? Or next to never. Now     
+in your reading assignment,     
+
+729
+00:36:36,262 --> 00:36:39,631
+I'm also going to have you      
+read a document that explains   
+
+730
+00:36:39,700 --> 00:36:42,334
+how to do this naming.          
+What the rules are,             
+
+731
+00:36:42,403 --> 00:36:43,535
+when do you use an underbar,    
+
+732
+00:36:43,604 --> 00:36:46,605
+when don't you. You're gonna    
+wanna master that document by   
+
+733
+00:36:46,673 --> 00:36:48,273
+the end of the quarter if       
+you wanna call yourself         
+
+734
+00:36:48,342 --> 00:36:51,276
+a professional iOS developer,   
+okay?                           
+
+735
+00:36:51,345 --> 00:36:55,780
+It's key to understand that.    
+But this touchDigit, okay, so   
+
+736
+00:36:55,849 --> 00:36:59,617
+this function, okay methods,    
+I, just to be clear, methods,   
+
+737
+00:36:59,686 --> 00:37:02,220
+we use the keyword func.        
+Okay, cuz it's                  
+
+738
+00:37:02,289 --> 00:37:05,123
+a function on a class. This     
+is the name. Parameters go      
+
+739
+00:37:05,192 --> 00:37:07,692
+in parentheses like this, they  
+can be separated by commas if   
+
+740
+00:37:07,761 --> 00:37:11,663
+we have multiple of them. This  
+is the first parameter here,    
+
+741
+00:37:11,732 --> 00:37:15,100
+first and only. It's type is    
+a UIButton because of course,   
+
+742
+00:37:15,169 --> 00:37:18,470
+a UIButton is sending this      
+messa-, method. Right,          
+
+743
+00:37:18,539 --> 00:37:21,940
+it's invoking this method. So   
+the sender is this UIButton.    
+
+744
+00:37:22,009 --> 00:37:23,942
+And sender is                   
+the internal name.              
+
+745
+00:37:24,011 --> 00:37:27,179
+So that's the name we'll use    
+inside here to access it.       
+
+746
+00:37:28,549 --> 00:37:31,215
+All right? But before we        
+start doing that, let's just    
+
+747
+00:37:31,284 --> 00:37:33,918
+have this do something simple   
+like print out to the console.  
+
+748
+00:37:33,987 --> 00:37:38,824
+So I'm gonna say,               
+print "touchDigit was called",  
+
+749
+00:37:38,893 --> 00:37:41,093
+okay? We're just gonna print    
+that out on the console.        
+
+750
+00:37:41,161 --> 00:37:42,293
+Whenever someone                
+touches a button,               
+
+751
+00:37:42,362 --> 00:37:43,495
+it's gonna evoke this method.   
+
+752
+00:37:43,564 --> 00:37:44,663
+It's gonna print                
+that on the console.            
+
+753
+00:37:44,731 --> 00:37:45,564
+So let's just do that.          
+
+754
+00:37:54,007 --> 00:37:58,743
+All right? So there's our UI,   
+iPhone 7. Click and touchDigit  
+
+755
+00:37:58,812 --> 00:38:01,680
+appears in the console down     
+here at the bottom, okay?       
+
+756
+00:38:01,749 --> 00:38:04,383
+Now the console shares          
+space with the debugger,        
+
+757
+00:38:04,451 --> 00:38:07,352
+this area on the left is the    
+debugger. So you can kind of    
+
+758
+00:38:07,421 --> 00:38:10,122
+separate this space back and    
+forth, you can also completely  
+
+759
+00:38:10,190 --> 00:38:14,693
+hide this space by using these  
+buttons right here, okay?       
+
+760
+00:38:14,762 --> 00:38:18,062
+So we'll just do console only   
+right here. Let's go back to    
+
+761
+00:38:18,131 --> 00:38:20,832
+our simulator. And so           
+every time we press this,       
+
+762
+00:38:20,901 --> 00:38:22,701
+we get touchDigit was           
+called printed out again.       
+
+763
+00:38:22,770 --> 00:38:24,702
+Does everyone understand        
+what's happening here,          
+
+764
+00:38:24,771 --> 00:38:26,538
+how we've hooked up this        
+method to the button? Really,   
+
+765
+00:38:26,606 --> 00:38:30,042
+really straightforward. All     
+right, now that we have that    
+
+766
+00:38:30,110 --> 00:38:33,612
+working, we know we need more   
+than just this one button,      
+
+767
+00:38:33,680 --> 00:38:36,281
+we need a whole keypad's worth  
+of buttons. So I'm gonna,       
+
+768
+00:38:36,350 --> 00:38:38,717
+I want these other buttons      
+to look exactly the same, so    
+
+769
+00:38:38,786 --> 00:38:42,020
+I'm gonna copy and paste. So    
+I just copied and pasted that,  
+
+770
+00:38:42,089 --> 00:38:45,858
+paste another one here. I can   
+even select three at a time,    
+
+771
+00:38:45,926 --> 00:38:48,594
+and copy and paste, okay?       
+Paste another one.              
+
+772
+00:38:48,662 --> 00:38:51,730
+Now notice here I'm using       
+the blue lines to line them up  
+
+773
+00:38:51,798 --> 00:38:55,400
+okay, really nicely.            
+Blue lines are great for        
+
+774
+00:38:55,469 --> 00:38:59,537
+doing that. Okay, and now I     
+can just rename these buttons   
+
+775
+00:38:59,606 --> 00:39:01,974
+by just double-clicking         
+on them.                        
+
+776
+00:39:09,983 --> 00:39:12,651
+All right, so I've got an,      
+a beautiful keypad right here.  
+
+777
+00:39:12,719 --> 00:39:16,688
+And what's really great is      
+that this method is hooked up   
+
+778
+00:39:16,757 --> 00:39:19,992
+to all of them. Okay, that's    
+because when you copy and       
+
+779
+00:39:20,060 --> 00:39:23,228
+paste a button, it keeps it's   
+connections to any methods      
+
+780
+00:39:23,297 --> 00:39:26,565
+that it has, okay?              
+So that's cool. So              
+
+781
+00:39:26,633 --> 00:39:28,901
+now all these buttons are       
+going to send this touchDigit.  
+
+782
+00:39:28,969 --> 00:39:33,438
+So now if I run, you'll         
+see that if I press any of      
+
+783
+00:39:33,507 --> 00:39:38,476
+these buttons, not just our     
+7 button. Right, here's 7,      
+
+784
+00:39:38,545 --> 00:39:41,780
+that worked, but also 5,        
+0, they're all calling,         
+
+785
+00:39:41,849 --> 00:39:46,285
+this touchDigit was called.     
+Okay, so that's awesome.        
+
+786
+00:39:46,353 --> 00:39:49,855
+But of course, we want to       
+know which button was called,   
+
+787
+00:39:49,923 --> 00:39:51,757
+was sending us this message,    
+right?                          
+
+788
+00:39:51,825 --> 00:39:54,059
+And we know that because        
+that's the argument,            
+
+789
+00:39:54,127 --> 00:39:57,996
+is the sender, okay? So let's   
+add a local variable here.      
+
+790
+00:39:58,065 --> 00:40:00,065
+So now you're seeing your       
+local variables in Swift for    
+
+791
+00:40:00,134 --> 00:40:03,902
+the first time. It looks        
+like this, var digit, okay?     
+
+792
+00:40:03,971 --> 00:40:07,105
+Var means this is a local       
+variable. Digit is the name.    
+
+793
+00:40:07,174 --> 00:40:09,741
+Now if we wanted to type it,    
+we could put a type here like   
+
+794
+00:40:09,810 --> 00:40:14,379
+maybe type string. Just like    
+we put a type of our parameter  
+
+795
+00:40:14,448 --> 00:40:18,583
+here, we can put a type right   
+here of our local variable.     
+
+796
+00:40:18,652 --> 00:40:22,821
+But, we don't usually do that   
+in Swift because while Swift    
+
+797
+00:40:22,890 --> 00:40:26,258
+is very strongly typed          
+language, in other words,       
+
+798
+00:40:26,326 --> 00:40:28,060
+you have to specify             
+the types of everything.        
+
+799
+00:40:28,129 --> 00:40:29,862
+It wants to know                
+the types of everything.        
+
+800
+00:40:29,930 --> 00:40:34,366
+it will infer what type         
+you want from the context.      
+
+801
+00:40:34,435 --> 00:40:36,668
+Very often. Ok?                 
+So that's the trade off,        
+
+802
+00:40:36,737 --> 00:40:39,938
+if you have a really strongly   
+typed language, you have        
+
+803
+00:40:40,007 --> 00:40:43,575
+to type everything. It's        
+really nice if the compiler     
+
+804
+00:40:43,644 --> 00:40:46,077
+will just figure out for you    
+what the types of things are.   
+
+805
+00:40:46,146 --> 00:40:48,847
+So, normally, we will leave     
+the types off wherever we can.  
+
+806
+00:40:48,916 --> 00:40:50,315
+Now, we can't do that in        
+
+807
+00:40:50,384 --> 00:40:54,286
+a method parameter because we   
+got to know what That method    
+
+808
+00:40:54,354 --> 00:40:57,088
+is expecting. But for local     
+variables, we definitely can    
+
+809
+00:40:57,157 --> 00:41:00,993
+leave it off almost all         
+the time, okay? So we got this  
+
+810
+00:41:01,061 --> 00:41:02,828
+digit, and I just wanna         
+set it equal to something.      
+
+811
+00:41:02,897 --> 00:41:03,962
+What does it wanna              
+be equal to?                    
+
+812
+00:41:04,031 --> 00:41:06,865
+It wants to be equal to         
+the title of the button         
+
+813
+00:41:06,934 --> 00:41:09,301
+that's sending me the message.  
+So this guy,                    
+
+814
+00:41:09,369 --> 00:41:12,037
+which is a button I want        
+to ask what its title is.       
+
+815
+00:41:12,106 --> 00:41:15,473
+Now, how do you send a message  
+to another object in Swift?     
+
+816
+00:41:15,542 --> 00:41:17,776
+Well, you just type             
+the object you want to          
+
+817
+00:41:17,844 --> 00:41:20,545
+send the message to and you     
+press dot. Okay, so this is     
+
+818
+00:41:20,614 --> 00:41:23,949
+like Java and a lot of other    
+languages, just the object and  
+
+819
+00:41:24,017 --> 00:41:27,218
+dot, that's how you send the    
+message. Now, unfortunately,    
+
+820
+00:41:27,287 --> 00:41:31,156
+XCode is helping me here by     
+showing me all the methods And  
+
+821
+00:41:31,225 --> 00:41:35,660
+properties that button can do.  
+Look at this list,              
+
+822
+00:41:35,729 --> 00:41:37,795
+I'm only in the Fs, okay,       
+I'm still scrolling,            
+
+823
+00:41:37,864 --> 00:41:42,333
+still scrolling. There's a lot  
+of methods. It's like how am I  
+
+824
+00:41:42,402 --> 00:41:45,103
+ever gonna figure out. I just   
+want the title of the button,   
+
+825
+00:41:45,172 --> 00:41:47,705
+please. Okay, well, of course   
+I could get the documentation,  
+
+826
+00:41:47,774 --> 00:41:48,573
+start reading through it,       
+
+827
+00:41:48,642 --> 00:41:49,340
+trying to figure out, and       
+
+828
+00:41:49,409 --> 00:41:51,476
+in fact I want to               
+do that eventually.             
+
+829
+00:41:51,545 --> 00:41:53,445
+there's kind of                 
+trick here in Xcode.            
+
+830
+00:41:53,514 --> 00:41:55,881
+Which is, just type             
+the name of thing you want,     
+
+831
+00:41:55,950 --> 00:41:57,816
+Type what you think it might    
+be and see what happens.        
+
+832
+00:41:57,885 --> 00:42:00,618
+So, I'm going to type Title.    
+Now there's no method or        
+
+833
+00:42:00,687 --> 00:42:02,787
+property in button              
+called title.                   
+
+834
+00:42:02,856 --> 00:42:05,891
+But you can see that Xcode has  
+showed me all the methods and   
+
+835
+00:42:05,959 --> 00:42:08,326
+properties that start           
+with the word title Or          
+
+836
+00:42:08,395 --> 00:42:13,398
+that have the word title in     
+it. Or even that have "t",      
+
+837
+00:42:13,467 --> 00:42:16,902
+"it", "le" in it, okay?         
+So it's doing everything it     
+
+838
+00:42:16,971 --> 00:42:19,637
+can to show you every possible  
+thing that might match what     
+
+839
+00:42:19,706 --> 00:42:22,340
+you typed. Now, let's look      
+through these and see if we     
+
+840
+00:42:22,409 --> 00:42:24,575
+can find one that will give us  
+the title of the button, okay?  
+
+841
+00:42:24,644 --> 00:42:29,448
+Title label That doesn't look   
+very good. How about title for  
+
+842
+00:42:29,517 --> 00:42:30,715
+control state,                  
+that looks good,                
+
+843
+00:42:30,784 --> 00:42:33,685
+returns the title associated    
+with the specified state.       
+
+844
+00:42:33,754 --> 00:42:36,255
+Mm, that looks pretty good but  
+let's keep looking because I    
+
+845
+00:42:36,323 --> 00:42:37,589
+don't really know               
+anything about the state,       
+
+846
+00:42:37,658 --> 00:42:39,991
+that looks pretty good,         
+but let's keep going.           
+
+847
+00:42:40,060 --> 00:42:44,696
+No edge insets, no, add color,  
+no, shadow, no. Current title,  
+
+848
+00:42:44,764 --> 00:42:45,664
+the current title that          
+
+849
+00:42:45,733 --> 00:42:47,433
+is displayed on the button,     
+
+850
+00:42:47,501 --> 00:42:50,202
+victory that sounded            
+exactly what I want. So         
+
+851
+00:42:50,270 --> 00:42:52,171
+I'm just gonna pick that        
+by double-clicking on it.       
+
+852
+00:42:52,239 --> 00:42:54,172
+So I'm just gonna double-click  
+on it. There it is,             
+
+853
+00:42:54,241 --> 00:42:58,476
+it filled it out. And so        
+now we're sending currentTitle  
+
+854
+00:42:58,545 --> 00:43:01,813
+to sender. Now let's find out   
+more about currentTitle, okay?  
+
+855
+00:43:01,882 --> 00:43:04,649
+We know that one-liner that is  
+the currentTitle displayed.     
+
+856
+00:43:04,718 --> 00:43:06,150
+I'm gonna hold down Option.     
+
+857
+00:43:06,219 --> 00:43:07,619
+See Option down here            
+on the left, okay?              
+
+858
+00:43:07,688 --> 00:43:09,788
+I'm gonna hold down Option,     
+and look.                       
+
+859
+00:43:09,857 --> 00:43:13,858
+When I do Option things         
+that I mouse over turn blue     
+
+860
+00:43:13,927 --> 00:43:15,293
+with a little                   
+dashed underline.               
+
+861
+00:43:15,362 --> 00:43:19,831
+And if I click,                 
+I get a little help, okay? So   
+
+862
+00:43:19,900 --> 00:43:21,967
+I'm getting that current title  
+display from the button,        
+
+863
+00:43:22,035 --> 00:43:25,137
+but I'm also getting more       
+detailed description and        
+
+864
+00:43:25,206 --> 00:43:28,172
+I'm getting the declaration     
+of this thing. And              
+
+865
+00:43:28,241 --> 00:43:30,508
+you could see that              
+this is not a func.             
+
+866
+00:43:30,577 --> 00:43:33,912
+This is a var. So now you're    
+seeing for the first time,      
+
+867
+00:43:33,980 --> 00:43:36,981
+the declaration of              
+a property in Swift, okay?      
+
+868
+00:43:37,050 --> 00:43:39,952
+An instance variable. So        
+this is an instance variable,   
+
+869
+00:43:40,020 --> 00:43:42,620
+in UIButton, okay? Called var,  
+makes sense, right?             
+
+870
+00:43:42,689 --> 00:43:45,123
+It's a variable, var.           
+It's called currentTitle,       
+
+871
+00:43:45,192 --> 00:43:49,194
+of course.                      
+It's type is, string?           
+
+872
+00:43:51,565 --> 00:43:54,032
+Not sure, maybe button's        
+not sure what the type is.      
+
+873
+00:43:54,101 --> 00:43:55,267
+No, I think button knows but,   
+
+874
+00:43:55,336 --> 00:43:57,870
+we're just gonna assume this    
+is string, for now. And         
+
+875
+00:43:57,938 --> 00:44:00,772
+we'll see, where that takes     
+us. Also notice this little     
+
+876
+00:44:00,841 --> 00:44:03,842
+syntax means that, you can      
+only get the current title,     
+
+877
+00:44:03,911 --> 00:44:07,613
+with this property. You can't   
+set the current title. Now,     
+
+878
+00:44:07,681 --> 00:44:11,016
+what if I was like, well I'm    
+interested. How would I set     
+
+879
+00:44:11,085 --> 00:44:13,618
+the current title? So           
+you would want to, let's say,   
+
+880
+00:44:13,687 --> 00:44:16,521
+go look in the documentation.   
+How would you get there?        
+
+881
+00:44:16,590 --> 00:44:18,556
+Well, if you look down at       
+the bottom, it says more.       
+
+882
+00:44:18,625 --> 00:44:21,159
+This property reference right   
+here. If you click on that,     
+
+883
+00:44:21,228 --> 00:44:23,929
+it brings up                    
+the documentation. Okay?        
+
+884
+00:44:23,997 --> 00:44:26,765
+And here's the documentation    
+for CurrentTitle. Now what's    
+
+885
+00:44:26,834 --> 00:44:30,034
+cool about this, is from here,  
+I can click on things.          
+
+886
+00:44:30,103 --> 00:44:32,971
+Like String, I could find       
+out about String. Or, look,     
+
+887
+00:44:33,040 --> 00:44:36,608
+I can click on the class that   
+this is defined in, UIButton.   
+
+888
+00:44:36,677 --> 00:44:39,411
+And here's the UIButton,        
+and look at this section at     
+
+889
+00:44:39,479 --> 00:44:43,182
+the start of UIButton called    
+Overview. These are awesome,    
+
+890
+00:44:43,250 --> 00:44:46,851
+and I strongly recommend        
+Every class you go to use       
+
+891
+00:44:46,920 --> 00:44:48,453
+take the five minutes or        
+
+892
+00:44:48,521 --> 00:44:51,022
+ten minutes at the most to      
+read through these overviews.   
+
+893
+00:44:51,091 --> 00:44:53,458
+Then you'll really understand   
+how these classes work.         
+
+894
+00:44:53,527 --> 00:44:55,860
+Look at this thing.             
+It tells us for                 
+
+895
+00:44:55,929 --> 00:44:58,530
+example how to configure        
+the button's appearance.        
+
+896
+00:44:58,599 --> 00:45:00,131
+It tells us all about           
+this button's stage.            
+
+897
+00:45:00,200 --> 00:45:01,733
+Remember, we had that           
+title for state.                
+
+898
+00:45:01,802 --> 00:45:03,302
+And we didn't really know       
+what the state was. Well,       
+
+899
+00:45:03,370 --> 00:45:05,904
+this tells us about that.       
+Tells you about the content of  
+
+900
+00:45:05,973 --> 00:45:08,640
+a button. And you can put an    
+image on there, evidently, and  
+
+901
+00:45:08,709 --> 00:45:12,543
+text. Those edge insets,        
+whatever those are, explained.  
+
+902
+00:45:12,612 --> 00:45:15,180
+Even an interface builder, all  
+those things in the inspector.  
+
+903
+00:45:15,249 --> 00:45:17,249
+Look, those are all explained,  
+in detail.                      
+
+904
+00:45:17,317 --> 00:45:19,651
+So this is a great thing        
+to just read through this,      
+
+905
+00:45:19,720 --> 00:45:22,787
+understand this for             
+all the common classes. And     
+
+906
+00:45:22,856 --> 00:45:26,090
+of course, all of the methods   
+are listed here as well. For    
+
+907
+00:45:26,159 --> 00:45:26,925
+example, look at this one,      
+
+908
+00:45:26,993 --> 00:45:29,995
+setTitle. Hm, that might be     
+a way to set the title. And     
+
+909
+00:45:30,064 --> 00:45:33,532
+if I click on that, I get a     
+full description of this. And   
+
+910
+00:45:33,600 --> 00:45:36,668
+I even see that the state       
+thing is here, so I can click   
+
+911
+00:45:36,736 --> 00:45:39,771
+on that. And now I can see      
+the control state, of course,   
+
+912
+00:45:39,840 --> 00:45:41,973
+there's normal, highlighted     
+button, disabled button,        
+
+913
+00:45:42,042 --> 00:45:44,275
+a selected button. They can     
+each have their own title,      
+
+914
+00:45:44,344 --> 00:45:47,779
+cool. But you see how I'm       
+navigating by just clicking     
+
+915
+00:45:47,848 --> 00:45:49,614
+through the various types and   
+
+916
+00:45:49,683 --> 00:45:53,017
+all that you really want to     
+get faster with doing that      
+
+917
+00:45:53,086 --> 00:45:55,954
+okay it's really important to   
+be a good IOS developer to be   
+
+918
+00:45:56,022 --> 00:46:00,325
+able to use the documentation   
+effectively. All right, so      
+
+919
+00:46:00,394 --> 00:46:04,262
+we're back here, we got this    
+thing currentTitle. It's this   
+
+920
+00:46:04,331 --> 00:46:07,265
+type string question mark. And  
+I told you that swift would     
+
+921
+00:46:07,334 --> 00:46:10,101
+infer the type. And sure        
+enough, look, a digit. It's     
+
+922
+00:46:10,170 --> 00:46:12,770
+type is string question mark.   
+Of course, because I just set   
+
+923
+00:46:12,839 --> 00:46:14,606
+it equal to something that      
+was string question mark, so    
+
+924
+00:46:14,675 --> 00:46:17,476
+it knows it's string question   
+mark. So, let's go ahead and    
+
+925
+00:46:17,545 --> 00:46:18,944
+print this digit out. Okay,     
+
+926
+00:46:19,013 --> 00:46:21,513
+it's saying touch digit was     
+called. Let's try and print it  
+
+927
+00:46:21,582 --> 00:46:24,883
+out. Now in another language,   
+you might use printf.           
+
+928
+00:46:24,952 --> 00:46:30,022
+And you might say something     
+like %s was touched.            
+
+929
+00:46:30,091 --> 00:46:31,856
+And then you would              
+put digit right here,           
+
+930
+00:46:31,925 --> 00:46:36,160
+okay? Now unfortunately, you    
+can't do this in Swift, okay?   
+
+931
+00:46:36,229 --> 00:46:39,931
+There's no percent s business,  
+okay? And no printf. Instead,   
+
+932
+00:46:40,000 --> 00:46:43,701
+we still say print, okay? But,  
+instead of doing percent s.     
+
+933
+00:46:43,770 --> 00:46:48,840
+We can actually use the very    
+magical\() parentheses.         
+
+934
+00:46:48,909 --> 00:46:50,842
+If you put that                 
+inside a string,                
+
+935
+00:46:50,910 --> 00:46:53,778
+then you can put anything you   
+want inside there that can      
+
+936
+00:46:53,847 --> 00:46:55,947
+be converted to a string. And   
+
+937
+00:46:56,016 --> 00:46:57,682
+it will include it there.       
+Including,                      
+
+938
+00:46:57,751 --> 00:47:00,886
+a string itself. Can obviously  
+be converted to a string. So    
+
+939
+00:47:00,954 --> 00:47:03,521
+this way, you can embed         
+strings in other strings.       
+
+940
+00:47:03,590 --> 00:47:06,190
+Or even embed more complicated  
+objects that know how to turn   
+
+941
+00:47:06,259 --> 00:47:09,194
+themselves into a string, into  
+strings. Okay, so this is how   
+
+942
+00:47:09,263 --> 00:47:13,331
+you do the print f business     
+of printing things out. Okay,   
+
+943
+00:47:13,400 --> 00:47:17,702
+now also I notice, we have a    
+warning. This yellow thing is   
+
+944
+00:47:17,771 --> 00:47:20,438
+a warning, okay? And they can   
+be yellow which are warnings    
+
+945
+00:47:20,507 --> 00:47:23,041
+in which case it'll compile     
+and run. But, you still got to  
+
+946
+00:47:23,110 --> 00:47:25,310
+fix it cuz you cannot submit    
+any homework in this class      
+
+947
+00:47:25,379 --> 00:47:28,647
+with warnings. You hear me?     
+Or they can be red.             
+
+948
+00:47:28,715 --> 00:47:31,917
+In red's case, it won't even    
+build. So this one's yellow.    
+
+949
+00:47:31,985 --> 00:47:35,320
+How do we find out what it is?  
+Well, we just click on it.      
+
+950
+00:47:35,389 --> 00:47:38,390
+When we click on it, it says    
+here the variable digit         
+
+951
+00:47:38,459 --> 00:47:41,359
+was never mutated.              
+Means it was never changed.     
+
+952
+00:47:41,428 --> 00:47:45,597
+Consider changing to let        
+constant, it says. Okay? And    
+
+953
+00:47:45,666 --> 00:47:48,166
+you can see it even saying do   
+you want me to fix it? I can    
+
+954
+00:47:48,235 --> 00:47:50,736
+replace var with let and it's   
+even showing what that would    
+
+955
+00:47:50,804 --> 00:47:53,905
+look like to replace var with   
+let. How helpful of it. So      
+
+956
+00:47:53,974 --> 00:47:55,874
+actually, I'm gonna have to     
+do that. I'm gonna click,       
+
+957
+00:47:55,943 --> 00:47:59,143
+change it to let, warning       
+gone. Now what is all that      
+
+958
+00:47:59,212 --> 00:48:04,215
+about? It said digit was never  
+mutated, it was never changed,  
+
+959
+00:48:04,284 --> 00:48:08,353
+okay? So digit essentially      
+was a constant.                 
+
+960
+00:48:08,421 --> 00:48:11,089
+We gave it an initial value.    
+It never got changed.           
+
+961
+00:48:11,157 --> 00:48:14,359
+When you declare a constant     
+you always want to use let.     
+
+962
+00:48:14,428 --> 00:48:17,462
+Now why do we have a different  
+word for a constant than for    
+
+963
+00:48:17,531 --> 00:48:21,133
+a var? Well,                    
+because a constant isn't var.   
+
+964
+00:48:21,202 --> 00:48:24,603
+It doesn't vary,                
+a constant is constant.         
+
+965
+00:48:24,672 --> 00:48:28,273
+And let is a great word         
+because read this. Let digit    
+
+966
+00:48:28,342 --> 00:48:32,277
+equal sender's current title.   
+Okay, reads really nice.        
+
+967
+00:48:32,345 --> 00:48:35,914
+Now why do we care about        
+distinguishing these two?       
+
+968
+00:48:35,982 --> 00:48:39,450
+Two reasons. One if you're      
+a reader of someone's code and  
+
+969
+00:48:39,519 --> 00:48:42,554
+you see let you know that this  
+is not going to change, okay.   
+
+970
+00:48:42,623 --> 00:48:44,822
+You know the digit is going     
+to be, never going to change.   
+
+971
+00:48:44,891 --> 00:48:46,525
+And in fact if someone          
+did change it or                
+
+972
+00:48:46,593 --> 00:48:49,527
+if you tried to change someone  
+else's code and change it,      
+
+973
+00:48:49,596 --> 00:48:52,330
+compiler's gonna generate an    
+error, okay. You can't change   
+
+974
+00:48:52,399 --> 00:48:55,534
+something that's constant.      
+But even more importantly,      
+
+975
+00:48:55,603 --> 00:48:58,203
+it tells Swift that             
+it's a constant and             
+
+976
+00:48:58,271 --> 00:49:01,272
+that you intend it to be        
+a constant. And so later,       
+
+977
+00:49:01,341 --> 00:49:05,209
+if you try to modify it,        
+even if it's an array or        
+
+978
+00:49:05,278 --> 00:49:08,213
+a dictionary and you're trying  
+to put something in the array   
+
+979
+00:49:08,282 --> 00:49:10,715
+Okay? Or add something          
+to the dictionary.              
+
+980
+00:49:10,784 --> 00:49:13,251
+It knows, you intended          
+that to be a constant. So,      
+
+981
+00:49:13,320 --> 00:49:17,656
+you know, error. So it's a way  
+to tell Swift what you intend.  
+
+982
+00:49:17,724 --> 00:49:21,093
+Now, the difference             
+between a mutable array,        
+
+983
+00:49:21,162 --> 00:49:22,961
+an array that you can           
+add stuff to, and               
+
+984
+00:49:23,029 --> 00:49:26,464
+an immutable one, is huge.      
+Because if you pa, arrays and   
+
+985
+00:49:26,533 --> 00:49:30,869
+Swift are passed around by      
+copy. Arrays are passed by      
+
+986
+00:49:30,938 --> 00:49:33,438
+copy. It's very unusual         
+compared to other languages     
+
+987
+00:49:33,507 --> 00:49:35,306
+where an array would just be    
+an object in the heap and       
+
+988
+00:49:35,375 --> 00:49:37,676
+you just pass a pointer to it.  
+You were passing them it        
+
+989
+00:49:37,744 --> 00:49:40,244
+copies them every time you      
+pass them to a function.        
+
+990
+00:49:40,313 --> 00:49:44,583
+Now that'd be very inefficient  
+if they were all mutable. Cuz   
+
+991
+00:49:44,652 --> 00:49:46,718
+you have to actually copy them  
+in case someone changed it.     
+
+992
+00:49:46,786 --> 00:49:48,853
+But Swift knows which ones      
+are mutable and which aren't.   
+
+993
+00:49:48,922 --> 00:49:51,623
+And when you pass               
+an immutable one it only- But   
+
+994
+00:49:51,692 --> 00:49:53,225
+doesn't really efficient copy,  
+okay,                           
+
+995
+00:49:53,293 --> 00:49:55,794
+it doesn't actually copy the    
+element. And in fact, until     
+
+996
+00:49:55,863 --> 00:49:59,163
+you assigned it to a mutable    
+variable by saying var equals   
+
+997
+00:49:59,232 --> 00:50:01,766
+that, it doesn't even have to   
+worry about that. And then it   
+
+998
+00:50:01,835 --> 00:50:04,703
+can just do copy on write when  
+you actually change it. Okay,   
+
+999
+00:50:04,771 --> 00:50:07,639
+so that's the var/let thing,    
+get used to it,                 
+
+1000
+00:50:07,708 --> 00:50:10,441
+always do let for constants.    
+All right, so let's run         
+
+1001
+00:50:10,510 --> 00:50:14,012
+this now. See what's going on   
+here. This should work, right?  
+
+1002
+00:50:14,080 --> 00:50:16,648
+We're getting the current       
+title. We're saying, it,        
+
+1003
+00:50:16,717 --> 00:50:19,084
+well, whatever that             
+title was was touched.          
+
+1004
+00:50:19,152 --> 00:50:23,454
+This should be good to go.      
+Here we go. Seven. What?        
+
+1005
+00:50:23,523 --> 00:50:27,692
+Okay, well,                     
+it's kinda working.             
+
+1006
+00:50:27,761 --> 00:50:29,695
+I mean it's definitely doing    
+something different And         
+
+1007
+00:50:29,764 --> 00:50:30,763
+it kinda knows which button.    
+
+1008
+00:50:30,831 --> 00:50:33,732
+But what's all this             
+optional quote business?        
+
+1009
+00:50:33,801 --> 00:50:38,504
+What's that about?              
+>> Well, that's because         
+
+1010
+00:50:38,572 --> 00:50:43,675
+digit is not a string,          
+it's a string?, okay.           
+
+1011
+00:50:43,744 --> 00:50:47,946
+So what is String? String?      
+is a totally different type     
+
+1012
+00:50:48,014 --> 00:50:52,951
+from String. It's called        
+an optional. Alright? This      
+
+1013
+00:50:53,019 --> 00:50:55,987
+is super important. So again,   
+wake up if you're napping.      
+
+1014
+00:50:56,056 --> 00:50:59,958
+Okay? This is super important.  
+Very few languages have this    
+
+1015
+00:51:00,027 --> 00:51:04,195
+concept. It's a great concept.  
+It really makes the API really  
+
+1016
+00:51:04,264 --> 00:51:06,931
+understandable throughout all   
+of iOS. But it takes a little   
+
+1017
+00:51:07,000 --> 00:51:10,869
+bit of getting used to, okay?   
+So what is this type optional?  
+
+1018
+00:51:10,937 --> 00:51:15,340
+A type optional has only        
+two values, set and             
+
+1019
+00:51:15,408 --> 00:51:18,810
+not set, okay? That's           
+the only two values it has.     
+
+1020
+00:51:18,879 --> 00:51:22,681
+There's no other values.        
+However, when it's in the set   
+
+1021
+00:51:22,749 --> 00:51:26,518
+case, it can have               
+an associated value. Okay?      
+
+1022
+00:51:26,586 --> 00:51:29,521
+A value that it kinda           
+keeps on the side and           
+
+1023
+00:51:29,590 --> 00:51:31,857
+you specify when you            
+create the optional or          
+
+1024
+00:51:31,925 --> 00:51:34,826
+you declare it what type        
+that associated value is.       
+
+1025
+00:51:34,895 --> 00:51:37,896
+So this, the associated         
+value is a string.              
+
+1026
+00:51:37,964 --> 00:51:40,832
+We're talking about the value   
+of a button of course. So       
+
+1027
+00:51:40,900 --> 00:51:42,167
+we would say the type           
+
+1028
+00:51:42,236 --> 00:51:45,771
+of this digit is optional       
+strength. Which means           
+
+1029
+00:51:45,839 --> 00:51:48,773
+an optional who's associative   
+value in the set state is       
+
+1030
+00:51:48,842 --> 00:51:54,312
+a string. Okay? Now, in this    
+case that's all fine and        
+
+1031
+00:51:54,381 --> 00:51:56,648
+good but we want                
+the associated value here.      
+
+1032
+00:51:56,717 --> 00:51:59,551
+Give me that associated value,  
+that title, okay?               
+
+1033
+00:51:59,620 --> 00:52:01,619
+How do I get it out of here?    
+And the answer for              
+
+1034
+00:52:01,688 --> 00:52:06,191
+that is exclamation point.      
+Okay, if you put                
+
+1035
+00:52:06,260 --> 00:52:09,327
+the explanation point at        
+the end of an optional then it  
+
+1036
+00:52:09,396 --> 00:52:12,730
+will, if it's in the set state  
+grab the associated value and   
+
+1037
+00:52:12,799 --> 00:52:16,301
+give it to you. So              
+now look at the type of digit.  
+
+1038
+00:52:16,370 --> 00:52:20,104
+It's a string. Okay, Swift      
+able to infer that since you    
+
+1039
+00:52:20,173 --> 00:52:25,944
+unwrapped this optional right   
+here. You've got a string over  
+
+1040
+00:52:26,013 --> 00:52:31,850
+here. Now what if you do        
+exclamation point and           
+
+1041
+00:52:31,919 --> 00:52:35,320
+that optional is in             
+the not set state? Because      
+
+1042
+00:52:35,389 --> 00:52:37,856
+there's no associated value     
+when it's in not state, that's  
+
+1043
+00:52:37,924 --> 00:52:39,958
+only when it's in associated.   
+What happens to your app?       
+
+1044
+00:52:40,026 --> 00:52:45,797
+Anyone want to guess what       
+happens? Crashes. Okay?         
+
+1045
+00:52:45,866 --> 00:52:50,702
+Kaboom. Now, I'm sure           
+some of you conservative        
+
+1046
+00:52:50,771 --> 00:52:52,470
+folk out there are like,        
+okay well that's it for         
+
+1047
+00:52:52,539 --> 00:52:54,806
+me, an exclamation point!       
+I'm never using that.           
+
+1048
+00:52:54,875 --> 00:52:57,042
+I don't want my app to crash,   
+that's horrible.                
+
+1049
+00:52:57,111 --> 00:53:00,312
+But actually having your app    
+crash during development        
+
+1050
+00:53:00,381 --> 00:53:03,081
+can be great, because           
+you'll find bugs really         
+
+1051
+00:53:03,149 --> 00:53:05,784
+fast and you'll be dropped      
+right into the debugger         
+
+1052
+00:53:05,853 --> 00:53:07,652
+where the crash happened so     
+you can figure whats going on.  
+
+1053
+00:53:07,721 --> 00:53:09,454
+How could this have happened?   
+
+1054
+00:53:09,522 --> 00:53:12,224
+So in this case were talking    
+about the title of a button,    
+
+1055
+00:53:12,293 --> 00:53:14,393
+that means the title of         
+the button was never set and    
+
+1056
+00:53:14,461 --> 00:53:17,462
+this is touch digit. That       
+should never have happen. Okay  
+
+1057
+00:53:17,530 --> 00:53:20,098
+if that happened in something   
+I shipped to my customer,       
+
+1058
+00:53:20,167 --> 00:53:22,033
+customers would be complaining  
+left, right and center.         
+
+1059
+00:53:22,102 --> 00:53:24,302
+There's a button that           
+has no title on it,             
+
+1060
+00:53:24,371 --> 00:53:25,737
+nothing on it and               
+I click what,                   
+
+1061
+00:53:25,806 --> 00:53:27,072
+you know what I'm saying?       
+
+1062
+00:53:27,141 --> 00:53:28,574
+So, you want to find            
+those in development.           
+
+1063
+00:53:28,642 --> 00:53:30,642
+So crashing can be              
+good sometimes.                 
+
+1064
+00:53:30,711 --> 00:53:33,444
+Now of course you don't always  
+want to crash when you unwrap   
+
+1065
+00:53:33,513 --> 00:53:36,215
+an optional and I'll show you   
+in a little bit how to unwrap   
+
+1066
+00:53:36,283 --> 00:53:39,084
+an optional and get it to       
+associated value. But test it   
+
+1067
+00:53:39,152 --> 00:53:42,654
+first to make sure that it's    
+in the set state. Okay, but     
+
+1068
+00:53:42,723 --> 00:53:44,789
+for now we do this. Let's run   
+and see what this looks like.   
+
+1069
+00:53:44,858 --> 00:53:47,793
+It should work. But now         
+we've unwrapped this thing,     
+
+1070
+00:53:47,862 --> 00:53:48,893
+grabbed its associate value.    
+
+1071
+00:53:48,962 --> 00:53:51,663
+And we know the current title   
+should always be set so         
+
+1072
+00:53:51,732 --> 00:53:53,798
+we'll not have to worry         
+about crashing here. And        
+
+1073
+00:53:53,867 --> 00:53:56,868
+sure enough seven was touched,  
+nine, whatever, three,          
+
+1074
+00:53:56,937 --> 00:54:00,705
+five, six, okay? All right,     
+so we're rocking and            
+
+1075
+00:54:00,774 --> 00:54:04,710
+rolling here. We're able to     
+collect the digits from user.   
+
+1076
+00:54:04,779 --> 00:54:07,546
+Now let's put them in           
+the calculator display.         
+
+1077
+00:54:07,615 --> 00:54:09,581
+So we need to add a display     
+to our calculator.              
+
+1078
+00:54:09,650 --> 00:54:12,083
+So we're gonna go back          
+to our area here.               
+
+1079
+00:54:12,152 --> 00:54:15,186
+Go down to the bottom half.     
+Now be careful not to grab      
+
+1080
+00:54:15,255 --> 00:54:17,856
+text field here because         
+that's editable text and        
+
+1081
+00:54:17,924 --> 00:54:20,025
+in a compilator you can't       
+click on the display and        
+
+1082
+00:54:20,093 --> 00:54:22,728
+edit it. You type the numbers   
+to put your numbers in. So      
+
+1083
+00:54:22,796 --> 00:54:25,164
+we're gonna use this one        
+up here, which is labeled.      
+
+1084
+00:54:25,232 --> 00:54:27,065
+By the way, if you click        
+on one of these and             
+
+1085
+00:54:27,134 --> 00:54:28,199
+leave your mouse there for      
+a second,                       
+
+1086
+00:54:28,268 --> 00:54:30,903
+it'll give you a detailed       
+explanation of each of these    
+
+1087
+00:54:30,971 --> 00:54:34,473
+objects in the list. So I'm     
+just gonna pick out a label     
+
+1088
+00:54:34,542 --> 00:54:35,740
+and drag it up here to top,     
+
+1089
+00:54:35,809 --> 00:54:39,844
+maybe make a little more space  
+for it. Move out a little bit.  
+
+1090
+00:54:39,913 --> 00:54:42,714
+So we've got this label.        
+Once again just like I did for  
+
+1091
+00:54:42,783 --> 00:54:45,049
+the buttons I'm going           
+to change the size.             
+
+1092
+00:54:45,118 --> 00:54:48,086
+Maybe I want to start with      
+zero in there. Bigger font.     
+
+1093
+00:54:48,155 --> 00:54:51,689
+Let's go over here maybe even   
+really big font, like 40 or     
+
+1094
+00:54:51,758 --> 00:54:55,927
+something like that. In         
+a calculator the text is right  
+
+1095
+00:54:55,996 --> 00:54:58,797
+aligned. Right? Text comes      
+out from the right, so          
+
+1096
+00:54:58,866 --> 00:55:01,266
+we want to use this             
+alignment right here.           
+
+1097
+00:55:01,334 --> 00:55:05,470
+Right aligned. Okay?            
+Maybe with some colors.         
+
+1098
+00:55:05,539 --> 00:55:07,773
+Let's put, let's make           
+the background be blue.         
+
+1099
+00:55:07,842 --> 00:55:10,576
+But I don't really              
+like black on blue, so          
+
+1100
+00:55:10,644 --> 00:55:14,179
+we'll go up here and change     
+the color to be white. Okay?    
+
+1101
+00:55:14,248 --> 00:55:17,583
+So that's a pretty              
+decent looking display          
+
+1102
+00:55:17,651 --> 00:55:21,419
+right there, for now anyway.    
+Now, if we have these           
+
+1103
+00:55:21,488 --> 00:55:24,322
+buttons being pressed, we need  
+to talk to this display, and    
+
+1104
+00:55:24,391 --> 00:55:25,390
+tell it what the digits are.    
+
+1105
+00:55:25,459 --> 00:55:27,292
+So how are we gonna do that?    
+Well again,                     
+
+1106
+00:55:27,361 --> 00:55:30,161
+we need to make a connection    
+between that display and        
+
+1107
+00:55:30,230 --> 00:55:32,564
+our code. But this is not       
+the same kind of connection.    
+
+1108
+00:55:32,633 --> 00:55:34,966
+Because we don't touch          
+on that label, and              
+
+1109
+00:55:35,035 --> 00:55:38,970
+it calls a method, We need to   
+have an instance variable, or   
+
+1110
+00:55:39,039 --> 00:55:41,806
+property, that points to that   
+thing, so we can talk to it     
+
+1111
+00:55:41,875 --> 00:55:44,609
+whenever we want, cuz we        
+gotta put these digits on it.   
+
+1112
+00:55:44,678 --> 00:55:48,180
+Okay? So we're still going      
+to use the same mechanism to    
+
+1113
+00:55:48,248 --> 00:55:50,782
+make a connection, which is     
+control. And we're going to     
+
+1114
+00:55:50,851 --> 00:55:54,519
+drag in here. Okay? And         
+this time we're going to use    
+
+1115
+00:55:54,588 --> 00:55:58,223
+outlet. Outlet means a          
+property that points to this.   
+
+1116
+00:55:58,292 --> 00:56:01,526
+And I'm going to call this      
+display. It's our display.      
+
+1117
+00:56:01,594 --> 00:56:05,030
+It got the type right here.     
+This weak and strong, don't     
+
+1118
+00:56:05,099 --> 00:56:07,065
+worry about that. I'm going     
+to talk about that next week.   
+
+1119
+00:56:07,133 --> 00:56:11,436
+Okay. So don't worry.           
+So, here is                     
+
+1120
+00:56:11,504 --> 00:56:15,841
+our first instance variable     
+in our class. Woo hoo! Okay?    
+
+1121
+00:56:15,910 --> 00:56:19,678
+This right here, is again       
+just some stuff that Xcode      
+
+1122
+00:56:19,747 --> 00:56:25,150
+throws in there, so             
+you get this, right? This,      
+
+1123
+00:56:25,219 --> 00:56:28,320
+I told you ignore, okay? So     
+
+1124
+00:56:28,388 --> 00:56:31,222
+this is the declaration         
+of our property and             
+
+1125
+00:56:31,291 --> 00:56:36,194
+of course it's a var and        
+that could be let. If you want  
+
+1126
+00:56:36,263 --> 00:56:38,330
+an instance variable that       
+is set at the beginning and     
+
+1127
+00:56:38,399 --> 00:56:40,833
+never changes, you can use      
+let. It's pretty rare, but      
+
+1128
+00:56:40,901 --> 00:56:45,070
+you can do it, okay usually     
+they're var. Display,           
+
+1129
+00:56:45,139 --> 00:56:49,841
+that's the name.                
+": UILabel" is the type,        
+
+1130
+00:56:49,910 --> 00:56:53,144
+okay? So as you might guess,    
+this has something to do with   
+
+1131
+00:56:53,213 --> 00:56:57,749
+optionals, okay?                
+This is kinda confusing to      
+
+1132
+00:56:57,818 --> 00:57:00,585
+start off the bat, but          
+that exclamation point,         
+
+1133
+00:57:00,654 --> 00:57:04,623
+which normally means unwrap an  
+optional. Obviously we can't    
+
+1134
+00:57:04,691 --> 00:57:07,459
+unwrap here, we're              
+declaring this thing here.      
+
+1135
+00:57:07,527 --> 00:57:10,262
+This is pretty much exactly     
+the same as a question mark.    
+
+1136
+00:57:10,331 --> 00:57:12,063
+In fact, I'm gonna change       
+it to a question mark for       
+
+1137
+00:57:12,132 --> 00:57:14,565
+now, and later I'll change it   
+back to an exclamation point,   
+
+1138
+00:57:14,634 --> 00:57:17,869
+and you'll see the difference.  
+But, the type of this display   
+
+1139
+00:57:17,938 --> 00:57:21,873
+is optional UI label. Now, why  
+is this an optional UI label?   
+
+1140
+00:57:21,942 --> 00:57:24,342
+Why isn't this                  
+just a UI label?                
+
+1141
+00:57:24,411 --> 00:57:27,913
+Why does it have to be          
+optional? Because when this UI  
+
+1142
+00:57:27,982 --> 00:57:31,883
+first comes up, iOS needs       
+a few nanoseconds to hook       
+
+1143
+00:57:31,952 --> 00:57:35,387
+that up for you. So             
+when this UI first comes up,    
+
+1144
+00:57:35,456 --> 00:57:39,191
+it's not set to an optional     
+not set case and then UI hooks  
+
+1145
+00:57:39,259 --> 00:57:42,093
+it up for you, and now it's     
+set forever after that. And     
+
+1146
+00:57:42,162 --> 00:57:45,397
+that's important that it's set  
+forever, and we'll see it has   
+
+1147
+00:57:45,465 --> 00:57:47,966
+to do with that exclamation     
+point I just got rid of. But    
+
+1148
+00:57:48,035 --> 00:57:50,768
+for now understand that         
+display is just an optional     
+
+1149
+00:57:50,837 --> 00:57:53,405
+we'll have to unwrap it every   
+time we use it, okay so         
+
+1150
+00:57:53,473 --> 00:57:57,342
+as simple as that. All right,   
+so now instead of printing      
+
+1151
+00:57:57,411 --> 00:57:59,545
+the digits on the screen        
+let's go ahead and              
+
+1152
+00:57:59,613 --> 00:58:01,846
+put these digits                
+into the display,               
+
+1153
+00:58:01,915 --> 00:58:04,416
+and really every time a digit   
+is pressed we wanna append it   
+
+1154
+00:58:04,485 --> 00:58:07,352
+onto the end of the display     
+like if there's 56 in there we  
+
+1155
+00:58:07,420 --> 00:58:12,758
+wanna append 2- it's 562 and    
+8 it's 5268, right? So we're    
+
+1156
+00:58:12,826 --> 00:58:16,127
+just gonna keep appending.      
+So we need to get the text so   
+
+1157
+00:58:16,196 --> 00:58:18,663
+it's currently in the display   
+and add the digit to it.        
+
+1158
+00:58:18,732 --> 00:58:20,899
+So I'm gonna add another        
+little local variable.          
+
+1159
+00:58:20,968 --> 00:58:26,205
+It's a constant also called     
+textcurrentlyInDisplay and      
+
+1160
+00:58:26,273 --> 00:58:29,541
+I'm gonna get that by sending   
+a message to the display,       
+
+1161
+00:58:29,610 --> 00:58:31,143
+which I have to unwrap,         
+
+1162
+00:58:32,646 --> 00:58:34,612
+and now I can send              
+your message. And               
+
+1163
+00:58:34,681 --> 00:58:38,183
+here's all the messages         
+that label responds too,        
+
+1164
+00:58:38,252 --> 00:58:41,452
+again, hundreds, okay? So I'm   
+gonna do the same trick, I'm    
+
+1165
+00:58:41,521 --> 00:58:45,457
+gonna type text because I want  
+the text out of there Look at   
+
+1166
+00:58:45,526 --> 00:58:48,459
+the very first one, the text    
+displayed by the label.         
+
+1167
+00:58:48,528 --> 00:58:52,197
+It's an optional string.        
+Excellent, I'll take it, okay.  
+
+1168
+00:58:52,266 --> 00:58:54,399
+So, now I've got the text but   
+it's optional. So,              
+
+1169
+00:58:54,467 --> 00:58:59,470
+I need to unwrap it, okay?      
+So now textCurrentlyInDisplay.  
+
+1170
+00:58:59,539 --> 00:59:02,541
+If I option click on it         
+you'll see it's a string. So,   
+
+1171
+00:59:02,609 --> 00:59:05,610
+now I can just say,             
+set the display, unwrap,        
+
+1172
+00:59:05,679 --> 00:59:08,814
+text equal to the text that's   
+currently in the display        
+
+1173
+00:59:08,882 --> 00:59:12,684
+plus the digit. Now, notice     
+when I set an optional, text    
+
+1174
+00:59:12,753 --> 00:59:16,421
+is an optional, right? When I   
+set it equal to something- by   
+
+1175
+00:59:16,489 --> 00:59:20,558
+the way this optional is get    
+and set unlike currentTitle,    
+
+1176
+00:59:20,627 --> 00:59:24,929
+which was get only- so I can    
+set the your label's text here  
+
+1177
+00:59:24,998 --> 00:59:27,999
+and get it. When I set          
+this optional right here,       
+
+1178
+00:59:28,068 --> 00:59:31,403
+I don't have to unwrap          
+it first, okay?                 
+
+1179
+00:59:31,471 --> 00:59:32,904
+So you don't have to unwrap     
+an optional to set it,          
+
+1180
+00:59:32,973 --> 00:59:35,807
+you just set it.                
+And optionals know okay,        
+
+1181
+00:59:35,875 --> 00:59:39,043
+this must be the associated     
+value of an optional string,    
+
+1182
+00:59:39,112 --> 00:59:42,047
+so I will set it, okay?         
+So that's it,                   
+
+1183
+00:59:42,116 --> 00:59:51,489
+let's see if that works. Okay,  
+
+1184
+00:59:51,558 --> 00:59:55,560
+so we got our UI, looks good,   
+got a display in there, mm-hm.  
+
+1185
+00:59:55,629 --> 01:00:01,132
+Let's try 8, well 6,            
+well, it's kinda working.       
+
+1186
+01:00:01,201 --> 01:00:02,601
+It's definitely doing           
+the appending thing,            
+
+1187
+01:00:02,670 --> 01:00:04,303
+but that 0 at the beginning,    
+
+1188
+01:00:04,371 --> 01:00:08,406
+that's wrong. That zero is not  
+part of what I was typing.      
+
+1189
+01:00:08,475 --> 01:00:10,175
+That zero just happened         
+to be there at startup.         
+
+1190
+01:00:10,243 --> 01:00:13,078
+So, it shouldn't be put         
+in in the front there and       
+
+1191
+01:00:13,146 --> 01:00:14,413
+the problem here                
+is really simple.               
+
+1192
+01:00:14,481 --> 01:00:17,548
+It's just that we haven't       
+taught our calculator to know   
+
+1193
+01:00:17,617 --> 01:00:19,117
+when the user is entering,      
+
+1194
+01:00:19,185 --> 01:00:20,652
+in the middle of                
+entering a number,              
+
+1195
+01:00:20,721 --> 01:00:22,488
+versus when it                  
+just started up.                
+
+1196
+01:00:22,556 --> 01:00:25,123
+Or maybe, the result of         
+an operation just appeared      
+
+1197
+01:00:25,192 --> 01:00:27,625
+there. Obviously when we type   
+we wouldn't want that to        
+
+1198
+01:00:27,694 --> 01:00:30,361
+have more, thanks to it.        
+So, we need to teach our        
+
+1199
+01:00:30,430 --> 01:00:32,931
+calculator brain here to know   
+the difference between whether  
+
+1200
+01:00:32,999 --> 01:00:34,466
+the user is in the middle       
+of typing or not.               
+
+1201
+01:00:34,535 --> 01:00:37,302
+And we're gonna do that,        
+by creating another property    
+
+1202
+01:00:37,371 --> 01:00:43,141
+called                          
+userIsInTheMiddleOfTyping.      
+
+1203
+01:00:43,210 --> 01:00:47,546
+Which is gonna be a Bool. Now,  
+I typed a long name here. Kind  
+
+1204
+01:00:47,614 --> 01:00:51,183
+of for effect. We probably      
+could have called this typing.  
+
+1205
+01:00:53,119 --> 01:00:57,288
+You know, there's trade off     
+between clarity and brevity.    
+
+1206
+01:00:57,357 --> 01:01:00,458
+Okay, brevity is valued,        
+but clarity is even more        
+
+1207
+01:01:00,527 --> 01:01:05,597
+important. So, maybe isTyping   
+would have been enough.         
+
+1208
+01:01:05,665 --> 01:01:08,967
+But I would err slightly on     
+the side of clarity. So I'm     
+
+1209
+01:01:09,036 --> 01:01:10,936
+using this long one. The other  
+thing, the reason I typed this  
+
+1210
+01:01:11,005 --> 01:01:13,304
+long is to show you that I'm    
+never gonna have to type this   
+
+1211
+01:01:13,373 --> 01:01:16,375
+again, because Xcode is always  
+gonna escape complete this for  
+
+1212
+01:01:16,443 --> 01:01:19,711
+me, as you'll see when I start  
+using it. Now when I added      
+
+1213
+01:01:19,779 --> 01:01:22,915
+this beautiful var, this Bool.  
+Okay, a Bool, by the way,       
+
+1214
+01:01:22,983 --> 01:01:24,315
+is just something that          
+can be true or false,           
+
+1215
+01:01:24,384 --> 01:01:28,353
+of course. I got an error.      
+Look at that error up there.    
+
+1216
+01:01:28,422 --> 01:01:31,857
+This little thing here- it's    
+on a line that had nothing to   
+
+1217
+01:01:31,926 --> 01:01:34,760
+do with what I just did.        
+What? That's not fair.          
+
+1218
+01:01:34,829 --> 01:01:37,562
+What is this? It says           
+Class 'View Controller'         
+
+1219
+01:01:37,631 --> 01:01:40,999
+has no initializers. Okay       
+well, what the heck is that?    
+
+1220
+01:01:41,068 --> 01:01:42,634
+That has nothing to do          
+with the var either?            
+
+1221
+01:01:42,703 --> 01:01:45,637
+Well, here's the deal here.     
+In Swift,                       
+
+1222
+01:01:45,705 --> 01:01:50,475
+all properties have to be       
+initialized. Every single one.  
+
+1223
+01:01:50,543 --> 01:01:54,246
+No exceptions.                  
+Now there's two ways            
+
+1224
+01:01:54,315 --> 01:01:57,516
+to initialize your properties   
+in a class or struct.           
+
+1225
+01:01:57,585 --> 01:01:59,717
+One is with an initializer.     
+
+1226
+01:01:59,786 --> 01:02:03,055
+An initializer is a special     
+method, it's called init,       
+
+1227
+01:02:03,123 --> 01:02:06,525
+I-N-I-T. You can have any       
+number of arguments that your   
+
+1228
+01:02:06,593 --> 01:02:09,895
+class requires but, in its      
+implementation it has to        
+
+1229
+01:02:09,963 --> 01:02:14,599
+initialize all uninitialized    
+properties. Okay? Now,          
+
+1230
+01:02:14,668 --> 01:02:16,234
+we're not gonna talk            
+about initializers today.       
+
+1231
+01:02:16,303 --> 01:02:18,270
+I'll talk about it a little     
+bit next Wednesday,             
+
+1232
+01:02:18,339 --> 01:02:21,373
+actually. So, we're not gonna   
+use an initializer. Because     
+
+1233
+01:02:21,442 --> 01:02:23,976
+there's a second way to         
+initialize, which is to just    
+
+1234
+01:02:24,044 --> 01:02:27,445
+give it a value. Okay,          
+is false, right? The user's     
+
+1235
+01:02:27,514 --> 01:02:30,449
+obviously not in the middle of  
+typing at the beginning, so     
+
+1236
+01:02:30,518 --> 01:02:34,052
+is false. And                   
+that got rid of the error.      
+
+1237
+01:02:34,120 --> 01:02:39,324
+Okay? In fact, we don't need    
+this either. Do you see why?    
+
+1238
+01:02:39,393 --> 01:02:43,094
+Because false,                  
+can only be a Bool, So          
+
+1239
+01:02:43,163 --> 01:02:48,566
+Swift can infer that this       
+must be a Bool. And again,      
+
+1240
+01:02:48,635 --> 01:02:51,836
+we do not want these things in  
+here, if we can help it. Now,   
+
+1241
+01:02:51,905 --> 01:02:55,473
+what about this guy? That's     
+not initialized. How come he's  
+
+1242
+01:02:55,542 --> 01:02:58,076
+not complaining, okay? How      
+come he's not getting that?     
+
+1243
+01:02:58,145 --> 01:03:01,880
+Must be initializers business   
+going on. Well, because he's    
+
+1244
+01:03:01,949 --> 01:03:05,283
+an optional. And optionals      
+are special when it comes       
+
+1245
+01:03:05,352 --> 01:03:08,820
+to initialization. They all     
+get this automatic treatment.   
+
+1246
+01:03:08,889 --> 01:03:13,659
+Equals nil. nil means           
+not set optional. Okay.         
+
+1247
+01:03:13,727 --> 01:03:16,027
+That's the only thing nil       
+means in Swift. It means        
+
+1248
+01:03:16,096 --> 01:03:20,031
+an optional that's not set.     
+So optional will automatically  
+
+1249
+01:03:20,100 --> 01:03:23,001
+get this treatment at all       
+times when you declare them.    
+
+1250
+01:03:23,069 --> 01:03:24,836
+And it makes sense right,       
+if you have an optional         
+
+1251
+01:03:24,905 --> 01:03:27,138
+it's gonna start out not        
+set until you set it.           
+
+1252
+01:03:27,207 --> 01:03:30,943
+Now you could set this equal    
+to some UILabel of some sort,   
+
+1253
+01:03:31,011 --> 01:03:33,812
+and have it be set from the     
+start, that's possible too.     
+
+1254
+01:03:33,881 --> 01:03:40,351
+But if you don't say anything   
+it gets not set. Alright, so    
+
+1255
+01:03:40,420 --> 01:03:43,588
+we've got that. Now we can use  
+this userIsInTheMiddleOfTyping  
+
+1256
+01:03:43,657 --> 01:03:45,023
+thing.                          
+We'll say if the user is        
+
+1257
+01:03:45,092 --> 01:03:46,992
+in the middle of                
+typing then we can do,          
+
+1258
+01:03:47,061 --> 01:03:51,863
+this business that we           
+just did here, okay?            
+
+1259
+01:03:51,931 --> 01:03:54,733
+What if it's not in the middle  
+of typing? Then we're just      
+
+1260
+01:03:54,802 --> 01:03:58,236
+gonna set the display's text    
+equal to the digit, cuz we're   
+
+1261
+01:03:58,305 --> 01:04:03,275
+starting a new number then.     
+In this case of course,         
+
+1262
+01:04:03,343 --> 01:04:08,580
+the user is now in              
+the middle of typing Okay,      
+
+1263
+01:04:08,649 --> 01:04:11,783
+everybody got that? So that's   
+just how we're going to make    
+
+1264
+01:04:11,852 --> 01:04:13,651
+sure we do the right thing.     
+So let's go ahead and run,      
+
+1265
+01:04:13,720 --> 01:04:16,555
+see if that whole 0,            
+leading 0 problem is fixed.     
+
+1266
+01:04:16,624 --> 01:04:18,423
+Should be,                      
+because when we start off,      
+
+1267
+01:04:18,492 --> 01:04:20,192
+we're not in the middle         
+of typing. So                   
+
+1268
+01:04:20,261 --> 01:04:22,460
+when we start typing            
+a new number, boom,             
+
+1269
+01:04:22,529 --> 01:04:25,497
+we get a new number. But if     
+we're in the middle of typing,  
+
+1270
+01:04:25,566 --> 01:04:31,135
+we keep getting the appending   
+deal. All right,                
+
+1271
+01:04:31,204 --> 01:04:32,671
+we are just rocking and         
+rolling here.                   
+
+1272
+01:04:32,740 --> 01:04:36,442
+Next, let's put some operation  
+buttons in this baby.           
+
+1273
+01:04:36,510 --> 01:04:39,411
+We can type in numbers,         
+now let's start operating.      
+
+1274
+01:04:39,479 --> 01:04:42,147
+I'm gonna do that by            
+doing a very bad thing,         
+
+1275
+01:04:42,215 --> 01:04:46,317
+which is I'm going to copy and  
+paste the 7 button.             
+
+1276
+01:04:46,386 --> 01:04:48,687
+You're gonna see why that's     
+bad in a moment. And            
+
+1277
+01:04:48,756 --> 01:04:52,824
+I'm gonna do a very simple      
+operation, pi, okay?            
+
+1278
+01:04:52,893 --> 01:04:55,293
+So pi is just an operation      
+that's gonna put pi in my       
+
+1279
+01:04:55,362 --> 01:04:59,598
+display, that's all it's gonna  
+do. So I'm gonna control drag   
+
+1280
+01:04:59,666 --> 01:05:03,368
+to wire it up to a method.      
+It's an action, not an outlet.  
+
+1281
+01:05:03,437 --> 01:05:05,871
+It's an action,                 
+just like touchDigit was.       
+
+1282
+01:05:05,940 --> 01:05:07,372
+I'm gonna call it               
+performOperation,               
+
+1283
+01:05:07,440 --> 01:05:09,474
+cuz that's what it does,        
+it performs an operation.       
+
+1284
+01:05:09,543 --> 01:05:12,177
+I'm gonna make sure I switch    
+this to button like you         
+
+1285
+01:05:12,246 --> 01:05:14,947
+guys all are in your            
+homework assignments. And       
+
+1286
+01:05:15,015 --> 01:05:17,615
+then I'm going to connect.      
+So now I have this new method   
+
+1287
+01:05:17,684 --> 01:05:21,820
+right here, and it is hooked    
+up to pi, so that's good.       
+
+1288
+01:05:21,889 --> 01:05:22,821
+And what do I want              
+to do in here?                  
+
+1289
+01:05:22,890 --> 01:05:25,791
+Well, I could do the same       
+thing of asking the button      
+
+1290
+01:05:25,859 --> 01:05:30,329
+which operation it is. How      
+about let mathematicalSymbol,   
+
+1291
+01:05:30,397 --> 01:05:34,199
+because that's what these       
+things are in these operation   
+
+1292
+01:05:34,268 --> 01:05:38,036
+buttons, equal the              
+sender.currentTitle!, okay?     
+
+1293
+01:05:38,105 --> 01:05:40,572
+Great, now I've got the pi,     
+but I wanted to show you,       
+
+1294
+01:05:40,641 --> 01:05:43,242
+I promised I'd show you how     
+to do this unwrapping without   
+
+1295
+01:05:43,310 --> 01:05:46,344
+crashing, so let's do it here.  
+Let's decide that if we do      
+
+1296
+01:05:46,413 --> 01:05:49,915
+have a blank button, a button   
+whose title is not set, let's   
+
+1297
+01:05:49,983 --> 01:05:53,085
+say we won't crash. Instead,    
+we'll just do nothing.          
+
+1298
+01:05:53,154 --> 01:05:54,319
+We won't do any operations.     
+
+1299
+01:05:54,388 --> 01:05:55,921
+Like you didn't even            
+click a button, okay?           
+
+1300
+01:05:55,990 --> 01:05:59,190
+So, again, optionals are so     
+important. You can see,         
+
+1301
+01:05:59,259 --> 01:06:03,629
+look how minuscule the syntax   
+is for these things, right?     
+
+1302
+01:06:03,697 --> 01:06:06,197
+Question mark. Exclamation      
+point. You barely have to type  
+
+1303
+01:06:06,266 --> 01:06:08,867
+to use an optional. Well, it's  
+the same thing if you want to   
+
+1304
+01:06:08,936 --> 01:06:10,969
+test the optional               
+before unwrapping.              
+
+1305
+01:06:11,038 --> 01:06:13,004
+Instead of putting the          
+exclamation point at the end,   
+
+1306
+01:06:13,073 --> 01:06:18,510
+you put two characters          
+at the beginning. if. So        
+
+1307
+01:06:18,578 --> 01:06:22,881
+read this. If I can let         
+mathematical symbol equal       
+
+1308
+01:06:22,950 --> 01:06:26,385
+the sender's currentTitle,      
+then. So,                       
+
+1309
+01:06:26,453 --> 01:06:29,054
+if I can unwrap this optional,  
+get its associated value,       
+
+1310
+01:06:29,123 --> 01:06:30,255
+then I'll do something, and     
+
+1311
+01:06:30,324 --> 01:06:32,291
+then you can just put whatever  
+code you want in here,          
+
+1312
+01:06:32,359 --> 01:06:33,558
+and inside here,                
+
+1313
+01:06:33,627 --> 01:06:37,161
+mathematicalSymbol will be a    
+string, the associated value.   
+
+1314
+01:06:37,230 --> 01:06:40,598
+The unwrapped optional, right?  
+Outside of these curly braces,  
+
+1315
+01:06:40,667 --> 01:06:43,067
+mathematicalSymbol is not even  
+defined, so it doesn't matter.  
+
+1316
+01:06:43,136 --> 01:06:45,437
+It's not even defined. So       
+
+1317
+01:06:45,506 --> 01:06:48,740
+inside this                     
+mathematicalSymbol, I could     
+
+1318
+01:06:48,808 --> 01:06:53,878
+say if mathematicalSymbol       
+equals, pi, then do something.  
+
+1319
+01:06:53,947 --> 01:06:57,215
+Else if the mathematical        
+symbol equals something else,   
+
+1320
+01:06:57,284 --> 01:06:59,952
+okay? But, if then else, if     
+then else, if then else, that   
+
+1321
+01:07:00,020 --> 01:07:02,621
+would be really bad code. So    
+I'm going to use a different    
+
+1322
+01:07:02,690 --> 01:07:05,156
+one here.                       
+A different little expression.  
+
+1323
+01:07:05,225 --> 01:07:08,160
+I'm going to use switch. So a   
+lot of languages have switch.   
+
+1324
+01:07:08,228 --> 01:07:10,562
+So I'm going to switch on       
+the mathematical symbol.        
+
+1325
+01:07:10,631 --> 01:07:14,532
+Not all languages can switch    
+on a string. Some can, but      
+
+1326
+01:07:14,601 --> 01:07:17,936
+you can in Swift. And I can     
+just say, in the case that      
+
+1327
+01:07:18,005 --> 01:07:21,573
+it is pi, then I'm going        
+to do something. Now,           
+
+1328
+01:07:21,642 --> 01:07:23,274
+unfortunately I'm               
+getting an error here.          
+
+1329
+01:07:23,343 --> 01:07:25,143
+So, what am I gonna do? Let's   
+just put in what I'm gonna do.  
+
+1330
+01:07:25,212 --> 01:07:29,948
+I just want the display.        
+Woops, the displays, text to    
+
+1331
+01:07:30,017 --> 01:07:34,152
+equal pi. Okay. This is pretty  
+bad to type it in as a string,  
+
+1332
+01:07:34,221 --> 01:07:35,520
+we'll get back to               
+that in a second.               
+
+1333
+01:07:35,589 --> 01:07:37,856
+But that's basically what       
+I wanted to do, right?          
+
+1334
+01:07:37,925 --> 01:07:40,925
+Is set the display to be pi.    
+Now I'm getting an error.       
+
+1335
+01:07:40,994 --> 01:07:43,629
+What is the error? It says      
+switch has to be exhaustive.    
+
+1336
+01:07:43,697 --> 01:07:46,631
+And that's true. When you have  
+a switch, you have to have      
+
+1337
+01:07:46,700 --> 01:07:50,402
+every possible case. So unless  
+we want to spend the next few   
+
+1338
+01:07:50,471 --> 01:07:54,172
+lectures I guess going          
+like this, case a-a-a, and      
+
+1339
+01:07:54,241 --> 01:07:58,510
+typing any possible string,     
+okay, this is no good. So       
+
+1340
+01:07:58,578 --> 01:08:03,015
+luckily though,                 
+there is a default case. So     
+
+1341
+01:08:03,083 --> 01:08:05,417
+default just means              
+all other cases.                
+
+1342
+01:08:05,486 --> 01:08:06,651
+And here I'm just gonna         
+break out of the switch.        
+
+1343
+01:08:06,720 --> 01:08:10,755
+I'm gonna use this command      
+break. Now notice that my       
+
+1344
+01:08:10,824 --> 01:08:13,257
+indentation's gotten a little   
+messed up here. This should     
+
+1345
+01:08:13,326 --> 01:08:16,661
+really be the same indentation  
+as this. A really cool feature  
+
+1346
+01:08:16,730 --> 01:08:20,298
+is select any text you want,    
+even the whole file, and        
+
+1347
+01:08:20,367 --> 01:08:24,402
+do Ctrl I for indent ,and it    
+will re-indent everything for   
+
+1348
+01:08:24,471 --> 01:08:27,072
+you. And I recommend you do     
+that on all your source files   
+
+1349
+01:08:27,141 --> 01:08:29,274
+when you turn in your           
+homework. Just select all,      
+
+1350
+01:08:29,342 --> 01:08:34,079
+indent. So we got this pi       
+here. Let's see if this works.  
+
+1351
+01:08:43,857 --> 01:08:45,424
+Got the numbers                 
+are still working.              
+
+1352
+01:08:45,493 --> 01:08:49,995
+And pi. Okay. That's weird.     
+
+1353
+01:08:50,063 --> 01:08:53,899
+I got that pi that I typed      
+in right here. Okay, but        
+
+1354
+01:08:53,968 --> 01:08:57,069
+what, how come I got this       
+pi symbol added on there?       
+
+1355
+01:08:57,137 --> 01:09:02,140
+That seems weird. Let's try     
+a new number. So, no, okay.     
+
+1356
+01:09:02,209 --> 01:09:05,376
+When I type more numbers,       
+it adds it on to the end. So    
+
+1357
+01:09:05,445 --> 01:09:06,945
+even if that pi symbol          
+wasn't in there,                
+
+1358
+01:09:07,014 --> 01:09:08,847
+I'd be able to change           
+the value of pi,                
+
+1359
+01:09:08,916 --> 01:09:12,885
+evidently by adding more        
+digits to it. That's no good.   
+
+1360
+01:09:12,953 --> 01:09:15,954
+And look at this. When I type   
+more it puts an ellipsis,       
+
+1361
+01:09:16,022 --> 01:09:19,024
+and it stops taking numbers.    
+Okay, this is a mess.           
+
+1362
+01:09:19,093 --> 01:09:21,226
+We got three big                
+problems here. That pi.         
+
+1363
+01:09:21,294 --> 01:09:23,095
+The fact that I can add on      
+things to the end of it,        
+
+1364
+01:09:23,164 --> 01:09:24,730
+and the fact that I             
+get these ellipses.             
+
+1365
+01:09:24,798 --> 01:09:25,730
+So how are we going             
+to fix those?                   
+
+1366
+01:09:25,799 --> 01:09:28,967
+Let's go fix all three of       
+those real quick. Okay. So,     
+
+1367
+01:09:29,036 --> 01:09:31,670
+first the pi coming on          
+the end. Well look,             
+
+1368
+01:09:31,739 --> 01:09:34,239
+where do I ever set the         
+display sets? I set it here.    
+
+1369
+01:09:34,308 --> 01:09:36,708
+Well, so clearly the pi's       
+not coming from this.           
+
+1370
+01:09:36,777 --> 01:09:40,712
+I set it here. This only        
+sets it to one digit so         
+
+1371
+01:09:40,781 --> 01:09:43,015
+that can't be it,               
+cuz I've got multiple.          
+
+1372
+01:09:43,083 --> 01:09:49,087
+This is the only other          
+place I set it. Maybe           
+
+1373
+01:09:49,156 --> 01:09:54,392
+this is the problem. Do you     
+see the pi button right there?  
+
+1374
+01:09:54,461 --> 01:09:58,964
+It's hooked up to this method.  
+And to this method. So          
+
+1375
+01:09:59,033 --> 01:10:03,201
+it's doing both. It's doing     
+this and putting this on here,  
+
+1376
+01:10:03,270 --> 01:10:05,971
+and then it's calling this,     
+and doing this. And             
+
+1377
+01:10:06,040 --> 01:10:10,575
+the digit is the pi, okay? So,  
+that's bad. Now, how are we     
+
+1378
+01:10:10,644 --> 01:10:15,080
+going to fix that? Question?    
+>> How did you set              
+
+1379
+01:10:15,149 --> 01:10:15,681
+the order range?                
+>> Yeah,                        
+
+1380
+01:10:15,749 --> 01:10:16,915
+the question is how did         
+it decide the order?            
+
+1381
+01:10:16,984 --> 01:10:18,983
+And the answer is               
+the order is undefined.         
+
+1382
+01:10:19,052 --> 01:10:21,019
+In my experience,               
+it's usually alphabetical, but  
+
+1383
+01:10:21,087 --> 01:10:23,989
+it's undefined. So you would    
+never wanna depend on that.     
+
+1384
+01:10:24,058 --> 01:10:26,191
+But yeah, perform comes         
+before touchDigit.              
+
+1385
+01:10:26,260 --> 01:10:29,461
+I don't know. But you're        
+almost never gonna have two     
+
+1386
+01:10:29,529 --> 01:10:31,563
+things hooked up like this.     
+This is obviously an error.     
+
+1387
+01:10:31,631 --> 01:10:35,000
+This is causing a problem.      
+So let's fix it. How do we do   
+
+1388
+01:10:35,068 --> 01:10:37,502
+that? There's another way to    
+know what's connected other     
+
+1389
+01:10:37,571 --> 01:10:40,772
+than using the little circles,  
+which is just to right click    
+
+1390
+01:10:40,841 --> 01:10:43,976
+on something in the UI. So I    
+right clicked on pi, and I got  
+
+1391
+01:10:44,044 --> 01:10:47,345
+this big window that shows me   
+all the connections to pi.      
+
+1392
+01:10:47,414 --> 01:10:49,614
+This would be all the instance  
+variables, all the methods,     
+
+1393
+01:10:49,683 --> 01:10:52,817
+etc. And we can see that for    
+the event Touch Up Inside,      
+
+1394
+01:10:52,886 --> 01:10:56,521
+which means a touch of          
+the finger went up inside       
+
+1395
+01:10:56,590 --> 01:11:00,692
+the bounds of the button. It's  
+sending both these messages,    
+
+1396
+01:11:00,760 --> 01:11:02,727
+touchDigit and                  
+perfomOperation, and            
+
+1397
+01:11:02,796 --> 01:11:05,763
+we clearly did not              
+want touchDigit for pi.         
+
+1398
+01:11:05,832 --> 01:11:09,635
+Why did I get it? Because I     
+copied and pasted that 7.       
+
+1399
+01:11:09,703 --> 01:11:12,404
+Remember I said that was a bad  
+idea? Yeah, that's why. So      
+
+1400
+01:11:12,473 --> 01:11:16,508
+let's disconnect it by just     
+clicking this little x, okay,   
+
+1401
+01:11:16,577 --> 01:11:22,181
+boom. Now this only is sent     
+by this, and not by this.       
+
+1402
+01:11:22,249 --> 01:11:24,649
+So that fixed that.             
+What about the fact that        
+
+1403
+01:11:24,718 --> 01:11:28,387
+I could type extra numbers on   
+the end of pie? Well, that's    
+
+1404
+01:11:28,455 --> 01:11:31,089
+a pretty simple neither. When   
+am I allowed to type other      
+
+1405
+01:11:31,158 --> 01:11:34,258
+numbers in? When the user's in  
+the middle of typing a number.  
+
+1406
+01:11:34,327 --> 01:11:35,960
+Well as soon as I hit pi,       
+
+1407
+01:11:36,029 --> 01:11:39,364
+is the user in the middle of    
+typing a number? No, they       
+
+1408
+01:11:39,433 --> 01:11:41,933
+just typed pi. So they're not   
+in the middle of typing pi.     
+
+1409
+01:11:42,002 --> 01:11:43,402
+And in fact,                    
+they're typing a number.        
+
+1410
+01:11:43,471 --> 01:11:45,904
+And in fact any time we         
+perform any operation,          
+
+1411
+01:11:45,973 --> 01:11:49,007
+the user is in the middle of    
+typing a number is false.       
+
+1412
+01:11:49,076 --> 01:11:51,476
+They are clearly not in         
+the middle of typing anymore.   
+
+1413
+01:11:51,545 --> 01:11:53,745
+Whatever's gonna be display is  
+gonna be the result of that     
+
+1414
+01:11:53,813 --> 01:11:57,849
+operation. Okay, so that fixes  
+that. How bout the little       
+
+1415
+01:11:57,918 --> 01:12:00,385
+ellipses, and the numbers       
+getting cut off. Well here's    
+
+1416
+01:12:00,453 --> 01:12:03,956
+a kind of a cute fix to that.   
+In label, there is a cool       
+
+1417
+01:12:04,024 --> 01:12:06,024
+feature called autoshrink,      
+you see it right there?         
+
+1418
+01:12:06,093 --> 01:12:08,460
+So I just selected label,       
+brought up this inspector.      
+
+1419
+01:12:08,528 --> 01:12:11,730
+There's autoshrink, and you     
+can have it shrink down, for    
+
+1420
+01:12:11,798 --> 01:12:14,632
+example to a minimum font       
+size, let's say 9 font.         
+
+1421
+01:12:14,701 --> 01:12:16,468
+And now,                        
+when we get too many numbers,   
+
+1422
+01:12:16,536 --> 01:12:19,571
+it'll shrink down instead of    
+doing ellipses, right there.    
+
+1423
+01:12:19,639 --> 01:12:21,940
+Now, this probably isn't        
+the best solution to this.      
+
+1424
+01:12:22,009 --> 01:12:24,576
+A better solution would be,     
+have our calculator only show   
+
+1425
+01:12:24,644 --> 01:12:27,112
+a certain number of digits      
+after the decimal point.        
+
+1426
+01:12:27,181 --> 01:12:28,780
+Probably would be               
+really better. And              
+
+1427
+01:12:28,849 --> 01:12:30,782
+that's extra credit for         
+you in your homework, okay?     
+
+1428
+01:12:30,851 --> 01:12:33,685
+So good luck with that.         
+Right, so we got this.          
+
+1429
+01:12:33,754 --> 01:12:35,454
+We fixed all these problems,    
+let's take a look.              
+
+1430
+01:12:43,964 --> 01:12:48,533
+All right, so got our numbers   
+here. Pi, alright no pi and     
+
+1431
+01:12:48,602 --> 01:12:52,537
+it didn't add them              
+on to the end and               
+
+1432
+01:12:52,606 --> 01:12:54,673
+what if we had a lot            
+of numbers in here.             
+
+1433
+01:12:55,810 --> 01:12:57,642
+Yeah, look at that,             
+it's autoshrinking.             
+
+1434
+01:12:57,711 --> 01:12:59,144
+Okay, we're not                 
+losing any numbers.             
+
+1435
+01:12:59,213 --> 01:13:00,812
+Yeah, probably not              
+the best solution but           
+
+1436
+01:13:00,881 --> 01:13:05,083
+I get to show you autoshrink.   
+Okay, what's next?              
+
+1437
+01:13:05,151 --> 01:13:09,254
+We're gonna attack this little  
+problem right here. Okay?       
+
+1438
+01:13:09,323 --> 01:13:12,757
+This is really ugly, really     
+what I want this to be is this  
+
+1439
+01:13:12,826 --> 01:13:17,061
+really cool feature in Swift,   
+Double.pi, which is the double  
+
+1440
+01:13:17,130 --> 01:13:20,798
+precision floating point value  
+of pi. Of course, I can't say   
+
+1441
+01:13:20,867 --> 01:13:23,735
+this because- Cannot assign     
+value of type 'Double' to       
+
+1442
+01:13:23,804 --> 01:13:26,638
+an optional string because      
+the only way you can assign     
+
+1443
+01:13:26,707 --> 01:13:30,008
+anything to an optional string  
+besides nil would be something  
+
+1444
+01:13:30,077 --> 01:13:33,278
+that's a string. So we can set  
+that associated value. Now,     
+
+1445
+01:13:33,347 --> 01:13:36,047
+does anyone know, from          
+what I've shown you today,      
+
+1446
+01:13:36,116 --> 01:13:42,821
+how we could convert this       
+to a sting? No brave soul?      
+
+1447
+01:13:42,890 --> 01:13:46,258
+Back, exactly.                  
+Backslash, open parentheses,    
+
+1448
+01:13:46,326 --> 01:13:48,861
+close parenthesis,              
+that little trick, right?       
+
+1449
+01:13:48,929 --> 01:13:52,230
+You can just put                
+Double.pi in here.              
+
+1450
+01:13:52,299 --> 01:13:55,033
+Doubles can be converted        
+to strings, bingo.              
+
+1451
+01:13:55,102 --> 01:13:59,737
+Now, this is kinda ugly, okay?  
+This really doesn't look good   
+
+1452
+01:13:59,806 --> 01:14:03,609
+because this is more meant to   
+embed things in other strings.  
+
+1453
+01:14:03,677 --> 01:14:06,644
+It's not really the way to      
+make something a string.        
+
+1454
+01:14:06,713 --> 01:14:08,814
+The way to really make          
+a new string is to create       
+
+1455
+01:14:08,882 --> 01:14:11,816
+a new string. And so, here      
+you're seeing what the syntax   
+
+1456
+01:14:11,885 --> 01:14:16,288
+is to create a new object,      
+a new struct or a new class,    
+
+1457
+01:14:16,356 --> 01:14:19,625
+okay? The name of the class,    
+and then parentheses.           
+
+1458
+01:14:19,693 --> 01:14:23,494
+Now, inside these parentheses,  
+can be anything the class       
+
+1459
+01:14:23,563 --> 01:14:27,565
+can take to create one of       
+itself, right? Anything that    
+
+1460
+01:14:27,634 --> 01:14:30,401
+class can take. And remember I  
+mentioned those initializers?   
+
+1461
+01:14:30,470 --> 01:14:33,138
+These are the arguments to the  
+initializer. And initializers,  
+
+1462
+01:14:33,206 --> 01:14:34,706
+you've got multiple             
+initializers.                   
+
+1463
+01:14:34,775 --> 01:14:36,875
+String has a whole              
+bunch of initializers.          
+
+1464
+01:14:36,944 --> 01:14:39,444
+One of the initializers         
+that a string has,              
+
+1465
+01:14:39,513 --> 01:14:44,749
+takes a double. So              
+this would be the right way to  
+
+1466
+01:14:44,818 --> 01:14:46,484
+convert from a double           
+to a string and                 
+
+1467
+01:14:46,553 --> 01:14:48,820
+it looks a lot better in        
+the code as well, right.        
+
+1468
+01:14:48,889 --> 01:14:52,524
+It's more obvious what          
+we're doing, okay?              
+
+1469
+01:14:52,592 --> 01:14:55,527
+All right let's add             
+another operation here,         
+
+1470
+01:14:55,596 --> 01:14:59,030
+I'm gonna make this one be      
+square root. So underneath      
+
+1471
+01:14:59,099 --> 01:15:01,967
+the square root symbol,         
+from the edit menu, emoji and   
+
+1472
+01:15:02,035 --> 01:15:06,338
+symbols, you can actually       
+search. We could pick a smiley  
+
+1473
+01:15:06,407 --> 01:15:10,275
+face but let's go square root.  
+Square root, here it is, so     
+
+1474
+01:15:10,344 --> 01:15:14,846
+we're gonna use this square     
+root symbol in code there. And  
+
+1475
+01:15:14,914 --> 01:15:16,748
+let's go ahead and copy it so   
+we can use it in the code.      
+
+1476
+01:15:16,817 --> 01:15:18,050
+All right, so we have this,     
+
+1477
+01:15:18,118 --> 01:15:21,753
+it's nicely hooked up just      
+to this and not to this.        
+
+1478
+01:15:21,821 --> 01:15:25,724
+So that's good. We just need    
+to say case of square root.     
+
+1479
+01:15:25,793 --> 01:15:29,160
+What do we wanna do? We         
+wanna set the display's text    
+
+1480
+01:15:29,229 --> 01:15:32,964
+equal to the square root of     
+something. Okay, well what do   
+
+1481
+01:15:33,033 --> 01:15:35,600
+we want this to be the square   
+root of? Well we want it to be  
+
+1482
+01:15:35,669 --> 01:15:39,370
+the square root of whatever's   
+in this display already. So,    
+
+1483
+01:15:39,439 --> 01:15:45,710
+display!.text, okay, will       
+that work? No, because this     
+
+1484
+01:15:45,779 --> 01:15:49,047
+is a string and we can't take   
+the square root of a string.    
+
+1485
+01:15:49,116 --> 01:15:53,818
+And not only that, the square   
+root returns a double, okay?    
+
+1486
+01:15:53,887 --> 01:15:56,855
+And we can't put a double into  
+a string, so we at least have   
+
+1487
+01:15:56,924 --> 01:16:00,892
+to do this again, put           
+a string around it. Okay? But   
+
+1488
+01:16:00,961 --> 01:16:04,662
+this is still a string. So I'm  
+gonna get this out of here and  
+
+1489
+01:16:04,731 --> 01:16:06,131
+make a little                   
+local variable so               
+
+1490
+01:16:06,200 --> 01:16:10,569
+we can work on this, okay?      
+So, we need this operand,       
+
+1491
+01:16:10,638 --> 01:16:15,574
+which is currently a string,    
+to be a double. So              
+
+1492
+01:16:15,642 --> 01:16:21,079
+can we do this, double?         
+You think we can do that?       
+
+1493
+01:16:21,148 --> 01:16:24,083
+In the same way that we went    
+this way? Can we go this way?   
+
+1494
+01:16:25,219 --> 01:16:29,922
+The answer is yes.              
+Or yes! One of those.           
+
+1495
+01:16:29,990 --> 01:16:34,326
+The answer is yes because,      
+what if that string is hello?   
+
+1496
+01:16:34,395 --> 01:16:39,164
+What do you convert hello to?   
+It can't be converted.          
+
+1497
+01:16:39,233 --> 01:16:43,936
+So this initializer for         
+double that takes a string,     
+
+1498
+01:16:44,004 --> 01:16:48,340
+it returns an optional double.  
+Do you see why? Cuz if you      
+
+1499
+01:16:48,408 --> 01:16:50,709
+give it a string that it        
+can't convert to a double,      
+
+1500
+01:16:50,778 --> 01:16:53,511
+it returns not set.             
+Couldn't do it, basically.      
+
+1501
+01:16:53,580 --> 01:16:57,516
+So if we look at operand right  
+here, it's an optional double,  
+
+1502
+01:16:57,585 --> 01:16:59,618
+okay? Whereas when we           
+did this string up here,        
+
+1503
+01:16:59,687 --> 01:17:01,619
+string didn't need to           
+return optional string,         
+
+1504
+01:17:01,688 --> 01:17:04,323
+because it can always convert   
+a double to a string, always.   
+
+1505
+01:17:04,391 --> 01:17:06,224
+But you can't always convert    
+a string to a double,           
+
+1506
+01:17:06,293 --> 01:17:08,427
+it has to look like a double.   
+Okay?                           
+
+1507
+01:17:08,495 --> 01:17:10,395
+So, we're gonna do that and     
+I'm gonna go ahead and          
+
+1508
+01:17:10,464 --> 01:17:13,231
+force unwrap it here with the   
+exclamation point, assuming     
+
+1509
+01:17:13,300 --> 01:17:16,068
+that I never have anything      
+in my display that can't be     
+
+1510
+01:17:16,136 --> 01:17:19,804
+converted to a double. Maybe    
+that's a bad assumption but     
+
+1511
+01:17:19,873 --> 01:17:23,007
+I'm gonna assume that for now.  
+I'm also gonna Ctrl+I again,    
+
+1512
+01:17:23,076 --> 01:17:26,511
+to get my indenting right.      
+Okay, does this make sense?     
+
+1513
+01:17:26,580 --> 01:17:29,280
+So now all is well.             
+Operand is a double.            
+
+1514
+01:17:29,349 --> 01:17:31,015
+So I can take the square        
+root of a double.               
+
+1515
+01:17:31,084 --> 01:17:33,285
+I'm gonna convert it to         
+a string and go to here.        
+
+1516
+01:17:33,353 --> 01:17:36,121
+All right, wow,                 
+that's a lot of mess. Okay,     
+
+1517
+01:17:36,190 --> 01:17:39,123
+that's really messy code, I'm   
+gonna have to fix that, but     
+
+1518
+01:17:39,192 --> 01:17:41,960
+conceptually you understand     
+hopefully what's going on       
+
+1519
+01:17:42,028 --> 01:17:47,833
+there. So let's do this, let's  
+try 81 square root. Square      
+
+1520
+01:17:47,901 --> 01:17:51,069
+root again. Square root again.  
+How about pi square root?       
+
+1521
+01:17:51,138 --> 01:17:55,106
+78 square root? All right,      
+this is working perfectly.      
+
+1522
+01:17:55,175 --> 01:17:59,511
+But, our code is really         
+a mess here. Can you imagine,   
+
+1523
+01:17:59,580 --> 01:18:02,113
+if we have to do another        
+case and another case.          
+
+1524
+01:18:02,182 --> 01:18:04,416
+And we're always doing this     
+double this, string that,       
+
+1525
+01:18:04,485 --> 01:18:07,285
+back and forth, exclamation     
+points everywhere. Okay,        
+
+1526
+01:18:07,354 --> 01:18:09,254
+there's too many dang           
+exclamation points in here for  
+
+1527
+01:18:09,323 --> 01:18:11,123
+the first thing.                
+And the second of all,          
+
+1528
+01:18:11,191 --> 01:18:12,524
+I'm tired of all                
+the strings and doubles. So     
+
+1529
+01:18:12,592 --> 01:18:15,227
+I'm gonna fix all that. Let's   
+start with the exclamation      
+
+1530
+01:18:15,295 --> 01:18:19,230
+point thing. Look at every      
+time I use the display.         
+
+1531
+01:18:19,299 --> 01:18:20,732
+I use it all over my code.      
+
+1532
+01:18:20,800 --> 01:18:23,268
+And every time I have to        
+put an exclamation point,       
+
+1533
+01:18:23,337 --> 01:18:27,372
+every single time. Even         
+though I know that display,     
+
+1534
+01:18:27,441 --> 01:18:32,243
+once it's set up by iOS in the  
+beginning, it never is not in   
+
+1535
+01:18:32,312 --> 01:18:34,780
+the not set state,              
+it's always set. So             
+
+1536
+01:18:34,848 --> 01:18:38,850
+let's go back up here           
+to this question mark.          
+
+1537
+01:18:38,919 --> 01:18:42,821
+This is what exclamation        
+point in a declaration          
+
+1538
+01:18:42,889 --> 01:18:46,258
+of an optional means. It means  
+yes, this is an optional,       
+
+1539
+01:18:46,326 --> 01:18:50,795
+just like a question mark.      
+But, everywhere you use this,   
+
+1540
+01:18:50,864 --> 01:18:53,831
+I'm going to automatically      
+unwrap it. Now,                 
+
+1541
+01:18:53,900 --> 01:18:56,969
+it's still unwrapping it, so    
+even if I go down here and      
+
+1542
+01:18:57,037 --> 01:18:58,570
+I take away this                
+exclamation point,              
+
+1543
+01:18:58,639 --> 01:19:01,539
+it works because of this        
+automatic unwrapping.           
+
+1544
+01:19:01,608 --> 01:19:05,810
+But if this were not set,       
+it would still crash. Okay?     
+
+1545
+01:19:05,879 --> 01:19:09,481
+Because essentially,            
+implicitly unwrapping.          
+
+1546
+01:19:09,550 --> 01:19:14,119
+That's why this is called an    
+implicitly unwrapped optional.  
+
+1547
+01:19:14,188 --> 01:19:17,856
+Got that phrase? Implicitly     
+unwrapped optional. But         
+
+1548
+01:19:17,924 --> 01:19:20,792
+it does mean, that we can       
+go around to all of our         
+
+1549
+01:19:20,861 --> 01:19:23,795
+display question marks, and     
+change them to display.         
+
+1550
+01:19:23,864 --> 01:19:27,132
+And that makes our code look    
+quite a bit nicer. Okay?        
+
+1551
+01:19:27,200 --> 01:19:31,170
+Now we're still having to       
+unwrap text. Sorry about that.  
+
+1552
+01:19:31,238 --> 01:19:33,404
+Bottom line is we               
+have to do that.                
+
+1553
+01:19:33,473 --> 01:19:36,909
+That's not an implicitly        
+unwrapped option on that text.  
+
+1554
+01:19:36,977 --> 01:19:39,678
+Okay, what about all this       
+double and string thing?        
+
+1555
+01:19:39,746 --> 01:19:41,913
+The way I'm gonna fix that      
+is imagine I had a var.         
+
+1556
+01:19:41,982 --> 01:19:44,216
+We'll call it displayValue.     
+
+1557
+01:19:44,284 --> 01:19:49,454
+And it was a double.            
+Okay, show me this var.         
+
+1558
+01:19:49,522 --> 01:19:54,425
+Imagine if this var, all it     
+tracked, what's in here, but    
+
+1559
+01:19:54,494 --> 01:19:57,462
+as a double? Cuz what's in      
+there, we can only get it as    
+
+1560
+01:19:57,531 --> 01:19:59,764
+a string, we can only           
+set it as a string. But         
+
+1561
+01:19:59,833 --> 01:20:02,634
+wouldn't it be cool if I had a  
+var that just was always what   
+
+1562
+01:20:02,703 --> 01:20:05,404
+was in there but as a double?   
+Because I need it as a double   
+
+1563
+01:20:05,472 --> 01:20:08,440
+all the dang time, and I need   
+to set it as a double too,      
+
+1564
+01:20:08,508 --> 01:20:11,509
+okay? So how can I do that?     
+Well, turns out Swift           
+
+1565
+01:20:11,578 --> 01:20:16,582
+has a really cool feature       
+called computed properties.     
+
+1566
+01:20:16,650 --> 01:20:19,752
+And all I need to do is put     
+code after the property, and    
+
+1567
+01:20:19,820 --> 01:20:22,587
+you can compute the value.      
+Instead of storing              
+
+1568
+01:20:22,656 --> 01:20:25,290
+it, right. The user is in the   
+middle of typing a value that   
+
+1569
+01:20:25,359 --> 01:20:27,826
+storage somewhere. This one     
+we're gonna compute. And        
+
+1570
+01:20:27,894 --> 01:20:33,098
+you can compute both            
+a get case, right? And,         
+
+1571
+01:20:33,167 --> 01:20:39,838
+oops, sorry. And a set case.    
+So you can have some code that  
+
+1572
+01:20:39,906 --> 01:20:42,841
+deals with getting the value    
+and with setting the value.     
+
+1573
+01:20:42,910 --> 01:20:44,843
+So we're not gonna ever         
+store displayValue anywhere.    
+
+1574
+01:20:44,912 --> 01:20:45,777
+We're gonna get it and set it.  
+
+1575
+01:20:45,846 --> 01:20:48,046
+And where are we gonna          
+get it and set it from?         
+
+1576
+01:20:48,114 --> 01:20:51,983
+From the text on the label.     
+Right? So what does the get     
+
+1577
+01:20:52,052 --> 01:20:55,020
+look like? Well, we're just     
+gonna return a double of        
+
+1578
+01:20:55,089 --> 01:20:59,024
+the display's text, you don't   
+have to unwrap display, but     
+
+1579
+01:20:59,093 --> 01:21:02,127
+I do have to unwrap text. And   
+I'm gonna force unwrap that.    
+
+1580
+01:21:02,196 --> 01:21:06,331
+Again, I'm assuming there's     
+always a string that            
+
+1581
+01:21:06,400 --> 01:21:07,799
+can be interpreted as           
+a double in there.              
+
+1582
+01:21:07,867 --> 01:21:09,935
+Maybe I wanna change that       
+assumption down the road, but   
+
+1583
+01:21:10,004 --> 01:21:12,070
+for now I'll do that.           
+How about the set case?         
+
+1584
+01:21:12,139 --> 01:21:16,075
+In this set case, I'm gonna     
+display, set the display's      
+
+1585
+01:21:16,143 --> 01:21:19,010
+text equal to a string          
+that is the value that          
+
+1586
+01:21:19,079 --> 01:21:22,213
+people are trying to set        
+the display value to.           
+
+1587
+01:21:22,282 --> 01:21:25,917
+So somewhere in the code,       
+we write displayValue equals    
+
+1588
+01:21:25,986 --> 01:21:29,988
+five. And                       
+here we have to put a five,     
+
+1589
+01:21:30,057 --> 01:21:34,659
+a string five into the text     
+of the display up here.         
+
+1590
+01:21:34,728 --> 01:21:38,364
+So what do we put inside this   
+little string here. Well, for   
+
+1591
+01:21:38,432 --> 01:21:42,401
+this set case, okay,            
+of a computed property,         
+
+1592
+01:21:42,469 --> 01:21:46,638
+there's a special variable      
+called newValue, and newValue   
+
+1593
+01:21:46,707 --> 01:21:50,175
+is always of the same type as   
+what you're setting, and it is  
+
+1594
+01:21:50,243 --> 01:21:53,145
+the value on the right hand     
+side of an equals if someone    
+
+1595
+01:21:53,214 --> 01:21:58,683
+says that this var equals       
+something, okay? Awesome.       
+
+1596
+01:21:58,752 --> 01:22:00,319
+Now that we have this           
+displayValue and                
+
+1597
+01:22:00,387 --> 01:22:02,954
+it's always tracking that,      
+we can use it down here.        
+
+1598
+01:22:03,023 --> 01:22:08,026
+Look at this code,              
+displayValue equals pi.         
+
+1599
+01:22:08,095 --> 01:22:12,964
+Done, get rid of all this       
+mess. displayValue equals       
+
+1600
+01:22:13,033 --> 01:22:17,669
+the square root of the          
+displayValue. All of a sudden,  
+
+1601
+01:22:17,738 --> 01:22:21,540
+the code down here has          
+become essential, right?        
+
+1602
+01:22:21,608 --> 01:22:25,410
+This is about the minimum you   
+could possibly type to say      
+
+1603
+01:22:25,479 --> 01:22:30,782
+that you wanted pi into the     
+display. Right? And so, when I  
+
+1604
+01:22:30,851 --> 01:22:34,419
+do this display value equals,   
+this code gets executed.        
+
+1605
+01:22:34,488 --> 01:22:38,891
+When I get the display value    
+here, this code gets executed.  
+
+1606
+01:22:38,959 --> 01:22:40,525
+These are called computed       
+properties. You're              
+
+1607
+01:22:40,594 --> 01:22:41,926
+going to see them               
+all over the place.             
+
+1608
+01:22:41,995 --> 01:22:46,231
+You've already seen one.        
+It's right here, currentTitle   
+
+1609
+01:22:46,300 --> 01:22:49,434
+is a computed property. It's    
+computed by the button class.   
+
+1610
+01:22:49,503 --> 01:22:52,003
+It figures out what the         
+current title is on there and   
+
+1611
+01:22:52,072 --> 01:22:55,273
+returns it. So there's this     
+is implemented with some        
+
+1612
+01:22:55,342 --> 01:22:56,675
+code that says                  
+return whatever.                
+
+1613
+01:22:56,743 --> 01:22:59,444
+How do I know that? Because     
+it's read-only. The only way    
+
+1614
+01:22:59,513 --> 01:23:03,448
+to make a read-only var is      
+using a computed property.      
+
+1615
+01:23:03,517 --> 01:23:06,251
+All right, let's make sure we   
+didn't break anything with our  
+
+1616
+01:23:06,320 --> 01:23:14,393
+code clean up there.            
+All right, 89 looking good,     
+
+1617
+01:23:14,461 --> 01:23:18,463
+square root, 81, square root,   
+square root, square root.       
+
+1618
+01:23:18,532 --> 01:23:21,366
+Pi 78 square root. Okay,        
+
+1619
+01:23:21,434 --> 01:23:25,537
+it's working. Okay, so that's   
+a lot of stuff to digest,       
+
+1620
+01:23:25,606 --> 01:23:29,107
+I know. Let it all sink in.     
+On Wednesday at the start,      
+
+1621
+01:23:29,176 --> 01:23:31,610
+I'm gonna talk to you about     
+MVC, this design paradigm, and  
+
+1622
+01:23:31,679 --> 01:23:35,380
+then we're gonna                
+add MVC to this and             
+
+1623
+01:23:35,448 --> 01:23:37,983
+we're also gonna make sure      
+that UI works on all devices.   
+
+1624
+01:23:39,119 --> 01:23:40,752
+Okay, see you then.             
+>> For                          
+
+1625
+01:23:40,821 --> 01:23:50,228
+more, please visit              
+us at stanford.edu.             
+

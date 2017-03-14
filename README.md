@@ -2,7 +2,7 @@
 
 ### 下载字幕
 
-直接点击 [项目 Zip 包](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/archive/master.zip) 下载全部已有字幕。
+直接点击 [项目 Zip 包](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/archive/master.zip) 下载全部已有字幕。original 文件夹中是纯英文字幕，subtitles 文件夹中是有翻译的。
 
 字幕的格式是 `.srt`，所以您可能需要用带外挂字幕功能的视频播放器，比如 [VLC](http://www.videolan.org/vlc/index.html) 等才可使用。如果字幕有乱码，请点击 [中文乱码报错用 Issue](https://github.com/x140yu/Developing_iOS_8_Apps_With_Swift/issues/131) 进行报错和寻求解决方案。
 
