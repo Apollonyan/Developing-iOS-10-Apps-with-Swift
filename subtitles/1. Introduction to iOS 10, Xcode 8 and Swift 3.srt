@@ -1,1203 +1,1501 @@
-
-﻿1
+1
 00:00:00,401 --> 00:00:04,402
 [MUSIC]
 
 2
 00:00:04,471 --> 00:00:07,239
 Stanford University.
+斯坦福大学
 
 3
 00:00:07,308 --> 00:00:11,877
 Okay, well, welcome to CS193P, Stanford CS193P.
+欢迎参加 2017 年斯坦福 CS193P 课程
 
 4
 00:00:13,481 --> 00:00:17,515
 This is Developing Applications for iOS, winter
+iOS 应用程序开发
 
 5
 00:00:17,584 --> 00:00:21,553
 of 2017. Today we're going to talk a little bit about what
+我们今天先会讲讲本课的主要内容
 
 6
 00:00:21,622 --> 00:00:23,955
 this class is about, and the prerequisites you need.
+和上这门课之前你所需要具备的能力
 
 7
 00:00:24,024 --> 00:00:28,427
 Then I'm, really fast, gonna go over iOS and what's in it.
+之后我会很快地过一遍什么是 iOS，由什么构成
 
 8
 00:00:28,496 --> 00:00:32,330
 And then, I'm gonna dive into a big, long demo.
+最后我会带大家做一个很完整的示例程序
 
 9
 00:00:32,399 --> 00:00:34,833
 And this demo is gonna really quickly let you see what it's
+给你们展示一下开发 iOS 程序是什么感觉
 
 10
 00:00:34,902 --> 00:00:37,402
 like to develop an application for iOS, so you can decide,
+你们可以再做决定是否继续学下去
 
 11
 00:00:37,471 --> 00:00:40,738
 is this for me, or not? So, what are you gonna learn?
+这门课主要我们主要会讲
 
 12
 00:00:40,807 --> 00:00:43,441
 Well you're gonna learn to build cool apps, all right,
+如何开发很酷的 app
 
 13
 00:00:43,510 --> 00:00:46,778
 that's, that's what we're here for. Why are these apps in iOS
+可是为什么 iOS 上的 app 这么 cool 呢？
 
 14
 00:00:46,847 --> 00:00:48,947
 cool? Well for a number of reasons, okay?
+这其中有几个原因
 
 15
 00:00:49,016 --> 00:00:50,982
 One is they're in your back pocket,
+首先是你可以随时
 
 16
 00:00:51,051 --> 00:00:54,085
 you can pull them out and show your friends on your phone,
+把手机拿出来展示给他们看
 
 17
 00:00:54,154 --> 00:00:57,288
 a lot of them are networked so there're kind of social
+许多 app 可以联网，而这些社交类的程序
 
 18
 00:00:57,357 --> 00:01:00,525
 apps and a lot of that can be a lot of fun.
+通常都能给我们带来欢乐
 
 19
 00:01:00,594 --> 00:01:03,595
 Also if you decide to turn your app into a product it's
+如果你决定发布你写的程序
 
 20
 00:01:03,663 --> 00:01:06,030
-really easy to get it out to customers via the app store.
+really easy to get it out to customers via the App Store.
+你能很轻松地通过 App Store 展示给顾客
 
 21
 00:01:06,099 --> 00:01:07,900
 You don't have to wrap it in a box and
+你不再需要把程序
 
 22
 00:01:07,968 --> 00:01:10,468
 put it on a shelf somewhere anymore. You can get it out
+用盒子包装好后放到货架上了
 
 23
 00:01:10,537 --> 00:01:12,971
 there real quick. And also you're going to see,
+不仅上架的过程快，你马上会见识到
 
 24
 00:01:13,040 --> 00:01:16,608
 today even, it's really easy to build pretty complex
+就算是很复杂的 app
 
 25
 00:01:16,677 --> 00:01:20,012
 app pretty quickly. So you get a lot of instant gratification
+我们也能很轻松地写出来，让你马上就觉得
 
 26
 00:01:20,080 --> 00:01:22,548
 from building iOS apps. For those of you in
+开发 iOS 程序很有成就感
 
 27
 00:01:22,616 --> 00:01:25,751
 computer science there's also this huge benefit, you're
+对于那些选修计算机科学的同学们，这是一个
 
 28
 00:01:25,819 --> 00:01:28,820
 gonna get to see a real life object-oriented programming
+看到实际在运行的，面向对象的系统的机会
 
 29
 00:01:28,889 --> 00:01:31,623
 system. And not just object-oriented programming,
+当然我们不只会讲面向对象编程
 
 30
 00:01:31,691 --> 00:01:34,192
 but we're going to use databases in this class, and
+我们还会使用数据库
 
 31
 00:01:34,261 --> 00:01:37,362
 graphics, and multimedia, multi-threading, animation,
+图形用户界面，多媒体，多线程，动画
 
 32
 00:01:37,430 --> 00:01:39,364
 networking, all these things. And
+网络，等等
 
 33
 00:01:39,433 --> 00:01:40,932
 you're going to see it in a real world environment.
+而且我们会在真实的情景下学习
 
 34
 00:01:41,001 --> 00:01:43,635
 So you take a lot of classes on these subjects
+你们多半已经上了不少关于编程或是计算机的课了
 
 35
 00:01:43,704 --> 00:01:46,137
 and sometimes you get maybe a little disconnected from
+相信有时候你会觉得那些课程
 
 36
 00:01:46,206 --> 00:01:47,472
 what's this like in the real world, well,
+都有些脱离实际
 
 37
 00:01:47,541 --> 00:01:52,211
 you're gonna get to see it all in action here. Prerequisites,
+我们这门课就是让你见识下这些抽象概念的实际运用
 
 38
 00:01:52,279 --> 00:01:55,414
 just boiling it down really easily. The prerequisite for
+上这门课之前你所需要具备的能力
 
 39
 00:01:55,483 --> 00:01:57,282
 the class is object-oriented programming.
+肯定少不了面向对象
 
 40
 00:01:57,350 --> 00:01:59,151
 You have to know object-oriented programming,
+你必须要了解面向对象编程
 
 41
 00:01:59,219 --> 00:02:01,586
 I'm not gonna teach that in the class, I completely and
+我绝不会在课上讲关于面向对象的知识
 
 42
 00:02:01,655 --> 00:02:04,289
 utterly assume it. And not only do you have to know it,
+你还不能只是听说过面向对象
 
 43
 00:02:04,358 --> 00:02:06,057
 you have to have some experience doing it.
+你还应该实际运用过
 
 44
 00:02:06,126 --> 00:02:09,260
 So that's why here at Stanford CS106 A and
+换言之，你需要上过斯坦福 CS106 A 或 B
 
 45
 00:02:09,329 --> 00:02:12,131
 B are a hard prerequisite. You have to have taken those two,
+这是硬性条件，你必须要上过至少其中一门
 
 46
 00:02:12,199 --> 00:02:14,733
 those are object-oriented programming classes. And
+你将会在那些课程中学到面向对象编程的相关知识
 
 47
 00:02:14,801 --> 00:02:16,535
 then I just want to make sure you have some programming
+其次是你要有些编程的经验
 
 48
 00:02:16,603 --> 00:02:19,338
 experience, so either you've done something outside
+可以是你课外活动
 
 49
 00:02:19,406 --> 00:02:22,608
 of school, or you've taken CS107 or CS108 or CS110.
+也可以是上过 CS107、CS108、CS110 其中的一个
 
 50
 00:02:22,676 --> 00:02:25,310
 CS108 is a particularly great prerequisite,
+如果你不满足这些条件，CS108 是个不错的选择
 
 51
 00:02:25,378 --> 00:02:27,646
 that's object-oriented programming.
+那门课会讲面向对象编程
 
 52
 00:02:27,715 --> 00:02:29,614
 So if you have a chance to take CS108 and
+所以如果你需要但还没有去上一门这样的课
 
 53
 00:02:29,683 --> 00:02:32,216
 you haven't taken it yet, yeah, maybe taken it, and
+你最好现在换成 CS108
 
 54
 00:02:32,285 --> 00:02:35,520
 then take this class the next time it's offered, all right?
+等下次提供 CS193P 的时候再来上也不迟
 
 55
 00:02:35,588 --> 00:02:41,025
 So let's dive through what's in iOS really quickly here.
+我们简单讲讲 iOS 系统的构成
 
 56
 00:02:41,094 --> 00:02:43,595
 I've divided it here into four layers.
+我将 iOS 分为了 4 层
 
 57
 00:02:43,664 --> 00:02:46,531
 These layers are roughly close to the hardware.
+越下面的越接近硬件
 
 58
 00:02:46,600 --> 00:02:49,968
 And then up close to the user. So that bottom layer close to
+越上面的越接近用户。我们看到那个
 
 59
 00:02:50,037 --> 00:02:53,238
-the hardware, that's actually a Unix operating system, okay?
+the hardware, that's actually a UNIX operating system, okay?
+最接近硬件的那层，那其实是 UNIX 操作系统
 
 60
 00:02:53,306 --> 00:02:56,941
-Just like macOS, iOS is a Unix operating system at
+Just like macOS, iOS is a UNIX operating system at
+就像 macOS 一样，iOS 也是基于 UNIX 操作系统
 
 61
 00:02:57,010 --> 00:02:59,444
 the bottom. None of these APIs are object oriented or
+这些 API（应用程序接口）都不是面向对象的
 
 62
 00:02:59,513 --> 00:03:01,280
 anything, they're basically C, okay? For
+因为它们基本上都是用 C 语言写出来的
 
 63
 00:03:01,348 --> 00:03:05,551
-the Unix pretty much written in C, these API's are in C.
+the UNIX pretty much written in C, these API's are in C.
+因为 UNIX 是用 C 语言写的，API 自然也是 C 风格的
 
 64
 00:03:05,619 --> 00:03:10,122
 We're gonna do no work at that level in this class, okay?
+我们不会在这门课中涉及到这个层次的编程
 
 65
 00:03:10,190 --> 00:03:10,989
 This is an object-oriented programming only class,
+我们只会涉及到有关于面向对象编程的内容
 
 66
 00:03:11,057 --> 00:03:11,690
 so we're not gonna be doing anything there.
+不会和 C 打交道
 
 67
 00:03:11,758 --> 00:03:14,659
 So there's another layer right on top of that called core
+在那一层之上是 Core Serviecs 层
 
 68
 00:03:14,728 --> 00:03:17,662
 services. Sometimes people refer to this as foundation,
+这一层主要是 Foundation
 
 69
 00:03:17,731 --> 00:03:21,333
 but there's other things in this lever, layer,
+但其实在这一层中除了 Foundation 以外
 
 70
 00:03:21,401 --> 00:03:24,836
 besides foundation. And this is an object oriented layer
+还有其它的功能。这一层实际上是
 
 71
 00:03:24,905 --> 00:03:27,539
 on top of those things that were lower down. Okay, so
+我们之前看到那一层经过了面向对象的封装
 
 72
 00:03:27,607 --> 00:03:30,875
 now you can do networking, file system, things like that,
+实现网络传输，访问文件系统的 API
 
 73
 00:03:30,944 --> 00:03:34,512
 using object oriented API. But this is still non UI layer,
+都是面向对象的。虽然这一层依旧不会涉及到用户界面
 
 74
 00:03:34,581 --> 00:03:38,283
 right? It's still kinda closer to the hardware. So I'll
+这层离硬件还算近的，
 
 75
 00:03:38,351 --> 00:03:40,619
 definitely be teaching you a lot of stuff at this layer,
+所以我们会在这上面多下点功夫
 
 76
 00:03:40,688 --> 00:03:43,721
 'cause you just need it to do the things you're gonna do.
+因为这些是必不可少的
 
 77
 00:03:43,790 --> 00:03:47,059
 Now, there's another layer here, the media layer here I
+下一层是媒体处理层
 
 78
 00:03:47,127 --> 00:03:51,262
 call it. This is a huge layer, which has 3D graphics, and
+这一层包含 3D 绘制
 
 79
 00:03:51,331 --> 00:03:55,533
 audio playback and recording, image processing, video,
+音频播放，录音，图像处理，视频等相关的功能。
 
 80
 00:03:55,602 --> 00:03:58,470
 all that stuff. Unfortunately I'm not gonna have a lot of
+可惜我们并没有什么时间学习这些
 
 81
 00:03:58,538 --> 00:04:01,006
 time to spend here, even though it's a huge part of
+即使这是 iOS 设备日常使用所需要的功能
 
 82
 00:04:01,074 --> 00:04:05,977
 what an iOS device does. iOS devices all pretty much have
+所有的 iOS 设备都能被当作一个 iPods 使用
 
 83
 00:04:06,046 --> 00:04:09,681
 iPods in them, video iPods if you wanna think about it.
+或者你也可以把它们叫做有显示屏的“iPods”
 
 84
 00:04:09,749 --> 00:04:12,584
 And so there's a lot here. Unfortunately I can't cover it
+当然不止这些功能，不过我依然不能细讲这些
 
 85
 00:04:12,653 --> 00:04:15,454
 all. Because I'm gonna spend most of my time up here,
+因为我们大部分时间都会花在这儿
 
 86
 00:04:15,523 --> 00:04:17,189
 which is the Cocoa Touch layer.
+Cocoa Touch 层
 
 87
 00:04:17,257 --> 00:04:20,058
 This is where buttons and text fields and things are, but
+这一层包含了按钮，文本框等控件
 
 88
 00:04:20,127 --> 00:04:22,727
 also much more powerful objects like maps.
+甚至还包括那些功能强大的类，比如地图
 
 89
 00:04:22,796 --> 00:04:26,131
 There's an object in Cocoa Touch which is a map object,
+Cocoa Touch 层中定义了一个地图的类
 
 90
 00:04:26,200 --> 00:04:29,368
 it's pretty much the entire Maps application on
+那基本包含了 iOS 上地图程序所有的功能
 
 91
 00:04:29,436 --> 00:04:32,704
 an iOS device, that you can drop right into a rectangle
+你只需要把它放到你程序的界面上就行了
 
 92
 00:04:32,773 --> 00:04:35,573
 in your app. With almost no work.
+除此之外你基本什么都不需要做
 
 93
 00:04:35,642 --> 00:04:38,676
 So, very powerful object to this layer. This is where
+所以这一层的类都很好用
 
 94
 00:04:38,745 --> 00:04:40,779
 we're gonna spend the vast majority of our time,
+我们大部分时间也会学习
 
 95
 00:04:40,847 --> 00:04:43,315
 building user interface apps at this layer.
+如何在这个层面构建用户界面
 
 96
 00:04:44,618 --> 00:04:47,886
 That's a rough overview. Trying to explain all
+大概 iOS 系统的构成就是这样
 
 97
 00:04:47,955 --> 00:04:50,655
 of iOS in two minutes is pretty much impossible, but
+这么几分钟就完整地介绍 iOS 操作系统基本是不可能的
 
 98
 00:04:50,724 --> 00:04:53,825
 that's kind of what we're doing in this class. We're
+但你应该大概知道这门课程大概会包括哪些内容了
 
 99
 00:04:53,894 --> 00:04:57,029
 gonna use all these components to get our work done.
+iOS 开发是由以下几个部分构成的
 
 100
 00:04:57,098 --> 00:04:59,431
 Top level there, Xcode 8, is gonna be...
+首先是 Xcode 8
 
 101
 00:04:59,500 --> 00:05:01,766
 everything we do is gonna be in Xcode 8.
+我们所有事情都是在 Xcode 8 里完成的
 
 102
 00:05:01,835 --> 00:05:04,802
 The debugger, the editor, everything, building,
+调试器，编辑器，编译，等等
 
 103
 00:05:04,871 --> 00:05:08,173
 it's all in Xcode 8. There's a little app, Instruments,
+Xcode 8 都能搞定。我们还会用到 Instruments
 
 104
 00:05:08,242 --> 00:05:10,742
 that goes along with it, for performance and stuff, but
+Xcode 附带的小程序，能用来检测程序的性能
 
 105
 00:05:10,811 --> 00:05:13,845
 pretty much it's all Xcode 8. Two, I'm gonna teach you
+不过我们还是使用 Xcode 8 的时候比较多
 
 106
 00:05:13,914 --> 00:05:17,349
 a new programming language. So if you're computer science
+然后我们将学一门新的编程语言
 
 107
 00:05:17,418 --> 00:05:20,052
 people, you know that learning different programming
+学计算机科学的同学们应该知道
 
 108
 00:05:20,120 --> 00:05:22,354
 languages, really valuable skill.
+多学会一门语言是很有用的
 
 109
 00:05:22,423 --> 00:05:24,056
 Not because you're necessarily gonna use all of them,
+并不是说平常我们要把学过的语言都用上
 
 110
 00:05:24,124 --> 00:05:27,158
 some you might or might not use. But just the process of
+这需要根据情况取舍
 
 111
 00:05:27,227 --> 00:05:30,896
 seeing how language designers pick and choose their syntax
+不过光是研究设计语言这群人
 
 112
 00:05:30,965 --> 00:05:33,732
 and, and the feature set, is really valuable.
+决定的语法和功能，你都应该得到些收获
 
 113
 00:05:33,800 --> 00:05:36,702
 So you'll get that I would think. It's a great language.
+Swift 是世界上最好的语言
 
 114
 00:05:36,770 --> 00:05:38,770
 It was just invented in the last two or three years, so
+它在两三年前（2014年）才被发明出来
 
 115
 00:05:38,839 --> 00:05:40,806
 it kind of incorporates the best of a lot of different
+所以它集成了各种语言的精华
 
 116
 00:05:40,874 --> 00:05:44,475
 languages. So I'm gonna kind of blitzkrieg teach that to
+我将会用前几周的时间用填鸭式教会你们
 
 117
 00:05:44,544 --> 00:05:48,547
 you in the first couple weeks. Frameworks: That's essentially
+框架是必不可少的
 
 118
 00:05:48,615 --> 00:05:51,450
 things like the Cocoa Touch UIKit framework.
+就比如 Cocoa Touch 的 UIKit 框架
 
 119
 00:05:51,519 --> 00:05:52,884
 It's where all the buttons and stuff are.
+就是它包含了我们要用的按钮等控件
 
 120
 00:05:52,953 --> 00:05:54,452
 Foundation is that, kind of,
+Foundation 框架，正如我们之前说的
 
 121
 00:05:54,521 --> 00:05:56,021
-mostly that core services layer.
+mostly that Core Services layer.
+主要是 Core Services 层的
 
 122
 00:05:56,089 --> 00:05:58,356
 But there's a lot of other ones like Core Data framework,
+当然还有不少其他的框架，比如 Core Data 框架
 
 123
 00:05:58,425 --> 00:05:59,625
 object-oriented database,
+面向对象的数据库
 
 124
 00:05:59,694 --> 00:06:01,293
 we'll be doing that in assignment five.
+我们将会在第五个作业中用到
 
 125
 00:06:01,361 --> 00:06:05,730
 Also I talked about that map thing, that's in a framework
+之前说的很牛的地图，那是 MapKit 框架里的
 
 126
 00:06:05,799 --> 00:06:08,534
-called MapKit. And there's also things in core motion,
+called MapKit. And there's also things in Core Motion,
+你能通过 Core Motion 框架读取
 
 127
 00:06:08,602 --> 00:06:11,470
 like the accelerometer and the gyro in the device.
+设备的加速度计和陀螺仪的数据
 
 128
 00:06:11,538 --> 00:06:13,071
 All those things, I'm gonna be teaching you many,
+一路上我们将学到
 
 129
 00:06:13,140 --> 00:06:15,540
 many of these frameworks as we go on. And
+越来越多的框架
 
 130
 00:06:15,609 --> 00:06:17,676
 last, but definitely not least, and very,
+最后， 非常重要的
 
 131
 00:06:17,745 --> 00:06:20,145
 very important, is the design strategy for
+是关于如何构建程序的设计模式
 
 132
 00:06:20,214 --> 00:06:23,315
 how to build apps, it's called MVC, model-view-controller.
+MVC, 即 Model（模型）-View（视图）-Controller（控制器）
 
 133
 00:06:23,384 --> 00:06:25,484
 How many people already know MVC, have,
+在场的同学有多少是听说过 MVC 的？
 
 134
 00:06:25,552 --> 00:06:27,152
 have learned in a different class?
+有多少学过的？
 
 135
 00:06:27,220 --> 00:06:30,288
 See, so maybe half of you. I will spend the first part of
+大概有一半吧。那我星期三
 
 136
 00:06:30,357 --> 00:06:33,659
 Wednesday's lecture telling you about MVC and what it is.
+上课时再讲讲 MVC 的概念
 
 137
 00:06:33,727 --> 00:06:38,696
 We 100.0% have to use MVC when we develop apps for iOS.
+我们在开发 iOS 程序的时候肯定会用到 MVC
 
 138
 00:06:38,765 --> 00:06:41,300
 There's really no other way to do it, if you do it any other
+可以说这是你无可厚非的选择
 
 139
 00:06:41,368 --> 00:06:43,902
 way, you're swimming so up stream against the current of
+如果你要另辟蹊径的话，那也只是逆水行舟
 
 140
 00:06:43,970 --> 00:06:47,239
 iOS, it's... You'll end up with a mess of an application,
+你最终会发现你的程序乱成一团糟
 
 141
 00:06:47,308 --> 00:06:50,275
 okay, so we'll be going over that as well. This demo
+所以我们会讲讲 MVC
 
 142
 00:06:50,343 --> 00:06:53,045
 that I'm gonna do, we're gonna build a calculator.
+接下了我们要写一个计算器程序
 
 143
 00:06:53,113 --> 00:06:56,181
 A calculator's great because it's got a fairly simple UI,
+因为它的界面很简单
 
 144
 00:06:56,250 --> 00:06:58,617
 but it's got a little bit of guts on the inside,
+其实计算结果的部分
 
 145
 00:06:58,686 --> 00:07:00,319
 the actual calculating part. So
+又有些难度
 
 146
 00:07:00,387 --> 00:07:03,355
 it's just complicated enough to start showing you MVC and
+用它来示范 MVC 刚刚好
 
 147
 00:07:03,424 --> 00:07:06,557
 a lot of language features and things like that. But not so
+能用到许多 Swift 语言的特性
 
 148
 00:07:06,626 --> 00:07:09,928
 complicated that I can't do an entire calculator, basically,
+但又不会难到
 
 149
 00:07:09,997 --> 00:07:13,131
 in two lectures, okay, start to finish. All these topics up
+我没法在两堂课内讲完。
 
 150
 00:07:13,200 --> 00:07:14,933
 here, you don't have to look at them now.
+你不需要太在意现在你看到的这些
 
 151
 00:07:15,002 --> 00:07:18,203
 This is the slide to go look at after my lecture today and
+在我讲完之后你自己再来看
 
 152
 00:07:18,272 --> 00:07:20,239
 say, hmm did I learn that, yeah,
+问问自己我是否学会了
 
 153
 00:07:20,307 --> 00:07:22,173
 I think I got that. So
+我是否掌握了
 
 154
 00:07:22,242 --> 00:07:25,177
 it's kind of a summary of what I'm gonna do. Since I'm not
+这就是这个课程大纲的用法
 
 155
 00:07:25,246 --> 00:07:27,045
 gonna get back to the slides from the end of my demo,
+既然我演示完之后多半下课了
 
 156
 00:07:27,114 --> 00:07:28,614
 it's just gonna be the end of the lecture.
+不会再回到这一页
 
 157
 00:07:28,682 --> 00:07:30,615
 I'll tell you a little bit what's coming up.
+我现在就先讲讲之后的课程安排
 
 158
 00:07:30,684 --> 00:07:33,251
 On Wednesday, I'll be continuing this demo, but
+星期三我会继续编这个计算器
 
 159
 00:07:33,320 --> 00:07:35,654
 not until after I give you this talk about MVC,
+但我肯定要先讲 MVC
 
 160
 00:07:35,723 --> 00:07:38,690
 because what we're gonna do in the calculator is apply MVC
+因为下节课我们就要
 
 161
 00:07:38,758 --> 00:07:41,760
 to it, on Wednesday. And your first
+在计算器中运用 MVC
 
 162
 00:07:41,829 --> 00:07:44,696
 programming assignment will go out on Wednesday, which is
+星期三我们还会放出第一个编程作业
 
 163
 00:07:44,765 --> 00:07:47,198
 pretty much to replicate what I'm doing today and
+你们只需要依葫芦画瓢
 
 164
 00:07:47,267 --> 00:07:51,069
 on Wednesday, okay? And I'll give you a video of the demo,
+照着我今天和星期三的视频做一遍
 
 165
 00:07:51,138 --> 00:07:54,840
 so you'll see it, and you'll be able to watch it. And
+没错，我会把视频发给你们
 
 166
 00:07:54,908 --> 00:07:57,709
 then on Friday, we have an optional section.
+星期五的课是选修课，不会放到 iTunes U 上
 
 167
 00:07:57,778 --> 00:07:59,211
 So the Friday sections in this course,
+所以星期五的课
 
 168
 00:07:59,280 --> 00:08:01,046
 you don't have to go to if you don't want to.
+同学们不感兴趣可以不来上
 
 169
 00:08:01,115 --> 00:08:03,248
-But a lot of times, they're very valuable.
+But a lot of times, they're very valuable
+但其实这些课程都一般都很有用
 
 170
 00:08:03,317 --> 00:08:07,085
-Feature so if you have not used the debugger in Xcode 8
+feature. So if you have not used the debugger in Xcode 8
+所以如果你没有用过 Xcode 8 的调试器
 
 171
 00:08:07,154 --> 00:08:10,022
 you really might wanna go to Friday's lecture.
+我推荐你来听听
 
 172
 00:08:10,090 --> 00:08:12,790
 The location and time of it will be posted on the class
+上课的时间和地点看我之后发的公告
 
 173
 00:08:12,859 --> 00:08:15,994
 forums hopefully tomorrow. I've asked for the room and
+我还在申请上课用的教室
 
 174
 00:08:16,062 --> 00:08:18,196
 haven't quite got it yet so hopefully tomorrow. And
+希望明天能搞定，然后通知你们
 
 175
 00:08:18,264 --> 00:08:20,565
 then don't forget next Monday is a holiday so we're not
+下周一放假，不上课
 
 176
 00:08:20,634 --> 00:08:23,067
 meeting on Monday. Our next class after this Wednesday
+所以再下一次上课是星期三
 
 177
 00:08:23,136 --> 00:08:28,540
 will be next Wednesday. So let's hop into the demo...
+好，我们开始 demo 吧
 
 178
 00:08:28,608 --> 00:08:31,743
 I said we were gonna build a calculator, let me actually
+既然我们要编一个计算器
 
 179
 00:08:31,811 --> 00:08:36,315
-show you a calculator. This is the MacOS calculator and
+show you a calculator. This is the macOS calculator and
+那我们先来看 macOS 上的计算器
 
 180
 00:08:36,383 --> 00:08:39,050
 our calculator is gonna look very similar to this, right?
+我们的计算器基本会照着这个来做
 
 181
 00:08:39,119 --> 00:08:42,520
 It has to display along the top, it has the keypad for
+最上面是显示，下面是按键
 
 182
 00:08:42,589 --> 00:08:46,058
 typing numbers in and it's got these operation buttons. And
+包括输入数字和执行运算的按钮
 
 183
 00:08:46,126 --> 00:08:49,294
 then you can just multiply, times eight, you hit equals,
+比如我们现在按 乘，8，等于
 
 184
 00:08:49,362 --> 00:08:50,395
 it does the operation,
+它就会计算出来
 
 185
 00:08:50,464 --> 00:08:52,463
 that's pretty much what our calculator is gonna do.
+我们的计算器就是要实现这样的功能
 
 186
 00:08:52,532 --> 00:08:55,100
 It's not gonna look exactly like this. It's gonna have
+我们 app 的界面不会和这个完全一样
 
 187
 00:08:55,169 --> 00:08:58,370
 a look that's a little more appropriate for a iOS device,
+因为我们会在保持界面基本元素的基础上
 
 188
 00:08:58,439 --> 00:09:03,041
 but it's generally this. And I promised that Xcode would be
+为适应 iOS 设备作出些微调
 
 189
 00:09:03,110 --> 00:09:05,210
 your one-stop shop for doing all development, so
+Xcode 无所不能
 
 190
 00:09:05,278 --> 00:09:08,847
 we're gonna spend our entire time here working in Xcode.
+因此我们开发会全程使用 Xcode
 
 191
 00:09:08,916 --> 00:09:12,117
 Now Xcode is an app that you just go to the Mac App Store,
+你可以从 Mac App Store 上免费下载
 
 192
 00:09:12,186 --> 00:09:13,952
 and you download it. It's free.
+请勿从百度云等第三方渠道下载
 
 193
 00:09:14,020 --> 00:09:16,688
 When you first launch it, it's gonna put up this splash
+当你第一次打开它的时候，你可以看到这个
 
 194
 00:09:16,757 --> 00:09:18,724
 screen like you see right here.
+这个欢迎界面
 
 195
 00:09:18,792 --> 00:09:21,927
 And all of your projects are going to start accumulating
+Xcode 会记住你的各个项目
 
 196
 00:09:21,995 --> 00:09:26,265
 here over on this right side where this gray area is. And
+并展示在现在这片灰色的地方
 
 197
 00:09:26,333 --> 00:09:29,634
 you can basically do three other things here. You can use
+这里有三个选项
 
 198
 00:09:29,703 --> 00:09:32,004
 a playground, which I'll show the playgrounds on Wednesday,
+你可以新建一个 playgroud，这我星期三会讲
 
 199
 00:09:32,072 --> 00:09:35,440
 it's kind of a little play area for iOS programming. You
+你可以在 playground 中简单试试自己的代码
 
 200
 00:09:35,509 --> 00:09:38,911
 can check a existing project out of a source control
+你可以添加代码管理源的项目
 
 201
 00:09:38,979 --> 00:09:41,079
 management system which we're not gonna be doing.
+但我们不会讲这个
 
 202
 00:09:41,148 --> 00:09:44,249
 Although we're probably have a Friday section
+也许星期五我们可以
 
 203
 00:09:44,318 --> 00:09:48,186
 on doing a source code control. So we're gonna be
+介绍下源代码管理
 
 204
 00:09:48,255 --> 00:09:50,956
-doing this option right here, create a new X code project.
+doing this option right here, Create a new Xcode project.
+我们大部分时候会用这个 Create a new Xcode project
 
 205
 00:09:51,024 --> 00:09:53,158
 And in fact, when I do demos in this course,
+实际上之后所有的 demo
 
 206
 00:09:53,227 --> 00:09:55,760
 I almost always start from scratch.
+我基本都会从零开始
 
 207
 00:09:55,829 --> 00:09:56,895
 Cuz I don't want you to have to like,
+因为我不想为了节约时间
 
 208
 00:09:56,963 --> 00:09:59,430
 come up to speed on some code that I give you first, and
+先编好一部分，发给你们
 
 209
 00:09:59,499 --> 00:10:03,368
 then, learn from there. So we try to start from scratch, and
+你们再以此为基础开始学
 
 210
 00:10:03,436 --> 00:10:06,271
 see what we can do that way. So I'm gonna click on this,
+所以我们会从头开始，不会藏着掖着
 
 211
 00:10:06,340 --> 00:10:09,107
 to start a new app. It's asking, what kind
+好，我们点了这个选项之后，Xcode 会问
 
 212
 00:10:09,175 --> 00:10:11,176
 of app do we want to build, or what kind of project, and
+你想编一个什么样的程序
 
 213
 00:10:11,245 --> 00:10:13,979
 here you can see, we can do Watch apps, Apple TV apps,
+你可以选开发 手表，电视，电脑上的程序
 
 214
 00:10:14,048 --> 00:10:17,616
 even Mac OS apps, but we're doing iOS, and in fact,
+不过我们这门课讲的是开发 iOS 程序
 
 215
 00:10:17,684 --> 00:10:21,453
-we're always going to choose this single view application
+we're always going to choose this Single View Application
+所以我们一直会选这个 Single View Application 模版
 
 216
 00:10:21,522 --> 00:10:23,322
 template. It's the simplest template, and
+这是最简单的一个
 
 217
 00:10:23,390 --> 00:10:25,290
-some of these other templates have code in there that I
+some of t hese other templates have code in there that I
+其它的模版里面都已经帮你把重要的代码写好了
 
 218
 00:10:25,359 --> 00:10:27,525
 actually want to show you how to write yourself instead of
+我们这堂课就是教你们如何
 
 219
 00:10:27,594 --> 00:10:30,195
 having the template just make that code appear, all right?
+不依赖模版就能写出那些代码
 
 220
 00:10:30,264 --> 00:10:32,464
-So we're gonna do single view application.
+So we're gonna do Single View Application.
+好，点击 Single View Application
 
 221
 00:10:32,532 --> 00:10:35,000
 Now it wants some particulars on our application,
+然后 Xcode 会让你填些详细信息
 
 222
 00:10:35,068 --> 00:10:37,302
 most importantly at the top its name. Well,
+这里最重要的是 Product Name，项目名称
 
 223
 00:10:37,371 --> 00:10:39,470
 we're building a calculator so we're gonna call this
+既然我们编的是计算器，所以取名叫 Calculator
 
 224
 00:10:39,539 --> 00:10:42,341
 Calculator, okay, that's gonna be the name of our app.
+因为各种原因请使用英文命名
 
 225
 00:10:42,409 --> 00:10:45,343
 Now this second line here, team, that's the team of
+下面这个 Team 是开发团队
 
 226
 00:10:45,412 --> 00:10:48,547
 developers who are gonna work on this project, that's gonna
+指定哪些人会开发这个程序
 
 227
 00:10:48,616 --> 00:10:52,050
 be a team of one, which is you. Okay, when you launch
+当然这里是你自己一个人组成的个人团队
 
 228
 00:10:52,119 --> 00:10:54,486
 Xcode, this is probably not going to be a pull down list.
+当你打开 Xcode 的时候，这里多半不是这样一个下拉列表
 
 229
 00:10:54,555 --> 00:10:57,021
 It's gonna be a button that says Add Account or
+你会看到一个写着 Add Account 
 
 230
 00:10:57,090 --> 00:11:00,925
 something like that, Add Team. You click on that, all you'll
+或是 Add Team 一类的按钮。点了那个按钮之后
 
 231
 00:11:00,994 --> 00:11:04,696
 need is an Apple ID, any Apple ID will do, won't cost you any
+你需要登录 Apple ID。如果你没有的话可以去免费注册一个
 
 232
 00:11:04,765 --> 00:11:07,866
 money. And go through the dialog there and
+登录之后
 
 233
 00:11:07,935 --> 00:11:11,636
 it'll add a team for you, and you use that here. Alright?
+你就能在这里看到你的个人团队了
 
 234
 00:11:11,705 --> 00:11:13,838
 This organization name can be anything you want.
+这里的 Organization Name, 组织名称可以随便填
 
 235
 00:11:13,907 --> 00:11:16,408
 It's just gonna appear on the copyright symbol at the top of
+Xcode 会在你每个文件的开头
 
 236
 00:11:16,477 --> 00:11:19,510
 your source code files, that's it. But this one,
+用这个组织名声明版权，仅此而已。但请保证下面这个
 
 237
 00:11:19,579 --> 00:11:24,316
 it's super important that this be a unique identifier of you.
+Organization Identifier，组织标识符是独一无二的
 
 238
 00:11:24,384 --> 00:11:30,021
 Okay? So I strongly recommend doing edu.stanford.cs193p.
+对于斯坦福的学生，我强烈建议使用
 
 239
 00:11:30,090 --> 00:11:35,160
 You're SUNet ID here, okay? If you put that in there,
+edu.stanford.cs193p.你的SNUetID
 
 240
 00:11:35,228 --> 00:11:36,895
 you're almost guaranteed, if you're a Stanford student,
+那至少对于每一个斯坦福学生来说，你不会和别人的重复
 
 241
 00:11:36,963 --> 00:11:38,830
 for that to be unique. If you're not a Stanford student,
+如果你不是斯坦福的学生
 
 242
 00:11:38,899 --> 00:11:41,733
 you're watching this on iTunes U, pick something else that
+也就是我们这些在 iTunes U 上观看的
 
 243
 00:11:41,801 --> 00:11:43,768
 uniquely identifies you. Hopefully,
+请自行挑选一个独特的标识符
 
 244
 00:11:43,837 --> 00:11:46,638
 reverse DNS notation will work in your circumstance as well.
+惯例是使用公司／个人网站域名的反写
 
 245
 00:11:48,575 --> 00:11:51,009
 The language we're gonna use like I said is Swift.
+Language，编程语言选 Swift
 
 246
 00:11:51,078 --> 00:11:53,812
 iOS was originally written in a different language called
+在发明 Swift 之前开发 iOS 程序都是使用 Objective-C
 
 247
 00:11:53,880 --> 00:11:56,681
 Objective-C. Turns out you can use Objective-C and
+当然现在也能够在同一个程序中
 
 248
 00:11:56,750 --> 00:11:59,384
 Swift in the same application.
+使用 Swift 和 Objective-C 混编
 
 249
 00:11:59,453 --> 00:12:04,222
 They use the exact same underlying iOS API. So
+这两个语言都使用的是同一个 iOS API
 
 250
 00:12:04,291 --> 00:12:06,257
 everything you're gonna learn in this class in Swift,
+你在这节课中学到的所有有关 Swift 的知识
 
 251
 00:12:06,326 --> 00:12:09,495
 if you later went and learned Objective-C, all that learning
+都能帮助你以后学 Objective-C（如果你想学 OC）
 
 252
 00:12:09,563 --> 00:12:11,863
 would be valid, okay? Cuz it's the exact, in fact,
+因为 Swift 有一部分正是
 
 253
 00:12:11,932 --> 00:12:15,367
 it's the exact same code base, it's not just same API.
+基于 Objective-C 的
 
 254
 00:12:15,435 --> 00:12:18,437
 Swift was designed in a way to be quite compatible with
+Swift 也在设计上尽量兼容 Objective-C
 
 255
 00:12:18,505 --> 00:12:20,639
 Objective-C's APIs. And in the last couple years,
+过去几年中苹果也在
 
 256
 00:12:20,707 --> 00:12:23,742
 they've even enhanced Objective-C to catch up with
+改善 Objective-C，吸收一些
 
 257
 00:12:23,810 --> 00:12:27,078
 some of the advanced stuff that Swift does. Our app that
+Swift 的优点
 
 258
 00:12:27,147 --> 00:12:29,081
 we're going to build, our calculator is going to
+这里的 Device，设备选 Universal，通用
 
 259
 00:12:29,149 --> 00:12:31,549
 be universal. That means it's going to run on iPhone and
+因为我们这个计算器在 iPhone 和 iPad 上都能运行
 
 260
 00:12:31,618 --> 00:12:36,255
 on iPad. First couple weeks, it will be iPhone only but
+虽然前几周我们只会顾及到 iPhone
 
 261
 00:12:36,323 --> 00:12:40,158
 then, eventually, we'll add iPad support, as well.
+之后我们会慢慢加入对 iPad 的支持
 
 262
 00:12:40,227 --> 00:12:42,127
 We're not gonna be using a database in the calculator,
+我们的计算器不需要使用数据库，所以不选择 Use Core Data
 
 263
 00:12:42,195 --> 00:12:45,297
 but we will in your assignment five. And when it comes to
+在之后的第五个作业中我们才会用到
 
 264
 00:12:45,366 --> 00:12:47,499
 testing, which is super important, again, I'm hoping
+Testing，测试是很重要的部分
 
 265
 00:12:47,568 --> 00:12:49,634
 to have a Friday section to tell you a lot about testing,
+我会在星期五的课上讲到
 
 266
 00:12:49,703 --> 00:12:53,238
 especially the UI testing framework is really awesome,
+特别是这个非常好用的 UI 测试框架
 
 267
 00:12:53,307 --> 00:12:55,874
 okay, so hopefully we'll get a chance to show you that. So
+希望我能展示给你们看看
 
 268
 00:12:55,943 --> 00:12:58,777
 I'm just gonna click next here to create my app.
+点击 Next，下一步
 
 269
 00:12:58,846 --> 00:13:01,746
 It says, where do you wanna put this project? I recommend
+Xcode 会问你要把这个项目存在哪里
 
 270
 00:13:01,815 --> 00:13:06,952
 you put it home directory in a folder called Developer. Okay?
+我推荐放在你用户根目录下的 Developer（开发者）文件夹中
 
 271
 00:13:07,021 --> 00:13:09,688
 Then all your apps will just pile up in here.
+所有的项目放在一起方便查找
 
 272
 00:13:09,756 --> 00:13:12,324
 This is pretty much a canonical place to put it so
+大家都约定俗成放在这里
 
 273
 00:13:12,393 --> 00:13:13,658
 I strongly recommend it. And
+我也推荐这样做
 
 274
 00:13:13,727 --> 00:13:17,429
 then again source control is more for teams working on it.
+这里的 Source Control，源码管理主要是针对团队协作
 
 275
 00:13:17,497 --> 00:13:18,897
 You're gonna be working this by yourself so
+你是自己一个人开发
 
 276
 00:13:18,966 --> 00:13:20,332
 you can leave this switched off.
+所以建议不勾选这个
 
 277
 00:13:21,569 --> 00:13:24,202
 All right, here's our, there's your load.
+到此我们就完成了
 
 278
 00:13:24,271 --> 00:13:25,670
-There's your first IOS app,
+There's your first iOS app,
+创建你的第一个 iOS 程序的步骤
 
 279
 00:13:25,739 --> 00:13:29,141
 okay? Now let me explain a little bit about Xcode and
+我会讲讲 Xcode
 
 280
 00:13:29,210 --> 00:13:32,144
 how it's laid out here. So if you haven't seen it...
+和 Xcode 的界面布局
 
 281
 00:13:32,213 --> 00:13:35,546
 How many people have worked in Xcode before? See, so
+有多少人用过 Xcode 了？
 
 282
 00:13:35,615 --> 00:13:38,584
 again probably half of you so quite a few. For those of you
+有不少呢，差不多有一半的人
 
 283
 00:13:38,652 --> 00:13:41,620
 who haven't, it's divided into these three main sections
+对于那些不了解 Xcode 人，Xcode 界面主要分为三个部分
 
 284
 00:13:41,689 --> 00:13:46,525
 here. This main section in the middle is the primary place
+中间这个主要的部分是工作区
 
 285
 00:13:46,594 --> 00:13:48,760
 you're going to do all your source code editing and
+是用来写代码的
 
 286
 00:13:48,828 --> 00:13:52,264
 things like that. That's where you do most of your work.
+大部分时候你都会使用这个区域
 
 287
 00:13:52,332 --> 00:13:55,600
 This section over here on the left, this blue section is
+左边这个淡蓝色的部分是 Navigator，导航面板
 
 288
 00:13:55,669 --> 00:13:59,871
 called the navigator. You use it to navigate your project.
+用来在工程中导航
 
 289
 00:13:59,940 --> 00:14:02,140
 And here you're seeing it in a file based view,
+默认是显示文件导航
 
 290
 00:14:02,209 --> 00:14:04,242
 where I'm looking at all my files. And we'll look at
+你可以看到工程中所有的文件
 
 291
 00:14:04,311 --> 00:14:06,778
 those in a second. But you can navigate by searching,
+你也可以搜索
 
 292
 00:14:06,847 --> 00:14:09,314
 okay, there's a search panel. If you, if you're debugging,
+这是搜索面板
 
 293
 00:14:09,383 --> 00:14:11,183
 you can navigate through all the break points that you
+在调试过程中你可以浏览所有的断点
 
 294
 00:14:11,252 --> 00:14:15,120
 have, etc. So, you'll learn all about the different
+随着学期进展你们会慢慢学会
 
 295
 00:14:15,189 --> 00:14:18,389
 ways that you can navigate, as the quarter goes on.
+每一个部分的具体用法
 
 296
 00:14:18,458 --> 00:14:22,127
 On the right hand side here you see this little area,
+右边这个是
 
 297
 00:14:22,196 --> 00:14:23,729
 this is called the utilities window.
+Utilities, 工具区
 
 298
 00:14:23,797 --> 00:14:26,398
 And I'm gonna talk all about this in about five minutes,
+我马上就会讲到
 
 299
 00:14:26,467 --> 00:14:29,234
 okay, we're gonna use this in great detail. I want to
+讲到时我们再细看这个部分
 
 300
 00:14:29,303 --> 00:14:32,837
 show you a little bit how you can manage your space here.
+你是可以自定义 Xcode 界面布局的
 
 301
 00:14:32,906 --> 00:14:35,407
@@ -2265,7 +2563,7 @@ then we would probably import foundation here.
 
 567
 00:27:50,470 --> 00:27:52,804
-Foundation to kind of get to that core services layer,
+Foundation to kind of get to that Core Services layer,
 
 568
 00:27:52,873 --> 00:27:55,840
