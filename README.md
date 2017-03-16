@@ -1,5 +1,12 @@
 # Developing iOS 10 Apps with Swift 字幕简体中文翻译项目
 
+目前我们尚未完成翻译。如果您仅仅是想了解翻译的进度，您可以
+
+- [关注项目的更新](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/subscription)
+- [查看进度跟踪看板](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/projects/1)
+
+如果您感兴趣，有能力，我们欢迎您参与项目。请提前阅读 [翻译指南／校对规则](./translation-instructions.md)，在领取任务前阅读 [任务相关说明](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/2)。不遵守该规定的翻译可能被直接关闭，请大家认真对待。
+
 ### 下载字幕
 
 直接点击 [项目 Zip 包](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/archive/master.zip) 下载全部已有字幕。original 文件夹中是纯英文字幕，subtitles 文件夹中是有翻译的。
@@ -17,17 +24,6 @@
 	- [课程专辑封面](http://a2.mzstatic.com/us/r30/CobaltPublic122/v4/6b/66/d0/6b66d0af-d47f-37d6-9993-9c5237401a49/d3_64_2x.png)
 	- [首页推广图片](http://a2.mzstatic.com/us/r30/Features122/v4/79/cb/ce/79cbce27-b961-9dfb-f044-21686543edf8/flowcase_1360_520_2x.jpeg)
 - CS 193P 课程地址：[CS 193P iPhone Application Development](http://web.stanford.edu/class/cs193p/cgi-bin/drupal/)
-
-----
-
-### 翻译及校对
-
-如果您仅仅是想了解翻译的进度，您可以
-
-- [关注项目的更新](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/subscription)
-- [查看进度跟踪看板](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/projects/1)
-
-如果您想参与项目，请提前阅读 [翻译指南／校对规则](./translation-instructions.md)，然后再在 [Issues](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues) 区发言。不遵守该规定的翻译可能被直接关闭，请大家认真对待。
 
 ### 其他资源
 
