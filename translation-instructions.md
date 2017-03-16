@@ -1,6 +1,15 @@
 # 翻译指南／校对规则
 
-## 格式 
+## 基本要求
+
+1. 请大家翻译和校对的时候尽量对照原视频，结合上下文，不要望文生义
+2. 如保持英文顺序会影响中文理解，为保证行文流畅，应采用理解优先原则
+3. 在非讲师 Paul Hegarty 的对话前，请加 `-` 来区分。如：Question? -Is it ...
+4. 出现 Okay，All Right 等语气词，请结合上下文选择合适的翻译，或省略不翻
+5. 学生提问的部分如果听不清楚，字幕也不全（[INAUDIBLE]），但是老师回答时候把问题复述了一遍，字幕可译为 `-[学生提问]`
+6. 出现 [COUGH]，[LAUGH]，[NOISE]，[BLANK_AUDIO]，[INAUDIBLE] 等，请自行把握，可结合上下文选择省略不翻译
+
+## 格式要求 
 
 1. 不要合并多条**字幕**！
 2. 中英文字幕**开头结尾**均不留空格，以 Unix 样式的 LF 换行
@@ -8,20 +17,20 @@
 4. 除了 `[`，`]`，和 `-` 以外使用全角中文标点
 5. 保证每一条字幕中最多两行，一行英文一行中文。如果一条字幕中有**多行英文**，请顺手将其合并成一行
 6. 修改错别字，明显的笔误，大小写错误，甚至包括原英文字幕中的错误
-7. 英文同中文之间应当有一个空格。
-8. 如遇到英文词汇和标点符号相邻的情况，则不需要再留空格。
+7. 英文同中文之间应当有一个空格
+8. 如遇到英文词汇和标点符号相邻的情况，则不需要再留空格
 
 例：就算是最新的 iPad，也不能用 Swift Playgrounds 打包应用。
 
-## 术语（Terminology）
+## 翻译术语（Terminology）的要求
 
-#### 翻译术语的时候请参考：
+#### 术语的基本处理：
 
 1. 尽量保证和已翻译的内容一致
 2. 参考 [术语的特殊处理](#术语的特殊处理)
 3. 参考历年 [iOS 8](https://github.com/X140Yu/Developing_iOS_8_Apps_With_Swift) 和 [iOS 9](https://github.com/SwiftGGTeam/Developing-iOS-9-Apps-with-Swift) 的翻译
 4. 参考 [《The Swift Programming Language》中文版](http://gg.swiftguide.cn/) 及其 [术语表](https://github.com/numbbbbb/the-swift-programming-language-in-chinese/issues/62)
-5. 参考该术语在其它编程语言中的翻译，可以使用 [微软官方术语搜索](https://www.microsoft.com/Language/zh-cn/Search.aspx) 等搜索引擎。
+5. 参考该术语在其它编程语言中的翻译，可以使用 [微软官方术语搜索](https://www.microsoft.com/Language/zh-cn/Search.aspx) 等搜索引擎
 6. 如果以上都没有找到合适的结果，你可以
 	1. 在得到任务分配的 issue 下讨论
 	2. 直接使用英文原文
@@ -39,15 +48,6 @@
 	- 项目中的代码：如 var description 等
 
 **后期校对请参考以上标准对术语的使用进行统一。**
-
-## 其它
-
-1. 请大家翻译和校对的时候尽量对照原视频，结合上下文，不要望文生义。
-2. 如保持英文顺序会影响中文理解，为保证行文流畅，应该以理解优先为原则。
-3. 在非讲师 Paul Hegarty 的对话前，请加 `-` 来区分。如：Question? -Is it ...。
-4. 出现 `Okay?`，`All Right` 等语气词，请结合上下文选择合适的翻译，或省略不翻。
-5. 学生提问的部分如果听不清楚，字幕也不全（[INAUDIBLE]），但是老师回答时候把问题复述了一遍，字幕可译为 `-[学生提问]`。
-6. 出现 [COUGH]，[LAUGH]，[NOISE]，[BLANK_AUDIO]，[INAUDIBLE] 等，请自行把握，可结合上下文选择省略不翻译。
 
 ## 补充说明
 
