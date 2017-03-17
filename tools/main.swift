@@ -13,7 +13,7 @@ import AppKit
 let iTunesUCourseID = 1198467120
 
 enum ResourceType: String, CustomStringConvertible {
-    // Raw Type: video/x-m4v
+    // Raw Type: video/x-m4v, video/mp4
     case video = "Video"
     // Raw Type: application/pdf
     case slides = "Slides"
@@ -37,7 +37,7 @@ struct Resource: CustomStringConvertible {
     init(title: String, rawType: String, url: String) {
         self.url = url
 
-        if rawType == "video/x-m4v" {
+        if rawType.contains("video") {
             type = .video
         } else if title.contains("Reading Assignment") {
             type = .readingAssignment
@@ -45,8 +45,10 @@ struct Resource: CustomStringConvertible {
             type = .programmingProject
         } else if title.contains("Demo Code") {
             type = .demoCode
-        } else {
+        } else if title.contains("Slides") {
             type = .slides
+        } else {
+            fatalError("Unknown Raw Type")
         }
 
         var parts: [String]

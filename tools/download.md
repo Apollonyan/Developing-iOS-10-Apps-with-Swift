@@ -9,6 +9,8 @@
 7. [Error Handling, Extensions, Protocols, Delegation, and Scroll View](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/f4/06/12/f406127e-4cdc-3859-555e-49872b7736d0/322-5522795565946608562-07_CS193p_2_01_17_720p_3000cc.m4v)
 8. [Multithreading and Text Field](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/b7/64/30/b76430e9-a1e1-d257-c14f-b822dd314749/327-2534985180508386683-08_CS193p_2_06_17_720p_3000cc.m4v)
 9. [Table View](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/2f/e0/34/2fe0348d-de16-64ba-0f94-0d0dac7121bb/337-8752859105577614662-09_CS193p_2_08_17_720p_3000.m4v)
+10. [Core Data](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/84/a3/a3/84a3a3aa-b6f5-fe7c-2cc5-9719f2049046/311-2755894078252338227-10_CS193p_2_13_17_revised_WIP03_720p3000.mp4)
+11. [Core Data Demo](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/dd/07/87/dd07870d-cb3c-c2fb-63b0-e8453452b0b2/318-3789265740124671308-11_CS193p_2_15_17_720p_3000.m4v)
 
 # Slides
 
@@ -21,6 +23,7 @@
 7. [Lecture 7 Slides](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/65/32/4e/65324e1a-3d03-cf1b-2bf8-ea23c42f450b/332-5273798659857609329-CS193P_Winter_17_Lecture_7.pdf)
 8. [Lecture 8 Slides](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/c6/24/c4/c624c4a1-781c-613f-f86f-19c9b013d92a/329-5089714432926654345-CS193P_Winter_17_Lecture_8.pdf)
 9. [Lecture 9 Slides](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/8f/44/45/8f4445c4-76f3-f356-69c3-3cd384470cc9/314-2744839717659725615-CS193P_Winter_17_Lecture_9.pdf)
+10. [Lecture 10 Slides](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/6f/54/7c/6f547cc8-1d90-88c8-77e4-d9ad9a413144/312-2771300030580731448-CS193P_Winter_17_Lecture_10.pdf)
 
 # Demo Code
 
@@ -30,6 +33,7 @@
 7. [Lecture 7 Demo Code: Cassini](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/7a/ac/a7/7aaca767-9f2c-8bc3-a32a-3c3456660545/330-3352947087241042856-L7_Demo_Code.pdf)
 8. [Lecture 8 Demo Code: Cassini](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/c2/4b/5e/c24b5e00-66b3-6e1c-c024-a98b21736424/311-1937232581840857786-L8_Demo_Code.pdf)
 9. [Lecture 9 Demo Code: Smashtag](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/bd/b9/a3/bdb9a33e-0801-7cd3-5afc-849b44b0fa6d/316-1975239713004461915-L9_Demo_Code.pdf)
+11. [Lecture 11 Demo Code: Smashtag](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/11/da/76/11da7624-122d-4667-3b7c-84077311be31/308-6440268317978219720-L11_Demo_Code.pdf)
 
 # Reading Assignment
 
@@ -42,4 +46,5 @@
 1. [Calculator](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/3b/5f/8a/3b5f8a08-0535-8a32-0854-8a1d4c44fc83/330-8784676202759607348-CS193P_Winter_17_Project_1.pdf)
 2. [Calculator Brain](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/16/6d/ee/166dee9f-1ff6-f7d1-99cc-2590c616c7b3/334-4539701711666409931-CS193P_Winter_17_Assignment_2_v4.pdf)
 3. [Graphing Calculator](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/d3/cc/f8/d3ccf813-811f-0a8a-0f97-a3da51065fcb/305-7790343223312375480-CS193P_Winter_17_Assignment_3.pdf)
+4. [Smashtag Mentions](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/9f/f5/20/9ff520eb-7558-aa61-121f-841efed2460f/327-6109771528612506048-CS193P_Winter_17_Assignment_4.pdf)
 

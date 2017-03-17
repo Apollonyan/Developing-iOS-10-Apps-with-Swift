@@ -20,7 +20,7 @@
 ### 相关链接
 
 - iTunes U：[Developing iOS 10 Apps with Swift - Free Course by Stanford](https://itunes.apple.com/us/course/developing-ios-10-apps-with-swift/id1198467120)
-	- [RSS 源](https://itunesu.itunes.apple.com/WebObjects/LZDirectory.woa/ra/directory/courses/1198467120/feed)
+	- [RSS 源](https://p1-u.itunes.apple.com/WebObjects/LZStudent.woa/ra/feed/COETAIHAJLZIQXJI)
 	- [课程专辑封面](http://a2.mzstatic.com/us/r30/CobaltPublic122/v4/6b/66/d0/6b66d0af-d47f-37d6-9993-9c5237401a49/d3_64_2x.png)
 	- [首页推广图片](http://a2.mzstatic.com/us/r30/Features122/v4/79/cb/ce/79cbce27-b961-9dfb-f044-21686543edf8/flowcase_1360_520_2x.jpeg)
 - CS 193P 课程地址：[CS 193P iPhone Application Development](http://web.stanford.edu/class/cs193p/cgi-bin/drupal/)
