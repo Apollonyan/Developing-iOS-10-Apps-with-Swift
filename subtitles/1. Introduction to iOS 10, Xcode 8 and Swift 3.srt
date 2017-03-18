@@ -1500,126 +1500,157 @@ show you a little bit how you can manage your space here.
 301
 00:14:32,906 --> 00:14:35,407
 If you look in the upper right you see these buttons here.
+右上角这里有三个按钮
 
 302
 00:14:35,475 --> 00:14:38,010
 You can click this one over here to hide and
+点击它们来显示或隐藏对应的部分
 
 303
 00:14:38,078 --> 00:14:41,280
 show. That utilities window. And same thing over here for
+这个对应的是工具区，这个对应的是导航面板
 
 304
 00:14:41,348 --> 00:14:45,650
 the navigator. So that can make more space for you.
+这样你就能有更多的空间了
 
 305
 00:14:45,719 --> 00:14:48,253
 All right, and there's another one here, this middle.
+中间的这个
 
 306
 00:14:48,322 --> 00:14:50,122
 That hides something from the bottom.
+对应的是窗口底部的这个
 
 307
 00:14:51,324 --> 00:14:53,892
 This is your debugger window on the left and
+左边是 debugger window，调试界面
 
 308
 00:14:53,961 --> 00:14:56,595
 your console, which is a place where you can log
+右边是 console，控制台，在调试时
 
 309
 00:14:56,663 --> 00:14:59,631
 strings out to while you're debugging, on the right. And
+用来展示你程序 log，输出的信息。
 
 310
 00:14:59,700 --> 00:15:03,335
 we'll see that in a moment as well. All right, so
+一会儿我们会用到
 
 311
 00:15:03,404 --> 00:15:04,636
 let's go look at these files, right?
+我们再来看看这些文件吧
 
 312
 00:15:04,704 --> 00:15:07,071
 We're in the file navigator here on the left. And
+在左边的文件导航面板中
 
 313
 00:15:07,140 --> 00:15:08,874
 there's six files here but
+可以看到有 6 个文件
 
 314
 00:15:08,942 --> 00:15:11,343
 four of them are really just supporting files, and
+其中有 4 个都只是辅助的文件
 
 315
 00:15:11,411 --> 00:15:13,778
 we're not not even gonna look at them in the calculator.
+我们编计算器不需要修改这些
 
 316
 00:15:13,847 --> 00:15:16,914
 We'll look at a couple of them as the quarter goes on but,
+虽然我们以后会用到其中一些
 
 317
 00:15:16,983 --> 00:15:18,850
 they're not primary files.
+总之你不需要太在意它们
 
 318
 00:15:18,918 --> 00:15:24,088
 And for example, this one Assets.xcassets, Xcode assets.
+比如这个 Assets.xcassets，Xcode 素材文件夹
 
 319
 00:15:24,157 --> 00:15:27,492
 This is images and videos that might be embedded in your app.
+需要在项目中使用的图片和视频都放在这里
 
 320
 00:15:27,561 --> 00:15:29,027
 You can see it's the app icon,
+比如这个就是应用的图标
 
 321
 00:15:29,095 --> 00:15:34,699
-I haven't set any of my app icons, you can see them. But
+I haven't set any of my app icons, you can see there's a lot of different resolutions of them. But
+需要这些不同尺寸的，我还没有设置
 
 322
 00:15:34,768 --> 00:15:39,570
 this xcassets and the Launch Screen and this Info.plist and
+选中 xcassets，Launch Screen，Info.plist，AppDelegate
 
 323
 00:15:39,639 --> 00:15:43,007
 this AppDelegate here. By the way, I'm pulling down command,
+在 macOS 中是按住 command 键多选
 
 324
 00:15:43,076 --> 00:15:45,644
 you see in the lower left you can see any command keys that
+在我屏幕左下角有显示
 
 325
 00:15:45,713 --> 00:15:48,947
 I press right down there cuz I'm gonna use command keys for
+我们要同时操作这几个文件
 
 326
 00:15:49,016 --> 00:15:51,182
 various things that we do. So
+要实现多选
 
 327
 00:15:51,251 --> 00:15:52,784
 I use command to select all these. And
+就要按住 command 键
 
 328
 00:15:52,853 --> 00:15:54,653
 I'm just gonna right click and
+点击鼠标右键／触控板辅助点击
 
 329
 00:15:54,721 --> 00:15:57,289
 go down to here, New Group From Selection. And it's gonna
+选 New Group From Selection
 
 330
 00:15:57,357 --> 00:16:00,291
 put these four files into their own little folder.
+用这些文件新建一个组
 
 331
 00:16:00,360 --> 00:16:03,796
 There, it did it, I'm gonna call it Supporting Files,
+重命名为 Supporting Files
 
 332
 00:16:03,864 --> 00:16:06,898
