@@ -110,7 +110,7 @@ class ParsingDelegate: NSObject, XMLParserDelegate {
 
     func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
         if isParsingTitle {
-            title = String(data: CDATABlock, encoding: .utf8) ?? "\(CDATABlock)"
+            title = String(data: CDATABlock, encoding: .utf8)!
         }
     }
 
@@ -118,7 +118,6 @@ class ParsingDelegate: NSObject, XMLParserDelegate {
         if elementName == "title" {
             isParsingTitle = false
         } else if elementName == "entry" {
-            // nil value means we have to update logic
             resources.append(Resource(title: title!, rawType: type!, url: url!))
             title = nil
             isParsingTitle = false
@@ -129,13 +128,15 @@ class ParsingDelegate: NSObject, XMLParserDelegate {
 
     func parserDidEndDocument(_ parser: XMLParser) {
         let sorted = ResourceType.all.map { type in
-            resources.filter({ $0.type == type }).sorted { $0.index < $1.index }
+            resources.filter { $0.type == type } .sorted { $0.index < $1.index }
         }
 
         var out = ""
         for (index, type) in ResourceType.all.enumerated() {
-            out += "# \(type)\n\n"
-                + "\(sorted[index].reduce("") { "\($0)\($1)\n" })\n"
+            if sorted[index].count > 0 {
+                out += "# \(type)\n\n"
+                    + "\(sorted[index].reduce("") { "\($0)\($1)\n" })\n"
+            }
         }
 
         let cwd = CommandLine.arguments.first { $0.contains("main.swift") } ?? FileManager.default.currentDirectoryPath
