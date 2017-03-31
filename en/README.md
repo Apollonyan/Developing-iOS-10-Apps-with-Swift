@@ -1,4 +1,4 @@
-# Developing iOS 10 Apps with Swift Simplified Chinese Subtitle Translation Project
+# Simplified Chinese Subtitle Translation Project for Developing iOS 10 Apps with Swift
 
 [中文版本](././README.md)
 
@@ -13,11 +13,11 @@ If you are interested in joining us, and helping us translate, please read [Tran
 
 Please download the [Project Zip Archive](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/archive/master.zip). You can find original subtitles in folder `en/subtitles`, and translated subtitles in folder `subtitles`.
 
-The subtitles are provided as `.srt` files, therefore you need video players that support loading external subtitle files, such as [VLC](http://www.videolan.org/vlc/index.html). If you are unable to decoding subtitle files correctly，please search for solutions form, and/or report a new issue to [Encoding Issues (Chinese)](https://github.com/x140yu/Developing_iOS_8_Apps_With_Swift/issues/131).
+The subtitles are provided as `.srt` files, therefore, you need video players that will support loading external subtitle files, such as [VLC](http://www.videolan.org/vlc/index.html). If you are unable to decode subtitle files correctly, please search for the solutions form, and/or report new issues to [Encoding Issues (Chinese)](https://github.com/x140yu/Developing_iOS_8_Apps_With_Swift/issues/131).
 
 ### Download Videos and Other Course Materials
 
-[Download List](././tools/download.md), which is automatically generated from iTunes U, contains resources available for download from iTunes U
+[Download List](././tools/download.md), which is automatically generated from iTunes U, contains resources available for download from iTunes U.
 
 ### Related Resources
 
