@@ -1,13 +1,13 @@
 # Developing iOS 10 Apps with Swift Simplified Chinese Subtitle Translation Project
 
-[中文版本](././README.md)
+[中文版本](../README.md)
 
 We have not yet finished translating. You may view our progress by
 
 - [Watching the repository](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/subscription)
 - [Viewing Kanban for project progress](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/projects/1)
 
-If you are interested in joining us, and helping us translate, please read [Translation Instructions/Proofread Guidelines (Chinese)](././translation-instructions.md) carefully，and refer to [Must knows about collaboration (Chinese)](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/2). We reserve rights to close any pull request that doesn't follow these regulations.
+If you are interested in joining us, and helping us translate, please read [Translation Instructions/Proofread Guidelines (Chinese)](../translation-instructions.md) carefully，and refer to [Must knows about collaboration (Chinese)](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/2). We reserve rights to close any pull request that doesn't follow these regulations.
 
 ### Download Subtitiles
 
@@ -17,7 +17,7 @@ The subtitles are provided as `.srt` files, therefore you need video players tha
 
 ### Download Videos and Other Course Materials
 
-[Download List](././tools/download.md), which is automatically generated from iTunes U, contains resources available for download from iTunes U
+[Download List](../tools/download.md), which is automatically generated from iTunes U, contains resources available for download from iTunes U
 
 ### Related Resources
 
