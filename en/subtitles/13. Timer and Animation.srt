@@ -1,0 +1,8838 @@
+﻿1
+00:00:00,401 --> 00:00:04,468
+[MUSIC]                         
+
+2
+00:00:04,537 --> 00:00:07,571
+Stanford University.            
+
+3
+00:00:07,640 --> 00:00:11,675
+>> Okay, well,                  
+welcome to Stanford CS193P,     
+
+4
+00:00:11,744 --> 00:00:16,346
+Developing Applications for     
+iOS, Winter 2017,               
+
+5
+00:00:16,415 --> 00:00:18,915
+this is lecture number 13.      
+
+6
+00:00:18,984 --> 00:00:23,253
+And this week's topic is        
+gonna be animation, and         
+
+7
+00:00:23,322 --> 00:00:27,290
+I'm gonna talk first            
+today about timers.             
+
+8
+00:00:27,359 --> 00:00:30,426
+Timer is just a way to          
+execute a block of code,        
+
+9
+00:00:30,495 --> 00:00:33,028
+some periodic amount of time.   
+
+10
+00:00:33,097 --> 00:00:35,830
+We don't really use timers for  
+animation per se,               
+
+11
+00:00:35,899 --> 00:00:39,167
+but often, when we're doing     
+something that's animated,      
+
+12
+00:00:39,236 --> 00:00:41,168
+we'll have some                 
+timers involved.                
+
+13
+00:00:41,237 --> 00:00:44,038
+And you'll see that especially  
+on Wednesday's big demo,        
+
+14
+00:00:44,107 --> 00:00:47,675
+how we're gonna use the timer   
+in with our animation tools.    
+
+15
+00:00:47,743 --> 00:00:49,609
+Then after we talk              
+about timer, I,                 
+
+16
+00:00:49,678 --> 00:00:53,146
+I do a demo there, we're gonna  
+dive into animation proper.     
+
+17
+00:00:53,214 --> 00:00:56,216
+And I'm gonna talk about        
+all the different kinds of      
+
+18
+00:00:56,284 --> 00:00:59,619
+animation mechanisms there      
+are and then dive into,         
+
+19
+00:00:59,687 --> 00:01:02,421
+a couple of them with a bit     
+of a demo in between.           
+
+20
+00:01:02,490 --> 00:01:05,357
+And then on Wednesday, I'll do  
+a demo of the last animation    
+
+21
+00:01:05,426 --> 00:01:07,359
+style, that I'm gonna cover.    
+
+22
+00:01:08,828 --> 00:01:12,930
+So timer, timer is this,        
+very simple class,              
+
+23
+00:01:12,999 --> 00:01:13,830
+very simple to use.             
+
+24
+00:01:13,899 --> 00:01:15,732
+You're only probably            
+gonna use two or                
+
+25
+00:01:15,801 --> 00:01:19,035
+maybe three, methods or         
+vars in it ever.                
+
+26
+00:01:19,104 --> 00:01:21,604
+And all it allows you to        
+do is take a closure,           
+
+27
+00:01:21,672 --> 00:01:24,674
+a block of code, and execute    
+it some time in the future,     
+
+28
+00:01:24,743 --> 00:01:28,476
+either once or repeatedly,      
+in the future.                  
+
+29
+00:01:28,545 --> 00:01:33,715
+And, this is kind of not        
+really real-time programming.   
+
+30
+00:01:33,783 --> 00:01:36,484
+This timer's not gonna go off   
+exactly when you say, but       
+
+31
+00:01:36,553 --> 00:01:39,154
+it's gonna be pretty close      
+because it's going off on       
+
+32
+00:01:39,222 --> 00:01:39,987
+the main queue.                 
+
+33
+00:01:40,056 --> 00:01:41,789
+And the main queue              
+is sometimes is busy            
+
+34
+00:01:41,858 --> 00:01:44,024
+handling an event or            
+something like that.            
+
+35
+00:01:44,092 --> 00:01:45,024
+So it's not exact, but          
+
+36
+00:01:45,093 --> 00:01:46,859
+it's pretty darn close,         
+to going off.                   
+
+37
+00:01:46,928 --> 00:01:49,862
+So you can't use it for real    
+time programming, but you can,  
+
+38
+00:01:49,931 --> 00:01:53,465
+use it to have any kind of      
+repeating thing going on.       
+
+39
+00:01:53,534 --> 00:01:55,900
+Now, timer is based             
+on a technology,                
+
+40
+00:01:55,969 --> 00:01:59,103
+which I'm not gonna talk        
+about called run loops.         
+
+41
+00:01:59,172 --> 00:02:02,941
+And run loops are how, you      
+know, a certain thread gets     
+
+42
+00:02:03,009 --> 00:02:07,111
+all this information, like      
+events from the, touch screen   
+
+43
+00:02:07,179 --> 00:02:11,148
+and, or, you know, events from  
+the network, or whatever.       
+
+44
+00:02:11,217 --> 00:02:13,851
+It gets all these things        
+coming in, and it manages to    
+
+45
+00:02:13,919 --> 00:02:16,986
+hand them all out to whoever    
+needs to handle them.           
+
+46
+00:02:17,055 --> 00:02:19,289
+And run loops aren't            
+super complicated, but          
+
+47
+00:02:19,357 --> 00:02:21,791
+the reason I don't really talk  
+about them is the run loop      
+
+48
+00:02:21,860 --> 00:02:23,525
+just kinda works on             
+the main queue, and             
+
+49
+00:02:23,594 --> 00:02:25,427
+you don't really need           
+to think about it.              
+
+50
+00:02:25,496 --> 00:02:27,061
+But if you ever find yourself,  
+
+51
+00:02:27,130 --> 00:02:29,698
+I wanna use a timer off the     
+main queue, then you're gonna   
+
+52
+00:02:29,766 --> 00:02:31,865
+have to teach yourself          
+about run loops, okay,          
+
+53
+00:02:31,934 --> 00:02:35,202
+because the timers are totally  
+based, on the run loop.         
+
+54
+00:02:35,271 --> 00:02:37,755
+your purposes in this course    
+as a starting, iOS developer,   
+
+55
+00:02:37,756 --> 00:02:40,240
+But for                         
+
+56
+00:02:40,308 --> 00:02:44,677
+you can assume that timers      
+are a main queue thing, okay?   
+
+57
+00:02:44,746 --> 00:02:46,779
+Now, there's really, there's,   
+
+58
+00:02:46,847 --> 00:02:49,415
+you can create timers           
+by instantiating them,          
+
+59
+00:02:49,483 --> 00:02:52,417
+but then you gotta put them     
+on a run loop and all that.     
+
+60
+00:02:52,486 --> 00:02:54,819
+But, so there's really          
+just one method,                
+
+61
+00:02:54,888 --> 00:02:56,921
+class method you're             
+gonna use in timer.             
+
+62
+00:02:56,990 --> 00:03:01,325
+And what this one method does   
+is it takes a block of code,    
+
+63
+00:03:01,393 --> 00:03:02,910
+And it takes how, when you      
+wanna execute it some time in   
+
+64
+00:03:02,911 --> 00:03:04,428
+a closure.                      
+
+65
+00:03:04,496 --> 00:03:07,730
+the future and whether you      
+wanna keep repeating executing  
+
+66
+00:03:07,799 --> 00:03:09,598
+it, and it goes and does that.  
+
+67
+00:03:09,667 --> 00:03:11,934
+It puts the thing on the run    
+loop to make sure that it       
+
+68
+00:03:12,003 --> 00:03:14,736
+executes that block of          
+code with that interval.        
+
+69
+00:03:14,805 --> 00:03:17,906
+Really couldn't be simpler,     
+it's a very, very, simple and   
+
+70
+00:03:17,975 --> 00:03:19,307
+powerful UI right there.        
+
+71
+00:03:19,376 --> 00:03:22,810
+So down at the bottom,          
+here's an example of it,        
+
+72
+00:03:22,879 --> 00:03:25,279
+this method is called           
+scheduled timer.                
+
+73
+00:03:25,348 --> 00:03:28,048
+And it returns the timer that   
+it creates when it schedules    
+
+74
+00:03:28,117 --> 00:03:30,116
+it and                          
+puts it on the run loop.        
+
+75
+00:03:30,185 --> 00:03:32,218
+And so                          
+here I'm just saying timer =,   
+
+76
+00:03:32,287 --> 00:03:33,619
+I have a local var timer.       
+
+77
+00:03:33,688 --> 00:03:35,955
+Notice it's of type timer,      
+it's an optional timer here.    
+
+78
+00:03:36,023 --> 00:03:38,724
+And so I do timer =             
+scheduledTimer(withTimeInter-   
+
+79
+00:03:38,792 --> 00:03:41,126
+val: 2.0, repreat,              
+repeats: true).                 
+
+80
+00:03:41,195 --> 00:03:42,794
+And then the block,             
+I put some code.                
+
+81
+00:03:42,862 --> 00:03:45,663
+Well, that's gonna execute      
+that code two seconds from now  
+
+82
+00:03:45,732 --> 00:03:46,797
+approximately.                  
+
+83
+00:03:46,866 --> 00:03:48,098
+And since it's repeats true,    
+
+84
+00:03:48,166 --> 00:03:50,066
+it's gonna execute it again     
+two seconds later and           
+
+85
+00:03:50,135 --> 00:03:53,736
+then two seconds after that     
+until I stop this thing, okay?  
+
+86
+00:03:53,805 --> 00:03:57,573
+Now, one thing to note about    
+this little example here,       
+
+87
+00:03:57,642 --> 00:03:59,575
+is notice my timer is weak.     
+
+88
+00:04:00,577 --> 00:04:01,943
+Okay, see that, weak?           
+
+89
+00:04:02,012 --> 00:04:03,644
+Why do I make that timer weak?  
+
+90
+00:04:03,713 --> 00:04:05,646
+Well, when I scheduled          
+this timer, and                 
+
+91
+00:04:05,715 --> 00:04:06,914
+it puts it on the run loop,     
+
+92
+00:04:06,983 --> 00:04:09,583
+the run loop is gonna grab      
+a strong reference to it.       
+
+93
+00:04:09,652 --> 00:04:11,585
+So I don't need a strong        
+reference to it.                
+
+94
+00:04:11,654 --> 00:04:14,320
+And in fact, if I make my       
+reference weak, then when       
+
+95
+00:04:14,389 --> 00:04:17,223
+this run loop is done with it,  
+when this thing finally         
+
+96
+00:04:17,292 --> 00:04:20,392
+stops running, my ti, timer     
+var there will be set to nil.   
+
+97
+00:04:20,461 --> 00:04:21,693
+Perfect, exactly what I want,   
+
+98
+00:04:21,762 --> 00:04:24,029
+because it's really no use      
+tabbing a pointer to this       
+
+99
+00:04:24,097 --> 00:04:26,231
+timer if it's not               
+running anymore.                
+
+100
+00:04:26,300 --> 00:04:28,266
+And if I ever wanted to         
+start a timer up again          
+
+101
+00:04:28,334 --> 00:04:30,901
+that I'd stopped, I would just  
+call scheduledTimer again,      
+
+102
+00:04:30,970 --> 00:04:33,337
+it's such a simple, API.        
+
+103
+00:04:34,640 --> 00:04:35,872
+So how do you stop a timer?     
+
+104
+00:04:35,940 --> 00:04:38,307
+So you got a timer and          
+it's got repeating true and     
+
+105
+00:04:38,376 --> 00:04:39,241
+it's going off and              
+
+106
+00:04:39,310 --> 00:04:42,110
+it's doing this closure every   
+two seconds or whatever.        
+
+107
+00:04:42,179 --> 00:04:45,147
+You stop it by sending          
+the message invalidate to       
+
+108
+00:04:45,215 --> 00:04:49,117
+the timer, and so invalidate    
+tells the run loop to stop,     
+
+109
+00:04:49,186 --> 00:04:52,921
+scheduling this thing and       
+invalidates the timer.          
+
+110
+00:04:52,989 --> 00:04:55,556
+Now, again, this timer is       
+going to not, if you do         
+
+111
+00:04:55,625 --> 00:04:58,492
+invalidate right there, and     
+you have a weak var to it,      
+
+112
+00:04:58,561 --> 00:05:01,862
+it's gonna go out of the heap,  
+which is really convenient.     
+
+113
+00:05:04,132 --> 00:05:05,564
+There's one last thing I'm      
+gonna do about timers,          
+
+114
+00:05:05,633 --> 00:05:07,166
+which is tolerance.             
+
+115
+00:05:07,234 --> 00:05:10,603
+So this is not a real-time      
+thing, and you might be quite   
+
+116
+00:05:10,671 --> 00:05:13,805
+tolerant of it not              
+executing exactly on time.      
+
+117
+00:05:13,873 --> 00:05:16,440
+This makes more sense for       
+timers that take longer, like   
+
+118
+00:05:16,509 --> 00:05:18,576
+let's say you have a timer      
+that goes off every minute,     
+
+119
+00:05:18,644 --> 00:05:19,643
+and it does something.          
+
+120
+00:05:19,712 --> 00:05:22,579
+Well, you might be happy if it  
+goes off 50 seconds from now    
+
+121
+00:05:22,648 --> 00:05:23,880
+or 70 seconds from now.         
+
+122
+00:05:23,949 --> 00:05:26,883
+So you would set a tolerance    
+of 10 on the timer, and         
+
+123
+00:05:26,952 --> 00:05:30,286
+it means it'll go off in the    
+window plus or minus that 10.   
+
+124
+00:05:30,355 --> 00:05:32,721
+By the way,                     
+this does not have any drift.   
+
+125
+00:05:32,790 --> 00:05:35,624
+So, if it, if the system        
+decided it was gonna go off in  
+
+126
+00:05:35,693 --> 00:05:40,062
+50 seconds this time, the next  
+time, it wouldn't, you know,    
+
+127
+00:05:40,130 --> 00:05:42,197
+be shorter and shorter and      
+shorter with each time.         
+
+128
+00:05:42,265 --> 00:05:44,999
+So, the time it goes off        
+is the amount of time from      
+
+129
+00:05:45,068 --> 00:05:46,267
+the time you                    
+started the timer.              
+
+130
+00:05:46,336 --> 00:05:47,701
+Even if it's two days later,    
+
+131
+00:05:47,770 --> 00:05:50,036
+it's still going off            
+once per minute.                
+
+132
+00:05:50,105 --> 00:05:51,938
+It's once per minute since      
+you started the timer.          
+
+133
+00:05:52,007 --> 00:05:53,506
+It's just that when it          
+goes off, it'll be plus or      
+
+134
+00:05:53,575 --> 00:05:55,341
+minus a little bit each time.   
+
+135
+00:05:55,410 --> 00:05:58,377
+Now why would you want          
+to tell the system this?        
+
+136
+00:05:58,446 --> 00:06:01,346
+Well, when your timer           
+goes off, you know,             
+
+137
+00:06:01,415 --> 00:06:03,381
+it might be that the system     
+is actually asleep.             
+
+138
+00:06:03,450 --> 00:06:06,116
+Your phone surprisingly         
+sleeps a little,                
+
+139
+00:06:06,185 --> 00:06:09,854
+takes a little micro naps all   
+the time, okay, to save power,  
+
+140
+00:06:09,923 --> 00:06:11,955
+especially to save battery.     
+
+141
+00:06:12,024 --> 00:06:13,857
+And wakes up every              
+once in a while, and            
+
+142
+00:06:13,925 --> 00:06:16,593
+it kinda knows when it's        
+gonna wake up again.            
+
+143
+00:06:16,661 --> 00:06:19,629
+And so the tolerance allows     
+it to maybe take a micro nap    
+
+144
+00:06:19,698 --> 00:06:22,731
+a little longer cuz it's gonna  
+wake up for something else,     
+
+145
+00:06:22,800 --> 00:06:24,399
+and then it could               
+be your timer.                  
+
+146
+00:06:24,468 --> 00:06:27,468
+You see, so this is             
+a little micro performance.     
+
+147
+00:06:27,537 --> 00:06:28,469
+But if you have                 
+something to go on and          
+
+148
+00:06:28,538 --> 00:06:30,471
+off every minute over,          
+you know,                       
+
+149
+00:06:30,540 --> 00:06:32,606
+long periods of time,           
+it can add up.                  
+
+150
+00:06:32,675 --> 00:06:35,375
+Okay, so that's tolerance.      
+
+151
+00:06:35,444 --> 00:06:37,444
+All right, so,                  
+let's do a little demo,         
+
+152
+00:06:37,512 --> 00:06:40,613
+see this in action, it's kinda  
+obvious, once you see it.       
+
+153
+00:06:40,682 --> 00:06:43,415
+So I'm gonna take FaceIt,       
+remember the FaceIt demo we     
+
+154
+00:06:43,484 --> 00:06:45,151
+had, this is                    
+a picture of a face,            
+
+155
+00:06:45,219 --> 00:06:47,953
+I'm gonna make the eyes         
+blink using a timer, okay?      
+
+156
+00:06:48,022 --> 00:06:49,420
+The timer's just gonna          
+open the eyes and               
+
+157
+00:06:49,489 --> 00:06:51,556
+then close the eyes, open the   
+eyes and then close the eyes,   
+
+158
+00:06:51,625 --> 00:06:53,291
+super simple.                   
+
+159
+00:06:53,359 --> 00:06:57,362
+So let's go back and            
+get FaceIt, here it is.         
+
+160
+00:06:58,898 --> 00:07:02,432
+All right, so                   
+here is our face view now.      
+
+161
+00:07:02,501 --> 00:07:03,966
+The thing about the blinking,   
+I'm gonna,                      
+
+162
+00:07:04,035 --> 00:07:06,169
+I wanna show you this again     
+because it's so important.      
+
+163
+00:07:06,237 --> 00:07:08,538
+I'm gonna actually put this     
+blinking code in a separate     
+
+164
+00:07:08,606 --> 00:07:11,273
+view controller, which is       
+a sub class of the other one.   
+
+165
+00:07:11,342 --> 00:07:14,376
+So we have this existing        
+FaceViewController right here   
+
+166
+00:07:14,445 --> 00:07:19,146
+as the thing that controls      
+this MBC right here, okay?      
+
+167
+00:07:19,215 --> 00:07:21,983
+Where this face is, it's, it's  
+loading up the face right now.  
+
+168
+00:07:22,051 --> 00:07:25,119
+And so I could just put this    
+code in FaceViewController,     
+
+169
+00:07:25,188 --> 00:07:27,120
+but just to show you it again,  
+this,                           
+
+170
+00:07:27,189 --> 00:07:30,457
+this thing of, sub-classing     
+another MBC to make one.        
+
+171
+00:07:30,526 --> 00:07:32,825
+I'm gonna create a new          
+FaceViewController called       
+
+172
+00:07:32,894 --> 00:07:34,427
+a blinking FaceViewController,  
+
+173
+00:07:34,496 --> 00:07:36,895
+I'm gonna put all my            
+blinking code, into that.       
+
+174
+00:07:36,964 --> 00:07:42,434
+So let's just go File > New >   
+File, and Cocoa Touch Class.    
+
+175
+00:07:42,503 --> 00:07:44,937
+And I'm, it's a subclass        
+of FaceViewController.          
+
+176
+00:07:45,005 --> 00:07:48,907
+And I'm gonna call it           
+BlinkingFaceViewController.     
+
+177
+00:07:48,976 --> 00:07:51,275
+And that's gonna                
+create a new class.             
+
+178
+00:07:51,344 --> 00:07:53,344
+I'll put it in same place       
+everything else is.             
+
+179
+00:07:55,281 --> 00:07:58,515
+Okay, here it is, just delete   
+all the code in here, again,    
+
+180
+00:07:58,584 --> 00:08:01,451
+just not to, so                 
+as not to distract you.         
+
+181
+00:08:01,520 --> 00:08:04,420
+And you can see that it is a    
+subclass of FaceViewController  
+
+182
+00:08:04,489 --> 00:08:07,757
+which is this thing right here  
+that has all our stuff in it.   
+
+183
+00:08:07,825 --> 00:08:09,892
+And all the code that I'm       
+gonna put inside here is        
+
+184
+00:08:09,961 --> 00:08:12,060
+only gonna be for blinking.     
+
+185
+00:08:12,128 --> 00:08:13,395
+And I'm gonna change,           
+
+186
+00:08:13,463 --> 00:08:16,564
+in my storyboard I'm gonna      
+select this MVC down here and   
+
+187
+00:08:16,633 --> 00:08:19,466
+right now, its identity         
+is FaceViewController.          
+
+188
+00:08:19,535 --> 00:08:22,169
+And I'm gonna change it to be   
+a BlinkingFaceViewController.   
+
+189
+00:08:22,238 --> 00:08:24,437
+And that change alone           
+is gonna make it so             
+
+190
+00:08:24,506 --> 00:08:28,141
+that this particular face view  
+right there is going to blink.  
+
+191
+00:08:29,310 --> 00:08:31,910
+So how do we do that,           
+how do we make this             
+
+192
+00:08:31,979 --> 00:08:33,279
+BlinkingFaceViewController      
+work?                           
+
+193
+00:08:33,347 --> 00:08:35,013
+Well, what's going              
+to be its model?                
+
+194
+00:08:35,082 --> 00:08:37,515
+Well, its model is              
+going to be public and          
+
+195
+00:08:37,584 --> 00:08:39,584
+I'm gonna call it blinking,     
+and                             
+
+196
+00:08:39,652 --> 00:08:43,921
+it's just gonna be a whether    
+or not we're blinking, okay?    
+
+197
+00:08:43,990 --> 00:08:48,291
+And if someone sets this model  
+of this blinking controller     
+
+198
+00:08:48,360 --> 00:08:53,096
+then I'm going to call some     
+method like blinkIfNeeded,      
+
+199
+00:08:53,165 --> 00:08:54,998
+blinkIfNeeded, private          
+func blinkIfNeeded,             
+
+200
+00:08:54,999 --> 00:08:56,832
+okay?                           
+
+201
+00:08:56,901 --> 00:08:59,668
+it's just going to              
+blink if needed.                
+
+202
+00:08:59,737 --> 00:09:01,503
+Now if blinking is false,       
+
+203
+00:09:01,572 --> 00:09:04,807
+obviously the blinking is not   
+needed so it won't be blinking  
+
+204
+00:09:04,875 --> 00:09:08,510
+but if it is blinking,          
+then we need to blink.          
+
+205
+00:09:08,579 --> 00:09:11,212
+Now, just for                   
+demo purposes right here,       
+
+206
+00:09:11,281 --> 00:09:13,981
+or maybe this is even what I    
+would want, I'm gonna turn on   
+
+207
+00:09:14,049 --> 00:09:17,585
+my blinking when I appear,      
+when my MVC appears on screen,  
+
+208
+00:09:17,653 --> 00:09:19,686
+and I'm gonna turn it           
+off when I disappear.           
+
+209
+00:09:19,755 --> 00:09:21,487
+And you do need to think        
+about this when you're using    
+
+210
+00:09:21,556 --> 00:09:22,355
+a timer.                        
+
+211
+00:09:22,423 --> 00:09:25,124
+That when your MVC goes         
+off screen because it's in      
+
+212
+00:09:25,193 --> 00:09:27,759
+a navigation controller and     
+someone navigates to something  
+
+213
+00:09:27,828 --> 00:09:30,062
+else or someone hits back,      
+or some of that.                
+
+214
+00:09:30,130 --> 00:09:32,697
+You wanna make sure that        
+you stop your timer.            
+
+215
+00:09:32,766 --> 00:09:34,332
+You don't want that timer,      
+sitting there running,          
+
+216
+00:09:34,401 --> 00:09:37,435
+doing something,                
+the MVC is not even on screen   
+
+217
+00:09:37,503 --> 00:09:40,871
+unless it's doing something     
+I guess that's not UI based.    
+
+218
+00:09:40,940 --> 00:09:45,975
+But I'm gonna say here          
+in my viewDidAppear,            
+
+219
+00:09:46,044 --> 00:09:49,079
+super.viewDidAppear.            
+
+220
+00:09:51,582 --> 00:09:54,216
+I'm gonna say here              
+blinking = true.                
+
+221
+00:09:54,285 --> 00:09:56,485
+So every time my MVC            
+appears on screen,              
+
+222
+00:09:56,553 --> 00:09:59,688
+it's gonna start blinking and   
+in viewWillDisappear            
+
+223
+00:10:03,693 --> 00:10:06,260
+I'm going to say                
+blinking = false.               
+
+224
+00:10:06,329 --> 00:10:08,528
+So, I'm gonna stop blinking     
+when it disappears,             
+
+225
+00:10:08,597 --> 00:10:09,796
+does it make sense?             
+
+226
+00:10:09,865 --> 00:10:12,432
+Okay, so, that's going to       
+obviously cause my stimer,      
+
+227
+00:10:12,501 --> 00:10:14,934
+timer to stop going cuz my      
+timer is only gonna be going    
+
+228
+00:10:15,003 --> 00:10:17,303
+when I'm blinking, all right?   
+
+229
+00:10:17,372 --> 00:10:19,372
+So, how am I gonna              
+implement blinkIfNeeded?        
+
+230
+00:10:19,441 --> 00:10:20,472
+Well, it's only if needed so    
+
+231
+00:10:20,541 --> 00:10:23,742
+I'm gonna say, if I'm blinking  
+then I'm gonna do something,    
+
+232
+00:10:23,811 --> 00:10:27,378
+that is the if needed part of   
+this blink thing right here.    
+
+233
+00:10:27,447 --> 00:10:28,613
+And what do I need to do?       
+
+234
+00:10:28,682 --> 00:10:33,450
+Well, first of all I'm gonna    
+just have some constants here.  
+
+235
+00:10:33,519 --> 00:10:36,653
+I think I called it,            
+what did I call this.           
+
+236
+00:10:36,722 --> 00:10:39,689
+I don't know, what did I        
+call the constants here.        
+
+237
+00:10:39,758 --> 00:10:41,825
+Hm, well,                       
+we'll just typing them in.      
+
+238
+00:10:41,893 --> 00:10:45,628
+So I'm gonna have a little      
+struct here called BlinkRate.   
+
+239
+00:10:45,697 --> 00:10:49,432
+And I'm gonna have how long     
+my eyes stays closed when I'm   
+
+240
+00:10:49,500 --> 00:10:52,468
+blinking, and how long it       
+stays open when I'm blinking.   
+
+241
+00:10:52,537 --> 00:10:57,105
+So, let's have a static let     
+closedDuration which is         
+
+242
+00:10:57,174 --> 00:11:00,708
+gonna be a TimeInterval.        
+
+243
+00:11:00,777 --> 00:11:04,913
+TimeInterval is just a little   
+class or a little type that     
+
+244
+00:11:04,981 --> 00:11:09,016
+represents elapse time,         
+it's pretty much a double.      
+
+245
+00:11:09,085 --> 00:11:11,952
+But whenever we're talking      
+about TimeIntervals we kinda    
+
+246
+00:11:12,021 --> 00:11:14,921
+let people know in our code by  
+using the TimeInterval type.    
+
+247
+00:11:14,990 --> 00:11:18,792
+And then I'm gonna have the     
+same thing openDuration which   
+
+248
+00:11:18,861 --> 00:11:21,494
+is gonna be a TimeInterval.     
+
+249
+00:11:21,563 --> 00:11:23,262
+And, you know,                  
+usually when we're blinking,    
+
+250
+00:11:23,331 --> 00:11:25,631
+our eyes stay open a lot        
+longer than they're closed.     
+
+251
+00:11:25,699 --> 00:11:28,733
+So let's say something like,    
+I don't know, 2.5 seconds or    
+
+252
+00:11:28,802 --> 00:11:29,834
+something like that.            
+
+253
+00:11:29,903 --> 00:11:32,103
+Okay, now if I was              
+doing this for real,            
+
+254
+00:11:32,172 --> 00:11:35,639
+I'd probably have the amount    
+it stays open be random         
+
+255
+00:11:35,708 --> 00:11:37,574
+within some tolerance, right?   
+
+256
+00:11:37,643 --> 00:11:40,677
+Cuz when we're blinking we      
+don't go blink, blink, we,      
+
+257
+00:11:40,746 --> 00:11:42,712
+you know kind of                
+sometimes we blink and          
+
+258
+00:11:42,781 --> 00:11:45,248
+then this short amount          
+of time, but again, for         
+
+259
+00:11:45,317 --> 00:11:47,983
+demo purposes here we'll        
+just fix it to be 2.5.          
+
+260
+00:11:48,052 --> 00:11:49,751
+All right, so we have that.     
+
+261
+00:11:49,820 --> 00:11:51,486
+Now, all we're                  
+gonna do to blink,              
+
+262
+00:11:51,555 --> 00:11:56,124
+is we're gonna start by         
+setting our eyes to be closed.  
+
+263
+00:11:56,192 --> 00:11:58,459
+So I'm gonna say self.          
+
+264
+00:11:58,528 --> 00:11:59,393
+I don't even need self here.    
+
+265
+00:11:59,462 --> 00:12:03,697
+faceView.eyesOpen = false.      
+
+266
+00:12:03,765 --> 00:12:07,367
+Remember faceView is our,       
+one of our superclass's vars,   
+
+267
+00:12:07,436 --> 00:12:10,670
+a public var in                 
+our superclass.                 
+
+268
+00:12:10,738 --> 00:12:13,606
+That's maybe unfortunate it     
+has to be a var, or public.     
+
+269
+00:12:13,675 --> 00:12:15,107
+It'd be nice if it              
+was protected, maybe,           
+
+270
+00:12:15,176 --> 00:12:18,777
+we'd have no such thing, so     
+it's public, outlet there.      
+
+271
+00:12:18,846 --> 00:12:20,412
+And we're setting it            
+to eyesOpen to false.           
+
+272
+00:12:20,481 --> 00:12:22,747
+So we're starting our           
+blink by closing our eyes.      
+
+273
+00:12:22,816 --> 00:12:25,016
+Now, after                      
+the closed duration,            
+
+274
+00:12:25,085 --> 00:12:26,250
+we wanna open them back up.     
+
+275
+00:12:26,319 --> 00:12:29,719
+So, I'm gonna say,              
+Timer.scheduledTimer and        
+
+276
+00:12:29,788 --> 00:12:31,989
+notice I'm not even looking at  
+the return value of the timer   
+
+277
+00:12:32,057 --> 00:12:33,556
+cuz I never have                
+to invalidate it.               
+
+278
+00:12:33,625 --> 00:12:35,391
+This is gonna be                
+a one shot deal, and            
+
+279
+00:12:35,460 --> 00:12:37,994
+it's gonna automatically        
+invalidate itself when          
+
+280
+00:12:38,062 --> 00:12:38,661
+it's done.                      
+
+281
+00:12:38,730 --> 00:12:42,464
+And so the time interval        
+here we want is                 
+
+282
+00:12:42,533 --> 00:12:46,434
+BlinkRate.closeDuration,        
+right?                          
+
+283
+00:12:46,503 --> 00:12:47,769
+We just closed our eyes.        
+
+284
+00:12:47,838 --> 00:12:50,338
+eyesOpen = false, and           
+it repeats false,               
+
+285
+00:12:50,407 --> 00:12:52,539
+it's just gonna do it once.     
+
+286
+00:12:52,608 --> 00:12:55,008
+I'm going to call               
+blinkIfNeeded again             
+
+287
+00:12:55,077 --> 00:12:56,542
+after I've blinked once.        
+
+288
+00:12:56,611 --> 00:12:59,145
+So I'm just gonna kind of keep  
+calling blinkIfNeeded until     
+
+289
+00:12:59,214 --> 00:13:01,180
+blinking is not true anymore.   
+
+290
+00:13:01,249 --> 00:13:05,551
+And then here's the block of    
+code that it, it's gonna call   
+
+291
+00:13:05,619 --> 00:13:09,621
+each time, and so it takes      
+a timer as an argument there.   
+
+292
+00:13:09,690 --> 00:13:10,822
+Oops, yeah.                     
+
+293
+00:13:13,125 --> 00:13:18,463
+Timer and we don't,             
+we can use a closing, Trailing  
+
+294
+00:13:18,531 --> 00:13:21,265
+closure syntax notation here,   
+put that on the end.            
+
+295
+00:13:21,333 --> 00:13:22,466
+So here is the timer.           
+
+296
+00:13:22,534 --> 00:13:24,034
+So what do we need to           
+do inside this timer?           
+
+297
+00:13:24,102 --> 00:13:26,836
+Well, we're just gonna          
+open our eyes back up,          
+
+298
+00:13:26,905 --> 00:13:28,838
+so faceView.eyesOpen = true.    
+
+299
+00:13:28,906 --> 00:13:31,974
+And of course,                  
+we're inside a closure here so  
+
+300
+00:13:32,043 --> 00:13:33,808
+we're gonna need self..         
+
+301
+00:13:33,877 --> 00:13:36,711
+And of course, we don't         
+want to have the memory         
+
+302
+00:13:36,780 --> 00:13:38,612
+cycle here although             
+this timer's so                 
+
+303
+00:13:38,681 --> 00:13:41,682
+short duration, probably        
+that's not gonna be an issue.   
+
+304
+00:13:41,751 --> 00:13:45,585
+But we'll go ahead here and     
+do weak self up here and        
+
+305
+00:13:45,654 --> 00:13:49,122
+just do Okay?                   
+
+306
+00:13:49,190 --> 00:13:51,924
+So now,                         
+eyes are back open, right?      
+
+307
+00:13:51,993 --> 00:13:54,627
+And what do we need to do now?  
+
+308
+00:13:54,696 --> 00:13:57,963
+Well, if we're still blinking,  
+we need to blink again.         
+
+309
+00:13:58,032 --> 00:14:00,866
+So, we need, basically need to  
+call blinkIfNeeded again, but   
+
+310
+00:14:00,935 --> 00:14:02,534
+we got to wait for              
+our openDuration,               
+
+311
+00:14:02,602 --> 00:14:04,435
+leave our eyes open for         
+that long and then,             
+
+312
+00:14:04,504 --> 00:14:06,871
+if we're still blinking,        
+then we'll blink again.         
+
+313
+00:14:06,940 --> 00:14:07,905
+So blinkIfNeeded again.         
+
+314
+00:14:07,974 --> 00:14:11,041
+So, I'm just gonna do           
+another timer inside here,      
+
+315
+00:14:11,110 --> 00:14:12,609
+which is perfectly fine.        
+
+316
+00:14:12,677 --> 00:14:15,144
+Even though I'm in a closure    
+that's being executed           
+
+317
+00:14:15,213 --> 00:14:18,147
+0.4 seconds in the future, I,   
+there's no law that says in     
+
+318
+00:14:18,216 --> 00:14:20,616
+that closure I couldn't         
+schedule another timer,         
+
+319
+00:14:20,684 --> 00:14:22,417
+which is exactly                
+what I'm gonna do.              
+
+320
+00:14:22,486 --> 00:14:25,320
+And this one,                   
+the BlinkRate.openDuration,     
+
+321
+00:14:25,388 --> 00:14:28,055
+so I'm just gonna wait          
+the amount open time,           
+
+322
+00:14:28,124 --> 00:14:29,790
+again it's not repeating.       
+
+323
+00:14:29,859 --> 00:14:33,861
+Okay and then in this guy's     
+closure, which I'm also gonna   
+
+324
+00:14:33,930 --> 00:14:36,963
+do with trailing closure        
+notation, timer.                
+
+325
+00:14:37,032 --> 00:14:39,867
+And heck, let's go ahead and    
+do weak self,                   
+
+326
+00:14:39,935 --> 00:14:42,869
+we're not gonna know            
+we're gonna want that In        
+
+327
+00:14:42,937 --> 00:14:46,105
+here I'm just gonna say         
+self.blinkIfNeeded.             
+
+328
+00:14:46,174 --> 00:14:48,740
+And of course,                  
+it will stop blinking if        
+
+329
+00:14:48,809 --> 00:14:52,544
+blinking has been set to false  
+at any point here, okay?        
+
+330
+00:14:52,613 --> 00:14:55,346
+So, this is always gonna do     
+one blink and then if it needs  
+
+331
+00:14:55,415 --> 00:14:58,182
+two, it'll do it'll go          
+back and do another blink.      
+
+332
+00:14:58,251 --> 00:15:00,352
+So, yes, ?, at this weak.       
+
+333
+00:15:02,088 --> 00:15:02,753
+Okay, we got this code.         
+
+334
+00:15:02,821 --> 00:15:04,587
+So, that's it, that's all       
+we need to do to blink,         
+
+335
+00:15:04,656 --> 00:15:05,889
+we're just gonna open or        
+
+336
+00:15:05,958 --> 00:15:07,423
+we're just gonna close          
+your eyes rather,               
+
+337
+00:15:07,492 --> 00:15:08,091
+wait a little bit,              
+
+338
+00:15:08,159 --> 00:15:10,025
+open them back up,              
+wait a little bit more and      
+
+339
+00:15:10,094 --> 00:15:12,528
+then blink again if             
+w're still blinking.            
+
+340
+00:15:12,596 --> 00:15:13,762
+So let's see what               
+that looks like.                
+
+341
+00:15:22,405 --> 00:15:23,203
+Okay, there he is.              
+
+342
+00:15:23,272 --> 00:15:24,038
+He's blinking.                  
+
+343
+00:15:26,041 --> 00:15:27,174
+Okay, and he'll work.           
+
+344
+00:15:27,242 --> 00:15:28,841
+Here, we'll just                
+switch him around.              
+
+345
+00:15:28,910 --> 00:15:30,676
+He works no matter what.        
+
+346
+00:15:30,745 --> 00:15:32,611
+Whether he's happy or sad,      
+he's always blinking.           
+
+347
+00:15:34,281 --> 00:15:36,081
+Now, one thing about            
+this blink that's not so        
+
+348
+00:15:36,150 --> 00:15:38,382
+good is it's kind of abrupt.    
+
+349
+00:15:38,451 --> 00:15:40,251
+That's why I'm saying it's      
+not really animation, right?    
+
+350
+00:15:41,220 --> 00:15:42,286
+We don't blink like this.       
+
+351
+00:15:43,522 --> 00:15:45,121
+Okay, nobody blinks like that.  
+
+352
+00:15:45,189 --> 00:15:47,122
+Okay, we kind of close our      
+eyes a little bit slow.         
+
+353
+00:15:47,191 --> 00:15:48,691
+There's a little bit            
+of motion to it.                
+
+354
+00:15:48,759 --> 00:15:50,225
+And so                          
+we'd really like to do that.    
+
+355
+00:15:50,294 --> 00:15:53,461
+And so let's talk about some    
+more animation capabilities we  
+
+356
+00:15:53,530 --> 00:15:57,565
+have and how we can do really   
+more true animation of that,    
+
+357
+00:15:57,634 --> 00:15:58,566
+than just using a timer.        
+
+358
+00:15:58,635 --> 00:16:01,702
+So let's go back to             
+our Slides here.                
+
+359
+00:16:05,074 --> 00:16:07,773
+Alright, so before I do that    
+though, let me talk about and   
+
+360
+00:16:07,842 --> 00:16:12,345
+summarize not all actually,     
+but most of the animation       
+
+361
+00:16:12,414 --> 00:16:14,714
+capabilities that               
+you get with iOS,               
+
+362
+00:16:14,783 --> 00:16:17,249
+so the when I am gonna          
+talk about in detail and        
+
+363
+00:16:17,318 --> 00:16:20,785
+demo today is animating         
+UIView properties.              
+
+364
+00:16:20,854 --> 00:16:23,788
+There's only a few of           
+the properties Vars,            
+
+365
+00:16:23,857 --> 00:16:26,858
+in other words, in UIView       
+that you can animate.           
+
+366
+00:16:26,926 --> 00:16:29,260
+But they're pretty powerful     
+few as you're gonna see, and    
+
+367
+00:16:29,329 --> 00:16:32,196
+allows us to do,                
+a lot of animation.             
+
+368
+00:16:32,264 --> 00:16:34,731
+There's also, you can also      
+obviously animate those         
+
+369
+00:16:34,800 --> 00:16:37,333
+controller animations like in   
+a navigation controller when    
+
+370
+00:16:37,402 --> 00:16:40,803
+you click to go to the next     
+card on the stack,              
+
+371
+00:16:40,872 --> 00:16:43,739
+it slides in, right,            
+that's animated.                
+
+372
+00:16:43,808 --> 00:16:46,808
+And when you rotate your split  
+view, those are animated        
+
+373
+00:16:46,877 --> 00:16:48,843
+transitions, that's             
+all controllable.               
+
+374
+00:16:48,912 --> 00:16:50,195
+even though I'm not gonna talk  
+at all about it in this class,  
+
+375
+00:16:50,196 --> 00:16:51,479
+And in fact,                    
+
+376
+00:16:51,548 --> 00:16:52,546
+might be a good final project,  
+
+377
+00:16:52,615 --> 00:16:54,448
+not covered in lecture          
+thing for you, by the way.      
+
+378
+00:16:56,118 --> 00:16:57,584
+You, there's a whole            
+infrastructure for              
+
+379
+00:16:57,652 --> 00:17:00,787
+writing your own                
+controllers of controllers,     
+
+380
+00:17:00,856 --> 00:17:02,621
+like navigation controller,     
+split controller,               
+
+381
+00:17:02,690 --> 00:17:03,855
+tab bar controller.             
+
+382
+00:17:03,924 --> 00:17:04,956
+And so, part of that            
+
+383
+00:17:05,025 --> 00:17:07,692
+mechanism includes              
+full animation support.         
+
+384
+00:17:07,761 --> 00:17:10,561
+Now, underneath all of this     
+animation I'm talking is        
+
+385
+00:17:10,630 --> 00:17:12,863
+Core Animation,                 
+it's a framework, okay?         
+
+386
+00:17:12,932 --> 00:17:14,965
+Like UI kind of a framework.    
+
+387
+00:17:15,033 --> 00:17:17,768
+And Core Animation has          
+a lot of mechanism for          
+
+388
+00:17:17,836 --> 00:17:19,602
+doing very sophisticated        
+animation.                      
+
+389
+00:17:19,671 --> 00:17:22,939
+Now, not a lot of it            
+bubbles up to the UI view       
+
+390
+00:17:23,008 --> 00:17:24,907
+animation that we're            
+gonna talk about but            
+
+391
+00:17:24,976 --> 00:17:27,710
+kind of the simplest most       
+straight forward once do.       
+
+392
+00:17:27,778 --> 00:17:31,346
+Again, this is something for    
+your final project maybe you    
+
+393
+00:17:31,415 --> 00:17:33,848
+wanna do some more              
+sophisticated animation.        
+
+394
+00:17:33,917 --> 00:17:37,017
+You could drop down into        
+the core animationlLater        
+
+395
+00:17:37,086 --> 00:17:40,721
+is a little bit                 
+about window in                 
+
+396
+00:17:40,790 --> 00:17:45,059
+the core animation              
+from UI view.                   
+
+397
+00:17:45,128 --> 00:17:51,531
+It's a bar in UI view called    
+
+398
+00:17:51,600 --> 00:17:58,538
+I think it's called there's     
+
+399
+00:17:58,607 --> 00:18:03,609
+a lot of makings in for         
+
+400
+00:18:03,678 --> 00:18:09,181
+doing 3D animation.             
+
+401
+00:18:09,250 --> 00:18:12,951
+OpenGL as full OpenGL           
+>> [COUGH]                      
+
+402
+00:18:13,020 --> 00:18:14,786
+>> There's another cool little  
+
+403
+00:18:14,854 --> 00:18:18,222
+kit might put this in some of   
+your final projects called      
+
+404
+00:18:18,291 --> 00:18:22,026
+spritekit, spritekit is kind    
+of 2.5 D animation typical      
+
+405
+00:18:22,095 --> 00:18:25,763
+animation we have like little   
+character running around and    
+
+406
+00:18:25,832 --> 00:18:29,466
+he's jumping over things,       
+shooting at things.             
+
+407
+00:18:29,535 --> 00:18:31,902
+That would likely be            
+done with spritekit,            
+
+408
+00:18:31,971 --> 00:18:34,504
+it knows how to do              
+things like fire.               
+
+409
+00:18:34,573 --> 00:18:37,239
+Things like that in addition    
+to knowing how to layer         
+
+410
+00:18:37,308 --> 00:18:39,408
+images on top of each other     
+and have them move around.      
+
+411
+00:18:39,477 --> 00:18:42,344
+So that's kinda fun, not gonna  
+be able to talk about that.     
+
+412
+00:18:42,413 --> 00:18:46,348
+And lastly is physics-based     
+animation, and we're            
+
+413
+00:18:46,416 --> 00:18:48,115
+gonna talk all about that at    
+the end of this lecture, and    
+
+414
+00:18:48,184 --> 00:18:49,917
+then I'll demo                  
+that on Wednesday.              
+
+415
+00:18:49,986 --> 00:18:51,418
+So the two I'm gonna talk       
+about is the first one and      
+
+416
+00:18:51,487 --> 00:18:53,920
+the last one,                   
+UIView animations, and          
+
+417
+00:18:53,989 --> 00:18:55,889
+then physics-based animation.   
+
+418
+00:18:57,259 --> 00:18:59,626
+All right, so let's talk        
+about this UIView Animation.    
+
+419
+00:18:59,694 --> 00:19:01,226
+What can you animate.           
+
+420
+00:19:01,295 --> 00:19:03,095
+Well, these are the things      
+you can animate.                
+
+421
+00:19:03,164 --> 00:19:05,229
+You can animate                 
+the position of your view.      
+
+422
+00:19:05,298 --> 00:19:07,732
+So, you can make it animated,   
+moving,                         
+
+423
+00:19:07,801 --> 00:19:09,333
+sliding around on screen.       
+
+424
+00:19:09,402 --> 00:19:10,834
+The view's moving around.       
+
+425
+00:19:10,903 --> 00:19:13,204
+You can animate                 
+it's transform,                 
+
+426
+00:19:13,272 --> 00:19:17,140
+which primarily means,          
+it's size or it's rotation.     
+
+427
+00:19:17,209 --> 00:19:19,175
+Okay?                           
+Cuz the translation part of it  
+
+428
+00:19:19,243 --> 00:19:20,476
+transport, transform,           
+
+429
+00:19:20,544 --> 00:19:23,012
+you're pretty much gonna do     
+with frame or center, okay?     
+
+430
+00:19:23,081 --> 00:19:27,515
+So you can rotate your view or  
+scale it up and down.           
+
+431
+00:19:27,584 --> 00:19:29,117
+There's alpha, okay.            
+
+432
+00:19:29,186 --> 00:19:31,853
+Alpha you remember number is    
+I didn't remember is opacity.   
+
+433
+00:19:31,922 --> 00:19:36,124
+So, how                         
+
+434
+00:19:36,192 --> 00:19:41,662
+much it's                       
+
+435
+00:19:41,731 --> 00:19:49,703
+transparent.                    
+
+436
+00:19:49,772 --> 00:19:52,505
+So that, takes closures.        
+
+437
+00:19:52,574 --> 00:19:53,573
+And inside these closures,      
+
+438
+00:19:53,642 --> 00:19:56,008
+you're gonna change             
+these values, okay.             
+
+439
+00:19:56,077 --> 00:19:58,444
+And what the method,            
+the class method's gonna do,    
+
+440
+00:19:58,513 --> 00:20:02,047
+is animate those changes,       
+that you make.                  
+
+441
+00:20:02,116 --> 00:20:03,448
+All right, so                   
+let's take a look               
+
+442
+00:20:03,517 --> 00:20:05,016
+at one of these class methods.  
+
+443
+00:20:05,085 --> 00:20:07,485
+This one's called               
+animate withDuration.           
+
+444
+00:20:07,553 --> 00:20:10,922
+And you can see here            
+that it takes these two         
+
+445
+00:20:10,990 --> 00:20:12,389
+closures right there.           
+
+446
+00:20:12,458 --> 00:20:14,324
+You see the two                 
+green closures?                 
+
+447
+00:20:14,392 --> 00:20:16,960
+And the first green             
+closure there,                  
+
+448
+00:20:17,028 --> 00:20:20,864
+inside there, you change any    
+of those special vars, okay?    
+
+449
+00:20:20,932 --> 00:20:23,833
+Frame, center, alpha,           
+etc, you change them.           
+
+450
+00:20:23,902 --> 00:20:25,367
+By the way, it makes those      
+changes immediately.            
+
+451
+00:20:25,436 --> 00:20:27,635
+It does not take                
+time to change them.            
+
+452
+00:20:27,704 --> 00:20:28,937
+Even though it takes time for   
+
+453
+00:20:29,006 --> 00:20:31,205
+it to appear on screen          
+it happens immediately.         
+
+454
+00:20:31,274 --> 00:20:34,075
+And then the completion         
+block is called                 
+
+455
+00:20:34,144 --> 00:20:36,309
+after the animation is done.    
+
+456
+00:20:36,378 --> 00:20:38,645
+So, you know, however your      
+animation you take when it's    
+
+457
+00:20:38,713 --> 00:20:40,212
+completely done.                
+
+458
+00:20:40,281 --> 00:20:43,149
+Then this gets called and       
+the finished                    
+
+459
+00:20:43,217 --> 00:20:45,651
+variable, err the finished      
+argument to that closure        
+
+460
+00:20:45,720 --> 00:20:48,787
+is whether the animation        
+got all the way to the end.     
+
+461
+00:20:48,856 --> 00:20:50,688
+And why could it might          
+not get to the end?             
+
+462
+00:20:50,757 --> 00:20:52,790
+Some other animation might      
+pick it up in the middle and    
+
+463
+00:20:52,859 --> 00:20:55,826
+start animating that            
+bar to somewhere else.          
+
+464
+00:20:55,895 --> 00:20:57,461
+Okay, so,                       
+here's what it looks like.      
+
+465
+00:20:57,530 --> 00:20:59,362
+To call that,                   
+here's an example of it.        
+
+466
+00:20:59,431 --> 00:21:01,030
+So, here I have                 
+a view called myView.           
+
+467
+00:21:01,099 --> 00:21:04,835
+[SOUND] And what I'm gonna do   
+with this code right here is,   
+
+468
+00:21:04,903 --> 00:21:08,037
+I'm gonna take a view as        
+long as it's fully opaque,      
+
+469
+00:21:08,106 --> 00:21:11,640
+fully visible on screen,        
+I'm going to wait two seconds.  
+
+470
+00:21:11,709 --> 00:21:15,210
+And then, over three seconds,   
+I'm gonna fade it out.          
+
+471
+00:21:15,279 --> 00:21:17,245
+Fade it to alpha,               
+down to zero.                   
+
+472
+00:21:17,314 --> 00:21:18,613
+And then,                       
+when it's fully faded out,      
+
+473
+00:21:18,681 --> 00:21:21,616
+I'm gonna remove it from        
+the view hierarchy, okay?       
+
+474
+00:21:21,685 --> 00:21:22,917
+That's what this code does.     
+
+475
+00:21:22,985 --> 00:21:26,553
+So, you can see,                
+
+476
+00:21:26,622 --> 00:21:28,422
+So, if it's full power.         
+
+477
+00:21:28,490 --> 00:21:31,457
+And if it is, then I'm doing    
+animate with duration.          
+
+478
+00:21:31,526 --> 00:21:32,625
+The duration of three seconds,  
+
+479
+00:21:32,694 --> 00:21:34,660
+that's how long it's            
+gonna take this,                
+
+480
+00:21:34,729 --> 00:21:37,529
+the green code there to         
+execute to, not to execute,     
+
+481
+00:21:37,598 --> 00:21:39,030
+but to show up on the screen.   
+
+482
+00:21:39,099 --> 00:21:41,466
+And then delay is how long I'm  
+gonna wait till I start that    
+
+483
+00:21:41,534 --> 00:21:43,234
+animation.                      
+
+484
+00:21:43,303 --> 00:21:44,552
+we'll talk all about options,   
+in a couple of slides.          
+
+485
+00:21:44,553 --> 00:21:45,802
+The options,                    
+
+486
+00:21:45,872 --> 00:21:49,172
+But here, curve linear          
+means it's gonna go from        
+
+487
+00:21:49,241 --> 00:21:52,976
+alpha one to 1.0 in a linear,   
+linear over time.               
+
+488
+00:21:53,045 --> 00:21:55,478
+So after one second it's gonna  
+be a third of the way there.    
+
+489
+00:21:55,546 --> 00:21:57,813
+After two seconds it'll         
+be two thirds of the way.       
+
+490
+00:21:57,882 --> 00:21:59,648
+And after the full time         
+it'll be down to zero.          
+
+491
+00:22:01,252 --> 00:22:03,351
+In animations, you can          
+see what I'm animating.         
+
+492
+00:22:03,420 --> 00:22:06,387
+I'm changing the alpha          
+to zero, okay?                  
+
+493
+00:22:06,455 --> 00:22:09,356
+That's the change I'm making    
+to those special bars.          
+
+494
+00:22:09,425 --> 00:22:12,058
+And then at completion you can  
+say, if $0, which means if I    
+
+495
+00:22:12,127 --> 00:22:16,397
+finished, then remove           
+this view from Superview.       
+
+496
+00:22:16,465 --> 00:22:18,298
+And remember, that              
+completion applock is only      
+
+497
+00:22:18,366 --> 00:22:20,032
+called after                    
+the animation is done.          
+
+498
+00:22:20,101 --> 00:22:21,934
+In other words,                 
+five seconds from now.          
+
+499
+00:22:23,337 --> 00:22:24,502
+All right?                      
+
+500
+00:22:24,571 --> 00:22:26,605
+Now what's really interesting   
+is on the next line there I     
+
+501
+00:22:26,673 --> 00:22:30,708
+say print myView.alpha equals   
+the value of myView.alpha,      
+
+502
+00:22:30,777 --> 00:22:35,880
+that is going to immediately    
+print zero, okay?               
+
+503
+00:22:35,948 --> 00:22:38,983
+That method animate             
+withDuration, it only executes  
+
+504
+00:22:39,051 --> 00:22:42,453
+the first green closure there,  
+myView.alpha = 0.0,             
+
+505
+00:22:42,521 --> 00:22:45,988
+and then it returns             
+immediately after that.         
+
+506
+00:22:46,057 --> 00:22:47,991
+And at that point,              
+myView.alpha is 0.0.            
+
+507
+00:22:48,059 --> 00:22:52,261
+The animation is just queued    
+up to happen in the future.     
+
+508
+00:22:52,330 --> 00:22:55,163
+So always think of the changes  
+you make with the animation     
+
+509
+00:22:55,232 --> 00:22:56,998
+system as happening right now.  
+
+510
+00:22:57,067 --> 00:22:59,300
+You're just executing that      
+closer right now, but           
+
+511
+00:22:59,369 --> 00:23:01,703
+by putting it in this little    
+wrap of this animate with       
+
+512
+00:23:01,771 --> 00:23:04,772
+duration, you're queueing       
+up an animation to show         
+
+513
+00:23:04,840 --> 00:23:09,109
+the user that change that       
+you've already made over time.  
+
+514
+00:23:09,178 --> 00:23:11,711
+Now it seems a little           
+weird because, whoa,            
+
+515
+00:23:11,780 --> 00:23:15,114
+I changed it right now and so   
+inside my code alpha is zero,   
+
+516
+00:23:15,183 --> 00:23:18,084
+but the user still              
+sees it fully.                  
+
+517
+00:23:18,153 --> 00:23:20,386
+Opaque, which they do,          
+for five seconds.               
+
+518
+00:23:20,454 --> 00:23:23,589
+It's still gonna be opaque      
+until it completely fades out.  
+
+519
+00:23:23,658 --> 00:23:24,823
+But that's just                 
+the way this works.             
+
+520
+00:23:24,892 --> 00:23:26,058
+You just gotta                  
+get used to that.               
+
+521
+00:23:26,126 --> 00:23:28,593
+The animations always           
+happen after the fact,          
+
+522
+00:23:28,661 --> 00:23:29,927
+over time, okay?                
+
+523
+00:23:29,995 --> 00:23:31,696
+But the changes you make        
+happen immediately.             
+
+524
+00:23:33,532 --> 00:23:35,231
+All right?                      
+
+525
+00:23:35,300 --> 00:23:38,468
+Here's some of the options      
+we can do when we animate,      
+
+526
+00:23:38,537 --> 00:23:40,036
+I talked about                  
+the curveLinear,                
+
+527
+00:23:40,104 --> 00:23:41,671
+which is at the very bottom,    
+right above it,                 
+
+528
+00:23:41,739 --> 00:23:45,641
+you see curveEaseInEaseOut,     
+and curveEaseIn.                
+
+529
+00:23:45,709 --> 00:23:48,509
+These basically make it so      
+that, instead of just linearly  
+
+530
+00:23:48,578 --> 00:23:51,412
+going from the start value      
+to the end value of that var    
+
+531
+00:23:51,481 --> 00:23:54,215
+change, it starts off slowly,   
+then goes up to normal speed,   
+
+532
+00:23:54,283 --> 00:23:57,117
+and then slows down at the end  
+now, why do you want this?      
+
+533
+00:23:57,186 --> 00:23:58,452
+This is especially good for     
+
+534
+00:23:58,520 --> 00:24:00,520
+moving, when you're             
+moving a view.                  
+
+535
+00:24:00,589 --> 00:24:03,623
+You don't want a view to be     
+on screen and go [sound].       
+
+536
+00:24:03,691 --> 00:24:06,659
+You want to kinda go and        
+then slow down at the end.      
+
+537
+00:24:06,727 --> 00:24:08,660
+It just feels, if you move      
+something in real life,         
+
+538
+00:24:08,729 --> 00:24:11,563
+if you don't jerk it up here,   
+you lift it up and              
+
+539
+00:24:11,631 --> 00:24:12,731
+then, you set it down.          
+
+540
+00:24:12,799 --> 00:24:13,597
+Same thing here.                
+
+541
+00:24:13,666 --> 00:24:15,499
+You want to lift it a few up,   
+move it over, and               
+
+542
+00:24:15,568 --> 00:24:16,567
+then set it down, okay?         
+
+543
+00:24:16,636 --> 00:24:18,335
+So, that's why curve ease in,   
+ease out.                       
+
+544
+00:24:18,404 --> 00:24:22,071
+So, you can control whether     
+it eases on either end.         
+
+545
+00:24:22,140 --> 00:24:24,640
+Going to the one on the top,    
+begin from current state.       
+
+546
+00:24:24,709 --> 00:24:27,310
+Remember I said                 
+that that finished,             
+
+547
+00:24:27,379 --> 00:24:30,045
+argument to the completion      
+handler would                   
+
+548
+00:24:30,113 --> 00:24:32,180
+only be true if the animation   
+got all the way finished.       
+
+549
+00:24:32,249 --> 00:24:35,317
+Well, if you issue another      
+animation while this            
+
+550
+00:24:35,385 --> 00:24:38,452
+ones like the previous one's    
+still in flight during that     
+
+551
+00:24:38,521 --> 00:24:39,770
+If you issue another one that   
+changes alpha in some other     
+
+552
+00:24:39,771 --> 00:24:41,020
+five seconds.                   
+
+553
+00:24:41,089 --> 00:24:43,723
+way, well, either that          
+animation's gonna start from    
+
+554
+00:24:43,792 --> 00:24:47,293
+the new value of                
+alpha which is zero.            
+
+555
+00:24:47,362 --> 00:24:49,361
+Okay, even though it's          
+still in flight and             
+
+556
+00:24:49,430 --> 00:24:52,498
+hasn't shown that zero to       
+the user, it still is zero.     
+
+557
+00:24:52,567 --> 00:24:55,601
+Or, whether the animation of    
+the alpha, the new animation's  
+
+558
+00:24:55,670 --> 00:24:57,636
+gonna pick up wherever          
+the other one is, okay?         
+
+559
+00:24:57,704 --> 00:25:00,739
+So, in another word, this is    
+gonna pick up mid-flight and    
+
+560
+00:25:00,807 --> 00:25:02,473
+make the alpha go               
+somewhere else.                 
+
+561
+00:25:02,542 --> 00:25:05,209
+So that's what begin from       
+current state says should I     
+
+562
+00:25:05,278 --> 00:25:09,113
+look at what the user           
+perceives, or is seeing         
+
+563
+00:25:09,181 --> 00:25:11,515
+as that alpha, or should I      
+just use the real alpha,        
+
+564
+00:25:11,584 --> 00:25:13,050
+which has already               
+been changed to zero?           
+
+565
+00:25:14,052 --> 00:25:14,884
+Okay.                           
+
+566
+00:25:14,953 --> 00:25:17,186
+So you can look through         
+the documentation for           
+
+567
+00:25:17,255 --> 00:25:19,587
+all these options,              
+I think there's 25 of them,     
+
+568
+00:25:19,656 --> 00:25:21,923
+so there's a lot of cool        
+things you can do there.        
+
+569
+00:25:21,992 --> 00:25:23,090
+And we'll talk about            
+some more of them               
+
+570
+00:25:23,159 --> 00:25:25,726
+some of these other             
+UIView animations.              
+
+571
+00:25:25,795 --> 00:25:27,394
+All right.                      
+So that's the UIView animation  
+
+572
+00:25:27,463 --> 00:25:31,999
+where you're animating one      
+of these five special bars.     
+
+573
+00:25:32,067 --> 00:25:35,268
+So it's another thing you can   
+do with UIView animation,       
+
+574
+00:25:35,336 --> 00:25:38,270
+is what if I have a view, and   
+Imma change a whole lot of      
+
+575
+00:25:38,339 --> 00:25:41,073
+things about it, not just       
+those special bars and          
+
+576
+00:25:41,142 --> 00:25:42,908
+to redrawn a different way,     
+and                             
+
+577
+00:25:42,976 --> 00:25:46,177
+I wanna animate that            
+whole change on screen.         
+
+578
+00:25:46,246 --> 00:25:47,946
+And there is a number of        
+ways you can animate it.        
+
+579
+00:25:48,015 --> 00:25:51,215
+One, you can animate            
+it by flipping over.            
+
+580
+00:25:51,284 --> 00:25:52,750
+So kind of like a plane card,   
+
+581
+00:25:52,818 --> 00:25:55,152
+would flip over                 
+from the old view.              
+
+582
+00:25:55,220 --> 00:25:56,553
+Make all your changes,          
+flips over.                     
+
+583
+00:25:56,622 --> 00:25:58,054
+Shows the new one.              
+
+584
+00:25:58,123 --> 00:26:00,289
+Another one is cross dissolve.  
+
+585
+00:26:00,358 --> 00:26:01,591
+Okay the old one showing.       
+
+586
+00:26:01,659 --> 00:26:06,562
+Then the new one dissolves in   
+another one is curling up.      
+
+587
+00:26:06,631 --> 00:26:09,597
+The new one is kind             
+of in the back.                 
+
+588
+00:26:09,666 --> 00:26:11,233
+The old one sitting up front.   
+
+589
+00:26:11,301 --> 00:26:14,635
+And the old one curls up like   
+a piece of paper and shows      
+
+590
+00:26:14,704 --> 00:26:17,671
+part of the new one in the      
+back, which is kind of fun.     
+
+591
+00:26:17,740 --> 00:26:19,839
+That transition really          
+only make sense if you're       
+
+592
+00:26:19,908 --> 00:26:21,575
+covering the whole screen.      
+
+593
+00:26:21,644 --> 00:26:25,544
+It wouldn't make sense to have  
+a curl up be in just a like     
+
+594
+00:26:25,613 --> 00:26:27,080
+view inside another view.       
+
+595
+00:26:27,149 --> 00:26:29,148
+The whole screen was a view,    
+
+596
+00:26:29,217 --> 00:26:31,851
+you wanna curl up would         
+make sense, okay?               
+
+597
+00:26:31,919 --> 00:26:36,121
+So, this is entire view         
+contents animation,             
+
+598
+00:26:36,190 --> 00:26:38,657
+not just those special things.  
+
+599
+00:26:39,926 --> 00:26:41,491
+It's done with a class method.  
+
+600
+00:26:41,560 --> 00:26:43,727
+It's called animate width.      
+
+601
+00:26:43,795 --> 00:26:46,129
+And it's, sorry,                
+transition width.               
+
+602
+00:26:46,198 --> 00:26:47,296
+Not animate with.               
+
+603
+00:26:47,365 --> 00:26:50,132
+And transition width takes the  
+view that it has all the stuff  
+
+604
+00:26:50,201 --> 00:26:51,500
+you wanna change.               
+
+605
+00:26:51,569 --> 00:26:52,468
+Duration obviously,             
+
+606
+00:26:52,536 --> 00:26:54,202
+some options like whether       
+you're curling or               
+
+607
+00:26:54,271 --> 00:26:57,038
+cross dissolving or             
+flipping and                    
+
+608
+00:26:57,106 --> 00:27:00,041
+then the animations now in      
+this case the green animations  
+
+609
+00:27:00,110 --> 00:27:02,343
+can change anything             
+about the view.                 
+
+610
+00:27:02,412 --> 00:27:03,743
+Not just the five               
+special things but              
+
+611
+00:27:03,812 --> 00:27:05,412
+absolutely anything.            
+
+612
+00:27:05,480 --> 00:27:07,046
+So that's what these            
+animations are gonna do there,  
+
+613
+00:27:07,115 --> 00:27:09,382
+and then the completion         
+is the same.                    
+
+614
+00:27:09,451 --> 00:27:12,652
+Okay, when the animation        
+is done it tells you.           
+
+615
+00:27:12,720 --> 00:27:15,354
+So what's an example of         
+this let's say I'm making       
+
+616
+00:27:15,422 --> 00:27:16,154
+a poker game and                
+
+617
+00:27:16,223 --> 00:27:18,923
+I want to show a playing        
+card flipping over okay.        
+
+618
+00:27:18,992 --> 00:27:20,425
+So let's have a playing card    
+
+619
+00:27:20,493 --> 00:27:22,260
+view myPlayingCardView          
+right there.                    
+
+620
+00:27:22,328 --> 00:27:25,563
+And it's got some bar           
+on it cardIsFaceUp And          
+
+621
+00:27:25,631 --> 00:27:28,231
+if cards face up this true,     
+then I got to see all           
+
+622
+00:27:28,300 --> 00:27:30,166
+the kings and                   
+ace of hearts or whatever.      
+
+623
+00:27:30,235 --> 00:27:31,968
+And if the cards face           
+down then I just see            
+
+624
+00:27:32,036 --> 00:27:32,968
+the back of the card.           
+
+625
+00:27:33,037 --> 00:27:34,103
+So I got this view.             
+
+626
+00:27:34,171 --> 00:27:36,438
+And I got it currently in       
+one side and another and        
+
+627
+00:27:36,507 --> 00:27:39,174
+I want it to flip over and      
+show the other state.           
+
+628
+00:27:39,242 --> 00:27:42,911
+Well here all I do is I do      
+animate I do transition width   
+
+629
+00:27:42,979 --> 00:27:43,978
+my playing card view.           
+
+630
+00:27:44,047 --> 00:27:46,212
+I'm gonna do it in three        
+quarter of a seconds.           
+
+631
+00:27:46,281 --> 00:27:48,982
+So it's gonna be                
+pretty fast flip over.          
+
+632
+00:27:49,051 --> 00:27:51,318
+I'm using the option            
+transition flip from left,      
+
+633
+00:27:51,386 --> 00:27:54,554
+which takes the left edge and   
+flips it over.                  
+
+634
+00:27:54,623 --> 00:27:55,788
+And then inside animation so    
+
+635
+00:27:55,857 --> 00:27:58,657
+I'm just changing that          
+cardIsFaceUp bar,               
+
+636
+00:27:58,726 --> 00:28:02,093
+the thing that controls which   
+one my view is showing.         
+
+637
+00:28:02,162 --> 00:28:03,828
+And so                          
+this is going to flip over and  
+
+638
+00:28:03,897 --> 00:28:07,766
+show the card in the other      
+direction, okay?                
+
+639
+00:28:07,834 --> 00:28:09,033
+So that's cool,                 
+that's when you wanna change    
+
+640
+00:28:09,101 --> 00:28:10,501
+the whole view.                 
+
+641
+00:28:10,569 --> 00:28:12,869
+But you're limit even           
+what kind of you know,          
+
+642
+00:28:12,938 --> 00:28:15,738
+animation you can do,           
+just flipping, dissolving and   
+
+643
+00:28:15,807 --> 00:28:17,173
+curling up in                   
+it's full screen.               
+
+644
+00:28:19,076 --> 00:28:20,375
+there's another kind of change  
+of views you wanna make which   
+
+645
+00:28:20,376 --> 00:28:21,675
+All right,                      
+
+646
+00:28:21,745 --> 00:28:23,044
+is a change to view hierarchy.  
+
+647
+00:28:23,113 --> 00:28:26,080
+So, this means you wanna put    
+views in or take views out of   
+
+648
+00:28:26,149 --> 00:28:29,016
+the view hierarchy or           
+replace one view with another.  
+
+649
+00:28:29,085 --> 00:28:32,920
+So this method is               
+transition from two.            
+
+650
+00:28:32,988 --> 00:28:34,988
+So the from view is             
+the view that's gonna be        
+
+651
+00:28:35,057 --> 00:28:37,524
+leaving the view hierarchy,     
+and the two view is             
+
+652
+00:28:37,592 --> 00:28:39,892
+the view that's gonna be        
+coming into the hierarchy.      
+
+653
+00:28:39,961 --> 00:28:41,494
+They don't have to be in        
+the same place, by the way,     
+
+654
+00:28:41,563 --> 00:28:43,261
+they can be in different        
+places on the screen,           
+
+655
+00:28:43,330 --> 00:28:45,597
+that's absolutely fine.         
+
+656
+00:28:45,666 --> 00:28:47,765
+usually they are in             
+the same place.                 
+
+657
+00:28:47,834 --> 00:28:52,503
+And this animation here you     
+notice that there is no         
+
+658
+00:28:52,572 --> 00:28:56,073
+animation block because         
+implicitly what you're doing    
+
+659
+00:28:56,142 --> 00:28:58,742
+in this animation is replacing  
+the one view with the other.    
+
+660
+00:28:58,810 --> 00:29:02,011
+I'm going from one view to      
+another, so you've got the new  
+
+661
+00:29:02,080 --> 00:29:03,813
+view all set up the way         
+you want presumably and         
+
+662
+00:29:03,881 --> 00:29:06,515
+you've got the old view and     
+you just transition across.     
+
+663
+00:29:06,584 --> 00:29:09,552
+Now, Sometimes you don't want   
+to actually remove these        
+
+664
+00:29:09,620 --> 00:29:11,787
+from the hierarchy, you just    
+want to show and hide them.     
+
+665
+00:29:11,855 --> 00:29:15,724
+And so in the options you put   
+.showHideTransitionViews.       
+
+666
+00:29:15,793 --> 00:29:18,660
+Then instead of remove          
+from superview and              
+
+667
+00:29:18,729 --> 00:29:22,497
+adding subview,                 
+it will just set the .hidden.   
+
+668
+00:29:22,565 --> 00:29:25,532
+Remember view has a .hidden     
+bar that will hide it.          
+
+669
+00:29:25,601 --> 00:29:29,170
+And it'd set one to hidden and  
+one to not hidden.              
+
+670
+00:29:29,238 --> 00:29:30,937
+All right?                      
+
+671
+00:29:31,006 --> 00:29:33,439
+I don't know maybe              
+that property is called         
+
+672
+00:29:33,508 --> 00:29:34,574
+these days, anyway.             
+
+673
+00:29:34,642 --> 00:29:37,710
+All right so those are all      
+ways to animate view so         
+
+674
+00:29:37,778 --> 00:29:41,413
+let's look at doing a couple    
+of those in FaceIt so           
+
+675
+00:29:41,482 --> 00:29:44,683
+first I'm gonna do              
+the animation where we          
+
+676
+00:29:47,120 --> 00:29:50,020
+change the entire view,         
+and do flipping or              
+
+677
+00:29:50,089 --> 00:29:53,524
+cross-dissolving, to cause the  
+blinking to be a lot smoother.  
+
+678
+00:29:53,593 --> 00:29:55,693
+And what I'm gonna do is        
+I'm gonna take the two eyes     
+
+679
+00:29:55,761 --> 00:29:59,229
+in my face, replace them with   
+views, that draw the eye,       
+
+680
+00:29:59,297 --> 00:30:01,531
+and then I'm gonna have         
+the view change from            
+
+681
+00:30:01,600 --> 00:30:04,700
+open to closed doing            
+a flip from top.                
+
+682
+00:30:04,769 --> 00:30:06,869
+See how that's gonna make       
+it the eyes blinking.           
+
+683
+00:30:06,937 --> 00:30:07,869
+It's gonna flip over.           
+
+684
+00:30:07,938 --> 00:30:10,838
+That little circle is           
+gonna flip over like that.      
+
+685
+00:30:10,907 --> 00:30:12,207
+And then,                       
+we're gonna shake the head.     
+
+686
+00:30:12,275 --> 00:30:13,407
+This is a 2D head, so           
+
+687
+00:30:13,476 --> 00:30:16,510
+it's gonna shake it side to     
+side instead of like this.      
+
+688
+00:30:16,579 --> 00:30:17,478
+Cuz it's only 2D.               
+
+689
+00:30:17,546 --> 00:30:19,178
+And we're gonna do that         
+with the thing where we're      
+
+690
+00:30:19,247 --> 00:30:21,147
+gonna change one of             
+the special bars.               
+
+691
+00:30:21,216 --> 00:30:23,449
+The bar we're gonna change is   
+transform because we're gonna   
+
+692
+00:30:23,518 --> 00:30:25,584
+rotate our entire face.         
+
+693
+00:30:25,653 --> 00:30:26,686
+Okay, so let's do those.        
+
+694
+00:30:28,422 --> 00:30:32,223
+Let's go back to Xcode here.    
+
+695
+00:30:32,292 --> 00:30:38,095
+All right, so, to do the eye    
+blinking, we need to            
+
+696
+00:30:38,164 --> 00:30:42,934
+have the eyes not be drawn, so  
+right now, if we go to, oops,   
+
+697
+00:30:43,002 --> 00:30:46,437
+if we go to our FaceView right  
+here, you can see that we       
+
+698
+00:30:46,506 --> 00:30:50,074
+draw our eyes by doing          
+this UIBezierPath Right?        
+
+699
+00:30:50,142 --> 00:30:52,441
+And then down here if           
+you remember in draw,           
+
+700
+00:30:52,510 --> 00:30:54,010
+we get the path for the I.      
+
+701
+00:30:56,513 --> 00:30:58,280
+And for both I's and            
+we stroke it.                   
+
+702
+00:30:58,348 --> 00:31:00,181
+So we're not gonna              
+do this anymore.                
+
+703
+00:31:00,250 --> 00:31:04,385
+Instead, we're gonna add two    
+I views, which I'm gonna show   
+
+704
+00:31:04,454 --> 00:31:07,321
+you in a second, as subviews    
+of this phase view.             
+
+705
+00:31:07,390 --> 00:31:08,455
+So we're not gonna do that.     
+
+706
+00:31:08,524 --> 00:31:09,489
+And we're not gonna need this.  
+
+707
+00:31:09,558 --> 00:31:12,225
+Actually I am gonna             
+grab this Center                
+
+708
+00:31:12,294 --> 00:31:16,562
+of Eye out of here because      
+I still will need to            
+
+709
+00:31:16,631 --> 00:31:21,901
+put my new Eye views somewhere  
+and that knows how to do it.    
+
+710
+00:31:21,969 --> 00:31:23,770
+So the rest of this though,     
+I'm just gonna comment out.     
+
+711
+00:31:24,706 --> 00:31:25,537
+Okay?                           
+
+712
+00:31:25,606 --> 00:31:27,638
+So we're not using              
+that mechanism for              
+
+713
+00:31:27,707 --> 00:31:29,040
+drawing, instead                
+we're gonna Eye view.           
+
+714
+00:31:29,108 --> 00:31:33,610
+Now in interest of time, I'm    
+gonna drag this Eye view in.    
+
+715
+00:31:33,679 --> 00:31:34,544
+And show it to you.             
+
+716
+00:31:34,613 --> 00:31:36,046
+So we'll copy it in here.       
+
+717
+00:31:36,115 --> 00:31:39,349
+All right, so what is           
+this EyeView look like?         
+
+718
+00:31:39,418 --> 00:31:42,518
+And super simple, it has line,  
+width, and color too,           
+
+719
+00:31:42,587 --> 00:31:43,986
+just like the face does.        
+
+720
+00:31:44,054 --> 00:31:45,654
+It has eyesOpen,                
+
+721
+00:31:45,723 --> 00:31:47,556
+which would be the Bool         
+whether they're true or         
+
+722
+00:31:47,624 --> 00:31:50,992
+not, and then it's draw-rect    
+just if the eyes are open it    
+
+723
+00:31:51,061 --> 00:31:55,396
+uses an oval bezierpath,        
+which is actually circle, and   
+
+724
+00:31:55,465 --> 00:31:57,731
+if the eyes are closed it       
+just does move to line two.     
+
+725
+00:31:57,800 --> 00:32:01,168
+Okay, this is pretty much the   
+exact same code that was in     
+
+726
+00:32:01,236 --> 00:32:04,271
+the The faceview and then here  
+at setting it's line with       
+
+727
+00:32:04,339 --> 00:32:07,673
+setting it's color, stroking    
+color and then stroking it.     
+
+728
+00:32:07,742 --> 00:32:09,308
+And what this does?             
+
+729
+00:32:09,377 --> 00:32:10,876
+Any question about this code?   
+
+730
+00:32:10,945 --> 00:32:13,578
+Super straightforward,          
+all right?                      
+
+731
+00:32:13,647 --> 00:32:19,084
+So we need to fix our faceview  
+over here to use those eye's,   
+
+732
+00:32:19,153 --> 00:32:20,985
+those eye views instead.        
+
+733
+00:32:21,054 --> 00:32:23,254
+So how are we gonna do that?    
+
+734
+00:32:23,322 --> 00:32:26,056
+It's really just a matter of    
+creating these eyeViews and     
+
+735
+00:32:26,125 --> 00:32:28,025
+then putting them               
+in a right place.               
+
+736
+00:32:28,093 --> 00:32:29,259
+All right?                      
+So                              
+
+737
+00:32:29,328 --> 00:32:30,727
+let's start with                
+creating them.                  
+
+738
+00:32:30,796 --> 00:32:33,930
+So I'm gonna have a private     
+var and I'm gonna try to say,   
+
+739
+00:32:35,566 --> 00:32:40,468
+leftEye = createEye, and then   
+have a private funk called      
+
+740
+00:32:40,537 --> 00:32:45,374
+createEye Which returns         
+an EyeView let's say okay and   
+
+741
+00:32:47,044 --> 00:32:49,610
+it will return it now,          
+I wanna do this but             
+
+742
+00:32:49,679 --> 00:32:52,279
+it's not gonna work,            
+does anyone see what's          
+
+743
+00:32:52,348 --> 00:32:56,684
+definitely not gonna work       
+about code just like this?      
+
+744
+00:32:56,753 --> 00:32:58,285
+Okay, what I'm I doing here?    
+
+745
+00:32:58,354 --> 00:33:01,721
+I'm initializing                
+leftEye right?                  
+
+746
+00:33:01,789 --> 00:33:05,624
+And am I allowed to call        
+a method on my self before      
+
+747
+00:33:05,693 --> 00:33:07,526
+I fully initialized?            
+
+748
+00:33:07,595 --> 00:33:12,297
+No, okay, so that's why         
+that's not gonna work there.    
+
+749
+00:33:12,366 --> 00:33:14,933
+And you can see that the error  
+is cannot use instance member   
+
+750
+00:33:15,002 --> 00:33:17,802
+'createEye' cuz property        
+initializers run before 'self'  
+
+751
+00:33:17,871 --> 00:33:18,503
+is available.                   
+
+752
+00:33:18,571 --> 00:33:20,404
+That's exactly what             
+we think here.                  
+
+753
+00:33:20,473 --> 00:33:25,141
+So a fix for                    
+this is to make this lazy.      
+
+754
+00:33:25,210 --> 00:33:29,612
+Cause if you make this lazy,    
+it's not going to actually      
+
+755
+00:33:29,681 --> 00:33:32,282
+run this initialization, this   
+initialization is not going to  
+
+756
+00:33:32,350 --> 00:33:34,651
+run until we are fully          
+initialized.                    
+
+757
+00:33:34,719 --> 00:33:37,853
+By definition because no        
+one can call this LeftEye,      
+
+758
+00:33:37,922 --> 00:33:39,822
+no one can access this until    
+we're fully initialized.        
+
+759
+00:33:39,890 --> 00:33:40,789
+So,that's great.                
+
+760
+00:33:40,858 --> 00:33:43,290
+Now this doesn't work either,   
+okay?                           
+
+761
+00:33:43,359 --> 00:33:45,560
+And why doesn't this work?      
+
+762
+00:33:45,629 --> 00:33:46,627
+This doesn't work bec-, and     
+
+763
+00:33:46,696 --> 00:33:49,263
+maybe we'll even see            
+an error here, yeah.            
+
+764
+00:33:52,467 --> 00:33:53,633
+Let's see, yeah, okay.          
+
+765
+00:33:53,701 --> 00:33:55,935
+So you see it says you          
+cannot use member createEye.    
+
+766
+00:33:56,004 --> 00:34:00,939
+When you do lazy vars you       
+need to specify the type.       
+
+767
+00:34:01,008 --> 00:34:01,907
+Okay, so you need to say.       
+
+768
+00:34:01,976 --> 00:34:03,908
+You have to explicitly type.    
+
+769
+00:34:03,977 --> 00:34:06,778
+You can't,                      
+let it infer the type.          
+
+770
+00:34:06,847 --> 00:34:07,478
+So that thing.                  
+
+771
+00:34:07,546 --> 00:34:08,713
+Now, there's still              
+a problem here.                 
+
+772
+00:34:08,781 --> 00:34:09,813
+Another problem.                
+
+773
+00:34:09,882 --> 00:34:13,049
+It's saying here,               
+use of instance me,             
+
+774
+00:34:13,118 --> 00:34:15,318
+member create type              
+on face view.                   
+
+775
+00:34:15,386 --> 00:34:16,285
+Type face view.                 
+
+776
+00:34:16,354 --> 00:34:18,954
+Did you mean on a value         
+of face view instead.           
+
+777
+00:34:19,023 --> 00:34:20,790
+And in fact, exactly, we did.   
+
+778
+00:34:20,858 --> 00:34:23,792
+It's trying to find             
+a static function called        
+
+779
+00:34:23,861 --> 00:34:25,660
+createEye, right?               
+
+780
+00:34:25,729 --> 00:34:26,961
+A static function.              
+
+781
+00:34:27,030 --> 00:34:27,795
+But we don't want that.         
+
+782
+00:34:27,864 --> 00:34:29,029
+We want an instance one, and    
+
+783
+00:34:29,098 --> 00:34:31,832
+the way we specify              
+that is with self.              
+
+784
+00:34:31,901 --> 00:34:35,635
+Self says I want createEye      
+that's on an instance like      
+
+785
+00:34:35,704 --> 00:34:37,671
+this, not one that's static.    
+
+786
+00:34:39,673 --> 00:34:40,673
+So that can be a little         
+complicated, right there.       
+
+787
+00:34:40,674 --> 00:34:41,674
+Okay?                           
+
+788
+00:34:43,510 --> 00:34:48,446
+Let's get through that but      
+just to know this               
+
+789
+00:34:48,514 --> 00:34:53,183
+is the way to get around        
+having to write and             
+
+790
+00:34:53,252 --> 00:35:00,090
+an initializer now obviously    
+I'm not providing a frame, so   
+
+791
+00:35:00,159 --> 00:35:07,431
+I'm gonna have to set its size  
+and position here sometime.     
+
+792
+00:35:07,500 --> 00:35:10,033
+Notice my eye is not            
+going to be opaque.             
+
+793
+00:35:11,169 --> 00:35:15,238
+That's because I,               
+if my face was blue or          
+
+794
+00:35:15,306 --> 00:35:17,540
+something, I would want         
+that blue to show through.      
+
+795
+00:35:17,608 --> 00:35:20,909
+I wouldn't want it to           
+be opaque and so this           
+
+796
+00:35:20,978 --> 00:35:23,811
+eye is going to be completely   
+transparent except for          
+
+797
+00:35:23,880 --> 00:35:27,749
+the parts that I draw with      
+non-transparent colored ink,    
+
+798
+00:35:27,817 --> 00:35:28,616
+basically.                      
+
+799
+00:35:28,684 --> 00:35:32,118
+I'm going to set my color       
+equal to the color of my face.  
+
+800
+00:35:32,187 --> 00:35:35,889
+I'm going to set my eyes lines  
+with to be the same lines with  
+
+801
+00:35:35,957 --> 00:35:36,489
+the face.                       
+
+802
+00:35:36,558 --> 00:35:38,625
+Remember this is                
+just bars here.                 
+
+803
+00:35:39,827 --> 00:35:42,494
+And face view right?            
+
+804
+00:35:42,563 --> 00:35:43,896
+Color in line with color.       
+
+805
+00:35:45,132 --> 00:35:50,168
+And I'm also going to just add  
+
+806
+00:35:50,237 --> 00:35:55,439
+subview, this eye because       
+I'm at face view I'm gonna      
+
+807
+00:35:55,508 --> 00:35:59,009
+add this subview as a subview   
+of myself and I'm gonna return  
+
+808
+00:35:59,078 --> 00:36:02,713
+the eye because this is         
+the createEye returns the eye.  
+
+809
+00:36:04,116 --> 00:36:06,583
+Okay, everyone understand       
+this little method?             
+
+810
+00:36:06,651 --> 00:36:09,385
+Quite simple.                   
+I'm just configuring this eye,  
+
+811
+00:36:09,453 --> 00:36:12,053
+and using it for                
+the left and the right eye.     
+
+812
+00:36:12,122 --> 00:36:14,155
+What about                      
+positioning this eye?           
+
+813
+00:36:14,224 --> 00:36:17,391
+There, I didn't say             
+where this eye is.              
+
+814
+00:36:17,460 --> 00:36:18,893
+the sub-view it's in the upper  
+left corner size zero zero, so  
+
+815
+00:36:18,894 --> 00:36:20,327
+I added it for                  
+
+816
+00:36:20,396 --> 00:36:21,762
+that's no good.                 
+
+817
+00:36:21,831 --> 00:36:24,264
+Lets create a private here.     
+
+818
+00:36:24,333 --> 00:36:27,734
+Called positionEye,             
+and it's positionEye.           
+
+819
+00:36:27,802 --> 00:36:29,902
+Hello.                          
+PositionEye.                    
+
+820
+00:36:29,971 --> 00:36:34,239
+And it's gonna take an eye,     
+
+821
+00:36:34,308 --> 00:36:38,444
+it's gonna be an eye view.      
+
+822
+00:36:38,512 --> 00:36:40,179
+And it's gonna take             
+the position to put it,         
+
+823
+00:36:40,247 --> 00:36:43,448
+where to put it center which    
+is gonna be a CGPoint.          
+
+824
+00:36:43,517 --> 00:36:46,217
+And we need to get the size     
+of the eye, well, the size of   
+
+825
+00:36:46,286 --> 00:36:48,786
+the eye remember depends        
+on the size of the face, so     
+
+826
+00:36:48,855 --> 00:36:49,987
+in a big face the eye is big,   
+
+827
+00:36:50,056 --> 00:36:52,956
+in a small face the eye is      
+small and if you remember       
+
+828
+00:36:53,024 --> 00:36:57,293
+we have these nice little       
+score radius constants.         
+
+829
+00:36:57,362 --> 00:36:58,894
+So, I have this ratios,         
+
+830
+00:36:58,963 --> 00:37:03,466
+score radius to eye radius,     
+remember that?                  
+
+831
+00:37:03,535 --> 00:37:05,534
+And I'm gonna make it           
+two cuz here I'm talking        
+
+832
+00:37:05,603 --> 00:37:09,605
+about the width and             
+height of my view, and          
+
+833
+00:37:09,674 --> 00:37:12,240
+the radius is only radius,      
+not diameter.                   
+
+834
+00:37:12,309 --> 00:37:14,209
+So I'm having to say            
+times two there.                
+
+835
+00:37:14,277 --> 00:37:16,744
+So now, I know how big this     
+little EyeView needs to be.     
+
+836
+00:37:16,813 --> 00:37:20,481
+And so I'm gonna say            
+eye.frame = CGReft For          
+
+837
+00:37:20,549 --> 00:37:25,151
+now we'll have the origin be,   
+CGPoint.zero, I'll,             
+
+838
+00:37:25,220 --> 00:37:29,189
+I'll put it in this center      
+right here in a second, but     
+
+839
+00:37:29,257 --> 00:37:32,691
+right now I'm gonna make        
+the origin zero, and            
+
+840
+00:37:32,760 --> 00:37:36,528
+the size is a CGSize, where     
+the width is the size and       
+
+841
+00:37:36,597 --> 00:37:43,002
+the height is the size,         
+it's square Okay and now        
+
+842
+00:37:43,070 --> 00:37:49,073
+we'll just set the eyes center  
+equal to the center there.      
+
+843
+00:37:49,142 --> 00:37:50,542
+Okay, an equal                  
+sign right there.               
+
+844
+00:37:53,146 --> 00:37:54,345
+this little guy right here is   
+just gonna position the eye.    
+
+845
+00:37:54,346 --> 00:37:55,545
+Okay, so                        
+
+846
+00:37:55,615 --> 00:37:59,082
+Now, when do we wanna           
+position that eye?              
+
+847
+00:37:59,151 --> 00:38:01,284
+Okay now this is                
+very important.                 
+
+848
+00:38:01,353 --> 00:38:03,652
+When we're in a view            
+controller, we know when our    
+
+849
+00:38:03,721 --> 00:38:06,155
+bounds of our top level         
+view changes, because we        
+
+850
+00:38:06,224 --> 00:38:09,191
+get viewDidLayoutSubviews       
+sent to us, remember that?      
+
+851
+00:38:09,260 --> 00:38:12,060
+If we're a view,                
+this faceView is a view,        
+
+852
+00:38:12,129 --> 00:38:14,028
+not a controller, a view.       
+
+853
+00:38:14,097 --> 00:38:16,998
+It gets told whenever its       
+bounds changes by being sent    
+
+854
+00:38:17,067 --> 00:38:19,300
+the message, layoutSubviews.    
+
+855
+00:38:20,470 --> 00:38:21,034
+Okay?                           
+
+856
+00:38:21,102 --> 00:38:22,435
+So, lay out subviews,           
+
+857
+00:38:22,504 --> 00:38:27,506
+you said sent to all views      
+when it's bound changes or      
+
+858
+00:38:27,575 --> 00:38:30,843
+anytime that its subviews       
+need to be relaid out.          
+
+859
+00:38:30,912 --> 00:38:32,110
+And that's exactly              
+what we want here,              
+
+860
+00:38:32,179 --> 00:38:33,778
+we gotta relay out those Eyes.  
+
+861
+00:38:33,847 --> 00:38:37,481
+We've gotta move those Eyes     
+to their current position.      
+
+862
+00:38:37,550 --> 00:38:39,117
+So, what is that position?      
+
+863
+00:38:39,185 --> 00:38:43,020
+We're just gonna say position   
+Eye, we'll do both eyes so      
+
+864
+00:38:43,089 --> 00:38:44,921
+let's do the left eye first.    
+
+865
+00:38:44,990 --> 00:38:48,358
+And to get the position of the  
+eye we have this nice method,   
+
+866
+00:38:48,427 --> 00:38:51,027
+center of eye that we pulled    
+out of the thing that we        
+
+867
+00:38:51,096 --> 00:38:52,862
+commented here, path for eye.   
+
+868
+00:38:52,931 --> 00:38:56,532
+It knows how to calculate       
+the position of a given eye.    
+
+869
+00:38:56,601 --> 00:38:59,034
+So, we'll just say that         
+the position here is center     
+
+870
+00:38:59,103 --> 00:39:01,035
+of eye.                         
+
+871
+00:39:01,104 --> 00:39:05,440
+And we'll say we want           
+the left eye in this case.      
+
+872
+00:39:05,509 --> 00:39:10,611
+That, and all right, and        
+there's something, sorry        
+
+873
+00:39:10,680 --> 00:39:17,184
+this is positionEye center,     
+okay, so that's our left eye.   
+
+874
+00:39:17,253 --> 00:39:18,519
+Now let's do our right eye.     
+
+875
+00:39:21,790 --> 00:39:23,857
+Okay, everybody got that?       
+
+876
+00:39:23,925 --> 00:39:25,992
+So every time our               
+balance changes,                
+
+877
+00:39:26,060 --> 00:39:28,928
+we get layoutSubviews,          
+we're gonna move those eyes     
+
+878
+00:39:28,997 --> 00:39:30,429
+to wherever they're             
+supposed to be,                 
+
+879
+00:39:30,498 --> 00:39:34,700
+the centerOfEye thing, okay?    
+
+880
+00:39:34,768 --> 00:39:36,300
+We got an extra argument,       
+I guess I didn't,               
+
+881
+00:39:36,369 --> 00:39:38,937
+I made that be that.            
+
+882
+00:39:40,273 --> 00:39:41,705
+Yeah, that makes sense.         
+
+883
+00:39:41,774 --> 00:39:42,339
+Okay?                           
+
+884
+00:39:43,608 --> 00:39:44,607
+All right,                      
+what else do we need to do?     
+
+885
+00:39:44,676 --> 00:39:46,408
+Only one other thing            
+we need to do is that,          
+
+886
+00:39:46,477 --> 00:39:49,611
+remember that the eyes want to  
+have the same color in line     
+
+887
+00:39:49,680 --> 00:39:50,879
+with and whether or             
+not they're.                    
+
+888
+00:39:50,948 --> 00:39:52,847
+Open as the face.               
+
+889
+00:39:52,915 --> 00:39:56,617
+Okay, so all these places up    
+here where we set eyes open     
+
+890
+00:39:56,686 --> 00:39:59,119
+and where set the line within   
+color we need to forward that   
+
+891
+00:39:59,188 --> 00:40:02,689
+on to our left and right eyes,  
+so let's do it here for         
+
+892
+00:40:02,758 --> 00:40:04,057
+color first.                    
+
+893
+00:40:04,126 --> 00:40:04,958
+Let's go down here.             
+
+894
+00:40:05,026 --> 00:40:08,027
+Now, for color we still need    
+setNeedDispaly because other    
+
+895
+00:40:08,096 --> 00:40:11,763
+things in the view besides      
+the eyes are certain color,     
+
+896
+00:40:11,832 --> 00:40:12,932
+the mouth, etcetera.            
+
+897
+00:40:13,000 --> 00:40:13,965
+But we do need to say,          
+
+898
+00:40:14,034 --> 00:40:18,536
+that our left eyes color        
+equals this new color.          
+
+899
+00:40:18,605 --> 00:40:22,273
+And also our right eyes color   
+equals the new color and        
+
+900
+00:40:22,341 --> 00:40:24,241
+exactly the same here.          
+
+901
+00:40:24,310 --> 00:40:29,046
+For the lineWidth we            
+want to say that our left       
+
+902
+00:40:29,115 --> 00:40:33,383
+eye's lineWidth equals          
+our lineWidth and               
+
+903
+00:40:33,452 --> 00:40:38,488
+our right eye's lineWidth       
+equals our lineWidth.           
+
+904
+00:40:38,557 --> 00:40:41,391
+And probably most importantly,  
+when the eyes are opened and    
+
+905
+00:40:41,459 --> 00:40:45,060
+closed on our face view         
+we want to have that set.       
+
+906
+00:40:45,129 --> 00:40:49,298
+In our views, now, notice that  
+we don't need setNeedsDisplay   
+
+907
+00:40:49,367 --> 00:40:53,769
+anymore because we don't draw   
+the eyes in our draw(_rect's.   
+
+908
+00:40:53,837 --> 00:40:55,437
+See in our draw(                
+_rect) down here?               
+
+909
+00:40:55,505 --> 00:40:56,404
+We commented that out.          
+
+910
+00:40:56,473 --> 00:40:57,305
+We don't draw the eyes.         
+
+911
+00:40:57,373 --> 00:40:59,473
+The eyes are drawn by these     
+two sub views that we           
+
+912
+00:40:59,542 --> 00:41:01,241
+added with add sub view there.  
+
+913
+00:41:01,310 --> 00:41:05,045
+So here we can get rid          
+of setNeedsDisplay.             
+
+914
+00:41:05,113 --> 00:41:11,283
+and instead we're just gonna    
+say leftEye.eyesOpen =          
+
+915
+00:41:11,352 --> 00:41:17,890
+eyesOpen and rightEye.eyesOpen  
+= eyesOpen, okay?               
+
+916
+00:41:17,959 --> 00:41:21,494
+See how we're just forwarding   
+that on to those two views.     
+
+917
+00:41:23,030 --> 00:41:24,595
+Right, any questions            
+about that?                     
+
+918
+00:41:24,664 --> 00:41:27,232
+Let's go make sure we haven't   
+broken anything here by         
+
+919
+00:41:27,300 --> 00:41:29,767
+making our eyes be              
+separate views.                 
+
+920
+00:41:29,835 --> 00:41:31,935
+Our views, overall our          
+face views should look          
+
+921
+00:41:32,004 --> 00:41:32,602
+exactly the same.               
+
+922
+00:41:32,671 --> 00:41:35,272
+It's just using sub-views       
+to draw part of itself          
+
+923
+00:41:35,340 --> 00:41:37,907
+rather than,                    
+drawing it in DrawRec.          
+
+924
+00:41:37,975 --> 00:41:38,807
+And sure enough                 
+it's working fine.              
+
+925
+00:41:38,876 --> 00:41:40,509
+It's even continuing            
+to blink because that           
+
+926
+00:41:40,577 --> 00:41:42,077
+blinking is done                
+by the controller.              
+
+927
+00:41:42,145 --> 00:41:44,312
+The controller is setting       
+eyes open, eyes closed,         
+
+928
+00:41:44,381 --> 00:41:46,781
+eyes open eyes closed and       
+that's being forwarded on.      
+
+929
+00:41:46,850 --> 00:41:47,681
+To the view and is blinking.    
+
+930
+00:41:47,750 --> 00:41:50,817
+Now of course, this, we         
+haven't changed the animation   
+
+931
+00:41:50,886 --> 00:41:53,453
+so it's still kind              
+of this instablink.             
+
+932
+00:41:53,521 --> 00:41:56,356
+So now we want to use the UI    
+view animation to make that     
+
+933
+00:41:56,425 --> 00:41:58,091
+blinking a lot smoother.        
+
+934
+00:41:58,160 --> 00:41:58,958
+So how are we gonna do that?    
+
+935
+00:41:59,027 --> 00:42:01,760
+Let's go over to our            
+eye view right here.            
+
+936
+00:42:01,829 --> 00:42:04,629
+And every time eyes open        
+is changed, instead of just     
+
+937
+00:42:04,698 --> 00:42:07,865
+changing it, we're going        
+to animate that change.         
+
+938
+00:42:07,934 --> 00:42:09,667
+So we are going to              
+instantly change it.            
+
+939
+00:42:09,735 --> 00:42:13,037
+But on screen it's going        
+to be animated, All right?      
+
+940
+00:42:13,105 --> 00:42:16,206
+So to do that I'm actually      
+going to make eyes open         
+
+941
+00:42:16,275 --> 00:42:18,308
+be private var right there and  
+
+942
+00:42:18,377 --> 00:42:21,110
+I'm going to create             
+the public eyes open.           
+
+943
+00:42:21,179 --> 00:42:22,544
+Which is a Bool and             
+
+944
+00:42:22,613 --> 00:42:26,515
+this thing is going to be the   
+thing that does the animation.  
+
+945
+00:42:26,584 --> 00:42:27,315
+Okay?                           
+
+946
+00:42:27,384 --> 00:42:29,851
+And, because setting            
+this eyesOpen does              
+
+947
+00:42:29,920 --> 00:42:31,653
+the NeedsDisplay,               
+which causes this,              
+
+948
+00:42:31,722 --> 00:42:33,354
+I still want all                
+that functionality,             
+
+949
+00:42:33,422 --> 00:42:36,724
+it's just that when someone     
+publicly sets my eyes open,     
+
+950
+00:42:36,792 --> 00:42:40,060
+I want to animate, the change   
+that's going on there, so,      
+
+951
+00:42:40,129 --> 00:42:41,060
+how am I gonna do this?         
+
+952
+00:42:41,129 --> 00:42:46,799
+All right, when someone gets    
+whether the eyes are open,      
+
+953
+00:42:46,868 --> 00:42:52,438
+I'm just gonna return the       
+private eyesOpen All right.     
+
+954
+00:42:52,507 --> 00:42:56,709
+And if they set this            
+eyes opening thing.             
+
+955
+00:42:59,179 --> 00:43:02,581
+And they're gonna say, if       
+
+956
+00:43:02,650 --> 00:43:07,652
+the new I'm gonna               
+
+957
+00:43:07,721 --> 00:43:11,622
+do this UIView.transition       
+with view, okay?                
+
+958
+00:43:11,691 --> 00:43:13,424
+Not this one.                   
+
+959
+00:43:13,493 --> 00:43:18,195
+I want transition with view,    
+not from to, which              
+
+960
+00:43:18,264 --> 00:43:20,296
+remember is removing things     
+from the view hierarchy.        
+
+961
+00:43:20,365 --> 00:43:24,934
+This one is transitioning       
+inside of view and so           
+
+962
+00:43:25,003 --> 00:43:27,703
+I'm gonna do self as the view.  
+
+963
+00:43:27,772 --> 00:43:29,304
+This is the EyeView.            
+
+964
+00:43:29,373 --> 00:43:31,373
+The duration, I should          
+make it constant here, but      
+
+965
+00:43:31,442 --> 00:43:34,176
+I'll just say point four        
+to make this expedient.         
+
+966
+00:43:34,245 --> 00:43:39,547
+The options I want to           
+transition from top to bottom   
+
+967
+00:43:39,616 --> 00:43:43,317
+because an eye blink kind       
+of comes from the top, so       
+
+968
+00:43:43,386 --> 00:43:44,451
+we'll do that and               
+
+969
+00:43:44,520 --> 00:43:48,489
+then here are the animations    
+we're going to do right here.   
+
+970
+00:43:48,557 --> 00:43:51,824
+And, I don't actually need      
+this completion because we're   
+
+971
+00:43:51,893 --> 00:43:53,826
+not gonna do anything           
+when it's done.                 
+
+972
+00:43:53,895 --> 00:43:56,329
+Notice that that's              
+an optional closure.            
+
+973
+00:43:56,398 --> 00:43:57,530
+You see how it's                
+got a question mark             
+
+974
+00:43:57,599 --> 00:43:58,530
+on the end of it?               
+
+975
+00:43:58,599 --> 00:44:01,166
+So, I will just not             
+include that whole thing.       
+
+976
+00:44:02,436 --> 00:44:04,536
+All right, so                   
+what do I wanna do in here?     
+
+977
+00:44:04,604 --> 00:44:07,304
+In here, I wanna make all       
+the changes to the view         
+
+978
+00:44:07,373 --> 00:44:08,705
+that I want to be animated.     
+
+979
+00:44:08,774 --> 00:44:10,173
+Well here, it's super simple.   
+
+980
+00:44:10,242 --> 00:44:14,511
+I'm just gonna set my underbar  
+i's open to be the new value.   
+
+981
+00:44:14,580 --> 00:44:17,514
+All right,                      
+we're in set here so            
+
+982
+00:44:17,582 --> 00:44:20,483
+new value is whatever sum       
+of that eyes open equal.        
+
+983
+00:44:20,552 --> 00:44:21,917
+So here I'm just gonna          
+set it to the new value.        
+
+984
+00:44:21,986 --> 00:44:26,922
+That's going to change my view  
+to I, the new eyeOpen state.    
+
+985
+00:44:26,991 --> 00:44:30,625
+And I'm going to animate        
+getting to there, all right?    
+
+986
+00:44:30,693 --> 00:44:31,259
+So let's take a look.           
+
+987
+00:44:38,033 --> 00:44:39,333
+This guy should                 
+still be blinking.              
+
+988
+00:44:39,401 --> 00:44:41,701
+But he should be blinking       
+a lot smoother, you see?        
+
+989
+00:44:41,770 --> 00:44:44,671
+Cuz it's animating the actual   
+motion of the eyes closing.     
+
+990
+00:44:47,041 --> 00:44:50,543
+Like that, and                  
+again works in all.             
+
+991
+00:44:53,915 --> 00:44:56,849
+All right,                      
+now the next thing we gonna do  
+
+992
+00:44:56,917 --> 00:44:59,418
+is have this guy                
+shake his head, so              
+
+993
+00:44:59,486 --> 00:45:01,952
+I'm just gonna rotate           
+the entire view okay?           
+
+994
+00:45:02,021 --> 00:45:04,689
+He's gonna shake his head by    
+going little to the left.       
+
+995
+00:45:04,757 --> 00:45:05,723
+All the way back                
+over to the right,              
+
+996
+00:45:05,792 --> 00:45:07,257
+and then back to the middle.    
+
+997
+00:45:07,326 --> 00:45:09,025
+That's gonna be shaking         
+his head, okay?                 
+
+998
+00:45:09,094 --> 00:45:11,760
+That's the best I can           
+do in 2D right here.            
+
+999
+00:45:11,829 --> 00:45:12,862
+So, how are we                  
+gonna do that one?              
+
+1000
+00:45:12,930 --> 00:45:15,197
+We're gonna do that one by      
+animating one of those special  
+
+1001
+00:45:15,266 --> 00:45:18,700
+bars in UI View,                
+which is the transform.         
+
+1002
+00:45:18,769 --> 00:45:19,834
+So let's go,                    
+
+1003
+00:45:19,903 --> 00:45:23,104
+we're gonna do this in          
+our FaceView controller.        
+
+1004
+00:45:23,173 --> 00:45:24,705
+Okay.                           
+So, it's gonna something about  
+
+1005
+00:45:24,773 --> 00:45:27,241
+is kind of all phases can do,   
+so, we'll put it in there.      
+
+1006
+00:45:27,310 --> 00:45:30,243
+Let's put it right in here,     
+I think, it's a good space for  
+
+1007
+00:45:30,312 --> 00:45:32,345
+it, some room, and              
+
+1008
+00:45:32,414 --> 00:45:37,850
+I have some Constance for       
+this, a headshake Constance.    
+
+1009
+00:45:37,919 --> 00:45:41,086
+So, angle is just the angle     
+I'm gonna to turn to the left   
+
+1010
+00:45:41,155 --> 00:45:42,888
+and angle back                  
+to the right and                
+
+1011
+00:45:42,957 --> 00:45:44,890
+remember that we're             
+in radians in here.             
+
+1012
+00:45:44,958 --> 00:45:48,426
+So it's zero two pi to go all   
+the way around a circle so      
+
+1013
+00:45:48,495 --> 00:45:50,595
+I'm going to go pi over six,    
+
+1014
+00:45:50,664 --> 00:45:52,262
+which is a little bit           
+around the circle.              
+
+1015
+00:45:52,331 --> 00:45:56,066
+And then segment duration is    
+how long I'm gong to take       
+
+1016
+00:45:56,135 --> 00:45:59,236
+to do each turn, to the left,   
+back to the right, and          
+
+1017
+00:45:59,305 --> 00:46:01,771
+back to the middle, okay so     
+each of those are going         
+
+1018
+00:46:01,840 --> 00:46:03,673
+to take, in this case,          
+half a second.                  
+
+1019
+00:46:04,909 --> 00:46:06,508
+So before I write               
+the animation code,             
+
+1020
+00:46:06,577 --> 00:46:08,977
+I'm gonna make a nice           
+little private func here        
+
+1021
+00:46:09,046 --> 00:46:13,147
+called rotateFace(by:).         
+
+1022
+00:46:13,216 --> 00:46:15,749
+And it's gonna take             
+a CGFloat which is radians,     
+
+1023
+00:46:15,818 --> 00:46:18,185
+number of degrees               
+to rotate the face.             
+
+1024
+00:46:18,254 --> 00:46:19,620
+And it's gonna rotate it.       
+
+1025
+00:46:19,689 --> 00:46:21,221
+And the way we                  
+do this is just,                
+
+1026
+00:46:21,290 --> 00:46:24,190
+we take                         
+the faceView.transform.         
+
+1027
+00:46:24,259 --> 00:46:26,993
+Okay remember we're on          
+the control over here so        
+
+1028
+00:46:27,061 --> 00:46:30,229
+faceView a vara vars and we're  
+gonna make it equal to the      
+
+1029
+00:46:30,298 --> 00:46:32,698
+faceViews.transform.rotated     
+by.                             
+
+1030
+00:46:35,636 --> 00:46:38,103
+Rotated by that amount.         
+
+1031
+00:46:41,141 --> 00:46:45,609
+Okay, to make to make           
+this a little nicer,            
+
+1032
+00:46:45,678 --> 00:46:49,313
+we'll say, by angle, by angle.  
+
+1033
+00:46:49,382 --> 00:46:52,282
+Okay, so, this is just a nice   
+little function that rotates    
+
+1034
+00:46:52,351 --> 00:46:54,785
+the face at any amount of       
+degrees and 'm gonna use this   
+
+1035
+00:46:54,853 --> 00:46:58,287
+inside my animation code        
+to rotate the face.             
+
+1036
+00:46:58,356 --> 00:47:00,522
+Anybody cool with that          
+of what that code does?         
+
+1037
+00:47:00,591 --> 00:47:02,924
+So, transform right here.       
+
+1038
+00:47:02,993 --> 00:47:08,897
+Is alpine transform             
+
+1039
+00:47:08,966 --> 00:47:12,767
+rotated by,                     
+
+1040
+00:47:12,836 --> 00:47:18,038
+is just a method on             
+
+1041
+00:47:18,107 --> 00:47:23,644
+CGF transform.                  
+
+1042
+00:47:23,713 --> 00:47:27,514
+ShakeHead cuz it's gonna shake  
+the head back and forth.        
+
+1043
+00:47:27,583 --> 00:47:28,648
+And it's gonna be animated, so  
+
+1044
+00:47:28,717 --> 00:47:32,752
+I'm gonna say right off the     
+bat right, UIView.animate and   
+
+1045
+00:47:32,821 --> 00:47:35,454
+the one I want here for         
+animation is this one right     
+
+1046
+00:47:35,523 --> 00:47:37,856
+here because I need             
+the completion.                 
+
+1047
+00:47:37,925 --> 00:47:39,291
+Why do I need the completion?   
+
+1048
+00:47:39,360 --> 00:47:41,693
+Because the way I'm gonna       
+make this rotation happen is    
+
+1049
+00:47:41,761 --> 00:47:44,496
+I'm gonna rotate to the left    
+and when it completes.          
+
+1050
+00:47:44,564 --> 00:47:45,663
+I rotate to the right.          
+
+1051
+00:47:45,731 --> 00:47:48,933
+And when that one completes,    
+I rotate back to the middle.    
+
+1052
+00:47:49,002 --> 00:47:51,601
+So, do you see why I need       
+to know when each rotation      
+
+1053
+00:47:51,670 --> 00:47:52,602
+is completed.                   
+
+1054
+00:47:52,671 --> 00:47:54,670
+So, that's why I need this      
+animate with duration that      
+
+1055
+00:47:54,739 --> 00:47:56,205
+has completion at the end.      
+
+1056
+00:47:56,274 --> 00:47:59,074
+Now, this one also has          
+completion but it has options.  
+
+1057
+00:47:59,143 --> 00:48:00,075
+We don't need any option.       
+
+1058
+00:48:00,144 --> 00:48:03,044
+We're just gonna use standard,  
+animation.                      
+
+1059
+00:48:03,113 --> 00:48:06,180
+We're not gonna ease in, ease   
+out or any of that business.    
+
+1060
+00:48:06,249 --> 00:48:07,782
+Okay, so                        
+this is the one we want.        
+
+1061
+00:48:07,851 --> 00:48:09,150
+Just to make this               
+a little more readable,         
+
+1062
+00:48:09,219 --> 00:48:11,886
+I'm gonna do this little        
+trick that I often do.          
+
+1063
+00:48:11,954 --> 00:48:14,721
+Just so you can see each        
+argument one by one.            
+
+1064
+00:48:14,790 --> 00:48:21,294
+So the duration of a tilt is    
+the HeadShake.segmentDuration,  
+
+1065
+00:48:21,363 --> 00:48:23,563
+okay, that constant             
+that I put up here.             
+
+1066
+00:48:23,632 --> 00:48:26,799
+The animations, okay,           
+this is what we're going to do  
+
+1067
+00:48:26,867 --> 00:48:28,199
+to cause this                   
+animation to happen.            
+
+1068
+00:48:28,268 --> 00:48:30,401
+Well, we're just gonna          
+rotate the face.                
+
+1069
+00:48:30,470 --> 00:48:34,672
+Now this ro, first rotation     
+is to rotate to the left.       
+
+1070
+00:48:34,741 --> 00:48:37,709
+And in iOS, different           
+from Mac OS by the way.         
+
+1071
+00:48:37,777 --> 00:48:43,814
+In iOS, positive values of      
+angles are counter clockwise.   
+
+1072
+00:48:43,883 --> 00:48:45,282
+So we want a positive angle,    
+
+1073
+00:48:45,350 --> 00:48:46,850
+cuz we're going                 
+to the left here.               
+
+1074
+00:48:46,918 --> 00:48:49,952
+So I'm gonna make this          
+be my HeadShake.angle.          
+
+1075
+00:48:50,021 --> 00:48:52,955
+Okay, it's gonna rotate         
+by the HeadShake.angle.         
+
+1076
+00:48:53,024 --> 00:48:55,591
+That's gonna head it            
+off to the left there.          
+
+1077
+00:48:55,659 --> 00:48:58,828
+Now when it's done here,        
+this completion code            
+
+1078
+00:48:58,896 --> 00:49:02,031
+which has finished,             
+whether it's finished or not,   
+
+1079
+00:49:02,099 --> 00:49:04,132
+and I do want to wait for       
+it to be finished.              
+
+1080
+00:49:05,768 --> 00:49:09,236
+Actually, I'm going to,         
+I think, yeah, put this inside  
+
+1081
+00:49:09,305 --> 00:49:12,373
+here just to make this a        
+little easier for you to see.   
+
+1082
+00:49:12,441 --> 00:49:15,976
+But this is the completion,     
+okay.                           
+
+1083
+00:49:16,045 --> 00:49:21,481
+So that guy there,              
+that guy there, okay.           
+
+1084
+00:49:21,550 --> 00:49:24,317
+So this is the code that        
+happens when it's completed.    
+
+1085
+00:49:24,386 --> 00:49:30,223
+And if it has yeah,             
+sorry, self.rotate.             
+
+1086
+00:49:30,291 --> 00:49:34,826
+By the way, do we need memory   
+cycle breakage here, etc?       
+
+1087
+00:49:34,895 --> 00:49:38,062
+No, because we're in the        
+middle of an animation, okay?   
+
+1088
+00:49:38,131 --> 00:49:39,931
+That view controller            
+is on the screen.               
+
+1089
+00:49:40,000 --> 00:49:43,201
+We do not have to worry about   
+creating memory cycles here.    
+
+1090
+00:49:43,269 --> 00:49:44,969
+Because we know that thing      
+is gonna be in the heap.        
+
+1091
+00:49:45,037 --> 00:49:45,869
+Because it better               
+be in the heap,                 
+
+1092
+00:49:45,938 --> 00:49:47,871
+cuz we're animating right now!  
+
+1093
+00:49:47,939 --> 00:49:49,472
+So this is a case where         
+we don't really need            
+
+1094
+00:49:49,541 --> 00:49:50,907
+to do weak self and             
+all that stuff.                 
+
+1095
+00:49:52,143 --> 00:49:54,042
+All right, so                   
+when it completes,              
+
+1096
+00:49:54,111 --> 00:49:56,745
+we're gonna say if it           
+finished, which it should.      
+
+1097
+00:49:56,813 --> 00:49:59,781
+Because I'm not issuing         
+any other animations here.      
+
+1098
+00:49:59,850 --> 00:50:02,082
+But one day, maybe I'll         
+add some new animation.         
+
+1099
+00:50:02,151 --> 00:50:04,152
+In which case,                  
+I might interrupt this.         
+
+1100
+00:50:04,220 --> 00:50:06,653
+But, so it's always             
+good to check finished,         
+
+1101
+00:50:06,722 --> 00:50:09,355
+even if you're 100% sure this   
+thing is always gonna finish.   
+
+1102
+00:50:09,424 --> 00:50:12,292
+Which we are in this case,      
+as our code is written now.     
+
+1103
+00:50:12,360 --> 00:50:14,026
+So if it's finished,            
+what I want to do now is        
+
+1104
+00:50:14,095 --> 00:50:15,961
+animate going back              
+over to the right.              
+
+1105
+00:50:16,030 --> 00:50:18,530
+So I'm just gonna               
+UIView.animate withDuration     
+
+1106
+00:50:18,599 --> 00:50:19,531
+again, okay.                    
+
+1107
+00:50:19,600 --> 00:50:21,900
+And again, I want the one       
+with completion here.           
+
+1108
+00:50:26,072 --> 00:50:28,572
+Okay, and this time, I'm gonna  
+do the same amount of time      
+
+1109
+00:50:28,641 --> 00:50:29,873
+to go back to the right.        
+
+1110
+00:50:29,942 --> 00:50:31,408
+So let's HeadShake.             
+
+1111
+00:50:31,476 --> 00:50:33,610
+You could imagine that maybe    
+this duration would wanna be    
+
+1112
+00:50:33,678 --> 00:50:35,077
+different since                 
+I'm going farther.              
+
+1113
+00:50:35,146 --> 00:50:37,613
+But actually, I think it's      
+probably right to have to be    
+
+1114
+00:50:37,682 --> 00:50:39,281
+this way, as you'll see.        
+
+1115
+00:50:39,350 --> 00:50:41,482
+And these are kinda concepts    
+you can play with to make your  
+
+1116
+00:50:41,551 --> 00:50:43,518
+HeadShake look like             
+the way you want.               
+
+1117
+00:50:43,587 --> 00:50:44,686
+And here at the animations,     
+
+1118
+00:50:44,754 --> 00:50:46,987
+I'm gonna rotate my face        
+back the other way.             
+
+1119
+00:50:47,056 --> 00:50:49,222
+So it's gonna have to           
+be a negative value.            
+
+1120
+00:50:49,291 --> 00:50:51,090
+And I want to go twice as far,  
+so                              
+
+1121
+00:50:51,159 --> 00:50:53,460
+I'm gonna do                    
+HeadShake.angl*2.               
+
+1122
+00:50:53,528 --> 00:50:55,728
+Okay, I'm gonna go all the way  
+back, past the middle, and      
+
+1123
+00:50:55,797 --> 00:50:57,429
+over to the right.              
+
+1124
+00:50:57,498 --> 00:51:02,434
+And then here, for the          
+completion here, I'm going to   
+
+1125
+00:51:02,503 --> 00:51:07,906
+again line this up so you can   
+see it a little better, click.  
+
+1126
+00:51:07,975 --> 00:51:09,574
+So inside the completion here,  
+
+1127
+00:51:09,643 --> 00:51:12,009
+I'm gonna rotate                
+back to the middle.             
+
+1128
+00:51:12,078 --> 00:51:14,245
+So yet another,                 
+in fact, watch this.            
+
+1129
+00:51:14,314 --> 00:51:17,747
+Copy, paste.                    
+
+1130
+00:51:17,816 --> 00:51:20,583
+Although with this one,         
+I don't need a completion one   
+
+1131
+00:51:20,652 --> 00:51:22,619
+at the end because I            
+have completed it.              
+
+1132
+00:51:22,687 --> 00:51:24,586
+And here obviously,             
+I'm not going backwards.        
+
+1133
+00:51:24,655 --> 00:51:26,722
+I'm going forwards again,       
+
+1134
+00:51:26,791 --> 00:51:30,159
+which forwards is               
+counter clockwise there.        
+
+1135
+00:51:30,227 --> 00:51:33,962
+All right,                      
+that's everything there.        
+
+1136
+00:51:34,031 --> 00:51:36,131
+And what else do we got here?   
+
+1137
+00:51:36,200 --> 00:51:38,967
+Oops, forgot a curly            
+brace there, comma.             
+
+1138
+00:51:41,837 --> 00:51:42,603
+What else?                      
+
+1139
+00:51:42,671 --> 00:51:44,737
+We're missing some curly        
+braces or something, yeah.      
+
+1140
+00:51:44,806 --> 00:51:47,107
+What do we got here?            
+
+1141
+00:51:47,176 --> 00:51:52,311
+This is finished in,            
+That's it.                      
+
+1142
+00:51:52,380 --> 00:51:55,147
+No, wait, what else do we got?  
+
+1143
+00:51:55,216 --> 00:51:57,716
+This doesn't match anything.    
+
+1144
+00:51:57,785 --> 00:52:01,753
+Yeah it does, it matches this.  
+
+1145
+00:52:01,822 --> 00:52:02,721
+Okay, hold on.                  
+
+1146
+00:52:02,789 --> 00:52:08,660
+Anybody see where I'm           
+missing a Animations,           
+
+1147
+00:52:08,729 --> 00:52:11,929
+another curly brace             
+missing right there.            
+
+1148
+00:52:11,998 --> 00:52:16,800
+And I do think we're gonna      
+need a curly brace there.       
+
+1149
+00:52:16,869 --> 00:52:18,601
+Okay, lots of curly braces and  
+parentheses there.              
+
+1150
+00:52:18,670 --> 00:52:19,736
+We're doing it, we got it.      
+
+1151
+00:52:19,804 --> 00:52:21,637
+Okay, so everyone understand    
+what's going on here?           
+
+1152
+00:52:21,706 --> 00:52:23,772
+So we're just shaking back and  
+forth.                          
+
+1153
+00:52:23,841 --> 00:52:25,874
+You know, I know that's gonna   
+finish because I don't have     
+
+1154
+00:52:25,943 --> 00:52:28,042
+any other animations going on   
+that might interfere with it.   
+
+1155
+00:52:28,111 --> 00:52:30,445
+But to be correct, I should     
+probably always put that,       
+
+1156
+00:52:30,514 --> 00:52:33,181
+if finished, in there if        
+that's what I intend.           
+
+1157
+00:52:33,249 --> 00:52:35,315
+Sometimes I gonna do something  
+even if it doesn't finish.      
+
+1158
+00:52:35,384 --> 00:52:37,451
+But in this case,               
+I do want it.                   
+
+1159
+00:52:37,520 --> 00:52:38,752
+All right,                      
+let's take a look at this.      
+
+1160
+00:52:38,820 --> 00:52:41,354
+And this is a very interesting  
+combination of animations       
+
+1161
+00:52:41,422 --> 00:52:42,889
+going on here,                  
+as you're gonna see.            
+
+1162
+00:52:44,024 --> 00:52:46,725
+All right, so, sorry.           
+
+1163
+00:52:46,793 --> 00:52:49,694
+Let's make some action          
+cause it to shake its head.     
+
+1164
+00:52:49,763 --> 00:52:50,996
+Okay, let's do taps.            
+
+1165
+00:52:51,065 --> 00:52:53,398
+Right now if we tap,            
+it blinks the eyes.             
+
+1166
+00:52:53,467 --> 00:52:55,365
+But we already got              
+a blinking eye right now, so    
+
+1167
+00:52:55,434 --> 00:52:56,400
+we don't need tap anymore.      
+
+1168
+00:52:56,469 --> 00:52:59,135
+So I'm gonna go up              
+here to tap right here,         
+
+1169
+00:52:59,204 --> 00:53:00,203
+this tapRecognizer.             
+
+1170
+00:53:00,272 --> 00:53:01,671
+And I'm gonna                   
+comment this out.               
+
+1171
+00:53:01,739 --> 00:53:03,405
+And I'm gonna show you          
+a different way to do           
+
+1172
+00:53:03,474 --> 00:53:04,206
+just a recognizer.              
+
+1173
+00:53:04,274 --> 00:53:04,840
+Did I show you how to           
+
+1174
+00:53:04,909 --> 00:53:08,009
+do just your recognizer         
+directly in the storyboard?     
+
+1175
+00:53:08,078 --> 00:53:09,043
+I don't think I've              
+shown that yet, so              
+
+1176
+00:53:09,112 --> 00:53:10,444
+let me show you                 
+how to do that.                 
+
+1177
+00:53:10,513 --> 00:53:11,212
+It's really easy,               
+
+1178
+00:53:11,280 --> 00:53:13,147
+we're gonna go to our           
+storyboard right here.          
+
+1179
+00:53:14,349 --> 00:53:16,849
+And this will actually          
+show another cool thing.        
+
+1180
+00:53:16,918 --> 00:53:18,784
+So here is my MVC.              
+
+1181
+00:53:18,853 --> 00:53:21,519
+I'm gonna bring up my           
+assistant editor so             
+
+1182
+00:53:21,588 --> 00:53:23,688
+that I can connect to it.       
+
+1183
+00:53:23,757 --> 00:53:25,790
+And you're gonna see            
+that it brings up               
+
+1184
+00:53:25,859 --> 00:53:27,858
+BlinkingFaceViewController.     
+
+1185
+00:53:27,927 --> 00:53:33,330
+Now I wanna make a connection   
+to a gestureRecognizer here.    
+
+1186
+00:53:33,399 --> 00:53:35,399
+I don't want it to be in        
+BlinkingFace controller,        
+
+1187
+00:53:35,467 --> 00:53:37,768
+I want it to be in              
+the super class.                
+
+1188
+00:53:37,836 --> 00:53:39,302
+But it knows that this          
+
+1189
+00:53:39,370 --> 00:53:41,337
+MVC right here is a             
+BlinkingFacingViewController,   
+
+1190
+00:53:41,406 --> 00:53:44,674
+so it's trying to               
+automatic show it to me.        
+
+1191
+00:53:44,742 --> 00:53:47,709
+So how can I get                
+FaceViewController here, and    
+
+1192
+00:53:47,778 --> 00:53:50,011
+am I allowed to hook            
+up to the super class?          
+
+1193
+00:53:50,080 --> 00:53:52,280
+And the answer is,              
+you are allowed to hook it up.  
+
+1194
+00:53:52,349 --> 00:53:54,682
+And the easiest way to do       
+it is to hold down Option,      
+
+1195
+00:53:54,751 --> 00:53:57,651
+the Option key, and             
+click on it over here.          
+
+1196
+00:53:57,720 --> 00:54:00,554
+Cuz Option means open it        
+up in the assistant editor.     
+
+1197
+00:54:00,623 --> 00:54:02,756
+So now I have                   
+the FaceViewController here.    
+
+1198
+00:54:02,825 --> 00:54:07,160
+And so now I could wire         
+up a gesture to that.           
+
+1199
+00:54:07,229 --> 00:54:11,130
+All right, so how do I wire up  
+a gesture from my UI without    
+
+1200
+00:54:11,199 --> 00:54:14,266
+typing code like all            
+this stuff right here?          
+
+1201
+00:54:14,335 --> 00:54:15,367
+And the answer is,              
+
+1202
+00:54:15,436 --> 00:54:19,704
+we go to the Utilities window   
+and search for gesture.         
+
+1203
+00:54:19,773 --> 00:54:21,873
+And you'll see that there's     
+quite a few gestures here,      
+
+1204
+00:54:21,941 --> 00:54:24,141
+that you can do tap gestures,   
+pinch gestures, rotation,       
+
+1205
+00:54:24,210 --> 00:54:25,676
+swipe gestures, etc.            
+
+1206
+00:54:25,745 --> 00:54:28,778
+And you just get the view       
+that you want here,             
+
+1207
+00:54:28,847 --> 00:54:30,847
+let me zoom in on it some.      
+
+1208
+00:54:30,916 --> 00:54:33,116
+So you got this,                
+this FaceView right here.       
+
+1209
+00:54:33,185 --> 00:54:35,552
+And you just drag the kind      
+of gesture you want,            
+
+1210
+00:54:35,620 --> 00:54:37,687
+like a tap gesture,             
+on top of it.                   
+
+1211
+00:54:37,755 --> 00:54:42,391
+And that's gonna make this      
+view recognize a tap gesture.   
+
+1212
+00:54:42,460 --> 00:54:43,492
+Now where did it appear?        
+
+1213
+00:54:43,560 --> 00:54:45,427
+It appeared right               
+here at the top.                
+
+1214
+00:54:45,495 --> 00:54:48,429
+And I can click on it and       
+inspect it over here actually.  
+
+1215
+00:54:48,498 --> 00:54:50,764
+I can set how many              
+taps we want,                   
+
+1216
+00:54:50,833 --> 00:54:52,365
+how many fingers we             
+want to go down.                
+
+1217
+00:54:52,434 --> 00:54:54,701
+All that stuff we do in code,   
+we can do it here.              
+
+1218
+00:54:54,769 --> 00:54:57,170
+And then how do I get this      
+tap gesture to actually         
+
+1219
+00:54:57,239 --> 00:54:58,872
+do something in my code?        
+
+1220
+00:54:58,940 --> 00:55:00,773
+Well I just Ctrl + drag,        
+of course.                      
+
+1221
+00:55:00,842 --> 00:55:02,408
+I'm gonna hold                  
+down Control and                
+
+1222
+00:55:02,476 --> 00:55:04,609
+drag from this tap              
+gesture in here.                
+
+1223
+00:55:04,678 --> 00:55:06,344
+I want an Action.               
+
+1224
+00:55:06,412 --> 00:55:08,379
+Okay, it's going to be          
+TapGesture as the argument.     
+
+1225
+00:55:08,448 --> 00:55:10,881
+I'm gonna call this             
+also shakeHead.                 
+
+1226
+00:55:10,950 --> 00:55:11,882
+Same name, but                  
+
+1227
+00:55:11,951 --> 00:55:15,619
+this one has the argument of    
+the tapGestureRecognizer.       
+
+1228
+00:55:15,688 --> 00:55:16,653
+Okay, everyone see that,        
+
+1229
+00:55:16,722 --> 00:55:18,287
+how to hook up a gesture        
+in the storyboard?              
+
+1230
+00:55:18,356 --> 00:55:20,055
+It's pretty simple actually.    
+
+1231
+00:55:20,124 --> 00:55:23,092
+I prefer actually               
+to do it in code.               
+
+1232
+00:55:23,161 --> 00:55:26,228
+And why do I prefer             
+to do these gestures            
+
+1233
+00:55:26,297 --> 00:55:28,162
+in code like this?              
+
+1234
+00:55:28,231 --> 00:55:29,964
+I just find that                
+those gestures that             
+
+1235
+00:55:30,033 --> 00:55:31,966
+are in the storyboard           
+are a little hidden.            
+
+1236
+00:55:32,035 --> 00:55:33,700
+They're up in that              
+tiny bar up there, and          
+
+1237
+00:55:33,769 --> 00:55:35,769
+I don't really notice           
+them sometimes.                 
+
+1238
+00:55:35,837 --> 00:55:37,270
+So, so,                         
+I kind of like to do this.      
+
+1239
+00:55:37,339 --> 00:55:39,172
+But it's personal               
+preference really.              
+
+1240
+00:55:39,240 --> 00:55:40,906
+There's nothing wrong with      
+doing them in the storyboard.   
+
+1241
+00:55:40,975 --> 00:55:42,307
+Some people would               
+say that's better               
+
+1242
+00:55:42,376 --> 00:55:43,642
+cuz then everything             
+is in the storyboard.           
+
+1243
+00:55:43,711 --> 00:55:45,410
+It's really easy to see         
+what the gestures are.          
+
+1244
+00:55:45,478 --> 00:55:46,911
+Eh, either way.                 
+
+1245
+00:55:46,979 --> 00:55:48,913
+All right, so                   
+here's our shakeHead gesture.   
+
+1246
+00:55:48,981 --> 00:55:49,613
+What are we gonna do?           
+
+1247
+00:55:49,682 --> 00:55:52,282
+Well, we're gonna shakeHead,    
+all right?                      
+
+1248
+00:55:52,351 --> 00:55:54,785
+We're just gonna call this      
+animated one up here.           
+
+1249
+00:55:56,187 --> 00:55:58,020
+Everybody got that?             
+
+1250
+00:55:58,089 --> 00:56:01,323
+Let's clean up our white        
+space a little bit here.        
+
+1251
+00:56:01,391 --> 00:56:02,857
+All right, so                   
+let's run this time.            
+
+1252
+00:56:02,926 --> 00:56:06,894
+And now we can tap on our face  
+and it should shake its head    
+
+1253
+00:56:06,963 --> 00:56:08,530
+left and then right,            
+and back to left.               
+
+1254
+00:56:10,633 --> 00:56:13,534
+Sorry left and then, right      
+back the middle, all right.     
+
+1255
+00:56:13,602 --> 00:56:15,369
+So, here we go,                 
+this guy is blinking, okay,     
+
+1256
+00:56:15,437 --> 00:56:17,837
+it's done again, no matter      
+what kind of guy is and         
+
+1257
+00:56:17,906 --> 00:56:20,206
+let's tap,                      
+he went the other way.          
+
+1258
+00:56:20,274 --> 00:56:21,173
+So, I was wrong,                
+
+1259
+00:56:21,242 --> 00:56:23,576
+I was get this wrong about      
+which way is which in iOS.      
+
+1260
+00:56:23,644 --> 00:56:27,445
+So actually, I guess            
+positive values are yes,        
+
+1261
+00:56:27,514 --> 00:56:28,546
+clockwise, I guess.             
+
+1262
+00:56:28,615 --> 00:56:30,581
+I think the documentation       
+is backwards on this,           
+
+1263
+00:56:30,650 --> 00:56:31,481
+if I remember correct, and      
+
+1264
+00:56:31,550 --> 00:56:32,983
+they might have fixed it,       
+but anyway.                     
+
+1265
+00:56:33,052 --> 00:56:34,918
+So we go forward and            
+then back.                      
+
+1266
+00:56:34,987 --> 00:56:37,554
+Now, a couple interesting       
+things to note here.            
+
+1267
+00:56:37,623 --> 00:56:39,155
+Look at our other animation.    
+
+1268
+00:56:39,224 --> 00:56:41,056
+It continues perfectly happy.   
+
+1269
+00:56:41,125 --> 00:56:43,292
+It does not care that           
+we're rotating this view.       
+
+1270
+00:56:43,361 --> 00:56:45,427
+It's completely                 
+irrelevant to that, and         
+
+1271
+00:56:45,496 --> 00:56:46,894
+that's the way                  
+animations work.                
+
+1272
+00:56:46,963 --> 00:56:49,430
+As long as they're not          
+touching the same values,       
+
+1273
+00:56:49,499 --> 00:56:51,265
+they can work completely        
+independently.                  
+
+1274
+00:56:51,334 --> 00:56:55,068
+Another thing to note here      
+is this is a sub view           
+
+1275
+00:56:55,137 --> 00:56:55,835
+of this view.                   
+
+1276
+00:56:55,904 --> 00:56:58,572
+And when I transform it,        
+it moves                        
+
+1277
+00:56:58,640 --> 00:57:01,675
+all of the sub views with it,   
+which is kinda cool, okay.      
+
+1278
+00:57:01,743 --> 00:57:04,009
+So even if you build            
+a view out of sub views,        
+
+1279
+00:57:04,078 --> 00:57:05,978
+then if you animate it,         
+rotate it or                    
+
+1280
+00:57:06,046 --> 00:57:08,914
+whatever, the sub views         
+will get rotated as well.       
+
+1281
+00:57:10,183 --> 00:57:11,449
+All right, everybody got that?  
+
+1282
+00:57:15,387 --> 00:57:16,453
+All right.                      
+
+1283
+00:57:16,522 --> 00:57:17,186
+That's all l wanted             
+to show you.                    
+
+1284
+00:57:17,255 --> 00:57:20,123
+So that's the power             
+of UIB animation.               
+
+1285
+00:57:20,192 --> 00:57:22,091
+I'm not even shown you a lot    
+of the cool things you can do   
+
+1286
+00:57:22,160 --> 00:57:23,860
+like moving views.              
+
+1287
+00:57:23,928 --> 00:57:25,827
+Okay, having views moving       
+across the screen.              
+
+1288
+00:57:25,896 --> 00:57:27,996
+The reason I didn't show you    
+that with this view animation   
+
+1289
+00:57:28,065 --> 00:57:29,464
+is pretty obvious how           
+would you do it but             
+
+1290
+00:57:29,532 --> 00:57:32,233
+also because on Wednesday,      
+I'm gonna be showing you        
+
+1291
+00:57:32,302 --> 00:57:33,901
+really powerful way to          
+move you with this across       
+
+1292
+00:57:33,970 --> 00:57:35,769
+the screen with this            
+physic phase one which is       
+
+1293
+00:57:35,838 --> 00:57:37,504
+the next thing we're gonna      
+talk about with the slides.     
+
+1294
+00:57:39,274 --> 00:57:41,307
+All right,                      
+let's back into the slides.     
+
+1295
+00:57:45,279 --> 00:57:48,114
+All right, so,                  
+dynamic animation.              
+
+1296
+00:57:48,182 --> 00:57:51,483
+Now, this is a different        
+approach than the UI-based      
+
+1297
+00:57:51,551 --> 00:57:53,585
+animation I just said.          
+
+1298
+00:57:53,653 --> 00:57:55,436
+what you do is set up all       
+this physics like gravity and   
+
+1299
+00:57:55,437 --> 00:57:57,220
+In this case,                   
+
+1300
+00:57:57,289 --> 00:58:01,057
+things like that and then you   
+just put the UIViews in there   
+
+1301
+00:58:01,126 --> 00:58:05,896
+and they get affected by those  
+physics, and they move around.  
+
+1302
+00:58:05,964 --> 00:58:08,364
+Okay, this is the best of       
+fundamental I do it now,        
+
+1303
+00:58:08,433 --> 00:58:09,232
+how do you do it?               
+
+1304
+00:58:09,300 --> 00:58:11,033
+What's the mechanism for        
+doing it?                       
+
+1305
+00:58:11,102 --> 00:58:12,968
+First, you're gonna wanna       
+create an instance of this      
+
+1306
+00:58:13,037 --> 00:58:15,671
+class called                    
+UIDynamicAnimator, okay?        
+
+1307
+00:58:15,739 --> 00:58:18,372
+A UIDynamicAnimator is          
+the thing that controls all     
+
+1308
+00:58:18,441 --> 00:58:21,509
+the physics based animation     
+in a view hierarchy.            
+
+1309
+00:58:21,578 --> 00:58:22,042
+Okay?                           
+We'll show you                  
+
+1310
+00:58:22,111 --> 00:58:23,277
+how to create                   
+that in a second.               
+
+1311
+00:58:23,346 --> 00:58:26,479
+Then, you're gonna add what     
+are called UIDynamicBehaviors   
+
+1312
+00:58:26,548 --> 00:58:27,847
+to that animator.               
+
+1313
+00:58:27,916 --> 00:58:29,748
+And as soon as you add          
+a behavior to an animator,      
+
+1314
+00:58:29,817 --> 00:58:31,050
+it will start                   
+behaving that way.              
+
+1315
+00:58:31,118 --> 00:58:35,187
+And then finally you're gonna   
+add UIDynamicItems, which       
+
+1316
+00:58:35,256 --> 00:58:39,457
+are usually UIViews, 99% of     
+the time, to those behaviors.   
+
+1317
+00:58:39,526 --> 00:58:41,659
+And then, those behaviors will  
+start acting on those views.    
+
+1318
+00:58:41,728 --> 00:58:43,995
+So that's it, it's a three      
+stage, three level thing.       
+
+1319
+00:58:44,064 --> 00:58:46,029
+You got the animator,           
+you add behaviors to it,        
+
+1320
+00:58:46,098 --> 00:58:47,464
+those behaviors                 
+start happening.                
+
+1321
+00:58:47,532 --> 00:58:49,900
+You add UIViews                 
+to the behaviors,               
+
+1322
+00:58:49,969 --> 00:58:51,935
+now they start being            
+effected by the behaviors.      
+
+1323
+00:58:52,004 --> 00:58:52,802
+You can do it in any order.     
+
+1324
+00:58:52,870 --> 00:58:54,736
+You could put the views in      
+the behaviors first and         
+
+1325
+00:58:54,805 --> 00:58:58,307
+behaviors and the animator,     
+whichever you want to do.       
+
+1326
+00:58:58,376 --> 00:59:00,508
+So how do you create            
+a UIDynamicAnimator?            
+
+1327
+00:59:00,577 --> 00:59:04,446
+All it needs is the coordinate  
+system it's going to work in.   
+
+1328
+00:59:04,515 --> 00:59:04,946
+Okay?                           
+
+1329
+00:59:05,014 --> 00:59:06,581
+So UIDynamicAnumator,           
+
+1330
+00:59:06,649 --> 00:59:09,749
+it's constructor here takes     
+the argument ref into view.     
+
+1331
+00:59:09,818 --> 00:59:12,552
+This is just the UI view whose  
+coordinate system is gonna be   
+
+1332
+00:59:12,621 --> 00:59:13,653
+the coordinate system for       
+
+1333
+00:59:13,722 --> 00:59:16,255
+all the animation               
+that we're doing.               
+
+1334
+00:59:16,324 --> 00:59:18,991
+Now, the views don't have be,   
+all the drawing doesn't have    
+
+1335
+00:59:19,060 --> 00:59:21,193
+to be in one view it can be     
+in a whole bunch of views but   
+
+1336
+00:59:21,262 --> 00:59:23,361
+they have to be in the same     
+view hierarchy and              
+
+1337
+00:59:23,430 --> 00:59:25,997
+you're gonna want reference     
+view at the top of that         
+
+1338
+00:59:26,065 --> 00:59:26,765
+view hierarchy, okay?           
+
+1339
+00:59:27,800 --> 00:59:29,766
+That's the only                 
+restriction there.              
+
+1340
+00:59:29,835 --> 00:59:32,036
+So now,                         
+you start adding behaviors.     
+
+1341
+00:59:32,104 --> 00:59:34,905
+So you do that by creating      
+concrete instances              
+
+1342
+00:59:34,973 --> 00:59:36,138
+of UIDynamicBehavior,           
+
+1343
+00:59:36,207 --> 00:59:38,507
+in other words sub classes      
+of UIDynamicBehavior,           
+
+1344
+00:59:38,576 --> 00:59:39,241
+to do what you want.            
+
+1345
+00:59:39,310 --> 00:59:40,642
+So, there's                     
+a gravity behavior,             
+
+1346
+00:59:40,711 --> 00:59:44,279
+which creates what seems to be  
+gravity, pulling the views.     
+
+1347
+00:59:45,815 --> 00:59:47,047
+a collision behavior where the  
+views run into something like   
+
+1348
+00:59:47,048 --> 00:59:48,280
+And, or                         
+
+1349
+00:59:48,350 --> 00:59:49,917
+the edge of the screen or       
+another view and                
+
+1350
+00:59:49,985 --> 00:59:51,017
+they bounce off.                
+
+1351
+00:59:51,086 --> 00:59:52,451
+Okay?                           
+And we're gonna talk about      
+
+1352
+00:59:52,520 --> 00:59:53,853
+all these dynamic               
+behaviors and                   
+
+1353
+00:59:53,921 --> 00:59:56,121
+how we configure                
+them in a minute.               
+
+1354
+00:59:56,190 --> 00:59:59,390
+And then the UIDynamicItems,    
+one thing to note about         
+
+1355
+00:59:59,459 --> 01:00:03,294
+the UIDynamicItems is that      
+if you add, let's say           
+
+1356
+01:00:03,363 --> 01:00:05,830
+you have item1 and item2 like   
+in this example right here.     
+
+1357
+01:00:05,899 --> 01:00:08,265
+I've added Item 1 and           
+2 to the gravity.               
+
+1358
+01:00:08,334 --> 01:00:10,667
+So they're both affected by     
+the gravity behavior, but       
+
+1359
+01:00:10,736 --> 01:00:13,604
+I only added Item               
+1 to the collider.              
+
+1360
+01:00:13,673 --> 01:00:15,205
+Let's say,                      
+it's a collision behavior and   
+
+1361
+01:00:15,273 --> 01:00:17,407
+let's say there's               
+a boundary at the bottom.       
+
+1362
+01:00:17,475 --> 01:00:19,909
+So one, let's say               
+the gravity goes down, and      
+
+1363
+01:00:19,977 --> 01:00:22,211
+there's a boundary at           
+the bottom for the collider.    
+
+1364
+01:00:22,280 --> 01:00:24,846
+Items 1 and                     
+2 are gonna accelerate down     
+
+1365
+01:00:24,915 --> 01:00:27,249
+towards where the gravity       
+is pulling them but             
+
+1366
+01:00:27,317 --> 01:00:29,851
+then item2 is gonna             
+keep on going.                  
+
+1367
+01:00:29,919 --> 01:00:33,420
+And item1 is gonna bounce       
+off the boundary, okay.         
+
+1368
+01:00:33,489 --> 01:00:35,755
+So if you don't add the UIView  
+to a certain behavior,          
+
+1369
+01:00:35,824 --> 01:00:37,291
+it won't be affected            
+by that behavior.               
+
+1370
+01:00:39,127 --> 01:00:41,828
+Now, these items that           
+you add to behaviors            
+
+1371
+01:00:41,897 --> 01:00:44,730
+implement this protocol         
+called UIDynamicItem,           
+
+1372
+01:00:44,799 --> 01:00:47,465
+which UIView already            
+was implementing.               
+
+1373
+01:00:47,534 --> 01:00:48,934
+Okay, before they               
+even invented this,             
+
+1374
+01:00:49,002 --> 01:00:51,803
+because all this in             
+the UIDynamicItem protocol is   
+
+1375
+01:00:51,872 --> 01:00:54,605
+balance, which you              
+just get because your           
+
+1376
+01:00:54,674 --> 01:00:58,242
+balance are affected            
+by your transform, and          
+
+1377
+01:00:58,311 --> 01:01:00,777
+so, you get your balance so     
+you know where to draw.         
+
+1378
+01:01:00,846 --> 01:01:02,746
+And then, setter, sorry,        
+
+1379
+01:01:02,814 --> 01:01:05,748
+the center and the transform    
+are things that can be set.     
+
+1380
+01:01:05,817 --> 01:01:10,653
+So, the animator can really     
+only change where the view is   
+
+1381
+01:01:10,722 --> 01:01:13,623
+and its rotation and scale.     
+
+1382
+01:01:13,691 --> 01:01:15,824
+Okay, that's all that           
+the animator did, but           
+
+1383
+01:01:15,893 --> 01:01:16,692
+that's a lot.                   
+
+1384
+01:01:16,760 --> 01:01:20,896
+Okay, rotation scale you can    
+see, especially center where    
+
+1385
+01:01:20,964 --> 01:01:23,931
+the thing is, is a lot of what  
+the animator is, is doing.      
+
+1386
+01:01:24,000 --> 01:01:27,201
+Now, one interesting thing is   
+once you add a dynamic item     
+
+1387
+01:01:27,270 --> 01:01:29,936
+to a behavior that's been       
+added to an animator,           
+
+1388
+01:01:30,005 --> 01:01:33,773
+then the animator has control   
+over its center and transform.  
+
+1389
+01:01:33,842 --> 01:01:35,375
+And if you wanna                
+change the center and           
+
+1390
+01:01:35,443 --> 01:01:38,611
+transform without removing it   
+from the Dynamic animator,      
+
+1391
+01:01:38,680 --> 01:01:41,847
+you've gotta tell the Dynamic   
+animator, hey, I change this.   
+
+1392
+01:01:41,916 --> 01:01:43,515
+Otherwise, it's gonna change    
+it right back to what it        
+
+1393
+01:01:43,584 --> 01:01:44,849
+thinks it is.                   
+
+1394
+01:01:44,918 --> 01:01:45,951
+Right.                          
+So don't fight your             
+
+1395
+01:01:46,019 --> 01:01:48,987
+dynamic animator if you         
+wanna change the center or      
+
+1396
+01:01:49,055 --> 01:01:51,755
+transform a view that you've    
+added to an animator.           
+
+1397
+01:01:51,824 --> 01:01:53,957
+You have to tell the animator   
+using this method right here.   
+
+1398
+01:01:54,026 --> 01:01:55,759
+Update item using               
+current state.                  
+
+1399
+01:01:55,828 --> 01:01:59,228
+And you just pass the UIView    
+that you change the center or   
+
+1400
+01:01:59,297 --> 01:01:59,929
+transform of.                   
+
+1401
+01:01:59,998 --> 01:02:01,964
+And it will pick up what        
+you changed it to, and          
+
+1402
+01:02:02,033 --> 01:02:02,865
+continue from there.            
+
+1403
+01:02:05,335 --> 01:02:06,617
+Let's talk about some of        
+the specific behaviors.         
+
+1404
+01:02:06,618 --> 01:02:07,900
+All right?                      
+
+1405
+01:02:07,970 --> 01:02:09,437
+There's gravity behavior.       
+
+1406
+01:02:09,506 --> 01:02:12,339
+So, gravity behavior,           
+it's just like gravity.         
+
+1407
+01:02:12,407 --> 01:02:14,641
+And by default, when you        
+create a gravity behavior,      
+
+1408
+01:02:14,709 --> 01:02:18,945
+the gravity is down             
+which means kind of down        
+
+1409
+01:02:19,014 --> 01:02:24,383
+towards the home button,        
+basically in portrait mode.     
+
+1410
+01:02:24,452 --> 01:02:27,386
+And, its, magnitude is 1g.      
+
+1411
+01:02:27,455 --> 01:02:29,921
+[LAUGH] Okay, 1.0.              
+
+1412
+01:02:29,990 --> 01:02:34,659
+And 1.0 means 1,000 points per  
+second per second per second.   
+
+1413
+01:02:34,728 --> 01:02:38,063
+Remember that gravity           
+is an acceleration.             
+
+1414
+01:02:38,131 --> 01:02:40,631
+Okay, hopefully you all have    
+enough physics to know that     
+
+1415
+01:02:40,700 --> 01:02:41,799
+gravity is an acceleration.     
+
+1416
+01:02:41,868 --> 01:02:44,535
+Anybody know what               
+the gravity on Earth is?        
+
+1417
+01:02:46,672 --> 01:02:48,671
+9.8 meters per second square,   
+right?                          
+
+1418
+01:02:48,740 --> 01:02:52,508
+So, in screen it's              
+a thousand points per second    
+
+1419
+01:02:52,577 --> 01:02:55,043
+squared and what's really       
+interesting about a thousand    
+
+1420
+01:02:55,112 --> 01:02:57,413
+points per second squared       
+it's a very round number but    
+
+1421
+01:02:57,481 --> 01:03:00,516
+it feels a lot like 9.8         
+meters per second squared.      
+
+1422
+01:03:00,584 --> 01:03:02,751
+Now, if you have your           
+phone you put the UI,           
+
+1423
+01:03:02,819 --> 01:03:03,985
+a view at the top and           
+
+1424
+01:03:04,054 --> 01:03:06,820
+you apply this gravity          
+behaviour to it, it will fall   
+
+1425
+01:03:06,889 --> 01:03:09,389
+almost exactly the same as      
+real life object would fall.    
+
+1426
+01:03:09,458 --> 01:03:11,859
+It's really pretty              
+amazing actually.               
+
+1427
+01:03:11,927 --> 01:03:13,460
+And yet it's such a round       
+number like that.               
+
+1428
+01:03:14,896 --> 01:03:16,195
+So you can tweet                
+these numbers though,           
+
+1429
+01:03:16,264 --> 01:03:17,930
+you could have                  
+the gravity be up.              
+
+1430
+01:03:17,999 --> 01:03:20,365
+For example,                    
+when I pull out my phone and    
+
+1431
+01:03:20,433 --> 01:03:23,001
+I swipe up from the bottom,     
+okay.                           
+
+1432
+01:03:23,070 --> 01:03:24,235
+Feel free to do it if           
+you want right now.             
+
+1433
+01:03:24,303 --> 01:03:25,536
+When you swipe up               
+from the bottom,                
+
+1434
+01:03:25,604 --> 01:03:27,804
+the little control              
+panel comes up.                 
+
+1435
+01:03:27,873 --> 01:03:29,373
+If kind of flies up,            
+
+1436
+01:03:29,441 --> 01:03:32,942
+that's actually using this      
+mechanism and its gravity up.   
+
+1437
+01:03:33,011 --> 01:03:35,345
+So, gravity is actually         
+pulling that thing up           
+
+1438
+01:03:35,413 --> 01:03:36,412
+when you swipe.                 
+
+1439
+01:03:36,481 --> 01:03:38,313
+And what's more, when it hits,  
+
+1440
+01:03:38,382 --> 01:03:39,447
+you notice it doesn't           
+just come up and                
+
+1441
+01:03:39,516 --> 01:03:43,084
+stop, it kind of bounces        
+a little, off the end, okay?    
+
+1442
+01:03:43,153 --> 01:03:44,752
+And that's                      
+a collision behavior.           
+
+1443
+01:03:44,821 --> 01:03:47,454
+So that thing coming up is      
+a combination of a gravity      
+
+1444
+01:03:47,523 --> 01:03:50,023
+behavior and a collision        
+behavior or it might be using   
+
+1445
+01:03:50,092 --> 01:03:52,392
+a snap behavior, which          
+we'll see in a second too.      
+
+1446
+01:03:52,461 --> 01:03:53,293
+So anyway, that's gravity,      
+
+1447
+01:03:53,362 --> 01:03:54,994
+and you can see gravity         
+in any direction, and           
+
+1448
+01:03:55,063 --> 01:03:59,364
+we're going to do that in our   
+demo on Wednesday quite a bit.  
+
+1449
+01:03:59,433 --> 01:04:01,100
+Another one is                  
+an attachment behaviour.        
+
+1450
+01:04:01,169 --> 01:04:03,935
+This allows you to take         
+two dynamic items, or           
+
+1451
+01:04:04,004 --> 01:04:06,838
+a dynamic, dynamic item and     
+a fixed point and               
+
+1452
+01:04:06,907 --> 01:04:09,841
+attach them at some             
+distance apart.                 
+
+1453
+01:04:09,910 --> 01:04:11,809
+And how would this play out?    
+
+1454
+01:04:11,877 --> 01:04:13,410
+Well, let's say I               
+had a UIView and                
+
+1455
+01:04:13,479 --> 01:04:16,547
+I attached it to this           
+a center point and              
+
+1456
+01:04:16,615 --> 01:04:20,049
+let's say that UIView, in       
+addition to being affected by   
+
+1457
+01:04:20,118 --> 01:04:23,486
+this attachment behavior was    
+also affected by gravity.       
+
+1458
+01:04:23,554 --> 01:04:26,755
+Then it would come down and     
+swing like a pendulum.          
+
+1459
+01:04:26,824 --> 01:04:28,557
+Okay, because the attachment    
+behavior would                  
+
+1460
+01:04:28,626 --> 01:04:30,659
+be constantly attaching         
+it to this point.               
+
+1461
+01:04:30,728 --> 01:04:32,894
+But the gravity would be        
+constantly trying to pull it    
+
+1462
+01:04:32,963 --> 01:04:34,629
+down and it would swing.        
+
+1463
+01:04:34,698 --> 01:04:36,264
+Do you see?                     
+
+1464
+01:04:36,332 --> 01:04:37,631
+So that's an attachment         
+behavior.                       
+
+1465
+01:04:37,700 --> 01:04:38,998
+The attachment behavior,        
+
+1466
+01:04:39,067 --> 01:04:41,034
+one thing that's                
+really cool about it,           
+
+1467
+01:04:41,102 --> 01:04:44,103
+you can change the length of    
+the attachment in real time.    
+
+1468
+01:04:44,172 --> 01:04:45,437
+So the thing is animating and   
+
+1469
+01:04:45,506 --> 01:04:49,274
+you can be changing the         
+distance that is attached, so   
+
+1470
+01:04:49,343 --> 01:04:52,578
+you can create all kinds of     
+crazy, motions using that.      
+
+1471
+01:04:53,980 --> 01:04:56,614
+All right, CollisionBehavior.   
+
+1472
+01:04:56,682 --> 01:04:58,615
+CollisionBehavior is            
+exactly what you think.         
+
+1473
+01:04:58,684 --> 01:05:00,251
+You can setup collisions.       
+
+1474
+01:05:00,319 --> 01:05:03,586
+The collisions can either       
+be between all the items        
+
+1475
+01:05:03,655 --> 01:05:05,154
+that are in the behavior.       
+
+1476
+01:05:05,223 --> 01:05:07,090
+They're being affected          
+by the behavior.                
+
+1477
+01:05:07,158 --> 01:05:08,991
+And or                          
+any number of boundaries and    
+
+1478
+01:05:09,059 --> 01:05:11,827
+these boundaries are just       
+UIBezierPaths so you can        
+
+1479
+01:05:11,896 --> 01:05:15,296
+register these UIBezierPaths    
+with the CollisionBehavior and  
+
+1480
+01:05:15,365 --> 01:05:17,932
+all the items that              
+are affected by behavior will   
+
+1481
+01:05:18,001 --> 01:05:20,201
+bounce off of those             
+boundaries, okay?               
+
+1482
+01:05:20,270 --> 01:05:22,202
+They could be round,            
+they could be curved,           
+
+1483
+01:05:22,271 --> 01:05:24,871
+they could be any               
+path that you want.             
+
+1484
+01:05:24,940 --> 01:05:27,840
+A common boundary by the way    
+you want to put is a boundary   
+
+1485
+01:05:27,909 --> 01:05:30,176
+all the way around              
+the reference area.             
+
+1486
+01:05:30,245 --> 01:05:32,678
+Just to contain all             
+the items inside.               
+
+1487
+01:05:32,747 --> 01:05:36,182
+And you can do that with this   
+var translate reference bounds  
+
+1488
+01:05:36,251 --> 01:05:37,216
+If you set that on a collision  
+behavior, then it will          
+
+1489
+01:05:37,217 --> 01:05:38,182
+into boundary.                  
+
+1490
+01:05:38,251 --> 01:05:40,919
+kind of automatically put       
+a boundary around the edge and  
+
+1491
+01:05:40,987 --> 01:05:43,954
+keep everything Inside          
+the reference bounds.           
+
+1492
+01:05:44,023 --> 01:05:46,523
+Now you notice the argument     
+here these boundaries have      
+
+1493
+01:05:46,592 --> 01:05:49,459
+identifiers so                  
+that you can tell which ones    
+
+1494
+01:05:49,528 --> 01:05:52,095
+you hit when they hit and I'm   
+gonna show you how you find     
+
+1495
+01:05:52,164 --> 01:05:54,664
+out about that in a second but  
+you notice the identifier is    
+
+1496
+01:05:54,733 --> 01:05:59,168
+an NSCopying you've never       
+seen NSCopying there before,    
+
+1497
+01:05:59,237 --> 01:06:02,838
+NSCopying for the purposes of   
+this basically means NSString   
+
+1498
+01:06:02,907 --> 01:06:05,808
+or NSNumber Okay, so the        
+identifier could be a number    
+
+1499
+01:06:05,877 --> 01:06:08,043
+or a string but there's NSs.    
+
+1500
+01:06:08,112 --> 01:06:11,046
+Now, that's no problem          
+because you can just            
+
+1501
+01:06:11,115 --> 01:06:15,516
+as them to a string or          
+to an Int if you wanna,         
+
+1502
+01:06:15,585 --> 01:06:18,886
+use Int as your identifiers     
+but you do have to do that as.  
+
+1503
+01:06:18,955 --> 01:06:23,323
+So, NSCopying is basically      
+NSString or NSNumber Number,    
+
+1504
+01:06:23,392 --> 01:06:25,291
+now, why do we need             
+that identifier?                
+
+1505
+01:06:25,360 --> 01:06:28,094
+Because when a collision        
+happens with a boundary,        
+
+1506
+01:06:28,163 --> 01:06:32,131
+the collision, behavior has a   
+delegate, and it'll tell you.   
+
+1507
+01:06:32,200 --> 01:06:34,767
+So, if you set yourself as the  
+collision behavior's delegate,  
+
+1508
+01:06:34,835 --> 01:06:38,070
+then, if you have any           
+boundaries set in there, or     
+
+1509
+01:06:38,138 --> 01:06:40,672
+if two items are colliding      
+with each other, you're gonna   
+
+1510
+01:06:40,740 --> 01:06:44,009
+get this sent to you, this is   
+a collisionDelegate method      
+
+1511
+01:06:44,077 --> 01:06:47,378
+CollisionBehavior begin or      
+ended contact for               
+
+1512
+01:06:47,447 --> 01:06:51,548
+some UIDynamicItem, UI View,    
+if this bouncing around         
+
+1513
+01:06:51,617 --> 01:06:54,551
+in there with the boundary      
+identifier NSCopying.           
+
+1514
+01:06:54,620 --> 01:06:57,287
+So, there's that identifier     
+telling you this boundary that  
+
+1515
+01:06:57,356 --> 01:06:59,622
+you sent is doing this and      
+leave and                       
+
+1516
+01:06:59,691 --> 01:07:03,326
+tell you the point at which     
+those two things collided       
+
+1517
+01:07:03,394 --> 01:07:06,061
+If you're, if it's talking      
+about collision within two UI   
+
+1518
+01:07:06,130 --> 01:07:09,298
+dynamic items then it'll say    
+with UIDynamicItem instead of   
+
+1519
+01:07:09,367 --> 01:07:10,265
+withBoundaryIdentifier.         
+
+1520
+01:07:11,568 --> 01:07:12,566
+Okay?                           
+So this is really cool.         
+
+1521
+01:07:12,635 --> 01:07:13,667
+When the collisions happen      
+
+1522
+01:07:13,736 --> 01:07:15,035
+you get to find out             
+that they happen.               
+
+1523
+01:07:15,104 --> 01:07:17,571
+And again, we're gonna use      
+that in our demo as well.       
+
+1524
+01:07:19,140 --> 01:07:19,638
+All right.                      
+
+1525
+01:07:19,707 --> 01:07:21,073
+SnapBehavior.                   
+
+1526
+01:07:21,142 --> 01:07:23,709
+So a SnapBehavior is basically  
+
+1527
+01:07:23,778 --> 01:07:27,012
+move this view from here        
+to over here behavior.          
+
+1528
+01:07:27,081 --> 01:07:28,913
+And why it's called             
+the snap behavior is,           
+
+1529
+01:07:28,982 --> 01:07:31,882
+it doesn't move it over         
+there really jerky and          
+
+1530
+01:07:31,951 --> 01:07:34,952
+kind of stiff, it moves it      
+over and when it gets there,    
+
+1531
+01:07:35,021 --> 01:07:38,322
+it's almost like four springs   
+are attached to the corners     
+
+1532
+01:07:38,391 --> 01:07:41,190
+and it kind of                  
+vibrates a little bit.          
+
+1533
+01:07:41,259 --> 01:07:44,527
+It flies over there, probably   
+eases in, then eases out, and   
+
+1534
+01:07:44,595 --> 01:07:47,330
+then when it gets there, it     
+kind of shakes a little bit.    
+
+1535
+01:07:47,399 --> 01:07:48,697
+Okay, like there's              
+springs in the corner.          
+
+1536
+01:07:48,766 --> 01:07:51,667
+And you can set the stiffness   
+of those springs with damping.  
+
+1537
+01:07:51,735 --> 01:07:54,402
+So, highly damped, they'll      
+come in and just [SOUND] stop.  
+
+1538
+01:07:54,471 --> 01:07:57,472
+And really springy springs,     
+they'll come in and             
+
+1539
+01:07:57,541 --> 01:07:58,890
+kinda really bounce around      
+when it arrives in there.       
+
+1540
+01:07:58,891 --> 01:08:00,240
+go [SOUND],                     
+
+1541
+01:08:00,309 --> 01:08:01,909
+So, why do we do that?          
+
+1542
+01:08:01,977 --> 01:08:05,178
+Because when we move things     
+across screen to a new place    
+
+1543
+01:08:05,247 --> 01:08:09,015
+In real life we don't want      
+it to feel so abrupt.           
+
+1544
+01:08:09,084 --> 01:08:09,916
+Right.                          
+When we move things,            
+
+1545
+01:08:09,985 --> 01:08:11,884
+again we want things            
+to feel smooth, and             
+
+1546
+01:08:11,953 --> 01:08:14,519
+so snap to is                   
+definitely the way to           
+
+1547
+01:08:14,588 --> 01:08:19,357
+move something to a known       
+place with the system.          
+
+1548
+01:08:19,426 --> 01:08:22,527
+Similarly there is something    
+called pushBehavior,            
+
+1549
+01:08:22,596 --> 01:08:25,196
+a pushBehavior gives            
+a UIview a push.                
+
+1550
+01:08:25,265 --> 01:08:28,031
+Okay, so we already know how    
+to make the UIviews accelerate  
+
+1551
+01:08:28,100 --> 01:08:30,667
+towards somewhere               
+with gravity.                   
+
+1552
+01:08:30,736 --> 01:08:34,337
+Push is almost like             
+imparting a velocity to it.     
+
+1553
+01:08:34,406 --> 01:08:35,605
+Now, there is two               
+kinds of push.                  
+
+1554
+01:08:35,673 --> 01:08:39,275
+There is instantaneous push     
+which is just one time push,    
+
+1555
+01:08:39,344 --> 01:08:44,580
+okay in parts                   
+a certain energy to it.         
+
+1556
+01:08:44,649 --> 01:08:47,649
+There you can see magnitude     
+1.0 is a 100 x100 view,         
+
+1557
+01:08:47,718 --> 01:08:50,518
+would get a 100 pts/s/s.        
+
+1558
+01:08:50,587 --> 01:08:52,454
+Is kinda push to it.            
+
+1559
+01:08:53,890 --> 01:08:56,190
+But then there's also           
+continuous push which is        
+
+1560
+01:08:56,259 --> 01:08:57,390
+you just push along behind.     
+
+1561
+01:08:57,459 --> 01:08:59,026
+So that's velocity.             
+
+1562
+01:08:59,095 --> 01:09:00,961
+Okay, you're giving             
+the thing velocity.             
+
+1563
+01:09:01,029 --> 01:09:03,163
+Cuz you're just constantly      
+pushing it at some rate.        
+
+1564
+01:09:04,165 --> 01:09:06,798
+So you can do both              
+things there.                   
+
+1565
+01:09:06,867 --> 01:09:09,233
+One thing that's really         
+annoying about push behaviors   
+
+1566
+01:09:09,302 --> 01:09:11,035
+is the instantaneous ones.      
+
+1567
+01:09:11,104 --> 01:09:14,539
+You add the behavior to the,    
+animator.                       
+
+1568
+01:09:14,608 --> 01:09:15,205
+Right?                          
+
+1569
+01:09:15,274 --> 01:09:16,574
+And then, it pushes it and      
+
+1570
+01:09:16,642 --> 01:09:18,541
+then just sits there            
+doing nothing,                  
+
+1571
+01:09:18,610 --> 01:09:21,778
+okay it doesn't like disappear  
+after you spontaneous push,     
+
+1572
+01:09:21,847 --> 01:09:24,280
+even though I mean I'm          
+not gonna push it again.        
+
+1573
+01:09:24,349 --> 01:09:27,750
+So we want to clean that up     
+and I'm gonna show you towards  
+
+1574
+01:09:27,818 --> 01:09:31,386
+the end of this talk how those  
+instantaneous pushes, but       
+
+1575
+01:09:31,455 --> 01:09:33,689
+it is a little                  
+annoying that does it.          
+
+1576
+01:09:33,757 --> 01:09:35,657
+Now continuous push is          
+different because it's          
+
+1577
+01:09:35,725 --> 01:09:37,992
+constantly pushing so you       
+don't want it to be cleaned up  
+
+1578
+01:09:38,061 --> 01:09:39,827
+if you want to be               
+sitting there pushing.          
+
+1579
+01:09:42,397 --> 01:09:44,097
+There's another kind of         
+behavior which is kind of       
+
+1580
+01:09:44,165 --> 01:09:47,467
+a meta behavior, called         
+the dynamic item behavior.      
+
+1581
+01:09:47,535 --> 01:09:49,169
+Okay?                           
+Dynamic item behavior,          
+
+1582
+01:09:49,237 --> 01:09:51,570
+not dynamic behavior,           
+dynamic item behavior.          
+
+1583
+01:09:51,639 --> 01:09:55,507
+And, this I like to think       
+of as the physics behavior.     
+
+1584
+01:09:55,576 --> 01:09:58,443
+This is essentially             
+describing the physics          
+
+1585
+01:09:58,511 --> 01:10:02,580
+that apply when all the other   
+behaviors do stuff, okay?       
+
+1586
+01:10:02,649 --> 01:10:05,583
+So this is things like,         
+allows rotation.                
+
+1587
+01:10:05,652 --> 01:10:06,483
+That's saying like,             
+
+1588
+01:10:06,552 --> 01:10:10,554
+if two things collide, should   
+they be allowed to spin off?    
+
+1589
+01:10:10,623 --> 01:10:13,123
+Or do they have to keep,        
+you know, non-rotated,          
+
+1590
+01:10:13,192 --> 01:10:15,291
+bounce off non-rotated.         
+
+1591
+01:10:15,360 --> 01:10:18,061
+Friction, after things bounce   
+off each other, or if they're   
+
+1592
+01:10:18,129 --> 01:10:21,831
+just moving around, do they     
+get slowed down by friction?    
+
+1593
+01:10:21,899 --> 01:10:23,733
+Okay, so if you have gravity    
+and there's friction.           
+
+1594
+01:10:23,801 --> 01:10:25,367
+They're not gonna               
+accelerate as fast because      
+
+1595
+01:10:25,436 --> 01:10:26,601
+they're being slow down.        
+
+1596
+01:10:26,670 --> 01:10:30,105
+Elasticity when things          
+banging to each other do they   
+
+1597
+01:10:30,173 --> 01:10:32,674
+bounce off with the same        
+energy they had coming in?      
+
+1598
+01:10:32,742 --> 01:10:35,075
+That would be elasticity        
+1.0 or do they gain             
+
+1599
+01:10:35,144 --> 01:10:39,379
+energy by collision that would  
+be elasticity above 1.0.        
+
+1600
+01:10:39,448 --> 01:10:42,048
+Or did they lose energy as      
+they collide each other that    
+
+1601
+01:10:42,116 --> 01:10:43,850
+would be elasticity             
+less than 1.0.                  
+
+1602
+01:10:44,852 --> 01:10:46,418
+Okay, so you see how this,      
+
+1603
+01:10:46,486 --> 01:10:48,286
+is the behaviour just like      
+a collision behaviour or        
+
+1604
+01:10:48,355 --> 01:10:50,054
+a grably behaviour or           
+push behaviour.                 
+
+1605
+01:10:50,123 --> 01:10:51,655
+But it's a behavior             
+that's like meta,               
+
+1606
+01:10:51,724 --> 01:10:53,757
+it's like describing how these  
+things should behave and        
+
+1607
+01:10:53,826 --> 01:10:55,959
+all the other behaviors.        
+
+1608
+01:10:56,028 --> 01:10:59,329
+These behaviour also can        
+tell you the linear velocity    
+
+1609
+01:10:59,398 --> 01:11:02,332
+of an item which is actually    
+interesting to know.            
+
+1610
+01:11:02,400 --> 01:11:05,902
+And why do I wanna know the     
+linear velocity of an item?     
+
+1611
+01:11:05,970 --> 01:11:09,539
+A lot of times,                 
+if I got a view, an MBC and     
+
+1612
+01:11:09,607 --> 01:11:10,506
+it's animating.                 
+
+1613
+01:11:10,575 --> 01:11:13,542
+And then, I click away from     
+it like a Tab bar or I,         
+
+1614
+01:11:13,610 --> 01:11:17,145
+in the navigation controller,   
+I push something else on.       
+
+1615
+01:11:17,214 --> 01:11:19,948
+I wanna pause that animation.   
+
+1616
+01:11:20,016 --> 01:11:21,849
+Well, there's no                
+real way to pause.              
+
+1617
+01:11:21,918 --> 01:11:24,318
+Okay, when your view goes       
+off screen, when your view      
+
+1618
+01:11:24,387 --> 01:11:27,020
+controller disappears,          
+you're going to want to remove  
+
+1619
+01:11:27,088 --> 01:11:29,055
+the behaviors from the          
+animator and stop animating.    
+
+1620
+01:11:29,124 --> 01:11:32,124
+cuz you don't want to be        
+animating not on screen.        
+
+1621
+01:11:32,193 --> 01:11:33,926
+Okay, it's a waste of energy.   
+
+1622
+01:11:33,994 --> 01:11:38,330
+But when you go to the view,    
+you want all of the animated    
+
+1623
+01:11:38,399 --> 01:11:40,498
+things to continue              
+as they were.                   
+
+1624
+01:11:40,567 --> 01:11:41,399
+Well they will except for       
+
+1625
+01:11:41,468 --> 01:11:43,434
+they'll have lost               
+all their velocity.             
+
+1626
+01:11:43,503 --> 01:11:45,403
+So you have to put              
+their velocity back.            
+
+1627
+01:11:45,472 --> 01:11:47,504
+So you grab all their           
+linear velocities,              
+
+1628
+01:11:47,573 --> 01:11:48,806
+store them away somewhere and   
+
+1629
+01:11:48,874 --> 01:11:51,374
+when you come back,             
+add the linear velocity back.   
+
+1630
+01:11:51,443 --> 01:11:54,343
+You could also use the linear   
+velocity here to put a speed    
+
+1631
+01:11:54,412 --> 01:11:55,978
+limit on objects.               
+
+1632
+01:11:56,047 --> 01:11:57,012
+If we have time on Wednesday,   
+
+1633
+01:11:57,080 --> 01:11:58,680
+which I doubt we'll have time,  
+but.                            
+
+1634
+01:11:58,749 --> 01:12:00,815
+If we could get to              
+the speed limit feature.        
+
+1635
+01:12:00,884 --> 01:12:02,883
+By the way we're building       
+like space game where we're     
+
+1636
+01:12:02,952 --> 01:12:04,285
+flying through asteroids.       
+
+1637
+01:12:04,353 --> 01:12:06,319
+That's what we're going         
+to build with this thing.       
+
+1638
+01:12:06,388 --> 01:12:08,522
+Maybe we want the asteroids to  
+have a speed limit where just   
+
+1639
+01:12:08,591 --> 01:12:09,956
+aren't going so                 
+fast that there's no way        
+
+1640
+01:12:10,025 --> 01:12:12,058
+our ship could possible         
+dodge them or whatever.         
+
+1641
+01:12:13,461 --> 01:12:16,628
+So we use linear velocity for   
+that.                           
+
+1642
+01:12:16,697 --> 01:12:20,632
+So you can ask any item that    
+a dynamic behavior is behaving  
+
+1643
+01:12:20,701 --> 01:12:22,534
+on, you can ask for             
+its linear velocity.            
+
+1644
+01:12:24,203 --> 01:12:28,005
+Okay now here's all these       
+behaviors, gravity behavior,    
+
+1645
+01:12:28,074 --> 01:12:29,039
+push behavior, all these.       
+
+1646
+01:12:29,108 --> 01:12:30,840
+These are all subclasses        
+of a class called               
+
+1647
+01:12:30,909 --> 01:12:32,642
+UI Dynamic Behavior.            
+
+1648
+01:12:32,711 --> 01:12:33,709
+Not dynamic item behavior.      
+
+1649
+01:12:33,778 --> 01:12:34,710
+That's the previous slide.      
+
+1650
+01:12:34,779 --> 01:12:36,779
+This is UIDynamicBehavior.      
+
+1651
+01:12:36,848 --> 01:12:39,748
+Now a UIDynamicBehavior         
+is something you often          
+
+1652
+01:12:39,817 --> 01:12:42,017
+create your own subclass of.    
+
+1653
+01:12:42,085 --> 01:12:44,419
+Now how that hap,               
+you're probably like what?      
+
+1654
+01:12:44,488 --> 01:12:46,387
+I'm gonna write my              
+own gravity thing, or           
+
+1655
+01:12:46,456 --> 01:12:47,488
+my own collision thing?         
+
+1656
+01:12:47,556 --> 01:12:49,789
+They're too complicated and     
+the answer is you're right,     
+
+1657
+01:12:49,858 --> 01:12:51,190
+it's way too complicated.       
+
+1658
+01:12:51,259 --> 01:12:53,859
+So your subclasses of           
+UI Dynamic behaviour, what      
+
+1659
+01:12:53,928 --> 01:12:57,830
+they're gonna be is composites  
+of other dynamic behaviours.    
+
+1660
+01:12:57,898 --> 01:13:02,234
+So if you had some space l,     
+where there's boundaries and    
+
+1661
+01:13:02,302 --> 01:13:04,003
+gravity is applying             
+to things and                   
+
+1662
+01:13:04,071 --> 01:13:06,137
+they have a certain             
+friction and elasticity.        
+
+1663
+01:13:06,206 --> 01:13:07,806
+You would combine our           
+gravity behaviour,              
+
+1664
+01:13:07,874 --> 01:13:10,608
+collision behaviour and         
+UI Dynamic item behaviour.      
+
+1665
+01:13:10,677 --> 01:13:13,777
+Into your subclass of           
+UIDynamicBehavior.              
+
+1666
+01:13:13,845 --> 01:13:16,213
+And the way you combine them    
+is with this very important     
+
+1667
+01:13:16,282 --> 01:13:19,549
+method in UIDynamicBehavior     
+called addChildBehavior.        
+
+1668
+01:13:19,618 --> 01:13:23,686
+That means composite this       
+behavior into my behavior.      
+
+1669
+01:13:23,755 --> 01:13:26,656
+And, we almost always do this,  
+okay?                           
+
+1670
+01:13:26,724 --> 01:13:29,324
+Create our own subclass         
+of UIDynamicBehavior, and       
+
+1671
+01:13:29,393 --> 01:13:32,327
+put all our other behaviors     
+that are related in it,         
+
+1672
+01:13:32,396 --> 01:13:33,295
+as child behaviors.             
+
+1673
+01:13:33,363 --> 01:13:37,599
+It's it's just a good way       
+to collect the ff total         
+
+1674
+01:13:37,667 --> 01:13:40,401
+behavior that's being imparted  
+to things into one place.       
+
+1675
+01:13:40,470 --> 01:13:42,803
+And we're going to do           
+that in our demo as well.       
+
+1676
+01:13:42,872 --> 01:13:47,941
+Most of the code we're          
+gonna write on Wednesday        
+
+1677
+01:13:48,010 --> 01:13:53,079
+is gonna be in a big            
+UIDynamicBehavior subclass      
+
+1678
+01:13:53,148 --> 01:13:59,151
+'cuz we're gonna put a lot      
+of behavior on our asteroids    
+
+1679
+01:13:59,220 --> 01:14:05,190
+that are moving around they     
+gotta bounce off the ship and   
+
+1680
+01:14:05,259 --> 01:14:11,097
+they gotta be affected by       
+the ship's acceleration and     
+
+1681
+01:14:11,165 --> 01:14:15,867
+all kinds of things we          
+gotta put that all in           
+
+1682
+01:14:15,936 --> 01:14:20,772
+our own subclass                
+UIDynamicBehaviour okay?        
+
+1683
+01:14:20,841 --> 01:14:23,274
+Remember I said there's this    
+UIDynamic animator at the top,  
+
+1684
+01:14:23,343 --> 01:14:24,942
+you add all                     
+the behaviors to it.            
+
+1685
+01:14:25,011 --> 01:14:27,044
+That thing, all the behaviors?  
+
+1686
+01:14:27,113 --> 01:14:28,278
+No, the one they're in.         
+
+1687
+01:14:28,346 --> 01:14:31,014
+They have a var called          
+dynamicAnimator, which could    
+
+1688
+01:14:31,083 --> 01:14:33,783
+be nil, because they might not  
+be currently being animated,    
+
+1689
+01:14:34,818 --> 01:14:36,619
+that tells them that.           
+
+1690
+01:14:36,687 --> 01:14:40,188
+They also find out with this    
+method will move to dynamic     
+
+1691
+01:14:40,257 --> 01:14:43,891
+animator every time they're     
+either removed from a dynamic   
+
+1692
+01:14:43,960 --> 01:14:45,826
+animator or                     
+added to a different one.       
+
+1693
+01:14:45,895 --> 01:14:47,828
+They can only be                
+animated by one.                
+
+1694
+01:14:47,896 --> 01:14:49,764
+So I think it can never be      
+reanimated by multiple dynamic  
+
+1695
+01:14:49,832 --> 01:14:51,197
+animators, that would           
+make no sense at all.           
+
+1696
+01:14:51,266 --> 01:14:52,865
+It'll be fighting each other.   
+
+1697
+01:14:52,934 --> 01:14:55,468
+So this is just time            
+the one that they moved to.     
+
+1698
+01:14:55,537 --> 01:14:57,069
+So you can find out             
+when they move too.             
+
+1699
+01:14:57,138 --> 01:14:58,237
+Why do you want to know this,   
+by the way?                     
+
+1700
+01:14:58,305 --> 01:15:00,806
+It's sometimes very             
+interesting to know when        
+
+1701
+01:15:00,874 --> 01:15:03,842
+you leave a DynamicAnimator,    
+okay,                           
+
+1702
+01:15:03,911 --> 01:15:06,277
+because maybe you have          
+something else going on,        
+
+1703
+01:15:06,346 --> 01:15:08,546
+like in our demo,               
+if we get to it on Wednesday,   
+
+1704
+01:15:08,614 --> 01:15:11,715
+we'll have a little timer       
+that's going on all the time.   
+
+1705
+01:15:11,784 --> 01:15:13,449
+But if we're not                
+being animated,                 
+
+1706
+01:15:13,518 --> 01:15:14,517
+we don't want                   
+that timer going.               
+
+1707
+01:15:14,586 --> 01:15:15,251
+So we'll start and              
+
+1708
+01:15:15,319 --> 01:15:17,253
+stop that timer and             
+we'll move to Animator.         
+
+1709
+01:15:19,824 --> 01:15:21,589
+Okay?                           
+
+1710
+01:15:21,658 --> 01:15:24,025
+UI dynamic behavior also has a  
+really cool bar called action.  
+
+1711
+01:15:24,026 --> 01:15:26,393
+Okay.                           
+
+1712
+01:15:26,463 --> 01:15:29,163
+Action is just a closure,       
+takes no arguments,             
+
+1713
+01:15:29,231 --> 01:15:30,497
+returns no arguments.           
+
+1714
+01:15:30,566 --> 01:15:34,835
+This action closure, is called  
+every time this behavior acts.  
+
+1715
+01:15:36,472 --> 01:15:38,304
+Okay, so collision behavior,    
+
+1716
+01:15:38,373 --> 01:15:40,606
+when it collides it's gonna     
+call this action thing.         
+
+1717
+01:15:40,674 --> 01:15:42,407
+Gravity is calling this         
+thing all the time.             
+
+1718
+01:15:42,476 --> 01:15:43,175
+Because gravity is              
+
+1719
+01:15:43,243 --> 01:15:45,243
+always accelerating             
+the items more and more.        
+
+1720
+01:15:45,312 --> 01:15:48,145
+A push behavior, it's called,   
+if it's instantaneous,          
+
+1721
+01:15:48,214 --> 01:15:49,847
+it's called when it             
+does its one push.              
+
+1722
+01:15:49,916 --> 01:15:52,148
+If it is continuous, it's       
+gonna be called all the time    
+
+1723
+01:15:52,217 --> 01:15:54,184
+as it pushes on the thing.      
+
+1724
+01:15:54,253 --> 01:15:57,420
+So this, these little           
+closures are called a lot.      
+
+1725
+01:15:57,489 --> 01:16:00,823
+So don't do anything expensive  
+inside an action closer.        
+
+1726
+01:16:00,891 --> 01:16:01,690
+Okay?                           
+You want to                     
+
+1727
+01:16:01,759 --> 01:16:04,693
+really make this code when if   
+you go into instruments and     
+
+1728
+01:16:04,762 --> 01:16:06,895
+you look at your code, if you   
+do something expensive here it  
+
+1729
+01:16:06,963 --> 01:16:09,798
+will come to the top pretty     
+fast because it gets called     
+
+1730
+01:16:09,867 --> 01:16:12,366
+a lot, as you might imagine.    
+
+1731
+01:16:12,435 --> 01:16:16,203
+And the but you can do a lot    
+of really cool things in here.  
+
+1732
+01:16:16,272 --> 01:16:17,338
+this is where you would         
+implement your speed limit,     
+
+1733
+01:16:17,339 --> 01:16:18,405
+For example,                    
+
+1734
+01:16:18,474 --> 01:16:21,307
+okay check the linear           
+velocity, if it's too fast you  
+
+1735
+01:16:21,376 --> 01:16:25,311
+would add some negative linear  
+velocity to slow it back down.  
+
+1736
+01:16:25,380 --> 01:16:26,945
+Okay?                           
+
+1737
+01:16:27,014 --> 01:16:29,181
+It's really easy to get memory  
+cycles with this thing,         
+
+1738
+01:16:29,250 --> 01:16:32,250
+because of course this action   
+var is a var in the behavior    
+
+1739
+01:16:32,319 --> 01:16:34,419
+and a lot of times              
+inside the closure,             
+
+1740
+01:16:34,487 --> 01:16:36,620
+you're going to be              
+referencing the behavior.       
+
+1741
+01:16:36,689 --> 01:16:38,722
+Doing something about           
+the behavior, right?            
+
+1742
+01:16:38,791 --> 01:16:40,624
+So they're gonna point          
+to each other right,            
+
+1743
+01:16:40,692 --> 01:16:41,792
+rather directly there.          
+
+1744
+01:16:43,328 --> 01:16:46,362
+Now, another thing that's       
+interesting about dynamic       
+
+1745
+01:16:46,431 --> 01:16:49,765
+animator is it usually,         
+most of the time,               
+
+1746
+01:16:49,834 --> 01:16:52,267
+runs to stasis, kay?            
+
+1747
+01:16:52,336 --> 01:16:53,468
+So things are happening like,   
+again,                          
+
+1748
+01:16:53,537 --> 01:16:54,936
+swipe up from the bottom        
+of your phone,                  
+
+1749
+01:16:55,005 --> 01:16:57,739
+the thing,                      
+gravity pulls it out,           
+
+1750
+01:16:57,807 --> 01:17:00,240
+it bounces off the top          
+a little, and then it stops.    
+
+1751
+01:17:00,309 --> 01:17:03,544
+And when it stops can           
+the animator still on, but      
+
+1752
+01:17:03,613 --> 01:17:04,945
+has nothing to do?              
+
+1753
+01:17:05,013 --> 01:17:07,213
+You'll get this delegate        
+methods sent to you,            
+
+1754
+01:17:07,282 --> 01:17:08,648
+animator did pause.             
+
+1755
+01:17:08,716 --> 01:17:10,849
+So now you now, the animator,   
+it's still running,             
+
+1756
+01:17:10,918 --> 01:17:12,350
+it's still looking for          
+something to change,            
+
+1757
+01:17:12,419 --> 01:17:15,019
+but nothing is currently        
+changing, so has paused.        
+
+1758
+01:17:15,088 --> 01:17:16,187
+And then if something changes,  
+
+1759
+01:17:16,256 --> 01:17:17,489
+like you do a push              
+behavior and                    
+
+1760
+01:17:17,557 --> 01:17:20,123
+things start moving again,      
+it's gonna say resumed,         
+
+1761
+01:17:20,192 --> 01:17:22,092
+until everything                
+reaches stasis again.           
+
+1762
+01:17:22,161 --> 01:17:25,762
+Now, you don't always reach     
+stasis, in our little asteroid  
+
+1763
+01:17:25,831 --> 01:17:27,931
+space game,                     
+it's never gonna reach stasis,  
+
+1764
+01:17:27,999 --> 01:17:30,900
+cuz the asteroids are always    
+flying by, constant asteroid    
+
+1765
+01:17:30,969 --> 01:17:34,103
+activity, but in the flip       
+up from the bottom, okay,       
+
+1766
+01:17:34,172 --> 01:17:36,104
+then it does reach stasis so    
+
+1767
+01:17:36,173 --> 01:17:38,173
+if you wanna find out           
+when it reaches a stasis,       
+
+1768
+01:17:38,242 --> 01:17:41,509
+you just set yourself as        
+the UIDynamicAnimatorDelegate,  
+
+1769
+01:17:41,578 --> 01:17:44,012
+that top level animating        
+controller thing, and           
+
+1770
+01:17:44,080 --> 01:17:46,947
+it'll tell you.                 
+
+1771
+01:17:47,016 --> 01:17:49,016
+Now, let's combine.             
+
+1772
+01:17:49,085 --> 01:17:49,816
+Well, let's go back and         
+
+1773
+01:17:49,885 --> 01:17:51,317
+fix that problem we             
+had with the push.              
+
+1774
+01:17:51,386 --> 01:17:53,852
+Okay, so we have this           
+instantaneous push and so       
+
+1775
+01:17:53,921 --> 01:17:55,121
+we do this one push.            
+
+1776
+01:17:55,189 --> 01:17:57,556
+W-, well first of all,          
+we create the push behavior.    
+
+1777
+01:17:57,625 --> 01:18:01,259
+We add the items we want to     
+push to it just by saying,      
+
+1778
+01:18:01,328 --> 01:18:04,863
+right there, UIPushBehavior     
+items put an array of UI        
+
+1779
+01:18:04,932 --> 01:18:07,331
+view that we want to push,      
+and then we set the mode.       
+
+1780
+01:18:07,400 --> 01:18:08,632
+And if we set the mode          
+to be inten-,                   
+
+1781
+01:18:08,701 --> 01:18:10,334
+instantaneous right here.       
+
+1782
+01:18:10,403 --> 01:18:14,304
+Then, when we add this          
+behavior to an animator okay,   
+
+1783
+01:18:14,373 --> 01:18:16,205
+cuz we have to add              
+it to an animator               
+
+1784
+01:18:16,274 --> 01:18:18,241
+When we add it to an animator,  
+it's gonna push those items.    
+
+1785
+01:18:18,242 --> 01:18:20,209
+for anything to happen.         
+
+1786
+01:18:20,278 --> 01:18:22,911
+And then the animator is going  
+to continue to have a strong    
+
+1787
+01:18:22,980 --> 01:18:23,811
+pointer to it.                  
+
+1788
+01:18:23,880 --> 01:18:25,346
+And so it's wasted memory.      
+
+1789
+01:18:25,415 --> 01:18:26,548
+the push behavior is just       
+sitting there unused.           
+
+1790
+01:18:26,549 --> 01:18:27,682
+It's just sitting,              
+
+1791
+01:18:27,750 --> 01:18:28,582
+It was instantaneous,           
+
+1792
+01:18:28,651 --> 01:18:31,484
+it already pushed,              
+there's nothing to do.          
+
+1793
+01:18:31,553 --> 01:18:34,587
+So, a lot of times what we'll   
+do is we'll use that action     
+
+1794
+01:18:34,656 --> 01:18:37,857
+thing to have a little closure  
+that removes the pushBehavior   
+
+1795
+01:18:37,926 --> 01:18:38,757
+from the animator.              
+
+1796
+01:18:38,826 --> 01:18:40,125
+[LAUGH] Okay?                   
+
+1797
+01:18:40,194 --> 01:18:42,494
+And since we know action        
+gets calls right after it's     
+
+1798
+01:18:42,562 --> 01:18:45,529
+instantaneously pushed, it's    
+a perfect time to remove it.    
+
+1799
+01:18:45,598 --> 01:18:47,365
+However, you can see            
+that this creates               
+
+1800
+01:18:47,434 --> 01:18:48,999
+a horrible memory cycle.        
+
+1801
+01:18:49,068 --> 01:18:50,868
+Look inside that closure,       
+the very first thing we do,     
+
+1802
+01:18:50,936 --> 01:18:54,338
+say pushBehavior that's going   
+to capture push behavior.       
+
+1803
+01:18:54,407 --> 01:18:55,472
+And of course pushBehavior,     
+
+1804
+01:18:55,540 --> 01:18:57,540
+the action bar is               
+on pushBehavior.                
+
+1805
+01:18:57,609 --> 01:18:59,041
+So that point right             
+back to each other,             
+
+1806
+01:18:59,110 --> 01:19:01,576
+directly to each other,         
+keeping each other in memory.   
+
+1807
+01:19:01,645 --> 01:19:02,811
+So how do we break this cycle?  
+
+1808
+01:19:02,879 --> 01:19:05,379
+So I bring this example out     
+because it shows the way to     
+
+1809
+01:19:05,448 --> 01:19:08,215
+break a cycle that we haven't   
+really shown example of         
+
+1810
+01:19:08,284 --> 01:19:11,552
+which is to use unowned, okay?  
+
+1811
+01:19:11,621 --> 01:19:13,486
+We don't need to do             
+weak self here, and             
+
+1812
+01:19:13,555 --> 01:19:16,690
+in fact we wouldn't do weak     
+self, because we know that      
+
+1813
+01:19:16,758 --> 01:19:20,360
+inside this closure push        
+behavior can never be nil,      
+
+1814
+01:19:20,429 --> 01:19:22,294
+it could never be               
+outside the heap,               
+
+1815
+01:19:22,363 --> 01:19:25,197
+because we're in the action     
+method that push behavior.      
+
+1816
+01:19:25,266 --> 01:19:27,733
+The only reason we'd be here    
+is because we just pushed with  
+
+1817
+01:19:27,801 --> 01:19:28,600
+that push behavior, so          
+
+1818
+01:19:28,669 --> 01:19:30,535
+it couldn't possibly            
+be out of the heap.             
+
+1819
+01:19:30,603 --> 01:19:32,670
+So it's guaranteed              
+to be there, so                 
+
+1820
+01:19:32,739 --> 01:19:34,605
+we do not need doing in this    
+week or anything about,         
+
+1821
+01:19:34,674 --> 01:19:38,141
+we can just say unowned, and    
+unowned means do not keep       
+
+1822
+01:19:38,210 --> 01:19:40,944
+the strong pointer inside       
+the closure to pushBehavior,    
+
+1823
+01:19:41,013 --> 01:19:43,347
+because I know it's             
+gonna be in the heap.           
+
+1824
+01:19:44,682 --> 01:19:47,649
+You see how unowned             
+works there?                    
+
+1825
+01:19:47,718 --> 01:19:50,352
+So unowned is kind              
+of more of a force-             
+
+1826
+01:19:50,421 --> 01:19:52,487
+way of breaking                 
+a memory cycle.                 
+
+1827
+01:19:52,556 --> 01:19:54,322
+And you gotta be really         
+sure that that thing you're     
+
+1828
+01:19:54,391 --> 01:19:57,358
+gonna mark unowned is in        
+fact going to be there,         
+
+1829
+01:19:57,426 --> 01:19:58,959
+otherwise it will               
+crash your app.                 
+
+1830
+01:19:59,028 --> 01:20:00,261
+But here we know for a fact.    
+
+1831
+01:20:01,997 --> 01:20:04,364
+All right, that's it.           
+
+1832
+01:20:04,432 --> 01:20:07,633
+On Wednesday I will do          
+a gigantic space demo.          
+
+1833
+01:20:07,702 --> 01:20:11,403
+To show you how all this        
+stuff works, if I have time,    
+
+1834
+01:20:11,472 --> 01:20:14,439
+which I almost am certain I     
+will not I'll try to work some  
+
+1835
+01:20:14,508 --> 01:20:17,543
+core motion in there which is   
+the accelerometer in Gyro and   
+
+1836
+01:20:17,611 --> 01:20:19,310
+that stuff how we               
+make that work.                 
+
+1837
+01:20:19,379 --> 01:20:21,913
+There's no Friday section this  
+week, next week we're going to  
+
+1838
+01:20:21,981 --> 01:20:25,516
+be doing a lot of stuff         
+kind of the general             
+
+1839
+01:20:25,585 --> 01:20:28,485
+how things work in IOS that     
+we haven't had a chance         
+
+1840
+01:20:28,553 --> 01:20:31,154
+to cover like the application   
+life-cycle, you know, what      
+
+1841
+01:20:31,223 --> 01:20:33,923
+happens when your application   
+launches, runs, quits, etc.     
+
+1842
+01:20:33,992 --> 01:20:37,160
+And then things like alerts,    
+puting alerts up on             
+
+1843
+01:20:37,229 --> 01:20:38,527
+the screen,                     
+which you will all need for     
+
+1844
+01:20:38,596 --> 01:20:41,162
+your final projects, and        
+there's a couple more segues.   
+
+1845
+01:20:41,231 --> 01:20:43,832
+A little more rare              
+kind of segues than             
+
+1846
+01:20:43,901 --> 01:20:46,234
+the show segues                 
+that you know about             
+
+1847
+01:20:46,303 --> 01:20:48,136
+that I'm going to cover         
+next week as well.              
+
+1848
+01:20:48,204 --> 01:20:50,938
+And you probably want all this  
+stuff as you're doing your      
+
+1849
+01:20:51,007 --> 01:20:52,073
+final project.                  
+
+1850
+01:20:52,141 --> 01:20:53,540
+And I'll, so that's why         
+I'm going to try and            
+
+1851
+01:20:53,609 --> 01:20:55,842
+cover it all next week so       
+you have time.                  
+
+1852
+01:20:55,911 --> 01:20:59,346
+To get to it before the end,    
+alright that's it.              
+
+1853
+01:21:00,815 --> 01:21:11,123
+>> For more please visit        
+us at stanford.edu.             
+

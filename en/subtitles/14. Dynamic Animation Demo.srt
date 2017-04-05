@@ -1,0 +1,9155 @@
+﻿1
+00:00:00,401 --> 00:00:04,135
+[MUSIC]                         
+
+2
+00:00:04,204 --> 00:00:07,305
+Stanford University.            
+
+3
+00:00:07,373 --> 00:00:11,475
+>> All right, well welcome to   
+Stanford CS193P developing      
+
+4
+00:00:11,544 --> 00:00:14,311
+applications for                
+iOS Winter 2017.                
+
+5
+00:00:14,380 --> 00:00:16,180
+This is Lecture 15, I think.    
+
+6
+00:00:17,716 --> 00:00:19,015
+Yeah, 14, something like that.  
+
+7
+00:00:19,083 --> 00:00:21,717
+And today is all demo.          
+
+8
+00:00:21,786 --> 00:00:24,720
+We're gonna do a demo of this   
+dynamic animation stuff.        
+
+9
+00:00:24,789 --> 00:00:26,988
+And I'm gonna cover             
+push behaviors, and             
+
+10
+00:00:27,057 --> 00:00:29,958
+collision behaviors, and        
+dynamic item behaviors,         
+
+11
+00:00:30,026 --> 00:00:32,793
+collision delegates,            
+gravity behaviors, etc.         
+
+12
+00:00:32,862 --> 00:00:34,862
+I'm not gonna get               
+back to the slides.             
+
+13
+00:00:34,931 --> 00:00:37,597
+So, let me talk about what's    
+coming up now which is we       
+
+14
+00:00:37,666 --> 00:00:39,032
+have no section this week.      
+
+15
+00:00:39,101 --> 00:00:39,932
+And then next week,             
+
+16
+00:00:40,001 --> 00:00:42,435
+I actually posted what I'm      
+gonna talk about next week.     
+
+17
+00:00:42,504 --> 00:00:45,504
+But it's application            
+lifecycle, alerts and action    
+
+18
+00:00:45,573 --> 00:00:49,542
+sheets, segues, might even get  
+core motion to fit in there.    
+
+19
+00:00:49,610 --> 00:00:52,644
+I'll try and cover as much of   
+the general infrastructure      
+
+20
+00:00:52,713 --> 00:00:55,180
+stuff that might help you,      
+with your assignment.           
+
+21
+00:00:56,449 --> 00:01:00,251
+Okay, so                        
+let's get right to the demo.    
+
+22
+00:01:00,319 --> 00:01:05,723
+And this, now, we're demoing    
+Dynamic Animator here.          
+
+23
+00:01:05,791 --> 00:01:09,259
+And generally, dynamic          
+animation is mostly used to     
+
+24
+00:01:09,328 --> 00:01:13,062
+animate things that are         
+happening in your UI normally.  
+
+25
+00:01:13,131 --> 00:01:15,831
+And I use that example of when  
+you swipe up from the bottom    
+
+26
+00:01:15,900 --> 00:01:19,034
+on your iPhone and it brings    
+that little UI view comes up.   
+
+27
+00:01:19,103 --> 00:01:22,170
+And it kinda bounces a bit and  
+then sits steady.               
+
+28
+00:01:22,239 --> 00:01:26,541
+That is really what dynamic     
+animation kind of is used for   
+
+29
+00:01:26,610 --> 00:01:28,410
+You wouldn't probably use it    
+for building a video game,      
+
+30
+00:01:28,411 --> 00:01:30,211
+the most.                       
+
+31
+00:01:30,280 --> 00:01:32,846
+even though that's the demo     
+I'm gonna do today.             
+
+32
+00:01:32,915 --> 00:01:34,782
+There are other things          
+like Spy Kid and                
+
+33
+00:01:34,851 --> 00:01:37,117
+things like that that           
+you might use for that.         
+
+34
+00:01:37,185 --> 00:01:40,320
+But I like doing the video      
+game because this is kinda fun  
+
+35
+00:01:40,389 --> 00:01:43,589
+and it also as a opportunity    
+for me to quickly and densely   
+
+36
+00:01:43,658 --> 00:01:46,458
+show you lots of different      
+kinds of behaviors and          
+
+37
+00:01:46,527 --> 00:01:47,793
+how they work.                  
+
+38
+00:01:47,861 --> 00:01:52,797
+So, we're gonna build           
+a space game, asteroid game.    
+
+39
+00:01:52,866 --> 00:01:55,400
+We're just gonna have a field   
+of asteroids flying by, and     
+
+40
+00:01:55,469 --> 00:01:57,335
+we're gonna have a ship         
+in the middle, and              
+
+41
+00:01:57,404 --> 00:01:58,970
+our ship is gonna               
+have some shields.              
+
+42
+00:01:59,038 --> 00:02:01,405
+And every time an asteroid      
+hits the shields,               
+
+43
+00:02:01,474 --> 00:02:03,674
+the shields will turn on and    
+get depleted.                   
+
+44
+00:02:03,742 --> 00:02:06,443
+And eventually our ship         
+will probably be destroyed      
+
+45
+00:02:06,512 --> 00:02:08,077
+from too many asteroid hits.    
+
+46
+00:02:08,146 --> 00:02:10,880
+And, we're gonna be able to do  
+all of those behaviors that I   
+
+47
+00:02:10,949 --> 00:02:11,747
+mentioned before.               
+
+48
+00:02:11,815 --> 00:02:15,984
+So, let's get started here,     
+I'm gonna create a new app.     
+
+49
+00:02:17,087 --> 00:02:21,756
+I'm gonna call this             
+app asteroids and               
+
+50
+00:02:21,825 --> 00:02:25,193
+we'll make it work on both      
+iPad and all the iPhones.       
+
+51
+00:02:25,261 --> 00:02:27,260
+That's no problem for           
+this one and                    
+
+52
+00:02:27,329 --> 00:02:29,729
+I'll put it in the same place   
+that I always put everything.   
+
+53
+00:02:29,798 --> 00:02:32,164
+Now I wanna focus all my        
+
+54
+00:02:32,233 --> 00:02:35,034
+demonstration time here on      
+the dynamic animation stuff.    
+
+55
+00:02:35,103 --> 00:02:37,603
+So, this is one of those demos  
+where I actually do have some   
+
+56
+00:02:37,672 --> 00:02:40,572
+code and                        
+some stuff I'm gonna drag in.   
+
+57
+00:02:40,641 --> 00:02:43,208
+I'll show it to you briefly,    
+but it's mostly just            
+
+58
+00:02:43,277 --> 00:02:47,078
+drawing things, drawing         
+the ship, drawing an asteroid.  
+
+59
+00:02:47,146 --> 00:02:49,380
+And, all the animations         
+stuff that we're gonna do,      
+
+60
+00:02:49,449 --> 00:02:53,483
+100% of it is gonna be in code  
+that I do in the demo here.     
+
+61
+00:02:53,552 --> 00:02:57,254
+So, let's start by moving some  
+of these things out of the way  
+
+62
+00:02:57,322 --> 00:03:01,125
+as we usually do, put these     
+things in supporting files.     
+
+63
+00:03:01,193 --> 00:03:05,728
+Just to clean up what           
+we're looking at here.          
+
+64
+00:03:05,797 --> 00:03:07,564
+I'll even put main              
+storyboard up here.             
+
+65
+00:03:07,632 --> 00:03:10,966
+Now, I've left XC Assets        
+out of supporting files at      
+
+66
+00:03:11,035 --> 00:03:12,401
+Cuz I actually am going to      
+have some assets, some image    
+
+67
+00:03:12,402 --> 00:03:13,768
+the time.                       
+
+68
+00:03:13,838 --> 00:03:16,905
+assets, specifically my         
+asteroids and my ship.          
+
+69
+00:03:16,974 --> 00:03:21,175
+So, let's drag those in, so     
+I'm just gonna go over here to  
+
+70
+00:03:21,244 --> 00:03:23,177
+this little directory           
+I have of stuff.                
+
+71
+00:03:23,246 --> 00:03:26,013
+And you can see that I've got   
+some kind of random pictures    
+
+72
+00:03:26,082 --> 00:03:27,047
+of asteroids here.              
+
+73
+00:03:27,115 --> 00:03:29,715
+And I'm just gonna take         
+these asteroids and             
+
+74
+00:03:29,784 --> 00:03:31,684
+add them to my                  
+images down here.               
+
+75
+00:03:31,753 --> 00:03:33,385
+I'm gonna do it for explosion,  
+
+76
+00:03:33,454 --> 00:03:36,321
+also my ship knows how to       
+explode, so we'll have that.    
+
+77
+00:03:36,390 --> 00:03:37,555
+And then here's my ship,        
+
+78
+00:03:37,624 --> 00:03:40,892
+cute little ship, here's where  
+it's, it's engines are firing.  
+
+79
+00:03:40,961 --> 00:03:43,460
+Okay, so we have those          
+two images right there.         
+
+80
+00:03:43,529 --> 00:03:47,398
+Now when you drag images into   
+your XE assets you'll see that  
+
+81
+00:03:47,467 --> 00:03:51,168
+they have a one times, a two    
+times and a three times slot.   
+
+82
+00:03:51,237 --> 00:03:53,737
+And that's talking              
+about the resolution.           
+
+83
+00:03:53,805 --> 00:03:56,072
+Okay, it's really talking       
+about the number of pixels per  
+
+84
+00:03:56,141 --> 00:03:57,339
+point, okay?                    
+
+85
+00:03:57,408 --> 00:03:59,007
+In the size of the image.       
+
+86
+00:03:59,076 --> 00:04:00,208
+Normally you're gonna           
+have all three.                 
+
+87
+00:04:00,277 --> 00:04:03,011
+I'm only gonna use the 1x       
+because my 1x is pretty high    
+
+88
+00:04:03,080 --> 00:04:05,746
+resolution, it'll look          
+fine on 2x and 3x.              
+
+89
+00:04:05,815 --> 00:04:07,114
+But if you got a real app,      
+
+90
+00:04:07,183 --> 00:04:09,784
+you'd wanna pick resolutions    
+at these different sizes.       
+
+91
+00:04:09,852 --> 00:04:12,987
+Because it allows a one X       
+app to be much smaller,         
+
+92
+00:04:13,055 --> 00:04:16,156
+cuz obviously a lower           
+resolution is much smaller.     
+
+93
+00:04:16,224 --> 00:04:17,824
+And it's really                 
+cool actually when              
+
+94
+00:04:17,893 --> 00:04:19,325
+people download things          
+from the App Store.             
+
+95
+00:04:19,394 --> 00:04:22,228
+You only get the resolutions    
+that are appropriate            
+
+96
+00:04:22,296 --> 00:04:22,828
+for your device.                
+
+97
+00:04:22,896 --> 00:04:23,862
+So, it's kind of fun.           
+
+98
+00:04:23,931 --> 00:04:25,797
+You don't get all that extra    
+junk that you don't need.       
+
+99
+00:04:26,832 --> 00:04:28,666
+So anyway, so                   
+those are my images.            
+
+100
+00:04:28,735 --> 00:04:30,567
+And then I do have              
+a bit of code here too,         
+
+101
+00:04:30,636 --> 00:04:32,202
+at least four files.            
+
+102
+00:04:32,271 --> 00:04:35,138
+Just like I said we're          
+gonna take a look at here.      
+
+103
+00:04:35,207 --> 00:04:40,010
+Drag those in and               
+we will copy them, yes.         
+
+104
+00:04:41,413 --> 00:04:42,311
+All right, so let's look at     
+
+105
+00:04:42,379 --> 00:04:43,846
+the code we just                
+dragged in there.               
+
+106
+00:04:45,515 --> 00:04:47,448
+First one here is               
+asteroid view.                  
+
+107
+00:04:47,517 --> 00:04:49,784
+This is the entire thing that   
+you see on the screen right     
+
+108
+00:04:49,852 --> 00:04:53,186
+here, very simple little        
+subclass of UI image view.      
+
+109
+00:04:53,255 --> 00:04:56,757
+It just picks a random one of   
+those asteroids images, right?  
+
+110
+00:04:56,825 --> 00:04:59,992
+See these asteroid images one,  
+two through asteroid nine,      
+
+111
+00:05:00,061 --> 00:05:01,961
+this thing just picks           
+one of those and                
+
+112
+00:05:02,030 --> 00:05:03,562
+makes an image view out of it.  
+
+113
+00:05:03,631 --> 00:05:07,199
+Okay, that's all AsteriodView   
+is, so that looks really easy   
+
+114
+00:05:07,268 --> 00:05:10,035
+when we move that into          
+supporting files as well.       
+
+115
+00:05:10,103 --> 00:05:14,506
+Here is a little exte, file     
+of extensions that I made to    
+
+116
+00:05:14,574 --> 00:05:18,943
+CGFloat, and CGSize and         
+CGRect, and CGPoint.            
+
+117
+00:05:19,012 --> 00:05:21,812
+And these are just little       
+convenience functions, like     
+
+118
+00:05:21,880 --> 00:05:24,781
+here's the area of a CGSize     
+right just with time height.    
+
+119
+00:05:24,850 --> 00:05:28,351
+Or here's a CG float, it        
+generates a random number in    
+
+120
+00:05:28,420 --> 00:05:31,554
+a certain range of floats       
+which is kind of cool.          
+
+121
+00:05:31,623 --> 00:05:33,923
+A random float,                 
+okay and returns it.            
+
+122
+00:05:33,992 --> 00:05:35,424
+Here's CGRect.                  
+
+123
+00:05:35,493 --> 00:05:37,726
+I have a random point which     
+generates a random point        
+
+124
+00:05:37,795 --> 00:05:39,060
+inside the rectangle anywhere.  
+
+125
+00:05:39,129 --> 00:05:41,729
+Cuz obviously I'm               
+
+126
+00:05:41,798 --> 00:05:43,998
+It's nice to have a little,     
+var here,                       
+
+127
+00:05:44,067 --> 00:05:45,666
+random points, for rect.        
+
+128
+00:05:45,735 --> 00:05:47,935
+So, you can go look             
+at these later,                 
+
+129
+00:05:48,004 --> 00:05:50,837
+as I'm writing the code,        
+I'll try and reference          
+
+130
+00:05:50,905 --> 00:05:53,706
+these are one of my little      
+CGRect extensions that I did.   
+
+131
+00:05:53,775 --> 00:05:57,076
+And I do this but I think my    
+code reads a lot nicer when I,  
+
+132
+00:05:57,145 --> 00:05:58,895
+kinda condense this math into   
+these nice little, extensions.  
+
+133
+00:05:58,896 --> 00:06:00,646
+you know,                       
+
+134
+00:06:00,715 --> 00:06:03,548
+But all of these make perfect   
+sense as extensions of          
+
+135
+00:06:03,616 --> 00:06:04,415
+each of their classes.          
+
+136
+00:06:04,484 --> 00:06:06,017
+None of them are spaceship or   
+
+137
+00:06:06,086 --> 00:06:08,753
+asteroid specific extensions    
+to core graphics.               
+
+138
+00:06:10,222 --> 00:06:13,289
+So, move that to                
+supporting files as well.       
+
+139
+00:06:13,358 --> 00:06:15,558
+Then next we have               
+the spaceship view.             
+
+140
+00:06:15,627 --> 00:06:16,392
+Okay, the spaceship view        
+
+141
+00:06:16,461 --> 00:06:18,894
+just draws that little          
+spaceship I showed you.         
+
+142
+00:06:18,963 --> 00:06:21,663
+It knows how to draw it         
+with the little flame           
+
+143
+00:06:21,732 --> 00:06:23,665
+coming out the back if          
+the engines are firing.         
+
+144
+00:06:23,734 --> 00:06:25,500
+This is the entire public       
+API of it right here,           
+
+145
+00:06:25,569 --> 00:06:27,134
+this is the only                
+API we'll be using.             
+
+146
+00:06:27,203 --> 00:06:29,937
+So, that's just a bully that    
+turns on that little fire       
+
+147
+00:06:30,006 --> 00:06:32,039
+coming out the back or          
+not is all it does.             
+
+148
+00:06:32,107 --> 00:06:34,841
+Direction is the direction      
+the ship is pointing and        
+
+149
+00:06:34,910 --> 00:06:37,811
+that's you know zero to two     
+pi, so it's in radians.         
+
+150
+00:06:37,879 --> 00:06:41,514
+You know, we've hopefully       
+learned by now the zero two pi  
+
+151
+00:06:41,582 --> 00:06:45,884
+circle where zero is out to     
+the right and we go around.     
+
+152
+00:06:45,953 --> 00:06:48,921
+Shield level, so this ship has  
+a little round shield around    
+
+153
+00:06:48,990 --> 00:06:51,155
+it and the shield level goes    
+from zero to a hundred.         
+
+154
+00:06:51,224 --> 00:06:52,490
+When a hundred,                 
+it's a full shield and          
+
+155
+00:06:52,559 --> 00:06:53,591
+it doesn't even                 
+show the shield.                
+
+156
+00:06:53,660 --> 00:06:55,693
+But as soon as                  
+the shield gets damaged,        
+
+157
+00:06:55,761 --> 00:06:58,161
+It kinda shows the shield       
+partially damaged,              
+
+158
+00:06:58,230 --> 00:07:03,033
+until you get to shield level   
+zero, the ship explodes, okay?  
+
+159
+00:07:03,101 --> 00:07:05,835
+This shield is active,          
+it's purely a drawing thing.    
+
+160
+00:07:05,904 --> 00:07:08,571
+When the shield is active it    
+kinda glows a little bit.       
+
+161
+00:07:08,639 --> 00:07:10,406
+And so,                         
+we're gonna have our ship,      
+
+162
+00:07:10,474 --> 00:07:13,242
+just to make our UI simple,     
+it's going to automatically     
+
+163
+00:07:13,310 --> 00:07:15,811
+turn it's shields on when       
+an asteroid impacts it.         
+
+164
+00:07:15,879 --> 00:07:18,346
+Okay, so we're kind of          
+a auto shield deployment, so    
+
+165
+00:07:18,415 --> 00:07:20,314
+we're gonna turn this on so     
+we can see it,                  
+
+166
+00:07:20,383 --> 00:07:22,549
+the asteroids causing           
+the shields to turn on.         
+
+167
+00:07:22,618 --> 00:07:26,486
+And then finally there's this   
+little shield boundary guy,     
+
+168
+00:07:26,555 --> 00:07:29,623
+that just gives us              
+a UIBezierPath that describes   
+
+169
+00:07:29,692 --> 00:07:30,490
+the shield.                     
+
+170
+00:07:30,559 --> 00:07:32,625
+It's just gonna be a simple     
+arc around because              
+
+171
+00:07:32,694 --> 00:07:34,560
+it's a circle,                  
+just gives us that back.        
+
+172
+00:07:34,628 --> 00:07:37,329
+Notice that it can give it to   
+us in any views coordinate      
+
+173
+00:07:37,397 --> 00:07:40,366
+space and that's because we're  
+gonna find that when we do      
+
+174
+00:07:40,434 --> 00:07:41,032
+animation.                      
+
+175
+00:07:41,101 --> 00:07:42,900
+We're gonna specify             
+a reference view for            
+
+176
+00:07:42,969 --> 00:07:44,068
+all of our animation, and       
+
+177
+00:07:44,137 --> 00:07:46,036
+when we have these              
+things like boundaries.         
+
+178
+00:07:46,104 --> 00:07:48,371
+We have to always specify       
+them in that reference view's   
+
+179
+00:07:48,440 --> 00:07:49,272
+coordinate system.              
+
+180
+00:07:49,340 --> 00:07:52,542
+So, if we're gonna get the      
+boundary of the ship's shields  
+
+181
+00:07:52,611 --> 00:07:54,177
+as a UIBezierPath,              
+
+182
+00:07:54,245 --> 00:07:56,578
+it has to be in the right       
+coordinate system.              
+
+183
+00:07:56,647 --> 00:07:59,414
+So, that's why it has this in   
+view argument right there, but  
+
+184
+00:07:59,482 --> 00:08:02,650
+it's just returned to           
+UIBezierPath Okay so that's     
+
+185
+00:08:02,719 --> 00:08:05,786
+the spaceship view I can        
+do anything else with that.     
+
+186
+00:08:05,855 --> 00:08:09,056
+And then here is the last one   
+the asteroid field view this    
+
+187
+00:08:09,125 --> 00:08:10,958
+is the entire                   
+thing right here.               
+
+188
+00:08:11,027 --> 00:08:14,427
+It only have one method in it,  
+which is add some asteroids.    
+
+189
+00:08:14,496 --> 00:08:16,996
+Okay, and all this code here    
+is doing is just putting        
+
+190
+00:08:17,065 --> 00:08:19,699
+a random sized asteroid at      
+
+191
+00:08:19,767 --> 00:08:21,634
+a random point                  
+inside it's bounds.             
+
+192
+00:08:21,702 --> 00:08:25,037
+Okay, so really very            
+super simple right here.        
+
+193
+00:08:25,105 --> 00:08:27,539
+It does have this little thing  
+of exclusion zone where it      
+
+194
+00:08:27,608 --> 00:08:28,973
+won't put an asteroid there,    
+and                             
+
+195
+00:08:29,042 --> 00:08:30,275
+you'll see why we want that.    
+
+196
+00:08:30,344 --> 00:08:31,475
+We don't wanna put              
+an asteroid on top of           
+
+197
+00:08:31,544 --> 00:08:33,310
+our ship when we start.         
+
+198
+00:08:33,379 --> 00:08:35,778
+Now this one I'm not gonna put  
+in supporting files, cuz we     
+
+199
+00:08:35,847 --> 00:08:38,315
+are gonna actually add a small  
+amount of code to this guide.   
+
+200
+00:08:38,384 --> 00:08:40,683
+Because we want our             
+asteroid behaviors,             
+
+201
+00:08:40,752 --> 00:08:44,186
+how our asteroids behave using  
+dynamic animation to apply to   
+
+202
+00:08:44,254 --> 00:08:45,487
+all of our asteroids.           
+
+203
+00:08:45,556 --> 00:08:47,923
+And so we're gonna end          
+up adding a var here so         
+
+204
+00:08:47,991 --> 00:08:50,625
+we can set the asteroid         
+behavior in this asteroid       
+
+205
+00:08:50,694 --> 00:08:53,861
+field view as you               
+might have imagined.            
+
+206
+00:08:53,930 --> 00:08:56,797
+Okay, so I'm gonna rename       
+my generic view controller      
+
+207
+00:08:56,866 --> 00:08:59,066
+here to be asteroid's           
+view controller,                
+
+208
+00:09:00,302 --> 00:09:02,835
+just good review of how         
+we do that by the way.          
+
+209
+00:09:02,904 --> 00:09:04,504
+We have to do kinda             
+four things again,              
+
+210
+00:09:04,572 --> 00:09:05,571
+I renamed the comment.          
+
+211
+00:09:05,639 --> 00:09:09,975
+The actual name of the class,   
+I'm gonna rename the file,      
+
+212
+00:09:10,044 --> 00:09:13,479
+gonna be typing the word        
+asteroid a lot today.           
+
+213
+00:09:13,547 --> 00:09:17,081
+And I'm gonna go to             
+the storyboard of course, and   
+
+214
+00:09:17,150 --> 00:09:18,550
+select this thing.              
+
+215
+00:09:18,618 --> 00:09:21,018
+And make sure that it's         
+identity over here is not       
+
+216
+00:09:21,086 --> 00:09:24,788
+generic view controller, it's   
+asteroids view controller.      
+
+217
+00:09:24,857 --> 00:09:28,024
+Okay, everybody remembers that  
+how to change things pretty     
+
+218
+00:09:28,093 --> 00:09:29,876
+And then don't need any         
+of this code for now.           
+
+219
+00:09:29,877 --> 00:09:31,660
+easy to do.                     
+
+220
+00:09:31,729 --> 00:09:34,630
+And also obviously as you       
+imagine when you do a game you  
+
+221
+00:09:34,699 --> 00:09:36,098
+have a lot of constants.        
+
+222
+00:09:36,167 --> 00:09:38,266
+Okay, constants for             
+ship acceleration and           
+
+223
+00:09:38,335 --> 00:09:39,767
+the size of things, whatever.   
+
+224
+00:09:39,836 --> 00:09:41,135
+So I have a bunch               
+of constants,                   
+
+225
+00:09:41,204 --> 00:09:43,571
+which I'm going                 
+to type in here.                
+
+226
+00:09:45,074 --> 00:09:48,141
+And I'm gonna go over these     
+constants as I use them.        
+
+227
+00:09:48,209 --> 00:09:49,909
+But like I say,                 
+burnAcceleration,               
+
+228
+00:09:49,978 --> 00:09:52,078
+initialAsteroidCount, these     
+kind of things so               
+
+229
+00:09:52,147 --> 00:09:55,381
+pretty obvious what most        
+of these constants are.         
+
+230
+00:09:56,750 --> 00:09:59,617
+Okay, so now we're all set      
+up to write our app and         
+
+231
+00:09:59,686 --> 00:10:04,422
+focus on our UI dynamic         
+animation that we need to do.   
+
+232
+00:10:04,491 --> 00:10:09,126
+The first thing I'm gonna do    
+is put the asteroid field view  
+
+233
+00:10:09,195 --> 00:10:10,761
+in my self dot view.            
+
+234
+00:10:10,830 --> 00:10:13,163
+Okay, so basically put it       
+onscreen, and I'm gonna do      
+
+235
+00:10:13,232 --> 00:10:15,399
+that in code instead of         
+doing it in the storyboard.     
+
+236
+00:10:15,468 --> 00:10:17,967
+But it's pretty straight        
+forward I'm gonna have          
+
+237
+00:10:18,036 --> 00:10:20,603
+a private var which is gonna    
+be my asteroid field and        
+
+238
+00:10:20,672 --> 00:10:22,738
+it's gonna be type              
+AsteroidFieldView.              
+
+239
+00:10:22,806 --> 00:10:26,242
+Okay that's this thing right    
+here that I showed you that,    
+
+240
+00:10:26,310 --> 00:10:28,844
+we know how to add              
+asteroids to right there.       
+
+241
+00:10:28,912 --> 00:10:31,746
+And I'm gonna make this         
+implicitly unwrap optional      
+
+242
+00:10:31,815 --> 00:10:34,982
+because once I initialize that  
+field it always gonna be set    
+
+243
+00:10:35,051 --> 00:10:37,017
+for the entire                  
+lifetime of this MVC.           
+
+244
+00:10:37,086 --> 00:10:40,487
+So It's okay to make it         
+implicitly wrapped after all.   
+
+245
+00:10:40,556 --> 00:10:43,123
+I just have to be a little      
+bit careful just like with      
+
+246
+00:10:43,192 --> 00:10:44,924
+an outlet, not to access this.  
+
+247
+00:10:44,993 --> 00:10:48,728
+Or at least to check that it's  
+nil before I initialize it.     
+
+248
+00:10:48,796 --> 00:10:50,596
+And when am I gonna             
+initialize it?                  
+
+249
+00:10:50,664 --> 00:10:53,566
+I'm actually gonna initialize   
+it in viewDidAppear.            
+
+250
+00:10:53,634 --> 00:10:57,936
+Okay, so in viewDidAppear I'm   
+gonna initialize this and       
+
+251
+00:10:58,005 --> 00:10:59,737
+why am I doing it there?        
+
+252
+00:10:59,806 --> 00:11:03,240
+Well, I really don't need to    
+do it before then, right?       
+
+253
+00:11:03,309 --> 00:11:06,110
+Until my view appears, I don't  
+really need to initialize its   
+
+254
+00:11:06,178 --> 00:11:07,878
+asteroid field and              
+all that stuff.                 
+
+255
+00:11:07,947 --> 00:11:09,980
+Also it's nice in               
+viewDidAppear,                  
+
+256
+00:11:10,049 --> 00:11:11,915
+all your bounds are set,        
+right?                          
+
+257
+00:11:11,984 --> 00:11:14,683
+Your geometry is all set up so  
+you can count on that.          
+
+258
+00:11:14,752 --> 00:11:17,353
+But I'm not gonna rely on that  
+because I'm also gonna have my  
+
+259
+00:11:17,422 --> 00:11:19,220
+asteroid field thing            
+work when I rotate.             
+
+260
+00:11:19,289 --> 00:11:22,457
+So I'm also gonna have to kind  
+of adjust my asteroid field in  
+
+261
+00:11:22,525 --> 00:11:24,959
+my viewDid layout subviews,     
+right?                          
+
+262
+00:11:25,028 --> 00:11:27,128
+Cuz that's tells me that        
+my balance have changed.        
+
+263
+00:11:27,196 --> 00:11:28,695
+So I'm gonna do both.           
+
+264
+00:11:28,764 --> 00:11:30,630
+So all I'm gonna do here in     
+viewDidAppear is I'm gonna      
+
+265
+00:11:30,699 --> 00:11:32,866
+call something called           
+initializeIfNeeded,             
+
+266
+00:11:32,935 --> 00:11:35,201
+cuz it might not be needed.     
+
+267
+00:11:35,270 --> 00:11:38,771
+Remember that viewDidAppear     
+gets called multiple times cuz  
+
+268
+00:11:38,840 --> 00:11:40,840
+it could appear then go away,   
+then come back and go away.     
+
+269
+00:11:40,909 --> 00:11:42,441
+So I'm gonna initialize         
+the first time.                 
+
+270
+00:11:42,510 --> 00:11:45,844
+So I'm going to initialize      
+IfNeeded and so                 
+
+271
+00:11:45,912 --> 00:11:48,613
+I have this private func for    
+that.                           
+
+272
+00:11:48,682 --> 00:11:50,982
+Initialize if needed and        
+
+273
+00:11:51,051 --> 00:11:56,320
+if the If needed part is just   
+if the asteroidField is nil,    
+
+274
+00:11:56,388 --> 00:12:01,658
+then I need to initialize       
+the asteroidField.              
+
+275
+00:12:01,727 --> 00:12:05,528
+Okay, so everybody cool with    
+where we stand right now?       
+
+276
+00:12:05,597 --> 00:12:08,197
+So what do we need to do to     
+create this asteroid field is   
+
+277
+00:12:08,266 --> 00:12:10,199
+just a UIView, so               
+I'm gonna create it and         
+
+278
+00:12:10,268 --> 00:12:11,367
+I'm gonna say AsteroidField.    
+
+279
+00:12:11,436 --> 00:12:13,402
+So make some more space here.   
+
+280
+00:12:13,471 --> 00:12:15,771
+Just get a little wide here.    
+
+281
+00:12:15,839 --> 00:12:22,177
+It's an AsteroidFieldView,      
+AsteroidFieldView, okay?        
+
+282
+00:12:22,246 --> 00:12:23,278
+View.                           
+
+283
+00:12:23,346 --> 00:12:25,646
+Capital A.                      
+
+284
+00:12:25,715 --> 00:12:27,214
+All right.                      
+[LAUGH] And a view?             
+
+285
+00:12:27,283 --> 00:12:28,282
+How do we create a view?        
+
+286
+00:12:28,351 --> 00:12:30,517
+Well, we're just gonna          
+use a normal frame              
+
+287
+00:12:30,586 --> 00:12:31,851
+initializer there.              
+
+288
+00:12:31,920 --> 00:12:36,121
+And what is the rectangle       
+of my field, my view here?      
+
+289
+00:12:36,190 --> 00:12:37,690
+I'm actually gonna              
+start by having my              
+
+290
+00:12:37,758 --> 00:12:39,224
+entire asteroid field.          
+
+291
+00:12:39,293 --> 00:12:42,393
+Fit inside my views balance so  
+you can see the whole thing.    
+
+292
+00:12:42,462 --> 00:12:44,295
+But when I really get           
+going with my game,             
+
+293
+00:12:44,364 --> 00:12:46,397
+I'm gonna make the Azure        
+feel quite large.               
+
+294
+00:12:46,466 --> 00:12:49,933
+So that my ship has a lot       
+of space to fly around in.      
+
+295
+00:12:50,002 --> 00:12:52,302
+And then I'm gonna use          
+a little bit trick,             
+
+296
+00:12:52,371 --> 00:12:55,438
+gaming design trick to make     
+it so that it seems infinite.   
+
+297
+00:12:55,507 --> 00:12:59,242
+But of course I can't build     
+an infinitely large view.       
+
+298
+00:12:59,310 --> 00:13:03,312
+So, I'm going to build          
+this with a rect that           
+
+299
+00:13:03,380 --> 00:13:07,649
+is centered at my self          
+dot views bounds mid.           
+
+300
+00:13:07,718 --> 00:13:11,119
+So mid is something I added     
+in my CGRectit extensions.      
+
+301
+00:13:11,188 --> 00:13:13,221
+It just gives you               
+the mid point of it.            
+
+302
+00:13:13,289 --> 00:13:16,724
+And my size is gonna be         
+my view.bounds.size.            
+
+303
+00:13:16,792 --> 00:13:19,993
+Okay now I'm gonna start it     
+out there as in the center,     
+
+304
+00:13:20,062 --> 00:13:21,929
+cover my whole                  
+view again just so              
+
+305
+00:13:21,997 --> 00:13:24,097
+you can see what's              
+going on there.                 
+
+306
+00:13:24,166 --> 00:13:26,333
+And one more parenthesis.       
+
+307
+00:13:27,436 --> 00:13:28,567
+What else do we need to do?     
+
+308
+00:13:28,636 --> 00:13:30,770
+We need to add it               
+as a sub view.                  
+
+309
+00:13:30,838 --> 00:13:32,671
+Okay, so I'm just going to      
+add this asteroid field,        
+
+310
+00:13:32,739 --> 00:13:35,072
+this sub view of                
+my self dot view.               
+
+311
+00:13:35,141 --> 00:13:36,741
+I'm gonna control               
+over here and                   
+
+312
+00:13:36,810 --> 00:13:40,244
+then let's add some asteroids,  
+asteroidfield.addasteroids.     
+
+313
+00:13:40,313 --> 00:13:43,981
+We'll add 20 asteroids, that's  
+a good number of asteroids.     
+
+314
+00:13:44,050 --> 00:13:47,984
+I think it might even           
+have a constance for            
+
+315
+00:13:48,053 --> 00:13:52,455
+this,                           
+constant.initialAsteroidCount.  
+
+316
+00:13:52,524 --> 00:13:53,022
+Initial yeah,                   
+initial asteroid account        
+
+317
+00:13:53,091 --> 00:13:53,723
+that's better,                  
+add a constant there.           
+
+318
+00:13:57,628 --> 00:14:00,762
+The other thing like I said     
+is when my bounds changed,      
+
+319
+00:14:00,831 --> 00:14:02,697
+I wanna make sure I             
+move my asteroid field          
+
+320
+00:14:02,766 --> 00:14:04,999
+always to the center            
+of my new bounds.               
+
+321
+00:14:05,068 --> 00:14:07,535
+Now that's gonna be a little    
+funny now because my as,my      
+
+322
+00:14:07,603 --> 00:14:09,903
+field is gonna start out,       
+in this you know,               
+
+323
+00:14:09,972 --> 00:14:12,405
+the bound size that             
+I started out with.             
+
+324
+00:14:12,474 --> 00:14:13,373
+And I'm not gonna change it,    
+but                             
+
+325
+00:14:13,442 --> 00:14:16,409
+when I make my bounds really    
+big I'll make it so big.        
+
+326
+00:14:16,478 --> 00:14:18,878
+That no matter what I           
+rotate my device to             
+
+327
+00:14:18,947 --> 00:14:20,479
+it'll always be showing         
+part of the field, so           
+
+328
+00:14:20,547 --> 00:14:22,247
+I don't worry about             
+that too much.                  
+
+329
+00:14:22,315 --> 00:14:26,217
+All I'll do for now is in       
+viewdDidLayoutSubviews,         
+
+330
+00:14:26,286 --> 00:14:31,089
+I'll just make sure to always   
+recenter myself by saying that  
+
+331
+00:14:31,158 --> 00:14:35,092
+my asteroidfield is center.     
+
+332
+00:14:35,161 --> 00:14:37,461
+Equals my bounds mid, right.    
+
+333
+00:14:37,530 --> 00:14:40,197
+So just always put it           
+back in the middle.             
+
+334
+00:14:41,533 --> 00:14:44,467
+Okay, everybody cool,           
+what I've done so far?          
+
+335
+00:14:44,536 --> 00:14:45,935
+All I did was created           
+this asteroid view.             
+
+336
+00:14:46,003 --> 00:14:48,170
+Let's run it and see what our   
+asteroid field looks like.      
+
+337
+00:14:48,239 --> 00:14:53,207
+It's just going to be           
+a bunch of randomly sized and   
+
+338
+00:14:53,276 --> 00:14:56,478
+positioned asteroids,           
+popped in there.                
+
+339
+00:15:04,620 --> 00:15:07,087
+All right, here it is.          
+
+340
+00:15:07,156 --> 00:15:09,256
+Okay, here's my iPhone 7 plus.  
+
+341
+00:15:09,325 --> 00:15:10,190
+Nice big one.                   
+
+342
+00:15:10,259 --> 00:15:12,759
+And you can see I've got all    
+these randomly sized and        
+
+343
+00:15:12,828 --> 00:15:14,460
+shaped and you know,            
+different ones.                 
+
+344
+00:15:14,529 --> 00:15:16,862
+Those nine different            
+asteroids in here.              
+
+345
+00:15:16,931 --> 00:15:19,731
+Now, it's time to learn         
+about dynamic animation.        
+
+346
+00:15:19,800 --> 00:15:21,567
+We're going to make             
+these things move.              
+
+347
+00:15:21,635 --> 00:15:23,935
+Now, how do we make these       
+asteroids start floating        
+
+348
+00:15:24,003 --> 00:15:24,803
+around in space?                
+
+349
+00:15:24,871 --> 00:15:28,005
+And the answer is we're         
+going to push them.             
+
+350
+00:15:28,074 --> 00:15:30,040
+We're gonna use                 
+a push behavior and             
+
+351
+00:15:30,109 --> 00:15:33,343
+give it an instantaneous push   
+to this things just fly off.    
+
+352
+00:15:33,412 --> 00:15:36,345
+So we push them all a random    
+amount in a random direction.   
+
+353
+00:15:36,414 --> 00:15:39,114
+So they all starting to moving  
+it all a different directions.  
+
+354
+00:15:39,183 --> 00:15:43,119
+Now to do that animation we     
+always need this top level      
+
+355
+00:15:43,187 --> 00:15:45,821
+thing which is an animator,     
+okay.                           
+
+356
+00:15:45,890 --> 00:15:48,890
+The animator thing that         
+controls all the animations.    
+
+357
+00:15:48,959 --> 00:15:52,193
+So you field that animation,    
+you always gonna had            
+
+358
+00:15:52,262 --> 00:15:55,896
+a private var which is you      
+usually called the animator.    
+
+359
+00:15:55,965 --> 00:16:00,234
+Which is going to be            
+a UI dynamic animator.          
+
+360
+00:16:00,302 --> 00:16:02,203
+Animator.                       
+
+361
+00:16:02,271 --> 00:16:08,441
+And its initializer             
+takes a reference view.         
+
+362
+00:16:08,510 --> 00:16:10,843
+And this reference view is      
+just defining the coordinate    
+
+363
+00:16:10,912 --> 00:16:13,579
+system that all the boundaries  
+for collisions and              
+
+364
+00:16:13,648 --> 00:16:15,181
+things like that                
+are gonna occur in.             
+
+365
+00:16:15,250 --> 00:16:17,583
+Now what I want this            
+reference view to be is my      
+
+366
+00:16:17,651 --> 00:16:18,716
+asteroid field.                 
+
+367
+00:16:18,785 --> 00:16:20,051
+That makes the most sense,      
+right.                          
+
+368
+00:16:20,119 --> 00:16:21,786
+Everything's an asteroid        
+field, that's a good view.      
+
+369
+00:16:21,854 --> 00:16:24,121
+I can choose really any         
+view that's high up             
+
+370
+00:16:24,190 --> 00:16:26,423
+in the hierarchy that           
+I wanna animate.                
+
+371
+00:16:26,492 --> 00:16:29,158
+Now, here we're having the      
+same exact problem we had in    
+
+372
+00:16:29,227 --> 00:16:31,794
+the last demo where I'm trying  
+to initialize a var and         
+
+373
+00:16:31,863 --> 00:16:34,663
+in part of the initialization,  
+I'm trying to use a var and     
+
+374
+00:16:34,732 --> 00:16:35,932
+we know we can't do that.       
+
+375
+00:16:36,000 --> 00:16:37,866
+We can't use any                
+of our own vars or              
+
+376
+00:16:37,935 --> 00:16:40,702
+funcs untill we fully           
+initialize ourself.             
+
+377
+00:16:40,771 --> 00:16:43,138
+So, we're gonna do lazy.        
+
+378
+00:16:43,207 --> 00:16:44,772
+And we know that when we        
+do this lazy approach,          
+
+379
+00:16:44,841 --> 00:16:46,974
+we have to explicitly type.     
+
+380
+00:16:47,043 --> 00:16:50,010
+We can't use the static typer.  
+
+381
+00:16:50,078 --> 00:16:51,878
+Here, animator.                 
+
+382
+00:16:51,947 --> 00:16:54,414
+And also we know that if        
+we just say asteroid field,     
+
+383
+00:16:54,483 --> 00:16:55,848
+it's gonna be looking for       
+a static.                       
+
+384
+00:16:55,917 --> 00:16:57,416
+A class.                        
+
+385
+00:16:57,485 --> 00:16:58,617
+Method called asteroid field.   
+
+386
+00:16:58,686 --> 00:17:00,552
+So to tell it we want           
+an instance one,                
+
+387
+00:17:00,621 --> 00:17:02,454
+we're gonna say self.asteroid.  
+
+388
+00:17:02,522 --> 00:17:05,255
+And this is gonna work because  
+it's gonna be lazy, and so      
+
+389
+00:17:05,324 --> 00:17:08,325
+it's not gona actually execute  
+this initialize in here until   
+
+390
+00:17:08,394 --> 00:17:11,061
+somebody asks for it, and       
+nobody's allowed to ask for     
+
+391
+00:17:11,130 --> 00:17:13,063
+it until we're fully            
+initialized; and                
+
+392
+00:17:13,132 --> 00:17:15,565
+thus we've gotten out           
+of the conundrum there.         
+
+393
+00:17:16,935 --> 00:17:18,567
+Okay, everybody                 
+cool with that?                 
+
+394
+00:17:18,636 --> 00:17:20,236
+So now we have an animator.     
+
+395
+00:17:20,304 --> 00:17:21,937
+What's the next                 
+step in animation?              
+
+396
+00:17:22,005 --> 00:17:22,804
+Behaviors.                      
+
+397
+00:17:22,873 --> 00:17:23,838
+We have to create behaviors.    
+
+398
+00:17:23,907 --> 00:17:25,139
+And so, our                     
+
+399
+00:17:25,208 --> 00:17:27,307
+asteroids are gonna have        
+a lot of behaviors on them.     
+
+400
+00:17:27,376 --> 00:17:29,008
+Okay?                           
+They're gonna be colliding      
+
+401
+00:17:29,077 --> 00:17:31,311
+with things,                    
+they're gonna get pushed,       
+
+402
+00:17:31,379 --> 00:17:34,380
+they're gonna have general      
+kind of physics, they're even,  
+
+403
+00:17:34,449 --> 00:17:37,416
+when the ship is accelerating   
+through space, they're gonna    
+
+404
+00:17:37,485 --> 00:17:40,252
+even be experiencing opposite   
+direction acceleration.         
+
+405
+00:17:40,320 --> 00:17:43,622
+So we're gonna combine          
+all of those into one,          
+
+406
+00:17:43,690 --> 00:17:45,323
+single behavior.                
+
+407
+00:17:45,392 --> 00:17:48,359
+Okay, a subclause behavior,     
+and that subclause behavior is  
+
+408
+00:17:48,428 --> 00:17:51,629
+gonna be a composite of all     
+those other kind of behaviors.  
+
+409
+00:17:51,698 --> 00:17:52,429
+So let's do that right now.     
+
+410
+00:17:52,498 --> 00:17:55,599
+Let's go File > New and         
+create a new                    
+
+411
+00:17:55,668 --> 00:17:58,001
+class which is gonna be         
+a UI dynamic behavior.          
+
+412
+00:17:58,070 --> 00:18:00,837
+You see it says Subclass        
+of: UIDynamicBehavior here.     
+
+413
+00:18:00,906 --> 00:18:01,971
+I'm gonna call it               
+
+414
+00:18:02,040 --> 00:18:03,772
+AsteriodBehavior because        
+that's what it is.              
+
+415
+00:18:03,841 --> 00:18:04,572
+It's the behavior.              
+
+416
+00:18:04,641 --> 00:18:06,742
+It's gonna collect all the      
+behavior that has to do with    
+
+417
+00:18:06,810 --> 00:18:07,809
+asteroids.                      
+
+418
+00:18:07,877 --> 00:18:09,043
+Put it where I put              
+everything here.                
+
+419
+00:18:09,111 --> 00:18:12,746
+And so                          
+here's my dynamic behavior.     
+
+420
+00:18:12,815 --> 00:18:16,249
+All I'm gonna do to start       
+is have an add asteroid and     
+
+421
+00:18:16,318 --> 00:18:18,919
+a remove asteroid method so     
+I can collect                   
+
+422
+00:18:18,987 --> 00:18:22,655
+the asteroids then I am         
+causing to behave somehow.      
+
+423
+00:18:22,723 --> 00:18:26,058
+So let's have a private var     
+which we'll call asteroids.     
+
+424
+00:18:26,126 --> 00:18:27,893
+And it's just gonna             
+be an array of                  
+
+425
+00:18:27,961 --> 00:18:29,361
+asteroids views, okay.          
+
+426
+00:18:29,429 --> 00:18:32,163
+And then, we'll have a private  
+or actually a public funk       
+
+427
+00:18:32,232 --> 00:18:36,267
+called addAsteroid and you are  
+gonna give it an asteroid and   
+
+428
+00:18:36,335 --> 00:18:39,737
+it is just going to add         
+this asteroid, okay.            
+
+429
+00:18:39,806 --> 00:18:44,541
+Pin this asteroid on            
+to the Our dictionary,          
+
+430
+00:18:44,610 --> 00:18:46,410
+our array of asteroids here.    
+
+431
+00:18:46,479 --> 00:18:50,280
+And then we're also gonna       
+have removeAsteroid.            
+
+432
+00:18:50,348 --> 00:18:55,085
+And this one has to first make  
+sure that we actually have      
+
+433
+00:18:55,153 --> 00:18:58,754
+this asteroid by saying         
+if we can let index             
+
+434
+00:18:58,823 --> 00:19:02,924
+= asteroids.index of            
+this asteroid, okay?            
+
+435
+00:19:02,993 --> 00:19:05,861
+If we can find it               
+in there then we're             
+
+436
+00:19:05,930 --> 00:19:10,365
+just gonna say asteroids        
+remove at that index.           
+
+437
+00:19:10,433 --> 00:19:12,500
+Okay, so this is it so          
+far for our behavior.           
+
+438
+00:19:12,568 --> 00:19:16,103
+It's not actually doing any     
+behavior but now we can add     
+
+439
+00:19:16,172 --> 00:19:18,104
+asteroids or remove             
+asteroids from the behavior.    
+
+440
+00:19:18,173 --> 00:19:19,940
+Which is a critical             
+part of animation,              
+
+441
+00:19:20,009 --> 00:19:21,341
+remember there's                
+always three steps.             
+
+442
+00:19:21,409 --> 00:19:24,010
+Got the animator, you add       
+the behaviors to the animator,  
+
+443
+00:19:24,079 --> 00:19:27,179
+then you add the items,         
+the asteroids in this case,     
+
+444
+00:19:27,248 --> 00:19:28,580
+to the behaviors.               
+
+445
+00:19:28,649 --> 00:19:32,083
+And so this is, we've gone      
+all three of those steps.       
+
+446
+00:19:32,152 --> 00:19:34,819
+Now we haven't actually picked  
+any behaviors to composite,     
+
+447
+00:19:34,888 --> 00:19:36,954
+to build our thing out of yet.  
+
+448
+00:19:37,023 --> 00:19:39,857
+But at least we've got          
+the infrastructure to do that.  
+
+449
+00:19:39,926 --> 00:19:42,693
+Now, now we have                
+a behavior here,                
+
+450
+00:19:42,762 --> 00:19:45,061
+let's go back to our            
+view controller and             
+
+451
+00:19:45,130 --> 00:19:48,164
+create one of these behaviors,  
+instantiate one, okay?          
+
+452
+00:19:48,233 --> 00:19:50,333
+And add it to our animator.     
+
+453
+00:19:50,402 --> 00:19:52,768
+So we can instantiate one       
+by just saying private var      
+
+454
+00:19:52,837 --> 00:19:58,073
+asteroidBehavior =              
+asteroidBehavior.               
+
+455
+00:19:58,142 --> 00:20:00,676
+Behavior, all right, so         
+
+456
+00:20:00,745 --> 00:20:02,777
+we've just created              
+an asteroid behavior.           
+
+457
+00:20:02,846 --> 00:20:04,912
+But it won't do anything,       
+that behavior,                  
+
+458
+00:20:04,981 --> 00:20:07,481
+whatever we tell it teach       
+to do eventually, it won't      
+
+459
+00:20:07,549 --> 00:20:10,216
+anything to the asteroid until  
+we add it to an animator.       
+
+460
+00:20:10,285 --> 00:20:15,255
+Now when is it a good time to   
+add a behavior to an animator?  
+
+461
+00:20:15,323 --> 00:20:18,391
+Well you really only            
+want animation to go on         
+
+462
+00:20:18,459 --> 00:20:19,993
+when you're on screen.          
+
+463
+00:20:20,061 --> 00:20:23,195
+Okay, if you're not on screen,  
+animating things probably,      
+
+464
+00:20:23,264 --> 00:20:25,897
+99% of the time does            
+not make any sense.             
+
+465
+00:20:25,966 --> 00:20:29,334
+So, kind of a cool place to     
+do it is in viewDidAppear.      
+
+466
+00:20:29,403 --> 00:20:33,638
+So when my view appears, I am   
+going to tell my animator to,   
+
+467
+00:20:33,707 --> 00:20:37,409
+mator, to add behavior,         
+my asteroid behavior.           
+
+468
+00:20:39,512 --> 00:20:41,845
+Okay, now,                      
+when do I wanna remove it?      
+
+469
+00:20:41,914 --> 00:20:43,814
+Well, I wanna remove            
+it when I disappear.            
+
+470
+00:20:43,883 --> 00:20:47,216
+So in, view will disappear.     
+
+471
+00:20:47,285 --> 00:20:48,250
+No, that's not even close.      
+
+472
+00:20:48,319 --> 00:20:50,585
+View will disappear.            
+
+473
+00:20:50,654 --> 00:20:54,056
+super.view will disappear.      
+
+474
+00:20:54,125 --> 00:20:59,494
+[SOUND] Animated.               
+
+475
+00:20:59,563 --> 00:21:01,763
+Here I'm just gonna             
+say to my animator,             
+
+476
+00:21:01,831 --> 00:21:03,431
+remove this behavior.           
+
+477
+00:21:03,499 --> 00:21:06,400
+And as soon as I move           
+a behavior from an animator,    
+
+478
+00:21:06,469 --> 00:21:08,568
+it will stop animating          
+that behavior, okay?            
+
+479
+00:21:08,637 --> 00:21:11,571
+In other words that behavior    
+will no longer apply            
+
+480
+00:21:11,640 --> 00:21:13,306
+to the animation                
+that's going on.                
+
+481
+00:21:13,375 --> 00:21:15,208
+Now I can put it back and       
+it'll start animating again.    
+
+482
+00:21:15,276 --> 00:21:17,409
+One thing that's                
+interesting to note though,     
+
+483
+00:21:17,478 --> 00:21:19,311
+all the items that              
+are being animated,             
+
+484
+00:21:19,379 --> 00:21:21,212
+if you take an animator         
+out of an animator,             
+
+485
+00:21:21,281 --> 00:21:24,182
+they'll lose all their linear   
+velocity, they'll stop moving.  
+
+486
+00:21:24,250 --> 00:21:26,017
+So if you add it back,          
+they'll all be stuck.           
+
+487
+00:21:26,086 --> 00:21:28,886
+You'll have to repush them or   
+reestablish                     
+
+488
+00:21:28,955 --> 00:21:31,155
+their linear velocities or      
+something like that.            
+
+489
+00:21:31,224 --> 00:21:33,456
+Okay, that's the only           
+bad part about stopping.        
+
+490
+00:21:33,525 --> 00:21:36,125
+You can't really this is not    
+really pausing the animation,   
+
+491
+00:21:36,194 --> 00:21:37,126
+it's stopping.                  
+
+492
+00:21:37,195 --> 00:21:39,628
+All forces stop on              
+things being animated.          
+
+493
+00:21:39,697 --> 00:21:40,962
+And then when you add it back,  
+
+494
+00:21:41,031 --> 00:21:42,363
+they all start                  
+re-playing again.               
+
+495
+00:21:42,432 --> 00:21:44,332
+But if the ship were            
+accelerating when               
+
+496
+00:21:44,400 --> 00:21:45,399
+And you come back and           
+the ship keeps accelerating.    
+
+497
+00:21:45,400 --> 00:21:46,399
+you removed it.                 
+
+498
+00:21:46,469 --> 00:21:48,936
+It will, those things will      
+still be accelerating.          
+
+499
+00:21:49,004 --> 00:21:51,171
+So will be effective.           
+
+500
+00:21:51,240 --> 00:21:53,773
+So now we've added              
+the asteroid behavior to        
+
+501
+00:21:53,842 --> 00:21:54,374
+the animator.                   
+
+502
+00:21:54,442 --> 00:21:55,274
+What's the next step?           
+
+503
+00:21:55,343 --> 00:21:58,143
+We gotta add the asteroids      
+to the behavior.                
+
+504
+00:21:58,212 --> 00:21:59,511
+Okay, if you don't add          
+the asteroids to the behavior,  
+
+505
+00:21:59,580 --> 00:22:00,211
+nothing's gonna happen.         
+
+506
+00:22:00,280 --> 00:22:03,181
+And I'm actually gonna have my  
+asteroid field view do that,    
+
+507
+00:22:03,250 --> 00:22:06,283
+cuz it's the thing that         
+creates the asteroids.          
+
+508
+00:22:06,352 --> 00:22:07,718
+And so it kinda works for       
+
+509
+00:22:07,787 --> 00:22:10,887
+the architecture of my app      
+if I only have it to deal       
+
+510
+00:22:10,956 --> 00:22:13,757
+with the asteroids and I don't  
+actually have to deal with any  
+
+511
+00:22:13,826 --> 00:22:15,758
+of the asteroids at all         
+in my view controller,          
+
+512
+00:22:15,827 --> 00:22:16,959
+that's kinda cool.              
+
+513
+00:22:17,028 --> 00:22:20,228
+So I'm gonna go back            
+over to my asteroid             
+
+514
+00:22:20,297 --> 00:22:24,533
+field view right here, and I'm  
+gonna add a public var here.    
+
+515
+00:22:24,601 --> 00:22:27,936
+Which is the asteroidBehavior   
+that I want to apply            
+
+516
+00:22:28,005 --> 00:22:31,406
+to all of my asteroids.         
+
+517
+00:22:31,474 --> 00:22:35,042
+So we'll have                   
+an asteroidBehavior of course.  
+
+518
+00:22:35,111 --> 00:22:36,276
+We'll have it be optional,      
+
+519
+00:22:36,345 --> 00:22:38,779
+because maybe my asteroids      
+are just sitting there, not,    
+
+520
+00:22:38,848 --> 00:22:40,981
+not behaving, no one's,         
+that sort of behavior,          
+
+521
+00:22:41,049 --> 00:22:43,082
+they don't do anything,         
+they just sit there.            
+
+522
+00:22:43,150 --> 00:22:44,349
+That's probably fine.           
+
+523
+00:22:44,418 --> 00:22:46,385
+When someone sets this, okay?   
+
+524
+00:22:46,454 --> 00:22:50,421
+Someone sets my behavior,       
+I want to remove                
+
+525
+00:22:50,490 --> 00:22:53,725
+all my asteroids from any       
+previous behavior I had and     
+
+526
+00:22:53,794 --> 00:22:55,493
+add them to the new behavior,   
+okay?                           
+
+527
+00:22:55,562 --> 00:22:58,362
+I don't wanna set this          
+asteroid behavior,              
+
+528
+00:22:58,431 --> 00:23:01,231
+I don't want any old            
+behavior still be behaving.     
+
+529
+00:23:01,300 --> 00:23:03,801
+So, I'm actually gonna go       
+through all of my asteroids     
+
+530
+00:23:03,869 --> 00:23:09,472
+here for asteroid in            
+asteroids, oops, in asteroids.  
+
+531
+00:23:09,540 --> 00:23:13,943
+And for each one, if I had      
+an old value that was not nil,  
+
+532
+00:23:14,012 --> 00:23:18,181
+an old behavior, then I'm       
+gonna remove this asteroid.     
+
+533
+00:23:21,518 --> 00:23:23,384
+And similarly, for              
+the new value,                  
+
+534
+00:23:23,453 --> 00:23:25,654
+the new asteroid                
+behavior that I have.           
+
+535
+00:23:25,722 --> 00:23:29,057
+If that's not nil,              
+then I will add asteroid.       
+
+536
+00:23:31,394 --> 00:23:34,095
+Okay, now what about this       
+little var right here,          
+
+537
+00:23:34,163 --> 00:23:34,995
+asteroid?                       
+
+538
+00:23:35,064 --> 00:23:36,129
+Where are all my asteroids?     
+
+539
+00:23:36,198 --> 00:23:38,030
+I don't have a var here for     
+my asteroids.                   
+
+540
+00:23:38,099 --> 00:23:39,665
+I actually waited to do         
+
+541
+00:23:39,734 --> 00:23:41,566
+this instead of just putting    
+it in advance cuz I wanna show  
+
+542
+00:23:41,635 --> 00:23:43,801
+you some kind of                
+a cool way to do this.          
+
+543
+00:23:43,870 --> 00:23:46,371
+I'm gonna have a private        
+var asteroids.                  
+
+544
+00:23:46,439 --> 00:23:50,307
+It's gonna be an array          
+of asteroid view, and           
+
+545
+00:23:50,376 --> 00:23:51,375
+it's gonna be calculated.       
+
+546
+00:23:51,444 --> 00:23:53,109
+And the way I'm gonna           
+calculate it is,                
+
+547
+00:23:53,178 --> 00:23:56,579
+I'm gonna return all            
+my subviews, Okay,              
+
+548
+00:23:56,648 --> 00:23:59,315
+cuz all my subviews are all     
+these asteroids, but            
+
+549
+00:23:59,384 --> 00:24:02,618
+maybe one day I'll add some     
+other kind of subview besides   
+
+550
+00:24:02,687 --> 00:24:05,420
+an asteroid, I don't know,      
+space station, or something.    
+
+551
+00:24:05,489 --> 00:24:06,588
+And so, I only want             
+
+552
+00:24:06,657 --> 00:24:08,690
+my subviews that                
+are asteroid views.             
+
+553
+00:24:08,759 --> 00:24:12,493
+So I'm gonna say,               
+subviews.flatMap.               
+
+554
+00:24:12,562 --> 00:24:15,897
+Okay, now flatMap takes         
+a closure and if that closure   
+
+555
+00:24:15,966 --> 00:24:19,266
+returns nill, it doesn't        
+add that to the thing.          
+
+556
+00:24:19,335 --> 00:24:22,002
+To the return value here and    
+if it does doesn't return nil.  
+
+557
+00:24:22,070 --> 00:24:25,172
+It does and so in other words   
+flatmap makes a new array.      
+
+558
+00:24:25,240 --> 00:24:28,575
+With all of the things in       
+the first array but with this   
+
+559
+00:24:28,643 --> 00:24:31,677
+closure executed on them and    
+it skips ones that are nil.     
+
+560
+00:24:31,746 --> 00:24:34,780
+So, I'm just gonna              
+say $0 which is each            
+
+561
+00:24:34,849 --> 00:24:38,084
+subview in the array            
+as an asteroid view.            
+
+562
+00:24:39,286 --> 00:24:41,052
+Okay, and this will             
+return nill of course,          
+
+563
+00:24:41,121 --> 00:24:42,987
+if I have a subview that's      
+not a asteroid view.            
+
+564
+00:24:43,055 --> 00:24:46,290
+But all the other ones will     
+do that and that makes this     
+
+565
+00:24:46,359 --> 00:24:50,294
+return value turn into          
+a array of asteroid views.      
+
+566
+00:24:51,664 --> 00:24:53,329
+Okay, so just thought I'd       
+show you a flat map there,      
+
+567
+00:24:53,398 --> 00:24:54,864
+kind of fun.                    
+
+568
+00:24:54,933 --> 00:24:56,833
+All right, so now we have       
+this asteroid everything.       
+
+569
+00:24:56,901 --> 00:24:58,600
+The other thing we probably     
+want to do is when we           
+
+570
+00:24:58,669 --> 00:25:00,402
+add a new asteroid.             
+
+571
+00:25:00,471 --> 00:25:02,437
+If we have our                  
+asteroidBehavior set,           
+
+572
+00:25:02,506 --> 00:25:04,205
+let's go ahead and              
+add this asteroid to there.     
+
+573
+00:25:04,274 --> 00:25:06,474
+So, in asteroidBehavior,        
+
+574
+00:25:06,543 --> 00:25:09,810
+I'm going to add asteroid,      
+this asteroid.                  
+
+575
+00:25:11,246 --> 00:25:14,280
+So, you can set the asteroid    
+before or after                 
+
+576
+00:25:14,349 --> 00:25:16,549
+you add the asteroids, it'll    
+work either way with this.      
+
+577
+00:25:18,352 --> 00:25:20,752
+So now, we need to set,         
+see this var right here?        
+
+578
+00:25:20,821 --> 00:25:23,321
+We need to set that from        
+our controller, so that our     
+
+579
+00:25:23,390 --> 00:25:28,059
+asteroid field view right here  
+knows what behavior to use.     
+
+580
+00:25:28,128 --> 00:25:29,627
+So, we're gonna say here,       
+
+581
+00:25:29,696 --> 00:25:31,862
+well we'll put it               
+even a little higher.           
+
+582
+00:25:31,931 --> 00:25:33,497
+We'll say asteroid field.       
+
+583
+00:25:33,565 --> 00:25:40,137
+Set your asteroid behavior      
+to our AsteroidBehavior.        
+
+584
+00:25:40,205 --> 00:25:42,571
+And, again, it doesn't matter   
+if I do it before here, or      
+
+585
+00:25:42,640 --> 00:25:43,772
+I could do it after here.       
+
+586
+00:25:43,841 --> 00:25:45,508
+Either way,                     
+it's going to work.             
+
+587
+00:25:47,511 --> 00:25:48,310
+Okay, got that?                 
+
+588
+00:25:48,379 --> 00:25:50,645
+All right, now we're            
+all completely set up.          
+
+589
+00:25:50,714 --> 00:25:52,346
+We have this behavior,          
+custom behavior,                
+
+590
+00:25:52,415 --> 00:25:53,647
+which doesn't do anything yet.  
+
+591
+00:25:53,716 --> 00:25:56,082
+All the asteroids have          
+been added to it, okay,         
+
+592
+00:25:56,151 --> 00:25:57,584
+it's been added                 
+to an animator.                 
+
+593
+00:25:57,652 --> 00:26:00,286
+All we need to do now is        
+implement our behavior and      
+
+594
+00:26:00,355 --> 00:26:02,188
+however we implement behavior.  
+
+595
+00:26:02,256 --> 00:26:04,790
+It's gonna start applying       
+to all off our asteroid.        
+
+596
+00:26:04,859 --> 00:26:07,459
+So, I said the first thing      
+we want to is push them all.    
+
+597
+00:26:07,528 --> 00:26:10,228
+So, let's go add                
+a pushing behavior to our       
+
+598
+00:26:10,297 --> 00:26:10,962
+asteroid behavior.              
+
+599
+00:26:11,030 --> 00:26:13,932
+So, heres our asteroid          
+behavior, right here.           
+
+600
+00:26:14,000 --> 00:26:17,001
+Lets at a push behavior,        
+and I'm gonna do this push      
+
+601
+00:26:17,070 --> 00:26:22,806
+behavior by creating a func     
+called pushAllAsteroids, okay.  
+
+602
+00:26:22,874 --> 00:26:26,176
+And I'm gonna have an argument  
+to this pushAllAsteroids,       
+
+603
+00:26:26,245 --> 00:26:28,578
+which tells how much you        
+want me to push them.           
+
+604
+00:26:28,647 --> 00:26:30,880
+It's always gonna push them     
+in a random direction, but      
+
+605
+00:26:30,949 --> 00:26:32,314
+you can say by how much.        
+
+606
+00:26:32,383 --> 00:26:35,384
+And so,                         
+I'll call it by magnitude and   
+
+607
+00:26:35,452 --> 00:26:39,020
+I'll even let you specify       
+a range of magnitudes to push.  
+
+608
+00:26:39,089 --> 00:26:40,822
+Because you don't want          
+to push all of them             
+
+609
+00:26:40,890 --> 00:26:42,523
+the exact same amount.          
+
+610
+00:26:42,591 --> 00:26:46,427
+So, we'll create a this is      
+gonna be a range of a rangle.   
+
+611
+00:26:46,496 --> 00:26:50,064
+No a range of CG float and      
+we'll have a default.           
+
+612
+00:26:50,133 --> 00:26:53,700
+How about the default           
+be 0..0.5 so between 0.         
+
+613
+00:26:53,769 --> 00:26:56,135
+Which means don't               
+push them at all.               
+
+614
+00:26:56,204 --> 00:27:00,773
+2.5 which means push            
+them a fair amount but          
+
+615
+00:27:00,841 --> 00:27:01,573
+not really hard.                
+
+616
+00:27:01,642 --> 00:27:04,143
+A one point o push is           
+a pretty good push.             
+
+617
+00:27:04,212 --> 00:27:05,576
+And these are the kind,         
+I should probably have          
+
+618
+00:27:05,645 --> 00:27:07,678
+a constant for this but these   
+are the kind of things you'll   
+
+619
+00:27:07,747 --> 00:27:10,014
+play with these number until    
+you kind of get the feel.       
+
+620
+00:27:10,083 --> 00:27:11,415
+For the animation               
+that you want.                  
+
+621
+00:27:11,484 --> 00:27:13,550
+How fast you want them in       
+the slide in or how hard for    
+
+622
+00:27:13,619 --> 00:27:16,487
+something you want something    
+to be pushed or whatever.       
+
+623
+00:27:16,555 --> 00:27:19,556
+Okay, so how am i gonna         
+push this asteroids?            
+
+624
+00:27:19,625 --> 00:27:21,624
+I'm gonna do it                 
+with push behavior.             
+
+625
+00:27:21,693 --> 00:27:26,061
+So I'm gonna go through         
+each of my asteroids, okay?     
+
+626
+00:27:26,130 --> 00:27:28,964
+And for everyone, I'm gonna     
+create a pusher, which is       
+
+627
+00:27:29,033 --> 00:27:34,402
+gonna be a UI UIPushBehavior,   
+and the UIPushBehavior's        
+
+628
+00:27:34,471 --> 00:27:37,272
+creator here is, here,          
+is this one, items.             
+
+629
+00:27:37,341 --> 00:27:39,874
+So, a push can actually push    
+multiple items at once.         
+
+630
+00:27:39,943 --> 00:27:40,774
+But I don't want that here,     
+
+631
+00:27:40,843 --> 00:27:42,943
+cuz I wanna push all            
+20 asteroids, or                
+
+632
+00:27:43,012 --> 00:27:44,611
+all my asteroids,               
+in different directions.        
+
+633
+00:27:44,680 --> 00:27:46,746
+So, I don't wanna push them     
+all in the same direction.      
+
+634
+00:27:46,815 --> 00:27:48,281
+So here I'm just gonna          
+have the array have             
+
+635
+00:27:48,349 --> 00:27:52,551
+one thing in it,                
+
+636
+00:27:52,620 --> 00:27:54,286
+And the mode can                
+be continuous,                  
+
+637
+00:27:54,355 --> 00:27:56,388
+which means I just keep         
+on pushing it forever.          
+
+638
+00:27:56,457 --> 00:27:58,156
+So that's basically velocity,   
+
+639
+00:27:58,224 --> 00:28:00,591
+push behavior that's            
+continuous is velocity.         
+
+640
+00:28:00,660 --> 00:28:03,994
+Or it can be instantaneous,     
+which is one push.              
+
+641
+00:28:04,063 --> 00:28:04,961
+And that's what I want here.    
+
+642
+00:28:05,030 --> 00:28:07,131
+I just want to kinda            
+get them started.               
+
+643
+00:28:07,199 --> 00:28:09,199
+But I'm not gonna keep          
+pushing my asteroids around,    
+
+644
+00:28:09,268 --> 00:28:10,533
+I'm just gonna push them        
+around, and hopefully,          
+
+645
+00:28:10,602 --> 00:28:11,334
+they're in outer space,         
+
+646
+00:28:11,402 --> 00:28:13,668
+they'll just keep on moving,    
+right?                          
+
+647
+00:28:13,737 --> 00:28:15,770
+We'll see if that happens,      
+but hopefully it will.          
+
+648
+00:28:15,839 --> 00:28:19,007
+And so, the pusher's magnitude  
+here is how hard you're         
+
+649
+00:28:19,076 --> 00:28:22,310
+pushing it, and so              
+I'm gonna make the magnitude    
+
+650
+00:28:22,379 --> 00:28:25,780
+be a random number inside       
+that, this range up here,       
+
+651
+00:28:25,849 --> 00:28:29,684
+that's why I have this          
+CGFloat random in Range.        
+
+652
+00:28:31,386 --> 00:28:34,220
+Okay, so that's what we do and  
+then the angle I'm gonna pick   
+
+653
+00:28:34,289 --> 00:28:37,756
+is also gonna be a random       
+number CGFloat.random and       
+
+654
+00:28:37,825 --> 00:28:43,095
+that's gonna be in a range      
+of zero to two pie, so they     
+
+655
+00:28:43,164 --> 00:28:46,265
+can push in any angle all the   
+way round the arc of radius.    
+
+656
+00:28:48,035 --> 00:28:51,703
+So now, I've set up my pusher,  
+I just need to get it to push.  
+
+657
+00:28:51,772 --> 00:28:52,704
+And how do I get it to push?    
+
+658
+00:28:52,772 --> 00:28:54,171
+Well, to get it                 
+to push I have to               
+
+659
+00:28:54,240 --> 00:28:56,573
+add it to a dynamic animator,   
+okay?                           
+
+660
+00:28:56,642 --> 00:28:57,708
+As soon as I had a,             
+
+661
+00:28:57,777 --> 00:29:00,276
+any behavior to a dynamic       
+animator, it starts.            
+
+662
+00:29:00,345 --> 00:29:01,311
+So here I just need to add it.  
+
+663
+00:29:01,379 --> 00:29:02,445
+And how do I do that?           
+
+664
+00:29:02,513 --> 00:29:06,315
+Well, here I'm creating a       
+subclass of UIDynamicAnimator.  
+
+665
+00:29:06,384 --> 00:29:08,634
+the way we add behaviors        
+is we say addChildBehavior.     
+
+666
+00:29:08,635 --> 00:29:10,885
+And so                          
+
+667
+00:29:12,689 --> 00:29:15,556
+Okay, and                       
+that adds this pusher,          
+
+668
+00:29:15,624 --> 00:29:18,459
+this one time instantaneous     
+push, to our behavior,          
+
+669
+00:29:18,527 --> 00:29:19,593
+the asteroid behavior.          
+
+670
+00:29:19,661 --> 00:29:21,528
+And of course the asteroid      
+behavior has been               
+
+671
+00:29:21,597 --> 00:29:23,029
+added to a dynamic              
+animator and                    
+
+672
+00:29:23,097 --> 00:29:25,731
+that causes the push to         
+be animated as well.            
+
+673
+00:29:25,800 --> 00:29:28,801
+So basically all                
+the animation gets propagated   
+
+674
+00:29:28,869 --> 00:29:31,303
+down through our asteroid       
+behavior to all our children,   
+
+675
+00:29:31,372 --> 00:29:32,070
+all our child behaviors.        
+
+676
+00:29:32,138 --> 00:29:33,238
+And we're gonna                 
+have quite a few.               
+
+677
+00:29:33,306 --> 00:29:35,873
+Four or                         
+five child behaviors here.      
+
+678
+00:29:35,942 --> 00:29:39,076
+All right, so let's go ahead    
+and see if this did anything.   
+
+679
+00:29:41,313 --> 00:29:43,747
+Wait, one thing we gotta        
+do first is call this.          
+
+680
+00:29:43,815 --> 00:29:46,182
+We never actually called        
+pushAllAsteroids, so            
+
+681
+00:29:46,251 --> 00:29:47,550
+let's do that.                  
+
+682
+00:29:47,618 --> 00:29:50,118
+Let's push them,                
+again when we first appear,     
+
+683
+00:29:50,187 --> 00:29:51,119
+we'll give them a push.         
+
+684
+00:29:51,188 --> 00:29:52,654
+So, we'll say push behavior.    
+
+685
+00:29:52,722 --> 00:29:55,389
+And                             
+asteroidBehavior.pushAllAster-  
+
+686
+00:29:55,458 --> 00:29:59,260
+oids.                           
+And                             
+
+687
+00:29:59,328 --> 00:30:02,196
+We don't really care that       
+much as you'll see soon.        
+
+688
+00:30:04,266 --> 00:30:06,733
+But it's kinda nice to          
+give our asteroid some          
+
+689
+00:30:06,801 --> 00:30:10,203
+kind of initial motion in       
+space, and you can see there,   
+
+690
+00:30:10,271 --> 00:30:11,070
+we go, we pushed them.          
+
+691
+00:30:11,138 --> 00:30:14,373
+Now, something bad              
+happened though.                
+
+692
+00:30:14,441 --> 00:30:16,441
+They got pushed                 
+out into oblivion.              
+
+693
+00:30:16,509 --> 00:30:17,575
+We lost them all them.          
+
+694
+00:30:17,644 --> 00:30:19,277
+And they're still going but     
+
+695
+00:30:19,345 --> 00:30:21,111
+I think there is                
+one over there and              
+
+696
+00:30:21,180 --> 00:30:23,613
+one way over there, we can't    
+see them obviously anywhere on  
+
+697
+00:30:23,682 --> 00:30:25,982
+our view cuz we pushed          
+them all out of our view.       
+
+698
+00:30:26,051 --> 00:30:27,917
+So that's a major               
+problem we need to fix.         
+
+699
+00:30:27,986 --> 00:30:29,318
+It have these things            
+go all out of view.             
+
+700
+00:30:29,387 --> 00:30:30,753
+So, we'll fix that.             
+
+701
+00:30:30,822 --> 00:30:32,454
+The second thing, I dont        
+know if you noticed here but    
+
+702
+00:30:32,523 --> 00:30:34,656
+they all just started to        
+slow down pretty quick.         
+
+703
+00:30:34,725 --> 00:30:35,824
+Okay, they start                
+out very fast,                  
+
+704
+00:30:35,893 --> 00:30:37,725
+then they rapidly slow down.    
+
+705
+00:30:37,794 --> 00:30:40,194
+Okay, and                       
+it space naturally happen.      
+
+706
+00:30:40,263 --> 00:30:43,530
+Now the normal physics          
+of the dynamic animator         
+
+707
+00:30:43,599 --> 00:30:46,867
+a kind of like a table top by   
+default, which even know push   
+
+708
+00:30:46,935 --> 00:30:48,801
+something there's some          
+friction there, right.          
+
+709
+00:30:48,870 --> 00:30:50,536
+And so, things will slow down.  
+
+710
+00:30:50,605 --> 00:30:53,272
+And this is not a table top,    
+this is outer space.            
+
+711
+00:30:53,340 --> 00:30:56,108
+So the two things we need to    
+fix, is one, keep our things    
+
+712
+00:30:56,176 --> 00:30:58,744
+from flying everywhere, and     
+two, make it more like outer    
+
+713
+00:30:58,812 --> 00:31:00,878
+space, no friction,             
+things like that, okay?         
+
+714
+00:31:00,947 --> 00:31:02,947
+And we're gonna do, fix each    
+of those things, which a,       
+
+715
+00:31:03,015 --> 00:31:06,283
+with a different sub-behavior   
+of our asteroid behavior.       
+
+716
+00:31:06,352 --> 00:31:08,953
+The first one of them           
+flying all over.                
+
+717
+00:31:09,021 --> 00:31:12,789
+For now I'm gonna put a little  
+boundary around my entire       
+
+718
+00:31:12,858 --> 00:31:14,724
+view, my reference view here,   
+so                              
+
+719
+00:31:14,793 --> 00:31:17,193
+the asteroids hit that          
+boundary and bounce back.       
+
+720
+00:31:17,262 --> 00:31:18,193
+So they're all kept in here.    
+
+721
+00:31:18,262 --> 00:31:20,829
+Now that's not gonna work for   
+my game, as you'll see,         
+
+722
+00:31:20,898 --> 00:31:22,964
+because as you're flying        
+through space the asteroids     
+
+723
+00:31:23,033 --> 00:31:25,266
+don't bounce back out of        
+some invisible wall and         
+
+724
+00:31:25,335 --> 00:31:26,067
+come at you.                    
+
+725
+00:31:26,136 --> 00:31:27,768
+They are, the new ones          
+are always coming.              
+
+726
+00:31:27,837 --> 00:31:29,336
+And I will talk about           
+how we're gonna do              
+
+727
+00:31:29,405 --> 00:31:30,303
+that trick in a minute.         
+
+728
+00:31:30,372 --> 00:31:31,837
+But first I just                
+want you to see how             
+
+729
+00:31:31,906 --> 00:31:32,671
+collision behavior works.       
+
+730
+00:31:32,740 --> 00:31:34,306
+So, I'm gonna add a boundary,   
+
+731
+00:31:34,375 --> 00:31:38,610
+which is all the way around     
+this reference view, okay?      
+
+732
+00:31:38,679 --> 00:31:39,611
+So how are we gonna do that?    
+
+733
+00:31:39,680 --> 00:31:41,880
+So, let's go back to            
+our behavior, okay?             
+
+734
+00:31:41,948 --> 00:31:44,716
+To do a collision boundary      
+like that we're just going to   
+
+735
+00:31:44,784 --> 00:31:47,351
+create a private VAR            
+which is going to be a.         
+
+736
+00:31:47,420 --> 00:31:48,352
+And it's going to be            
+
+737
+00:31:50,456 --> 00:31:56,993
+a UICollisionBehavior Now       
+any time we add                 
+
+738
+00:31:57,062 --> 00:32:01,030
+a new behavior, we need to do   
+this add ChildBehavior thing.   
+
+739
+00:32:01,098 --> 00:32:04,466
+And a good place to do that,    
+actually, is in init.           
+
+740
+00:32:04,535 --> 00:32:07,536
+So I'm going to override init,  
+here.                           
+
+741
+00:32:07,605 --> 00:32:08,870
+Call my super init.             
+
+742
+00:32:08,939 --> 00:32:14,175
+And then, I'm going to add      
+this ChildBehavior collider.    
+
+743
+00:32:14,244 --> 00:32:16,544
+And that again means as soon    
+as I get added to an animator,  
+
+744
+00:32:16,613 --> 00:32:18,279
+the collider gets               
+added to an animator.           
+
+745
+00:32:18,348 --> 00:32:19,646
+It will animate as well.        
+
+746
+00:32:19,715 --> 00:32:23,783
+The other thing we need to do   
+is add all of our asteroids to  
+
+747
+00:32:23,852 --> 00:32:25,018
+this behavior.                  
+
+748
+00:32:25,087 --> 00:32:26,719
+Just because we                 
+added ChildHehavior,            
+
+749
+00:32:26,788 --> 00:32:28,787
+it doesn't mean it applies      
+to all of our items.            
+
+750
+00:32:28,856 --> 00:32:30,155
+We might not want that.         
+
+751
+00:32:30,224 --> 00:32:32,157
+We might not want               
+the collision effect.           
+
+752
+00:32:32,225 --> 00:32:34,592
+Later, we're gonna find we      
+don't want our collider         
+
+753
+00:32:34,661 --> 00:32:37,195
+actually to apply to            
+the asteroids for example.      
+
+754
+00:32:37,263 --> 00:32:40,965
+Or to we don't want our         
+collisions to happen with       
+
+755
+00:32:41,033 --> 00:32:42,065
+the ship.                       
+
+756
+00:32:42,134 --> 00:32:43,400
+Okay, that's how                
+we wanna do it.                 
+
+757
+00:32:43,468 --> 00:32:45,335
+So, how do we do this?          
+
+758
+00:32:45,404 --> 00:32:48,071
+We do this by going down here   
+where we add a new asteroid.    
+
+759
+00:32:48,139 --> 00:32:49,404
+Every time we add               
+a new asteroid,                 
+
+760
+00:32:49,473 --> 00:32:50,973
+we're gonna say collider.       
+
+761
+00:32:51,042 --> 00:32:53,208
+addItem[asteroid).              
+
+762
+00:32:53,277 --> 00:32:54,743
+And same thing down here        
+when we're gonna remove.        
+
+763
+00:32:54,812 --> 00:32:58,480
+We're gonna say                 
+collider.removeItem[asteroid).  
+
+764
+00:33:00,416 --> 00:33:02,549
+Okay, so                        
+don't forget those two steps.   
+
+765
+00:33:02,618 --> 00:33:06,954
+In fact, I, let me move this    
+code up here next to the init   
+
+766
+00:33:07,022 --> 00:33:08,187
+so you can see.                 
+
+767
+00:33:08,256 --> 00:33:10,290
+They kind of go together.       
+
+768
+00:33:10,359 --> 00:33:12,357
+These two,                      
+these three things right here.  
+
+769
+00:33:12,426 --> 00:33:14,359
+Adding a ChildBehavior and      
+then adding the item.           
+
+770
+00:33:14,428 --> 00:33:16,161
+We're gonna do that over and    
+over for                        
+
+771
+00:33:16,230 --> 00:33:19,097
+all of our sub-behaviors        
+that we're gonna create.        
+
+772
+00:33:20,333 --> 00:33:22,766
+Okay, now we have this          
+collider but we have to         
+
+773
+00:33:22,835 --> 00:33:25,969
+configure the collider to say   
+what do we collide against.     
+
+774
+00:33:26,038 --> 00:33:27,570
+And remember I want             
+the outer bounds.               
+
+775
+00:33:27,639 --> 00:33:29,705
+I want the asteroids to         
+collide with the outer bounds.  
+
+776
+00:33:29,774 --> 00:33:32,174
+For fun, I'm also gonna make    
+the asteroids collide with      
+
+777
+00:33:32,243 --> 00:33:34,744
+each other, okay,               
+to start here.                  
+
+778
+00:33:34,812 --> 00:33:36,312
+So let's see what               
+that look like.                 
+
+779
+00:33:36,380 --> 00:33:37,645
+I'm gonna do this               
+same trick here.                
+
+780
+00:33:37,714 --> 00:33:39,881
+Private, private lazy var.      
+
+781
+00:33:39,949 --> 00:33:43,118
+And I'm actually going to       
+initialize this collider using  
+
+782
+00:33:43,186 --> 00:33:44,451
+a closure.                      
+
+783
+00:33:44,520 --> 00:33:46,721
+So to CollisionBehavior.        
+
+784
+00:33:47,656 --> 00:33:48,555
+And it's gonna =,               
+
+785
+00:33:48,624 --> 00:33:55,127
+whoops = a closure that I'm     
+going to execute, okay.         
+
+786
+00:33:55,196 --> 00:33:58,731
+And inside of this closure,     
+I'm gonna do this so            
+
+787
+00:33:58,800 --> 00:34:01,300
+I'm gonna let behavior = that.  
+
+788
+00:34:03,571 --> 00:34:06,438
+And I'm gonna return            
+that behavior, okay.            
+
+789
+00:34:06,506 --> 00:34:08,939
+So this is a way you can        
+initialize a var and            
+
+790
+00:34:09,008 --> 00:34:12,009
+do some initialization          
+stuff here right in line.       
+
+791
+00:34:12,077 --> 00:34:15,045
+Okay, so what do I want my      
+CollisionBehavior to do?        
+
+792
+00:34:15,114 --> 00:34:20,883
+So I want it to have            
+a certain mode of collision,    
+
+793
+00:34:20,952 --> 00:34:22,252
+so let's talk about that.       
+
+794
+00:34:22,320 --> 00:34:25,421
+CollisionMode is                
+a var in behavior.              
+
+795
+00:34:25,489 --> 00:34:28,690
+And there's three different     
+ways you can set this,          
+
+796
+00:34:28,759 --> 00:34:31,260
+one is collides                 
+with everything.                
+
+797
+00:34:31,328 --> 00:34:33,562
+So everything means everything  
+collides with everything.       
+
+798
+00:34:33,630 --> 00:34:35,896
+Boundaries, items               
+like asteroids,                 
+
+799
+00:34:35,965 --> 00:34:37,398
+they're all colliding           
+with each other.                
+
+800
+00:34:37,467 --> 00:34:38,332
+That's what we're gonna do.     
+
+801
+00:34:38,400 --> 00:34:40,734
+But the other options would     
+have been boundaries,           
+
+802
+00:34:40,803 --> 00:34:42,736
+which means it only             
+collides with boundaries.       
+
+803
+00:34:42,805 --> 00:34:44,504
+And we're gonna talk about      
+how to add boundaries,          
+
+804
+00:34:44,573 --> 00:34:46,706
+bezier paths as boundaries.     
+
+805
+00:34:46,774 --> 00:34:50,309
+Or you can have only the items  
+colliding with each other       
+
+806
+00:34:50,378 --> 00:34:51,910
+like just the asteroids         
+colliding with each other, but  
+
+807
+00:34:51,979 --> 00:34:53,511
+they don't collide              
+with any boundaries.            
+
+808
+00:34:53,580 --> 00:34:56,381
+Well, here, I'm gonna have it   
+collide both with boundaries    
+
+809
+00:34:56,450 --> 00:34:59,517
+and with the each other.        
+
+810
+00:34:59,586 --> 00:35:00,117
+with the boundary.              
+
+811
+00:35:00,186 --> 00:35:01,451
+Now, how about that boundary?   
+
+812
+00:35:01,520 --> 00:35:03,720
+I want a boundary that's        
+all the way around              
+
+813
+00:35:03,789 --> 00:35:04,787
+my reference view.              
+
+814
+00:35:04,856 --> 00:35:06,922
+It turns out there's            
+a var to just do that           
+
+815
+00:35:06,991 --> 00:35:08,090
+automatically called            
+
+816
+00:35:08,159 --> 00:35:10,459
+translateReferenceBoundIntoBo-  
+undary.                         
+
+817
+00:35:10,528 --> 00:35:13,094
+If you set that to true,        
+it'll add a boundary.           
+
+818
+00:35:13,163 --> 00:35:15,163
+Which is a rectangle around     
+your reference view.            
+
+819
+00:35:15,232 --> 00:35:18,032
+Now we're later going to show   
+how we can put boundaries in    
+
+820
+00:35:18,101 --> 00:35:19,600
+by specifying paths.            
+
+821
+00:35:19,669 --> 00:35:22,569
+Like the ship, the shields      
+of the ship is a path.          
+
+822
+00:35:22,638 --> 00:35:25,839
+But for now we'll just          
+do this simple one here.        
+
+823
+00:35:25,907 --> 00:35:27,640
+Now, I don't have to do         
+anything anywhere else in       
+
+824
+00:35:27,709 --> 00:35:28,474
+my code.                        
+
+825
+00:35:28,543 --> 00:35:31,143
+I can, since I've set up        
+this asteroid behavior          
+
+826
+00:35:31,212 --> 00:35:33,345
+I can just keep adding          
+behaviors to it and             
+
+827
+00:35:33,413 --> 00:35:34,846
+it'll just apply                
+to the asteroids.               
+
+828
+00:35:34,915 --> 00:35:37,115
+I don't have to go back to my   
+controller and do anything.     
+
+829
+00:35:37,183 --> 00:35:39,717
+Okay, my controller already     
+has created an animator and     
+
+830
+00:35:39,786 --> 00:35:41,518
+added this behavior.            
+
+831
+00:35:41,587 --> 00:35:42,986
+So there's nothing more to do.  
+
+832
+00:35:43,055 --> 00:35:44,788
+So let's go see what            
+this looks like.                
+
+833
+00:35:44,857 --> 00:35:47,824
+Now our asteroids that we know  
+won't fly off into oblivion,    
+
+834
+00:35:47,892 --> 00:35:48,758
+at least.                       
+
+835
+00:35:52,563 --> 00:35:53,428
+Okay, there they are.           
+
+836
+00:35:53,497 --> 00:35:55,964
+And you can see they're         
+bouncing off each other, and    
+
+837
+00:35:56,033 --> 00:35:58,132
+they're hitting the walls, and  
+
+838
+00:35:58,201 --> 00:36:00,034
+they're also slowing way,       
+way down.                       
+
+839
+00:36:00,103 --> 00:36:04,104
+Okay, that's that bad friction  
+thing going on there.           
+
+840
+00:36:04,173 --> 00:36:05,672
+All right, so how are we        
+gonna fix the friction?         
+
+841
+00:36:05,741 --> 00:36:08,942
+We want these things to just    
+kinda keep bouncing around and  
+
+842
+00:36:09,011 --> 00:36:09,709
+not stop like this.             
+
+843
+00:36:09,777 --> 00:36:12,411
+We want them to feel like       
+they're in outer space.         
+
+844
+00:36:12,480 --> 00:36:15,347
+Well, to do friction we         
+actually need a different kind  
+
+845
+00:36:15,416 --> 00:36:18,317
+of behavior which is called     
+the dynamic item behavior.      
+
+846
+00:36:18,386 --> 00:36:21,620
+And a dynamic item behavior,    
+talked about it in the slides,  
+
+847
+00:36:21,689 --> 00:36:23,188
+is kinda of a meta behavior.    
+
+848
+00:36:23,257 --> 00:36:26,390
+It's gonna describe the         
+physics of how these things     
+
+849
+00:36:26,459 --> 00:36:30,594
+work when other behaviors act   
+on them, like colliders, okay?  
+
+850
+00:36:30,663 --> 00:36:32,663
+So when the collider hits,      
+we're gonna be                  
+
+851
+00:36:32,732 --> 00:36:35,899
+able to describe how bouncy     
+the hit is, for example.        
+
+852
+00:36:35,968 --> 00:36:37,534
+And we get to say whether       
+there's friction, and           
+
+853
+00:36:37,603 --> 00:36:39,402
+whether they slow down,         
+and things like that.           
+
+854
+00:36:39,471 --> 00:36:43,038
+So let's create one of those,   
+private lazy var.               
+
+855
+00:36:43,107 --> 00:36:46,041
+I'm gonna call mine physics,    
+because that's what it kind of  
+
+856
+00:36:46,109 --> 00:36:49,444
+feels like, you're specifying   
+the physics of your             
+
+857
+00:36:49,513 --> 00:36:50,846
+all your asteroid reviews.      
+
+858
+00:36:50,914 --> 00:36:55,883
+And it's a UIDynamicItem        
+behavior.                       
+
+859
+00:36:55,952 --> 00:36:58,485
+Don't get confused              
+here between dynamic            
+
+860
+00:36:58,554 --> 00:37:00,954
+item behavior and               
+dynamic behavior.               
+
+861
+00:37:01,023 --> 00:37:03,390
+Okay, dynamic behavior          
+is the root of all,             
+
+862
+00:37:03,458 --> 00:37:06,326
+it's the su, super              
+colossal of all behaviors.      
+
+863
+00:37:06,395 --> 00:37:07,927
+This is a specific              
+kind of behavior.               
+
+864
+00:37:07,996 --> 00:37:10,429
+Just like a collision           
+behavior is a behavior, so      
+
+865
+00:37:10,497 --> 00:37:12,230
+is a dynamic item behavior,     
+okay.                           
+
+866
+00:37:12,299 --> 00:37:14,633
+The people confuse those        
+two cuz they're so              
+
+867
+00:37:14,701 --> 00:37:15,600
+similar in name.                
+
+868
+00:37:15,669 --> 00:37:20,671
+But I'm going to do the same    
+thing here, let behavior        
+
+869
+00:37:20,740 --> 00:37:24,542
+= a UIDynamicItemBehavior       
+Behavior.                       
+
+870
+00:37:24,610 --> 00:37:28,879
+And I'm gonna return that       
+behavior out of this closure.   
+
+871
+00:37:28,948 --> 00:37:30,214
+Everyone understand, right?     
+
+872
+00:37:30,282 --> 00:37:32,749
+I got a closure here,           
+I'm returning this behavior     
+
+873
+00:37:32,818 --> 00:37:35,385
+out of that enclo, clo, that    
+closure, which I'm executing.   
+
+874
+00:37:35,453 --> 00:37:37,419
+And then to assigning           
+it to this.                     
+
+875
+00:37:37,488 --> 00:37:38,521
+And just doing it lazy.         
+
+876
+00:37:40,190 --> 00:37:41,656
+All right, so                   
+what kind of things can we set  
+
+877
+00:37:41,724 --> 00:37:44,225
+in this physics like,           
+in this meta behavior?          
+
+878
+00:37:44,294 --> 00:37:47,494
+Well, what are things           
+we want here?                   
+
+879
+00:37:47,563 --> 00:37:51,465
+Let's try the elasticity        
+have about.                     
+
+880
+00:37:51,533 --> 00:37:56,302
+So elasticity says how when     
+two things collide for          
+
+881
+00:37:56,371 --> 00:38:00,040
+example, how much               
+energy does it lose.            
+
+882
+00:38:00,108 --> 00:38:03,309
+If you have an elasticity       
+of one, that means              
+
+883
+00:38:03,378 --> 00:38:06,312
+they don't lose any energy,     
+at least no linear energy.      
+
+884
+00:38:06,381 --> 00:38:10,015
+They, if they spin, then they   
+might lose linear energy and    
+
+885
+00:38:10,084 --> 00:38:12,685
+gain angular velocity, but      
+
+886
+00:38:12,753 --> 00:38:15,153
+elasticity means that           
+they're bouncy, right?          
+
+887
+00:38:15,222 --> 00:38:18,322
+Now an elasticity of two        
+would mean they gain energy.    
+
+888
+00:38:18,391 --> 00:38:19,056
+So they bounce off.             
+
+889
+00:38:19,125 --> 00:38:20,591
+Now they're going               
+faster coming out.              
+
+890
+00:38:20,659 --> 00:38:23,159
+And a 0.5 would mean            
+they'd be slowing down.         
+
+891
+00:38:23,228 --> 00:38:26,563
+So one, since we are gonna      
+allow our asteroids to spin,    
+
+892
+00:38:26,631 --> 00:38:29,466
+our asteroids will kinda        
+generally slow down.            
+
+893
+00:38:29,534 --> 00:38:32,068
+But over a much longer time     
+than they were before.          
+
+894
+00:38:32,137 --> 00:38:33,769
+Cuz our elasticity before was,  
+I'm gonna,                      
+
+895
+00:38:33,838 --> 00:38:36,871
+I don't know what the default   
+is but it's very low.           
+
+896
+00:38:36,940 --> 00:38:38,773
+Speaking of spinning,           
+let's make it so                
+
+897
+00:38:38,842 --> 00:38:40,674
+that our asteroids can spin.    
+
+898
+00:38:40,743 --> 00:38:43,010
+And we can just do              
+that here by saying             
+
+899
+00:38:43,078 --> 00:38:44,745
+it allowsRotationTrue.          
+
+900
+00:38:44,814 --> 00:38:48,415
+So that says when there's a     
+collision, the views can spin,  
+
+901
+00:38:48,483 --> 00:38:50,650
+okay, just like                 
+an asteroid would.              
+
+902
+00:38:50,719 --> 00:38:52,418
+Of course we want that.         
+
+903
+00:38:52,487 --> 00:38:53,553
+How about friction?             
+
+904
+00:38:53,621 --> 00:38:56,522
+Let's set our friction to 0,    
+okay?                           
+
+905
+00:38:56,591 --> 00:38:59,958
+No friction.                    
+
+906
+00:39:00,026 --> 00:39:02,159
+across the tabletop,            
+they're in outer space.         
+
+907
+00:39:02,228 --> 00:39:05,229
+And there's also a similar      
+one here called resistance,     
+
+908
+00:39:05,298 --> 00:39:07,364
+which I'm also                  
+gonna set to zero.              
+
+909
+00:39:07,433 --> 00:39:10,033
+Resistance is how               
+much items resist               
+
+910
+00:39:10,102 --> 00:39:12,035
+the forces being                
+applied to them.                
+
+911
+00:39:12,104 --> 00:39:13,737
+So if you set a very            
+high resistance,                
+
+912
+00:39:14,939 --> 00:39:16,038
+then they'll resist it a lot.   
+
+913
+00:39:16,107 --> 00:39:17,205
+Now, why do you                 
+want resistance?                
+
+914
+00:39:17,274 --> 00:39:19,674
+Well, you might have a gravity  
+field or something like that,   
+
+915
+00:39:19,743 --> 00:39:22,177
+where some things are getting   
+pulled fully by gravity but     
+
+916
+00:39:22,245 --> 00:39:23,278
+other things are not.           
+
+917
+00:39:23,346 --> 00:39:25,179
+Like they're a balloon or       
+something, I don't know.        
+
+918
+00:39:25,247 --> 00:39:26,847
+They, they float more or        
+whatever.                       
+
+919
+00:39:26,916 --> 00:39:28,848
+So you'll be able to            
+control their resistance.       
+
+920
+00:39:28,917 --> 00:39:30,984
+You can put them in             
+the same behavior,              
+
+921
+00:39:31,053 --> 00:39:33,886
+like same gravity behavior,     
+same collision behavior.        
+
+922
+00:39:33,955 --> 00:39:37,924
+But you can control how much    
+they resist, those things.      
+
+923
+00:39:37,992 --> 00:39:39,925
+All right, so                   
+we don't want any resistance,   
+
+924
+00:39:39,994 --> 00:39:42,161
+we want when they collide,      
+full impact.                    
+
+925
+00:39:42,229 --> 00:39:44,963
+So this physics behavior,       
+just like the collider,         
+
+926
+00:39:45,031 --> 00:39:49,500
+has to be added as a child,     
+and it has to be, and           
+
+927
+00:39:49,569 --> 00:39:51,235
+the items all have              
+to be added to it.              
+
+928
+00:39:51,304 --> 00:39:56,173
+So physics And                  
+we need to addItem here.        
+
+929
+00:39:58,310 --> 00:40:00,810
+Physic, oops, asteroids,        
+sorry, asteroid.                
+
+930
+00:40:00,879 --> 00:40:02,945
+This is physics over here.      
+
+931
+00:40:03,014 --> 00:40:05,481
+Physics, and same thing here.   
+
+932
+00:40:07,051 --> 00:40:09,284
+Eh, physics.                    
+
+933
+00:40:09,352 --> 00:40:11,452
+You'll often forget to do       
+this stuff, right here.         
+
+934
+00:40:11,521 --> 00:40:15,256
+You'll add nice behavior like,  
+you forgot to do this.          
+
+935
+00:40:15,324 --> 00:40:16,056
+And you want to apply,          
+
+936
+00:40:16,125 --> 00:40:18,758
+of course, because              
+until you add the items         
+
+937
+00:40:18,827 --> 00:40:19,760
+unless it's a child             
+behavior and                    
+
+938
+00:40:19,829 --> 00:40:21,928
+then that behavior              
+won't affect anything.          
+
+939
+00:40:21,997 --> 00:40:23,930
+All right.                      
+So, let's see what this does,   
+
+940
+00:40:23,999 --> 00:40:26,499
+see if this pictures            
+are problem by adding this      
+
+941
+00:40:26,567 --> 00:40:27,299
+behavior.                       
+
+942
+00:40:29,103 --> 00:40:30,167
+Okay, yeah.                     
+
+943
+00:40:30,236 --> 00:40:33,371
+See, they're not slowing down,  
+I mean, they are actually, but  
+
+944
+00:40:33,439 --> 00:40:36,173
+they're slowing down so slowly  
+you can't really tell and       
+
+945
+00:40:36,242 --> 00:40:37,441
+they're all bouncing            
+at each other, and              
+
+946
+00:40:37,509 --> 00:40:40,544
+spinning and some of them       
+are going quite fast actually.  
+
+947
+00:40:41,947 --> 00:40:43,145
+Got it?                         
+
+948
+00:40:43,214 --> 00:40:46,315
+Okay, now this would not        
+be a good asteroid game,        
+
+949
+00:40:46,384 --> 00:40:48,950
+because you, the ship would     
+be getting crushed in the,      
+
+950
+00:40:49,019 --> 00:40:49,951
+this asteroid field.            
+
+951
+00:40:50,020 --> 00:40:51,385
+But we're going to put          
+our ship in here anyway.        
+
+952
+00:40:51,454 --> 00:40:53,254
+We're going to put our          
+ship right in the middle.       
+
+953
+00:40:53,323 --> 00:40:55,056
+So, I can show you              
+how the shield work.            
+
+954
+00:40:55,125 --> 00:40:58,425
+And our ship is supposed        
+to get battered here.           
+
+955
+00:40:58,494 --> 00:40:59,326
+So, let's add our ship.         
+
+956
+00:40:59,394 --> 00:41:02,128
+So, I'm going to go             
+back to our controller.         
+
+957
+00:41:02,197 --> 00:41:04,697
+Here in same place where I      
+initialize my asteroidfield     
+
+958
+00:41:04,766 --> 00:41:06,498
+and create my                   
+asteroidfield right there.      
+
+959
+00:41:06,567 --> 00:41:08,467
+I'm gonna create my             
+ship here as well.              
+
+960
+00:41:09,503 --> 00:41:11,536
+How big is my ship              
+gonna be web?                   
+
+961
+00:41:11,605 --> 00:41:15,005
+I want my ship to kinda be a    
+good size relative to the size  
+
+962
+00:41:15,074 --> 00:41:18,075
+of my view bound,               
+right, myself.view.             
+
+963
+00:41:18,144 --> 00:41:20,310
+So, I set a constant for that,  
+which I think one fifth.        
+
+964
+00:41:20,379 --> 00:41:24,747
+So, I gonna make my ship be     
+one fifth of the shorter side   
+
+965
+00:41:24,816 --> 00:41:26,166
+Whichever side is shorter,      
+I'll make my ship one fifth     
+
+966
+00:41:26,167 --> 00:41:27,517
+of my balance.                  
+
+967
+00:41:27,585 --> 00:41:30,719
+the size, so I'll say           
+let ship size equal my          
+
+968
+00:41:30,788 --> 00:41:35,557
+view.bounds.size.minEdge Just   
+another one of the things I     
+
+969
+00:41:35,626 --> 00:41:40,528
+added in my, core graphics      
+thing, so I'll take whatever    
+
+970
+00:41:40,597 --> 00:41:43,064
+the minEdge is and I'm gonna    
+multiply it by a constant,      
+
+971
+00:41:43,133 --> 00:41:47,435
+which is the                    
+shipSizeToMinBoundsEdgeRatio.   
+
+972
+00:41:47,504 --> 00:41:50,204
+And let's go take a look and    
+then what I set to,             
+
+973
+00:41:50,273 --> 00:41:52,739
+here is my constant,            
+I set it yeah, to one fifth.    
+
+974
+00:41:52,808 --> 00:41:53,540
+So, to one fifth.               
+
+975
+00:41:53,609 --> 00:41:55,775
+So, the ship is one fifth       
+the size of the minimum age.    
+
+976
+00:41:55,844 --> 00:41:58,244
+Which seems like                
+that's pretty good.             
+
+977
+00:41:58,312 --> 00:42:01,246
+You know balanced size,         
+my ship might be a little       
+
+978
+00:42:01,315 --> 00:42:03,549
+too big and I pass, so I might  
+wanna play with that but yeah,  
+
+979
+00:42:03,618 --> 00:42:06,218
+we'll see So                    
+I now got the ship size.        
+
+980
+00:42:06,286 --> 00:42:07,452
+Now I just need to              
+create the ship.                
+
+981
+00:42:07,520 --> 00:42:08,787
+And it's just a view.           
+
+982
+00:42:08,855 --> 00:42:10,554
+So, let's go up here and        
+create a var for it,            
+
+983
+00:42:10,623 --> 00:42:12,222
+just like we have for           
+our asteroid field.             
+
+984
+00:42:12,291 --> 00:42:13,656
+Let's do var ship.              
+
+985
+00:42:13,725 --> 00:42:15,558
+We'll call it                   
+a spaceship view.               
+
+986
+00:42:15,627 --> 00:42:18,094
+And we'll also make             
+that be implicitly              
+
+987
+00:42:18,163 --> 00:42:18,861
+unwrapped and optional,         
+
+988
+00:42:18,930 --> 00:42:21,329
+because we're gonna initialize  
+it right here at the start.     
+
+989
+00:42:21,398 --> 00:42:24,466
+And so we'll say our ship       
+
+990
+00:42:24,535 --> 00:42:29,137
+equals [SOUND]                  
+spaceship view Frame.           
+
+991
+00:42:29,206 --> 00:42:30,972
+We'll do a CGrect here.         
+
+992
+00:42:31,041 --> 00:42:34,542
+Let's have our                  
+ship be centered                
+
+993
+00:42:34,610 --> 00:42:36,443
+on the asteroid field.          
+
+994
+00:42:36,512 --> 00:42:38,746
+We're going to put it           
+in the asteroid fields.         
+
+995
+00:42:40,515 --> 00:42:41,948
+Center.                         
+
+996
+00:42:42,017 --> 00:42:43,449
+Of course, we know the size.    
+
+997
+00:42:44,518 --> 00:42:46,451
+Is the shipSize.                
+
+998
+00:42:46,520 --> 00:42:48,019
+And actually,                   
+I want it to be a square, so    
+
+999
+00:42:48,088 --> 00:42:50,121
+I'm gonna use a different       
+CGRect thing that I have,       
+
+1000
+00:42:50,190 --> 00:42:54,658
+which is squareCenteredAt,      
+I think I called it.            
+
+1001
+00:42:54,727 --> 00:42:57,961
+If I typed that right,          
+yeah, squareCenteredAt.         
+
+1002
+00:42:58,030 --> 00:43:00,597
+So ship is gonna be a square,   
+centered at the asteroid        
+
+1003
+00:43:00,666 --> 00:43:02,331
+field's center, right in the    
+middle of the asteroid field.   
+
+1004
+00:43:02,400 --> 00:43:04,066
+And it's gonna be               
+the shipSize that we            
+
+1005
+00:43:04,135 --> 00:43:05,368
+calculated right there.         
+
+1006
+00:43:05,437 --> 00:43:08,970
+So, let's add This              
+ship to our subviews.           
+
+1007
+00:43:09,039 --> 00:43:12,441
+Now notice that I've added      
+the ship to my self.view as     
+
+1008
+00:43:12,509 --> 00:43:15,110
+a subview, so it's a sibling    
+of my asteroid field,           
+
+1009
+00:43:15,179 --> 00:43:17,144
+it's not a subview of           
+my asteroid field.              
+
+1010
+00:43:17,213 --> 00:43:18,045
+My asteroid field really,       
+
+1011
+00:43:18,114 --> 00:43:20,280
+the only subviews it has        
+is all those asteroids.         
+
+1012
+00:43:20,349 --> 00:43:25,952
+But I decided I'm gonna put my  
+ship at the same level there.   
+
+1013
+00:43:26,021 --> 00:43:27,554
+And what's it                   
+complaining about here.         
+
+1014
+00:43:29,657 --> 00:43:34,059
+Sorry, see here at sorry,       
+yes, view.addSubview.           
+
+1015
+00:43:34,128 --> 00:43:35,561
+We've gotta add it              
+to our self.view.               
+
+1016
+00:43:35,629 --> 00:43:39,664
+We're in our controller         
+right now, not view, okay?      
+
+1017
+00:43:39,733 --> 00:43:40,965
+So there's our ship.            
+
+1018
+00:43:41,034 --> 00:43:43,201
+Let's go take a look at our     
+ship actually right now.        
+
+1019
+00:43:43,270 --> 00:43:44,836
+There's no collision's          
+gonna happen.                   
+
+1020
+00:43:44,904 --> 00:43:48,071
+Our ship is not involved        
+in the asteroid behavior.       
+
+1021
+00:43:48,140 --> 00:43:49,372
+right?                          
+We haven't added our ship       
+
+1022
+00:43:49,441 --> 00:43:51,274
+to the asteroid                 
+behavior in any way.            
+
+1023
+00:43:51,343 --> 00:43:53,409
+So there's our ship,            
+it's pointing at zero,          
+
+1024
+00:43:53,478 --> 00:43:56,745
+which is off to the right, and  
+the asteroids are just flying.  
+
+1025
+00:43:56,814 --> 00:43:59,247
+They're behind it, because the  
+ship was added to the sub-view  
+
+1026
+00:43:59,316 --> 00:44:00,883
+later, so it's in front.        
+
+1027
+00:44:00,951 --> 00:44:02,550
+Right, we know that our         
+subviews are in order from      
+
+1028
+00:44:02,619 --> 00:44:03,918
+back to front.                  
+
+1029
+00:44:03,987 --> 00:44:04,652
+Okay.                           
+
+1030
+00:44:04,721 --> 00:44:07,988
+So, now we want these           
+asteroids to collide            
+
+1031
+00:44:08,057 --> 00:44:09,289
+with our ship's shield.         
+
+1032
+00:44:09,358 --> 00:44:12,058
+The ship's shield is just a     
+round circle around our ship,   
+
+1033
+00:44:12,127 --> 00:44:13,592
+and we want it to               
+collide there.                  
+
+1034
+00:44:13,661 --> 00:44:16,896
+So, we're going to have to add  
+more to our collision behavior  
+
+1035
+00:44:16,965 --> 00:44:19,598
+code over here in behavior.     
+
+1036
+00:44:19,667 --> 00:44:22,367
+Because right now, all we're    
+doing is having everything      
+
+1037
+00:44:22,436 --> 00:44:23,935
+collide with everything, and    
+
+1038
+00:44:24,004 --> 00:44:26,570
+the reference bound is          
+our only bound here.            
+
+1039
+00:44:26,639 --> 00:44:29,940
+So, I'm going to do this        
+by adding another Func,         
+
+1040
+00:44:30,009 --> 00:44:33,243
+just give me a public func      
+called setBoundary and          
+
+1041
+00:44:33,312 --> 00:44:37,714
+it's gonna let you set          
+a UIBezierPath, [COUGH] as      
+
+1042
+00:44:37,783 --> 00:44:41,484
+a boundary and it's gonna       
+be able to have a name so       
+
+1043
+00:44:41,553 --> 00:44:42,952
+we can refer to it later.       
+
+1044
+00:44:43,020 --> 00:44:45,687
+You will see why we need        
+to be able to do that and       
+
+1045
+00:44:45,756 --> 00:44:49,125
+then another cool thing,        
+how about if we add a handler.  
+
+1046
+00:44:49,193 --> 00:44:51,493
+So that if there's a collision  
+with that boundary,             
+
+1047
+00:44:51,562 --> 00:44:53,628
+we call our handler for you.    
+
+1048
+00:44:53,696 --> 00:44:55,629
+Wouldn't that be cool to        
+use closures in that way?       
+
+1049
+00:44:55,698 --> 00:44:57,264
+So let's do that handler.       
+
+1050
+00:44:57,333 --> 00:44:58,732
+What's the type of              
+handler gonna be?               
+
+1051
+00:44:58,801 --> 00:45:01,968
+Well, it's just gonna be        
+takes a void, returns void,     
+
+1052
+00:45:02,037 --> 00:45:04,170
+in other words doesn't have     
+any arguments or whatever.      
+
+1053
+00:45:04,239 --> 00:45:06,739
+And I'm actually gonna          
+make it optional as well.       
+
+1054
+00:45:06,807 --> 00:45:07,940
+Som you don't have              
+to do a handler.                
+
+1055
+00:45:08,009 --> 00:45:09,141
+You can put a boundary, and     
+
+1056
+00:45:09,210 --> 00:45:10,442
+the collisions will             
+happen with it.                 
+
+1057
+00:45:10,511 --> 00:45:11,476
+But if you don't                
+put a handler,                  
+
+1058
+00:45:11,545 --> 00:45:13,811
+then no one ever                
+finds out about it.             
+
+1059
+00:45:13,880 --> 00:45:15,446
+Right.                          
+
+1060
+00:45:15,515 --> 00:45:18,282
+I have too many parentheses     
+in here maybe, that one?        
+
+1061
+00:45:20,418 --> 00:45:22,051
+Yeah, all right?                
+
+1062
+00:45:22,120 --> 00:45:22,719
+So, we got that.                
+So,                             
+
+1063
+00:45:22,787 --> 00:45:25,321
+how are we gonna implement      
+this setBoundary?               
+
+1064
+00:45:25,390 --> 00:45:28,690
+Well, first we've got to add    
+this boundary to the collider.  
+
+1065
+00:45:28,759 --> 00:45:31,159
+Right, we've got this           
+collider behavior up here.      
+
+1066
+00:45:31,228 --> 00:45:34,563
+We need to add this new         
+boundary, this BezierPath as    
+
+1067
+00:45:34,631 --> 00:45:36,464
+an area that is going           
+to collide again, and           
+
+1068
+00:45:36,533 --> 00:45:38,266
+that, against,                  
+and that's easy.                
+
+1069
+00:45:38,334 --> 00:45:41,835
+Collider.addBoundary.           
+
+1070
+00:45:41,904 --> 00:45:43,604
+The boundaries, when you add    
+them, need an identifier.       
+
+1071
+00:45:43,605 --> 00:45:45,305
+Okay?                           
+
+1072
+00:45:45,374 --> 00:45:46,739
+Okay?                           
+Which makes sense because when  
+
+1073
+00:45:46,808 --> 00:45:47,740
+the collide,                    
+collision happens,              
+
+1074
+00:45:47,809 --> 00:45:49,575
+you gotta say which             
+boundary you collided with.     
+
+1075
+00:45:49,644 --> 00:45:50,909
+So, we'll use name for that.    
+
+1076
+00:45:50,978 --> 00:45:54,278
+But remember this has           
+to be an NScopying.             
+
+1077
+00:45:54,347 --> 00:45:57,715
+So, we gonna say as             
+in a string here,               
+
+1078
+00:45:57,784 --> 00:46:00,284
+cuz in a string minus           
+number are both                 
+
+1079
+00:46:00,353 --> 00:46:02,886
+an escaping that we             
+can use right here.             
+
+1080
+00:46:02,955 --> 00:46:05,822
+And that works because          
+string can always be as         
+
+1081
+00:46:05,891 --> 00:46:07,190
+a string and back.              
+
+1082
+00:46:07,259 --> 00:46:09,425
+Okay it's special               
+the relationship between        
+
+1083
+00:46:09,493 --> 00:46:11,193
+those two case.                 
+
+1084
+00:46:11,262 --> 00:46:14,463
+And okay we are gonna           
+add the path here.              
+
+1085
+00:46:14,532 --> 00:46:15,097
+Okay?                           
+
+1086
+00:46:16,800 --> 00:46:19,066
+Now, the only                   
+thing about this,               
+
+1087
+00:46:19,135 --> 00:46:21,502
+though, what if someone         
+sets the Boundary again?        
+
+1088
+00:46:21,570 --> 00:46:24,705
+Then we pretty much want        
+to remove the old one, so       
+
+1089
+00:46:24,774 --> 00:46:29,276
+I'm also gonna say              
+collider.removeBoundary,        
+
+1090
+00:46:29,344 --> 00:46:33,613
+the name as NSString to         
+get it out of there.            
+
+1091
+00:46:33,681 --> 00:46:34,481
+Not removeItem.                 
+
+1092
+00:46:36,684 --> 00:46:39,184
+Remove boundary                 
+with identifier.                
+
+1093
+00:46:39,253 --> 00:46:42,921
+Name as NNString.               
+
+1094
+00:46:42,989 --> 00:46:43,689
+Got that?                       
+
+1095
+00:46:45,258 --> 00:46:47,024
+Okay, so, I'm going to          
+remove the boundary, and        
+
+1096
+00:46:47,093 --> 00:46:48,525
+I'm only going to               
+add the boundary,               
+
+1097
+00:46:48,594 --> 00:46:50,661
+actually, if you                
+specify a path.                 
+
+1098
+00:46:50,729 --> 00:46:53,530
+So, I'm going to make           
+this path be optional.          
+
+1099
+00:46:53,599 --> 00:46:55,532
+And then we'll                  
+unwrap it there.                
+
+1100
+00:46:55,600 --> 00:46:59,969
+I'm only gonna say if           
+the path does not equal nil,    
+
+1101
+00:47:00,038 --> 00:47:01,103
+then add the boundary back.     
+
+1102
+00:47:01,172 --> 00:47:02,838
+That way if you say,            
+set the boundary nil,           
+
+1103
+00:47:02,907 --> 00:47:05,907
+it will get of                  
+the boundary of that name.      
+
+1104
+00:47:05,976 --> 00:47:08,142
+So it's a way of kind of        
+having one method to add and    
+
+1105
+00:47:08,211 --> 00:47:09,510
+remove boundaries.              
+
+1106
+00:47:10,480 --> 00:47:11,879
+Now what about this handler?    
+
+1107
+00:47:11,947 --> 00:47:14,714
+We've gotta somehow hold onto   
+this handler so that when       
+
+1108
+00:47:14,783 --> 00:47:17,950
+a collision happens later,      
+we can call this handler.       
+
+1109
+00:47:18,019 --> 00:47:20,619
+So whoever created this         
+boundary can find out           
+
+1110
+00:47:20,688 --> 00:47:21,954
+you had a collision there.      
+
+1111
+00:47:22,022 --> 00:47:25,023
+So, I'm going to create         
+a little private var here       
+
+1112
+00:47:25,092 --> 00:47:28,626
+called collision handlers and   
+it's going to be a dictionary.  
+
+1113
+00:47:28,695 --> 00:47:32,263
+And that dictionary's keys are  
+going to be strings and what    
+
+1114
+00:47:32,332 --> 00:47:35,633
+do you think the var or the     
+value of this is going to be?   
+
+1115
+00:47:39,237 --> 00:47:41,805
+How about a function?           
+
+1116
+00:47:44,676 --> 00:47:47,143
+Okay, so I'm just creating      
+a dictionary whose keys         
+
+1117
+00:47:47,212 --> 00:47:48,810
+are going to be                 
+the names here, and             
+
+1118
+00:47:48,879 --> 00:47:52,080
+whose values are gonna          
+be the handlers.                
+
+1119
+00:47:52,149 --> 00:47:55,817
+Okay, and I know it taken you   
+guys a lot, some of you a lot   
+
+1120
+00:47:55,886 --> 00:47:58,353
+to un, really get comfortable   
+with this idea that functions   
+
+1121
+00:47:58,421 --> 00:47:59,254
+are just types.                 
+
+1122
+00:47:59,322 --> 00:48:03,091
+It's no different then          
+a string right there, okay?     
+
+1123
+00:48:03,159 --> 00:48:05,592
+And so we can have              
+a dictionary full of them.      
+
+1124
+00:48:05,661 --> 00:48:09,029
+It's very, very nice and        
+easy to use.                    
+
+1125
+00:48:09,098 --> 00:48:11,931
+So we wanna do the same thing   
+here to remove the old one.     
+
+1126
+00:48:12,000 --> 00:48:14,900
+So I'm gonna say my             
+collisionHandlers of this       
+
+1127
+00:48:14,969 --> 00:48:16,068
+[name] = nil.                   
+
+1128
+00:48:16,137 --> 00:48:18,771
+So I'm removing any             
+old handler for this.           
+
+1129
+00:48:18,840 --> 00:48:21,540
+And when I add it in here,      
+there's a new path,             
+
+1130
+00:48:21,608 --> 00:48:24,609
+I'm just gonna say              
+collisionHandlers[name] =       
+
+1131
+00:48:24,678 --> 00:48:25,610
+the handler.                    
+
+1132
+00:48:27,647 --> 00:48:30,046
+Okay, so now I'm keeping        
+track of those handlers for     
+
+1133
+00:48:30,115 --> 00:48:31,581
+each of these                   
+named boundaries.               
+
+1134
+00:48:31,650 --> 00:48:33,383
+Right, these boundaries         
+have names, and                 
+
+1135
+00:48:33,451 --> 00:48:34,483
+I'm keeping track               
+of the handler.                 
+
+1136
+00:48:34,552 --> 00:48:38,487
+So how do I call this handler   
+when a collision occurs?        
+
+1137
+00:48:38,556 --> 00:48:40,156
+Well, we need to find           
+out about collision.            
+
+1138
+00:48:40,224 --> 00:48:43,424
+So here's how we find           
+out about collisions.           
+
+1139
+00:48:43,493 --> 00:48:44,759
+We do it with a delegate.       
+
+1140
+00:48:44,828 --> 00:48:47,561
+You see, it's the delegant      
+of our collision behavior.      
+
+1141
+00:48:47,630 --> 00:48:50,164
+So we're gonna go up            
+here to our behavior,           
+
+1142
+00:48:50,232 --> 00:48:54,034
+collision behavior, and say     
+that it's collisionDelegate.    
+
+1143
+00:48:54,103 --> 00:48:54,968
+It's not called delegate.       
+
+1144
+00:48:55,037 --> 00:48:56,869
+It's called collisionDelegate.  
+
+1145
+00:48:56,938 --> 00:48:59,205
+Equals, and                     
+I'm gonna have it be self.      
+
+1146
+00:48:59,274 --> 00:49:01,808
+So this asteroid behavior       
+itself is going to get          
+
+1147
+00:49:01,876 --> 00:49:04,142
+the notification that           
+a collision occurred.           
+
+1148
+00:49:04,211 --> 00:49:05,010
+So that means I have to be      
+
+1149
+00:49:05,079 --> 00:49:09,447
+a UICollisionBehaviorDelegate   
+to do that.                     
+
+1150
+00:49:09,516 --> 00:49:10,782
+All the methods in              
+there are optional.             
+
+1151
+00:49:10,850 --> 00:49:14,252
+So I successfully               
+implemented that delegate.      
+
+1152
+00:49:14,320 --> 00:49:17,221
+But, of course, I want to       
+implement one of the methods.   
+
+1153
+00:49:17,289 --> 00:49:18,655
+And so                          
+let's look at some of them.     
+
+1154
+00:49:18,724 --> 00:49:20,290
+So I'm just typing              
+collision here so               
+
+1155
+00:49:20,359 --> 00:49:21,324
+I can see what they are.        
+
+1156
+00:49:21,392 --> 00:49:23,392
+You can see there's             
+four of them.                   
+
+1157
+00:49:23,461 --> 00:49:26,828
+There's begin and end contact,  
+you see, begin and              
+
+1158
+00:49:26,897 --> 00:49:29,464
+end contact for                 
+boundaries or items.            
+
+1159
+00:49:29,533 --> 00:49:31,299
+So I can find out if            
+the items are colliding or      
+
+1160
+00:49:31,367 --> 00:49:33,667
+I can find out if items are     
+colliding with the boundary.    
+
+1161
+00:49:33,736 --> 00:49:36,737
+And of course I want            
+the boundary collisions, and    
+
+1162
+00:49:36,806 --> 00:49:39,106
+I pretty much want the began.   
+
+1163
+00:49:39,174 --> 00:49:44,010
+So when the contact starts,     
+okay, impact first happens,     
+
+1164
+00:49:44,079 --> 00:49:45,145
+I wanna find out                
+about it then.                  
+
+1165
+00:49:45,214 --> 00:49:48,548
+So I'm gonna pick this one      
+beganContactFor item with       
+
+1166
+00:49:48,616 --> 00:49:49,281
+boundary.                       
+
+1167
+00:49:49,350 --> 00:49:52,818
+Let's look at the arguments     
+here more clearly so            
+
+1168
+00:49:52,887 --> 00:49:54,219
+you can see them.               
+
+1169
+00:50:00,560 --> 00:50:04,962
+All right, so this is the       
+collision delegate method that  
+
+1170
+00:50:05,031 --> 00:50:08,232
+gets sent when a item,          
+an AsteroidView,                
+
+1171
+00:50:08,301 --> 00:50:10,501
+impacts a boundary.             
+
+1172
+00:50:10,570 --> 00:50:11,968
+Like the ship's boundary, or    
+
+1173
+00:50:12,037 --> 00:50:14,337
+even the reference              
+bound's boundary.               
+
+1174
+00:50:14,406 --> 00:50:17,373
+And it even tells you at what   
+point in the reference view     
+
+1175
+00:50:17,442 --> 00:50:20,209
+the two things touched, okay?   
+
+1176
+00:50:20,278 --> 00:50:21,694
+Now, we could even have had     
+our handler take that CGPoint   
+
+1177
+00:50:21,695 --> 00:50:23,111
+Which is kinda nice.            
+
+1178
+00:50:23,179 --> 00:50:23,611
+as an argument.                 
+
+1179
+00:50:23,680 --> 00:50:24,645
+We could've told                
+the person that,                
+
+1180
+00:50:24,714 --> 00:50:27,481
+but, eh, we kinda have          
+a dumb handler here.            
+
+1181
+00:50:27,549 --> 00:50:30,417
+It could be better, but we'll   
+leave it with what it is.       
+
+1182
+00:50:30,486 --> 00:50:31,885
+All right, so                   
+what do wanna do here?          
+
+1183
+00:50:31,953 --> 00:50:34,087
+Here we wanna see               
+if first of all,                
+
+1184
+00:50:34,156 --> 00:50:36,522
+I wanna get the name            
+from that identifier.           
+
+1185
+00:50:36,590 --> 00:50:40,059
+So if I can let the name equal  
+that boundary identifier,       
+
+1186
+00:50:40,127 --> 00:50:41,794
+this thing right here.          
+
+1187
+00:50:41,863 --> 00:50:44,763
+And it's an NSCopying,          
+and it's also optional.         
+
+1188
+00:50:44,832 --> 00:50:47,065
+So I'm gonna say, as String.    
+
+1189
+00:50:47,133 --> 00:50:49,234
+So if I can get that            
+identifier as a string,         
+
+1190
+00:50:49,302 --> 00:50:51,769
+which it needs to be if I,      
+if it's a handler here.         
+
+1191
+00:50:51,837 --> 00:50:53,937
+The, there might be other       
+identifiers in there for        
+
+1192
+00:50:54,006 --> 00:50:55,439
+other boundaries                
+that you create.                
+
+1193
+00:50:55,507 --> 00:50:58,308
+But it's gotta be a string      
+if we're gonna do this.         
+
+1194
+00:50:58,376 --> 00:51:02,678
+And then also I'm gonna         
+let the handler equal our       
+
+1195
+00:51:02,747 --> 00:51:06,849
+collisionHandlers, sub          
+that name, okay?                
+
+1196
+00:51:07,851 --> 00:51:09,150
+So if I can do                  
+those two things,               
+
+1197
+00:51:09,219 --> 00:51:12,821
+I can get the handler for       
+that collision.                 
+
+1198
+00:51:12,890 --> 00:51:14,488
+And what am I gonna do here?    
+
+1199
+00:51:14,557 --> 00:51:15,323
+Call the handler.               
+
+1200
+00:51:18,560 --> 00:51:21,160
+All right, this is              
+a little bit sophisticated      
+
+1201
+00:51:21,229 --> 00:51:22,528
+implementation here.            
+
+1202
+00:51:22,597 --> 00:51:24,930
+I'm using closures and          
+all that stuff.                 
+
+1203
+00:51:24,999 --> 00:51:29,034
+Hopefully you,                  
+you're understanding it.        
+
+1204
+00:51:29,103 --> 00:51:32,838
+If you're not, you know, make   
+sure you follow up with Piazza  
+
+1205
+00:51:32,906 --> 00:51:36,174
+or with the TAs in office       
+hours or whatever.              
+
+1206
+00:51:36,243 --> 00:51:38,543
+But this is the kind of thing,  
+this is the kind of coding you  
+
+1207
+00:51:38,612 --> 00:51:40,044
+want to be able to              
+do in Swift, okay?              
+
+1208
+00:51:40,113 --> 00:51:43,947
+Using closures to cause         
+things like this to happen.     
+
+1209
+00:51:44,016 --> 00:51:46,584
+So this is the public           
+method right here that we       
+
+1210
+00:51:46,652 --> 00:51:48,318
+are going to use                
+in our controller.              
+
+1211
+00:51:48,387 --> 00:51:51,654
+We need to set a boundary,      
+which is the ship's shield.     
+
+1212
+00:51:51,723 --> 00:51:54,724
+And in the handler we're        
+gonna do whatever we do when    
+
+1213
+00:51:54,793 --> 00:51:56,458
+an asteroid gets our shape.     
+
+1214
+00:51:56,527 --> 00:51:57,326
+So let's go to that.            
+
+1215
+00:51:57,395 --> 00:51:58,961
+Let's go back to our            
+controller here.                
+
+1216
+00:51:59,030 --> 00:52:01,062
+Now, where do we wanna          
+set that boundary?              
+
+1217
+00:52:01,131 --> 00:52:02,664
+Now this is kind                
+of interesting.                 
+
+1218
+00:52:02,732 --> 00:52:04,331
+You would think we              
+might wanna set                 
+
+1219
+00:52:04,400 --> 00:52:06,366
+it here in initializeIfNeeded.  
+
+1220
+00:52:06,435 --> 00:52:08,201
+But it turns out we             
+can't do that, or               
+
+1221
+00:52:08,270 --> 00:52:09,870
+at least not only there.        
+
+1222
+00:52:09,938 --> 00:52:10,836
+And why is that?                
+
+1223
+00:52:10,905 --> 00:52:13,139
+That's because this             
+boundary we're ta,              
+
+1224
+00:52:13,208 --> 00:52:14,272
+setting it in the behavior,     
+
+1225
+00:52:14,341 --> 00:52:16,775
+it has to be in the reference   
+view coordinate system.         
+
+1226
+00:52:16,843 --> 00:52:19,944
+And that boundary is            
+going to change position        
+
+1227
+00:52:20,013 --> 00:52:23,280
+when we rotate our device,      
+okay?                           
+
+1228
+00:52:23,349 --> 00:52:24,582
+You know that when you          
+rotate your device,             
+
+1229
+00:52:24,650 --> 00:52:25,549
+your bounds change and          
+
+1230
+00:52:25,617 --> 00:52:27,884
+the center is in                
+a different place.              
+
+1231
+00:52:27,953 --> 00:52:29,819
+Okay, coordinates of            
+it are different.               
+
+1232
+00:52:29,887 --> 00:52:31,120
+So that's why we can,           
+
+1233
+00:52:31,189 --> 00:52:34,423
+we need to reposition our ship  
+every time our bounds change.   
+
+1234
+00:52:34,491 --> 00:52:36,525
+So we'll do in                  
+initializeIfNeeded.             
+
+1235
+00:52:36,594 --> 00:52:38,226
+But we're also gonna            
+have to do it in                
+
+1236
+00:52:38,295 --> 00:52:40,595
+viewDidLayoutSubviews, okay?    
+
+1237
+00:52:40,664 --> 00:52:42,597
+So let's create a private       
+func to do that.                
+
+1238
+00:52:42,666 --> 00:52:44,799
+We'll call it repositionShip,   
+okay?                           
+
+1239
+00:52:44,867 --> 00:52:47,534
+This is every time              
+the ship changes position.      
+
+1240
+00:52:47,603 --> 00:52:50,336
+And we can only do this if      
+we have an asteroid field,      
+
+1241
+00:52:50,405 --> 00:52:52,605
+because we put the ship in the  
+middle of the asteroid field.   
+
+1242
+00:52:52,674 --> 00:52:53,706
+So if we have no                
+asteroid field,                 
+
+1243
+00:52:53,775 --> 00:52:55,475
+we have no idea                 
+where to put it.                
+
+1244
+00:52:55,543 --> 00:52:58,610
+So if the asteroid field        
+does not equal nil,             
+
+1245
+00:52:58,679 --> 00:53:00,211
+then we can                     
+reposition the ship.            
+
+1246
+00:53:00,280 --> 00:53:03,648
+And we know that                
+the ship itself,                
+
+1247
+00:53:03,717 --> 00:53:08,453
+its center is                   
+the asteroidField's center.     
+
+1248
+00:53:12,025 --> 00:53:14,258
+We don't even need that, it's   
+implicitly unwrapped, right?    
+
+1249
+00:53:14,326 --> 00:53:17,060
+So the asteroidField.center,    
+right?                          
+
+1250
+00:53:17,129 --> 00:53:18,962
+So that's positioning           
+the ship, but                   
+
+1251
+00:53:19,030 --> 00:53:22,365
+now we need to add this         
+boundary around the ship.       
+
+1252
+00:53:22,434 --> 00:53:25,100
+So we're gonna tell             
+our asteroidBehavior            
+
+1253
+00:53:25,169 --> 00:53:26,768
+to set a boundary.              
+
+1254
+00:53:26,837 --> 00:53:29,037
+Now, the boundary is            
+the boundary of the shield.     
+
+1255
+00:53:29,106 --> 00:53:31,773
+And I told you ship has         
+this nice method called         
+
+1256
+00:53:31,841 --> 00:53:34,241
+shieldBoundary, okay?           
+
+1257
+00:53:34,310 --> 00:53:35,776
+And shieldBoundary even takes   
+
+1258
+00:53:35,845 --> 00:53:37,278
+the coordinate                  
+system you want.                
+
+1259
+00:53:37,346 --> 00:53:39,179
+So we want this to be           
+in our reference view,          
+
+1260
+00:53:39,248 --> 00:53:40,981
+which is the asteroidField.     
+
+1261
+00:53:41,049 --> 00:53:43,983
+So that's gonna give us back    
+a Bezier path that describes    
+
+1262
+00:53:44,052 --> 00:53:46,552
+the shield in                   
+the asteroidField coordinate    
+
+1263
+00:53:46,621 --> 00:53:47,286
+system.                         
+
+1264
+00:53:47,354 --> 00:53:48,953
+We can call this                
+whatever we want.               
+
+1265
+00:53:49,022 --> 00:53:50,121
+I have a constant for it.       
+
+1266
+00:53:50,190 --> 00:53:53,625
+I'm gonna call it               
+shipBoundaryName.               
+
+1267
+00:53:53,693 --> 00:53:58,228
+Oops, not shipSize, do they,    
+no, shipBoundaryName.           
+
+1268
+00:53:58,297 --> 00:53:59,530
+So that's                       
+the shipBoundaryName.           
+
+1269
+00:53:59,599 --> 00:54:03,099
+And we'll use the trailing      
+closure syntax here.            
+
+1270
+00:54:03,168 --> 00:54:04,201
+Let's put this on here.         
+
+1271
+00:54:04,269 --> 00:54:07,404
+So let's go back here, and      
+you all know about that.        
+
+1272
+00:54:09,574 --> 00:54:14,043
+And it has no argument, so      
+we really don't need that.      
+
+1273
+00:54:14,111 --> 00:54:17,279
+Although I do wanna do          
+weak self here, okay?           
+
+1274
+00:54:17,347 --> 00:54:20,749
+Because this is probably not    
+going to be a problem where     
+
+1275
+00:54:20,818 --> 00:54:24,352
+somehow this animator           
+gets all rogue and              
+
+1276
+00:54:24,420 --> 00:54:26,821
+[LAUGH] starts animating with   
+my controller being gone.       
+
+1277
+00:54:26,890 --> 00:54:30,957
+But probably I don't            
+need weak self here,            
+
+1278
+00:54:31,026 --> 00:54:32,059
+almost certainly I don't.       
+
+1279
+00:54:32,127 --> 00:54:34,761
+I can almost certainly          
+do unowned self here.           
+
+1280
+00:54:34,830 --> 00:54:38,198
+But I'm gonna go ahead and      
+do it anyway just for fun.      
+
+1281
+00:54:39,400 --> 00:54:41,666
+And so we have weak self here.  
+
+1282
+00:54:41,735 --> 00:54:44,736
+We, we,                         
+this is setting the boundary.   
+
+1283
+00:54:44,805 --> 00:54:47,639
+This our handler that           
+happens when it collides.       
+
+1284
+00:54:47,707 --> 00:54:50,342
+So what are we gonna do         
+when an asteroid hits us?       
+
+1285
+00:54:50,410 --> 00:54:53,877
+Well, I'm gonna have            
+auto shield activation.         
+
+1286
+00:54:53,946 --> 00:54:58,982
+So I'm going to say,            
+ship.shieldIsActive = true.     
+
+1287
+00:54:59,051 --> 00:55:01,050
+If we have a collision,         
+bam, I'm gonna do it.           
+
+1288
+00:55:01,119 --> 00:55:03,987
+However, I'm only gonna         
+activate that shield for        
+
+1289
+00:55:04,056 --> 00:55:05,955
+one second, okay?               
+
+1290
+00:55:06,024 --> 00:55:08,524
+So if you have                  
+an asteroid hit you, yeah,      
+
+1291
+00:55:08,593 --> 00:55:09,725
+I'll put your shield up.        
+
+1292
+00:55:09,794 --> 00:55:13,362
+But it's going back down and    
+if another one hits you,        
+
+1293
+00:55:13,431 --> 00:55:14,429
+it's gonna go back up again.    
+
+1294
+00:55:14,498 --> 00:55:16,964
+So how am I gonna make          
+this shield go back to be       
+
+1295
+00:55:17,033 --> 00:55:18,165
+inactive in one second?         
+
+1296
+00:55:18,234 --> 00:55:19,733
+Well, I'm gonna use a timer.    
+
+1297
+00:55:19,802 --> 00:55:21,869
+Okay, scheduled, and            
+I have a constant for it.       
+
+1298
+00:55:21,937 --> 00:55:24,971
+It's called my                  
+Shield.duration, and            
+
+1299
+00:55:25,040 --> 00:55:26,973
+it does not repeat.             
+
+1300
+00:55:27,042 --> 00:55:28,607
+And it does this block,         
+
+1301
+00:55:28,676 --> 00:55:31,844
+which is just going to          
+turn that thing back off.       
+
+1302
+00:55:31,912 --> 00:55:35,981
+We'll use trailing closure      
+syntax for this one too.        
+
+1303
+00:55:37,550 --> 00:55:42,219
+And so we're just going         
+to ship.shieldIsAc,             
+
+1304
+00:55:42,288 --> 00:55:45,623
+oops, IsActive = false, okay?   
+
+1305
+00:55:45,692 --> 00:55:47,991
+So here I'm just turning        
+this shield on and back off.    
+
+1306
+00:55:48,060 --> 00:55:50,093
+Now, of course, ship right      
+here is not defined.            
+
+1307
+00:55:50,162 --> 00:55:51,595
+It needs to be self.ship, so    
+
+1308
+00:55:51,663 --> 00:55:55,798
+I'm gonna say If I can let      
+ship equal self?.ship, because  
+
+1309
+00:55:55,867 --> 00:55:58,901
+ship itself is weak right       
+there, then I will do this.     
+
+1310
+00:56:00,804 --> 00:56:05,974
+Now, if I didn't                
+charge any fee for              
+
+1311
+00:56:06,043 --> 00:56:08,210
+activating your                 
+ship's shields,                 
+
+1312
+00:56:08,278 --> 00:56:10,244
+then the shields would just     
+constantly come on and          
+
+1313
+00:56:10,313 --> 00:56:11,578
+this wouldn't be                
+much of a game.                 
+
+1314
+00:56:11,647 --> 00:56:14,882
+Okay, so                        
+I'm going to charge you some,   
+
+1315
+00:56:14,950 --> 00:56:17,083
+some power of your              
+shield to do it.                
+
+1316
+00:56:17,152 --> 00:56:22,455
+So, I'm gonna say ship dot      
+ship level, minus equals,       
+
+1317
+00:56:22,524 --> 00:56:23,422
+and I have a constant for       
+that,                           
+
+1318
+00:56:23,491 --> 00:56:28,127
+too, which is shield            
+activation cost, okay.          
+
+1319
+00:56:28,196 --> 00:56:29,861
+So, I'm going to                
+deplete your shield             
+
+1320
+00:56:29,930 --> 00:56:31,063
+every time I turn it on.        
+
+1321
+00:56:32,632 --> 00:56:33,864
+Everybody got this code?        
+
+1322
+00:56:33,933 --> 00:56:36,033
+This is super simple,           
+obviously if we had a real      
+
+1323
+00:56:36,102 --> 00:56:39,469
+game, we'd probably have        
+shield regeneration and         
+
+1324
+00:56:39,538 --> 00:56:41,472
+maybe the user would have to    
+turn their shield on when       
+
+1325
+00:56:41,540 --> 00:56:43,439
+they realize they               
+are about to crash into or      
+
+1326
+00:56:43,508 --> 00:56:47,143
+whatever but I'm just trying    
+to make this pretty simple and  
+
+1327
+00:56:47,211 --> 00:56:48,111
+straight forward here.          
+
+1328
+00:56:50,214 --> 00:56:52,881
+Okay the other thing            
+I'm gonna do is                 
+
+1329
+00:56:52,950 --> 00:56:55,349
+I'm gonna have                  
+auto resurrection.              
+
+1330
+00:56:55,418 --> 00:56:57,051
+So, if your ship                
+gets destroyed,                 
+
+1331
+00:56:57,120 --> 00:56:58,219
+I'm gonna bring                 
+you right back.                 
+
+1332
+00:56:58,287 --> 00:57:01,922
+Okay, again cuz it's better     
+for our purposes here.          
+
+1333
+00:57:01,990 --> 00:57:04,724
+So, I'm just gonna say when     
+this shield gets turned back    
+
+1334
+00:57:04,793 --> 00:57:09,463
+off, if the ship's shield       
+level has dropped down          
+
+1335
+00:57:09,531 --> 00:57:11,463
+to zero, in other words         
+it's been destroyed.            
+
+1336
+00:57:11,532 --> 00:57:14,900
+Then, I'm gonna set the ship's  
+field level back to 100.        
+
+1337
+00:57:14,969 --> 00:57:18,471
+Okay, full shields, boom,       
+it comes back to life.          
+
+1338
+00:57:19,673 --> 00:57:22,440
+Now this reposition ship        
+
+1339
+00:57:22,508 --> 00:57:25,710
+obviously needs to happen here  
+in viewDidLayoutSubviews.       
+
+1340
+00:57:27,246 --> 00:57:30,047
+And I'm also gonna position     
+the ship right after I create   
+
+1341
+00:57:30,116 --> 00:57:33,850
+my ship up here, so             
+that the boundary gets          
+
+1342
+00:57:33,918 --> 00:57:36,652
+created right at the beginning  
+when it first initialized.      
+
+1343
+00:57:36,721 --> 00:57:41,357
+Now one thing about adding      
+this ship, is, well, we'll,     
+
+1344
+00:57:41,426 --> 00:57:42,357
+we'll see if it happens.        
+
+1345
+00:57:42,426 --> 00:57:43,959
+If it doesn't happen I'll come  
+back and do it, but there's a   
+
+1346
+00:57:44,028 --> 00:57:45,994
+little bit of a problem adding  
+this ship with this shield.     
+
+1347
+00:57:46,063 --> 00:57:48,229
+This might see, hopefully,      
+cross your fingers,             
+
+1348
+00:57:48,298 --> 00:57:49,464
+we'll see the problem here.     
+
+1349
+00:57:50,867 --> 00:57:52,232
+Now we didn't see it, but, so   
+
+1350
+00:57:52,301 --> 00:57:54,500
+our ship got destroyed          
+really quick here.              
+
+1351
+00:57:54,569 --> 00:57:57,370
+Why did our ship get            
+destroyed so fast?              
+
+1352
+00:57:57,439 --> 00:57:59,372
+Shouldn't get destroyed so      
+fast.                           
+
+1353
+00:57:59,440 --> 00:58:00,773
+Hold on a second here.          
+
+1354
+00:58:03,444 --> 00:58:07,079
+Okay, if our shield is          
+up from a previous hit,         
+
+1355
+00:58:07,148 --> 00:58:08,914
+we won't let ourselves          
+be damaged again.               
+
+1356
+00:58:08,982 --> 00:58:13,485
+So here I'm gonna say If the    
+ship's shield is not active.    
+
+1357
+00:58:16,188 --> 00:58:18,555
+Okay, if the shield is          
+not currently active.           
+
+1358
+00:58:18,624 --> 00:58:19,756
+Then I'll do all this stuff.    
+
+1359
+00:58:19,825 --> 00:58:21,691
+But if the shield is            
+currently active.               
+
+1360
+00:58:21,760 --> 00:58:23,426
+Then I'll just ignore the hit.  
+
+1361
+00:58:23,495 --> 00:58:24,260
+Okay.                           
+
+1362
+00:58:24,328 --> 00:58:26,362
+So when we turn that            
+shield on for a second,         
+
+1363
+00:58:26,430 --> 00:58:30,432
+we get a second's worth of      
+survival [LAUGH] in our ship.   
+
+1364
+00:58:34,337 --> 00:58:37,372
+Okay, so now we see, see how    
+when this shield comes on,      
+
+1365
+00:58:37,440 --> 00:58:40,507
+it kind of is thicker, is       
+bolder and then goes thinner?   
+
+1366
+00:58:40,576 --> 00:58:42,509
+And you can see it going        
+smaller and smaller and         
+
+1367
+00:58:42,578 --> 00:58:43,710
+then the ship explodes, right?  
+
+1368
+00:58:43,778 --> 00:58:46,346
+And then,                       
+we auto resurrect, okay?        
+
+1369
+00:58:46,415 --> 00:58:48,047
+So again, this would not        
+be a very good game [LAUGH]     
+
+1370
+00:58:48,116 --> 00:58:50,817
+because we've got all these     
+asteroids kind of banging in.   
+
+1371
+00:58:50,885 --> 00:58:54,253
+Now one other thing that I      
+was hoping would happen.        
+
+1372
+00:58:54,322 --> 00:58:56,421
+But it didn't, so               
+I'll have to explain.           
+
+1373
+00:58:56,490 --> 00:58:58,623
+What could happen is when       
+we put our ship here,           
+
+1374
+00:58:58,692 --> 00:59:01,359
+what happens if there's         
+an asteroid inside the shield?  
+
+1375
+00:59:03,228 --> 00:59:04,294
+It's gonna be stock there       
+forever, bouncing around, and   
+
+1376
+00:59:04,295 --> 00:59:05,361
+Okay?                           
+
+1377
+00:59:05,431 --> 00:59:06,362
+wrecked the ship.               
+
+1378
+00:59:06,431 --> 00:59:09,833
+So, for the purpose of my       
+game, I'm not going to allow    
+
+1379
+00:59:09,901 --> 00:59:12,267
+an asteroid to be created       
+where my ship is.               
+
+1380
+00:59:12,336 --> 00:59:15,737
+And that's why,                 
+this ad asteroid up here.       
+
+1381
+00:59:15,806 --> 00:59:16,704
+Add asteroid counts.            
+
+1382
+00:59:16,773 --> 00:59:20,542
+It has another argument         
+which is exclusion zone.        
+
+1383
+00:59:20,611 --> 00:59:22,610
+Okay, the exclusion zone        
+is just an area where           
+
+1384
+00:59:22,678 --> 00:59:24,979
+don't put an asteroid here      
+because my ship is going to be  
+
+1385
+00:59:25,047 --> 00:59:26,346
+here basically.                 
+
+1386
+00:59:26,415 --> 00:59:27,480
+And so,                         
+what am I going to put there?   
+
+1387
+00:59:27,549 --> 00:59:29,282
+I'm gonna put                   
+the ship dock invert.           
+
+1388
+00:59:29,351 --> 00:59:35,421
+The ship's bounds to            
+Gastroville, that's right.      
+
+1389
+00:59:35,490 --> 00:59:38,757
+Yes, okay, so sorry, I'm        
+using this convert to method,   
+
+1390
+00:59:38,826 --> 00:59:42,027
+the same one we used,           
+before in a previous demo.      
+
+1391
+00:59:42,096 --> 00:59:43,695
+I'm just converting             
+the ships balance,              
+
+1392
+00:59:43,764 --> 00:59:45,930
+its rectangle from its          
+coordinate system,              
+
+1393
+00:59:45,999 --> 00:59:48,132
+to the asteroid field's         
+coordinate system.              
+
+1394
+00:59:48,201 --> 00:59:49,700
+So that'll keep                 
+us from getting                 
+
+1395
+00:59:49,769 --> 00:59:50,800
+an asteroid crater              
+in the middle.                  
+
+1396
+00:59:50,869 --> 00:59:53,904
+All right, so let's make our    
+game a little bit better,       
+
+1397
+00:59:53,972 --> 00:59:56,305
+because right now, the          
+asteroid is just killing us.    
+
+1398
+00:59:56,374 --> 00:59:58,140
+They're constantly              
+banging our shield.             
+
+1399
+00:59:58,209 --> 00:59:59,575
+So instead,                     
+what we're going to do,         
+
+1400
+00:59:59,644 --> 01:00:02,477
+instead of having               
+the reference bounds collider   
+
+1401
+01:00:02,546 --> 01:00:04,079
+that's keeping all              
+the asteroids in,               
+
+1402
+01:00:04,148 --> 01:00:06,648
+we're going to let              
+the asteroids fly away.         
+
+1403
+01:00:06,717 --> 01:00:08,649
+But if they fly outside         
+of our asteroid field,          
+
+1404
+01:00:08,718 --> 01:00:09,950
+we're going to                  
+pick them up and                
+
+1405
+01:00:10,019 --> 01:00:12,352
+move them around to             
+the other side, okay.           
+
+1406
+01:00:12,421 --> 01:00:14,988
+So, we're gonna create an       
+infinite space by doing wrap    
+
+1407
+01:00:15,056 --> 01:00:17,691
+around okay, I don't think      
+that's how the universe         
+
+1408
+01:00:17,760 --> 01:00:19,792
+actually works,                 
+although we don't know.         
+
+1409
+01:00:19,861 --> 01:00:21,426
+But that's how our universe     
+is gonna work, okay.            
+
+1410
+01:00:21,495 --> 01:00:23,662
+Anytime something goes off      
+one side we're gonna wrap it    
+
+1411
+01:00:23,731 --> 01:00:24,329
+around to the other side.       
+
+1412
+01:00:24,398 --> 01:00:26,097
+And anytime it goes off         
+the top we'll wrap it around    
+
+1413
+01:00:26,166 --> 01:00:27,966
+the bottom,                     
+kinda like table view does.     
+
+1414
+01:00:28,034 --> 01:00:30,968
+Now we will only have 20        
+asteroids in our field but      
+
+1415
+01:00:31,037 --> 01:00:32,736
+we'd constantly                 
+be reusing them.                
+
+1416
+01:00:32,804 --> 01:00:34,370
+And the other thing I'm         
+gonna do is I'm gonna make      
+
+1417
+01:00:34,439 --> 01:00:37,374
+my asteroid field much bigger,  
+that way the user won't notice  
+
+1418
+01:00:37,442 --> 01:00:40,676
+that I'm doing this wrap        
+around thing, okay.             
+
+1419
+01:00:40,745 --> 01:00:43,278
+So the two things will,         
+it's a good, easy,              
+
+1420
+01:00:43,347 --> 01:00:46,915
+quick simulation of having      
+an infinite asteroid field.     
+
+1421
+01:00:46,984 --> 01:00:48,249
+So, how are we                  
+gonna make it so                
+
+1422
+01:00:48,318 --> 01:00:51,186
+these things wrap around,       
+okay?                           
+
+1423
+01:00:51,255 --> 01:00:53,321
+I don't wanna,                  
+it's just math to do that,      
+
+1424
+01:00:53,390 --> 01:00:54,855
+so I don't wanna type           
+too much of it in.              
+
+1425
+01:00:54,924 --> 01:00:57,257
+So, I actually                  
+have a little pre               
+
+1426
+01:00:57,326 --> 01:01:00,093
+typed in thing here to          
+show you that, recapture.       
+
+1427
+01:01:00,162 --> 01:01:01,161
+So here it is right here.       
+
+1428
+01:01:02,163 --> 01:01:03,162
+Okay, this is all the code      
+
+1429
+01:01:03,231 --> 01:01:05,064
+that does that recapturing,     
+recapturing.                    
+
+1430
+01:01:05,133 --> 01:01:07,165
+The basis of it is a timer.     
+
+1431
+01:01:07,234 --> 01:01:10,201
+So every half a second or       
+so, I'm just gonna look and     
+
+1432
+01:01:10,270 --> 01:01:13,738
+find all of the asteroids       
+that are outside and            
+
+1433
+01:01:13,806 --> 01:01:15,906
+move them around                
+to the other side.              
+
+1434
+01:01:15,975 --> 01:01:16,874
+Okay, very, very simple.        
+
+1435
+01:01:16,942 --> 01:01:18,108
+So, add this timer and          
+
+1436
+01:01:18,176 --> 01:01:19,810
+look that you can see           
+this code right here.           
+
+1437
+01:01:19,878 --> 01:01:21,978
+It's just looking for           
+ones that are outside.          
+
+1438
+01:01:22,046 --> 01:01:26,015
+It's using mod basically,       
+to, modulo, to move them        
+
+1439
+01:01:26,084 --> 01:01:29,018
+back to the other side, either  
+horizontally or vertically.     
+
+1440
+01:01:29,087 --> 01:01:31,252
+And notice here,                
+very importantly though,        
+
+1441
+01:01:31,321 --> 01:01:35,323
+when I move them, I tell        
+the animator that I move them.  
+
+1442
+01:01:35,391 --> 01:01:37,158
+Because if I don't,             
+let's say I have an asteroid,   
+
+1443
+01:01:37,227 --> 01:01:39,961
+flies off the field right       
+here and I'm moving back.       
+
+1444
+01:01:40,029 --> 01:01:41,896
+The next time your              
+animator ticks,                 
+
+1445
+01:01:41,964 --> 01:01:42,962
+it's gonna move it              
+back over here.                 
+
+1446
+01:01:43,031 --> 01:01:43,896
+You see?                        
+
+1447
+01:01:43,965 --> 01:01:46,399
+Because the animator he's       
+got a hold of that asteroid.    
+
+1448
+01:01:46,468 --> 01:01:48,100
+So, if I'm gonna move           
+the asteroid over here,         
+
+1449
+01:01:48,169 --> 01:01:49,568
+I have to let                   
+the animator know.              
+
+1450
+01:01:49,636 --> 01:01:51,203
+So that's why we have           
+this line right here,           
+
+1451
+01:01:51,271 --> 01:01:54,239
+updateItem(usingCurrentState),  
+which tells the animator,       
+
+1452
+01:01:54,307 --> 01:01:56,608
+here's the new position of      
+this thing, keep animating it,  
+
+1453
+01:01:56,676 --> 01:01:59,610
+from here, okay?                
+
+1454
+01:01:59,678 --> 01:02:01,879
+Understand that very important  
+line of code right there?       
+
+1455
+01:02:03,415 --> 01:02:06,950
+I'm also keeping count of the   
+recaptures, because it might    
+
+1456
+01:02:07,019 --> 01:02:09,485
+actually be a good score for    
+my asteroid game.               
+
+1457
+01:02:09,554 --> 01:02:10,719
+Because the faster I go,        
+
+1458
+01:02:10,788 --> 01:02:12,988
+the more recapturing is going   
+to be happening, of course,     
+
+1459
+01:02:13,057 --> 01:02:15,357
+the more risk I'm taking        
+of smashing into something,     
+
+1460
+01:02:15,426 --> 01:02:17,725
+too, so                         
+it's kinda good risk reward.    
+
+1461
+01:02:17,794 --> 01:02:20,295
+Maybe I could use recapture     
+count as part of or             
+
+1462
+01:02:20,364 --> 01:02:23,864
+all of my scoring mechanism or  
+whatever.                       
+
+1463
+01:02:23,933 --> 01:02:26,600
+So, I have this start           
+recapturing wayward asterisks   
+
+1464
+01:02:26,668 --> 01:02:27,367
+that starts the timer.          
+
+1465
+01:02:27,436 --> 01:02:29,535
+And then,                       
+stop which stops the timer.     
+
+1466
+01:02:29,604 --> 01:02:30,904
+So, when should I stop and      
+
+1467
+01:02:30,972 --> 01:02:34,206
+start this timer that's doing   
+this wrap around business?      
+
+1468
+01:02:34,275 --> 01:02:37,510
+Well obviously,                 
+if I add an asteroid.           
+
+1469
+01:02:37,578 --> 01:02:40,445
+I need to start recapturing,    
+okay?                           
+
+1470
+01:02:40,514 --> 01:02:42,614
+Because once an asteroid        
+enters the field,               
+
+1471
+01:02:42,683 --> 01:02:45,483
+we've got to start capturing    
+otherwise, it will get loose.   
+
+1472
+01:02:45,552 --> 01:02:47,785
+And similarly,                  
+when I remove an asteroid,      
+
+1473
+01:02:47,853 --> 01:02:54,057
+if I remove the last asteroid,  
+so if asteroids was empty,      
+
+1474
+01:02:54,126 --> 01:02:56,427
+then I would want to            
+stop recapturing.               
+
+1475
+01:02:57,629 --> 01:02:59,662
+But that's not all, okay.       
+
+1476
+01:02:59,730 --> 01:03:03,198
+There's one other time that     
+we want to stop this timer.     
+
+1477
+01:03:03,267 --> 01:03:07,069
+That's if the animation stops,  
+okay.                           
+
+1478
+01:03:07,137 --> 01:03:10,639
+If the animator stops           
+animating his asteroids off     
+
+1479
+01:03:10,708 --> 01:03:13,574
+in the universe,                
+then we stop recapturing them.  
+
+1480
+01:03:13,643 --> 01:03:14,942
+We don't want our               
+timer running then.             
+
+1481
+01:03:15,011 --> 01:03:19,013
+So how do we find out that      
+our animator stopped?           
+
+1482
+01:03:19,082 --> 01:03:23,283
+Well, this is his method that   
+is implemented in the super     
+
+1483
+01:03:23,352 --> 01:03:25,852
+class here, our super           
+class UI dynamic behavior       
+
+1484
+01:03:25,921 --> 01:03:29,822
+called willMove to and          
+it tells you when you've moved  
+
+1485
+01:03:29,891 --> 01:03:32,425
+to a new dynamic animator       
+including when you've moved     
+
+1486
+01:03:32,494 --> 01:03:35,761
+out of all dynamic              
+animators by moving to nil.     
+
+1487
+01:03:35,830 --> 01:03:36,661
+Dynamic animators.              
+
+1488
+01:03:36,730 --> 01:03:41,733
+So, let's go down here and      
+put that, maybe right here.     
+
+1489
+01:03:41,802 --> 01:03:44,902
+So it's called willMove to,     
+you can see it it right there.  
+
+1490
+01:03:44,971 --> 01:03:47,405
+And I'm gonna call super,       
+because I inherit it.           
+
+1491
+01:03:47,473 --> 01:03:49,006
+I don't know that my            
+superclass actually does        
+
+1492
+01:03:49,075 --> 01:03:50,775
+anything, but I don't           
+wanna take any chances.         
+
+1493
+01:03:52,278 --> 01:03:54,577
+So here,                        
+what am I gonna do in here.     
+
+1494
+01:03:54,646 --> 01:04:00,183
+Well, if the dynamic animature  
+that I was added to is nil.     
+
+1495
+01:04:00,251 --> 01:04:01,650
+That means that                 
+animation stopped.              
+
+1496
+01:04:01,719 --> 01:04:06,221
+So, I'm gonna stop recapturing  
+wayward asteroids, however,     
+
+1497
+01:04:06,290 --> 01:04:09,324
+if I was added to a dynamic     
+animator tha's not nil.         
+
+1498
+01:04:09,393 --> 01:04:11,960
+Now, I want to                  
+start recapturing               
+
+1499
+01:04:12,029 --> 01:04:14,595
+as long as I have at            
+least one asteroid.             
+
+1500
+01:04:14,664 --> 01:04:16,297
+So, I'm gonna say               
+asteroid is not empty.          
+
+1501
+01:04:16,366 --> 01:04:23,371
+Is empty, look at that, hm,     
+that asteroids is empty.        
+
+1502
+01:04:26,074 --> 01:04:26,840
+If, that's why.                 
+
+1503
+01:04:27,842 --> 01:04:29,408
+If asteroid's not empty,        
+
+1504
+01:04:29,477 --> 01:04:31,677
+then I'm going to               
+start recapturing.              
+
+1505
+01:04:31,745 --> 01:04:33,945
+Okay, so do you see how         
+if my behavior's added to       
+
+1506
+01:04:34,014 --> 01:04:36,081
+an animator and moved from      
+an animator, boom, I'm gonna    
+
+1507
+01:04:36,149 --> 01:04:39,417
+start and stop my timer that    
+does the recapture as well.     
+
+1508
+01:04:39,485 --> 01:04:41,185
+So, you got to think about      
+these things when these         
+
+1509
+01:04:41,254 --> 01:04:41,885
+timers are going.               
+
+1510
+01:04:41,954 --> 01:04:43,720
+You don't want the timers       
+running wild, okay.             
+
+1511
+01:04:43,789 --> 01:04:46,088
+You got to think about when     
+appropriate time to start and   
+
+1512
+01:04:46,157 --> 01:04:48,157
+stop them is.                   
+
+1513
+01:04:48,226 --> 01:04:51,126
+Okay, now that we are           
+recapturing, I don't need this  
+
+1514
+01:04:51,195 --> 01:04:54,096
+collision boundary here that    
+is the reference now, so        
+
+1515
+01:04:54,165 --> 01:04:55,797
+I'm gonna comment that out.     
+
+1516
+01:04:55,866 --> 01:04:58,366
+I'm also going to stop having   
+
+1517
+01:04:58,435 --> 01:05:00,902
+the asteroids collide           
+with each other.                
+
+1518
+01:05:00,970 --> 01:05:03,404
+I'm only gonna have it collide  
+it with the ship's shield.      
+
+1519
+01:05:03,472 --> 01:05:08,575
+So, I'm gonna change this from  
+everything to boundaries.       
+
+1520
+01:05:08,644 --> 01:05:10,443
+Okay, so it's only going        
+to collide with boundaries,     
+
+1521
+01:05:10,512 --> 01:05:12,012
+the asteroid's only going       
+to collide with the ship,       
+
+1522
+01:05:12,080 --> 01:05:13,646
+basically.                      
+
+1523
+01:05:13,715 --> 01:05:14,580
+The other thing I'm gonna do,   
+
+1524
+01:05:14,649 --> 01:05:16,448
+is make the asteroid            
+field really big.               
+
+1525
+01:05:16,517 --> 01:05:18,283
+This is going to make           
+the asteroids larger too,       
+
+1526
+01:05:18,352 --> 01:05:20,452
+which I think will              
+look better as well.            
+
+1527
+01:05:20,521 --> 01:05:21,685
+And so, I'm gonna do            
+that just by taking,            
+
+1528
+01:05:21,754 --> 01:05:23,721
+see where I asteroid            
+field right here.               
+
+1529
+01:05:23,790 --> 01:05:26,189
+You can see the sizes           
+[INAUDIBLE] bounce that size.   
+
+1530
+01:05:26,258 --> 01:05:28,558
+I've got a constant for         
+how much bigger to make it, so  
+
+1531
+01:05:28,627 --> 01:05:32,762
+I'm going to multiply this      
+by constant.asteroid field      
+
+1532
+01:05:32,830 --> 01:05:34,130
+magnitude, okay?                
+
+1533
+01:05:34,198 --> 01:05:35,797
+And asteroid field magnitude,   
+let's look and                  
+
+1534
+01:05:35,866 --> 01:05:37,967
+see what I set it to, ten.      
+
+1535
+01:05:38,035 --> 01:05:41,203
+So, ten times larger            
+than our view.                  
+
+1536
+01:05:41,272 --> 01:05:45,140
+That's how big our asteroid     
+field is gonna be.              
+
+1537
+01:05:45,208 --> 01:05:46,141
+Now, do I, why don't I          
+make it 100 or 1,000?           
+
+1538
+01:05:46,209 --> 01:05:48,876
+Okay, well it's not free        
+to make views that large.       
+
+1539
+01:05:48,945 --> 01:05:53,580
+Views have backing stores for   
+drawing things efficiently,     
+
+1540
+01:05:53,649 --> 01:05:57,016
+you wouldn't want it to be      
+infinitely large like that.     
+
+1541
+01:05:57,085 --> 01:05:59,352
+You wanna pick a reasonable     
+size for efficiency.            
+
+1542
+01:05:59,421 --> 01:06:00,953
+Ten times is fine, okay.        
+
+1543
+01:06:01,022 --> 01:06:01,654
+100 times?                      
+1,000 times?                    
+
+1544
+01:06:01,722 --> 01:06:03,289
+No, you wouldn't want           
+it to go 1,000 times.           
+
+1545
+01:06:06,360 --> 01:06:09,127
+Okay, so                        
+now let's see if that worked.   
+
+1546
+01:06:13,533 --> 01:06:16,633
+Okay, so now here we            
+are in outer space.             
+
+1547
+01:06:16,702 --> 01:06:18,134
+That is really big.             
+
+1548
+01:06:18,203 --> 01:06:19,336
+Here come some asteroids.       
+
+1549
+01:06:19,405 --> 01:06:21,104
+They're just kind of,           
+they got pushed so              
+
+1550
+01:06:21,173 --> 01:06:23,072
+they're just wandering around.  
+
+1551
+01:06:23,141 --> 01:06:25,808
+This is much more               
+manageable as a game.           
+
+1552
+01:06:25,876 --> 01:06:29,111
+More likely that we could       
+manuever through these things.  
+
+1553
+01:06:29,179 --> 01:06:29,811
+But to maneuver,                
+
+1554
+01:06:29,880 --> 01:06:32,981
+of course, our ship needs       
+some engines, okay?             
+
+1555
+01:06:33,050 --> 01:06:35,149
+It needs to be able to move.    
+
+1556
+01:06:35,217 --> 01:06:37,618
+Now, we're gonna                
+have our ship move              
+
+1557
+01:06:37,687 --> 01:06:39,653
+just like a real spaceship.     
+
+1558
+01:06:39,722 --> 01:06:41,821
+How does a real                 
+spaceship move, okay?           
+
+1559
+01:06:41,890 --> 01:06:43,790
+It fires its engines, and       
+
+1560
+01:06:43,859 --> 01:06:45,524
+what happens to it when         
+it fires its engines?           
+
+1561
+01:06:45,593 --> 01:06:46,893
+It accelerates, and             
+
+1562
+01:06:46,961 --> 01:06:49,828
+it keeps accelerating as long   
+as its engines are firing.      
+
+1563
+01:06:49,897 --> 01:06:52,331
+As soon as its engines turn     
+off, what happens to it then?   
+
+1564
+01:06:53,566 --> 01:06:54,766
+No longer accelerates but       
+
+1565
+01:06:54,835 --> 01:06:56,634
+it keeps its velocity           
+cuz it's in outer space.        
+
+1566
+01:06:56,703 --> 01:06:58,535
+Okay, so                        
+there's nothing to stop it,     
+
+1567
+01:06:58,604 --> 01:06:59,202
+so it just keeps going.         
+
+1568
+01:06:59,271 --> 01:07:02,239
+But it's doesn't decelerate,    
+nor does it keep accelerating.  
+
+1569
+01:07:02,307 --> 01:07:04,941
+It goes no acceleration but     
+its velocity stays the same.    
+
+1570
+01:07:05,010 --> 01:07:06,942
+So, we're gonna do              
+exact same thing here.          
+
+1571
+01:07:07,011 --> 01:07:09,845
+So, how do we do acceleration?  
+
+1572
+01:07:09,914 --> 01:07:11,647
+Like that in behaviors.         
+
+1573
+01:07:11,716 --> 01:07:14,215
+We use a gravity                
+behavior because gravity        
+
+1574
+01:07:14,284 --> 01:07:15,984
+is acceleration                 
+due to gravity,                 
+
+1575
+01:07:16,052 --> 01:07:18,385
+due due to the Earth's pull,    
+right, pulling things down.     
+
+1576
+01:07:18,454 --> 01:07:21,121
+They're accelerating at 9.8     
+meters per second squared, and  
+
+1577
+01:07:21,190 --> 01:07:23,523
+we can have the same            
+kind of behavior here.          
+
+1578
+01:07:23,592 --> 01:07:25,592
+And our gravity behavior        
+is great because we can         
+
+1579
+01:07:25,660 --> 01:07:27,059
+have it pointed                 
+in any direction.               
+
+1580
+01:07:27,128 --> 01:07:28,894
+So which direction              
+are we gonna have               
+
+1581
+01:07:28,963 --> 01:07:31,163
+our gravity behavior point?     
+
+1582
+01:07:31,231 --> 01:07:34,299
+The, yes, the opposite          
+direction of the ship, okay.    
+
+1583
+01:07:34,368 --> 01:07:36,801
+And that's gonna cause all      
+the asteroids to move as if     
+
+1584
+01:07:36,870 --> 01:07:37,535
+the ship were going here.       
+
+1585
+01:07:37,604 --> 01:07:39,403
+Because we don't actually       
+want our ship to move.          
+
+1586
+01:07:39,472 --> 01:07:40,737
+We want the asteroids to move.  
+
+1587
+01:07:40,806 --> 01:07:42,239
+So we're just gonna             
+apply gravity in                
+
+1588
+01:07:42,307 --> 01:07:44,007
+the opposite direction          
+the ship is pointing.           
+
+1589
+01:07:44,076 --> 01:07:46,208
+Simple as that, and that's      
+gonna cause acceleration.       
+
+1590
+01:07:46,277 --> 01:07:47,576
+And we're gonna start           
+accelerating and                
+
+1591
+01:07:47,645 --> 01:07:48,910
+those asteroids                 
+are gonna start moving.         
+
+1592
+01:07:48,979 --> 01:07:49,878
+If we stop accelerating,        
+
+1593
+01:07:49,947 --> 01:07:52,781
+they're gonna keep on moving    
+because there's no friction in  
+
+1594
+01:07:52,850 --> 01:07:54,114
+outer space.                    
+
+1595
+01:07:54,183 --> 01:07:55,249
+So if we want them              
+to slow down,                   
+
+1596
+01:07:55,317 --> 01:07:56,717
+we're gonna have to turn        
+our ship around and             
+
+1597
+01:07:56,786 --> 01:07:59,886
+fire our engines the other      
+direction, okay?                
+
+1598
+01:07:59,955 --> 01:08:01,454
+So that's how this              
+is gonna work.                  
+
+1599
+01:08:01,523 --> 01:08:03,122
+Okay, so                        
+let's see if we can do that,    
+
+1600
+01:08:03,191 --> 01:08:05,357
+add a gravity behavior          
+to our behavior.                
+
+1601
+01:08:05,426 --> 01:08:07,560
+So we're gonna go               
+back to behavior.               
+
+1602
+01:08:07,628 --> 01:08:09,327
+Here it is, we got collider,    
+we got physics,                 
+
+1603
+01:08:09,396 --> 01:08:13,865
+we're gonna add another one,    
+this is going to be a lazy var  
+
+1604
+01:08:13,934 --> 01:08:16,300
+I'm gonna call                  
+this acceleration,              
+
+1605
+01:08:16,369 --> 01:08:17,869
+it's not really gravity, okay,  
+
+1606
+01:08:17,937 --> 01:08:20,270
+it's acceleration through       
+our engines here.               
+
+1607
+01:08:20,339 --> 01:08:23,741
+And it's gonna be               
+a UIGravityBehavior, and we'll  
+
+1608
+01:08:26,511 --> 01:08:33,516
+also initialize it              
+with a closure And              
+
+1609
+01:08:33,584 --> 01:08:37,352
+inside here we will say, let    
+behavior equal a UIGravity,     
+
+1610
+01:08:37,421 --> 01:08:40,789
+I keep typing in graphics       
+there, hm, surprising,          
+
+1611
+01:08:40,858 --> 01:08:42,124
+the term behavior.              
+
+1612
+01:08:42,192 --> 01:08:44,960
+Okay, and what do we need       
+to do to initialize this        
+
+1613
+01:08:45,029 --> 01:08:47,228
+GravityBehavior to act          
+like acceleration?              
+
+1614
+01:08:47,297 --> 01:08:50,564
+Well, when you create           
+a GravityBehavior, by default,  
+
+1615
+01:08:50,633 --> 01:08:53,500
+the gravity is 1.0              
+that's a thousand               
+
+1616
+01:08:53,569 --> 01:08:58,672
+points per second squared,      
+in the down direction, okay?    
+
+1617
+01:08:58,740 --> 01:09:01,474
+And so, we don't want that,     
+we want gravity to start out    
+
+1618
+01:09:01,543 --> 01:09:04,077
+zero, cause we're in outer      
+space, we're just floating,     
+
+1619
+01:09:04,145 --> 01:09:06,378
+we're not accelerating,         
+our engines are not going.      
+
+1620
+01:09:06,447 --> 01:09:10,783
+So, we're gonna have our        
+behavior.magnitude be zero.     
+
+1621
+01:09:12,419 --> 01:09:16,421
+Now I'm, I could make this      
+private and add API like I did  
+
+1622
+01:09:16,490 --> 01:09:18,656
+for my collider,                
+where I had set boundary.       
+
+1623
+01:09:18,725 --> 01:09:21,158
+But I'm go ahead, gonna go      
+ahead and leave this public.    
+
+1624
+01:09:21,227 --> 01:09:22,393
+And what that                   
+essentially does,               
+
+1625
+01:09:22,462 --> 01:09:24,894
+when you leave something        
+public like an outlet           
+
+1626
+01:09:24,963 --> 01:09:26,696
+in your controller, or          
+something like that,            
+
+1627
+01:09:26,765 --> 01:09:30,966
+it exports this entire          
+API of UIGravityBehavior        
+
+1628
+01:09:31,035 --> 01:09:33,468
+into the API of yours, because  
+you're making this public, so   
+
+1629
+01:09:33,537 --> 01:09:35,370
+now people can do               
+anything they want.             
+
+1630
+01:09:35,439 --> 01:09:38,040
+To that acceleration            
+bar right there.                
+
+1631
+01:09:38,108 --> 01:09:40,708
+The grabby behavior only        
+has a couple of methods or      
+
+1632
+01:09:40,777 --> 01:09:42,677
+a couple of bars magnitude and  
+angle,                          
+
+1633
+01:09:42,746 --> 01:09:46,146
+basically it also has vector    
+which is basically the angle.   
+
+1634
+01:09:46,215 --> 01:09:47,014
+So it's not so bad.             
+
+1635
+01:09:47,082 --> 01:09:48,247
+We're not exporting             
+that much API.                  
+
+1636
+01:09:48,316 --> 01:09:50,883
+But we also want to be careful  
+when we make a bar public that  
+
+1637
+01:09:50,952 --> 01:09:54,454
+we intend to let                
+people do this, okay?           
+
+1638
+01:09:54,523 --> 01:09:55,120
+Which we do.                    
+
+1639
+01:09:55,189 --> 01:09:57,322
+We're gonna allow               
+people to do that.              
+
+1640
+01:09:57,391 --> 01:09:59,124
+So, when we add                 
+a new behavior,                 
+
+1641
+01:09:59,192 --> 01:09:59,925
+what do we need to do?          
+
+1642
+01:10:01,862 --> 01:10:02,392
+Right here.                     
+
+1643
+01:10:02,461 --> 01:10:04,361
+Okay, don't forget these.       
+
+1644
+01:10:04,430 --> 01:10:06,296
+So, let's go here again.        
+
+1645
+01:10:06,365 --> 01:10:08,431
+Child behavior for              
+the acceleration.               
+
+1646
+01:10:08,500 --> 01:10:13,102
+And also down here we're gonna  
+add all of our asteroids so     
+
+1647
+01:10:13,171 --> 01:10:16,205
+they're affected by             
+the acceleration.               
+
+1648
+01:10:16,274 --> 01:10:19,508
+And we've got to remove         
+items when they get removed.    
+
+1649
+01:10:22,780 --> 01:10:25,213
+Okay, don't forget that         
+part or it won't work.          
+
+1650
+01:10:25,282 --> 01:10:26,047
+Okay, so that's it.             
+
+1651
+01:10:26,116 --> 01:10:29,183
+Now we've got gravity, let's    
+go back to our controller and   
+
+1652
+01:10:29,252 --> 01:10:30,517
+get our engines to fire.        
+
+1653
+01:10:30,586 --> 01:10:32,419
+Now, how are we gonna           
+fire our engines?               
+
+1654
+01:10:32,488 --> 01:10:36,389
+We clearly need a gesture       
+to fire our engines.            
+
+1655
+01:10:36,458 --> 01:10:39,559
+So, I'm gonna use a gesture     
+called a long press, okay,      
+
+1656
+01:10:39,627 --> 01:10:42,594
+a long press is a press         
+that you hold down.             
+
+1657
+01:10:42,663 --> 01:10:44,597
+And as long as you hold         
+it down it keeps firing.        
+
+1658
+01:10:44,665 --> 01:10:46,831
+So it's a continues gesture     
+like a pan gesture or           
+
+1659
+01:10:46,900 --> 01:10:48,533
+something like that.            
+
+1660
+01:10:48,601 --> 01:10:52,070
+But you don't, it just,         
+you press and hold, okay?       
+
+1661
+01:10:52,139 --> 01:10:54,205
+Very, very similar to           
+a pan gesture actually.         
+
+1662
+01:10:54,274 --> 01:10:55,939
+But the long press              
+will be configured for          
+
+1663
+01:10:56,008 --> 01:10:58,609
+other things, how long to       
+wait until you recognize it,    
+
+1664
+01:10:58,677 --> 01:11:00,176
+which I am actually             
+going to set to zero so         
+
+1665
+01:11:00,245 --> 01:11:02,878
+it instantly recognizes         
+my finger going down.           
+
+1666
+01:11:02,947 --> 01:11:05,247
+You can also have long press    
+do things like if you move it,  
+
+1667
+01:11:05,316 --> 01:11:06,082
+it stops working.               
+
+1668
+01:11:06,150 --> 01:11:08,450
+And of course we want           
+our long press to keep          
+
+1669
+01:11:08,518 --> 01:11:11,286
+following it around keep        
+just a pan gesture.             
+
+1670
+01:11:11,354 --> 01:11:12,053
+But you can make it so          
+
+1671
+01:11:12,122 --> 01:11:14,921
+a long press if you move it     
+too far up now it stops firing  
+
+1672
+01:11:14,990 --> 01:11:16,557
+so that's the difference.       
+
+1673
+01:11:16,625 --> 01:11:17,657
+I just wanted to                
+show it to you so               
+
+1674
+01:11:17,726 --> 01:11:19,659
+you can see a pan gesture,      
+what it looks like.             
+
+1675
+01:11:19,727 --> 01:11:21,961
+So let's go back to our         
+storyboard here and             
+
+1676
+01:11:22,029 --> 01:11:22,762
+add that pan gesture.           
+
+1677
+01:11:22,831 --> 01:11:24,363
+I'm gonna add it in             
+the storyboard rather than      
+
+1678
+01:11:24,432 --> 01:11:25,330
+in code.                        
+
+1679
+01:11:25,399 --> 01:11:27,632
+So here's my controller right   
+here, I'm gonna go down and     
+
+1680
+01:11:27,701 --> 01:11:29,833
+find it by searching for        
+gesture.                        
+
+1681
+01:11:29,902 --> 01:11:32,470
+If you go down these things at  
+the bottom there's Tap, Pinch,  
+
+1682
+01:11:32,538 --> 01:11:33,904
+Rotation, Swipe.                
+
+1683
+01:11:33,973 --> 01:11:36,039
+Here it is, Long Press,         
+I'm gonna drag it out,          
+
+1684
+01:11:36,107 --> 01:11:38,174
+I'm gonna apply it              
+to my self.view.                
+
+1685
+01:11:38,243 --> 01:11:41,077
+So my self.view is going        
+to handle this gesture.         
+
+1686
+01:11:41,146 --> 01:11:43,378
+Okay, my controller is          
+gonna get it, sorry,            
+
+1687
+01:11:43,447 --> 01:11:46,215
+self.view is going to           
+recognize this gesture and      
+
+1688
+01:11:46,284 --> 01:11:49,117
+my controller is going          
+to handle the gesture by        
+
+1689
+01:11:49,186 --> 01:11:51,919
+Causing our ship to             
+burn its engines and            
+
+1690
+01:11:51,988 --> 01:11:54,989
+cause that                      
+acceleration increase.          
+
+1691
+01:11:55,058 --> 01:11:57,591
+And remember, when we drop,     
+drag this in here,              
+
+1692
+01:11:57,660 --> 01:12:00,961
+it adds up here, I can click    
+on it, I can even inspect it.   
+
+1693
+01:12:01,030 --> 01:12:03,563
+Here's where I can say things   
+like the minimum duration is    
+
+1694
+01:12:03,632 --> 01:12:06,900
+zero or the tolerance           
+of how many points              
+
+1695
+01:12:06,968 --> 01:12:10,737
+you wanna allow it to get to    
+move before it stops firing.    
+
+1696
+01:12:10,806 --> 01:12:13,706
+The person jerks their          
+finger away or whatever.        
+
+1697
+01:12:13,775 --> 01:12:15,908
+You can do all                  
+this right here.                
+
+1698
+01:12:15,976 --> 01:12:17,475
+And I'm just gonna              
+have this thing.                
+
+1699
+01:12:17,544 --> 01:12:20,711
+I'm gonna control drag it to    
+cause an action to happen.      
+
+1700
+01:12:20,780 --> 01:12:22,747
+Let's put it,                   
+let's put it right here.        
+
+1701
+01:12:22,815 --> 01:12:25,015
+So we'll control                
+drag over to here.              
+
+1702
+01:12:25,084 --> 01:12:26,784
+It's gonna do an action.        
+
+1703
+01:12:26,853 --> 01:12:28,418
+It's gonna have                 
+the LongPressGesture as         
+
+1704
+01:12:28,487 --> 01:12:29,252
+the argument.                   
+
+1705
+01:12:29,320 --> 01:12:32,021
+We'll call this burn cuz        
+we're gonna burn our            
+
+1706
+01:12:32,090 --> 01:12:33,389
+engines here, okay?             
+
+1707
+01:12:33,458 --> 01:12:36,225
+So what's gonna happen here     
+is, my finger goes down,        
+
+1708
+01:12:36,294 --> 01:12:39,060
+I'm gonna turn the ship         
+towards my finger, and          
+
+1709
+01:12:39,129 --> 01:12:40,529
+turn on the engines.            
+
+1710
+01:12:40,597 --> 01:12:42,997
+And when I let go,              
+I'll turn off the engines.      
+
+1711
+01:12:43,065 --> 01:12:44,665
+Leave this ship in whatever     
+direction it was, and           
+
+1712
+01:12:44,734 --> 01:12:46,399
+turn it off, and                
+it can start drifting.          
+
+1713
+01:12:46,468 --> 01:12:49,402
+Okay, press the finger down,    
+ship's gonna quickly turn,      
+
+1714
+01:12:49,471 --> 01:12:51,371
+and you know,                   
+if I were doing a real app,     
+
+1715
+01:12:51,439 --> 01:12:53,139
+I'd probably have that          
+turn be animated, but           
+
+1716
+01:12:53,208 --> 01:12:54,574
+I'm gonna have                  
+a jerk down there,              
+
+1717
+01:12:54,642 --> 01:12:56,575
+but you guys know how           
+to do view animation.           
+
+1718
+01:12:56,644 --> 01:12:58,610
+You could easily have that      
+rotation be animated.           
+
+1719
+01:12:59,613 --> 01:13:00,311
+And that's how                  
+it's gonna work.                
+
+1720
+01:13:00,380 --> 01:13:02,880
+So you press and hold,          
+and it'll accelerate            
+
+1721
+01:13:02,949 --> 01:13:05,649
+in whatever direction you       
+wanna do, wanna do there.       
+
+1722
+01:13:07,052 --> 01:13:08,784
+All right, so let's go          
+back to our controller and      
+
+1723
+01:13:08,853 --> 01:13:09,853
+implement this burn.            
+
+1724
+01:13:11,022 --> 01:13:12,454
+So here is our                  
+burn right here.                
+
+1725
+01:13:12,523 --> 01:13:13,655
+So how's the burn gonna work?   
+
+1726
+01:13:13,724 --> 01:13:16,524
+Well, I'm gonna switch          
+on the sender.state.            
+
+1727
+01:13:16,593 --> 01:13:18,192
+That's the recognizer state.    
+
+1728
+01:13:18,261 --> 01:13:22,663
+And right from when it began,   
+and also every time it changed  
+
+1729
+01:13:22,731 --> 01:13:25,732
+I'm going to turn the ship      
+towards the finger, and         
+
+1730
+01:13:25,801 --> 01:13:27,667
+believe it or not, I can do     
+that in one line of code.       
+
+1731
+01:13:27,736 --> 01:13:29,936
+Okay, what did I                
+do wrong there?                 
+
+1732
+01:13:30,005 --> 01:13:32,505
+Maybe just not enough of,       
+yeah.                           
+
+1733
+01:13:32,574 --> 01:13:35,041
+Okay so                         
+how am I gonna do that?         
+
+1734
+01:13:35,109 --> 01:13:37,075
+I'm gonna say ship.direction,   
+and                             
+
+1735
+01:13:37,144 --> 01:13:41,179
+I want to set this to where     
+my finger is relative to        
+
+1736
+01:13:41,247 --> 01:13:45,550
+the center of the ship as an    
+angle, that 0 to 2 pi angle.    
+
+1737
+01:13:45,619 --> 01:13:48,519
+So the first thing I'm gonna    
+do is I have added in my        
+
+1738
+01:13:48,588 --> 01:13:51,321
+core graphics stuff a way       
+to subtract two points and      
+
+1739
+01:13:51,390 --> 01:13:53,891
+get a vector between            
+the two points, so              
+
+1740
+01:13:53,960 --> 01:13:55,525
+you just use minus to do it.    
+
+1741
+01:13:55,594 --> 01:13:57,860
+So I'm gonna say this is the,   
+
+1742
+01:13:57,929 --> 01:14:02,298
+make sure I use the right       
+variable names here, we do,     
+
+1743
+01:14:02,367 --> 01:14:06,969
+yes, okay, so this is           
+the sender's location in        
+
+1744
+01:14:07,038 --> 01:14:10,772
+our self.view, right,           
+this is our controller.         
+
+1745
+01:14:10,841 --> 01:14:12,807
+Minus the ship's centers.       
+
+1746
+01:14:12,876 --> 01:14:16,244
+So that gives me a CG vector    
+vector between those two, and   
+
+1747
+01:14:16,313 --> 01:14:18,980
+vector, I added                 
+a method called angle           
+
+1748
+01:14:19,048 --> 01:14:22,016
+which turns that vector         
+into a zero two pi angle.       
+
+1749
+01:14:22,085 --> 01:14:24,051
+So you see how I can            
+make this really cool.          
+
+1750
+01:14:24,119 --> 01:14:27,321
+One line of code if I have      
+these old CG extensions.        
+
+1751
+01:14:27,390 --> 01:14:29,022
+So that's something             
+to think about when             
+
+1752
+01:14:29,090 --> 01:14:30,489
+you are writing                 
+your code as well.              
+
+1753
+01:14:30,558 --> 01:14:33,192
+And then of course I wanna      
+burn too, I wanna turn          
+
+1754
+01:14:33,261 --> 01:14:35,861
+on my engines when this         
+figure has turned out.          
+
+1755
+01:14:35,930 --> 01:14:39,431
+So I'm gonna need a private     
+func burn that does that.       
+
+1756
+01:14:39,499 --> 01:14:42,534
+I'm also gonna need             
+a private func endBurn.         
+
+1757
+01:14:42,602 --> 01:14:45,637
+Because when I lift my          
+finger up, it needs to stop,    
+
+1758
+01:14:45,705 --> 01:14:48,705
+which is in the case            
+that it ended.                  
+
+1759
+01:14:48,774 --> 01:14:50,574
+endBurn, okay?                  
+
+1760
+01:14:50,642 --> 01:14:53,076
+Otherwise we'll just ignore,    
+okay?                           
+
+1761
+01:14:53,145 --> 01:14:55,378
+So that's it.                   
+That's my entire burn,          
+
+1762
+01:14:55,447 --> 01:14:56,178
+super simple.                   
+
+1763
+01:14:56,247 --> 01:14:58,347
+So what happens when we burn?   
+
+1764
+01:14:58,415 --> 01:15:01,650
+Well, we need to set that       
+acceleration gravity behavior   
+
+1765
+01:15:01,719 --> 01:15:03,886
+to be the opposite              
+direction of my ship.           
+
+1766
+01:15:03,954 --> 01:15:08,656
+Also I want to tell my ship     
+that its engines are firing.    
+
+1767
+01:15:08,725 --> 01:15:11,058
+Okay, this is just              
+a graphics thing so             
+
+1768
+01:15:11,127 --> 01:15:13,928
+that it draws that little       
+flame coming out the back.      
+
+1769
+01:15:13,996 --> 01:15:15,295
+That's all that does.           
+
+1770
+01:15:15,364 --> 01:15:19,799
+And so now I'm gonna say        
+that my asteroid behaviors,     
+
+1771
+01:15:19,868 --> 01:15:21,067
+acceleration.                   
+
+1772
+01:15:21,136 --> 01:15:29,743
+[SOUND] Angle equals my         
+ship's direction minus what?    
+
+1773
+01:15:33,581 --> 01:15:36,081
+Pi, right?                      
+
+1774
+01:15:36,150 --> 01:15:37,615
+Zero to two pi is               
+all the way round,              
+
+1775
+01:15:37,684 --> 01:15:39,851
+so pi is half way               
+around that circle.             
+
+1776
+01:15:41,221 --> 01:15:44,888
+And then my asteroid            
+behavior magnitude.             
+
+1777
+01:15:44,957 --> 01:15:47,157
+So for                          
+the magnitude of the burn,      
+
+1778
+01:15:47,226 --> 01:15:50,493
+this is something that          
+we would need to.               
+
+1779
+01:15:50,562 --> 01:15:51,761
+Sorry.                          
+Acceleration.                   
+
+1780
+01:15:51,830 --> 01:15:53,362
+This is something we            
+need to play with               
+
+1781
+01:15:53,431 --> 01:15:54,897
+to kind of get the right one.   
+
+1782
+01:15:54,966 --> 01:15:56,064
+I have a constant for it so     
+
+1783
+01:15:56,133 --> 01:15:58,133
+that I can kinda work           
+on the constant.                
+
+1784
+01:15:59,235 --> 01:16:00,334
+You know,                       
+I was home developing my        
+
+1785
+01:16:00,403 --> 01:16:01,635
+app I called                    
+Burn Acceleration,              
+
+1786
+01:16:01,704 --> 01:16:04,405
+I think it's what is            
+burn acceleration?              
+
+1787
+01:16:04,474 --> 01:16:06,840
+Okay, .07,                      
+points per second per second.   
+
+1788
+01:16:06,909 --> 01:16:09,176
+That's a not                    
+really light burn.              
+
+1789
+01:16:09,244 --> 01:16:11,010
+But, you know,                  
+as you hold that finger down,   
+
+1790
+01:16:11,079 --> 01:16:13,646
+that thing's gonna start going  
+faster and faster, and faster,  
+
+1791
+01:16:13,715 --> 01:16:16,148
+and faster, cuz you're          
+constantly accelerating, okay?  
+
+1792
+01:16:16,217 --> 01:16:17,249
+It's not just that              
+you're going fast.              
+
+1793
+01:16:17,317 --> 01:16:18,916
+You're accelerating             
+going faster and faster,        
+
+1794
+01:16:18,985 --> 01:16:21,485
+the longer you hold             
+that finger down.               
+
+1795
+01:16:21,554 --> 01:16:23,955
+Now the end burn is to just     
+tell the ship that the engines  
+
+1796
+01:16:24,023 --> 01:16:25,222
+are no longer firing.           
+
+1797
+01:16:26,926 --> 01:16:30,026
+And we'll make the asteroid     
+behavior's acceleration         
+
+1798
+01:16:30,095 --> 01:16:31,561
+magnitude back to zero.         
+
+1799
+01:16:32,764 --> 01:16:34,029
+So we stopped accelerating.     
+
+1800
+01:16:34,098 --> 01:16:35,897
+And we'll leave the ship        
+
+1801
+01:16:35,966 --> 01:16:37,365
+pointing whichever              
+way it's pointing.              
+
+1802
+01:16:37,434 --> 01:16:40,668
+Everyone cool with this little  
+bit of code right here?         
+
+1803
+01:16:40,737 --> 01:16:43,671
+So that's all we need to        
+do to get this ship moving.     
+
+1804
+01:16:51,914 --> 01:16:53,613
+All right, so here we go.       
+
+1805
+01:16:53,682 --> 01:16:54,847
+I'm going to start              
+accelerating                    
+
+1806
+01:16:54,916 --> 01:16:56,682
+up towards this                 
+guy in the top.                 
+
+1807
+01:16:56,751 --> 01:16:59,785
+See, see how he's coming        
+down to me, no, you be.         
+
+1808
+01:16:59,854 --> 01:17:01,286
+Okay, I'll keep accelerating.   
+
+1809
+01:17:01,355 --> 01:17:04,990
+Now you're gonna start to see   
+the asteroids really rip by me  
+
+1810
+01:17:05,058 --> 01:17:08,660
+faster and faster and faster    
+in the down direction there.    
+
+1811
+01:17:08,728 --> 01:17:09,693
+See that?                       
+
+1812
+01:17:09,762 --> 01:17:11,829
+Now if I wanna slow them down,  
+
+1813
+01:17:11,898 --> 01:17:16,233
+I got to turn my ship around    
+and slow down here, okay, see?  
+
+1814
+01:17:16,302 --> 01:17:17,868
+I'm accelerating the other,     
+too late,                       
+
+1815
+01:17:17,936 --> 01:17:19,535
+I got destroyed                 
+before I did that.              
+
+1816
+01:17:19,604 --> 01:17:20,703
+But it still keeps              
+slowing down.                   
+
+1817
+01:17:20,772 --> 01:17:23,338
+Slow down, slow down,           
+slow down.                      
+
+1818
+01:17:23,407 --> 01:17:25,908
+Okay, now I'm starting to go    
+the other direction, okay?      
+
+1819
+01:17:25,976 --> 01:17:28,410
+Finally caught up with that     
+one and now they start going    
+
+1820
+01:17:28,479 --> 01:17:31,545
+the other way, so I'm           
+continuing to accelerate here.  
+
+1821
+01:17:31,614 --> 01:17:35,049
+I'm destroyed again, okay?      
+
+1822
+01:17:35,118 --> 01:17:36,183
+Does everyone see               
+the way that works?             
+
+1823
+01:17:36,252 --> 01:17:38,051
+Now if you were actually        
+playing the actual game,        
+
+1824
+01:17:38,120 --> 01:17:40,019
+you wouldn't be doing this      
+massive acceleration.           
+
+1825
+01:17:40,088 --> 01:17:42,822
+If you're doing sh, little      
+tiny move, move, tiny move.     
+
+1826
+01:17:42,891 --> 01:17:44,757
+Look for the, things coming,    
+
+1827
+01:17:44,826 --> 01:17:48,428
+little more trying to go        
+another direction, etc.         
+
+1828
+01:17:51,365 --> 01:17:53,164
+I've got time for               
+one more thing.                 
+
+1829
+01:17:53,233 --> 01:17:58,102
+I think, I'll do one real       
+quick one, which is if          
+
+1830
+01:17:58,171 --> 01:18:00,872
+you notice if I hold down this  
+thing and start accelerating,   
+
+1831
+01:18:00,940 --> 01:18:03,641
+some of the asteroids           
+are going super fast.           
+
+1832
+01:18:03,709 --> 01:18:06,510
+I mean just like so             
+fast you can barely see them,   
+
+1833
+01:18:06,579 --> 01:18:08,511
+they just blink going across.   
+
+1834
+01:18:08,580 --> 01:18:11,314
+This is another problem we      
+gotta fix is not letting our    
+
+1835
+01:18:11,383 --> 01:18:13,383
+asteroids be stopped and        
+caught in the middle.           
+
+1836
+01:18:13,451 --> 01:18:17,052
+But that super duper fast       
+asteroids, we don't want that,  
+
+1837
+01:18:17,121 --> 01:18:18,120
+because at some                 
+point they go so                
+
+1838
+01:18:18,189 --> 01:18:19,854
+fast that the user              
+can't even see them, so         
+
+1839
+01:18:19,923 --> 01:18:20,621
+they're kind of useless.        
+
+1840
+01:18:20,690 --> 01:18:21,556
+They're not even on there.      
+
+1841
+01:18:21,624 --> 01:18:24,592
+So what if we put a speed       
+limit on our asteroids?         
+
+1842
+01:18:24,660 --> 01:18:27,695
+How would we put a speed limit  
+on our asteroids, because       
+
+1843
+01:18:27,763 --> 01:18:30,263
+we can infinitely accelerate    
+our shift faster and faster,    
+
+1844
+01:18:30,332 --> 01:18:32,365
+and faster, so how could        
+we put a speed limit?           
+
+1845
+01:18:32,434 --> 01:18:35,167
+Well, the way we're going do a  
+speed limit is we're going to   
+
+1846
+01:18:35,236 --> 01:18:36,335
+cap the linear accelerate,      
+
+1847
+01:18:36,404 --> 01:18:40,072
+the linear velocity             
+rather of the items.            
+
+1848
+01:18:40,141 --> 01:18:42,073
+And if you remember             
+from the slides,                
+
+1849
+01:18:42,142 --> 01:18:45,042
+this dynamic item               
+behavior right here,            
+
+1850
+01:18:45,111 --> 01:18:48,312
+it knows what the linear        
+velocity is of all its items,   
+
+1851
+01:18:48,381 --> 01:18:51,749
+and it can, you can set the     
+linear velocity of its items.   
+
+1852
+01:18:51,817 --> 01:18:54,318
+So, in init here,               
+those are init,                 
+
+1853
+01:18:54,386 --> 01:18:58,422
+I'm actually going to           
+set a sped limit here.          
+
+1854
+01:18:58,490 --> 01:19:01,124
+Okay, so                        
+this little piece of code       
+
+1855
+01:19:01,193 --> 01:19:03,392
+sets a speed limit              
+on all the items.               
+
+1856
+01:19:03,461 --> 01:19:06,896
+And how does this thing work,   
+okay?                           
+
+1857
+01:19:06,964 --> 01:19:08,396
+First of all,                   
+I'm gonna have to have a var,   
+
+1858
+01:19:08,465 --> 01:19:10,965
+which is the speedLimit,        
+which is a CGFloat, and         
+
+1859
+01:19:11,034 --> 01:19:14,803
+I'm gonna set it to 300         
+points per second, okay?        
+
+1860
+01:19:14,871 --> 01:19:17,705
+All these, the linearVelocity   
+is your points per second.      
+
+1861
+01:19:17,773 --> 01:19:21,041
+And the way this works is it    
+just gets the linearVelocity    
+
+1862
+01:19:21,110 --> 01:19:24,111
+for an item using this          
+linearVelocity for method.      
+
+1863
+01:19:24,180 --> 01:19:26,846
+Then it calculates the excess   
+velocity as a negative          
+
+1864
+01:19:26,915 --> 01:19:28,114
+number, okay?                   
+
+1865
+01:19:28,183 --> 01:19:30,083
+By subtracting                  
+the speed limit,                
+
+1866
+01:19:30,152 --> 01:19:33,285
+subtracting the velocity        
+from the speed limit.           
+
+1867
+01:19:33,354 --> 01:19:36,255
+Caps it out at zero, so         
+it's always a negative number.  
+
+1868
+01:19:36,323 --> 01:19:39,291
+And then just adds that         
+negative number back in as      
+
+1869
+01:19:39,360 --> 01:19:40,258
+a linear velocity.              
+
+1870
+01:19:40,327 --> 01:19:44,162
+That's always, anytime          
+an asteroid tries to go faster  
+
+1871
+01:19:44,230 --> 01:19:45,062
+than the speed limit,           
+
+1872
+01:19:45,131 --> 01:19:47,631
+it slows it back down by        
+adding enough linear velocity,  
+
+1873
+01:19:47,700 --> 01:19:49,667
+negative linear velocity        
+to slow it down.                
+
+1874
+01:19:51,836 --> 01:19:55,305
+And, we did all this, by the    
+way, with this action thing.    
+
+1875
+01:19:55,373 --> 01:19:59,108
+Remember the action var         
+where we can execute            
+
+1876
+01:19:59,177 --> 01:20:03,512
+a block of code every           
+time that it acts?              
+
+1877
+01:20:03,581 --> 01:20:06,181
+So the physics are acting       
+all the time because            
+
+1878
+01:20:06,250 --> 01:20:08,416
+you know the physics is         
+always being in effect.         
+
+1879
+01:20:08,485 --> 01:20:09,684
+So now if I accelerate,         
+
+1880
+01:20:09,753 --> 01:20:14,055
+no matter, even if I keep this  
+engine down full speed, you     
+
+1881
+01:20:14,123 --> 01:20:15,855
+can see these things, that's    
+as fast as they right there.    
+
+1882
+01:20:15,924 --> 01:20:17,591
+They've kind reached            
+there speed limit,              
+
+1883
+01:20:17,660 --> 01:20:20,360
+which does appear to be         
+about 300 points per second.    
+
+1884
+01:20:20,429 --> 01:20:21,227
+This screen,                    
+
+1885
+01:20:21,296 --> 01:20:23,462
+I don't know, it's maybe        
+a thousand points wide.         
+
+1886
+01:20:23,531 --> 01:20:25,697
+Takes about 3 seconds, or       
+
+1887
+01:20:25,766 --> 01:20:28,733
+a little less than              
+that to go across.              
+
+1888
+01:20:28,802 --> 01:20:31,102
+Okay, so                        
+this action allows to do it.    
+
+1889
+01:20:31,171 --> 01:20:32,836
+Now, this is executed a lot,    
+
+1890
+01:20:32,905 --> 01:20:35,707
+because this action's           
+happening a lot.                
+
+1891
+01:20:35,775 --> 01:20:37,808
+So, we want this code           
+to be quite efficient.          
+
+1892
+01:20:37,877 --> 01:20:40,844
+I might even go so              
+far in here, as to not call     
+
+1893
+01:20:40,913 --> 01:20:44,113
+addLinearVelocity if these      
+two numbers are both zero.      
+
+1894
+01:20:44,182 --> 01:20:46,048
+I'm not sure whether            
+addLinearVelocity               
+
+1895
+01:20:46,117 --> 01:20:48,150
+does anything if                
+those are both zero.            
+
+1896
+01:20:48,219 --> 01:20:51,119
+But I want this little          
+thing to be so fast that        
+
+1897
+01:20:51,188 --> 01:20:54,523
+I don't wanna take any chances  
+there, and I have to do this.   
+
+1898
+01:20:54,592 --> 01:20:56,291
+I can't get linearVelocity      
+otherwise and                   
+
+1899
+01:20:56,360 --> 01:20:58,393
+I have to do this small         
+little tiny calculations, so    
+
+1900
+01:20:58,462 --> 01:20:59,259
+I'm not worried about those,    
+
+1901
+01:20:59,328 --> 01:21:00,828
+but this one maybe              
+I'll make optional.             
+
+1902
+01:21:02,664 --> 01:21:03,930
+Okay, so that's it.             
+
+1903
+01:21:03,999 --> 01:21:04,997
+That's it for                   
+dynamic animation.              
+
+1904
+01:21:05,066 --> 01:21:09,035
+Hopefully, hey, this was kind   
+of fun, feel free to take it    
+
+1905
+01:21:09,104 --> 01:21:12,070
+and add some features           
+to it if you want.              
+
+1906
+01:21:12,139 --> 01:21:13,838
+But hopefully you've            
+learned all the things          
+
+1907
+01:21:13,907 --> 01:21:15,006
+we need to do there.            
+
+1908
+01:21:15,075 --> 01:21:17,642
+And make sure hopefully         
+all of you submit your          
+
+1909
+01:21:18,878 --> 01:21:20,110
+proposals and all that.         
+
+1910
+01:21:20,179 --> 01:21:22,145
+And make sure you're getting    
+started on that final project.  
+
+1911
+01:21:22,214 --> 01:21:23,479
+Don't wait til                  
+the last minute.                
+
+1912
+01:21:23,548 --> 01:21:24,613
+Use that crossword puddle,      
+
+1913
+01:21:24,682 --> 01:21:29,018
+puzzle mentality where let      
+things ruminate, okay?          
+
+1914
+01:21:29,087 --> 01:21:29,752
+See ya next time.               
+
+1915
+01:21:31,221 --> 01:21:41,529
+>> For more please visit        
+us at stanford.edu.             
+

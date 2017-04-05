@@ -7,9 +7,9 @@ We have not yet finished translating. You may view our progress by
 - [Watching the repository](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/subscription)
 - [Viewing Kanban for project progress](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/projects/1)
 
-If you are interested in joining us, and helping us translate, please read [Translation Instructions/Proofread Guidelines (Chinese)](../translation-instructions.md) carefully，and refer to [Must knows about collaboration (Chinese)](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/2). We reserve rights to close any pull request that doesn't follow these regulations.
+If you are interested in helping us translate, please read [Translation Instructions/Proofread Guidelines (Chinese)](../translation-instructions.md) carefully，and refer to [Must knows about collaboration (Chinese)](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/2). We reserve rights to close any pull request that doesn't follow these regulations.
 
-### Download Subtitiles
+### Download Subtitles
 
 Please download the [Project Zip Archive](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/archive/master.zip). You can find original subtitles in folder `en/subtitles`, and translated subtitles in folder `subtitles`.
 
@@ -31,8 +31,8 @@ The subtitles are provided as `.srt` files, therefore, you need video players th
 
 - [Developing iOS 9 Apps with Swift Translation](https://github.com/SwiftGGTeam/Developing-iOS-9-Apps-with-Swift)
 - [Developing iOS 8 Apps with Swift Translation](https://github.com/X140Yu/Developing_iOS_8_Apps_With_Swift)
-- [Tool to extract subtitles：CCExtractor](https://www.ccextractor.org/)
-- [Reformatting subtitles：X140Yu/Developing_iOS_8_Apps_With_Swift/tools/trim.rb](https://github.com/X140Yu/Developing_iOS_8_Apps_With_Swift/blob/master/tools/trim.rb)
+- Tool to extract subtitles：[CCExtractor](https://www.ccextractor.org/)
+- Reformatting subtitles：[X140Yu/Developing_iOS_8_Apps_With_Swift/tools/trim.rb](https://github.com/X140Yu/Developing_iOS_8_Apps_With_Swift/blob/master/tools/trim.rb)
 
 ----
 

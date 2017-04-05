@@ -1,0 +1,8841 @@
+﻿1
+00:00:00,401 --> 00:00:04,635
+[MUSIC]                         
+
+2
+00:00:04,704 --> 00:00:07,739
+Stanford University.            
+
+3
+00:00:07,807 --> 00:00:10,841
+>> Okay, well welcome to        
+Stanford CS193P Developing      
+
+4
+00:00:10,910 --> 00:00:13,410
+Applications for                
+iOS winter of 2017.             
+
+5
+00:00:13,479 --> 00:00:16,513
+This is Lecture number 15 and   
+
+6
+00:00:16,582 --> 00:00:19,182
+our only topic                  
+today is segues.                
+
+7
+00:00:19,251 --> 00:00:22,185
+This is the segues lecture.     
+
+8
+00:00:22,253 --> 00:00:27,522
+You've learned show segues and  
+show detail segues, which       
+
+9
+00:00:27,591 --> 00:00:30,626
+work in navigation controllers  
+and split view controllers and  
+
+10
+00:00:30,695 --> 00:00:33,529
+now we're gonna learn all the   
+rest of the kinds of segues     
+
+11
+00:00:33,597 --> 00:00:36,131
+that you can use to             
+build your application.         
+
+12
+00:00:36,200 --> 00:00:39,066
+So let's start                  
+with mode segue.                
+
+13
+00:00:39,135 --> 00:00:41,002
+So now a modal segue            
+is interesting.                 
+
+14
+00:00:41,070 --> 00:00:43,637
+One, you,                       
+when you segue modally,         
+
+15
+00:00:43,706 --> 00:00:45,972
+you take an MVC that            
+you're segueing to.             
+
+16
+00:00:46,041 --> 00:00:48,941
+And it takes over               
+the entire screen, okay?        
+
+17
+00:00:49,010 --> 00:00:50,076
+That's why it's called modal,   
+
+18
+00:00:50,144 --> 00:00:52,745
+because you're in a mode        
+[LAUGH] where you can only      
+
+19
+00:00:52,814 --> 00:00:53,712
+interact with that MVC.         
+
+20
+00:00:53,781 --> 00:00:55,347
+There's no back button.         
+
+21
+00:00:55,416 --> 00:00:56,882
+There's no tab                  
+bar to click on.                
+
+22
+00:00:56,950 --> 00:00:59,250
+There's no way to do anything   
+else in the app except for      
+
+23
+00:00:59,319 --> 00:01:01,986
+what that MVC is doing.         
+
+24
+00:01:02,054 --> 00:01:04,688
+Why would you ever              
+want to do this?                
+
+25
+00:01:04,757 --> 00:01:06,824
+Well, sometimes you get to      
+a point in your application     
+
+26
+00:01:06,892 --> 00:01:08,892
+where you need some             
+information from your user and  
+
+27
+00:01:08,960 --> 00:01:10,627
+you just can't                  
+proceed without it.             
+
+28
+00:01:10,695 --> 00:01:14,496
+So, my example here is, let's   
+say I'm in a contacts app,      
+
+29
+00:01:14,565 --> 00:01:19,134
+like the contacts app on your   
+phone and you get to a point    
+
+30
+00:01:19,203 --> 00:01:20,669
+here where you're looking       
+through contacts and            
+
+31
+00:01:20,738 --> 00:01:23,171
+you say, "well I want           
+to add a contact".              
+
+32
+00:01:23,240 --> 00:01:26,207
+Alright, so you're going        
+to press this little +          
+
+33
+00:01:26,275 --> 00:01:27,475
+button in upper                 
+right hand corner.              
+
+34
+00:01:27,543 --> 00:01:29,309
+When you do that,               
+a whole new MVC,                
+
+35
+00:01:29,378 --> 00:01:33,714
+the add contact MVC slides      
+up from the button and          
+
+36
+00:01:33,782 --> 00:01:36,249
+you notice there's no back      
+button there because I'm        
+
+37
+00:01:36,318 --> 00:01:39,886
+not in the navigation pushed    
+and instead of a back button,   
+
+38
+00:01:39,955 --> 00:01:43,222
+this one happens to have        
+a cancel button right here.     
+
+39
+00:01:43,291 --> 00:01:45,824
+But there's nothing I can do    
+now with this application,      
+
+40
+00:01:45,893 --> 00:01:47,459
+except for                      
+what's on this screen.          
+
+41
+00:01:47,528 --> 00:01:50,895
+So, I could fill out            
+the field to add a contact,     
+
+42
+00:01:50,964 --> 00:01:54,265
+I could hit cancel or           
+done, that's all I can do.      
+
+43
+00:01:54,334 --> 00:01:57,434
+And it's perfectly              
+fine to have a modal            
+
+44
+00:01:57,503 --> 00:01:59,770
+MVC that brings up              
+another modal MVC.              
+
+45
+00:01:59,839 --> 00:02:01,204
+In fact, this one does.         
+
+46
+00:02:01,273 --> 00:02:02,606
+I'm adding a new                
+contact here and                
+
+47
+00:02:02,675 --> 00:02:05,708
+I'm going to add a photo for    
+my contact.                     
+
+48
+00:02:05,777 --> 00:02:08,010
+So I'm gonna click this add     
+photo button, right here, and   
+
+49
+00:02:08,078 --> 00:02:12,181
+when I do, another MVC,         
+presumably the camera, or       
+
+50
+00:02:12,249 --> 00:02:13,248
+the photo library, or           
+
+51
+00:02:13,317 --> 00:02:16,484
+the photo choosing MVC,         
+comes up on top.                
+
+52
+00:02:16,553 --> 00:02:19,019
+And again, I can't do anything  
+now until I've dealt with this  
+
+53
+00:02:19,088 --> 00:02:20,788
+and, presumably I               
+could take a photo,             
+
+54
+00:02:20,857 --> 00:02:22,523
+that would be one way           
+to get out of this.             
+
+55
+00:02:22,591 --> 00:02:25,325
+Or I could hit cancel so let's  
+go ahead and hit cancel in      
+
+56
+00:02:25,394 --> 00:02:28,794
+this one, when we do that we    
+go back to the previous model   
+
+57
+00:02:28,863 --> 00:02:32,498
+one and here if we hit cancel   
+on this one we are going to go  
+
+58
+00:02:32,567 --> 00:02:35,401
+back to the original            
+one that we had right.          
+
+59
+00:02:35,469 --> 00:02:38,403
+So it is two order model        
+viewer control is it kinda      
+
+60
+00:02:38,472 --> 00:02:42,107
+takes over your app for         
+a little bit now,               
+
+61
+00:02:42,176 --> 00:02:44,075
+you gotta think a little bit    
+about modal view controllers.   
+
+62
+00:02:44,144 --> 00:02:46,344
+They're so easy to put up,      
+
+63
+00:02:46,413 --> 00:02:49,046
+that they can be                
+abused a little bit.            
+
+64
+00:02:49,115 --> 00:02:53,083
+Users tend to be slightly       
+disconcerted by modal MVCs.     
+
+65
+00:02:53,152 --> 00:02:55,618
+Because they get comfortable    
+with their app and              
+
+66
+00:02:55,687 --> 00:02:56,852
+they know where the tabs are.   
+
+67
+00:02:56,921 --> 00:02:58,221
+And they know how               
+to go backwards and             
+
+68
+00:02:58,289 --> 00:02:59,354
+forwards in navigation          
+controllers.                    
+
+69
+00:02:59,423 --> 00:03:01,289
+And then, all of a sudden, all  
+they can do is this one thing.  
+
+70
+00:03:01,358 --> 00:03:03,625
+Now, sometimes it               
+makes perfect sense.            
+
+71
+00:03:03,694 --> 00:03:06,561
+Like add contacts of course     
+that the user understands I'm   
+
+72
+00:03:06,630 --> 00:03:08,362
+adding a contact that           
+I can click over and            
+
+73
+00:03:08,431 --> 00:03:09,063
+do something else.              
+
+74
+00:03:09,131 --> 00:03:11,065
+Well there are some users       
+who might say why can I         
+
+75
+00:03:11,133 --> 00:03:13,400
+click over do some of           
+the things right now?           
+
+76
+00:03:13,469 --> 00:03:16,869
+I need to do that to add        
+these contacts or whatever.     
+
+77
+00:03:16,938 --> 00:03:20,807
+So, I tried to stay away from   
+modal view controllers as much  
+
+78
+00:03:20,876 --> 00:03:23,208
+as possible but things in       
+navigation controllers and      
+
+79
+00:03:23,277 --> 00:03:25,210
+tab button controllers,         
+and things like that but        
+
+80
+00:03:25,279 --> 00:03:29,180
+there are times, when it's      
+absolutely, necessary.          
+
+81
+00:03:29,249 --> 00:03:31,583
+So how do you set one of        
+these modal segways up?         
+
+82
+00:03:31,652 --> 00:03:32,650
+Super easy.                     
+
+83
+00:03:32,718 --> 00:03:34,485
+You just control-drag.          
+
+84
+00:03:34,554 --> 00:03:36,387
+And when you control-drag,      
+instead of saying show or       
+
+85
+00:03:36,455 --> 00:03:38,922
+detail, you're going to         
+say present modally.            
+
+86
+00:03:39,991 --> 00:03:42,592
+Now, normally,                  
+as with any segway,             
+
+87
+00:03:42,661 --> 00:03:45,894
+you're going to be segwaying    
+from like a bar button item or  
+
+88
+00:03:45,963 --> 00:03:49,698
+just a regular button, or a     
+row in a tableview, but if for  
+
+89
+00:03:49,767 --> 00:03:52,768
+some reason you want to         
+put something up module         
+
+90
+00:03:52,837 --> 00:03:54,902
+from something else             
+basically from code.            
+
+91
+00:03:54,971 --> 00:03:58,239
+You don't forget about          
+this method that actually       
+
+92
+00:03:58,307 --> 00:04:00,257
+in a previous lecture called    
+perform segue with identify.    
+
+93
+00:04:00,258 --> 00:04:02,208
+we're talk about,               
+
+94
+00:04:02,278 --> 00:04:06,112
+You can set up a segue in your  
+story board by just control     
+
+95
+00:04:06,181 --> 00:04:08,748
+dragging from the little        
+view controller icon at         
+
+96
+00:04:08,817 --> 00:04:10,950
+the top of your scene           
+that little yellow thing,       
+
+97
+00:04:11,019 --> 00:04:14,320
+it's at the very top part of    
+any scene in your story board.  
+
+98
+00:04:14,388 --> 00:04:17,089
+In control drag from that,      
+to any other MVC,               
+
+99
+00:04:17,157 --> 00:04:21,059
+set it to be present modal,     
+and then inspect that segue.    
+
+100
+00:04:21,128 --> 00:04:22,360
+Give it an identifier, and      
+
+101
+00:04:22,428 --> 00:04:23,827
+then call this                  
+method in your code.            
+
+102
+00:04:23,896 --> 00:04:26,029
+It will cause that              
+segue to happen, and            
+
+103
+00:04:26,098 --> 00:04:28,632
+that MVC will appear modally.   
+
+104
+00:04:28,701 --> 00:04:31,334
+Also, if you happen to have     
+a view controller in your       
+
+105
+00:04:31,403 --> 00:04:33,269
+hand like you have              
+a local variable or             
+
+106
+00:04:33,338 --> 00:04:35,538
+something that has              
+a view controller in it,        
+
+107
+00:04:35,607 --> 00:04:37,306
+which by the way when           
+would that ever happen?         
+
+108
+00:04:37,375 --> 00:04:38,273
+Have we seen that happen?       
+
+109
+00:04:38,342 --> 00:04:39,908
+I don't think we have yet.      
+
+110
+00:04:39,977 --> 00:04:43,645
+But there are various iOS       
+API that will give you back     
+
+111
+00:04:43,714 --> 00:04:44,812
+a view controller.              
+
+112
+00:04:44,881 --> 00:04:46,947
+Like on Wednesday we're         
+gonna talk about alerts and     
+
+113
+00:04:47,016 --> 00:04:47,714
+action sheets.                  
+
+114
+00:04:47,783 --> 00:04:50,350
+They will give you an MVC       
+which is basically an alert     
+
+115
+00:04:50,419 --> 00:04:52,085
+that you're gonna put           
+up on the screen.               
+
+116
+00:04:52,153 --> 00:04:53,920
+Also if you want to take        
+a picture with the camera,      
+
+117
+00:04:53,988 --> 00:04:56,355
+you're gonna get this UI image  
+picker controller which is      
+
+118
+00:04:56,423 --> 00:04:58,224
+an MVC and                      
+you're gonna put it up.         
+
+119
+00:04:58,292 --> 00:05:00,024
+And the way you put that up,    
+okay,                           
+
+120
+00:05:00,093 --> 00:05:02,693
+anytime you have an MVC         
+in your hand, in a VAR,         
+
+121
+00:05:02,762 --> 00:05:05,663
+Not in the storyboard but       
+in it might be something you    
+
+122
+00:05:05,731 --> 00:05:08,365
+created out of the storyboard   
+but it's in your in a bar.      
+
+123
+00:05:08,434 --> 00:05:09,367
+You just do present.            
+
+124
+00:05:09,435 --> 00:05:11,301
+So these are both new           
+controller methods up           
+
+125
+00:05:11,370 --> 00:05:12,568
+here these yellow things.       
+
+126
+00:05:12,637 --> 00:05:14,504
+And present just takes the      
+view controller you want to     
+
+127
+00:05:14,572 --> 00:05:15,905
+present, whether                
+you wanna animate               
+
+128
+00:05:15,973 --> 00:05:18,140
+it appearing on screen          
+which you usually do.           
+
+129
+00:05:18,209 --> 00:05:19,641
+A and                           
+then a completion handler.      
+
+130
+00:05:19,710 --> 00:05:22,543
+When animations done it'll      
+call a completion handler.      
+
+131
+00:05:22,612 --> 00:05:23,611
+Often we just ignore that.      
+
+132
+00:05:23,680 --> 00:05:25,312
+That's why it defaults          
+to nil there, okay.             
+
+133
+00:05:25,381 --> 00:05:30,250
+Now, when you are causing       
+this modal thing                
+
+134
+00:05:30,319 --> 00:05:33,687
+to appear, when it appears,     
+
+135
+00:05:33,756 --> 00:05:38,925
+it can actually appear          
+in different forms.             
+
+136
+00:05:38,994 --> 00:05:41,261
+One way is, it can cover        
+the entire screen,              
+
+137
+00:05:41,329 --> 00:05:44,063
+which you're going              
+to always see in                
+
+138
+00:05:44,131 --> 00:05:47,766
+train trade collections where   
+it tours on like compact.       
+
+139
+00:05:47,835 --> 00:05:49,400
+Okay, so that's like iPhone,    
+all right,                      
+
+140
+00:05:49,469 --> 00:05:52,537
+or master maybe of my pad.      
+
+141
+00:05:52,606 --> 00:05:55,105
+In a horizontally compact       
+environment it's going          
+
+142
+00:05:55,174 --> 00:05:57,074
+to kind of cover drop           
+the whole space.                
+
+143
+00:05:57,143 --> 00:05:58,842
+But in other places you         
+might want it to appear         
+
+144
+00:05:58,911 --> 00:06:00,510
+as a Popover, okay?             
+
+145
+00:06:00,579 --> 00:06:02,379
+Or you might even want it       
+to appear as kind of a form     
+
+146
+00:06:02,447 --> 00:06:06,048
+sheet, a smaller than           
+the huge iPad screen.           
+
+147
+00:06:06,117 --> 00:06:09,318
+So when you setup your segue,   
+you can go and inspect it and   
+
+148
+00:06:09,386 --> 00:06:11,854
+you can set how you want        
+it to appear, okay?             
+
+149
+00:06:11,922 --> 00:06:15,790
+And you can just take a look    
+of those prime out, page and    
+
+150
+00:06:15,859 --> 00:06:20,195
+form sheet and see what they    
+look like, and see which one.   
+
+151
+00:06:20,263 --> 00:06:21,312
+that's what it's gonna look     
+like when it, it gets there.    
+
+152
+00:06:21,313 --> 00:06:22,362
+You like there, so              
+
+153
+00:06:23,599 --> 00:06:26,833
+In horizontally compact         
+environments, okay,             
+
+154
+00:06:26,902 --> 00:06:28,468
+they aren't really              
+narrow environments,            
+
+155
+00:06:28,537 --> 00:06:31,771
+it's always by default going    
+to adapt to full screen,        
+
+156
+00:06:31,839 --> 00:06:34,439
+no matter what, you put in      
+there, but I'm gonna show you,  
+
+157
+00:06:34,508 --> 00:06:37,976
+hopefully, if we have time in   
+the demo, how you can override  
+
+158
+00:06:38,045 --> 00:06:41,313
+that adapting that behavior,    
+that automatic adapting         
+
+159
+00:06:41,382 --> 00:06:46,350
+behavior preparing for          
+a modal segue, it's             
+
+160
+00:06:46,419 --> 00:06:48,719
+exactly the same as any other   
+segue you've ever seen, right?  
+
+161
+00:06:48,788 --> 00:06:51,656
+You just check the identifier,  
+see if the destination does     
+
+162
+00:06:51,724 --> 00:06:54,591
+the thing you're looking for,   
+and then prepare it.            
+
+163
+00:06:54,660 --> 00:06:58,228
+What about hearing              
+back from a Modal MVC?          
+
+164
+00:06:58,296 --> 00:07:01,130
+So you put a Modal MVC up like  
+that contacts thing and it      
+
+165
+00:07:01,199 --> 00:07:03,866
+collects all the information    
+for the new contact.            
+
+166
+00:07:03,935 --> 00:07:05,567
+How do you communicate back?    
+
+167
+00:07:05,636 --> 00:07:07,970
+Here's the new contact, okay?   
+
+168
+00:07:08,039 --> 00:07:09,137
+So, there's a couple            
+of things there.                
+
+169
+00:07:09,206 --> 00:07:12,173
+One, you know, that new         
+contact thing might just be     
+
+170
+00:07:12,242 --> 00:07:14,241
+creating that contact           
+in a database.                  
+
+171
+00:07:14,310 --> 00:07:15,542
+And, and                        
+you don't need to do anything.  
+
+172
+00:07:15,611 --> 00:07:17,344
+You just dismiss the modal      
+view controller.                
+
+173
+00:07:17,413 --> 00:07:19,947
+When it comes back, the other   
+view controller is looking in   
+
+174
+00:07:20,016 --> 00:07:22,415
+the same database, and          
+it sees it appear.              
+
+175
+00:07:22,483 --> 00:07:24,250
+It's probably using a fetch     
+results controller or           
+
+176
+00:07:24,319 --> 00:07:26,285
+something like that, and        
+it sees it as it appears and    
+
+177
+00:07:26,354 --> 00:07:28,386
+magically just works, but       
+sometimes you might be          
+
+178
+00:07:28,455 --> 00:07:29,554
+creating something              
+where you do need to            
+
+179
+00:07:29,623 --> 00:07:32,924
+communicate back and you're     
+gonna use an unwind segway for  
+
+180
+00:07:32,993 --> 00:07:36,060
+that, and I'm gonna talk about  
+unwind in a few slides here.    
+
+181
+00:07:36,129 --> 00:07:38,863
+But that's how you're going to  
+communicate back from a modal   
+
+182
+00:07:38,931 --> 00:07:40,431
+view controller.                
+
+183
+00:07:40,500 --> 00:07:41,798
+How do you get the modal        
+view controller                 
+
+184
+00:07:41,867 --> 00:07:44,467
+to go way like when you         
+hit the cancel button?          
+
+185
+00:07:44,536 --> 00:07:47,336
+The answer is that              
+the presenting view controller  
+
+186
+00:07:47,405 --> 00:07:51,040
+the view controller that puts   
+it up okay the things you said  
+
+187
+00:07:51,109 --> 00:07:55,144
+way from that thing is          
+responsible for dismissing it.  
+
+188
+00:07:55,213 --> 00:07:57,880
+And it does it with these       
+methods dismiss animated,       
+
+189
+00:07:57,948 --> 00:08:02,617
+okay and that when you say      
+dismiss to NBC it means         
+
+190
+00:08:02,686 --> 00:08:06,420
+Dismiss any view                
+controller I've put up.         
+
+191
+00:08:06,489 --> 00:08:07,421
+That's what this means, okay?   
+
+192
+00:08:07,490 --> 00:08:09,957
+Dismiss ones I've put up.       
+
+193
+00:08:10,026 --> 00:08:12,959
+And, the good news is, okay,    
+a lot of times you'd wanna do   
+
+194
+00:08:13,028 --> 00:08:16,462
+this in the cancel button of a  
+thing that was presented, but   
+
+195
+00:08:16,531 --> 00:08:18,298
+of course, you can't            
+send this to yourself.          
+
+196
+00:08:18,367 --> 00:08:20,366
+But luckily,                    
+every view controller knows     
+
+197
+00:08:20,435 --> 00:08:21,500
+who presented it.               
+
+198
+00:08:21,569 --> 00:08:23,569
+So, it can just get its         
+presenting view controller.     
+
+199
+00:08:23,637 --> 00:08:26,304
+There's a, bar called           
+presenting view controller,     
+
+200
+00:08:26,373 --> 00:08:29,874
+and it can send dismiss to its  
+presenting view controller.     
+
+201
+00:08:29,943 --> 00:08:32,143
+You'll see that in              
+the demo as well.               
+
+202
+00:08:32,211 --> 00:08:34,878
+Online segues by the way,       
+which again I'm going to talk   
+
+203
+00:08:34,947 --> 00:08:37,614
+about in a minute,              
+they automatically dismiss.     
+
+204
+00:08:37,682 --> 00:08:40,249
+So, you do not have to call     
+dismiss if you unwind.          
+
+205
+00:08:40,318 --> 00:08:41,851
+To communicate                  
+information back.               
+
+206
+00:08:44,422 --> 00:08:47,256
+Now, not only can you control   
+what the modal view control     
+
+207
+00:08:47,324 --> 00:08:48,690
+is going to look                
+like when it's up,              
+
+208
+00:08:48,759 --> 00:08:50,191
+whether it's full screen or     
+whatever, but                   
+
+209
+00:08:50,260 --> 00:08:53,861
+you can also control how        
+it animates to come up.         
+
+210
+00:08:53,930 --> 00:08:57,130
+And it's the same thing we saw  
+with the other one, you can     
+
+211
+00:08:57,199 --> 00:09:00,301
+flip to have it appear, it      
+can cross this all in there,    
+
+212
+00:09:00,369 --> 00:09:03,603
+you can slide up from the       
+bottom that's coverVertical is  
+
+213
+00:09:03,672 --> 00:09:06,206
+the default, and                
+you can even partialCurl,       
+
+214
+00:09:06,275 --> 00:09:08,941
+it will kind of lift it up      
+like a piece of paper and       
+
+215
+00:09:09,010 --> 00:09:10,476
+see the new one in behind.      
+
+216
+00:09:10,545 --> 00:09:13,378
+In all cases though,            
+no matter how animates on,      
+
+217
+00:09:13,447 --> 00:09:16,915
+no matter how are chose, it's   
+modal only that new MVC can be  
+
+218
+00:09:16,983 --> 00:09:20,252
+interactive with, okay, the     
+other MVC is like the one I     
+
+219
+00:09:20,320 --> 00:09:23,121
+presented it,                   
+are kind temporarily disable.   
+
+220
+00:09:23,190 --> 00:09:27,024
+All right, let's talk           
+about that unwind segue.        
+
+221
+00:09:27,092 --> 00:09:28,559
+This unwinding,                 
+
+222
+00:09:28,627 --> 00:09:33,196
+is the only segue in iOS that   
+does not create a new MVC.      
+
+223
+00:09:33,265 --> 00:09:36,732
+Okay?                           
+
+224
+00:09:36,801 --> 00:09:38,167
+Show segue, new MVC.            
+
+225
+00:09:38,236 --> 00:09:40,002
+Popover, new MVC.               
+
+226
+00:09:40,071 --> 00:09:42,070
+But unwind, does not,           
+because in unwind,              
+
+227
+00:09:42,139 --> 00:09:45,507
+you're segueing back to some    
+MVC that already exist.         
+
+228
+00:09:45,576 --> 00:09:46,775
+That has presented you.         
+
+229
+00:09:48,211 --> 00:09:49,276
+Okay?                           
+
+230
+00:09:49,345 --> 00:09:51,978
+Now, what's it good for         
+this unwind, is it's good for   
+
+231
+00:09:52,047 --> 00:09:53,813
+communicating back              
+from a modal.                   
+
+232
+00:09:53,882 --> 00:09:56,549
+It's also good if you have      
+a navigation controller with    
+
+233
+00:09:56,618 --> 00:09:58,150
+a whole bunch of things         
+on the stack, and               
+
+234
+00:09:58,219 --> 00:09:59,986
+you want to jump                
+back more than one.             
+
+235
+00:10:00,054 --> 00:10:03,088
+You want to do more than one    
+back button's worth, you can    
+
+236
+00:10:03,157 --> 00:10:06,325
+jump back three levels, you     
+can unwind back up your stack,  
+
+237
+00:10:06,393 --> 00:10:09,628
+because, though, when you       
+have a navigation controller,   
+
+238
+00:10:09,696 --> 00:10:12,930
+all the MVCs, higher on the     
+stack are considered to have    
+
+239
+00:10:12,999 --> 00:10:15,699
+presented you by pushing        
+you on the stack, okay?         
+
+240
+00:10:15,768 --> 00:10:19,603
+Which they did, they segued to  
+you with a show, or whatever.   
+
+241
+00:10:19,672 --> 00:10:22,339
+So, that's what unwind          
+is mostly good for.             
+
+242
+00:10:22,408 --> 00:10:23,372
+How does it work?               
+
+243
+00:10:23,441 --> 00:10:26,509
+Well, you don't control         
+drag from the button, or        
+
+244
+00:10:26,577 --> 00:10:30,112
+whatever you want to do the     
+unwind, to the MVC you want.    
+
+245
+00:10:30,181 --> 00:10:31,347
+Instead, you're                 
+gonna Ctrl+drag                 
+
+246
+00:10:31,416 --> 00:10:33,415
+to this little orange           
+button at the top.              
+
+247
+00:10:33,484 --> 00:10:34,549
+You've probably seen            
+this button and                 
+
+248
+00:10:34,618 --> 00:10:36,751
+said, mm, what is that thing?   
+
+249
+00:10:36,820 --> 00:10:40,187
+It has a tooltip that           
+says Exit, and, indeed,         
+
+250
+00:10:40,256 --> 00:10:40,887
+that's what you do.             
+
+251
+00:10:40,956 --> 00:10:42,188
+When you Ctrl+drag              
+to this thing,                  
+
+252
+00:10:42,257 --> 00:10:46,292
+you're creating a segue that    
+is going to exit this MVC.      
+
+253
+00:10:46,361 --> 00:10:47,293
+Okay.                           
+
+254
+00:10:47,362 --> 00:10:49,829
+Now, how do you decide where    
+you are going to go when        
+
+255
+00:10:49,897 --> 00:10:50,662
+you exit.                       
+
+256
+00:10:50,731 --> 00:10:52,364
+Well, you are going             
+to do that,                     
+
+257
+00:10:52,432 --> 00:10:55,132
+because you create a special    
+method in another MVC.          
+
+258
+00:10:55,201 --> 00:10:57,969
+And whenever you create this    
+special method in any MVC       
+
+259
+00:10:58,037 --> 00:11:00,470
+it gets added to a list         
+inside of X code, and, so       
+
+260
+00:11:00,539 --> 00:11:03,607
+when you control drag to exit   
+that list is going to appear.   
+
+261
+00:11:03,676 --> 00:11:04,607
+And you can see I only have     
+
+262
+00:11:04,676 --> 00:11:06,609
+one of them here                
+called go back.                 
+
+263
+00:11:06,678 --> 00:11:10,213
+Now, I'm Ctrl+dragging from     
+a table view raw, so I've got   
+
+264
+00:11:10,281 --> 00:11:13,916
+the accessory one, and the      
+main table view raw one there.  
+
+265
+00:11:13,984 --> 00:11:15,150
+But go back,                    
+there's the only one.           
+
+266
+00:11:15,219 --> 00:11:17,752
+So, when I choose this go       
+back, I'm basically saying,     
+
+267
+00:11:17,821 --> 00:11:21,689
+that I wanna segue to some      
+MVC that presented me,          
+
+268
+00:11:21,758 --> 00:11:25,926
+it implements the go            
+back method, okay?              
+
+269
+00:11:25,995 --> 00:11:27,294
+That's how unwind work.         
+
+270
+00:11:27,363 --> 00:11:30,397
+Now, let's look at kinda        
+how the code behind all         
+
+271
+00:11:30,466 --> 00:11:31,365
+this works.                     
+
+272
+00:11:32,867 --> 00:11:37,503
+So, in the presenter, the one   
+you're gonna unwind to,         
+
+273
+00:11:37,572 --> 00:11:38,470
+you have to create a method.    
+
+274
+00:11:38,539 --> 00:11:40,505
+And this method has to          
+have two important things.      
+
+275
+00:11:40,574 --> 00:11:43,675
+One, it has to be               
+marked @IBAction.               
+
+276
+00:11:43,744 --> 00:11:46,277
+And two it argument and         
+it can only have one argument,  
+
+277
+00:11:46,346 --> 00:11:47,779
+it must have one argument, and  
+
+278
+00:11:47,847 --> 00:11:50,748
+that argument must be of        
+type UI storyboard segue,       
+
+279
+00:11:50,816 --> 00:11:53,784
+because you're going to be      
+segueing to this thing.         
+
+280
+00:11:53,853 --> 00:11:56,286
+Okay, so that's in the view     
+controller you're going         
+
+281
+00:11:56,355 --> 00:11:58,755
+to unwind to,                   
+that you're segueing to.        
+
+282
+00:12:00,024 --> 00:12:02,658
+So, the code for this           
+kinda looks like this, and      
+
+283
+00:12:02,727 --> 00:12:04,092
+to prepare.                     
+
+284
+00:12:04,161 --> 00:12:07,129
+Of the presenter, so            
+the presented I mean.           
+
+285
+00:12:07,198 --> 00:12:08,363
+The prepare,                    
+
+286
+00:12:08,431 --> 00:12:10,631
+of the thing that's going       
+to be doing the unwind,         
+
+287
+00:12:10,700 --> 00:12:13,301
+because it's going to be        
+segueing, it gets to prepare.   
+
+288
+00:12:13,369 --> 00:12:16,370
+So, it has normal prepare,      
+you can check its identifier.   
+
+289
+00:12:16,439 --> 00:12:17,971
+And when you're in prepare,     
+
+290
+00:12:18,040 --> 00:12:21,541
+the segue's destination it's    
+gonna be the presenter,         
+
+291
+00:12:21,609 --> 00:12:23,442
+the view controller             
+you're gonna unwind to.         
+
+292
+00:12:23,511 --> 00:12:26,879
+So, this code goes in           
+the presented view controller,  
+
+293
+00:12:26,948 --> 00:12:28,113
+the modal view controller,      
+whatever,                       
+
+294
+00:12:28,182 --> 00:12:29,915
+that you're gonna unwind from.  
+
+295
+00:12:29,983 --> 00:12:32,383
+Then back in the presenter      
+you have code that looks like   
+
+296
+00:12:32,452 --> 00:12:35,853
+this, the special method with   
+the at sign app, action,        
+
+297
+00:12:35,922 --> 00:12:38,055
+ID action and                   
+the UI storyboard segue.        
+
+298
+00:12:38,124 --> 00:12:40,257
+And inside there,               
+very interestingly,             
+
+299
+00:12:40,326 --> 00:12:43,493
+you're gonna look at the        
+segue's source you know that    
+
+300
+00:12:43,561 --> 00:12:46,062
+were used to looking a segue    
+destination that's the view     
+
+301
+00:12:46,131 --> 00:12:48,130
+controller we are segueing to.  
+
+302
+00:12:48,199 --> 00:12:51,300
+Segue source is the source      
+of the segue, so                
+
+303
+00:12:51,369 --> 00:12:54,002
+that's the MVC we're            
+segueing from, so in            
+
+304
+00:12:54,071 --> 00:12:57,038
+an unwind situation for in the  
+go back method, this go back    
+
+305
+00:12:57,107 --> 00:12:59,774
+method, just go back method     
+goes inside the presenter       
+
+306
+00:12:59,843 --> 00:13:00,708
+right there.                    
+
+307
+00:13:00,777 --> 00:13:04,044
+The source of the segue         
+is the modal one.               
+
+308
+00:13:04,113 --> 00:13:05,445
+And when you do unwind,         
+
+309
+00:13:05,514 --> 00:13:07,881
+you will automatically          
+get dismissed.                  
+
+310
+00:13:07,950 --> 00:13:09,116
+See how I disappeared there.    
+
+311
+00:13:10,218 --> 00:13:11,050
+I'll get dismissed, and         
+
+312
+00:13:11,119 --> 00:13:16,221
+the presenter will have this    
+go back special method called,  
+
+313
+00:13:16,290 --> 00:13:17,572
+So, this,                       
+this is how unwind plays out.   
+
+314
+00:13:17,573 --> 00:13:18,855
+okay?                           
+
+315
+00:13:18,925 --> 00:13:21,960
+It's all about that special     
+method and the presenter.       
+
+316
+00:13:22,028 --> 00:13:22,827
+All right.                      
+
+317
+00:13:22,895 --> 00:13:24,961
+Another segue is                
+the Popover segue.              
+
+318
+00:13:25,030 --> 00:13:26,096
+I'm sure you've all seen this.  
+
+319
+00:13:26,165 --> 00:13:29,366
+Here's a Popover, this          
+Popover is presenting an MVC,   
+
+320
+00:13:29,434 --> 00:13:32,234
+which is some kind of           
+search for appointment          
+
+321
+00:13:32,303 --> 00:13:35,738
+MVC there in some calendar      
+app, or something like that.    
+
+322
+00:13:35,807 --> 00:13:37,773
+And, so that's the MVC          
+that's being presented.         
+
+323
+00:13:37,841 --> 00:13:40,775
+Now, when you notice when       
+this is being presented.        
+
+324
+00:13:40,844 --> 00:13:43,411
+It's in this little white box   
+and there's a little triangle.  
+
+325
+00:13:43,480 --> 00:13:45,412
+See the little tiny             
+little triangle there?          
+
+326
+00:13:45,481 --> 00:13:49,784
+It's pointing to the UI         
+element that cause the popover  
+
+327
+00:13:49,853 --> 00:13:50,684
+to come up.                     
+
+328
+00:13:50,753 --> 00:13:53,153
+So, that's usually a bar        
+button item, or button, but     
+
+329
+00:13:53,222 --> 00:13:57,357
+you can actually point to any   
+rectangle in any view, okay.    
+
+330
+00:13:57,425 --> 00:14:00,126
+So, for example, if you         
+had an iBooks like app and      
+
+331
+00:14:00,194 --> 00:14:02,094
+you have text, and you          
+double click on a word, and     
+
+332
+00:14:02,163 --> 00:14:05,030
+you hit define it could         
+bring up a popover with         
+
+333
+00:14:05,098 --> 00:14:07,031
+a little arrow is pointing at   
+the word you are defining,      
+
+334
+00:14:07,100 --> 00:14:11,369
+you see?, so it can point       
+to anything you want there.     
+
+335
+00:14:11,438 --> 00:14:15,940
+And notice also that the rest   
+of the UI is kinda grayed out   
+
+336
+00:14:16,008 --> 00:14:19,910
+a little bit right the stuff    
+that is not the MVC that is     
+
+337
+00:14:19,979 --> 00:14:21,979
+being presented in              
+the popovers kinda grayed out,  
+
+338
+00:14:22,048 --> 00:14:26,182
+in fact if you click there you  
+will dismiss the popover, so    
+
+339
+00:14:26,251 --> 00:14:29,619
+this is also a modal,           
+a popover is also a modal.      
+
+340
+00:14:29,688 --> 00:14:32,255
+It only, you can only interact  
+with what's in that popover.    
+
+341
+00:14:32,324 --> 00:14:35,023
+If you try to click on          
+anything else, it's gonna just  
+
+342
+00:14:35,092 --> 00:14:37,960
+miss the popover, and end       
+exit the modal state, okay?     
+
+343
+00:14:38,029 --> 00:14:41,396
+You've probably noticed this    
+from using various iPad apps,   
+
+344
+00:14:41,464 --> 00:14:44,065
+and by the way, the popover,    
+mostly iPad only, but           
+
+345
+00:14:44,134 --> 00:14:47,001
+not always, you can actually    
+do popovers on the iPhone,      
+
+346
+00:14:47,070 --> 00:14:50,571
+I'll talk a little bit          
+about that as well.             
+
+347
+00:14:50,640 --> 00:14:53,574
+So yeah, popover, just like     
+modal, you control drag,        
+
+348
+00:14:53,642 --> 00:14:56,576
+you're just gonna set its type  
+to be popover instead of,       
+
+349
+00:14:56,645 --> 00:14:57,477
+present modal.                  
+
+350
+00:14:59,080 --> 00:15:01,481
+When you're preparing for       
+a popover,                      
+
+351
+00:15:01,549 --> 00:15:04,249
+there's a few extra             
+things you can do, okay.        
+
+352
+00:15:04,318 --> 00:15:06,585
+So, all of these                
+presentations,                  
+
+353
+00:15:06,654 --> 00:15:09,086
+anytime you go modal, or you    
+
+354
+00:15:09,155 --> 00:15:12,023
+even push in the navigation     
+controller, these are all       
+
+355
+00:15:12,091 --> 00:15:14,892
+managed by a class called       
+a UI Presentation Controller,   
+
+356
+00:15:14,961 --> 00:15:17,327
+it controls                     
+the presentation of an MVC.     
+
+357
+00:15:17,396 --> 00:15:20,063
+Now, we're not gonna have time  
+to talk about that, you can     
+
+358
+00:15:20,132 --> 00:15:22,699
+actually build your own         
+presentation in folders that    
+
+359
+00:15:22,767 --> 00:15:25,001
+present MVCs, and               
+other ways that you want.       
+
+360
+00:15:25,070 --> 00:15:27,169
+Pretty rare to do it, but you   
+see it sometimes in apps, or    
+
+361
+00:15:27,238 --> 00:15:30,171
+things slide out in             
+a certain way, or whatever.     
+
+362
+00:15:30,240 --> 00:15:33,641
+But, in the popover case,       
+
+363
+00:15:33,710 --> 00:15:35,010
+we're just gonna                
+talk about the,                 
+
+364
+00:15:35,078 --> 00:15:37,411
+this, presentation control      
+a little bit, because there's   
+
+365
+00:15:37,480 --> 00:15:40,748
+a sub class of it called UI     
+PopoverPresentationController.  
+
+366
+00:15:40,817 --> 00:15:44,418
+And it has a few interesting    
+bars in it, like, what arrow,   
+
+367
+00:15:44,486 --> 00:15:47,788
+what direction is the arrow     
+from the popover allowed to     
+
+368
+00:15:47,857 --> 00:15:48,789
+point, okay?                    
+
+369
+00:15:48,857 --> 00:15:51,257
+The system automatically        
+figures out where to bring      
+
+370
+00:15:51,326 --> 00:15:53,925
+the popover up, but it will     
+try to make the arrow point in  
+
+371
+00:15:53,994 --> 00:15:56,828
+one of the directions that you  
+allow, also this is where this  
+
+372
+00:15:56,897 --> 00:15:59,231
+popover presentation            
+controller is a thing where     
+
+373
+00:15:59,299 --> 00:16:01,833
+you specify the rectangle and   
+view that they are should       
+
+374
+00:16:01,902 --> 00:16:04,502
+point at, if it's not pointing  
+in a bar button icon, or        
+
+375
+00:16:04,571 --> 00:16:07,038
+a button, or                    
+something like that.            
+
+376
+00:16:07,106 --> 00:16:09,540
+And where do you                
+configure all this              
+
+377
+00:16:09,609 --> 00:16:11,675
+UIPopoverPresentationContro-    
+ller stuff?                     
+
+378
+00:16:11,744 --> 00:16:14,377
+You do it in your prepare,      
+when you prepare for            
+
+379
+00:16:14,446 --> 00:16:16,946
+a popover segue,                
+you're going to do that,        
+
+380
+00:16:17,015 --> 00:16:18,314
+so, the code looks              
+kind of like this.              
+
+381
+00:16:18,382 --> 00:16:21,417
+Here's a typical prepare for    
+segue that is preparing for     
+
+382
+00:16:21,485 --> 00:16:23,318
+a popover segue,                
+it looks the same,              
+
+383
+00:16:23,387 --> 00:16:25,187
+all the green is the same       
+as any other segue.             
+
+384
+00:16:25,255 --> 00:16:27,522
+But then there's the yellow     
+that's different                
+
+385
+00:16:27,590 --> 00:16:29,022
+I'm creating this               
+local variable.                 
+
+386
+00:16:29,091 --> 00:16:31,124
+I'm calling it PPC, so          
+that it fits on my slide,       
+
+387
+00:16:31,193 --> 00:16:33,060
+but that's not a good           
+variable name.                  
+
+388
+00:16:33,128 --> 00:16:36,997
+PPC equals VC which is          
+the View Controller that I'm    
+
+389
+00:16:37,065 --> 00:16:40,633
+segueing to give me it's        
+popover presentation            
+
+390
+00:16:40,702 --> 00:16:41,734
+controller.                     
+
+391
+00:16:41,803 --> 00:16:44,336
+When I get that popover         
+presentation controller, and    
+
+392
+00:16:44,405 --> 00:16:46,571
+you can go look at              
+the documentation for it, but   
+
+393
+00:16:46,640 --> 00:16:49,674
+one of the things it can do is  
+permitted arrow directions is.  
+
+394
+00:16:49,743 --> 00:16:52,176
+Will let you set the arrow      
+directions to right, left,      
+
+395
+00:16:52,245 --> 00:16:54,778
+right, up, down or here I've    
+set it to any, which means      
+
+396
+00:16:54,847 --> 00:16:58,849
+any, I'll let the arrow point   
+in any direction, all right?    
+
+397
+00:16:58,917 --> 00:17:01,651
+In addition to doing things     
+like arrow directions,          
+
+398
+00:17:01,720 --> 00:17:03,887
+this popover presentation       
+controller also has             
+
+399
+00:17:03,956 --> 00:17:05,054
+a delegate.                     
+
+400
+00:17:05,123 --> 00:17:06,989
+Now why does it                 
+need a delegate?                
+
+401
+00:17:07,058 --> 00:17:09,925
+Well the delegate is used       
+to control this adaptation      
+
+402
+00:17:09,993 --> 00:17:11,092
+behavior.                       
+
+403
+00:17:11,161 --> 00:17:14,428
+Now the popover, when you have  
+a popover, you'd like to have   
+
+404
+00:17:14,497 --> 00:17:16,264
+your storyboard just            
+have a popover so               
+
+405
+00:17:16,333 --> 00:17:18,466
+that when it works on           
+an iPad it's nice.              
+
+406
+00:17:18,534 --> 00:17:21,001
+It's in a popover but           
+when you're on iPhone,          
+
+407
+00:17:21,070 --> 00:17:23,871
+especially when you're in       
+a horizontally compact          
+
+408
+00:17:23,939 --> 00:17:25,805
+environment you don't           
+want to use a popover.          
+
+409
+00:17:25,874 --> 00:17:27,173
+There's usually                 
+not enough room,                
+
+410
+00:17:27,241 --> 00:17:29,475
+it's just too crowded to put    
+a popover in there, instead,    
+
+411
+00:17:29,544 --> 00:17:31,310
+you wanna do this full screen.  
+
+412
+00:17:31,378 --> 00:17:32,076
+And as I said before,           
+
+413
+00:17:32,145 --> 00:17:34,679
+the system will automatically   
+adapt to the fact that you're   
+
+414
+00:17:34,748 --> 00:17:36,614
+in a horizontally               
+compact environment, and        
+
+415
+00:17:36,683 --> 00:17:38,983
+it will make it full            
+screen instead.                 
+
+416
+00:17:39,052 --> 00:17:41,719
+But via this delegate,          
+this pop over presentation for  
+
+417
+00:17:41,787 --> 00:17:44,021
+a delegate, you can             
+control that adaptation.        
+
+418
+00:17:44,089 --> 00:17:46,322
+Behavior you can prevent it,    
+you can modify it, so           
+
+419
+00:17:46,391 --> 00:17:49,158
+let's talk a little bit         
+about how that works.           
+
+420
+00:17:49,226 --> 00:17:52,328
+So this adaptation to the size  
+classes let's just look at      
+
+421
+00:17:52,397 --> 00:17:53,929
+the code right off the bat.     
+
+422
+00:17:53,997 --> 00:17:55,931
+This delegate method of         
+the pop over presentation       
+
+423
+00:17:56,000 --> 00:17:58,400
+controller is called adaptive   
+presentation style for          
+
+424
+00:17:58,469 --> 00:18:00,734
+controller trait collection.    
+
+425
+00:18:00,803 --> 00:18:02,703
+And, what this is               
+basically asking is,            
+
+426
+00:18:02,771 --> 00:18:05,405
+I'm about to present this       
+controller, the argument        
+
+427
+00:18:05,474 --> 00:18:08,241
+there, in an environment        
+with this trait collection.     
+
+428
+00:18:08,310 --> 00:18:10,676
+Remember trait collections are  
+like horizontal size class,     
+
+429
+00:18:10,745 --> 00:18:12,244
+vertical size class.            
+
+430
+00:18:12,313 --> 00:18:15,448
+And, it's asking you to return  
+what kind of adaptation         
+
+431
+00:18:15,516 --> 00:18:16,648
+you want to do?                 
+
+432
+00:18:16,717 --> 00:18:19,717
+So, you can return none,        
+and it will not adapt,          
+
+433
+00:18:19,786 --> 00:18:21,319
+it'll just do it                
+like a popover.                 
+
+434
+00:18:21,388 --> 00:18:24,422
+This how you can get a popover  
+on your iPhone just implement   
+
+435
+00:18:24,491 --> 00:18:27,258
+this delegate method and        
+return none, okay?              
+
+436
+00:18:27,327 --> 00:18:30,327
+.None, if you do                
+that it won't adapt.            
+
+437
+00:18:30,396 --> 00:18:32,229
+Now you could return            
+other things in here like       
+
+438
+00:18:32,298 --> 00:18:36,666
+.fullScreen or .overfullScreen  
+and by doing so                 
+
+439
+00:18:36,735 --> 00:18:39,035
+you control how the popover's   
+going to look and               
+
+440
+00:18:39,104 --> 00:18:41,036
+adapt to different              
+trade collections.              
+
+441
+00:18:41,105 --> 00:18:43,672
+Okay, hopefully,                
+we'll have time for             
+
+442
+00:18:43,741 --> 00:18:46,541
+that in the demo maybe not,     
+but we'll see.                  
+
+443
+00:18:46,610 --> 00:18:49,711
+The other thing you can do,     
+which is kinda cool when        
+
+444
+00:18:49,780 --> 00:18:52,246
+it adapts,                      
+is I might have a popover, and  
+
+445
+00:18:52,315 --> 00:18:55,048
+since popovers don't            
+have cancel buttons.            
+
+446
+00:18:55,117 --> 00:18:56,616
+They don't need                 
+cancel buttons,                 
+
+447
+00:18:56,685 --> 00:18:58,852
+cuz I can touch anywhere        
+outside the popover, and        
+
+448
+00:18:58,921 --> 00:18:59,585
+it cancels it.                  
+
+449
+00:18:59,654 --> 00:19:02,822
+Okay, so I don't need           
+a cancel button, but on a,      
+
+450
+00:19:02,891 --> 00:19:07,359
+when it adapts to full          
+screen modal on an iPhone,      
+
+451
+00:19:07,428 --> 00:19:09,728
+I do need a cancel button cuz   
+I can't click anywhere else.    
+
+452
+00:19:09,797 --> 00:19:11,663
+It's taken over my              
+entire screen, so               
+
+453
+00:19:11,732 --> 00:19:12,664
+I want to put a cancel button.  
+
+454
+00:19:12,733 --> 00:19:15,332
+So to put a cancel button up    
+there, maybe I want to put it   
+
+455
+00:19:15,401 --> 00:19:18,502
+in a navigation controller so   
+that I can fit a cancel button  
+
+456
+00:19:18,571 --> 00:19:20,938
+at the top,                     
+a bar button item, right?       
+
+457
+00:19:21,006 --> 00:19:23,906
+I mean, I could put the cancel  
+button somewhere inside my      
+
+458
+00:19:23,975 --> 00:19:26,943
+view controller and then just   
+take it out when I'm on iPad,   
+
+459
+00:19:27,012 --> 00:19:28,578
+iPhone, or whatever.            
+
+460
+00:19:28,646 --> 00:19:31,847
+But maybe what I wanna do is    
+have it be in the navigation    
+
+461
+00:19:31,916 --> 00:19:34,082
+bar of a navigation             
+controller.                     
+
+462
+00:19:34,151 --> 00:19:36,150
+But again,                      
+only when I'm adapting and      
+
+463
+00:19:36,219 --> 00:19:37,953
+so this will let you that.      
+
+464
+00:19:38,022 --> 00:19:40,221
+This one called                 
+Presentation Controller,        
+
+465
+00:19:40,290 --> 00:19:42,790
+View Controller for             
+adaptive presentation style,    
+
+466
+00:19:42,858 --> 00:19:45,893
+is saying, what view            
+controller should I use         
+
+467
+00:19:45,962 --> 00:19:49,529
+when I adapt to this            
+presentation style?             
+
+468
+00:19:49,598 --> 00:19:53,800
+Okay, and that presentation     
+style over full screen or       
+
+469
+00:19:53,869 --> 00:19:57,069
+pop over or full screen.        
+
+470
+00:19:57,138 --> 00:20:00,072
+And so here is where you        
+might want to say I'm gonna     
+
+471
+00:20:00,141 --> 00:20:03,843
+return a navigation controller  
+with the controller that        
+
+472
+00:20:03,911 --> 00:20:06,411
+would normally disappear        
+in a pop over inside of it      
+
+473
+00:20:06,480 --> 00:20:08,279
+as it's root view controller.   
+
+474
+00:20:08,348 --> 00:20:10,548
+Okay, so this is kind of        
+a cool way to do substitute,    
+
+475
+00:20:10,617 --> 00:20:13,284
+another, like, usually          
+a navigation controller,        
+
+476
+00:20:13,352 --> 00:20:16,220
+another MVC that you'll         
+wrap around the MVC you're      
+
+477
+00:20:16,289 --> 00:20:17,688
+trying to present.              
+
+478
+00:20:17,757 --> 00:20:19,355
+So the return values            
+of this is actually             
+
+479
+00:20:19,424 --> 00:20:20,357
+another ViewController.         
+
+480
+00:20:22,059 --> 00:20:24,526
+Okay, so it's kinda fun         
+controlling that adaption       
+
+481
+00:20:24,595 --> 00:20:27,195
+stuff, there's another          
+important issue about popovers  
+
+482
+00:20:27,264 --> 00:20:29,498
+by the way, which is size.      
+
+483
+00:20:29,566 --> 00:20:30,699
+Now, by default,                
+
+484
+00:20:30,767 --> 00:20:34,902
+a Popover comes in size         
+that kind of is like            
+
+485
+00:20:34,970 --> 00:20:38,872
+an iPhone in portrait, that's   
+kind of it's default size.      
+
+486
+00:20:38,941 --> 00:20:42,141
+And if it doesn't really know   
+what size the stuff is inside,  
+
+487
+00:20:42,210 --> 00:20:43,543
+that's the best it can do.      
+
+488
+00:20:43,612 --> 00:20:46,145
+But you can control their       
+size, make it a lot better,     
+
+489
+00:20:46,214 --> 00:20:49,449
+by having the MVC that's being  
+presented, implement, or        
+
+490
+00:20:49,517 --> 00:20:52,418
+set, this var called            
+preferred content size.         
+
+491
+00:20:52,486 --> 00:20:55,119
+And that just says,             
+this is the size I want to be   
+
+492
+00:20:55,188 --> 00:20:57,588
+in a popover, basically or      
+in any environment, really.     
+
+493
+00:20:57,657 --> 00:21:01,125
+But this is my preferred        
+size to be and                  
+
+494
+00:21:01,194 --> 00:21:05,062
+so, again if we have time can   
+do this in our demo as well.    
+
+495
+00:21:05,131 --> 00:21:07,097
+You want to return              
+here the smallest size          
+
+496
+00:21:07,166 --> 00:21:09,899
+that you look good in and then  
+when your popover comes up,     
+
+497
+00:21:09,968 --> 00:21:10,800
+it'll use this size.            
+
+498
+00:21:10,869 --> 00:21:11,734
+If you don't set this size,     
+
+499
+00:21:11,803 --> 00:21:13,603
+you're gonna kind of            
+get this default size,          
+
+500
+00:21:13,671 --> 00:21:15,103
+it depends on                   
+whether in portrait,            
+
+501
+00:21:15,172 --> 00:21:17,673
+landscape, iPad, whatever.      
+
+502
+00:21:17,741 --> 00:21:20,609
+It's gonna give you             
+a somewhat standardized size.   
+
+503
+00:21:22,579 --> 00:21:25,112
+Okay the last segue we're       
+going to talk about here is     
+
+504
+00:21:25,181 --> 00:21:29,616
+embed segues, these are really  
+cool, really powerful.          
+
+505
+00:21:29,685 --> 00:21:33,353
+Segues is basically a segue     
+where you put another aVCs      
+
+506
+00:21:33,422 --> 00:21:37,723
+self.view it's top of a view    
+inside another view hierarchy,  
+
+507
+00:21:37,792 --> 00:21:41,294
+so this embedding view          
+controllers inside another      
+
+508
+00:21:41,363 --> 00:21:42,728
+view controllers.               
+
+509
+00:21:42,797 --> 00:21:44,830
+Okay really cool thing          
+to be able to do and            
+
+510
+00:21:44,899 --> 00:21:46,397
+Xcode makes this super easy,    
+
+511
+00:21:46,466 --> 00:21:49,033
+you're just gonna go down       
+to your object palate.          
+
+512
+00:21:49,102 --> 00:21:50,535
+And look for                    
+container view and              
+
+513
+00:21:50,603 --> 00:21:53,337
+drag that container view out,   
+it looks just like a view.      
+
+514
+00:21:53,405 --> 00:21:56,473
+You're gonna put auto layout    
+on it, wherever you want and    
+
+515
+00:21:56,542 --> 00:21:59,476
+itself.view is gonna appear     
+embedded in the view hierarchy  
+
+516
+00:21:59,545 --> 00:22:01,144
+of the thing you                
+dragged it into.                
+
+517
+00:22:01,212 --> 00:22:03,313
+It's really quite               
+a normal segue,                 
+
+518
+00:22:03,381 --> 00:22:05,915
+it seems weird cuz it's like    
+you're embedding this thing     
+
+519
+00:22:05,984 --> 00:22:07,816
+but, it's a fairly              
+normal seque in there.          
+
+520
+00:22:07,885 --> 00:22:11,052
+You can name it,                
+you get to prepare for          
+
+521
+00:22:11,121 --> 00:22:13,321
+seque and all that stuff.       
+
+522
+00:22:13,390 --> 00:22:14,322
+You can see here,               
+
+523
+00:22:14,391 --> 00:22:16,557
+the little gray thing           
+next to this container,         
+
+524
+00:22:16,626 --> 00:22:20,527
+that's the view                 
+appearing inside the big        
+
+525
+00:22:20,596 --> 00:22:23,196
+light blue view                 
+hierarchy on the left.          
+
+526
+00:22:23,265 --> 00:22:26,632
+And on the right is just        
+an entire NVC that you get to   
+
+527
+00:22:26,701 --> 00:22:30,970
+configure any class you want,   
+any UI you wanna put in there.  
+
+528
+00:22:31,039 --> 00:22:34,740
+And that's all just gonna       
+appear inside that box on       
+
+529
+00:22:34,809 --> 00:22:36,709
+the blue side, okay?            
+
+530
+00:22:36,777 --> 00:22:39,544
+One thing to be really          
+careful about embed segues,     
+
+531
+00:22:39,613 --> 00:22:41,879
+it's no different               
+than any other segue,           
+
+532
+00:22:41,948 --> 00:22:43,414
+in that when it happens,.       
+
+533
+00:22:43,483 --> 00:22:47,017
+When the prepare happens, none  
+of the outlets are set In that  
+
+534
+00:22:47,086 --> 00:22:49,019
+MBC that you're embedded okay?  
+
+535
+00:22:49,088 --> 00:22:50,987
+So a lot of times people        
+they're embedding this other    
+
+536
+00:22:51,056 --> 00:22:52,789
+MBC and they want to be         
+setting all kinds of outlet     
+
+537
+00:22:52,858 --> 00:22:54,056
+in the thing                    
+they're embedding.              
+
+538
+00:22:54,125 --> 00:22:56,491
+But you can't because none of   
+those outlets have been set,    
+
+539
+00:22:56,560 --> 00:22:58,360
+you're in prepare,              
+you're really early.            
+
+540
+00:22:58,429 --> 00:23:01,930
+So almost always what we do     
+here is we grab the entire MBC  
+
+541
+00:23:01,999 --> 00:23:03,864
+and prepare and hold on to it.  
+
+542
+00:23:03,933 --> 00:23:07,401
+And then later in our view did  
+load when all valve is loaded   
+
+543
+00:23:07,470 --> 00:23:09,303
+then do we start                
+talking MBC and                 
+
+544
+00:23:09,372 --> 00:23:12,272
+tell it to you know set         
+its outlets or whatever.        
+
+545
+00:23:12,341 --> 00:23:15,008
+So 90% of the time              
+in the prepare for              
+
+546
+00:23:15,076 --> 00:23:18,611
+an embed segue we grab on to    
+the MVC that we're embedding    
+
+547
+00:23:18,680 --> 00:23:21,414
+okay which is just going to be  
+the segue's destination right?  
+
+548
+00:23:21,483 --> 00:23:24,616
+That's the seg that's           
+the MBC we're segueing to.      
+
+549
+00:23:24,685 --> 00:23:27,787
+Now I'm gonna do all demo       
+the rest of the way here, so    
+
+550
+00:23:27,855 --> 00:23:29,787
+I'm gonna give you a little     
+what's coming up here.          
+
+551
+00:23:29,856 --> 00:23:31,756
+So on Wednesday i'm gonna       
+be talking about alerts and     
+
+552
+00:23:31,825 --> 00:23:35,159
+action seats sheets and         
+also notifications and          
+
+553
+00:23:35,228 --> 00:23:36,426
+the application life cycle.     
+
+554
+00:23:36,495 --> 00:23:40,531
+So the application life         
+cycle's all those methods in.   
+
+555
+00:23:40,599 --> 00:23:44,100
+Next week, on Monday is         
+the Accessibility lecture.      
+
+556
+00:23:44,169 --> 00:23:46,770
+Also Monday,                    
+slides are due if you want to   
+
+557
+00:23:46,838 --> 00:23:48,304
+participate in                  
+the alternate final.            
+
+558
+00:23:48,372 --> 00:23:49,505
+You have to submit              
+them by Monday,                 
+
+559
+00:23:49,574 --> 00:23:51,406
+if you don't submit             
+them by Monday, sorry,          
+
+560
+00:23:51,475 --> 00:23:52,607
+you can't do                    
+the alternate final.            
+
+561
+00:23:52,676 --> 00:23:53,774
+But then that's                 
+the only thing you do,          
+
+562
+00:23:53,843 --> 00:23:55,209
+you don't have to sign up or    
+anything.                       
+
+563
+00:23:55,278 --> 00:23:57,845
+Just submit your                
+slides by Monday and            
+
+564
+00:23:57,914 --> 00:24:02,182
+then Wednesday will be          
+the alternate final.            
+
+565
+00:24:02,250 --> 00:24:06,086
+So, the demo I'm gonna do       
+right now is we're gonna take   
+
+566
+00:24:06,154 --> 00:24:07,086
+FaceIt and                      
+
+567
+00:24:07,155 --> 00:24:09,923
+we're going to add all four     
+of those segue Ways to it.      
+
+568
+00:24:09,991 --> 00:24:11,457
+Okay, all the I just            
+talked about we're gonna        
+
+569
+00:24:11,526 --> 00:24:14,660
+put them all in there           
+in one little app here.         
+
+570
+00:24:14,729 --> 00:24:18,630
+So, let's go over to faces,     
+there's faces.                  
+
+571
+00:24:20,400 --> 00:24:21,799
+All right, so                   
+you guys remember faces,        
+
+572
+00:24:21,868 --> 00:24:23,233
+very simple little app.         
+
+573
+00:24:23,302 --> 00:24:25,069
+It had this little emotions     
+view controller and             
+
+574
+00:24:25,138 --> 00:24:27,236
+we had three emotions,          
+sad, happy, and worried.        
+
+575
+00:24:27,305 --> 00:24:28,138
+And when we clicked on it,      
+
+576
+00:24:28,207 --> 00:24:31,174
+it would show a face            
+that showed that emotion.       
+
+577
+00:24:31,242 --> 00:24:36,545
+So, I'm gonna actually before   
+I dive into these segues,       
+
+578
+00:24:36,614 --> 00:24:41,383
+kind of enhance this            
+whole app slightly.             
+
+579
+00:24:41,452 --> 00:24:44,052
+remember when we did our face   
+view controller way back when?  
+
+580
+00:24:44,053 --> 00:24:46,653
+One thing is,                   
+
+581
+00:24:46,723 --> 00:24:51,725
+And we wanted to do squinting,  
+but we couldn't do squinting.   
+
+582
+00:24:51,794 --> 00:24:52,459
+Remember why?                   
+
+583
+00:24:52,528 --> 00:24:54,828
+Because our face view only      
+could do eyes open or           
+
+584
+00:24:54,897 --> 00:24:55,796
+eyes closed.                    
+
+585
+00:24:55,864 --> 00:24:58,664
+So we didn't really have        
+an option to do squinting,      
+
+586
+00:24:58,733 --> 00:25:00,767
+so we just kinda had this,      
+okay,                           
+
+587
+00:25:00,835 --> 00:25:02,568
+well, we'll just                
+say that is your.               
+
+588
+00:25:02,636 --> 00:25:04,903
+Okay, we had the punt,          
+essentially.                    
+
+589
+00:25:04,972 --> 00:25:06,838
+So, I'm gonna make it, so       
+we don't have to punt.          
+
+590
+00:25:06,906 --> 00:25:07,572
+What I'm gonna do is,           
+
+591
+00:25:07,641 --> 00:25:10,675
+remember we did that blinking   
+face view controller?           
+
+592
+00:25:10,744 --> 00:25:12,910
+I'm gonna make squinting        
+be blinking, okay?              
+
+593
+00:25:12,978 --> 00:25:15,245
+Squinting and blinking          
+aren't the same thing,          
+
+594
+00:25:15,314 --> 00:25:17,981
+but kind of like                
+repeatedly squinting.           
+
+595
+00:25:18,050 --> 00:25:19,316
+So, we're gonna make it so      
+
+596
+00:25:19,385 --> 00:25:20,884
+that works, so                  
+how are we gonna do that?       
+
+597
+00:25:20,952 --> 00:25:23,385
+We no longer have               
+to punt here, so                
+
+598
+00:25:23,454 --> 00:25:27,890
+we'll just not do anything if   
+someone says squinting, and     
+
+599
+00:25:27,959 --> 00:25:31,760
+you remember that all of our    
+blinking code is in this        
+
+600
+00:25:31,829 --> 00:25:35,463
+subclass here blinking          
+a face view controller.         
+
+601
+00:25:35,532 --> 00:25:39,033
+So, we'll go ahead and make     
+our update UI overridable and   
+
+602
+00:25:39,102 --> 00:25:42,403
+we'll go to our blinking face   
+view controller here and        
+
+603
+00:25:42,471 --> 00:25:46,339
+override it, so I'm just        
+gonna override update UI.       
+
+604
+00:25:46,408 --> 00:25:51,244
+Of course I wanna call funk or  
+a funk update UI,               
+
+605
+00:25:51,313 --> 00:25:54,614
+and of course I wanna call      
+my supers update UI, so that    
+
+606
+00:25:54,683 --> 00:25:58,884
+the mouth and other stuff and   
+the eyes themselves can all.    
+
+607
+00:25:58,953 --> 00:26:00,286
+then I'm gonna say that         
+my blinking, whether or         
+
+608
+00:26:00,287 --> 00:26:01,620
+Be set.                         
+But                             
+
+609
+00:26:01,689 --> 00:26:05,790
+not I'm blinking,               
+is equal to our model,          
+
+610
+00:26:05,859 --> 00:26:07,325
+which is our expressions.       
+
+611
+00:26:07,394 --> 00:26:08,492
+Eyes.                           
+
+612
+00:26:08,561 --> 00:26:11,395
+If those are equal              
+to squinting.                   
+
+613
+00:26:11,464 --> 00:26:13,831
+So, if we're squinting,         
+then I'm gonna be blinking.     
+
+614
+00:26:15,400 --> 00:26:16,566
+Everybody see                   
+what I did there?               
+
+615
+00:26:16,635 --> 00:26:19,702
+So that's it, I just [LAUGH]    
+upgraded blanking face for      
+
+616
+00:26:19,771 --> 00:26:21,153
+now if you set your model       
+to have squinting, as your,     
+
+617
+00:26:21,154 --> 00:26:22,536
+your controller,                
+
+618
+00:26:22,606 --> 00:26:24,406
+as part of your                 
+model,then it will blink.       
+
+619
+00:26:24,475 --> 00:26:26,875
+Now, we made this               
+
+620
+00:26:26,943 --> 00:26:28,810
+blink view controller           
+kind of a demo thing.           
+
+621
+00:26:28,879 --> 00:26:31,111
+I made it every time it         
+appears it starts blinking.     
+
+622
+00:26:31,180 --> 00:26:33,146
+Every time it disappears        
+it stops blinking.              
+
+623
+00:26:33,215 --> 00:26:34,147
+I don't really want that now.   
+
+624
+00:26:34,216 --> 00:26:36,883
+Now, I want it to blink         
+when it's squinting and         
+
+625
+00:26:36,952 --> 00:26:38,050
+not otherwise but               
+
+626
+00:26:38,119 --> 00:26:41,988
+I also still only want it to    
+blink when I'm on screen.       
+
+627
+00:26:42,056 --> 00:26:45,290
+I don't want my timer blinking  
+when I'm not even up here.      
+
+628
+00:26:45,359 --> 00:26:49,361
+So, I'm gonna change this       
+blinking thing here to can      
+
+629
+00:26:49,430 --> 00:26:51,313
+So, let's add a new             
+private var up here,            
+
+630
+00:26:51,314 --> 00:26:53,197
+blink.                          
+
+631
+00:26:53,266 --> 00:26:56,800
+can blink start out as false.   
+
+632
+00:26:56,869 --> 00:26:59,336
+And so here if I appear,        
+I'll say I can blink and        
+
+633
+00:26:59,405 --> 00:27:02,038
+even say blink if needed        
+at this point because maybe     
+
+634
+00:27:02,107 --> 00:27:04,874
+someone set us to blinking      
+while we weren't there and      
+
+635
+00:27:04,943 --> 00:27:07,710
+when we disappear I'm gonna     
+say can blink was false so      
+
+636
+00:27:07,779 --> 00:27:09,178
+I'm not allowed to blink.       
+
+637
+00:27:09,247 --> 00:27:14,916
+And then, in blink if needed    
+I'll just say If I'm blinking,  
+
+638
+00:27:14,985 --> 00:27:20,289
+and I can blink, then I'll      
+go ahead and do my blinking.    
+
+639
+00:27:20,357 --> 00:27:24,893
+One other little thing that     
+I want to do here is to not,    
+
+640
+00:27:24,961 --> 00:27:27,662
+if I'm in the middle of         
+a blink, okay, this timer,      
+
+641
+00:27:27,731 --> 00:27:29,630
+and I get another               
+request to blink,               
+
+642
+00:27:29,699 --> 00:27:31,431
+I don't want to                 
+start another timer.            
+
+643
+00:27:31,500 --> 00:27:34,634
+Okay, so I'm gonna have         
+another private var var here    
+
+644
+00:27:34,703 --> 00:27:37,537
+which I'm gonna call in         
+a blink which is whether I'm    
+
+645
+00:27:37,606 --> 00:27:40,607
+in the middle of a blink,       
+let's start that as false.      
+
+646
+00:27:42,042 --> 00:27:47,713
+And, so I'll also check it      
+here and we're not in a blink.  
+
+647
+00:27:47,782 --> 00:27:51,550
+So, then I'll just set          
+a blank here to true and        
+
+648
+00:27:51,618 --> 00:27:55,086
+then when we get out the other  
+side down here I'll set in      
+
+649
+00:27:55,155 --> 00:27:57,321
+a blank to false.               
+
+650
+00:27:57,390 --> 00:28:00,490
+So, all I did was upgrade       
+my blank view controller,       
+
+651
+00:28:00,559 --> 00:28:03,093
+so be able to be controlled     
+by it's model rather then       
+
+652
+00:28:03,162 --> 00:28:04,527
+being a demo thing.             
+
+653
+00:28:04,596 --> 00:28:06,863
+Everybody cool with             
+what I did there?               
+
+654
+00:28:06,931 --> 00:28:08,197
+Minor little upgrade.           
+
+655
+00:28:08,266 --> 00:28:10,499
+Now the next thing              
+I wanna do is.                  
+
+656
+00:28:10,568 --> 00:28:11,567
+What we're gonna do for         
+
+657
+00:28:11,635 --> 00:28:15,204
+our demo segues is, we're       
+gonna, if you remember in the.  
+
+658
+00:28:16,306 --> 00:28:17,605
+Self question mark here.        
+
+659
+00:28:20,109 --> 00:28:24,144
+If you remember in              
+our storyboard here.            
+
+660
+00:28:24,213 --> 00:28:27,413
+We're kind of fixed to these    
+three different emotions,       
+
+661
+00:28:27,482 --> 00:28:28,514
+that's all we have.             
+
+662
+00:28:28,583 --> 00:28:29,481
+Well, I'm gonna make it so      
+
+663
+00:28:29,550 --> 00:28:33,452
+that we can hit an add button,  
+and add another emotion.        
+
+664
+00:28:33,520 --> 00:28:35,387
+Okay, as many                   
+emotions as we want,            
+
+665
+00:28:35,456 --> 00:28:36,154
+that's what we're gonna do.     
+
+666
+00:28:36,223 --> 00:28:37,989
+So, we're gonna have a modal    
+segue to that theme,            
+
+667
+00:28:38,058 --> 00:28:39,323
+we'll unwind to bring it back.  
+
+668
+00:28:39,392 --> 00:28:40,858
+We'll make it                   
+work on pop over,               
+
+669
+00:28:40,927 --> 00:28:42,893
+we'll embed the little          
+blinking face view.             
+
+670
+00:28:42,961 --> 00:28:44,761
+We're gonna do all kinds        
+of segue stuff here.            
+
+671
+00:28:44,830 --> 00:28:47,764
+But first we have to convert    
+this to something that we can   
+
+672
+00:28:47,833 --> 00:28:48,631
+add more to.                    
+
+673
+00:28:48,700 --> 00:28:51,233
+So, we can't have this          
+three buttons like this,        
+
+674
+00:28:51,302 --> 00:28:52,701
+basically not going to work.    
+
+675
+00:28:52,770 --> 00:28:53,936
+So, we need a different kind.   
+
+676
+00:28:54,004 --> 00:28:57,071
+And what I'm gonna do is I'm    
+gonna use, there's not much     
+
+677
+00:28:57,140 --> 00:29:00,107
+code in this emotions           
+view controller as it is.       
+
+678
+00:29:00,176 --> 00:29:01,108
+It just got this.               
+
+679
+00:29:01,177 --> 00:29:03,177
+Little dictionary of            
+the three things, and           
+
+680
+00:29:03,245 --> 00:29:04,311
+then it does prepare.           
+
+681
+00:29:04,380 --> 00:29:06,813
+So, I'll keep as much           
+code as I can here.             
+
+682
+00:29:06,881 --> 00:29:08,381
+So, but what I'm gonna          
+do is make it a table           
+
+683
+00:29:08,449 --> 00:29:09,648
+ViewController.                 
+
+684
+00:29:09,717 --> 00:29:11,416
+Okay, so I'm just gonna turn    
+this emotions thing into a      
+
+685
+00:29:11,485 --> 00:29:13,685
+table ViewController, cuz it's  
+real easy to add more rows.     
+
+686
+00:29:13,754 --> 00:29:16,754
+So, I'm just gonna say, this    
+is a UITableViewController      
+
+687
+00:29:16,823 --> 00:29:20,024
+instead and                     
+I'm gonna have to change        
+
+688
+00:29:20,093 --> 00:29:23,794
+my model a little bit here,     
+from being a dictionary.        
+
+689
+00:29:23,862 --> 00:29:27,330
+I'm just gonna have it be       
+an array of tuples, where this  
+
+690
+00:29:27,399 --> 00:29:31,067
+name of the emotion, and then   
+the expression are in a tuple.  
+
+691
+00:29:31,136 --> 00:29:32,335
+And we'll have it in            
+an array like that, so          
+
+692
+00:29:32,404 --> 00:29:34,904
+I'm just gonna replace this     
+whole thing with an array.      
+
+693
+00:29:34,972 --> 00:29:38,307
+Of tuples but otherwise         
+it's the same exact data.       
+
+694
+00:29:38,376 --> 00:29:41,109
+It's just this it's             
+an array of tuples or           
+
+695
+00:29:41,178 --> 00:29:43,512
+one thing is the name           
+like sad, happy and             
+
+696
+00:29:43,580 --> 00:29:46,681
+the other is the expression,    
+the eyes and mouth whatever.    
+
+697
+00:29:46,750 --> 00:29:49,050
+Since I've also                 
+made this a var, so             
+
+698
+00:29:49,119 --> 00:29:52,053
+that we can add more of         
+them to it over time.           
+
+699
+00:29:53,356 --> 00:29:56,390
+Okay, now, we of course,        
+this broke our prepare, but     
+
+700
+00:29:56,459 --> 00:29:57,224
+we'll fix that in a second.     
+
+701
+00:29:57,292 --> 00:29:59,993
+Let's go back to our            
+storyboard and add this thing.  
+
+702
+00:30:01,128 --> 00:30:02,628
+So, I'm gonna make              
+a table view, so                
+
+703
+00:30:02,696 --> 00:30:04,562
+let's go over here to           
+utilities windows, and          
+
+704
+00:30:04,631 --> 00:30:06,364
+grab ourselves a table          
+view controller, and            
+
+705
+00:30:06,432 --> 00:30:07,465
+put it out here.                
+
+706
+00:30:07,533 --> 00:30:08,699
+Here's our table view.          
+
+707
+00:30:08,768 --> 00:30:11,802
+Of course I wanna set this      
+identity to be this emotions    
+
+708
+00:30:11,871 --> 00:30:15,072
+view controller which I can     
+do because I changed it to be   
+
+709
+00:30:15,140 --> 00:30:17,040
+And then, raise it to make      
+it back to being th root        
+
+710
+00:30:17,041 --> 00:30:18,941
+a table view.                   
+
+711
+00:30:19,010 --> 00:30:21,577
+view controller of this         
+navigation controller.          
+
+712
+00:30:21,646 --> 00:30:24,613
+Look that up, and remember we   
+had these three segues that     
+
+713
+00:30:24,681 --> 00:30:26,981
+would segue from those three    
+separate buttons over here.     
+
+714
+00:30:27,050 --> 00:30:28,483
+Well, I still am                
+gonna need the segue,           
+
+715
+00:30:28,552 --> 00:30:30,685
+cuz I gotta show the emotion.   
+
+716
+00:30:30,754 --> 00:30:33,554
+So, I'm just gonna Ctrl         
+drag over to here, and          
+
+717
+00:30:33,623 --> 00:30:34,554
+create a new segue.             
+
+718
+00:30:34,623 --> 00:30:37,757
+I'm gonna split through here,   
+so it's gonna be show detail.   
+
+719
+00:30:37,826 --> 00:30:41,160
+And we'll call this one         
+right here, this segue.         
+
+720
+00:30:41,229 --> 00:30:43,096
+How about show emotion?         
+
+721
+00:30:43,165 --> 00:30:43,996
+That's what it does, right?     
+
+722
+00:30:44,065 --> 00:30:47,599
+It shows an emotion             
+when you click on it.           
+
+723
+00:30:47,668 --> 00:30:50,301
+And, we'll wanna configure      
+this table view,                
+
+724
+00:30:50,370 --> 00:30:51,503
+as well right here.             
+
+725
+00:30:51,571 --> 00:30:54,238
+We'll have the cells            
+be just basic.                  
+
+726
+00:30:54,307 --> 00:30:56,307
+One piece of text in there,     
+that's be like happy or         
+
+727
+00:30:56,376 --> 00:30:58,342
+sad, or whatever.               
+
+728
+00:30:58,411 --> 00:31:00,510
+And we'll have reused           
+identifier would be like        
+
+729
+00:31:00,579 --> 00:31:01,845
+emotion cell.                   
+
+730
+00:31:01,913 --> 00:31:03,346
+Let's say.                      
+
+731
+00:31:03,415 --> 00:31:06,449
+Okay, everybody                 
+cool with all that?             
+
+732
+00:31:06,517 --> 00:31:09,117
+Maybe we'll even put the title  
+we have this title if you       
+
+733
+00:31:09,186 --> 00:31:13,855
+remember in motions the name    
+of that table right there.      
+
+734
+00:31:13,924 --> 00:31:17,425
+So that's all that we           
+need to do to fix our UI.       
+
+735
+00:31:17,494 --> 00:31:20,228
+So, we just need to fix our     
+motions view controller to be   
+
+736
+00:31:20,297 --> 00:31:21,495
+a table view                    
+controller now and              
+
+737
+00:31:21,564 --> 00:31:24,364
+set this old, kind of           
+thing that it was before.       
+
+738
+00:31:24,433 --> 00:31:27,134
+So, let's go ahead and          
+fix this navigation first.      
+
+739
+00:31:27,203 --> 00:31:29,970
+Remember in that case we        
+were using the identifier of    
+
+740
+00:31:30,038 --> 00:31:32,004
+the segue to figure out         
+whether we were sad,            
+
+741
+00:31:32,073 --> 00:31:33,139
+happy or whatever.              
+
+742
+00:31:33,207 --> 00:31:35,440
+In this case we're just         
+gonna look at the row and       
+
+743
+00:31:35,509 --> 00:31:39,911
+index it into our nice,         
+new model up here.              
+
+744
+00:31:39,980 --> 00:31:43,048
+So, we can get rid of this let  
+identifier equals identifier.   
+
+745
+00:31:43,116 --> 00:31:45,849
+And clearly, we're not getting  
+the expression using that       
+
+746
+00:31:45,918 --> 00:31:47,118
+dictionary anymore.             
+
+747
+00:31:47,186 --> 00:31:49,352
+So, everyone                    
+remembers table view?           
+
+748
+00:31:49,421 --> 00:31:52,055
+We just wanna get the cell, so  
+we're gonna let the cell equal  
+
+749
+00:31:52,123 --> 00:31:55,192
+the sender as a UI              
+table view cell.                
+
+750
+00:31:56,928 --> 00:32:00,329
+And then, we wanna get          
+the index path of that cell so  
+
+751
+00:32:00,398 --> 00:32:01,163
+we know which row it is.        
+
+752
+00:32:01,232 --> 00:32:03,131
+So, we're gonna say             
+let index path.                 
+
+753
+00:32:03,199 --> 00:32:05,666
+Equal the table view.           
+
+754
+00:32:05,735 --> 00:32:10,138
+Index, path for the cell.       
+
+755
+00:32:10,206 --> 00:32:13,407
+Okay, so long as we're able     
+to get that indexPath out of    
+
+756
+00:32:13,475 --> 00:32:15,942
+there, then setting             
+the expression                  
+
+757
+00:32:16,011 --> 00:32:18,078
+in our faceViewController       
+is really easy.                 
+
+758
+00:32:18,147 --> 00:32:21,247
+It's just going to be our       
+model, emotionalFaces           
+
+759
+00:32:21,316 --> 00:32:25,818
+indexPath.row and here,         
+we want the expression, right?  
+
+760
+00:32:25,887 --> 00:32:28,820
+We want this part               
+of the tuple.                   
+
+761
+00:32:28,889 --> 00:32:31,557
+Okay, similarly for saving      
+the title, we're not coming     
+
+762
+00:32:31,625 --> 00:32:34,392
+from a button anymore, we're    
+coming from table view row.     
+
+763
+00:32:34,461 --> 00:32:37,829
+So we want to do the same       
+thing but we want the name,     
+
+764
+00:32:37,898 --> 00:32:39,264
+cut to this topol.              
+
+765
+00:32:40,766 --> 00:32:42,165
+Okay, that's all we             
+have to do there,               
+
+766
+00:32:42,234 --> 00:32:44,034
+that was easy to convert,       
+everybody cool?                 
+
+767
+00:32:45,370 --> 00:32:47,303
+So, now we've got               
+navigation working.             
+
+768
+00:32:47,371 --> 00:32:50,205
+What's the most important       
+thing we need to do in a table  
+
+769
+00:32:50,274 --> 00:32:51,339
+view to get it working?         
+
+770
+00:32:51,408 --> 00:32:56,912
+We need to implement its        
+UITableViewDataSource, right?   
+
+771
+00:32:58,581 --> 00:33:00,581
+Get the data in the table.      
+
+772
+00:33:00,650 --> 00:33:03,784
+Super simple on this ca, case   
+we haven't seen numberofrows    
+
+773
+00:33:03,853 --> 00:33:06,987
+and section,                    
+that's just going to return     
+
+774
+00:33:07,056 --> 00:33:10,057
+our emotional faces             
+of their account.               
+
+775
+00:33:10,125 --> 00:33:11,958
+However many of these           
+emotional faces that we have    
+
+776
+00:33:12,027 --> 00:33:15,328
+up here and then we need        
+cell for row and index path.    
+
+777
+00:33:15,396 --> 00:33:19,531
+That's also easy, we'll         
+get the cell by dequeing,       
+
+778
+00:33:19,600 --> 00:33:23,001
+dequeueReusableCell(with        
+identifyer.                     
+
+779
+00:33:23,070 --> 00:33:27,973
+We called it emotion cell, I    
+think, there's the index class  
+
+780
+00:33:28,041 --> 00:33:31,777
+and we would have the cells     
+text label text equal           
+
+781
+00:33:31,845 --> 00:33:35,947
+the emotion faces name          
+right index path row.           
+
+782
+00:33:36,016 --> 00:33:39,016
+The name that's the name and    
+puppies are whatever and        
+
+783
+00:33:39,085 --> 00:33:42,285
+when we return this, so better  
+if we just converge this to     
+
+784
+00:33:42,354 --> 00:33:45,622
+your table view was easy hope   
+all of you your super familiar  
+
+785
+00:33:45,690 --> 00:33:46,957
+with table view.                
+
+786
+00:33:47,025 --> 00:33:49,625
+After all this so               
+let's go ahead and run and      
+
+787
+00:33:49,694 --> 00:33:53,062
+make sure that we've got        
+our new upgraded version of     
+
+788
+00:33:53,130 --> 00:33:56,398
+this emotions thing working     
+well, we didn't forget          
+
+789
+00:33:56,467 --> 00:33:59,835
+some identifier somewhere or    
+something like that.            
+
+790
+00:34:02,372 --> 00:34:05,339
+Okay, here we go here's         
+our app, here's our three       
+
+791
+00:34:05,408 --> 00:34:07,408
+things in our table view,       
+that's looking good so far.     
+
+792
+00:34:07,477 --> 00:34:11,311
+Let's click on one that         
+looks sad that looks happy,     
+
+793
+00:34:11,380 --> 00:34:14,380
+okay, we've converted           
+our thing nicely, so            
+
+794
+00:34:14,449 --> 00:34:16,282
+now we're gonna dive            
+into these segues.              
+
+795
+00:34:16,351 --> 00:34:19,319
+The first we're gonna do        
+is add a button up here         
+
+796
+00:34:19,387 --> 00:34:22,321
+which is gonna do a modal       
+segue to bring up               
+
+797
+00:34:22,389 --> 00:34:25,657
+an emotion editing gear         
+controller, something that      
+
+798
+00:34:25,726 --> 00:34:29,194
+lets us create a new one        
+of these emotions, okay?        
+
+799
+00:34:29,263 --> 00:34:31,662
+So it's gonna have to let us    
+specify the name like sad,      
+
+800
+00:34:31,731 --> 00:34:32,663
+happy or worried and            
+
+801
+00:34:32,732 --> 00:34:34,632
+this is gonna have to list      
+best by the mouth and           
+
+802
+00:34:34,700 --> 00:34:36,333
+the eyes, okay?                 
+
+803
+00:34:36,402 --> 00:34:38,569
+And that's all it's gonna do,   
+all right,                      
+
+804
+00:34:38,637 --> 00:34:40,537
+so, how do we do that?          
+
+805
+00:34:40,606 --> 00:34:45,808
+Let's go back to                
+our story board and             
+
+806
+00:34:45,876 --> 00:34:48,911
+we need to drag out the story   
+board that is going to be       
+
+807
+00:34:48,980 --> 00:34:52,547
+this mo- modal                  
+view controller.                
+
+808
+00:34:52,616 --> 00:34:53,548
+didn't get a chance to do       
+this earlier in the quarter,    
+
+809
+00:34:53,549 --> 00:34:54,481
+Just because I                  
+
+810
+00:34:54,551 --> 00:34:58,352
+I'm gonna make the UI for this  
+thing be a static table view.   
+
+811
+00:34:58,421 --> 00:35:00,120
+Right, we've done               
+dynamic table views, but        
+
+812
+00:35:00,189 --> 00:35:01,121
+we haven't done a static one.   
+
+813
+00:35:01,190 --> 00:35:02,222
+So, let's go ahead and          
+do a static one, so             
+
+814
+00:35:02,291 --> 00:35:03,757
+I'm gonna drag                  
+out a table view.               
+
+815
+00:35:03,825 --> 00:35:07,994
+Here it is, right here and,     
+I'm going to make it static,    
+
+816
+00:35:08,062 --> 00:35:10,495
+so I'm gonna click on           
+the table view in here, and     
+
+817
+00:35:10,564 --> 00:35:15,000
+change it from being content    
+dynamic to content static.      
+
+818
+00:35:15,069 --> 00:35:17,603
+By the way, didn't I really     
+talk about this, I should of,   
+
+819
+00:35:17,671 --> 00:35:18,603
+I suppose.                      
+
+820
+00:35:18,672 --> 00:35:22,373
+But, how do you define how      
+many rows there are in          
+
+821
+00:35:22,441 --> 00:35:24,075
+a static table, okay?           
+
+822
+00:35:24,143 --> 00:35:27,478
+You're gonna hold control       
+shift and click on the table,   
+
+823
+00:35:27,546 --> 00:35:30,814
+so that you can drill           
+down to what you want.          
+
+824
+00:35:30,883 --> 00:35:31,982
+You don't want the controller,  
+
+825
+00:35:32,050 --> 00:35:34,984
+you don't want the table view,  
+you want the section okay,      
+
+826
+00:35:35,053 --> 00:35:38,221
+because, in a static table you  
+could have multiple sections.   
+
+827
+00:35:38,289 --> 00:35:40,355
+You wanna be able to            
+edit a certain section,         
+
+828
+00:35:40,424 --> 00:35:42,558
+you click on that,              
+now it's selected.              
+
+829
+00:35:42,626 --> 00:35:44,459
+And so in the Inspector         
+Table View section,             
+
+830
+00:35:44,527 --> 00:35:47,895
+you see rows, and I can         
+change this to be 4 rows.       
+
+831
+00:35:47,964 --> 00:35:49,563
+Now, why do I need 4 rows?      
+
+832
+00:35:49,632 --> 00:35:53,000
+Well, I need the name, I need   
+the eyes, I need the mouth and  
+
+833
+00:35:53,068 --> 00:35:55,569
+also I'm gonna have one row     
+which is a a preview of what    
+
+834
+00:35:55,637 --> 00:35:57,704
+the face is gonna look like,    
+okay?                           
+
+835
+00:35:57,773 --> 00:36:00,239
+So as you can see, as you're    
+choosing your eyes and mouth,   
+
+836
+00:36:00,308 --> 00:36:01,640
+what you are actually doing,    
+so                              
+
+837
+00:36:01,709 --> 00:36:03,008
+that's why you need four rows.  
+
+838
+00:36:03,077 --> 00:36:04,542
+You can also put headers and    
+footers in here, but            
+
+839
+00:36:04,611 --> 00:36:06,077
+I actually am going to          
+leave this in plain style.      
+
+840
+00:36:06,146 --> 00:36:08,546
+And not have any headers and    
+footers cuz they kind of,       
+
+841
+00:36:08,615 --> 00:36:10,414
+doesn't need any headers and    
+footers.                        
+
+842
+00:36:10,483 --> 00:36:13,517
+All these four                  
+rows go together.               
+
+843
+00:36:13,585 --> 00:36:17,888
+Okay, so we don't need to do    
+that, we of course are going    
+
+844
+00:36:17,957 --> 00:36:22,726
+to need a subclass of UI        
+table view controller           
+
+845
+00:36:22,794 --> 00:36:25,595
+to control this MVC, so let's   
+go ahead and create that.       
+
+846
+00:36:29,834 --> 00:36:32,134
+The subclass of                 
+UI Tableview controller.        
+
+847
+00:36:32,203 --> 00:36:34,136
+Now this is an interesting      
+naming thing,                   
+
+848
+00:36:34,204 --> 00:36:36,237
+right here,                     
+I'm gonna call this my          
+
+849
+00:36:36,306 --> 00:36:38,773
+ExpressionEditorViewControl-    
+ler.                            
+
+850
+00:36:39,743 --> 00:36:42,042
+Notice I'm not calling it my    
+
+851
+00:36:42,111 --> 00:36:44,310
+ExpressionEditorTableViewCont-  
+roller.                         
+
+852
+00:36:44,379 --> 00:36:47,513
+This is purely and art of       
+programming thing I tend to     
+
+853
+00:36:47,582 --> 00:36:53,018
+not name my static table views  
+with the word table in there.   
+
+854
+00:36:53,087 --> 00:36:55,687
+And the reason for that is I'm  
+mostly using static table here  
+
+855
+00:36:55,756 --> 00:36:57,923
+just to help me layout the UI.  
+
+856
+00:36:57,991 --> 00:37:00,826
+I'm not using it's table        
+viewness very much.             
+
+857
+00:37:00,895 --> 00:37:03,861
+Okay, like I would to be        
+with dynamic rose so,           
+
+858
+00:37:03,930 --> 00:37:05,696
+I tend to not but               
+the word table it's up to you.  
+
+859
+00:37:05,765 --> 00:37:07,931
+You can certainly called        
+a expression editor table view  
+
+860
+00:37:08,000 --> 00:37:09,099
+if you wanted                   
+
+861
+00:37:09,168 --> 00:37:11,535
+I like my expression editor     
+view controller but do you      
+
+862
+00:37:11,604 --> 00:37:13,469
+understand why I'm calling      
+expression editor, right?       
+
+863
+00:37:13,538 --> 00:37:15,437
+Because it's going to           
+edit an expression,             
+
+864
+00:37:15,506 --> 00:37:16,839
+a facial expression here.       
+
+865
+00:37:16,908 --> 00:37:18,206
+We'll put it in                 
+the same place,                 
+
+866
+00:37:18,275 --> 00:37:21,343
+we'd put everything else,       
+here it is,                     
+
+867
+00:37:21,412 --> 00:37:25,113
+I'm gonna clean out all         
+this stuff right here.          
+
+868
+00:37:25,181 --> 00:37:28,449
+I don't need any of this,       
+table view data source stuff,   
+
+869
+00:37:28,518 --> 00:37:30,117
+because this is a static cell.  
+
+870
+00:37:30,186 --> 00:37:33,220
+I'm not gonna allow deletion,   
+or anything like that,          
+
+871
+00:37:33,289 --> 00:37:35,989
+we're not gonna be Doing        
+navigation out of it, so        
+
+872
+00:37:36,058 --> 00:37:38,458
+we have this nice empty         
+expression editor.              
+
+873
+00:37:38,527 --> 00:37:42,094
+And let's make sure that in     
+our story board that we go and  
+
+874
+00:37:42,163 --> 00:37:45,531
+change the identity of this     
+guy to be this expression       
+
+875
+00:37:45,599 --> 00:37:49,168
+editor otherwise won't be able  
+to wire up any outlets or       
+
+876
+00:37:49,236 --> 00:37:50,803
+any things like that.           
+
+877
+00:37:52,372 --> 00:37:55,673
+Okay, let's start,              
+before we build our UI for      
+
+878
+00:37:55,742 --> 00:37:58,309
+this, let's just put            
+a cancel button in here and     
+
+879
+00:37:58,377 --> 00:38:01,278
+get this modal segue going,     
+so let's do the modal segue.    
+
+880
+00:38:01,346 --> 00:38:04,414
+We're gonna modal segue         
+from this emotions,             
+
+881
+00:38:04,483 --> 00:38:06,283
+this is where all our emotions  
+are, sad, happy, etc.           
+
+882
+00:38:06,351 --> 00:38:08,818
+I'm gonna put a little bar      
+button item in there, so        
+
+883
+00:38:08,887 --> 00:38:11,486
+I'm gonna search for            
+bar button item there it is,    
+
+884
+00:38:11,555 --> 00:38:13,388
+I'm gonna drag it up here.      
+
+885
+00:38:13,457 --> 00:38:17,091
+When I inspect it, there's      
+actually some pre-canned bar    
+
+886
+00:38:17,160 --> 00:38:20,027
+button items for common things  
+you want to do like add,        
+
+887
+00:38:20,096 --> 00:38:21,328
+which is what we're gonna do,   
+
+888
+00:38:21,397 --> 00:38:24,432
+cancel, redo,                   
+all these things.               
+
+889
+00:38:24,500 --> 00:38:26,967
+You can pick these and          
+they'll have standard icon,     
+
+890
+00:38:27,036 --> 00:38:30,104
+standard words and So in here   
+we are adding an emotion so     
+
+891
+00:38:30,172 --> 00:38:32,239
+I'm gonna hit add,              
+happens to be a plus sign.      
+
+892
+00:38:32,307 --> 00:38:35,842
+And I'm just going to ctrl      
+drag from that to my new        
+
+893
+00:38:35,911 --> 00:38:38,544
+editing view controller and     
+I'm not gonna do show or        
+
+894
+00:38:38,613 --> 00:38:42,080
+show detail,                    
+I'm gonna do present modally.   
+
+895
+00:38:42,149 --> 00:38:44,649
+Okay that's going to take       
+over the whole screen and       
+
+896
+00:38:44,718 --> 00:38:46,184
+put this MBC up and             
+
+897
+00:38:46,252 --> 00:38:50,655
+allow me to add a new           
+emotion or whatever in here.    
+
+898
+00:38:51,991 --> 00:38:54,257
+Now, how do we                  
+get out of this?                
+
+899
+00:38:54,326 --> 00:38:58,027
+If either run this right now,   
+we'll see that it               
+
+900
+00:38:58,096 --> 00:39:01,964
+works in a manner of speaking   
+but it really kind of kills my  
+
+901
+00:39:02,033 --> 00:39:04,734
+whole app, my app would be      
+dead it seems like do that,     
+
+902
+00:39:04,802 --> 00:39:07,036
+let's go here this              
+is working fine.                
+
+903
+00:39:07,104 --> 00:39:12,074
+I click on this plus, this      
+thing comes up, I'm dead now.   
+
+904
+00:39:12,142 --> 00:39:14,209
+There's nothing I can do,       
+I can't get out of here.        
+
+905
+00:39:14,278 --> 00:39:15,410
+This has taken over my app and  
+
+906
+00:39:15,478 --> 00:39:18,245
+I haven't provided any way      
+to get out of it, okay?         
+
+907
+00:39:18,314 --> 00:39:20,147
+So let's start by               
+adding a cancel button,         
+
+908
+00:39:20,216 --> 00:39:22,482
+we're just gonna make it so     
+we can cancel out of this.      
+
+909
+00:39:22,551 --> 00:39:25,085
+I'm gonna put it as a bar       
+button item in a navigation     
+
+910
+00:39:25,153 --> 00:39:26,753
+controller so                   
+I'm gonna pick this thing and   
+
+911
+00:39:26,821 --> 00:39:29,823
+say embed in                    
+navigation controller.          
+
+912
+00:39:32,894 --> 00:39:34,960
+Okay, so I put this in          
+the navigation controller, so   
+
+913
+00:39:35,029 --> 00:39:37,428
+now I can put up on top         
+of here a cancel button.        
+
+914
+00:39:37,497 --> 00:39:38,529
+I'm going to put                
+it on the left,                 
+
+915
+00:39:38,598 --> 00:39:40,631
+it's another bar button item.   
+
+916
+00:39:40,700 --> 00:39:45,235
+There happens to be a standard  
+one for that as well; cancel    
+
+917
+00:39:45,304 --> 00:39:47,671
+and how do I make this          
+cancel button work?             
+
+918
+00:39:47,740 --> 00:39:49,339
+How do I make it                
+actually cancel?                
+
+919
+00:39:49,408 --> 00:39:52,275
+Well, this is where I do        
+the dismiss, so, let's wire     
+
+920
+00:39:52,344 --> 00:39:56,813
+this up, target action to a     
+method that does the dismiss.   
+
+921
+00:39:56,882 --> 00:39:58,280
+So, let's go into               
+automatic mode, here,           
+
+922
+00:39:58,349 --> 00:40:00,649
+we've got our new expression    
+editor view controller.         
+
+923
+00:40:00,717 --> 00:40:04,519
+I'm gonna control drag from     
+the cancel button over here.    
+
+924
+00:40:04,588 --> 00:40:06,488
+Do an action okay, borrow but   
+
+925
+00:40:06,556 --> 00:40:10,391
+an items in the argument and    
+I'm gonna call this cancel.     
+
+926
+00:40:10,460 --> 00:40:12,460
+Of course, and                  
+it's going to cancel.           
+
+927
+00:40:12,529 --> 00:40:14,261
+And in here,                    
+I need to dismiss.              
+
+928
+00:40:14,329 --> 00:40:17,230
+But remember, I can't send      
+dismiss to myself, dismiss is   
+
+929
+00:40:17,299 --> 00:40:19,666
+a view controller thing but     
+I can't dismiss myself.         
+
+930
+00:40:19,735 --> 00:40:23,436
+I have to send it to my         
+presenting view controller.     
+
+931
+00:40:23,504 --> 00:40:25,938
+So all view controllers know    
+who presented them, if any.     
+
+932
+00:40:26,006 --> 00:40:27,206
+It could be nil, okay,          
+
+933
+00:40:27,274 --> 00:40:30,075
+you might not have been         
+presented by another one.       
+
+934
+00:40:30,143 --> 00:40:31,809
+I'm just gonna ask my           
+presenting view controller,     
+
+935
+00:40:31,878 --> 00:40:36,481
+please dismiss whoever you've   
+presented, which is me.         
+
+936
+00:40:36,550 --> 00:40:38,649
+And yes,                        
+please do it animated.          
+
+937
+00:40:38,718 --> 00:40:42,019
+And I don't need to find out    
+when it's finished dismissing,  
+
+938
+00:40:42,088 --> 00:40:43,153
+so I'll just leave that off.    
+
+939
+00:40:45,290 --> 00:40:46,773
+So now, if we run and           
+we go here and hit the plus,    
+
+940
+00:40:46,774 --> 00:40:48,257
+Okay?                           
+
+941
+00:40:48,326 --> 00:40:50,292
+comes up here is                
+our table view.                 
+
+942
+00:40:50,361 --> 00:40:51,960
+We haven't done a UI yet but    
+
+943
+00:40:52,028 --> 00:40:55,063
+if we cancel we goes back       
+into dismisses us, okay?        
+
+944
+00:40:55,132 --> 00:40:56,564
+So we're in good shape.         
+
+945
+00:40:56,632 --> 00:40:58,866
+So now let's go ahead and       
+do RUY,                         
+
+946
+00:40:58,935 --> 00:41:02,303
+let's go back to our            
+storyboard here.                
+
+947
+00:41:02,371 --> 00:41:05,872
+And add RUI for these four      
+things, again we want the name  
+
+948
+00:41:05,941 --> 00:41:09,209
+like sad happy whatever,        
+we want a little preview face,  
+
+949
+00:41:09,278 --> 00:41:11,077
+and then we want the eyes and   
+the mouth.                      
+
+950
+00:41:11,146 --> 00:41:13,378
+So I'm just gonna start         
+dragging this stuff out and     
+
+951
+00:41:13,447 --> 00:41:16,215
+we'll start working on making   
+it look good over time.         
+
+952
+00:41:16,284 --> 00:41:19,184
+So for the name obviously       
+I'll need a text field so       
+
+953
+00:41:19,253 --> 00:41:21,986
+I'm just gonna drag that out    
+and notice all these cells      
+
+954
+00:41:22,055 --> 00:41:24,488
+are of type if you look         
+at the cell types here,         
+
+955
+00:41:24,557 --> 00:41:25,522
+they're all custom cells.       
+
+956
+00:41:25,591 --> 00:41:28,392
+Because I'm gonna be putting    
+custom UI in each of them.      
+
+957
+00:41:28,461 --> 00:41:29,927
+We're gonna configure           
+that in a second.               
+
+958
+00:41:31,230 --> 00:41:37,633
+What about here in our          
+little face view thing.         
+
+959
+00:41:37,702 --> 00:41:39,235
+What are we gonna do            
+to show our face?               
+
+960
+00:41:39,303 --> 00:41:44,906
+Well, I'm gonna start by        
+doing a face view ui view.      
+
+961
+00:41:44,975 --> 00:41:46,875
+Yeah, let's put a generic       
+UI view in here.                
+
+962
+00:41:46,943 --> 00:41:51,279
+I'll even put some nice auto    
+layout in here on this one,     
+
+963
+00:41:53,183 --> 00:41:53,915
+is that it, yeah,               
+
+964
+00:41:53,983 --> 00:41:57,017
+and we'll do reset to           
+suggested constraints,          
+
+965
+00:41:57,086 --> 00:41:59,052
+check out constraints to        
+make sure it looks good.        
+
+966
+00:41:59,121 --> 00:42:00,320
+Yeah, that looks good to me.    
+
+967
+00:42:00,388 --> 00:42:03,389
+We'll inspect the identify and  
+make it be a face view so       
+
+968
+00:42:03,458 --> 00:42:04,924
+we get a nice face in there.    
+
+969
+00:42:04,992 --> 00:42:06,191
+So that's a good face.          
+
+970
+00:42:06,260 --> 00:42:07,325
+So we have text field face.     
+
+971
+00:42:07,394 --> 00:42:09,294
+What about for eyes and mouth?  
+
+972
+00:42:09,363 --> 00:42:11,463
+How are we gonna set            
+our eyes and mouth?             
+
+973
+00:42:11,531 --> 00:42:13,263
+I'm gonna use something         
+that something that             
+
+974
+00:42:13,332 --> 00:42:16,733
+I haven't shown you yet,        
+which is a segmented control.   
+
+975
+00:42:16,802 --> 00:42:19,269
+So segmented control            
+looks like this.                
+
+976
+00:42:19,337 --> 00:42:22,572
+Okay, we'll drag one in here,   
+drag one in here as well.       
+
+977
+00:42:22,640 --> 00:42:25,240
+And a segmented control lets    
+you choose from a number of     
+
+978
+00:42:25,309 --> 00:42:28,044
+items up to maybe four or five  
+like a fixed number of items.   
+
+979
+00:42:28,112 --> 00:42:29,311
+So that's perfect for           
+our eyes and                    
+
+980
+00:42:29,380 --> 00:42:31,746
+mouth cuz we have three         
+kinds of eyes positions and     
+
+981
+00:42:31,815 --> 00:42:33,315
+five kinds of, of mouth.        
+
+982
+00:42:33,383 --> 00:42:34,915
+And when you inspect            
+it right here,                  
+
+983
+00:42:34,984 --> 00:42:36,984
+you can say how many            
+different choices you want.     
+
+984
+00:42:37,053 --> 00:42:40,854
+So for eyes we want three       
+segments, and here for          
+
+985
+00:42:40,923 --> 00:42:42,156
+the mouth we're                 
+gonna need five.                
+
+986
+00:42:43,391 --> 00:42:44,590
+Okay, right frown, smile,       
+
+987
+00:42:44,659 --> 00:42:46,292
+smirk, grin,                    
+neutral, whatever.              
+
+988
+00:42:47,995 --> 00:42:48,993
+And then you can                
+just edit these,                
+
+989
+00:42:49,062 --> 00:42:49,994
+you just double-click on them.  
+
+990
+00:42:50,063 --> 00:42:55,299
+So here let's say eyes open     
+here we'll say eyes closed      
+
+991
+00:42:55,368 --> 00:43:00,337
+and, of course, our favorite    
+one which is squinting.         
+
+992
+00:43:00,406 --> 00:43:07,511
+And then down here              
+we'll have frown and            
+
+993
+00:43:07,580 --> 00:43:13,616
+smirk and oops sorry, neutral.  
+
+994
+00:43:13,685 --> 00:43:18,021
+And what to grin I think,       
+
+995
+00:43:18,090 --> 00:43:21,424
+then we add smile.              
+
+996
+00:43:21,493 --> 00:43:22,791
+Okay, so there's our UI.        
+
+997
+00:43:22,860 --> 00:43:25,093
+So we want to make some of      
+these things look a little      
+
+998
+00:43:25,162 --> 00:43:27,529
+better like this text field     
+right here there's quite a few  
+
+999
+00:43:27,597 --> 00:43:29,131
+things we want to set           
+about this text field.          
+
+1000
+00:43:29,199 --> 00:43:31,666
+One thing is we really          
+don't need a little border.     
+
+1001
+00:43:31,734 --> 00:43:34,001
+I zoom way in so                
+you can see here.               
+
+1002
+00:43:34,070 --> 00:43:36,236
+We don't really need            
+this border around.             
+
+1003
+00:43:36,305 --> 00:43:37,871
+It's in a text field row, so    
+
+1004
+00:43:37,940 --> 00:43:39,505
+that's kind of                  
+it's own border.                
+
+1005
+00:43:39,574 --> 00:43:42,008
+So we're gonna go down          
+here and say border off so      
+
+1006
+00:43:42,077 --> 00:43:43,342
+it's not gonna                  
+have any border.                
+
+1007
+00:43:43,411 --> 00:43:45,210
+Also I want the font to         
+be quite a bit larger,          
+
+1008
+00:43:45,279 --> 00:43:47,712
+let's say 24 point              
+would be good.                  
+
+1009
+00:43:47,781 --> 00:43:49,881
+We'll have it be centered,      
+the text will be centered.      
+
+1010
+00:43:49,950 --> 00:43:53,617
+There's no reason to have       
+it left or right aligned.       
+
+1011
+00:43:53,686 --> 00:43:55,620
+Let's use place holder text,    
+that's really cool.             
+
+1012
+00:43:55,688 --> 00:43:58,789
+I'm gonna put name in here      
+as the Placeholder text.        
+
+1013
+00:43:58,858 --> 00:44:01,791
+That way I don't need to label  
+on the left that says name,     
+
+1014
+00:44:01,860 --> 00:44:02,926
+this is the name                
+of this emotion.                
+
+1015
+00:44:02,995 --> 00:44:04,226
+I'll just put this              
+placeholder there,              
+
+1016
+00:44:04,295 --> 00:44:05,495
+it'll be obvious to users.      
+
+1017
+00:44:05,563 --> 00:44:06,462
+That's the name.                
+
+1018
+00:44:06,530 --> 00:44:09,865
+And so they'll just click       
+there, and start typing.        
+
+1019
+00:44:09,934 --> 00:44:12,267
+And, also, for the keyboard,    
+
+1020
+00:44:12,335 --> 00:44:15,403
+I'm gonna have it               
+autocapitalize every word.      
+
+1021
+00:44:15,472 --> 00:44:19,273
+So that if you say sad it       
+will be capital S-A-D.          
+
+1022
+00:44:19,341 --> 00:44:21,909
+It will just look nicer in      
+my other table I think.         
+
+1023
+00:44:21,977 --> 00:44:24,611
+And then finally, what          
+about the auto layout here?     
+
+1024
+00:44:24,680 --> 00:44:25,845
+Where do we want                
+this to appear?                 
+
+1025
+00:44:25,914 --> 00:44:29,215
+Well I think we just want       
+this thing to be centered in    
+
+1026
+00:44:29,284 --> 00:44:32,651
+there so I am going to pick     
+centered horizontally and       
+
+1027
+00:44:32,720 --> 00:44:36,388
+centered vertically I just      
+control dragged to this row.    
+
+1028
+00:44:36,457 --> 00:44:37,923
+And so, that's good enough.     
+
+1029
+00:44:37,991 --> 00:44:39,791
+You notice that it's yellow,    
+right?                          
+
+1030
+00:44:39,860 --> 00:44:40,491
+Why is it yellow?               
+
+1031
+00:44:40,560 --> 00:44:43,527
+Because my constraints don't    
+match what's on screen.         
+
+1032
+00:44:43,596 --> 00:44:45,996
+So, I can fix that in           
+my document outline.            
+
+1033
+00:44:46,065 --> 00:44:47,563
+Indeed, here's that yellow.     
+
+1034
+00:44:47,632 --> 00:44:50,833
+I go up here, I click on this,  
+I'll use update frames here to  
+
+1035
+00:44:50,902 --> 00:44:53,536
+misplace it and moves           
+name into the right spot.       
+
+1036
+00:44:54,939 --> 00:44:57,239
+Okay, we already have our auto  
+layout and everything for       
+
+1037
+00:44:57,308 --> 00:44:57,872
+the face view.                  
+
+1038
+00:44:57,941 --> 00:44:59,507
+How about this guy down here?   
+
+1039
+00:44:59,576 --> 00:45:02,409
+Let's us zoom in again and      
+look.                           
+
+1040
+00:45:02,478 --> 00:45:06,513
+What I'm actually going to put  
+another constraint on here to   
+
+1041
+00:45:06,582 --> 00:45:10,050
+show you a little more          
+sophisticated constraints,      
+
+1042
+00:45:10,118 --> 00:45:13,087
+which is do I ever want         
+to allow this to spill of       
+
+1043
+00:45:13,155 --> 00:45:16,890
+the edges?                      
+
+1044
+00:45:16,958 --> 00:45:20,260
+ta-table view so narrow that    
+it wouldn't even fit these?     
+
+1045
+00:45:21,495 --> 00:45:22,394
+And the answer is no way.       
+
+1046
+00:45:22,463 --> 00:45:25,631
+I would never want the table    
+view to be that narrow.         
+
+1047
+00:45:25,699 --> 00:45:27,699
+I always want it to be wide     
+enough to at least fit          
+
+1048
+00:45:27,768 --> 00:45:28,900
+all these buttons.              
+
+1049
+00:45:28,968 --> 00:45:32,502
+So I'm gonna CTRL + drag        
+from this right edge            
+
+1050
+00:45:32,571 --> 00:45:35,138
+over to this to do              
+the trailing space.             
+
+1051
+00:45:35,207 --> 00:45:37,541
+Okay.                           
+So great to this eye beam       
+
+1052
+00:45:37,610 --> 00:45:40,009
+right here that you're          
+very similar with.              
+
+1053
+00:45:40,078 --> 00:45:41,944
+We can click on it.             
+
+1054
+00:45:42,013 --> 00:45:42,978
+Where is it?                    
+There it is.                    
+
+1055
+00:45:43,047 --> 00:45:46,448
+But I don't actually            
+want it to be 75.               
+
+1056
+00:45:46,517 --> 00:45:49,817
+I want it to be zero,           
+all the way over the edge.      
+
+1057
+00:45:49,886 --> 00:45:53,021
+But I don't actually don't      
+want it to be equal to zero.    
+
+1058
+00:45:53,090 --> 00:45:55,256
+Because then that means that    
+edge is always gonna be pinned  
+
+1059
+00:45:55,325 --> 00:46:00,094
+over there and that's gonna     
+stretch my control out and      
+
+1060
+00:46:00,163 --> 00:46:03,097
+I do want the secondary         
+control to be, you know,        
+
+1061
+00:46:03,165 --> 00:46:06,166
+fit into its text, but I don't  
+wanna be stuck over here.       
+
+1062
+00:46:06,235 --> 00:46:09,168
+So what I'm gonna do is make    
+it to be greater than or        
+
+1063
+00:46:09,237 --> 00:46:10,637
+equal to zero.                  
+
+1064
+00:46:10,705 --> 00:46:12,772
+So we have not seen this        
+kind of constraint,             
+
+1065
+00:46:12,841 --> 00:46:14,973
+where you're not setting        
+it equal to something,          
+
+1066
+00:46:15,042 --> 00:46:17,008
+you're setting it               
+greater than equal.             
+
+1067
+00:46:17,077 --> 00:46:18,576
+what I'm saying is, the         
+distance between this edge and  
+
+1068
+00:46:18,577 --> 00:46:20,076
+And that's what,                
+
+1069
+00:46:20,146 --> 00:46:22,914
+right here must be              
+at least zero, so               
+
+1070
+00:46:22,982 --> 00:46:25,115
+it can't be negative, it can't  
+have pushed off the edge.       
+
+1071
+00:46:25,184 --> 00:46:26,015
+You see that?                   
+
+1072
+00:46:26,084 --> 00:46:29,018
+That's gonna keep my table      
+view big enough, to do this.    
+
+1073
+00:46:29,087 --> 00:46:30,186
+And now, of course,             
+
+1074
+00:46:30,255 --> 00:46:32,989
+I need to do the same thing     
+on the other side of this.      
+
+1075
+00:46:33,058 --> 00:46:35,457
+I'll Ctrl+drag over here,       
+leading space.                  
+
+1076
+00:46:35,525 --> 00:46:39,795
+And we'll click on this one     
+and we'll say 0 as well, and    
+
+1077
+00:46:39,864 --> 00:46:41,462
+we want this to be              
+greater than or equal.          
+
+1078
+00:46:41,531 --> 00:46:45,132
+So I'm just guaranteeing        
+that that thing is gonna be,    
+
+1079
+00:46:45,201 --> 00:46:47,501
+greater than or equal to.       
+
+1080
+00:46:47,570 --> 00:46:52,840
+Okay, now it's let's double     
+check all of our things here.   
+
+1081
+00:46:52,908 --> 00:46:55,375
+So we've got the trailing       
+space and leading space.        
+
+1082
+00:46:55,443 --> 00:46:58,144
+So this one also I probably     
+want in the middle, so          
+
+1083
+00:46:58,213 --> 00:46:59,712
+I'm gonna Ctrl+drag.            
+
+1084
+00:46:59,781 --> 00:47:02,215
+Okay, and say I want            
+horizontally and vertically.    
+
+1085
+00:47:03,785 --> 00:47:05,917
+Okay, so it's not where         
+it's supposed to be so          
+
+1086
+00:47:05,986 --> 00:47:08,753
+I can update its frame right    
+here and it looks good.         
+
+1087
+00:47:08,822 --> 00:47:10,054
+It's where it's                 
+supposed to be.                 
+
+1088
+00:47:10,123 --> 00:47:12,055
+I'm guaranteed that it's        
+never going to spill out over   
+
+1089
+00:47:12,124 --> 00:47:14,391
+the edges because I put         
+that side constraint in.        
+
+1090
+00:47:14,460 --> 00:47:16,927
+Let's do the exam same thing    
+with this one right here.       
+
+1091
+00:47:16,996 --> 00:47:17,894
+CTRL + drag.                    
+
+1092
+00:47:19,096 --> 00:47:20,896
+Center it vertically.           
+
+1093
+00:47:20,965 --> 00:47:21,697
+CTRL + drag.                    
+
+1094
+00:47:21,766 --> 00:47:23,732
+Center it horizontally.         
+
+1095
+00:47:23,801 --> 00:47:25,801
+CTRL + drag to the edge.        
+
+1096
+00:47:28,872 --> 00:47:31,505
+This the trailing space.        
+
+1097
+00:47:31,574 --> 00:47:32,372
+We're going here.               
+
+1098
+00:47:32,441 --> 00:47:33,907
+We want it to be                
+greater than or                 
+
+1099
+00:47:33,975 --> 00:47:38,712
+equal to zero, and              
+the same thing over here.       
+
+1100
+00:47:40,548 --> 00:47:42,314
+This the leading                
+edge will come out,             
+
+1101
+00:47:42,383 --> 00:47:44,784
+we want that to be greater      
+than or equal to zero.          
+
+1102
+00:47:47,887 --> 00:47:48,886
+Okay, get that right,           
+
+1103
+00:47:48,955 --> 00:47:50,655
+did I say greater               
+than equal to there?            
+
+1104
+00:47:50,723 --> 00:47:51,489
+Yes I did.                      
+
+1105
+00:47:51,557 --> 00:47:53,991
+Okay, this one also,            
+not positioned properly,        
+
+1106
+00:47:54,060 --> 00:47:55,492
+no problem, we go over here.    
+
+1107
+00:47:55,561 --> 00:47:57,727
+Update frames, looking good.    
+
+1108
+00:47:57,796 --> 00:48:01,030
+Okay, a lot of layout issues.   
+
+1109
+00:48:01,098 --> 00:48:06,769
+All right, here's our UI here,  
+looking pretty good.            
+
+1110
+00:48:06,838 --> 00:48:08,503
+Let's go ahead and              
+run this and                    
+
+1111
+00:48:08,572 --> 00:48:10,906
+just see what our UI            
+looks like, see if we.          
+
+1112
+00:48:10,975 --> 00:48:13,175
+Got everything where we         
+wanted, things are centered,    
+
+1113
+00:48:13,243 --> 00:48:15,843
+things are the right size,      
+all that business.              
+
+1114
+00:48:15,912 --> 00:48:17,177
+Okay so we'll go over here,     
+
+1115
+00:48:17,246 --> 00:48:18,945
+bring it up,                    
+looking pretty good.            
+
+1116
+00:48:19,014 --> 00:48:22,216
+The only thing is, that face,   
+
+1117
+00:48:22,284 --> 00:48:23,850
+I'd like that face to           
+be as big as possible.          
+
+1118
+00:48:23,919 --> 00:48:24,783
+Look how the eyes are so        
+
+1119
+00:48:24,852 --> 00:48:27,152
+little they're almost           
+like solid eyes.                
+
+1120
+00:48:27,221 --> 00:48:29,888
+Really I'd like that            
+row in the table                
+
+1121
+00:48:29,957 --> 00:48:32,357
+to be a square since            
+my face is a circle.            
+
+1122
+00:48:32,426 --> 00:48:33,457
+I'd like it to be a square.     
+
+1123
+00:48:33,526 --> 00:48:36,093
+So how can I make               
+that a square?                  
+
+1124
+00:48:36,162 --> 00:48:38,962
+Hopefully all of you know this  
+from your homework assignment.  
+
+1125
+00:48:39,031 --> 00:48:40,898
+How to control                  
+the height of something.        
+
+1126
+00:48:40,966 --> 00:48:45,168
+I'm just gonna go into          
+my code right here for          
+
+1127
+00:48:45,236 --> 00:48:47,270
+my expression editor.           
+
+1128
+00:48:47,338 --> 00:48:49,205
+that row I'm gonna have the     
+table view's height for row.    
+
+1129
+00:48:49,206 --> 00:48:51,073
+And for                         
+
+1130
+00:48:52,276 --> 00:48:54,842
+Okay?                           
+I'm gonna say if the index      
+
+1131
+00:48:54,911 --> 00:48:56,411
+path we're talking about,       
+
+1132
+00:48:56,479 --> 00:48:59,513
+row equals 1 cuz that's         
+the second one down,            
+
+1133
+00:48:59,582 --> 00:49:01,548
+that's where my face is,        
+I'm kind of hard wiring this,   
+
+1134
+00:49:01,617 --> 00:49:02,649
+we could probably               
+use constants,                  
+
+1135
+00:49:02,718 --> 00:49:03,984
+all that stuff in here.         
+
+1136
+00:49:04,052 --> 00:49:10,389
+Then, I'm gonna return the      
+table views bounds.size.width.  
+
+1137
+00:49:10,458 --> 00:49:12,225
+So I'm going make the height    
+equal to the width.             
+
+1138
+00:49:12,294 --> 00:49:14,027
+That way it'll be a square,     
+
+1139
+00:49:14,095 --> 00:49:16,862
+otherwise I'm gonna             
+return our superclasses,        
+
+1140
+00:49:16,931 --> 00:49:18,897
+cuz we're overriding            
+this function, right?           
+
+1141
+00:49:18,965 --> 00:49:22,167
+So TableView,                   
+heightForRowAt, and             
+
+1142
+00:49:22,235 --> 00:49:26,437
+the TableView is our TableView  
+and the height is at            
+
+1143
+00:49:26,506 --> 00:49:31,042
+this index path that it's       
+asking us for right here.       
+
+1144
+00:49:32,612 --> 00:49:33,177
+Okay?                           
+
+1145
+00:49:35,414 --> 00:49:36,345
+So, everybody got that?         
+
+1146
+00:49:36,414 --> 00:49:40,849
+So let's run, and see if        
+it makes that thing square.     
+
+1147
+00:49:40,918 --> 00:49:42,118
+Should make that face square.   
+
+1148
+00:49:46,557 --> 00:49:48,757
+All right, let's go back here.  
+
+1149
+00:49:48,825 --> 00:49:50,508
+sure enough we've got a nice    
+big square face here.           
+
+1150
+00:49:50,509 --> 00:49:52,192
+Click, and                      
+
+1151
+00:49:52,262 --> 00:49:53,093
+Okay, so this is excellent.     
+
+1152
+00:49:53,162 --> 00:49:54,895
+We got our UI exactly           
+the way we want it.             
+
+1153
+00:49:54,963 --> 00:49:56,596
+Now we just need to             
+hook up our outlets and         
+
+1154
+00:49:56,664 --> 00:49:58,031
+actions to this thing.          
+
+1155
+00:49:58,099 --> 00:50:01,700
+We're gonna need outlets to     
+these two segmented controls    
+
+1156
+00:50:01,769 --> 00:50:02,751
+And an outlet to this name,     
+so we can get the name.         
+
+1157
+00:50:02,752 --> 00:50:03,734
+right here.                     
+
+1158
+00:50:03,804 --> 00:50:07,405
+And build an expression out of  
+the settings of this switch.    
+
+1159
+00:50:07,474 --> 00:50:08,205
+And then obviously,             
+
+1160
+00:50:08,274 --> 00:50:11,074
+we're gonna need to be able to  
+set our face view to reflect    
+
+1161
+00:50:11,143 --> 00:50:11,775
+that as well.                   
+
+1162
+00:50:11,844 --> 00:50:13,276
+So let's go do that.            
+
+1163
+00:50:13,345 --> 00:50:17,180
+Go back to our                  
+storyboard here.                
+
+1164
+00:50:17,249 --> 00:50:21,418
+That, this up,                  
+let's close that, all right.    
+
+1165
+00:50:22,686 --> 00:50:24,120
+Zoom in a little bit here.      
+
+1166
+00:50:27,257 --> 00:50:30,792
+Okay, so let's create outlets   
+for these two things and for    
+
+1167
+00:50:30,860 --> 00:50:31,792
+this name.                      
+
+1168
+00:50:31,861 --> 00:50:34,395
+So Ctrl-drag over here.         
+
+1169
+00:50:34,464 --> 00:50:40,400
+Call that our nameTextField,    
+we'll control drag from         
+
+1170
+00:50:40,469 --> 00:50:45,105
+this guy down here, we'll call  
+this our eyeControl, and we'll  
+
+1171
+00:50:47,542 --> 00:50:53,847
+drag from this one,             
+call that our mouthControl.     
+
+1172
+00:50:55,483 --> 00:50:59,518
+Okay, so we got our nice,       
+outlets there.                  
+
+1173
+00:50:59,586 --> 00:51:02,354
+Let's go ahead and think about  
+the model of this control,      
+
+1174
+00:51:02,422 --> 00:51:02,921
+what does it do?                
+
+1175
+00:51:02,989 --> 00:51:03,721
+It's an editor.                 
+
+1176
+00:51:03,790 --> 00:51:07,057
+It edits an expression,         
+a named expression actually.    
+
+1177
+00:51:07,126 --> 00:51:10,727
+So it clearly has something     
+which is the name, okay?        
+
+1178
+00:51:10,796 --> 00:51:11,795
+So we'll make the name,         
+
+1179
+00:51:11,864 --> 00:51:15,198
+we'll have that be              
+our nameTextField.              
+
+1180
+00:51:15,267 --> 00:51:18,201
+Text, and if we don't           
+have a nameTextField yet,       
+
+1181
+00:51:18,269 --> 00:51:21,971
+like we're preloaded, we'll     
+just return a empty string.     
+
+1182
+00:51:23,174 --> 00:51:24,940
+Okay, so that's the name part.  
+
+1183
+00:51:25,008 --> 00:51:27,075
+And of course,                  
+we have an expression as well,  
+
+1184
+00:51:27,143 --> 00:51:30,011
+that's gonna be                 
+FacialExpression.               
+
+1185
+00:51:30,080 --> 00:51:33,413
+And we'll return by creating    
+a FacialExpression, and         
+
+1186
+00:51:33,482 --> 00:51:37,150
+here is its constructor, we'll  
+make it a little easier to see  
+
+1187
+00:51:37,219 --> 00:51:39,553
+when we're an arrow             
+here like this.                 
+
+1188
+00:51:42,057 --> 00:51:44,724
+Okay, so                        
+how are we gonna set the eyes?  
+
+1189
+00:51:44,793 --> 00:51:46,859
+We're gonna look at             
+our eye control and             
+
+1190
+00:51:46,927 --> 00:51:47,893
+see what the eyes are.          
+
+1191
+00:51:47,962 --> 00:51:48,559
+How do we set the mouth?        
+
+1192
+00:51:48,628 --> 00:51:50,462
+We're gonna look at             
+our mouth control.              
+
+1193
+00:51:50,530 --> 00:51:51,162
+So to make this easy,           
+
+1194
+00:51:51,231 --> 00:51:53,798
+I'm gonna make a little         
+private var here.               
+
+1195
+00:51:53,866 --> 00:51:55,432
+Actually a let.                 
+
+1196
+00:51:55,501 --> 00:51:58,835
+I'm gonna call this my          
+eyeChoices, okay, these         
+
+1197
+00:51:58,903 --> 00:52:01,571
+are the three choices in my     
+set menu control view there,    
+
+1198
+00:52:01,640 --> 00:52:05,842
+it's just going to be a little  
+array that has facial, oops,    
+
+1199
+00:52:05,911 --> 00:52:11,980
+Z, equals an array with         
+FacialExpression.Eyes,          
+
+1200
+00:52:12,049 --> 00:52:15,317
+and we've got open, closed,     
+and squinting, those            
+
+1201
+00:52:15,385 --> 00:52:19,254
+are the Three different things  
+in our segmented control.       
+
+1202
+00:52:19,323 --> 00:52:22,623
+So now to make this I's         
+thing I can just return here    
+
+1203
+00:52:22,692 --> 00:52:24,325
+my i choices.                   
+
+1204
+00:52:24,394 --> 00:52:27,595
+And the index I'm gonna         
+use is my eye control.          
+
+1205
+00:52:27,664 --> 00:52:31,331
+And the way you get which of    
+the segments is controlled is   
+
+1206
+00:52:31,400 --> 00:52:33,933
+picked in a segmented           
+control is with the method in   
+
+1207
+00:52:34,002 --> 00:52:38,838
+segmented control called        
+selected segment index.         
+
+1208
+00:52:38,907 --> 00:52:42,909
+Selected segment index.         
+
+1209
+00:52:42,978 --> 00:52:45,344
+And of course our eye           
+control might not be set yet,   
+
+1210
+00:52:45,413 --> 00:52:47,913
+in which case we'll default     
+to just doing segment 0.        
+
+1211
+00:52:47,982 --> 00:52:52,417
+Okay?                           
+Does everybody see what we're,  
+
+1212
+00:52:52,486 --> 00:52:53,151
+what we're doing there?         
+
+1213
+00:52:53,220 --> 00:52:55,619
+To do that?                     
+
+1214
+00:52:55,688 --> 00:52:57,054
+And same thing with the mouth.  
+
+1215
+00:52:57,123 --> 00:53:01,158
+We'll have some                 
+mouth choices here.             
+
+1216
+00:53:01,226 --> 00:53:06,029
+These are                       
+facialExpression.mouth.         
+
+1217
+00:53:06,098 --> 00:53:07,430
+What have we got here, frown.   
+
+1218
+00:53:07,498 --> 00:53:10,967
+We've got smirk,                
+we've got neutral,              
+
+1219
+00:53:11,035 --> 00:53:14,070
+we've got grin and              
+we've got smile.                
+
+1220
+00:53:16,140 --> 00:53:17,456
+Do the same thing here,         
+we'll say mouthChoices.         
+
+1221
+00:53:17,457 --> 00:53:18,773
+Okay?                           
+
+1222
+00:53:18,842 --> 00:53:25,012
+So mouthControl this time,      
+selectedSegment Index.          
+
+1223
+00:53:25,081 --> 00:53:28,116
+And again we'll default to 0.   
+
+1224
+00:53:29,618 --> 00:53:31,752
+So everyone see how we've       
+created our facial expression   
+
+1225
+00:53:31,821 --> 00:53:32,718
+from our UI?                    
+
+1226
+00:53:32,787 --> 00:53:35,120
+This is essentially our model,  
+it's a read only model.         
+
+1227
+00:53:35,189 --> 00:53:38,057
+You could imagine designing     
+this to not be read only,       
+
+1228
+00:53:38,125 --> 00:53:40,759
+where you might want to have    
+this editor start with some     
+
+1229
+00:53:40,828 --> 00:53:41,860
+expression you set.             
+
+1230
+00:53:41,929 --> 00:53:45,764
+But we're just gonna do         
+this to make it easy.           
+
+1231
+00:53:45,832 --> 00:53:46,964
+Read only.                      
+
+1232
+00:53:47,033 --> 00:53:48,899
+And one other thing we want     
+to do is whenever these         
+
+1233
+00:53:48,968 --> 00:53:50,501
+are changed over here,          
+well, for                       
+
+1234
+00:53:50,569 --> 00:53:52,903
+now every time someone clicks   
+on one of these we're just      
+
+1235
+00:53:52,971 --> 00:53:55,405
+gonna print on the console      
+what our expression is.         
+
+1236
+00:53:55,474 --> 00:53:58,307
+So let's create a little        
+target action from this guy,    
+
+1237
+00:53:58,376 --> 00:53:59,642
+control drag.                   
+
+1238
+00:53:59,711 --> 00:54:03,612
+We'll call it                   
+updateface cuz that's           
+
+1239
+00:54:03,680 --> 00:54:06,181
+what we're gonna need to do     
+is update this face up here.    
+
+1240
+00:54:06,249 --> 00:54:07,616
+We don't need any               
+arguments to it.                
+
+1241
+00:54:09,119 --> 00:54:12,486
+Okay so this update face is     
+gonna have to change this face  
+
+1242
+00:54:12,555 --> 00:54:15,422
+to reflect the eyes and stuff,  
+but for now I'm just gonna say  
+
+1243
+00:54:15,491 --> 00:54:20,727
+print our name equals           
+our expression.                 
+
+1244
+00:54:20,796 --> 00:54:23,196
+So like sad equals,             
+
+1245
+00:54:23,264 --> 00:54:25,564
+you know frown plus             
+closed eyes or whatever.        
+
+1246
+00:54:25,633 --> 00:54:29,902
+Okay, and we'll have this       
+one do the exact same thing.    
+
+1247
+00:54:29,971 --> 00:54:34,807
+To the same action,             
+everybody cool?                 
+
+1248
+00:54:34,876 --> 00:54:37,676
+So we just actions to make      
+our, our thing work here.       
+
+1249
+00:54:37,745 --> 00:54:42,513
+So let's go run, see if our     
+UI is basically working.        
+
+1250
+00:54:42,582 --> 00:54:45,183
+It's, it needs to be hooked     
+up to the rest of our app but   
+
+1251
+00:54:45,251 --> 00:54:47,719
+still we wanna make sure it's   
+it's functioning property,      
+
+1252
+00:54:47,787 --> 00:54:48,752
+properly.                       
+
+1253
+00:54:48,820 --> 00:54:50,937
+Let's add, we'll call this,     
+here's a interesting thing.     
+
+1254
+00:54:50,938 --> 00:54:53,055
+So, let's go here.              
+
+1255
+00:54:53,124 --> 00:54:55,692
+See when I click on these       
+it selected this row.           
+
+1256
+00:54:56,627 --> 00:54:57,426
+I didn't want this row          
+
+1257
+00:54:57,495 --> 00:54:59,394
+to be selected like in          
+a table view sense.             
+
+1258
+00:54:59,463 --> 00:55:03,398
+I just wanted it to edit        
+this name right here so         
+
+1259
+00:55:03,466 --> 00:55:05,399
+that's not good, so             
+we'll have to fix that.         
+
+1260
+00:55:05,468 --> 00:55:07,635
+But let's go ahead and          
+put in a test name.             
+
+1261
+00:55:07,704 --> 00:55:10,470
+We'll say test, return.         
+
+1262
+00:55:10,539 --> 00:55:12,773
+Return doesn't get              
+rid of the keyboard.            
+
+1263
+00:55:12,841 --> 00:55:13,840
+So that's bad, bad UI.          
+
+1264
+00:55:13,908 --> 00:55:15,007
+Because now it's                
+
+1265
+00:55:15,076 --> 00:55:16,675
+really hard to get to           
+these things down here.         
+
+1266
+00:55:16,744 --> 00:55:18,977
+I can get to them,              
+because this is a scroll view.  
+
+1267
+00:55:19,046 --> 00:55:20,545
+Table view is a scroll view.    
+
+1268
+00:55:20,614 --> 00:55:22,080
+But it's still kinda bad UI.    
+
+1269
+00:55:22,149 --> 00:55:24,181
+So we gotta fix that as well.   
+
+1270
+00:55:24,250 --> 00:55:26,250
+So let's pick eyes closed and   
+
+1271
+00:55:26,319 --> 00:55:27,985
+see if our console is           
+saying anything and             
+
+1272
+00:55:28,054 --> 00:55:32,222
+sure it's saying test equals    
+eyes closed mouth frown.        
+
+1273
+00:55:32,291 --> 00:55:35,691
+That looks right eyes           
+closed mouth frown.             
+
+1274
+00:55:35,760 --> 00:55:37,627
+Let's say squinting grin.       
+
+1275
+00:55:39,163 --> 00:55:40,796
+Squinting grin.                 
+
+1276
+00:55:40,864 --> 00:55:43,098
+Okay so it looks like           
+our UI is working but           
+
+1277
+00:55:43,167 --> 00:55:44,266
+it's got these two problems.    
+
+1278
+00:55:44,334 --> 00:55:46,700
+So let's fix the problem where  
+it's selecting this row in      
+
+1279
+00:55:46,769 --> 00:55:48,736
+the table view sense when       
+we click in there and           
+
+1280
+00:55:48,805 --> 00:55:51,838
+let's fix the problem           
+where a return key is not       
+
+1281
+00:55:51,907 --> 00:55:53,139
+resigning first responder and.  
+
+1282
+00:55:53,208 --> 00:55:54,307
+And making                      
+the keyboard go away.           
+
+1283
+00:55:54,376 --> 00:55:57,243
+So both of those                
+are easy to do.                 
+
+1284
+00:55:57,311 --> 00:55:59,678
+We can do that most of          
+this in a story board.          
+
+1285
+00:55:59,747 --> 00:56:02,314
+So let's go back to our story   
+board full screen here.         
+
+1286
+00:56:02,382 --> 00:56:05,884
+So the way to make it, so it    
+doesn't select rows in here,    
+
+1287
+00:56:05,953 --> 00:56:09,287
+is just- Select our             
+table view and if you,          
+
+1288
+00:56:09,356 --> 00:56:11,055
+when you do your inspector      
+on a table view, you'll see     
+
+1289
+00:56:11,123 --> 00:56:13,891
+there's selection down here     
+in the table view selector.     
+
+1290
+00:56:13,959 --> 00:56:16,427
+We want to change that to       
+no selection that means         
+
+1291
+00:56:16,496 --> 00:56:18,528
+rows are not selected           
+in our table view.              
+
+1292
+00:56:18,597 --> 00:56:21,131
+You almost always want this     
+in a static table view.         
+
+1293
+00:56:21,199 --> 00:56:24,300
+Rarely are you selecting the    
+rows in a table It it stack     
+
+1294
+00:56:24,369 --> 00:56:28,270
+table, sometimes you might be   
+but rarely are you doing that.  
+
+1295
+00:56:28,339 --> 00:56:31,807
+And the other problem was       
+our text field right here,      
+
+1296
+00:56:31,876 --> 00:56:34,876
+we wanted it to do              
+resign first responder.         
+
+1297
+00:56:34,945 --> 00:56:37,645
+So I'm gonna show you a little  
+trick here which is how we can  
+
+1298
+00:56:37,714 --> 00:56:41,916
+wire this text field up to our  
+view controller as a delegate   
+
+1299
+00:56:41,985 --> 00:56:43,383
+without any code.               
+
+1300
+00:56:43,452 --> 00:56:47,154
+Okay, so do the wiring up,      
+I'm just gonna control drag     
+
+1301
+00:56:47,222 --> 00:56:49,656
+from my text field up           
+to my view controller.          
+
+1302
+00:56:49,724 --> 00:56:52,191
+Remember this little yellow     
+thing at the top represents     
+
+1303
+00:56:52,260 --> 00:56:52,825
+my view controller.             
+
+1304
+00:56:52,894 --> 00:56:54,726
+So I'm gonna control            
+drag right there and            
+
+1305
+00:56:54,795 --> 00:56:57,963
+when I do, look,                
+I can hook up outlets.          
+
+1306
+00:56:58,032 --> 00:57:00,598
+I'm gonna hook up this text     
+field's delegate right there,   
+
+1307
+00:57:00,667 --> 00:57:03,501
+so now this view                
+controller is the delegate      
+
+1308
+00:57:03,570 --> 00:57:04,936
+of this text field.             
+
+1309
+00:57:05,005 --> 00:57:10,041
+Now we still have to go back    
+here and make it be a UI        
+
+1310
+00:57:10,109 --> 00:57:14,111
+text field delegate and         
+of course                       
+
+1311
+00:57:14,179 --> 00:57:18,315
+we still want to implement      
+our text field should return.   
+
+1312
+00:57:18,384 --> 00:57:24,454
+Not should clear,               
+text field should return And    
+
+1313
+00:57:24,523 --> 00:57:27,557
+we're just gonna have the text  
+field resignFirstResponder.     
+
+1314
+00:57:27,625 --> 00:57:32,561
+Responds to [LAUGH]             
+resignFirstResponder and        
+
+1315
+00:57:32,630 --> 00:57:34,596
+return true.                    
+
+1316
+00:57:34,665 --> 00:57:35,714
+I just want to just use that    
+as a trick to show you you can  
+
+1317
+00:57:35,715 --> 00:57:36,764
+Okay, so                        
+
+1318
+00:57:36,833 --> 00:57:41,435
+control drag to set outwards    
+of things as well if you want.  
+
+1319
+00:57:41,504 --> 00:57:43,604
+So we fixed our two             
+problems right there.           
+
+1320
+00:57:46,575 --> 00:57:49,276
+So our UI should be             
+looking good now.               
+
+1321
+00:57:52,146 --> 00:57:54,180
+There it is, go here.           
+
+1322
+00:57:54,248 --> 00:57:57,950
+Okay, let's try the text        
+again, let's say Test, and      
+
+1323
+00:57:58,019 --> 00:57:59,084
+Return.                         
+
+1324
+00:57:59,153 --> 00:58:00,586
+Design's first responder and    
+
+1325
+00:58:00,654 --> 00:58:02,821
+notice when I clicked on test   
+it didn't click this row,       
+
+1326
+00:58:02,890 --> 00:58:04,722
+when I click down here,         
+it's not clicking this row.     
+
+1327
+00:58:04,790 --> 00:58:06,523
+Even if I click on              
+the edges of it                 
+
+1328
+00:58:06,592 --> 00:58:09,559
+Is still not selecting it.      
+
+1329
+00:58:09,628 --> 00:58:12,061
+Okay, what about the face?      
+
+1330
+00:58:12,130 --> 00:58:13,764
+We gotta get that face, so      
+
+1331
+00:58:13,832 --> 00:58:16,232
+it's updating,                  
+based on what's going on here.  
+
+1332
+00:58:16,301 --> 00:58:19,768
+Now, we've offered the option   
+of squinting right here, so     
+
+1333
+00:58:19,837 --> 00:58:23,305
+really, what class              
+needs to be in here?            
+
+1334
+00:58:23,374 --> 00:58:26,408
+What's the only class           
+that does squinting?            
+
+1335
+00:58:26,477 --> 00:58:29,044
+It's that blinking face         
+view controller, right?         
+
+1336
+00:58:29,113 --> 00:58:31,479
+So we need to put               
+an NBC in here, okay?           
+
+1337
+00:58:31,548 --> 00:58:32,980
+Blinking face view              
+controller is an NBC,           
+
+1338
+00:58:33,049 --> 00:58:35,716
+we can't use face view, which   
+is what I have in here now.     
+
+1339
+00:58:35,785 --> 00:58:38,118
+Face view doesn't know          
+how to do squinting, so         
+
+1340
+00:58:38,186 --> 00:58:39,419
+we need to put an NBC.          
+
+1341
+00:58:39,488 --> 00:58:41,754
+So this is where we're          
+going to do an embedded         
+
+1342
+00:58:41,823 --> 00:58:43,890
+view controller, so let's do    
+the embedded view controller.   
+
+1343
+00:58:45,892 --> 00:58:47,359
+Okay, we're gonna go here,      
+we hit,                         
+
+1344
+00:58:47,427 --> 00:58:49,561
+right now we have it's          
+face view inside here.          
+
+1345
+00:58:49,630 --> 00:58:51,562
+So we're just gonna get         
+rid of that face view,          
+
+1346
+00:58:51,631 --> 00:58:52,162
+we don't want that.             
+
+1347
+00:58:52,231 --> 00:58:54,331
+Oops, I dela deleted            
+the entire row, sorry.          
+
+1348
+00:58:55,433 --> 00:58:58,801
+Is that my face                 
+view right there?               
+
+1349
+00:58:58,870 --> 00:59:01,070
+Yeah, so                        
+we'll delete the face view and  
+
+1350
+00:59:01,138 --> 00:59:04,473
+instead of having a face view,  
+I'm gonna go over here and      
+
+1351
+00:59:04,542 --> 00:59:07,542
+look for a container view.      
+
+1352
+00:59:07,611 --> 00:59:09,377
+Container, there it is,         
+
+1353
+00:59:09,446 --> 00:59:13,115
+container view, I'm gonna drag  
+this container view in here.    
+
+1354
+00:59:13,183 --> 00:59:15,416
+I'm gonna do the exact same     
+thing as I did before.          
+
+1355
+00:59:15,485 --> 00:59:18,752
+I'm gonna use my bl let's,      
+zoom in a little so             
+
+1356
+00:59:18,821 --> 00:59:19,954
+I can see it a little better.   
+
+1357
+00:59:20,022 --> 00:59:23,890
+I'm gonna use my da dash blue   
+lines to place this thing       
+
+1358
+00:59:23,959 --> 00:59:24,991
+where I want.                   
+
+1359
+00:59:25,060 --> 00:59:28,627
+I'm still going to do reset to  
+constraint, I'm going to check  
+
+1360
+00:59:28,696 --> 00:59:31,263
+that make sure that this        
+is all hooked up right.         
+
+1361
+00:59:31,332 --> 00:59:33,299
+It appears to be                
+hooked up right,                
+
+1362
+00:59:33,367 --> 00:59:36,735
+look what also appeared,        
+it's kind of hidden,            
+
+1363
+00:59:36,803 --> 00:59:42,040
+it's kind of afraid,            
+there it is, right here.        
+
+1364
+00:59:42,108 --> 00:59:46,377
+Okay, when we created this      
+in it also created this         
+
+1365
+00:59:46,446 --> 00:59:47,679
+new NBC right here.             
+
+1366
+00:59:49,381 --> 00:59:54,084
+Okay, this is the MVC whose     
+self.view is going to appear    
+
+1367
+00:59:54,152 --> 00:59:56,953
+right here, and all the auto    
+layout constraints are gonna    
+
+1368
+00:59:57,022 --> 00:59:58,020
+apply to it and everything so   
+
+1369
+00:59:58,089 --> 01:00:00,556
+it's gonna be fit in there and  
+everything.                     
+
+1370
+01:00:00,625 --> 01:00:01,690
+So what do we want this to be?  
+
+1371
+01:00:01,758 --> 01:00:03,558
+Wel, we want it                 
+to be a blinking,               
+
+1372
+01:00:03,626 --> 01:00:04,326
+face view controller.           
+
+1373
+01:00:04,394 --> 01:00:07,195
+So I'm gonna go here,           
+go to identity, Fir-,           
+
+1374
+01:00:07,263 --> 01:00:08,028
+I'm gonna select this.          
+
+1375
+01:00:08,097 --> 01:00:10,731
+Go to identity and say          
+blinking face view controller.  
+
+1376
+01:00:10,799 --> 01:00:14,501
+Of course, I have to still      
+build the UI of this thing and  
+
+1377
+01:00:14,569 --> 01:00:15,802
+of course it has                
+a face view in it.              
+
+1378
+01:00:15,871 --> 01:00:18,237
+So I'm gonna again try and      
+copy and paste,                 
+
+1379
+01:00:18,306 --> 01:00:20,740
+it didn't work last time I      
+did it but we'll try again.     
+
+1380
+01:00:21,809 --> 01:00:23,241
+Paste, there we go.             
+
+1381
+01:00:23,310 --> 01:00:26,111
+Okay and so we're gonna         
+make it fit perfectly           
+
+1382
+01:00:26,179 --> 01:00:31,115
+in here as usual,               
+ahead and reset.                
+
+1383
+01:00:31,183 --> 01:00:34,651
+Adjust constraints and of       
+course, this phase view right   
+
+1384
+01:00:34,720 --> 01:00:38,288
+here needs to be wired up as    
+an outlet of this blinking      
+
+1385
+01:00:38,357 --> 01:00:41,225
+face view controller and        
+how am I gonna do that?         
+
+1386
+01:00:41,293 --> 01:00:43,326
+Same way I did that text        
+field delegate, so,             
+
+1387
+01:00:43,394 --> 01:00:45,961
+we'll control drag now from     
+the view controller to this     
+
+1388
+01:00:46,030 --> 01:00:47,163
+face view and wire it up.       
+
+1389
+01:00:47,231 --> 01:00:49,064
+We don't have to                
+bring up the code,              
+
+1390
+01:00:49,132 --> 01:00:51,566
+in a side by side window,       
+especially this is a pain for   
+
+1391
+01:00:51,635 --> 01:00:52,901
+blinking view controller.       
+
+1392
+01:00:52,969 --> 01:00:57,005
+Because, the, it's a subclass   
+of it, a superclass,            
+
+1393
+01:00:57,073 --> 01:01:00,240
+rather that we're hooking       
+up to, etc, okay?               
+
+1394
+01:01:00,309 --> 01:01:05,079
+So I built this embedded view,  
+I've created the MVC is         
+
+1395
+01:01:05,148 --> 01:01:08,915
+actually the way I want and     
+so now if we run.               
+
+1396
+01:01:08,984 --> 01:01:12,285
+We should have that blinking    
+view controller embedded        
+
+1397
+01:01:12,354 --> 01:01:14,186
+inside of this                  
+into that row and               
+
+1398
+01:01:14,255 --> 01:01:16,088
+of course it should be square.  
+
+1399
+01:01:16,157 --> 01:01:19,758
+And all those things just       
+as if it were the regular       
+
+1400
+01:01:19,826 --> 01:01:22,461
+face view I'm sure              
+that here it is.                
+
+1401
+01:01:22,530 --> 01:01:24,296
+Okay now, how do make it so     
+
+1402
+01:01:24,364 --> 01:01:27,131
+when we change these things,    
+it changes this?                
+
+1403
+01:01:27,200 --> 01:01:30,100
+Well, this is just              
+a segue right here, so          
+
+1404
+01:01:30,169 --> 01:01:31,368
+in our prepare for segue,       
+
+1405
+01:01:31,437 --> 01:01:34,104
+we're gonna grab onto that      
+blinking view controller.       
+
+1406
+01:01:34,172 --> 01:01:36,205
+And then every time things      
+change, we'll just tell         
+
+1407
+01:01:36,274 --> 01:01:38,474
+the blinking view controller    
+what its expression is, so      
+
+1408
+01:01:38,543 --> 01:01:39,708
+let's give this thing a name.   
+
+1409
+01:01:39,777 --> 01:01:45,080
+We'll call this our EmbedFace,  
+segue right here, and let's     
+
+1410
+01:01:45,149 --> 01:01:50,452
+go back to our editor and it's  
+the thing we're segueing from.  
+
+1411
+01:01:50,521 --> 01:01:54,990
+So it's the thing that gets to  
+prepare, so let's go prepare    
+
+1412
+01:01:55,058 --> 01:01:58,593
+for segue, and                  
+inside this prepare for segue.  
+
+1413
+01:01:58,662 --> 01:02:02,063
+All we really need to do        
+is grab onto that Face view     
+
+1414
+01:02:02,131 --> 01:02:05,866
+controller, so let's create     
+a little private var,           
+
+1415
+01:02:05,935 --> 01:02:09,802
+which we'll call our            
+faceViewController.             
+
+1416
+01:02:09,871 --> 01:02:14,074
+It's going to be of type        
+linkingFaceViewController and   
+
+1417
+01:02:14,142 --> 01:02:16,342
+it's not set initially, so      
+we'll have it be an optional.   
+
+1418
+01:02:16,411 --> 01:02:21,080
+And here I'm just gonna say     
+if the segue.destination        
+
+1419
+01:02:21,148 --> 01:02:24,482
+view controller is, actually    
+we'll even say if let.          
+
+1420
+01:02:24,551 --> 01:02:28,053
+Let's say if let Controller     
+we didn't mean to do that,      
+
+1421
+01:02:28,122 --> 01:02:30,555
+actually I can do an even       
+easier way to do it.            
+
+1422
+01:02:30,624 --> 01:02:34,258
+Let's just say face view        
+controller equals the segue's   
+
+1423
+01:02:34,327 --> 01:02:37,261
+destination as a blinking       
+view controller and             
+
+1424
+01:02:37,330 --> 01:02:40,964
+if it's not a blinking view     
+controller and won't work.      
+
+1425
+01:02:41,033 --> 01:02:44,000
+Then of course we probably      
+want to check our identifier    
+
+1426
+01:02:44,069 --> 01:02:46,769
+here so we'll say if            
+the segue's identifier =,       
+
+1427
+01:02:46,838 --> 01:02:48,137
+what did I call it?             
+
+1428
+01:02:48,206 --> 01:02:48,905
+Embed Face.                     
+
+1429
+01:02:51,875 --> 01:02:52,941
+Then we'll do this.             
+
+1430
+01:02:54,711 --> 01:02:56,176
+Okay?                           
+So all I did here,              
+
+1431
+01:02:56,245 --> 01:02:58,679
+when I'm preparing,             
+is just grab onto               
+
+1432
+01:02:58,747 --> 01:03:02,583
+that view controller, so now    
+I have the view controller.     
+
+1433
+01:03:02,652 --> 01:03:05,519
+So for example,                 
+when updateFace happens, okay?  
+
+1434
+01:03:05,588 --> 01:03:07,086
+Instead of printing             
+out on the console,             
+
+1435
+01:03:07,155 --> 01:03:09,955
+I can just say that             
+my faceViewController           
+
+1436
+01:03:10,024 --> 01:03:15,027
+expression equals my            
+expression, right?              
+
+1437
+01:03:15,095 --> 01:03:19,798
+My expression is this thing     
+right here, cool with that?     
+
+1438
+01:03:19,867 --> 01:03:20,566
+Let's go see that.              
+
+1439
+01:03:23,837 --> 01:03:27,037
+Okay, so we go here,            
+we add eyes closed,             
+
+1440
+01:03:27,106 --> 01:03:30,541
+looking good and                
+the frown there, grin.          
+
+1441
+01:03:30,610 --> 01:03:33,744
+Notice that it started out      
+with the wrong face though,     
+
+1442
+01:03:33,813 --> 01:03:34,611
+so probably,                    
+
+1443
+01:03:34,680 --> 01:03:36,980
+when I grab that face view      
+controller right here,          
+
+1444
+01:03:37,048 --> 01:03:43,085
+probably want to update it      
+right away with my expression.  
+
+1445
+01:03:43,154 --> 01:03:44,153
+Whatever expression             
+I have now.                     
+
+1446
+01:03:44,221 --> 01:03:47,489
+In other words, as soon as      
+that embedded segue gets        
+
+1447
+01:03:47,558 --> 01:03:50,859
+embedded, I wanna have it       
+update with my my face, but     
+
+1448
+01:03:50,928 --> 01:03:54,262
+it's working, and it even       
+works for squinting, okay?      
+
+1449
+01:03:54,330 --> 01:03:55,997
+So we got squinting             
+even happening in here.         
+
+1450
+01:03:57,567 --> 01:04:00,634
+All right, we got this          
+awesome system here,            
+
+1451
+01:04:00,703 --> 01:04:04,772
+this awesome MVC for            
+editing and                     
+
+1452
+01:04:04,840 --> 01:04:09,042
+emotion right with the          
+emotion's name and its face.    
+
+1453
+01:04:09,110 --> 01:04:13,146
+So how do we communicate        
+what we just edited back?       
+
+1454
+01:04:13,214 --> 01:04:15,615
+And that's through unwinding    
+ao let's go ahead and           
+
+1455
+01:04:15,683 --> 01:04:20,653
+create an unwind segue back     
+to our presenter okay.          
+
+1456
+01:04:20,721 --> 01:04:24,990
+And let's move this thing so    
+we can see this whole thing,    
+
+1457
+01:04:25,058 --> 01:04:26,925
+what we're doing here.          
+
+1458
+01:04:26,993 --> 01:04:29,960
+So we're going to create an     
+unwind from a done button in    
+
+1459
+01:04:30,029 --> 01:04:32,763
+this, and it's going to         
+unwind back to this guy.        
+
+1460
+01:04:32,831 --> 01:04:35,999
+And when it unwinds we'll       
+communicate the expression and  
+
+1461
+01:04:36,068 --> 01:04:38,968
+the name of the expression      
+that was chosen here in this    
+
+1462
+01:04:39,037 --> 01:04:40,337
+editor.                         
+
+1463
+01:04:40,405 --> 01:04:44,207
+Now what's the first thing      
+we want to do in unwind?        
+
+1464
+01:04:44,275 --> 01:04:47,043
+We need to create that magic    
+method to unwind to, that's     
+
+1465
+01:04:47,111 --> 01:04:48,810
+always the first thing you're   
+gonna do when you unwind.       
+
+1466
+01:04:48,879 --> 01:04:51,746
+So that's over here in this     
+EmotionsViewController, so      
+
+1467
+01:04:51,815 --> 01:04:54,482
+let's go over to the            
+EmotionsViewController, and     
+
+1468
+01:04:54,550 --> 01:04:57,818
+create that magic method,       
+put it right here at the top.   
+
+1469
+01:04:57,887 --> 01:05:00,521
+Okay, it's gotta                
+be an IBAction.                 
+
+1470
+01:05:00,589 --> 01:05:03,724
+Okay, just a function, we can   
+call it anything we want.       
+
+1471
+01:05:03,792 --> 01:05:05,225
+I'll call this,                 
+
+1472
+01:05:05,294 --> 01:05:08,661
+addEmotionalFace, because       
+that's what it's gonna do,      
+
+1473
+01:05:08,730 --> 01:05:12,365
+it's gonna add an emotional     
+face to this array right here.  
+
+1474
+01:05:12,434 --> 01:05:14,767
+And I'll say from segue         
+
+1475
+01:05:14,836 --> 01:05:18,571
+UIStoryBoardSegue, and this     
+satisfies the second thing we   
+
+1476
+01:05:18,639 --> 01:05:21,607
+have to do which it has         
+one and only one argument.      
+
+1477
+01:05:21,675 --> 01:05:26,344
+And hit the storyboard segue    
+and inside here, we will use    
+
+1478
+01:05:26,413 --> 01:05:29,914
+the segue information to get    
+the expression that we chose.   
+
+1479
+01:05:31,217 --> 01:05:33,417
+So, now let's go back           
+to our storyboard.              
+
+1480
+01:05:35,521 --> 01:05:40,623
+And wire up that,               
+unwind which we do right here.  
+
+1481
+01:05:40,692 --> 01:05:43,025
+So I'm gonna add a done         
+button right here.              
+
+1482
+01:05:43,094 --> 01:05:47,764
+Click down here, this is        
+bar button, there it is.        
+
+1483
+01:05:49,033 --> 01:05:50,565
+Okay, I wanted                  
+a standard one again,           
+
+1484
+01:05:50,634 --> 01:05:51,666
+this is the done button.        
+
+1485
+01:05:51,735 --> 01:05:53,767
+See all these standard          
+ones we had add for             
+
+1486
+01:05:53,836 --> 01:05:57,371
+the other one, cancel for the   
+other one, done for this one.   
+
+1487
+01:05:57,440 --> 01:05:58,806
+So we have done and             
+
+1488
+01:05:58,875 --> 01:06:01,675
+I'm just gonna control drag,    
+over there?                     
+
+1489
+01:06:01,744 --> 01:06:02,742
+No, up here.                    
+
+1490
+01:06:02,811 --> 01:06:06,646
+Okay, so this exit button.      
+
+1491
+01:06:06,714 --> 01:06:08,380
+look what appeared there,       
+add emotional face from.        
+
+1492
+01:06:08,381 --> 01:06:10,047
+When I let go,                  
+
+1493
+01:06:10,117 --> 01:06:11,617
+Notice that it puts             
+the little from                 
+
+1494
+01:06:11,685 --> 01:06:13,451
+that was the external           
+name on the end of it.          
+
+1495
+01:06:13,520 --> 01:06:16,821
+It's kind of a backwards        
+compatibility with objective c  
+
+1496
+01:06:16,890 --> 01:06:19,189
+there and so, I click that      
+I want that connection and      
+
+1497
+01:06:19,258 --> 01:06:20,457
+now it's made that segue.       
+
+1498
+01:06:20,526 --> 01:06:21,858
+Now where is that segue?        
+
+1499
+01:06:21,927 --> 01:06:23,460
+If I zoom out am I              
+gonna be able to see            
+
+1500
+01:06:23,528 --> 01:06:24,794
+that on my storyboard?          
+
+1501
+01:06:24,863 --> 01:06:26,229
+No, you don't see it, so        
+
+1502
+01:06:26,297 --> 01:06:29,431
+where are things that you       
+can't see in your storyboard?   
+
+1503
+01:06:29,500 --> 01:06:30,432
+Where do you go to find them?   
+
+1504
+01:06:31,935 --> 01:06:33,301
+Yeah, the document              
+outline here,                   
+
+1505
+01:06:33,370 --> 01:06:36,003
+so let's go to the document     
+outline and sure enough,        
+
+1506
+01:06:36,071 --> 01:06:37,354
+Look at that, unwind segue      
+to add emotional faces,         
+
+1507
+01:06:37,355 --> 01:06:38,638
+right here.                     
+
+1508
+01:06:38,707 --> 01:06:39,972
+we could give this segue.       
+
+1509
+01:06:40,041 --> 01:06:42,942
+A name, maybe we could call it  
+
+1510
+01:06:43,011 --> 01:06:44,810
+add emotion because that's      
+what it does, right?            
+
+1511
+01:06:44,879 --> 01:06:47,412
+It calls this add               
+emotional face so               
+
+1512
+01:06:47,481 --> 01:06:49,648
+it kind of add emotion segue.   
+
+1513
+01:06:49,717 --> 01:06:52,550
+Now we could transfer           
+our information kind of         
+
+1514
+01:06:52,619 --> 01:06:55,620
+either way, either in           
+the prepare in this guy.        
+
+1515
+01:06:55,688 --> 01:06:58,522
+But I usually like to do it     
+in this guy because this is     
+
+1516
+01:06:58,591 --> 01:07:01,558
+the guy who I would have to     
+create some public API to add   
+
+1517
+01:07:01,627 --> 01:07:03,460
+an emotional face or            
+something.                      
+
+1518
+01:07:03,528 --> 01:07:06,496
+So I'm just gonna have this     
+guy and his special method.     
+
+1519
+01:07:06,565 --> 01:07:10,767
+He's going to ask the editor    
+there what is your expression   
+
+1520
+01:07:10,835 --> 01:07:15,271
+and name and it's gonna         
+add it to his model here.       
+
+1521
+01:07:16,507 --> 01:07:21,043
+All right, so                   
+we're gonna say if we can let   
+
+1522
+01:07:21,111 --> 01:07:24,011
+the editor, basically           
+we'll call it editor.           
+
+1523
+01:07:24,080 --> 01:07:26,947
+If we can let the editor        
+equal the segue is what?        
+
+1524
+01:07:27,016 --> 01:07:30,084
+The source,                     
+it's the source of the segue,   
+
+1525
+01:07:30,152 --> 01:07:33,721
+we're segueing from             
+the editor to this guy.         
+
+1526
+01:07:33,790 --> 01:07:38,925
+So this as                      
+a ExpressionEditorViewCOntrol-  
+
+1527
+01:07:38,994 --> 01:07:40,727
+ler, so                         
+if I'm able to get the editor,  
+
+1528
+01:07:40,796 --> 01:07:42,762
+then I'm just gonna             
+say EmotionalFaces.             
+
+1529
+01:07:42,831 --> 01:07:46,032
+Not kGuard [LAUGH]              
+EmotionalFaces, append, and     
+
+1530
+01:07:46,101 --> 01:07:48,667
+I wanna append a tuple,         
+and the tuple is                
+
+1531
+01:07:48,736 --> 01:07:53,138
+gonna have the editor's name,   
+and the editor's expression.    
+
+1532
+01:07:55,775 --> 01:07:57,475
+That's it!                      
+
+1533
+01:07:57,543 --> 01:07:58,909
+To unwind?                      
+
+1534
+01:07:58,978 --> 01:08:01,945
+Super simple, all right.        
+
+1535
+01:08:02,014 --> 01:08:03,546
+So, here's, we got worried.     
+
+1536
+01:08:03,615 --> 01:08:05,849
+We got happy, we got sad.       
+
+1537
+01:08:05,918 --> 01:08:10,386
+Let's add another one,          
+let's go, I don't know.         
+
+1538
+01:08:10,455 --> 01:08:14,156
+Now let's go, okay, this face   
+looks like contentment to me,   
+
+1539
+01:08:14,225 --> 01:08:15,657
+he looks content so             
+
+1540
+01:08:15,726 --> 01:08:17,225
+we're going to call             
+this one content.               
+
+1541
+01:08:17,294 --> 01:08:23,431
+Content, content,               
+there it is, okay?              
+
+1542
+01:08:23,500 --> 01:08:26,500
+So we've got this named         
+content, eyes closed, grin,     
+
+1543
+01:08:26,569 --> 01:08:29,370
+I'm going to hit done right     
+here, it's going to unwind and  
+
+1544
+01:08:29,439 --> 01:08:31,438
+add that, hopefully,            
+and it didn't show.             
+
+1545
+01:08:31,507 --> 01:08:33,574
+Anyone have an idea why         
+it didn't show there?           
+
+1546
+01:08:35,144 --> 01:08:38,310
+Because we appended             
+it to our model, but            
+
+1547
+01:08:38,379 --> 01:08:39,812
+we never told                   
+the tableview to update.        
+
+1548
+01:08:39,880 --> 01:08:43,014
+Okay, so this is a common       
+thing you'll do, you'll update  
+
+1549
+01:08:43,083 --> 01:08:45,617
+your model and you're like,     
+my tableview doesn't work.      
+
+1550
+01:08:45,686 --> 01:08:47,652
+And we just need to             
+do tableview here,              
+
+1551
+01:08:47,721 --> 01:08:50,588
+reload data cuz it to call of   
+
+1552
+01:08:50,656 --> 01:08:53,290
+its UI table view data          
+source methods again.           
+
+1553
+01:08:53,359 --> 01:08:54,959
+Hopefully you experience that,  
+
+1554
+01:08:55,027 --> 01:08:56,559
+maybe in your                   
+homework assignment.            
+
+1555
+01:08:56,628 --> 01:09:01,131
+You're used to this             
+particular forgetfulness but    
+
+1556
+01:09:01,199 --> 01:09:04,000
+here we go, try again.          
+
+1557
+01:09:04,068 --> 01:09:08,471
+Okay, we'll do content again,   
+I liked content, content,       
+
+1558
+01:09:10,741 --> 01:09:14,743
+Tent there it is and content    
+was what did I say, green.      
+
+1559
+01:09:14,812 --> 01:09:17,712
+Eyes closed yes looks content,  
+done, there's content.          
+
+1560
+01:09:17,780 --> 01:09:19,113
+We click on it,                 
+we've got content,              
+
+1561
+01:09:19,181 --> 01:09:20,247
+we've got worried,              
+we've got happy.                
+
+1562
+01:09:20,316 --> 01:09:25,886
+Whoops, happy, okay?            
+
+1563
+01:09:25,955 --> 01:09:28,088
+Everybody understand            
+that unwinding?                 
+
+1564
+01:09:28,157 --> 01:09:30,290
+Everyone understand the modal?  
+
+1565
+01:09:30,359 --> 01:09:32,124
+Lets go take a look             
+at this on iPad,                
+
+1566
+01:09:32,193 --> 01:09:33,025
+lets see what it                
+looks like here.                
+
+1567
+01:09:33,094 --> 01:09:41,700
+Okay, let's make                
+this a lot smaller,             
+
+1568
+01:09:41,769 --> 01:09:45,437
+is that the smallest            
+we can make it?                 
+
+1569
+01:09:45,505 --> 01:09:47,104
+No, four, here we go.           
+
+1570
+01:09:47,173 --> 01:09:49,541
+Okay, so                        
+here it is on iPad well,        
+
+1571
+01:09:49,609 --> 01:09:52,476
+lets go to landscape here,      
+make sure it's working.         
+
+1572
+01:09:52,545 --> 01:09:56,647
+Sad, happy, worried,            
+lets add another one, woah!     
+
+1573
+01:09:56,715 --> 01:10:01,485
+Big face, now, this is the      
+kind of UI that in your final   
+
+1574
+01:10:01,553 --> 01:10:04,187
+project you're going to         
+get dinged on the UI            
+
+1575
+01:10:04,255 --> 01:10:07,490
+part of the rubric,             
+because this is a horrible UI.  
+
+1576
+01:10:07,559 --> 01:10:10,325
+Look at the tiny,               
+little things at the bottom,    
+
+1577
+01:10:10,394 --> 01:10:13,395
+gigantic face this              
+is a classic,                   
+
+1578
+01:10:13,464 --> 01:10:16,431
+my app works on iPad and        
+iPhone, okay?                   
+
+1579
+01:10:16,500 --> 01:10:17,432
+Because I just                  
+
+1580
+01:10:17,500 --> 01:10:19,801
+clicked the button that         
+said do iPad, okay?             
+
+1581
+01:10:19,869 --> 01:10:22,303
+Sometimes we have to do more    
+to make things work on both     
+
+1582
+01:10:22,372 --> 01:10:25,472
+platforms and in this case,     
+clearly this is bad UI.         
+
+1583
+01:10:25,541 --> 01:10:27,090
+it's an opportunity to make     
+points on your rubric and your  
+
+1584
+01:10:27,091 --> 01:10:28,640
+And in fact,                    
+
+1585
+01:10:28,710 --> 01:10:31,711
+final project by implementing   
+an iPad specific idiom.         
+
+1586
+01:10:31,780 --> 01:10:34,747
+In this case that's what we     
+wanna do this clearly wants to  
+
+1587
+01:10:34,816 --> 01:10:36,515
+be in a pop over.               
+
+1588
+01:10:36,584 --> 01:10:39,818
+When we click this little       
+plus we want this a little      
+
+1589
+01:10:39,887 --> 01:10:42,987
+to appear right here in         
+that little pop over, so        
+
+1590
+01:10:43,056 --> 01:10:44,755
+what do we need to do that?     
+
+1591
+01:10:44,824 --> 01:10:49,060
+Is could be simpler, we gonna   
+go back to our story bore here  
+
+1592
+01:10:49,128 --> 01:10:51,728
+and we're gonna                 
+change this segue,              
+
+1593
+01:10:51,797 --> 01:10:53,897
+which is currently our          
+modal segue, right?             
+
+1594
+01:10:53,966 --> 01:10:56,833
+The modal segway from           
+emotions right here             
+
+1595
+01:10:56,901 --> 01:11:01,771
+over to this editor from being  
+modal to being a popover.       
+
+1596
+01:11:03,241 --> 01:11:05,941
+Now we know that it             
+automatically is going to       
+
+1597
+01:11:06,010 --> 01:11:10,512
+adapt to being like modal       
+full screen on the iPhone.      
+
+1598
+01:11:10,580 --> 01:11:12,814
+So by changing it to popover    
+it's gonna work now on          
+
+1599
+01:11:12,883 --> 01:11:13,882
+both platforms but              
+
+1600
+01:11:13,950 --> 01:11:16,951
+we're going to see a little     
+bit of problems here.           
+
+1601
+01:11:17,020 --> 01:11:21,956
+All right, so, let's try it,    
+plus, nice, okay.               
+
+1602
+01:11:22,024 --> 01:11:24,424
+Maybe not seeing this very      
+well because of the high        
+
+1603
+01:11:24,493 --> 01:11:26,293
+resolution being                
+scaled way down but             
+
+1604
+01:11:26,361 --> 01:11:29,262
+it's picked a reasonable size,  
+it's a little bigger than       
+
+1605
+01:11:29,331 --> 01:11:31,364
+it needs to be,                 
+it's a reasonable size.         
+
+1606
+01:11:31,432 --> 01:11:34,466
+But there's actually one thing  
+that's wrong with this UI       
+
+1607
+01:11:34,535 --> 01:11:36,635
+which is this cancel            
+button right here.              
+
+1608
+01:11:36,704 --> 01:11:39,938
+Okay on in a pop over you       
+don't have cancel buttons       
+
+1609
+01:11:40,007 --> 01:11:43,374
+because watch if I click        
+over here it canceled it, so    
+
+1610
+01:11:43,443 --> 01:11:46,677
+I don't need this cancel        
+button right here.              
+
+1611
+01:11:46,746 --> 01:11:49,480
+I need it on iPhone but         
+I don't need it on iPad, so     
+
+1612
+01:11:49,548 --> 01:11:52,249
+let's add a little bit of       
+code to take this cancel        
+
+1613
+01:11:52,318 --> 01:11:53,015
+button out.                     
+
+1614
+01:11:53,084 --> 01:11:54,483
+If we're actually               
+in a pop over,                  
+
+1615
+01:11:54,552 --> 01:11:57,019
+and the way I'm going to tell   
+I'm in a pop over is I'm going  
+
+1616
+01:11:57,088 --> 01:11:59,155
+to look at my pop over          
+presentation controller.        
+
+1617
+01:11:59,223 --> 01:12:01,823
+And see if my arrow is          
+pointing any way, and if my     
+
+1618
+01:12:01,892 --> 01:12:04,759
+arrow is pointing somewhere     
+I must be in a pop over.        
+
+1619
+01:12:04,828 --> 01:12:07,595
+If i don't have an arrow then   
+I'm probably over full screen.  
+
+1620
+01:12:08,597 --> 01:12:09,663
+Okay so let's go ahead and      
+do that.                        
+
+1621
+01:12:09,732 --> 01:12:14,868
+Let's go back here              
+to our editor and               
+
+1622
+01:12:14,937 --> 01:12:18,972
+in our editor, I'm gonna do     
+this in view will appear.       
+
+1623
+01:12:19,041 --> 01:12:22,508
+Nice late in the game time to   
+do it, so view will appear,     
+
+1624
+01:12:22,577 --> 01:12:24,777
+super view will appear.         
+
+1625
+01:12:26,447 --> 01:12:30,682
+I'm just gonna say in here, if  
+I can If I can, and here I'll   
+
+1626
+01:12:30,751 --> 01:12:33,451
+make it wide so that I have     
+pick good variable names here.  
+
+1627
+01:12:33,520 --> 01:12:37,422
+If I can let                    
+popoverPresentationController   
+
+1628
+01:12:37,490 --> 01:12:45,962
+= my navigationControllers      
+popoverPresentationController.  
+
+1629
+01:12:46,031 --> 01:12:46,830
+Now, why am I giving that       
+
+1630
+01:12:46,899 --> 01:12:49,266
+navigationControllers           
+popoverPresentationController?  
+
+1631
+01:12:49,335 --> 01:12:51,167
+Cuz it's actually               
+the highest level MVC           
+
+1632
+01:12:51,236 --> 01:12:53,269
+that's in the popover, okay?    
+
+1633
+01:12:53,338 --> 01:12:54,670
+Also, that cancel button        
+
+1634
+01:12:54,739 --> 01:12:56,405
+is in the                       
+navigationController, right?    
+
+1635
+01:12:56,474 --> 01:12:57,872
+It's part of                    
+the navigation items for        
+
+1636
+01:12:57,941 --> 01:12:58,873
+the navigationController,       
+
+1637
+01:12:58,942 --> 01:13:00,207
+so if I'm not in                
+a navigationController,         
+
+1638
+01:13:00,276 --> 01:13:02,276
+this whole thing is             
+kinda useless anyway.           
+
+1639
+01:13:02,344 --> 01:13:04,678
+So here I'm gonna say if the    
+popoverPresentationControll-    
+
+1640
+01:13:04,746 --> 01:13:09,650
+er's arrowDirection equals      
+unknown, or well let's say if   
+
+1641
+01:13:09,718 --> 01:13:13,219
+it doesn't equal unknown,       
+so it points somewhere.         
+
+1642
+01:13:13,288 --> 01:13:17,123
+Then I must be in a popover,    
+so I'm gonna remove             
+
+1643
+01:13:17,191 --> 01:13:20,159
+from my navigation items,       
+my left bar button item.        
+
+1644
+01:13:22,562 --> 01:13:24,896
+Okay, remember navigation item  
+is what controls, what bar      
+
+1645
+01:13:24,965 --> 01:13:27,733
+buttons appear when you are in  
+a navigation controller.        
+
+1646
+01:13:36,843 --> 01:13:39,477
+Okay, so here we go,            
+we click, no cancel button      
+
+1647
+01:13:39,545 --> 01:13:41,278
+which is good and we'll run     
+it on iPhone in a second and    
+
+1648
+01:13:41,347 --> 01:13:44,281
+we'll make sure the cancel      
+button is still there.          
+
+1649
+01:13:44,350 --> 01:13:45,649
+Okay, what's another            
+problem here though?            
+
+1650
+01:13:45,717 --> 01:13:48,050
+Well the problem is this        
+is a little too big,            
+
+1651
+01:13:48,119 --> 01:13:50,886
+it's kind of got this extra     
+space down here at the bottom   
+
+1652
+01:13:50,955 --> 01:13:52,555
+that we don't want, okay?       
+
+1653
+01:13:52,623 --> 01:13:57,559
+And, in fact, if I go this      
+way, and I slide this out and   
+
+1654
+01:13:57,628 --> 01:14:00,428
+bring this up, now it's         
+a little too small, so          
+
+1655
+01:14:00,497 --> 01:14:02,764
+it's either a little            
+too small or too big.           
+
+1656
+01:14:02,832 --> 01:14:06,133
+That's because it doesn't know  
+how big this thing is, so       
+
+1657
+01:14:06,202 --> 01:14:08,435
+it's just picking kind          
+of standard sizes.              
+
+1658
+01:14:08,504 --> 01:14:10,670
+For these particular            
+orientations, so                
+
+1659
+01:14:10,739 --> 01:14:14,941
+let's teach this MBC, this      
+editor MBC, how big it is.      
+
+1660
+01:14:15,010 --> 01:14:18,044
+And we're gonna do that by      
+adding up all the heights       
+
+1661
+01:14:18,112 --> 01:14:21,747
+of all the rows and seeing      
+which row is the widest.        
+
+1662
+01:14:21,815 --> 01:14:25,284
+By doing that, we'll be able    
+to see how big this section     
+
+1663
+01:14:25,353 --> 01:14:27,886
+in the table view is,           
+we'll do that, and              
+
+1664
+01:14:27,954 --> 01:14:29,454
+view will appear also.          
+
+1665
+01:14:29,523 --> 01:14:34,893
+I'm gonna say here,             
+var size = tableView., well,    
+
+1666
+01:14:34,961 --> 01:14:38,495
+it'd really be nice if I had    
+a method called minimumSize     
+
+1667
+01:14:38,564 --> 01:14:42,866
+forSection: 0, okay, if it      
+could just tell me the size.    
+
+1668
+01:14:42,935 --> 01:14:45,702
+And unfortunately, tableView    
+doesn't have a thing like that  
+
+1669
+01:14:45,770 --> 01:14:50,173
+but luckily for you I have      
+such a thing right here         
+
+1670
+01:14:50,242 --> 01:14:54,143
+as an extension today will      
+view and we don't have time     
+
+1671
+01:14:54,212 --> 01:14:57,046
+to type it all in such          
+like quick typed it.            
+
+1672
+01:14:57,114 --> 01:14:59,315
+But you can see as pretty easy  
+it's just goes through all      
+
+1673
+01:14:59,383 --> 01:15:02,984
+the rows in the section that    
+you ask and it gets the cell    
+
+1674
+01:15:03,053 --> 01:15:06,287
+at that row or even creates a   
+cell at that row if necessary.  
+
+1675
+01:15:06,356 --> 01:15:09,089
+And then it uses this really    
+cool method here, system        
+
+1676
+01:15:09,158 --> 01:15:13,928
+layout, size fitting, UI        
+layout, fitting compress size.  
+
+1677
+01:15:13,997 --> 01:15:18,098
+This guy right here             
+uses auto layout                
+
+1678
+01:15:18,166 --> 01:15:22,669
+to say what's the smallest      
+this thing can be, okay?        
+
+1679
+01:15:22,738 --> 01:15:25,472
+So this is a really             
+cool little function            
+
+1680
+01:15:25,541 --> 01:15:26,939
+that you can do in UI view.     
+
+1681
+01:15:27,008 --> 01:15:29,475
+By the way, notice I'm sending  
+that to the content view of     
+
+1682
+01:15:29,543 --> 01:15:30,042
+each cell.                      
+
+1683
+01:15:30,111 --> 01:15:31,610
+We didn't talk about            
+content view but                
+
+1684
+01:15:31,678 --> 01:15:34,078
+each table view cell has a      
+content view that's where all   
+
+1685
+01:15:34,147 --> 01:15:35,379
+the contents really are.        
+
+1686
+01:15:35,448 --> 01:15:38,048
+And that's the thing you want   
+to ask to apply all the auto    
+
+1687
+01:15:38,117 --> 01:15:41,318
+layout rules to see             
+if it will fit.                 
+
+1688
+01:15:41,386 --> 01:15:43,853
+So then here I'm just getting   
+the one that's has that's       
+
+1689
+01:15:43,922 --> 01:15:46,222
+the widest okay                 
+maxing the width and            
+
+1690
+01:15:46,291 --> 01:15:48,691
+here I'm adding the heights     
+of the rows okay?               
+
+1691
+01:15:48,760 --> 01:15:50,292
+Height for row is just          
+the height of the row by        
+
+1692
+01:15:50,361 --> 01:15:52,328
+asking the delegate here.       
+
+1693
+01:15:52,396 --> 01:15:55,463
+Okay, so good, so we got        
+the size this is the size,      
+
+1694
+01:15:55,532 --> 01:15:58,132
+but actually we got a little    
+trickiness to do here because   
+
+1695
+01:15:58,201 --> 01:15:59,868
+we've got that                  
+square face view.               
+
+1696
+01:15:59,936 --> 01:16:02,903
+I still want it to be square    
+even when I shrink it down.     
+
+1697
+01:16:02,972 --> 01:16:08,408
+So I'm going to take            
+the size's height and remove    
+
+1698
+01:16:08,477 --> 01:16:14,381
+the height that it got for      
+that                            
+
+1699
+01:16:14,450 --> 01:16:20,020
+index path that the little      
+face is at, that's row 1.       
+
+1700
+01:16:20,089 --> 01:16:22,722
+Section 0, so                   
+I'm gonna remove that and       
+
+1701
+01:16:22,791 --> 01:16:24,757
+I'm gonna add back              
+the width of the tableView.     
+
+1702
+01:16:24,825 --> 01:16:29,527
+Actually the width of           
+the tableView I calculated,     
+
+1703
+01:16:29,596 --> 01:16:31,763
+which is size, okay?            
+
+1704
+01:16:31,831 --> 01:16:33,364
+So I've just added              
+it's square, so                 
+
+1705
+01:16:33,433 --> 01:16:35,533
+it's square in                  
+the new smaller size.           
+
+1706
+01:16:35,601 --> 01:16:39,136
+Hopefully everybody understand  
+what I did there, it looks      
+
+1707
+01:16:39,205 --> 01:16:42,172
+like I'm missing something      
+here yes the parenthesis.       
+
+1708
+01:16:42,241 --> 01:16:46,543
+Set it as our prefered content  
+size equals that size.          
+
+1709
+01:16:46,611 --> 01:16:49,846
+So this prefered content        
+size remember is the thing      
+
+1710
+01:16:49,915 --> 01:16:53,983
+that tells the system           
+this is how big this MVC        
+
+1711
+01:16:54,051 --> 01:16:55,584
+should be when it's             
+in a pop over.                  
+
+1712
+01:16:55,653 --> 01:16:58,320
+So let's see if that worked,    
+all right?                      
+
+1713
+01:16:58,389 --> 01:17:01,789
+So let's just slide it          
+out here and click.             
+
+1714
+01:17:01,858 --> 01:17:04,425
+Perfect size right there,       
+right?                          
+
+1715
+01:17:04,494 --> 01:17:09,230
+Let's do it in landscape,       
+click, perfect size, okay?      
+
+1716
+01:17:09,299 --> 01:17:14,235
+So that's how you get your      
+pop overs to fit their size     
+
+1717
+01:17:14,304 --> 01:17:16,503
+exactly, you've gotta figure    
+out what their size is.         
+
+1718
+01:17:16,572 --> 01:17:17,704
+Okay, that might be             
+a little work but               
+
+1719
+01:17:17,772 --> 01:17:19,505
+once you figure out what their  
+size especially using that      
+
+1720
+01:17:19,574 --> 01:17:23,509
+nice system fitting thing,      
+you can do that.                
+
+1721
+01:17:23,578 --> 01:17:27,046
+So last thing I wanna do        
+is go back to iPhone and        
+
+1722
+01:17:27,115 --> 01:17:31,650
+see what damage we've           
+over there by doing this        
+
+1723
+01:17:31,719 --> 01:17:33,785
+clicking this pop               
+over business in.               
+
+1724
+01:17:33,854 --> 01:17:38,289
+Okay, so                        
+here's our iPhone version, so   
+
+1725
+01:17:38,358 --> 01:17:42,526
+still working here,             
+plus it's still adapting.       
+
+1726
+01:17:42,595 --> 01:17:44,896
+It not, it didn't show it in a  
+popover even though we changed  
+
+1727
+01:17:44,964 --> 01:17:47,665
+this segue to be a popover      
+on all platforms.               
+
+1728
+01:17:47,733 --> 01:17:50,834
+It does that adaptive behavior  
+to make this happen, okay,      
+
+1729
+01:17:50,903 --> 01:17:52,169
+it's still working fine,        
+though.                         
+
+1730
+01:17:54,005 --> 01:17:55,304
+Call this happy.                
+
+1731
+01:18:00,544 --> 01:18:02,527
+Works like a charm,             
+let's take a look over here.    
+
+1732
+01:18:02,528 --> 01:18:04,511
+Okay?                           
+
+1733
+01:18:04,581 --> 01:18:07,048
+This is landscape mode on the   
+phone, this is pretty good,     
+
+1734
+01:18:07,116 --> 01:18:08,949
+I'm sure, woah!                 
+
+1735
+01:18:09,018 --> 01:18:10,584
+Big forehead guy.               
+
+1736
+01:18:10,653 --> 01:18:13,053
+Okay, now again                 
+you could argue                 
+
+1737
+01:18:13,121 --> 01:18:16,656
+well this is just the way it    
+makes it be but this is bad.    
+
+1738
+01:18:16,724 --> 01:18:19,225
+This is bad UI, I mean          
+really if you had an app and    
+
+1739
+01:18:19,294 --> 01:18:21,227
+you bought it and it did        
+this you'd be like what the?    
+
+1740
+01:18:21,295 --> 01:18:22,828
+Who wrote that?                 
+
+1741
+01:18:22,897 --> 01:18:25,330
+Now this is a strange           
+situation where on an iPhone I  
+
+1742
+01:18:25,398 --> 01:18:27,932
+actually think this             
+would look a ton better         
+
+1743
+01:18:28,001 --> 01:18:30,167
+as a pop over, wouldn't it?     
+
+1744
+01:18:30,236 --> 01:18:32,737
+Because the pop over            
+is nice minimum size,           
+
+1745
+01:18:32,805 --> 01:18:35,973
+so if we had this thing where   
+you clicked on this plus.       
+
+1746
+01:18:36,042 --> 01:18:38,508
+And it made a nice little pop   
+over here wow that'd be just    
+
+1747
+01:18:38,577 --> 01:18:40,477
+really cool in landscape mode.  
+
+1748
+01:18:40,546 --> 01:18:43,345
+So how can I make it stop       
+adapting cuz that's, well       
+
+1749
+01:18:43,414 --> 01:18:46,248
+the problem here is when I hit  
+plus it's adapting to the fact  
+
+1750
+01:18:46,317 --> 01:18:49,318
+that it's on a compact width.   
+
+1751
+01:18:49,386 --> 01:18:51,887
+All right, and it's turning     
+it to full screen, so           
+
+1752
+01:18:51,955 --> 01:18:53,455
+I don't want that, I want       
+it to still be pop over.        
+
+1753
+01:18:53,524 --> 01:18:55,757
+So let's use those that         
+delegate method thing           
+
+1754
+01:18:55,826 --> 01:18:58,559
+I was talking about to          
+make it stop doing that.        
+
+1755
+01:18:58,628 --> 01:19:02,696
+So that delegate stuff          
+happens in the prepare for      
+
+1756
+01:19:02,765 --> 01:19:05,365
+this segway, that prepare       
+happens over here in            
+
+1757
+01:19:05,434 --> 01:19:06,533
+the emotions view controllers.  
+
+1758
+01:19:06,602 --> 01:19:07,933
+We already have a prepare for   
+that,                           
+
+1759
+01:19:08,002 --> 01:19:10,436
+just preparing                  
+a different segue,              
+
+1760
+01:19:10,504 --> 01:19:12,504
+it's the segue that             
+actually shows the face.        
+
+1761
+01:19:12,573 --> 01:19:14,406
+So here I'm just                
+gonna say else,                 
+
+1762
+01:19:14,475 --> 01:19:15,673
+because I'm not talking         
+about that segue,               
+
+1763
+01:19:15,742 --> 01:19:18,276
+I'm gonna talking about         
+a different one else if         
+
+1764
+01:19:18,345 --> 01:19:24,081
+the segues destination          
+is the editor,                  
+
+1765
+01:19:24,150 --> 01:19:28,185
+expression editor,              
+view controller, okay?          
+
+1766
+01:19:28,253 --> 01:19:32,188
+Then I wanna Prep my            
+popoverPresentationController   
+
+1767
+01:19:32,257 --> 01:19:33,289
+so I'm the delegate.            
+
+1768
+01:19:33,358 --> 01:19:34,157
+So I'm gonna say,               
+
+1769
+01:19:36,094 --> 01:19:40,562
+if I can let the                
+popoverPresentationController,  
+
+1770
+01:19:40,631 --> 01:19:46,668
+= segue, Destinations popover   
+presentation controller.        
+
+1771
+01:19:46,736 --> 01:19:48,736
+Remember that the presentation  
+controller is always            
+
+1772
+01:19:48,805 --> 01:19:50,672
+on the thing being presented,   
+
+1773
+01:19:50,741 --> 01:19:53,507
+it's controlling                
+the presentation itself.        
+
+1774
+01:19:53,576 --> 01:19:54,608
+Not the thing that's            
+presenting, but                 
+
+1775
+01:19:54,677 --> 01:19:56,677
+the thing presented.            
+
+1776
+01:19:56,746 --> 01:19:58,177
+So now I'm just gonna           
+tell this popover               
+
+1777
+01:19:58,246 --> 01:20:03,115
+presentation controller to set  
+delegate to be myself, okay?    
+
+1778
+01:20:03,184 --> 01:20:04,717
+And then of course I            
+have to go up here and          
+
+1779
+01:20:04,785 --> 01:20:06,986
+say I'm a UI popover.           
+
+1780
+01:20:07,054 --> 01:20:09,420
+Presentation controller         
+delegates.                      
+
+1781
+01:20:09,489 --> 01:20:10,855
+All the methods are optional,   
+so                              
+
+1782
+01:20:10,924 --> 01:20:14,192
+I am nicely implementing that.  
+
+1783
+01:20:14,260 --> 01:20:15,325
+But I'm going to                
+implement the one,              
+
+1784
+01:20:15,394 --> 01:20:18,128
+which is this adaption,         
+adaptive behavior thing.        
+
+1785
+01:20:18,197 --> 01:20:22,266
+It's called adaptive            
+presentation style for          
+
+1786
+01:20:22,334 --> 01:20:23,900
+view controller,                
+trait collection.               
+
+1787
+01:20:25,403 --> 01:20:26,169
+Right here,                     
+
+1788
+01:20:26,237 --> 01:20:29,238
+well maybe arguments            
+a little easier to see.         
+
+1789
+01:20:32,943 --> 01:20:36,678
+Okay, so this is the thing      
+where it's asking the pop over  
+
+1790
+01:20:36,746 --> 01:20:38,346
+presentation manager,           
+
+1791
+01:20:38,415 --> 01:20:41,782
+hey do you wanna control        
+the adapting behavior?          
+
+1792
+01:20:41,851 --> 01:20:44,084
+Right, how it adapts,           
+and I do.                       
+
+1793
+01:20:44,153 --> 01:20:45,452
+And what is it                  
+that I wanna do?                
+
+1794
+01:20:45,520 --> 01:20:48,120
+Well, when it's in              
+landscape mode in iPhone,       
+
+1795
+01:20:48,189 --> 01:20:49,555
+I want it to be pop over.       
+
+1796
+01:20:49,624 --> 01:20:52,024
+So basically what is            
+the traitCollection             
+
+1797
+01:20:52,093 --> 01:20:54,126
+of the iPhone in                
+landscape mode?                 
+
+1798
+01:20:54,195 --> 01:20:55,694
+It's vertically compact.        
+
+1799
+01:20:55,763 --> 01:20:58,330
+It's the only case that's       
+vertically compact.             
+
+1800
+01:20:58,399 --> 01:21:00,698
+No other device has             
+vertically compact.             
+
+1801
+01:21:00,767 --> 01:21:03,401
+So I'm gonna, just gonna say    
+if the traitCollection, okay,   
+
+1802
+01:21:03,469 --> 01:21:06,269
+cuz that's passed along to me   
+here as an argument, if I,      
+
+1803
+01:21:06,338 --> 01:21:11,174
+I'm gonna say if it             
+verticalSizeClass = compact,    
+
+1804
+01:21:11,243 --> 01:21:13,342
+then what's the adaptation      
+mode I want?                    
+
+1805
+01:21:13,411 --> 01:21:17,080
+.none, do not adapt.            
+
+1806
+01:21:17,148 --> 01:21:20,082
+Just be your normal             
+pop over self.                  
+
+1807
+01:21:20,151 --> 01:21:23,185
+However, if                     
+the traitCollection             
+
+1808
+01:21:23,253 --> 01:21:29,024
+horizontalSizeClass is          
+compact, I do want to adapt.    
+
+1809
+01:21:29,093 --> 01:21:31,592
+In fact, I wanna adapt          
+to overFullScreen.              
+
+1810
+01:21:31,661 --> 01:21:35,329
+By the way, overFullScreen      
+means full screen and           
+
+1811
+01:21:35,398 --> 01:21:38,632
+don't show the view             
+controller behind it,           
+
+1812
+01:21:38,701 --> 01:21:42,136
+over, what you call,            
+full screen,                    
+
+1813
+01:21:42,204 --> 01:21:45,739
+just .FullScreen is go          
+over the whole screen.          
+
+1814
+01:21:45,808 --> 01:21:48,407
+But let the one that I'm        
+on top of show through, and     
+
+1815
+01:21:48,476 --> 01:21:51,510
+usually if we do that one, we   
+blur, we put a blur background  
+
+1816
+01:21:51,579 --> 01:21:54,313
+or something like that,         
+you might check out UI visual   
+
+1817
+01:21:54,382 --> 01:21:57,215
+effects, if you wanna do        
+that in your final project.     
+
+1818
+01:21:57,284 --> 01:21:59,084
+UI visual effects great         
+way to do a blur.               
+
+1819
+01:22:00,387 --> 01:22:01,819
+Otherwise I'm                   
+gonna return none,              
+
+1820
+01:22:01,888 --> 01:22:04,788
+because otherwise I'm regular   
+width or height or something.   
+
+1821
+01:22:04,857 --> 01:22:07,157
+I'm on an iPad                  
+basically probably or           
+
+1822
+01:22:07,226 --> 01:22:11,862
+maybe I'm on an iPhone 6+ or    
+something like that.            
+
+1823
+01:22:11,930 --> 01:22:15,097
+iPhone 7+ but I don't wanna     
+adapt in those cases either.    
+
+1824
+01:22:15,166 --> 01:22:17,367
+All right, so this will         
+control the adapted behavior.   
+
+1825
+01:22:17,436 --> 01:22:19,902
+But one thing I have            
+here is destination,            
+
+1826
+01:22:19,970 --> 01:22:23,105
+we don't want destination       
+because the destination         
+
+1827
+01:22:23,173 --> 01:22:26,441
+of this segue is a UI           
+navigation controller okay?     
+
+1828
+01:22:26,510 --> 01:22:29,477
+We want here this destination   
+view controller that we         
+
+1829
+01:22:29,546 --> 01:22:32,647
+calculated by looking inside    
+the navigation controller, so   
+
+1830
+01:22:32,716 --> 01:22:34,916
+this is destination             
+view controller.                
+
+1831
+01:22:36,519 --> 01:22:38,252
+Okay so now let's run this.     
+
+1832
+01:22:39,654 --> 01:22:43,323
+Oops,                           
+>> No segue dot.                
+
+1833
+01:22:43,391 --> 01:22:44,490
+>> No segue dot, yeah.          
+
+1834
+01:22:46,827 --> 01:22:48,459
+Okay, there we go.              
+
+1835
+01:22:48,528 --> 01:22:51,196
+So we've got our destination    
+view controller B in this       
+
+1836
+01:22:51,264 --> 01:22:53,998
+expression, then we're going    
+to become the pop-over          
+
+1837
+01:22:54,067 --> 01:22:55,833
+presentation for                
+those delegates.                
+
+1838
+01:22:55,901 --> 01:22:58,502
+And we'll implement this        
+adapted behavior where we       
+
+1839
+01:22:58,570 --> 01:23:01,605
+don't do it, in the case where  
+we're vertically compact.       
+
+1840
+01:23:01,673 --> 01:23:03,806
+So here this one,               
+is vertically regular, so       
+
+1841
+01:23:03,875 --> 01:23:05,541
+it's not doing that.            
+
+1842
+01:23:05,610 --> 01:23:07,677
+But in here,                    
+we're vertically compact, so    
+
+1843
+01:23:07,746 --> 01:23:09,478
+this shows up as a pop-over.    
+
+1844
+01:23:10,748 --> 01:23:13,114
+Right?                          
+
+1845
+01:23:13,183 --> 01:23:13,881
+long today.                     
+
+1846
+01:23:13,950 --> 01:23:16,584
+And I will, see you Wednesday.  
+
+1847
+01:23:16,653 --> 01:23:27,261
+>> For more, please visit       
+us at Stanford.edu.             
+
