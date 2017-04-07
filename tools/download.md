@@ -1,4 +1,6 @@
-# Video
+[返回主页](/README.md) | [Back to Main Page](/en/README.md)
+
+# Videos
 
 1. [Introduction to iOS 10, Xcode 8 and Swift 3](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/02/4d/e9/024de95b-8afc-89b9-e4ba-ef8e08d5d13f/324-3685031694599443811-01_1_09_17_720p3000_for_iTunes.m4v)
 2. [MVC; iOS, Xcode and Swift Demonstration](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/a5/2c/bd/a52cbd78-81b0-21f4-ddd2-938d88736d1e/305-7182155496523276740-02_1_11_17_720p3000cc.m4v)
@@ -45,13 +47,13 @@
 14. [Lecture 14 Demo Code: Asteroids](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/b0/d3/53/b0d35343-960c-c35c-cc51-6a6161d2fe56/308-3158927732347667387-L14_Demo_Code.pdf)
 15. [Lecture 15 Demo Code: FaceIt Segues](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/b0/64/55/b064559c-073f-a6b5-38a8-bc1b1519332f/307-7933058492198201398-L15_Demo_Code.pdf)
 
-# Reading Assignment
+# Reading Assignments
 
 1. [Intro to Swift](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/7d/38/f2/7d38f27a-3b82-de90-2f2c-2ee40514a56b/329-3366122602226359241-CS193P_Winter_17_Reading_1.pdf)
 2. [More Swift](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/50/27/6e/50276e9c-bb5a-2cd8-db64-c027a1f98507/318-8166708043639963524-CS193P_Winter_17_Reading_2.pdf)
 3. [The Rest of Swift](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/81/cf/fd/81cffd52-6c5a-1ecb-7366-875a41ad6465/303-5453919407785590613-CS193P_Winter_17_Reading_3.pdf)
 
-# Programming Project
+# Programming Projects
 
 1. [Calculator](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/3b/5f/8a/3b5f8a08-0535-8a32-0854-8a1d4c44fc83/330-8784676202759607348-CS193P_Winter_17_Project_1.pdf)
 2. [Calculator Brain](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/16/6d/ee/166dee9f-1ff6-f7d1-99cc-2590c616c7b3/334-4539701711666409931-CS193P_Winter_17_Assignment_2_v4.pdf)

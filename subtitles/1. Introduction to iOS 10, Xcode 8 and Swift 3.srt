@@ -1655,1898 +1655,2373 @@ There, it did it, I'm gonna call it Supporting Files,
 332
 00:16:03,864 --> 00:16:06,898
 okay. And I can move these around in the navigator.
+把这个文件夹移到下面
 
 333
 00:16:06,967 --> 00:16:09,501
 See there they are, hidden in there. We're not gonna look at
+可以看到这些文件都还在那里
 
 334
 00:16:09,569 --> 00:16:12,471
 those. We're gonna focus in these two files right here,
+我们目前只关心这两个文件
 
 335
 00:16:12,539 --> 00:16:18,209
 okay? This file, is your first look at Swift. Here it is.
+ViewController.swift 是你们看到的第一个 Swift 文件
 
 336
 00:16:18,278 --> 00:16:20,979
 It's got some very important methods right here, which I'm
+模板里自带了一个很重要的函数
 
 337
 00:16:21,047 --> 00:16:24,850
 gonna delete. Okay? They are important, but the fact that
+虽然很重要，但我还是要把它删掉
 
 338
 00:16:24,919 --> 00:16:26,151
 I deleted them doesn't make them not important.
+这并不是说这是无关紧要的
 
 339
 00:16:26,220 --> 00:16:28,220
 It's just that I'm not gonna teach you about them for
+只不过是我们几周后
 
 340
 00:16:28,288 --> 00:16:28,987
 another couple weeks.
+才会讲到
 
 341
 00:16:29,056 --> 00:16:31,824
 So we're not gonna use them in the calculator. And in fact,
+我们今天的计算器中不会用到
 
 342
 00:16:31,892 --> 00:16:35,460
 I'm gonna go into detail about this Swift code more
+我们先不着急学 Swift
 
 343
 00:16:35,528 --> 00:16:37,128
 in a moment. But before I do that,
+在我们开始写代码之前
 
 344
 00:16:37,197 --> 00:16:41,332
 I wanna focus on this file right here, Main.storyboard.
+我们先看看 Main.storyboard
 
 345
 00:16:41,401 --> 00:16:44,703
 This is your user interface. This is calculator's user
+这是（计算器的）UI，用户界面
 
 346
 00:16:44,771 --> 00:16:47,406
 interface. And one thing you notice when I click on that,
+可以看到，我们点开之后
 
 347
 00:16:47,474 --> 00:16:51,710
 there's no code here. When you build your user interface
+这里是没有代码的。在编写 iOS 程序的时候
 
 348
 00:16:51,779 --> 00:16:55,280
 in iOS app in Xcode, you do not write code.
+你可以选择不通过代码实现
 
 349
 00:16:55,348 --> 00:16:57,216
 We're just gonna to build it with the mouse. We're gonna
+用鼠标把控件
 
 350
 00:16:57,284 --> 00:16:59,651
 drag some things out. We're gonna use some inspectors to
+拖拽到界面中。还能通过检查器
 
 351
 00:16:59,719 --> 00:17:03,188
 set the objects we want. The way we want them. That's how
+自定义对象的属性。
 
 352
 00:17:03,256 --> 00:17:06,024
 we're gonna build our UI. That code that you saw.
+没错，我们就是这样构建 UI 的。我们要写的代码
 
 353
 00:17:06,092 --> 00:17:09,094
 That is only gonna control the behavior of the UI.
+只是用来实现 UI 背后的逻辑
 
 354
 00:17:09,163 --> 00:17:11,864
 What happens when you touch on a button? Things like that.
+比如我们按下一个按钮后会发生什么一类的
 
 355
 00:17:11,932 --> 00:17:13,699
 That's what's gonna be controlled by that code. But
+那就是我们代码所要实现的
 
 356
 00:17:13,767 --> 00:17:16,468
 the actual layout of all the buttons and all that stuff.
+至于按钮和其它元素的布局
 
 357
 00:17:16,537 --> 00:17:19,671
 Is gonna be done here in this graphical view.
+我们都是通过这个图形界面完成的
 
 358
 00:17:19,739 --> 00:17:22,841
 Now you can see there's this area here on the left, okay?
+左边这个，叫做
 
 359
 00:17:22,910 --> 00:17:25,277
 This is like, this is called document outline.
+Document Outline，文档大纲
 
 360
 00:17:25,346 --> 00:17:27,546
-If you're down here you'll see a little button there.
+If you don't, here you'll see a little button there.
+如果你看不见，按下面这里有个小按钮
 
 361
 00:17:27,615 --> 00:17:29,514
 The document outline. The document outline has
+文档大纲就出来了
 
 362
 00:17:29,582 --> 00:17:32,918
 all the things in the user interface in an outline form.
+这个大纲会展示所有用户界面里的内容
 
 363
 00:17:32,986 --> 00:17:34,486
 And that's gonna be very useful for
+之后对我们来说是非常有用的
 
 364
 00:17:34,554 --> 00:17:37,856
 us. Later in the quarter. So, I'm gonna hide that.
+现在我先把它隐藏起来
 
 365
 00:17:37,925 --> 00:17:39,858
 That's this little button down here is. It hides and
+下面这个按钮可以显示／隐藏这个大纲。
 
 366
 00:17:39,926 --> 00:17:42,026
 shows it. We're gonna hide that to make more space.
+收起来之后我我们就有更多的空间了
 
 367
 00:17:42,095 --> 00:17:45,430
 We're not gonna use that in the calculator either. So
+编计算器也不会用到
 
 368
 00:17:45,499 --> 00:17:47,165
 that leaves this space here in,
+现在我们看到的这个区域
 
 369
 00:17:47,233 --> 00:17:49,101
 if I zoom in on a little bit here,
+可以放大
 
 370
 00:17:49,169 --> 00:17:52,671
 or zoom out rather. You can see I start to see something
+可以缩小。现在看起来，
 
 371
 00:17:52,739 --> 00:17:55,941
 that looks like an iPhone. Okay, it's kinda iPhone
+是不是像个 iPhone 呢？像是 iPhone 屏幕的比例
 
 372
 00:17:56,010 --> 00:18:00,211
 shaped, I can also by the way hold down the option key and
+如果我按住 option 键
 
 373
 00:18:00,280 --> 00:18:04,316
 use my mouse wheel to zoom in here. Okay, so this is like
+滚动鼠标中键也能缩放
 
 374
 00:18:04,384 --> 00:18:06,985
 an iPhone, in particular it looks like an iPhone 7.
+中间空白的形状很像 iPhone 7
 
 375
 00:18:07,054 --> 00:18:09,788
 You see down here at the bottom it says view as iPhone
+下面这里写着使用 iPhone 7 预览
 
 376
 00:18:09,857 --> 00:18:14,493
 7, all right? And if I click on view as iPhone 7,
+"view as iPhone 7"，我点击这个
 
 377
 00:18:14,561 --> 00:18:19,531
 you'll see all the other iOS devices appear- iPads,
+会展示其它的 iOS 设备，比如各种 iPad
 
 378
 00:18:19,600 --> 00:18:24,202
 for example. Or old iPhone 4s, they're really kinda little.
+或是老旧的的 iPhone 4s，相比之下屏幕要小得多
 
 379
 00:18:24,271 --> 00:18:26,938
 And not only are they there but you can switch their
+不仅能选择不同的设备，还能选择
 
 380
 00:18:27,007 --> 00:18:31,209
 orientation, okay? Now when you build an iOS app,
+屏幕的旋转方向。开发 iOS 程序，
 
 381
 00:18:31,278 --> 00:18:35,414
 you want the UI to look good on all these devices. And
+你应该让 UI 在所有设备上都很美观
 
 382
 00:18:35,482 --> 00:18:37,482
 you don't wanna have to write a lot of special if,
+你也不应该用 if...then 来特殊情况特殊处理
 
 383
 00:18:37,550 --> 00:18:41,720
 then code all over the place to make them work. So, this
+才能让 UI 适合不同的尺寸
 
 384
 00:18:41,788 --> 00:18:45,390
 whole system that, of building our UI, which by the way,
+我们用来构建 UI 的这个部分
 
 385
 00:18:45,459 --> 00:18:48,426
 is call Interface Builder. This part of Xcode is called
+在 Xcode 中叫做 Interface Builder（IB）
 
 386
 00:18:48,495 --> 00:18:52,030
 Interface Builder, is oriented with a lot of functionality
+界面编辑器继承了很多功能
 
 387
 00:18:52,099 --> 00:18:55,567
 to make you, make it so you can build your UI once and
+让你能够一次编写
 
 388
 00:18:55,636 --> 00:18:59,037
 it will work on all these devices. Now, I'm not gonna
+处处运行
 
 389
 00:18:59,106 --> 00:19:01,540
 actually start doing that until the end of the lecture
+我会把优化 UI 留到最后
 
 390
 00:19:01,608 --> 00:19:04,643
 on Wednesday. So, for now, we're just gonna build our UI,
+星期三的课再来处理。现在 UI 只需要个大概
 
 391
 00:19:04,711 --> 00:19:07,279
 it's gonna be kinda a mess. We'll throw buttons anywhere
+马马虎虎就行
 
 392
 00:19:07,347 --> 00:19:11,250
 we want. We're not really, really working in
+按钮随便放哪里都行
 
 393
 00:19:11,318 --> 00:19:14,319
 landscape mode like this vs portrait or small
+暂时我们也不需要考虑横屏
 
 394
 00:19:14,387 --> 00:19:17,289
 device or large device, ok? We're not gonna worry about
+或是不同的屏幕大小
 
 395
 00:19:17,358 --> 00:19:19,925
 that right off the bat but you just wanna preview the fact
+不过即使我们现在不需要在意
 
 396
 00:19:19,994 --> 00:19:22,427
 that we are eventually gonna build this universal UI
+不过你们要明白
 
 397
 00:19:22,495 --> 00:19:26,365
 that works on all of them. So here's our iPhone 7.
+最后我们会构建一个通用的 UI。这是我们的 iPhone 7
 
 398
 00:19:26,433 --> 00:19:30,969
 We wanna start building our UI. What do we need? We need
+让我们开始吧。我们需要些什么？
 
 399
 00:19:31,038 --> 00:19:33,871
 buttons and we need a kinda a display across the top.
+我们需要一些按钮，和一个放在上面的显示屏
 
 400
 00:19:33,940 --> 00:19:36,641
 Let's start with the buttons. Where do we get these buttons?
+我们从按钮开始。可是按钮在哪里呢？
 
 401
 00:19:36,710 --> 00:19:39,711
 Well, as promised. I'm gonna talk about this utilities area
+乘此机会讲讲这里的工具区吧
 
 402
 00:19:39,779 --> 00:19:42,414
 right here. Now, this utilities area has a top and
+现在看到工具区分为了上下两个部分
 
 403
 00:19:42,483 --> 00:19:45,316
 a bottom. You see that? And in the bottom,
+对吧？下面的这个部分叫做
 
 404
 00:19:45,385 --> 00:19:50,121
 right here, under this region called the object library, is
+Object Library，对象库
 
 405
 00:19:50,190 --> 00:19:53,759
-a library of IOS objects that you can build your app out of.
+a library of iOS objects that you can build your app out of.
+集合了 iOS 开发中各种你需要用到的对象
 
 406
 00:19:53,827 --> 00:19:57,262
-And it has things like buttons. Text fields,
+And it has things like buttons, text fields,
+比如按钮，文本框
 
 407
 00:19:57,331 --> 00:20:00,298
 it has more complicated things like image views and
+也有更复杂的图像视图
 
 408
 00:20:00,367 --> 00:20:04,102
 text views, which are multi line and editable text ,and it
+文本视图，支持多行可编辑的文字
 
 409
 00:20:04,171 --> 00:20:07,239
 even has things like that map thing I was telling you about.
+还有之前说的地图视图
 
 410
 00:20:07,308 --> 00:20:10,242
 Or a web view, which is basically Safari in a little
+或是网页视图，封装在一个长方形里的 Safari
 
 411
 00:20:10,310 --> 00:20:13,511
 rectangle. So it's got a lot of powerful things and
+功能强大的控件数不胜数
 
 412
 00:20:13,580 --> 00:20:16,481
 there's a lot of them in here. And we will try to cover
+这里因有尽有。接下来的半学期我们会
 
 413
 00:20:16,549 --> 00:20:19,551
 the vast majority of these in the course of the quarter.
+学到大部分的使用方法
 
 414
 00:20:19,619 --> 00:20:22,888
 But it's almost really too much to cover. So
+但种类实在是太多了
 
 415
 00:20:22,956 --> 00:20:25,557
 we're gonna start though simple with a button. And
+我们先定一个小目标，从按钮开始
 
 416
 00:20:25,625 --> 00:20:27,959
 if I want a button in my UI, I just pick it up with
+如果我想要一个按钮，我用鼠标选中
 
 417
 00:20:28,028 --> 00:20:32,630
 the mouse, okay, and drag it in. Now when I drag it in, see
+然后拖到设计界面里来。拖到某些位置
 
 418
 00:20:32,699 --> 00:20:37,536
 these blue lines are trying to help me put it in a good spot.
+会出现蓝色参考线引导我
 
 419
 00:20:37,604 --> 00:20:40,839
 You see that? Now, we're not gonna pay attention to that
+这个是今天的重点
 
 420
 00:20:40,907 --> 00:20:43,007
 right now because I told you we're doing this thing where
+这个界面优化
 
 421
 00:20:43,076 --> 00:20:45,577
 we're building the app that'll work on all devices. But
+我们留到最后
 
 422
 00:20:45,646 --> 00:20:47,012
 when we start thinking about
+制作响应式布局的时候
 
 423
 00:20:47,080 --> 00:20:49,180
 putting it on an app that works on all devices we
+使用这些蓝色参考线
 
 424
 00:20:49,249 --> 00:20:52,751
 really wanna use these dashed blue lines. Okay, because if
+有很大的帮助
 
 425
 00:20:52,819 --> 00:20:55,320
 you say something like I want this to be in the center.
+比如说要把这个按钮居中
 
 426
 00:20:55,389 --> 00:20:57,389
 Well now it'll be on the center on every device,
+这个按钮不论在什么设备上
 
 427
 00:20:57,457 --> 00:21:00,025
 no matter what this size of the screen, you see? So
+都会自动居中
 
 428
 00:21:00,093 --> 00:21:03,461
 these blue lines help you communicate that to interface
+你现在看到的这两条辅助线表示
 
 429
 00:21:03,530 --> 00:21:07,032
 builder, that you wanna it in the exact center. So again,
+这个按钮一定要出现在屏幕正中间
 
 430
 00:21:07,100 --> 00:21:08,500
 we're not gonna worry about that for now, so
+我们目前并不担心界面不好看
 
 431
 00:21:08,569 --> 00:21:11,303
 I'm just gonna drop this in the middle of nowhere. But
+所以我会随便放一个地方
 
 432
 00:21:11,371 --> 00:21:14,473
 again, those blue lines are gonna be very important down
+再次强调，这些蓝色参考线以后会用到
 
 433
 00:21:14,541 --> 00:21:17,542
 the road. All right so we've got this button here.
+好，这个按钮在这里
 
 434
 00:21:17,611 --> 00:21:20,179
 It's not [LAUGH] a very good button,
+并不是很美观（笑）
 
 435
 00:21:20,247 --> 00:21:24,383
 because it's kinda small and it says button on it.
+又小，又写着 Button 在上面
 
 436
 00:21:24,451 --> 00:21:27,186
 And we want it to be let's say one of our number buttons.
+我们更希望这是个写着数字的按键
 
 437
 00:21:27,254 --> 00:21:28,520
 Okay, so how are we gonna do that?
+怎么更改显示的文字呢？
 
 438
 00:21:28,589 --> 00:21:31,590
 Well, we can double click on it. And
+在按钮上双击
 
 439
 00:21:31,659 --> 00:21:34,860
 type one of our numbers, I'll make this be my 7 button, so
+然后输入我们的数字，比如说 7
 
 440
 00:21:34,928 --> 00:21:38,330
 this is gonna be my 7 button on my calculator. And I can
+这就是我们计算器上的数字七了
 
 441
 00:21:38,398 --> 00:21:40,899
 resize it, you see when I select it I get these handles.
+我还可以调整按钮的大小。选中之后会出现这些尺寸控点
 
 442
 00:21:40,967 --> 00:21:43,168
 So I can just pick it up by a corner and resize it.
+我可按住任一尺寸控点，拖动来改变大小
 
 443
 00:21:43,236 --> 00:21:45,837
 And when I do, it even tells me exactly what size.
+拖动时会选中控件实际的大小
 
 444
 00:21:45,906 --> 00:21:48,840
 So let's pick maybe a size like mm, 64 by 64?
+就把尺寸设为设置为 64 x 64 吧
 
 445
 00:21:48,909 --> 00:21:53,678
 That's a pretty good computer science size can be
+这挺符合一门计算机课程的风格
 
 446
 00:21:53,747 --> 00:21:57,916
 a little tricky then. Do it there, there, there we go.
+虽然要做到精确，还真有些困难（汗）
 
 447
 00:21:57,985 --> 00:21:59,050
 Okay, so we get 64 by 64 now.
+好了，调整成 64 x 64 了
 
 448
 00:21:59,119 --> 00:22:01,586
 Actually the size is not even gonna matter in the long term,
+长远来看其实大小并不重要
 
 449
 00:22:01,655 --> 00:22:04,156
 because on a smaller device like an iPhone 4 it's gonna be
+比如像 iPhone 4 这种设备上我们要把尺寸
 
 450
 00:22:04,224 --> 00:22:05,357
 shrunk down and
+缩小
 
 451
 00:22:05,425 --> 00:22:08,060
 on another device it's gonna be shrunk out. But for now,
+大一些的设备上需要放大
 
 452
 00:22:08,128 --> 00:22:11,196
 will pick some that's kinda using a reasonable amount of
+但现在我们还是选一个针对 iPhone 7
 
 453
 00:22:11,264 --> 00:22:14,366
 the screen real state on an iPhone 7. This is still
+比较合理的尺寸
 
 454
 00:22:14,435 --> 00:22:17,469
 kinda a small seven. We want it larger. So when we wanna do
+这个 7 看着有点小，我们稍微把字号调大一些
 
 455
 00:22:17,538 --> 00:22:20,472
 things like that that's when we go to the top half.
+像这样的设置我们看到右边上半部分
 
 456
 00:22:20,541 --> 00:22:22,874
 I'm just gonna get rid of this bottom half by scrolling it
+我把这下面半部分拖下来隐藏到这里
 
 457
 00:22:22,943 --> 00:22:26,711
 down here. We're gonna the top half of this utilities pane.
+我们现在右边这个工具区
 
 458
 00:22:26,780 --> 00:22:28,647
 And this is inspector and there's different kinds of
+有不同的检查器
 
 459
 00:22:28,715 --> 00:22:31,382
 inspectors. We're gonna be using the attribute inspector
+我们要用的是属性检查器
 
 460
 00:22:31,451 --> 00:22:34,018
 here, but there's also, for example, a size inspector.
+这里还有尺寸检查器
 
 461
 00:22:34,087 --> 00:22:36,688
 And when I click on that, you see that there's the 64 by 64,
+我点击之后，你可以看到这里写着 64 x 64
 
 462
 00:22:36,757 --> 00:22:39,524
 I could have just typed it in instead of trying
+我其实可以直接在这里输入数字
 
 463
 00:22:39,593 --> 00:22:43,528
 to get it exactly on there. Okay. The attributes inspector
+设置准确的尺寸。回到正题，属性检查器
 
 464
 00:22:43,597 --> 00:22:45,330
 is kinda an object oriented inspector.
+是面向对象的
 
 465
 00:22:45,398 --> 00:22:47,732
 You can see that it knows a button is selected, so
+它知道我选中了一个按钮
 
 466
 00:22:47,801 --> 00:22:49,268
 it's showing you button things.
+所以显示按钮相关的属性
 
 467
 00:22:49,336 --> 00:22:51,069
 Things that you can set about a button. But
+你能设置按钮的这些属性
 
 468
 00:22:51,137 --> 00:22:53,872
 a button is a class, object ordinate class that inherits
+按钮是一个类，继承了控件
 
 469
 00:22:53,940 --> 00:22:56,574
 from control, so you're seeing control things, and
+所以一个控件的基本设置也出现在这里
 
 470
 00:22:56,643 --> 00:22:58,910
 that inherits from view, so you're seeing view things.
+控件继承自视图，所以视图的设置也在这里
 
 471
 00:22:58,979 --> 00:23:01,112
 So this inspector is object orientated and
+所以检查器是面向对象的
 
 472
 00:23:01,181 --> 00:23:03,815
 shows you all the things that can be inspected about this
+不仅能显示控件本身的属性
 
 473
 00:23:03,884 --> 00:23:06,919
 object even using inheritance. So if I wanna change something
+还能显示继承的属性。要更改按钮的字体大小
 
 474
 00:23:06,987 --> 00:23:10,355
 like the font, I just look down here, title, here it is.
+我只需要在这里找到 Title 下面的
 
 475
 00:23:10,424 --> 00:23:12,791
 Font. Right here. I'm gonna click on this and
+Font，就是这个，点击右边这个
 
 476
 00:23:12,859 --> 00:23:15,660
 I'm gonna change this to 30 point let's say. Okay.
+我把字号调成 30 号
 
 477
 00:23:15,729 --> 00:23:18,730
 That looks pretty good. Now, maybe I wanna have
+看起来还不错。我还想要给按钮
 
 478
 00:23:18,799 --> 00:23:23,501
 a background for this button. So, if I look in here there's
+加个背景色。看看属性选择器，里面有
 
 479
 00:23:23,570 --> 00:23:25,970
 that background image. I don't want a background image.
+Background Image，背景图片
 
 480
 00:23:26,039 --> 00:23:27,572
 I actually want a background color. So
+我们要颜色不是图片
 
 481
 00:23:27,641 --> 00:23:29,274
 there's nothing in button that does that.
+按钮类里面没有
 
 482
 00:23:29,343 --> 00:23:32,277
 But, If I go down to view. I can see background right here
+但是我们在下面 View 这里有一个 Background
 
 483
 00:23:32,346 --> 00:23:35,447
 that's a color. And if I click on this, I can pick a color,
+正好是颜色，点击这里，我可以选择一个颜色
 
 484
 00:23:35,516 --> 00:23:38,049
 one of these pre-defined colors, or other colors, let
+可以是默认的颜色，或者点 Ohter
 
 485
 00:23:38,118 --> 00:23:41,519
 me choose from Color Picker a little crayon box or whatever.
+然后从 macOS 的颜色选择器中选一个颜色
 
 486
 00:23:41,588 --> 00:23:46,057
 So I'm just gonna pick from here the light gray.
+我就选择这个 Light Gray Color
 
 487
 00:23:46,126 --> 00:23:48,193
 That looks like a good background color. So
+浅灰色挺适合当背景的
 
 488
 00:23:48,261 --> 00:23:50,629
 now I've got a button, okay? Here's a nice button.
+现在按钮看起来漂亮多了
 
 489
 00:23:50,697 --> 00:23:53,798
 In fact, we could even run, see what our app looks like.
+其实我们已经能运行下程序，看看效果怎么样了
 
 490
 00:23:53,867 --> 00:23:56,902
 Just with one button. Now when it comes to running,
+虽然只有一个按钮。运行之前
 
 491
 00:23:56,971 --> 00:23:59,671
 the way you decide where you wanna run your program,
+你能决定在什么设备上运行
 
 492
 00:23:59,740 --> 00:24:02,240
 because you can run it on your device or you can actually run
+你可以选择真机调试，也能使用
 
 493
 00:24:02,309 --> 00:24:04,843
 it on a simulator. Okay, and for the first few weeks in
+模拟器（Simulator）。前几周
 
 494
 00:24:04,912 --> 00:24:06,611
 this class you can use the simulator.
+我推荐使用模拟器
 
 495
 00:24:06,680 --> 00:24:07,812
 Towards the end of the class I'm gonna
+之后我会让你们
 
 496
 00:24:07,881 --> 00:24:09,414
 ask you to start running on your device so
+使用你们自己的设备
 
 497
 00:24:09,483 --> 00:24:12,383
 you get used to doing that as well. But the way you do that
+让你们也熟练掌握这个过程。选择设备的方法是
 
 498
 00:24:12,452 --> 00:24:15,853
-is you go up here. You see it says calculator iPhone 7 plus.
+is you go up here. You see it says calculator iPhone 7 Plus.
+在这左上角，写着 Calculator > iPhone 7 Plus
 
 499
 00:24:15,922 --> 00:24:18,523
 If you click on that you'll see a whole
+点击这里你能看到
 
 500
 00:24:18,592 --> 00:24:21,493
 bunch of simulators. These are all simulators of all those
+所有的模拟器。这些都是不同能
 
 501
 00:24:21,562 --> 00:24:25,530
 different devices that can run iOS 10. And then right up at
+运行 iOS 10 的设备
 
 502
 00:24:25,599 --> 00:24:28,333
 the top here, you could pick, if you had an actual device
+如果你通过数据线连接了一台 iPhone 或是 iPad
 
 503
 00:24:28,401 --> 00:24:31,236
 connected to your Mac, you could pick a physical device.
+就会出现在这里供你选择
 
 504
 00:24:31,304 --> 00:24:33,105
 And I'll be showing you that in a couple of weeks,
+几周后我会做示范
 
 505
 00:24:33,173 --> 00:24:36,240
 as well. So, let's run it on iPhone 7, okay,
+让我们选择使用 iPhone 7 运行
 
 506
 00:24:36,309 --> 00:24:39,744
 so I just picked iPhone 7, now I'm going to press this little
+点击 iPhone 7，然后点击这个
 
 507
 00:24:39,813 --> 00:24:43,382
 play button right here to run it. Okay, now it's going to
+三角形的按钮开始运行。现在 Xcode 会
 
 508
 00:24:43,450 --> 00:24:47,753
 launch the simulator. Now that simulator is a full iPhone
+启动模拟器。模拟器五脏俱全，几乎和 iPhone 一样
 
 509
 00:24:47,821 --> 00:24:52,357
 simulator, so it's not just running our app in a window.
+所以并不只是在一个窗口中预览我们的程序
 
 510
 00:24:52,426 --> 00:24:55,327
 Let's go find it here. It's over here, and
+我们切换到 Simulator
 
 511
 00:24:55,396 --> 00:25:00,699
 it's kind of big here, we'll make it small in a second. So,
+现在显示的界面太大了，等会儿我们把它缩小点
 
 512
 00:25:00,768 --> 00:25:03,301
 this, and in fact, there it is. You can see it zoomed in,
+我们向上看，能找到放大了的按钮
 
 513
 00:25:03,370 --> 00:25:05,604
 now the iPhone 7 has very high resolution, and
+iPhone 7 的分辨率很高
 
 514
 00:25:05,672 --> 00:25:07,772
 I'm running on a small resolution screen. But
+我的电脑分辨率没那么高，可以通过
 
 515
 00:25:07,841 --> 00:25:10,542
 you can actually go down here to scale, and scale it
+菜单栏中的 Window > Scale 调整
 
 516
 00:25:10,610 --> 00:25:14,846
 down a bit. Maybe that's too much. Let' scale it to here.
+缩小。好像又太小了，我稍微放大些
 
 517
 00:25:14,915 --> 00:25:19,150
 Yeah. So we're seeing 50% size here of an iPhone 7.
+我们现在看到的是 50% 大小的 iPhone 7
 
 518
 00:25:19,219 --> 00:25:21,520
 And there's our 7 button right there. Okay,
+能很容易找到按钮数字 7
 
 519
 00:25:21,588 --> 00:25:24,056
 now, you can press the Home button
+要按下这个 iPhone 的 Home 键
 
 520
 00:25:24,124 --> 00:25:28,026
 on this iPhone 7 by going to Hardware > Home. And
+可以用菜单栏中的 Hardware > Home
 
 521
 00:25:28,095 --> 00:25:30,796
 when you do that, look. This looks just like an iPhone.
+看到了吧，按下去之后和 iPhone 一模一样
 
 522
 00:25:30,864 --> 00:25:33,332
 You've got settings. You can go in and set some settings.
+比如这是系统设置，你可以打开来修改一些设置
 
 523
 00:25:33,401 --> 00:25:36,968
 Okay? Do home again. Cmd+Shift+H is home.
+按下 Command+Shift+H 也是按下 Home 键
 
 524
 00:25:37,037 --> 00:25:38,269
 And then you can go back to your app,
+再回到我们的程序里
 
 525
 00:25:38,338 --> 00:25:41,373
 which is the calculator right here. So
+就是这里的之个 Calculaor
 
 526
 00:25:41,441 --> 00:25:45,543
 if you're writing an app, for example, that uses GPS and
+比方说你写的程序需要使用 GPS 定位
 
 527
 00:25:45,612 --> 00:25:49,414
 you need to go to the settings to enable GPS location.
+你就需要到设置中启用这个功能
 
 528
 00:25:49,483 --> 00:25:52,951
 You can do that here on your simulator, okay?
+模拟器是可以模拟地理位置的
 
 529
 00:25:53,019 --> 00:25:56,855
 All right, so we got the 7 button, let's click it. Okay,
+我们试试点击这个按钮
 
 530
 00:25:56,924 --> 00:26:01,326
 well, It's flashing, so it looks like it's working, but
+点一下会闪一下，好像在工作
 
 531
 00:26:01,394 --> 00:26:04,196
 of course, it's not doing anything. We haven't told our
+当然并不会有其他的什么效果
 
 532
 00:26:04,264 --> 00:26:07,599
 7 button what to do, so it's doing nothing, all right? So
+我们还没告诉按钮 7 应该做什么，所以什么都不会发生
 
 533
 00:26:07,668 --> 00:26:10,301
 let's go make it do something. Now I told
+那我们就来让它干点什么吧
 
 534
 00:26:10,370 --> 00:26:15,139
 you that the behavior of the UI is written in code. So
+我们需要写代码来响应界面的操作
 
 535
 00:26:15,208 --> 00:26:20,278
 that's what this guy over here is, this ViewController.swift.
+这就是 ViewController.swift 的作用
 
 536
 00:26:20,347 --> 00:26:23,615
 That's the code where we're gonna do the behavior. And so,
+里面包含了实现逻辑的代码
 
 537
 00:26:23,683 --> 00:26:29,988
 how do we hook up this UI to this code? Well to do that,
+如何把代码和界面连接起来呢？
 
 538
 00:26:30,057 --> 00:26:31,990
 we need to get them both on screen at the same time,
+我们需要让代码和界面同时显示在屏幕上
 
 539
 00:26:32,059 --> 00:26:35,193
 all right? And the way we do that is with this button,
+我们需要点击这里画着两个圈圈的按钮
 
 540
 00:26:35,262 --> 00:26:37,362
 right here, assistant editor button.
+显示 Assistant Editor
 
 541
 00:26:37,431 --> 00:26:41,599
 So I'm gonna click it, and we get both. And I can click for
+我再点 Storyboard，代码和 UI 就同时出现了
 
 542
 00:26:41,668 --> 00:26:44,969
 example, on one side to show my UI. And
+现在左边显示的是 UI
 
 543
 00:26:45,038 --> 00:26:47,539
 it's automatically going to show the code on the other
+右边会自动显示代码
 
 544
 00:26:47,608 --> 00:26:49,341
 side. Okay, cuz it already,
+因为大多数时候
 
 545
 00:26:49,410 --> 00:26:51,910
 it knows that I probably wanted to do that. And
+我们一般都是要连接两者
 
 546
 00:26:51,979 --> 00:26:54,212
 it does that because, up here at the top you see it says,
+当然右边需要上面这里选中了
 
 547
 00:26:54,281 --> 00:26:57,749
 automatic. It's automatically picking it. Now you can go to
+Automatic，自动选择。或者你也可以调成
 
 548
 00:26:57,818 --> 00:27:00,752
 manual and manually pick the file you want to appear here,
+Manual，手动选择你想要打开的文件
 
 549
 00:27:00,820 --> 00:27:03,721
 but most of the times you're leave this on automatic. And
+通常情况选 Automatic 
 
 550
 00:27:03,790 --> 00:27:06,525
 it's gonna pick automatically the thing that makes the most
+Xcode 都能自动选中
 
 551
 00:27:06,594 --> 00:27:08,960
 sense to be on the right hand side. Okay,
+当前最有用的文件
 
 552
 00:27:09,029 --> 00:27:12,231
 we'll make some more space there. All right? So
+我们把工作区调大一点
 
 553
 00:27:12,299 --> 00:27:14,866
 let's zoom this in a little bit so
+同时把 UI 界面也缩小点
 
 554
 00:27:14,935 --> 00:27:17,536
 we can see the whole iPhone 7,
+显示出整个 iPhone 7
 
 555
 00:27:17,604 --> 00:27:20,372
 all right, so let's look at this code first because this
+我们来仔细研究下这个文件
 
 556
 00:27:20,441 --> 00:27:22,007
 is the first time you've seen Swift.
+因为你们都是第一次看到 Swift 代码
 
 557
 00:27:22,075 --> 00:27:24,910
 Swift is really nice, because it's kind of succinct and
+Swift 的优点之一就是简洁
 
 558
 00:27:24,979 --> 00:27:28,914
 kind of very obvious in the keywords it's chosen, etc. So
+使用的关键字也大多都通俗易懂
 
 559
 00:27:28,982 --> 00:27:31,717
 import is like include in a lot of languages, it's
+import 就像是其它语言中的 include
 
 560
 00:27:31,785 --> 00:27:34,920
 just basically saying I want to use this framework UIKit.
+意思就是我想要使用 UIKit 框架
 
 561
 00:27:34,989 --> 00:27:39,124
 Now, this is our UI behavior controlling code.
+因为这是我们控制 UI 界面的代码
 
 562
 00:27:39,193 --> 00:27:41,793
 So of course, it needs to use UIKit,
+UIKit 自然必不可少
 
 563
 00:27:41,861 --> 00:27:44,896
 okay? If we were to write an object that's more of like
+如果我们写的是
 
 564
 00:27:44,965 --> 00:27:46,899
 the internals of the calculator that's
+计算器的逻辑部分
 
 565
 00:27:46,967 --> 00:27:47,966
 UI independent,
+和 UI 毫不相关
 
 566
 00:27:48,035 --> 00:27:50,401
 then we would probably import foundation here.
+那我们更可能是 import Foundation
 
 567
 00:27:50,470 --> 00:27:52,804
 Foundation to kind of get to that Core Services layer,
+Foundation 框架是 Core Services 层的
 
 568
 00:27:52,873 --> 00:27:55,840
 not UI. You would never want to import UIKit in one of
+和 UI 无关。在和 UI 无关的文件中
 
 569
 00:27:55,909 --> 00:27:59,978
 those non-UI kind of classes. And you'll see that when we do
+不要 import UIKit。星期三讲到
 
 570
 00:28:00,047 --> 00:28:04,082
 the MVC on Wednesday. There's of course other things we can
+MVC 的时候你就明白了。盎然我们也能
 
 571
 00:28:04,151 --> 00:28:07,753
 import too, like map kit, things like that. All right,
+import 其它的库，比如 MapKit。
 
 572
 00:28:07,821 --> 00:28:11,190
 so here you're seeing your first declaration
+接下来是你看到第一个类的声明
 
 573
 00:28:11,258 --> 00:28:15,393
 of a Swift class. Okay? Keyword class, of course.
+Swift 里的类理所应当地使用 class 作为关键字
 
 574
 00:28:15,462 --> 00:28:19,364
 Name, this is the name of the class. ViewController is
+这个是类的名字，ViewController
 
 575
 00:28:19,433 --> 00:28:21,966
 name of class, it's kind of a generic name.
+这是一个很笼统的名字
 
 576
 00:28:22,035 --> 00:28:24,302
 Probably would have given it a better name if I had had
+我们最好给它取个更好的名字
 
 577
 00:28:24,371 --> 00:28:27,205
 a chance, but this is what the template gave me.
+但这就是模板中默认的
 
 578
 00:28:27,274 --> 00:28:29,541
 You can't unfortunately just rename this by typing,
+然而改名并不只是在这里改就完事了
 
 579
 00:28:29,609 --> 00:28:33,044
 because it's linked up to your UI. I will show you how to
+因为它已经和 UI 是互相关联的。我之后会教你们
 
 580
 00:28:33,113 --> 00:28:37,115
 rename this class later. But for now, we're going to stick
+怎么正确地改名。现在我们就先凑合用
 
 581
 00:28:37,183 --> 00:28:42,120
 with this generic name. This colon UI view controller is
+这个普通的名字吧。这个 : UIViewController
 
 582
 00:28:42,189 --> 00:28:45,623
 the class that view controller inherits from, okay? This is
+是 ViewController 继承的父类
 
 583
 00:28:45,692 --> 00:28:47,960
 object oriented programming, this is inheritance.
+面向对象不可或缺的继承
 
 584
 00:28:48,028 --> 00:28:49,895
 Again, you have to know object oriented programming to be
+再次强调，理解面向对象
 
 585
 00:28:49,963 --> 00:28:52,931
 sitting in this room. So you know what that means?
+是上本课的前提。所以你应该知道
 
 586
 00:28:52,999 --> 00:28:56,201
 Swift is single inheritance. So you can only inherit from
+Swift 也是单一继承，也就是只继承一个类
 
 587
 00:28:56,269 --> 00:28:59,070
 one class. And view controller inherits from this class.
+ViewController 就只继承自 UIViewController
 
 588
 00:28:59,139 --> 00:29:03,608
 This class' capabilities are, it knows how to control a UI.
+这个类的功能就是控制 UI
 
 589
 00:29:03,677 --> 00:29:06,811
 That's why it's called a view controller. We call this our
+所以叫视图控制器
 
 590
 00:29:06,880 --> 00:29:09,114
 view over here, and it knows how to control it.
+这个类知道如何控制这边的视图
 
 591
 00:29:09,182 --> 00:29:12,017
 So this view controller is inheriting all the capability
+正是继承了父类的所有功能
 
 592
 00:29:12,086 --> 00:29:13,351
 of how to control this. Which is great,
+才让它知道如何控制。那真是挺不错的
 
 593
 00:29:13,420 --> 00:29:16,120
 because that's exactly what we want it to do. And
+因为这正是我们想让它做的
 
 594
 00:29:16,189 --> 00:29:18,790
 then inside the curly braces, here we're going to put all of
+大括号里面是类的主体
 
 595
 00:29:18,859 --> 00:29:23,161
 our instance variables and methods. Okay?
+包括了实例属性和方法
 
 596
 00:29:23,230 --> 00:29:25,430
-Hopefully everyone knows what an instance variable and
+Hopefully everyone knows what an instance variable
+希望大家都还记得什么是实例变量
 
 597
 00:29:25,499 --> 00:29:27,199
-An instance variable is like storage of variables inside of
+and a method is, right? 
+什么是实例方法，对吧？
 
 598
 00:29:27,200 --> 00:29:28,900
-a method is, right?
+An instance variable is like storage of variables inside of
+实例变量就是由实例分配内存的变量
 
 599
 00:29:28,969 --> 00:29:32,270
 our class, and a method is just a function in there.
+方法就是类里的函数
 
 600
 00:29:32,339 --> 00:29:35,640
 By the way, we call instance variables in Swift properties.
+还有，在 Swift 中实例变量叫做属性
 
 601
 00:29:35,709 --> 00:29:37,108
-So if you hear me think properties,
+So if you hear me saying properties,
+如果你听到我说属性
 
 602
 00:29:37,177 --> 00:29:39,411
 I mean like instance variables. Okay,
+我指的就是实例变量
 
 603
 00:29:39,480 --> 00:29:44,049
 we call methods, methods. So what I really want now
+方法还是叫方法。我现在想要的是
 
 604
 00:29:44,117 --> 00:29:47,853
 is that when this button is touched, I want it to invoke
+每当按下这个按钮，我想让它调用
 
 605
 00:29:47,921 --> 00:29:52,424
 a method in my class, right? I want it to call a method.
+这个类里的一个函数
 
 606
 00:29:52,493 --> 00:29:54,625
 That would be perfect cuz then I could put whatever
+这样我就能够把其它我想要执行的代码
 
 607
 00:29:54,694 --> 00:29:55,794
 code I want in there. And
+都放在那个函数里
 
 608
 00:29:55,863 --> 00:29:56,928
 that's exactly what we're gonna do.
+这就是我们要做到
 
 609
 00:29:56,997 --> 00:30:01,266
 Now the way we link that up is kinda kooky. Here we go, I'm
+你觉得猜不到这新奇的连接方法
 
 610
 00:30:01,335 --> 00:30:03,935
 gonna hold down Ctrl. You see I'm holding Ctrl down there.
+按住 Control 键
 
 611
 00:30:04,004 --> 00:30:09,808
 I'm going to drag from this button into my code,
+再点击按钮，然后拖动鼠标到代码这边
 
 612
 00:30:09,877 --> 00:30:13,611
 okay? This is how I'm gonna connect it. And when I let go,
+就是这样连接的。我放开鼠标
 
 613
 00:30:13,680 --> 00:30:17,349
 it says you wanna make a connection between your UI and
+就弹出窗口说，你想要连接 UI 和代码
 
 614
 00:30:17,418 --> 00:30:19,284
 this code, what kinda connection do you want?
+但它们之间具体是什么关系？
 
 615
 00:30:19,353 --> 00:30:20,952
 And there's really two choices.
+这里有两种选项
 
 616
 00:30:21,021 --> 00:30:23,722
 There's Outlet, that means make a property or
+一种是 Outlet，连接为属性
 
 617
 00:30:23,790 --> 00:30:25,857
 an instance variable that points to this thing, so
+也就是作为类的实力变量
 
 618
 00:30:25,926 --> 00:30:28,793
 I can talk to it. And then there's action,
+能进行操作。另一种是 Action
 
 619
 00:30:28,862 --> 00:30:31,896
 which means make a method, and when the buttons touch,
+作为一个方法，当按钮被点击
 
 620
 00:30:31,965 --> 00:30:35,066
 call this method. Everybody got that?
+就调用这个方法。明白了吗？
 
 621
 00:30:35,135 --> 00:30:37,169
 All right, so here it's asking for the name of this method.
+好，这里填方法的名称
 
 622
 00:30:37,238 --> 00:30:40,105
 I'm going to call this method touchDigit.
+我把它叫做 touchDigit
 
 623
 00:30:40,173 --> 00:30:44,909
 Okay, touchDigit. And this method, it can have arguments,
+touchDigit 可以带有多个参数
 
 624
 00:30:44,978 --> 00:30:47,612
 it could have no arguments, or one argument which is,
+也可以不带参数，也可以一个参数
 
 625
 00:30:47,681 --> 00:30:50,582
 the button sending me this message. Now I need
+告诉我按下的是哪个按钮
 
 626
 00:30:50,651 --> 00:30:53,151
 that argument because I want to have one touch
+我需要保留这个参数，因为我要用
 
 627
 00:30:53,220 --> 00:30:56,088
 digit method that all my buttons set. So I'm going to
+一个方法来处理所有的按钮
 
 628
 00:30:56,156 --> 00:30:59,157
 ask the button who's sending it to me, who are you?
+所以我需要知道到底是哪个按钮调用的这个方法
 
 629
 00:30:59,225 --> 00:31:00,759
 What title, are you the 7 button?
+你的标题是什么，是 7
 
 630
 00:31:00,828 --> 00:31:02,427
 Are you the five button, what are you? So
+还是 5？究竟是哪个按钮？
 
 631
 00:31:02,496 --> 00:31:05,430
 I want that sender. This type right here,
+所以我要保留 Sender 这个参数。这里的 Type
 
 632
 00:31:05,498 --> 00:31:09,101
 it says Any, that's the type of the argument. Very, okay,
+说参数的类型是 Any
 
 633
 00:31:09,169 --> 00:31:12,237
 wake-up if you're taking a nap right now, and when you're
+注意了，睡觉的同学们，勾重点了
 
 634
 00:31:12,306 --> 00:31:14,706
-doing your homework, you cannot lead this to any.
+doing your homework, you cannot leave this to any.
+做作业的时候，不能把这个留成 Any
 
 635
 00:31:14,775 --> 00:31:17,342
 Because we know what kind of thing is sending you this
+我们知道只有谁会调用这个方法
 
 636
 00:31:17,411 --> 00:31:20,312
-message, it's a UI button, so you're gonna wanna change this
+message, it's a UIButton, so you're gonna wanna change this
+只有 UIButton，所以大家一定要改
 
 637
 00:31:20,381 --> 00:31:23,448
-to any to UI button. If you miss that step and
+Any to UIButton. If you miss that step and
+把 Any 改成 UIButton。如果你漏了这一步
 
 638
 00:31:23,516 --> 00:31:26,018
 when you go in there, your code's all gonna be messed up,
+你就彻底搞砸了
 
 639
 00:31:26,086 --> 00:31:29,121
 because the argument type of the sender is gonna be any,
+参数的类型变成了 Any
 
 640
 00:31:29,189 --> 00:31:32,223
 which it just basically means untyped, almost. So
+基本上就是没有指定类型
 
 641
 00:31:32,292 --> 00:31:34,426
-that's no good. So make sure you change this to UI button.
+that's no good. So make sure you change this to UIButton.
+为了避免悲剧，一定要改成 UIButton
 
 642
 00:31:35,695 --> 00:31:37,695
 Now, when we connect this, it creates a method. So
+点击 Connect 连接，它会自动添加一个方法
 
 643
 00:31:37,764 --> 00:31:41,133
 you're getting your first look right here at a Swift method.
+我们来看看你定义的第一个 Swift 方法
 
 644
 00:31:41,202 --> 00:31:44,202
 Now, this is actually not part of Swift, okay.
+@IBAction 并不是 Swift 的一部分
 
 645
 00:31:44,271 --> 00:31:47,372
 This is something Xcode drops in there. And it does it so
+这是 Xcode 的标记，为了
 
 646
 00:31:47,440 --> 00:31:49,641
 that it can put this little circle in the gutter.
+在左边显示个小圆点
 
 647
 00:31:49,710 --> 00:31:51,410
 You see that circle right there?
+看到这个圆圈了嘛？
 
 648
 00:31:51,479 --> 00:31:54,546
 If I mouse over that circle, look what happens.
+你把鼠标悬停在上面，看看会发生什么
 
 649
 00:31:54,615 --> 00:31:57,449
 I didn't click on it, I just put my mouse over it. You see,
+不需要点击，移过去就可以了
 
 650
 00:31:57,518 --> 00:32:00,118
 it tells me what this method is hooked up to.
+它会显示这个方法和谁建立了连接
 
 651
 00:32:00,187 --> 00:32:03,956
-In other words, what user interface element. Sends me
+In other words, what user interface element sends me
+也就是哪些 UI 控件会调用这个方法
 
 652
 00:32:04,024 --> 00:32:08,961
 this message, okay? So this is purely not a Swift thing,
+所以这并不是 Swift 语言的一部分
 
 653
 00:32:09,029 --> 00:32:15,334
 this is purely an Xcode thing. So this is a Swift method,
+这只是 Xcode 的标记。剩下的部分就是方法了
 
 654
 00:32:15,402 --> 00:32:18,737
 okay? So let's look at the parts of a Swift method,
+我分析下 Swift 方法不同的部分
 
 655
 00:32:18,806 --> 00:32:20,571
 the syntax of it, so you understand a little better.
+你们好理解 Swift 函数的语法
 
 656
 00:32:20,640 --> 00:32:23,775
 And I'm gonna use a different method that I'm just going to
+为此我另外写一个方法
 
 657
 00:32:23,844 --> 00:32:26,778
 make up for this. Let's say I had some
+选一个更好的例子，比方说
 
 658
 00:32:26,847 --> 00:32:31,983
 function called a drawHorizontalLine and
+drawHorizontalLine，画一条横线
 
 659
 00:32:32,052 --> 00:32:36,054
 it draws from some starting position,
+从某个起点
 
 660
 00:32:36,123 --> 00:32:39,691
 which would be a Double to some ending position,
+一个 Double 类型的小数，到某个终点
 
 661
 00:32:39,759 --> 00:32:42,627
 which also be a Double. And maybe it does it using
+又一个 Double。也许还使用
 
 662
 00:32:42,696 --> 00:32:46,865
-some color, which would be a UI color. Okay? So
+some color, which would be a UIColor. Okay? So
+某种颜色，类型是 UIColor
 
 663
 00:32:46,934 --> 00:32:50,468
 there's an example of a Swift method. Notice that it,
+这是另一个 Swift 方法的例子
 
 664
 00:32:50,537 --> 00:32:54,006
 this has three parameters. You see? This one, this one and
+它有三个形参，startX，endX，color
 
 665
 00:32:54,074 --> 00:32:59,645
 this one. This ": Double" is the type of this parameter.
+: Double 是这个参数的类型
 
 666
 00:32:59,713 --> 00:33:02,147
 So it's a double-precision floating-point number. That's
+双精度浮点型小数
 
 667
 00:33:02,216 --> 00:33:05,083
 the type of that parameter. This one's also Double.
+这就是这个参数的类型。这也是 Double
 
 668
 00:33:05,152 --> 00:33:09,854
 This one is a UIColor. Okay, which is a different type.
+这个是另一种类型，UIColor
 
 669
 00:33:09,923 --> 00:33:12,891
 Now what's really interesting about parameters is that you
+有趣的是每个参数
 
 670
 00:33:12,960 --> 00:33:17,930
 have two names for each one. See, from startX,
+都有两个名字。from startX
 
 671
 00:33:17,998 --> 00:33:21,233
 to endX, using a color, each one has two, so what
+to endX，using color。什么鬼？
 
 672
 00:33:21,301 --> 00:33:25,937
 the heck is going on there with those two? Well this one,
+怎么会有两个名字呢？前面的这个
 
 673
 00:33:26,006 --> 00:33:29,741
 the first one, is the external name of this parameter. And
+第一个是函数外部的实参标签（argument label）
 
 674
 00:33:29,809 --> 00:33:33,912
 this is the internal name. So these internal names,
+第二个是函数内部的形参名称（parameter name）
 
 675
 00:33:33,980 --> 00:33:35,546
 like startX, endX, and
+就是 startX，endX 和 color
 
 676
 00:33:35,615 --> 00:33:38,884
 color. You would use those in your code inside this method.
+这些名称是在函数里使用的名称
 
 677
 00:33:38,953 --> 00:33:42,721
-Like, I might say, distance = endX- startX, or
+Like, I might say, distance = endX - startX, or
+比如 distance = endX - startX
 
 678
 00:33:42,789 --> 00:33:46,057
 something like that. See I'm using endX and startX
+或是其它的。可以看出我在实现函数时
 
 679
 00:33:46,126 --> 00:33:50,095
 inside this method, right? Part of it's implementation.
+用的是 endX 和 startX，对吧？
 
 680
 00:33:50,163 --> 00:33:52,764
 These external names are used by the callers,
+调用函数时则使用这些外部的名称
 
 681
 00:33:52,833 --> 00:33:55,500
 the people who call this method. So I'm gonna call this
+那些调用的人用的实参标签
 
 682
 00:33:55,569 --> 00:33:58,537
 method from touchDigit here, drawHorizontalLine.
+比如我在 touchDigit 中使用  drawHorizontalLine
 
 683
 00:33:58,605 --> 00:34:01,006
 Now, by the way, Xcode loves to type for you.
+Xcode 没崩溃时会帮你自动补全
 
 684
 00:34:01,075 --> 00:34:04,776
 So I just type drawH and now I'm hitting tab. And tab, and
+我只打了 drawH，再按 tab 键，再按一下
 
 685
 00:34:04,845 --> 00:34:07,345
 it's not only filling out drawHorizontalLine,
+Xcode 帮我输入了整个 drawHorizontalLine
 
 686
 00:34:07,414 --> 00:34:09,481
 but it's showing me all the arguments and
+并显示所有要填的参数
 
 687
 00:34:09,550 --> 00:34:13,385
 tabbing to the first one so I can type it. So notice that
+而且已经帮我定为到第一个参数这里了
 
 688
 00:34:13,453 --> 00:34:16,054
 when it said that, the from, the to, and the using
+就像我刚才说的，from，to 和 using
 
 689
 00:34:16,123 --> 00:34:20,758
 were put in there for me. So if I say from 5.0 to 8.5 using
+出现在了这里。如果我说从 5.0 画横线到 8.5
 
 690
 00:34:20,827 --> 00:34:25,930
 the color UIColor.blue let's say, okay?
+使用的是 UIColor 的蓝色
 
 691
 00:34:25,999 --> 00:34:30,335
 These from and to and using are what the caller uses.
+from，to 和 using 是调用这个方法时用的
 
 692
 00:34:30,404 --> 00:34:34,706
 Notice also, that these things are mandatory. They have to go
+而且是必须要用
 
 693
 00:34:34,774 --> 00:34:38,043
 in here. You can not call drawHorizontalLine like this,
+你不能像这样调用 drawHorizontalLine
 
 694
 00:34:38,112 --> 00:34:42,714
 drawHorizontalLine 5.0, this would be, look like most other
+drawHorizontalLine(5.0, 8.5, .blue)
 
 695
 00:34:42,783 --> 00:34:46,685
 languages, you know, blue. You can't call it like that.
+这是行不通的
 
 696
 00:34:46,754 --> 00:34:48,987
 You have to put these external names in there.
+这些标签是必不可少的
 
 697
 00:34:50,290 --> 00:34:52,357
 Also notice that the external names are picked so
+选择标签的时候要尽量保证行文通畅
 
 698
 00:34:52,425 --> 00:34:57,329
 this reads like English. Draw a horizontal line from 5.0
+读起来像英文 —— 画一横条线自 5.0 到 8.5，要使用蓝色
 
 699
 00:34:57,398 --> 00:35:01,700
 to 8.5 using blue, okay? Swift endeavors
+在 API Design Guidelines 中
 
 700
 00:35:01,769 --> 00:35:05,604
 to be as kind of conversational in the language
+Swift 强烈建议让代码
 
 701
 00:35:05,673 --> 00:35:09,141
 of English as it can be. So
+接近自然语言
 
 702
 00:35:09,209 --> 00:35:13,445
 that's kinda crash course. You're gonna be reading, your
+这只是简单的介绍。我给你们的
 
 703
 00:35:13,513 --> 00:35:15,747
 reading assignment's gonna tell you more about that, but
+阅读作业里有更详细的解释
 
 704
 00:35:15,816 --> 00:35:18,750
 that's the crash course. But now let's take a look at thi-,
+但最基础的就这些。好，我们看看
 
 705
 00:35:18,819 --> 00:35:21,553
 by the way, if your function returns something,
+等等，忘了讲了，如果函数或方法有返回值
 
 706
 00:35:21,622 --> 00:35:26,191
 you just go like this, okay? -> String. It's kind of like,
+你就像这样写，-> String
 
 707
 00:35:26,260 --> 00:35:29,861
 the arrow is saying, out of this comes a String, okay?
+这箭头就像是在说，这东西会生成一个字符串
 
 708
 00:35:29,930 --> 00:35:34,132
 So this would be the return value, okay?
+所以也就被作为了表示返回值类型的语法
 
 709
 00:35:34,201 --> 00:35:36,501
 All right, now, let's look at touchDigit though,
+回到正题，touchDigit 
 
 710
 00:35:36,570 --> 00:35:40,205
 touchDigit is weird. Look at its two things here, okay?
+touchDigit 有些与众不同，它也有两个参数
 
 711
 00:35:40,274 --> 00:35:43,408
-The external one is_, okay?
+The external one is _, okay?
+不过第一个是 _，下划线
 
 712
 00:35:43,477 --> 00:35:47,212
 So does that mean I call it by saying, touchDigit_:
+难道我要这样写么？touchDigit(_: 
 
 713
 00:35:47,281 --> 00:35:51,783
 whatever? No, underbar means there is no external. So
+并不是。下划线表示不需要标签
 
 714
 00:35:51,852 --> 00:35:53,952
 you would call touchDigit by just saying,
+也就是你只需要写
 
 715
 00:35:54,021 --> 00:35:56,821
-touchDigit (someButton) cuz that's the argument,
+touchDigit(someButton) cuz that's the argument,
+touchDigit(某个按钮) 就行了
 
 716
 00:35:56,890 --> 00:35:59,558
 it's a button or whatever. Okay, there's no, you won't,
+只需要写某个按钮，你并不需要写个
 
 717
 00:35:59,627 --> 00:36:01,693
 you don't put anything in here, it's not like a foo.
+你并不需要写任何的东西。如果这里是 foo
 
 718
 00:36:01,762 --> 00:36:03,628
 If we had this it would be foo, okay?
+那我们这里也要写 foo
 
 719
 00:36:03,697 --> 00:36:06,831
 That's not in there. Instead, it's this underbar, so
+既然不是 foo 而是下划线
 
 720
 00:36:06,900 --> 00:36:11,703
 you have nothing. Okay? Now, why do we sometimes have
+就什么都不写。为什么会有这种情况呢？
 
 721
 00:36:11,772 --> 00:36:15,173
 nothing? Because sometimes, it's implicit in either
+这种情况标签多半存在于
 
 722
 00:36:15,242 --> 00:36:18,242
 the name of the function or the type of the argument,
+函数名或是参数类型里面了
 
 723
 00:36:18,311 --> 00:36:20,879
 what you're supposed to pass, so you don't need that little
+你传入的参数多半包含了，所以不需要
 
 724
 00:36:20,947 --> 00:36:24,916
 thing. By the way underbar, we almost never use that for
+补充说明。下划线一般最多只用在第一个参数的标签
 
 725
 00:36:24,985 --> 00:36:27,018
 the second, third, or fourth argument.
+不会用在第二个，第三个，第四个等等
 
 726
 00:36:27,087 --> 00:36:29,588
 It's occasionally used for the first argument, not always,
+第一个会用，但也不是都会用
 
 727
 00:36:29,657 --> 00:36:32,190
 occasionally. But never for second, third, fourth, fifth,
+第一个偶尔会，但绝对不会用为之后参数的标签
 
 728
 00:36:32,258 --> 00:36:36,194
 okay? Or next to never. Now in your reading assignment,
+出现的概率很小很小。你们的阅读作业是
 
 729
 00:36:36,262 --> 00:36:39,631
 I'm also going to have you read a document that explains
+阅读 Swift API Design Guidelines
 
 730
 00:36:39,700 --> 00:36:42,334
 how to do this naming. What the rules are,
+如何命名，有哪些规则
 
 731
 00:36:42,403 --> 00:36:43,535
 when do you use an underbar,
+什么时候用下划线
+
 
 732
 00:36:43,604 --> 00:36:46,605
 when don't you. You're gonna wanna master that document by
+什么时候不用。如果你想成为专业的 iOS 开发者
 
 733
 00:36:46,673 --> 00:36:48,273
 the end of the quarter if you wanna call yourself
+你最好在这学期结束前
 
 734
 00:36:48,342 --> 00:36:51,276
 a professional iOS developer, okay?
+掌握并熟练运用这个文档中的规则
 
 735
 00:36:51,345 --> 00:36:55,780
 It's key to understand that. But this touchDigit, okay, so
+非常重要。针对 touchDigit
 
 736
 00:36:55,849 --> 00:36:59,617
 this function, okay methods, I, just to be clear, methods,
+这个函数，好吧，这个方法，准确的说叫方法
 
 737
 00:36:59,686 --> 00:37:02,220
 we use the keyword func. Okay, cuz it's
+虽然我们用的关键字是 func[tion]，函数
 
 738
 00:37:02,289 --> 00:37:05,123
 a function on a class. This is the name. Parameters go
+方法是在类里的函数。这是方法的名字
 
 739
 00:37:05,192 --> 00:37:07,692
 in parentheses like this, they can be separated by commas if
+参数像这样放到小括号里，如果有多个
 
 740
 00:37:07,761 --> 00:37:11,663
 we have multiple of them. This is the first parameter here,
+就用英文逗号隔开。这是第一个参数
 
 741
 00:37:11,732 --> 00:37:15,100
 first and only. It's type is a UIButton because of course,
+有且仅有的一个。参数类型为 UIButton 显而易见的，
 
 742
 00:37:15,169 --> 00:37:18,470
 a UIButton is sending this messa-, method. Right,
+是 UIButton 发起的事件
 
 743
 00:37:18,539 --> 00:37:21,940
 it's invoking this method. So the sender is this UIButton.
+在调用这个方法，所以是 UIButton 类型
 
 744
 00:37:22,009 --> 00:37:23,942
 And sender is the internal name.
+sender 是参数名称
 
 745
 00:37:24,011 --> 00:37:27,179
 So that's the name we'll use inside here to access it.
+方法内部称呼调用的按钮的名称
 
 746
 00:37:28,549 --> 00:37:31,215
 All right? But before we start doing that, let's just
+好，我们正式开始前
 
 747
 00:37:31,284 --> 00:37:33,918
 have this do something simple like print out to the console.
+先做点简单的，比如输出到控制台
 
 748
 00:37:33,987 --> 00:37:38,824
-So I'm gonna say, print "touchDigit was called",
+So I'm gonna say, print("touchDigit was called"),
+print("touchDigit was called")
 
 749
 00:37:38,893 --> 00:37:41,093
 okay? We're just gonna print that out on the console.
+就把这个字符串打印到控制台
 
 750
 00:37:41,161 --> 00:37:42,293
 Whenever someone touches a button,
+当按下按钮
 
 751
 00:37:42,362 --> 00:37:43,495
 it's gonna evoke this method.
+就调用这个方法
 
 752
 00:37:43,564 --> 00:37:44,663
 It's gonna print that on the console.
+然后把这条信息打印到控制台
 
 753
 00:37:44,731 --> 00:37:45,564
 So let's just do that.
+就这样按 Command+R 运行看看
 
 754
 00:37:54,007 --> 00:37:58,743
 All right? So there's our UI, iPhone 7. Click and touchDigit
+iPhone 7 模拟器出来了，按下按钮
 
 755
 00:37:58,812 --> 00:38:01,680
 appears in the console down here at the bottom, okay?
+touchDigit 里这个字符串就出现在下面控制台这里了
 
 756
 00:38:01,749 --> 00:38:04,383
 Now the console shares space with the debugger,
+现在控制台和调试器共享空间
 
 757
 00:38:04,451 --> 00:38:07,352
 this area on the left is the debugger. So you can kind of
+没错，左边是调试器
 
 758
 00:38:07,421 --> 00:38:10,122
 separate this space back and forth, you can also completely
+你可以左右拖动这条分割线
 
 759
 00:38:10,190 --> 00:38:14,693
 hide this space by using these buttons right here, okay?
+或者是用右边这个按钮把它隐藏起来
 
 760
 00:38:14,762 --> 00:38:18,062
 So we'll just do console only right here. Let's go back to
+只显示控制台
 
 761
 00:38:18,131 --> 00:38:20,832
 our simulator. And so every time we press this,
+回到模拟器中，每次我按这个按钮
 
 762
 00:38:20,901 --> 00:38:22,701
 we get touchDigit was called printed out again.
+touchDigit 就会再被调用，然后再打印一次
 
 763
 00:38:22,770 --> 00:38:24,702
 Does everyone understand what's happening here,
+大家都还跟的上吧？刚刚我讲了什么
 
 764
 00:38:24,771 --> 00:38:26,538
 how we've hooked up this method to the button? Really,
+怎么关连 UI 和代码的，
 
 765
 00:38:26,606 --> 00:38:30,042
 really straightforward. All right, now that we have that
+应该都挺好理解的。
 
 766
 00:38:30,110 --> 00:38:33,612
 working, we know we need more than just this one button,
+证明 touchDigit 有用了，还有很多按钮需要加
 
 767
 00:38:33,680 --> 00:38:36,281
 we need a whole keypad's worth of buttons. So I'm gonna,
+我们需要整个数字键盘的按钮
 
 768
 00:38:36,350 --> 00:38:38,717
 I want these other buttons to look exactly the same, so
+我想这些按钮的形状一模一样
 
 769
 00:38:38,786 --> 00:38:42,020
 I'm gonna copy and paste. So I just copied and pasted that,
+所以我们复制粘贴。我复制这个，粘贴
 
 770
 00:38:42,089 --> 00:38:45,858
 paste another one here. I can even select three at a time,
+再来一个。选中这三个按钮
 
 771
 00:38:45,926 --> 00:38:48,594
 and copy and paste, okay? Paste another one.
+再复制粘贴，再粘贴
 
 772
 00:38:48,662 --> 00:38:51,730
 Now notice here I'm using the blue lines to line them up
+稍微注意下，我在用蓝色参考线辅助我
 
 773
 00:38:51,798 --> 00:38:55,400
 okay, really nicely. Blue lines are great for
+对的很整齐。这就是蓝色参考线的用法
 
 774
 00:38:55,469 --> 00:38:59,537
 doing that. Okay, and now I can just rename these buttons
+现在我们只需要给这些按钮改下名字
 
 775
 00:38:59,606 --> 00:39:01,974
 by just double-clicking on them.
+在上面双击,然后修改
 
 776
 00:39:09,983 --> 00:39:12,651
 All right, so I've got an, a beautiful keypad right here.
+这样整洁的数字键盘就做好了
 
 777
 00:39:12,719 --> 00:39:16,688
 And what's really great is that this method is hooked up
+更好的是这个方法和所有的按钮都有连接
 
 778
 00:39:16,757 --> 00:39:19,992
 to all of them. Okay, that's because when you copy and
+因为我们复制粘贴的时候
 
 779
 00:39:20,060 --> 00:39:23,228
 paste a button, it keeps it's connections to any methods
+也会保留按钮的各种连接
 
 780
 00:39:23,297 --> 00:39:26,565
 that it has, okay? So that's cool. So
+这挺不错的
 
 781
 00:39:26,633 --> 00:39:28,901
 now all these buttons are going to send this touchDigit.
+所有的这些按钮都会调用 touchDigit
 
 782
 00:39:28,969 --> 00:39:33,438
 So now if I run, you'll see that if I press any of
+我们现在运行，按哪一个按钮都行
 
 783
 00:39:33,507 --> 00:39:38,476
 these buttons, not just our 7 button. Right, here's 7,
+不仅是数字 7。我们先确认 7 还能用
 
 784
 00:39:38,545 --> 00:39:41,780
 that worked, but also 5, 0, they're all calling,
+很好；我再试试 5，0，也都会
 
 785
 00:39:41,849 --> 00:39:46,285
 this touchDigit was called. Okay, so that's awesome.
+调用 touchDigit。真不错
 
 786
 00:39:46,353 --> 00:39:49,855
 But of course, we want to know which button was called,
+下一步，是找出究竟是
 
 787
 00:39:49,923 --> 00:39:51,757
 was sending us this message, right?
+哪个按钮 send，发送了消息呢？
 
 788
 00:39:51,825 --> 00:39:54,059
 And we know that because that's the argument,
+我们这个参数不正好是 sender 吗？
 
 789
 00:39:54,127 --> 00:39:57,996
 is the sender, okay? So let's add a local variable here.
+所以我们创建一个局部变量
 
 790
 00:39:58,065 --> 00:40:00,065
 So now you're seeing your local variables in Swift for
+啊哈，你们又能学到用 Swift 定义变量了
 
 791
 00:40:00,134 --> 00:40:03,902
 the first time. It looks like this, var digit, okay?
+就像这样，var digit
 
 792
 00:40:03,971 --> 00:40:07,105
 Var means this is a local variable. Digit is the name.
+var 是声明变量的关键字，digit 是变量的名字
 
 793
 00:40:07,174 --> 00:40:09,741
 Now if we wanted to type it, we could put a type here like
+如果我们想的话，可以在这里声明变量的类型
 
 794
 00:40:09,810 --> 00:40:14,379
 maybe type string. Just like we put a type of our parameter
+比如字符串类型，就像声明参数类型差不多
 
 795
 00:40:14,448 --> 00:40:18,583
 here, we can put a type right here of our local variable.
+在变量名字后加 : String
 
 796
 00:40:18,652 --> 00:40:22,821
 But, we don't usually do that in Swift because while Swift
+然而我们一般不需要这样做
 
 797
 00:40:22,890 --> 00:40:26,258
 is very strongly typed language, in other words,
+虽然 Swift 是强类型的语言
 
 798
 00:40:26,326 --> 00:40:28,060
 you have to specify the types of everything.
+也就是每个变量的类型都是确定的
 
 799
 00:40:28,129 --> 00:40:29,862
 It wants to know the types of everything.
+Swift 想知道所有东西的类型
 
 800
 00:40:29,930 --> 00:40:34,366
 it will infer what type you want from the context.
+但大多数时候它都能根据上下文
 
 801
 00:40:34,435 --> 00:40:36,668
 Very often. Ok? So that's the trade off,
+进行类型推导。 这就是 Swift 的权衡
 
 802
 00:40:36,737 --> 00:40:39,938
 if you have a really strongly typed language, you have
+强类型语言，要求所有的都明确类型
 
 803
 00:40:40,007 --> 00:40:43,575
 to type everything. It's really nice if the compiler
+同时提供一个强大的编译器
 
 804
 00:40:43,644 --> 00:40:46,077
 will just figure out for you what the types of things are.
+能通过类型推导来自动判断类型
 
 805
 00:40:46,146 --> 00:40:48,847
 So, normally, we will leave the types off wherever we can.
+所以我们一般能省略就不写
 
 806
 00:40:48,916 --> 00:40:50,315
@@ -3994,7 +4469,7 @@ all that you really want to get faster with doing that
 
 917
 00:45:53,086 --> 00:45:55,954
-okay it's really important to be a good IOS developer to be
+okay it's really important to be a good iOS developer to be
 
 918
 00:45:56,022 --> 00:46:00,325

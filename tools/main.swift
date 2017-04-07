@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-// itunes.apple.com/us/course/developing-ios-10-apps-with-swift/id<#iTunesUCourseID#>
+/// itunes.apple.com/us/course/developing-ios-10-apps-with-swift/id<#iTunesUCourseID#>
 let iTunesUCourseID = 1198467120
 
 enum ResourceType: String, CustomStringConvertible {
@@ -24,7 +24,12 @@ enum ResourceType: String, CustomStringConvertible {
     static let all: [ResourceType] = [.video, .slides, .demoCode, .readingAssignment, .programmingProject]
 
     var description: String {
-        return self.rawValue
+        switch self {
+        case .slides, .demoCode:
+            return rawValue
+        default:
+            return "\(rawValue)s"
+        }
     }
 }
 
@@ -131,7 +136,7 @@ class ParsingDelegate: NSObject, XMLParserDelegate {
             resources.filter { $0.type == type } .sorted { $0.index < $1.index }
         }
 
-        var out = ""
+        var out = "[返回主页](/README.md) | [Back to Main Page](/en/README.md)\n\n"
         for (index, type) in ResourceType.all.enumerated() {
             if sorted[index].count > 0 {
                 out += "# \(type)\n\n"
