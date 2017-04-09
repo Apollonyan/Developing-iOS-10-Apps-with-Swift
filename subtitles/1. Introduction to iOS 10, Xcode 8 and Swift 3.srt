@@ -45,12 +45,12 @@ And this demo is gonna really quickly let you see what it's
 10
 00:00:34,902 --> 00:00:37,402
 like to develop an application for iOS, so you can decide,
-你们可以再做决定是否继续学下去
+你们可以再决定
 
 11
 00:00:37,471 --> 00:00:40,738
 is this for me, or not? So, what are you gonna learn?
-这门课主要我们主要会讲
+究竟适不适合你。这门课主要我们主要会讲
 
 12
 00:00:40,807 --> 00:00:43,441
@@ -60,7 +60,7 @@ Well you're gonna learn to build cool apps, all right,
 13
 00:00:43,510 --> 00:00:46,778
 that's, that's what we're here for. Why are these apps in iOS
-可是为什么 iOS 上的 app 这么 cool 呢？
+当然了，你们来这里就是为了这个。可是为什么 iOS 上的程序这么 cool 呢？
 
 14
 00:00:46,847 --> 00:00:48,947
@@ -130,12 +130,12 @@ from building iOS apps. For those of you in
 27
 00:01:22,616 --> 00:01:25,751
 computer science there's also this huge benefit, you're
-对于那些选修计算机科学的同学们，这是一个
+对于那些选修计算机科学的同学们
 
 28
 00:01:25,819 --> 00:01:28,820
 gonna get to see a real life object-oriented programming
-看到实际在运行的，面向对象的系统的机会
+你们能实际观察到面向对象系统的应用
 
 29
 00:01:28,889 --> 00:01:31,623
@@ -1190,7 +1190,7 @@ Okay? So I strongly recommend doing edu.stanford.cs193p.
 239
 00:11:30,090 --> 00:11:35,160
 You're SUNet ID here, okay? If you put that in there,
-edu.stanford.cs193p.你的SNUetID
+edu.stanford.cs193p.你的SUNetID
 
 240
 00:11:35,228 --> 00:11:36,895
@@ -1205,7 +1205,7 @@ for that to be unique. If you're not a Stanford student,
 242
 00:11:38,899 --> 00:11:41,733
 you're watching this on iTunes U, pick something else that
-也就是我们这些在 iTunes U 上观看的
+也就是在 iTunes U 上观看的
 
 243
 00:11:41,801 --> 00:11:43,768
@@ -1885,7 +1885,7 @@ you'll see all the other iOS devices appear- iPads,
 378
 00:18:19,600 --> 00:18:24,202
 for example. Or old iPhone 4s, they're really kinda little.
-或是老旧的的 iPhone 4s，相比之下屏幕要小得多
+或是老旧的 iPhone 4s，相比之下屏幕要小得多
 
 379
 00:18:24,271 --> 00:18:26,938
@@ -1895,7 +1895,7 @@ And not only are they there but you can switch their
 380
 00:18:27,007 --> 00:18:31,209
 orientation, okay? Now when you build an iOS app,
-屏幕的旋转方向。开发 iOS 程序，
+屏幕的旋转方向。开发 iOS 程序
 
 381
 00:18:31,278 --> 00:18:35,414
@@ -2090,12 +2090,12 @@ these blue lines are trying to help me put it in a good spot.
 419
 00:20:37,604 --> 00:20:40,839
 You see that? Now, we're not gonna pay attention to that
-这个是今天的重点
+这不是今天的重点
 
 420
 00:20:40,907 --> 00:20:43,007
 right now because I told you we're doing this thing where
-这个界面优化
+界面优化
 
 421
 00:20:43,076 --> 00:20:45,577
@@ -2180,7 +2180,7 @@ And we want it to be let's say one of our number buttons.
 437
 00:21:27,254 --> 00:21:28,520
 Okay, so how are we gonna do that?
-怎么更改显示的文字呢？
+怎么更改显示的标题呢？
 
 438
 00:21:28,589 --> 00:21:31,590
@@ -3020,7 +3020,7 @@ is that when this button is touched, I want it to invoke
 605
 00:29:47,921 --> 00:29:52,424
 a method in my class, right? I want it to call a method.
-这个类里的一个函数
+这个类里的一个方法
 
 606
 00:29:52,493 --> 00:29:54,625
@@ -3030,7 +3030,7 @@ That would be perfect cuz then I could put whatever
 607
 00:29:54,694 --> 00:29:55,794
 code I want in there. And
-都放在那个函数里
+都放在那个方法里
 
 608
 00:29:55,863 --> 00:29:56,928
@@ -3040,7 +3040,7 @@ that's exactly what we're gonna do.
 609
 00:29:56,997 --> 00:30:01,266
 Now the way we link that up is kinda kooky. Here we go, I'm
-你觉得猜不到这新奇的连接方法
+你绝对猜不到这新奇的连接方法
 
 610
 00:30:01,335 --> 00:30:03,935
@@ -3080,7 +3080,7 @@ There's Outlet, that means make a property or
 617
 00:30:23,790 --> 00:30:25,857
 an instance variable that points to this thing, so
-也就是作为类的实力变量
+也就是作为类的实例变量
 
 618
 00:30:25,926 --> 00:30:28,793
@@ -3866,12 +3866,12 @@ okay, really nicely. Blue lines are great for
 774
 00:38:55,469 --> 00:38:59,537
 doing that. Okay, and now I can just rename these buttons
-现在我们只需要给这些按钮改下名字
+现在我们只需要给这些按钮改下标题
 
 775
 00:38:59,606 --> 00:39:01,974
 by just double-clicking on them.
-在上面双击,然后修改
+在上面双击，然后修改
 
 776
 00:39:09,983 --> 00:39:12,651
@@ -4026,1182 +4026,1477 @@ So, normally, we will leave the types off wherever we can.
 806
 00:40:48,916 --> 00:40:50,315
 Now, we can't do that in
+函数的参数又不同了
 
 807
 00:40:50,384 --> 00:40:54,286
 a method parameter because we got to know what That method
+函数和方法的参数是我们自己决定的
 
 808
 00:40:54,354 --> 00:40:57,088
 is expecting. But for local variables, we definitely can
+但对于局部变量
 
 809
 00:40:57,157 --> 00:41:00,993
 leave it off almost all the time, okay? So we got this
+大部分时候都是可以省略声明类型的
 
 810
 00:41:01,061 --> 00:41:02,828
 digit, and I just wanna set it equal to something.
+有了这个 digit，我想给它赋值
 
 811
 00:41:02,897 --> 00:41:03,962
 What does it wanna be equal to?
+但是如何获得这个 digit 呢？
 
 812
 00:41:04,031 --> 00:41:06,865
 It wants to be equal to the title of the button
+digit 等于引发事件
 
 813
 00:41:06,934 --> 00:41:09,301
 that's sending me the message. So this guy,
+按钮的标题。而 sender
 
 814
 00:41:09,369 --> 00:41:12,037
 which is a button I want to ask what its title is.
+正是这个按钮                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 
 815
 00:41:12,106 --> 00:41:15,473
 Now, how do you send a message to another object in Swift?
+Swift 中如何发送消息给对象呢？
 
 816
 00:41:15,542 --> 00:41:17,776
 Well, you just type the object you want to
+你输入那个对象的名称
 
 817
 00:41:17,844 --> 00:41:20,545
 send the message to and you press dot. Okay, so this is
+然后使用点语法，按下英文句号 .
 
 818
 00:41:20,614 --> 00:41:23,949
 like Java and a lot of other languages, just the object and
+这和 Java 以及其它许多编程语言类似
 
 819
 00:41:24,017 --> 00:41:27,218
 dot, that's how you send the message. Now, unfortunately,
+对象.，就是这样发送消息。虽然 Xcode 有自动补全
 
 820
 00:41:27,287 --> 00:41:31,156
-XCode is helping me here by showing me all the methods And
+Xcode is helping me here by showing me all the methods And
+然而不幸的是，它把所有按钮的
 
 821
 00:41:31,225 --> 00:41:35,660
 properties that button can do. Look at this list,
+属性和方法都列举了出来。看看这一长串
 
 822
 00:41:35,729 --> 00:41:37,795
 I'm only in the Fs, okay, I'm still scrolling,
+我才滑倒 F 开头的，下面还有
 
 823
 00:41:37,864 --> 00:41:42,333
 still scrolling. There's a lot of methods. It's like how am I
+这么多函数和属性
 
 824
 00:41:42,402 --> 00:41:45,103
 ever gonna figure out. I just want the title of the button,
+我能怎么办？我明明只是想要按钮的标题啊
 
 825
 00:41:45,172 --> 00:41:47,705
 please. Okay, well, of course I could get the documentation,
+当然，我也许可以找到文档
 
 826
 00:41:47,774 --> 00:41:48,573
 start reading through it,
+开始挨个看
 
 827
 00:41:48,642 --> 00:41:49,340
 trying to figure out, and
+看是哪个函数还是属性
 
 828
 00:41:49,409 --> 00:41:51,476
 in fact I want to do that eventually.
+我确实会这么做
 
 829
 00:41:51,545 --> 00:41:53,445
 there's kind of trick here in Xcode.
+不过是靠一个使用 Xcode 的技巧
 
 830
 00:41:53,514 --> 00:41:55,881
 Which is, just type the name of thing you want,
+那就是输入你想要的东西的名称
 
 831
 00:41:55,950 --> 00:41:57,816
 Type what you think it might be and see what happens.
+输入你觉得最可能的名称看看
 
 832
 00:41:57,885 --> 00:42:00,618
 So, I'm going to type Title. Now there's no method or
+我会输入 title，虽然我知道按钮这个类
 
 833
 00:42:00,687 --> 00:42:02,787
 property in button called title.
+并没有叫做 title 的方法或属性
 
 834
 00:42:02,856 --> 00:42:05,891
 But you can see that Xcode has showed me all the methods and
+但是 Xcode 会筛选出一些方法和属性
 
 835
 00:42:05,959 --> 00:42:08,326
 properties that start with the word title Or
+要么是由 title 开头的
 
 836
 00:42:08,395 --> 00:42:13,398
 that have the word title in it. Or even that have "t",
+要么是名称中包含 title 的
 
 837
 00:42:13,467 --> 00:42:16,902
 "it", "le" in it, okay? So it's doing everything it
+甚至还有包含 t，it 和 le 的
 
 838
 00:42:16,971 --> 00:42:19,637
 can to show you every possible thing that might match what
+展示出所有可能搭配上你输入内容的来
 
 839
 00:42:19,706 --> 00:42:22,340
 you typed. Now, let's look through these and see if we
+现在我们再来选择
 
 840
 00:42:22,409 --> 00:42:24,575
 can find one that will give us the title of the button, okay?
+看看有没有能给我们标题的
 
 841
 00:42:24,644 --> 00:42:29,448
 Title label That doesn't look very good. How about title for
+titleLabel，展示标题的标签，好像并不是我们想要的
 
 842
 00:42:29,517 --> 00:42:30,715
 control state, that looks good,
+那 title(for: UIControlState) 呢？
 
 843
 00:42:30,784 --> 00:42:33,685
 returns the title associated with the specified state.
+好像不错，返回和按钮在给出状态下的标题
 
 844
 00:42:33,754 --> 00:42:36,255
 Mm, that looks pretty good but let's keep looking because I
+虽然看起来不错
 
 845
 00:42:36,323 --> 00:42:37,589
 don't really know anything about the state,
+但我对这个状态一无所知
 
 846
 00:42:37,658 --> 00:42:39,991
 that looks pretty good, but let's keep going.
+我们再看看有没有更好的
 
 847
 00:42:40,060 --> 00:42:44,696
 No edge insets, no, add color, no, shadow, no. Current title,
+不是留边，不是颜色，不是阴影。currentTitle
 
 848
 00:42:44,764 --> 00:42:45,664
 the current title that
+当前按钮
 
 849
 00:42:45,733 --> 00:42:47,433
 is displayed on the button,
+显示的标题
 
 850
 00:42:47,501 --> 00:42:50,202
 victory that sounded exactly what I want. So
+就决定是你了
 
 851
 00:42:50,270 --> 00:42:52,171
 I'm just gonna pick that by double-clicking on it.
+我决定就选这个，在上面双击
 
 852
 00:42:52,239 --> 00:42:54,172
 So I'm just gonna double-click on it. There it is,
+双击之后就出现了
 
 853
 00:42:54,241 --> 00:42:58,476
 it filled it out. And so now we're sending currentTitle
+Xcode 帮我输入了。这样我们就得到了 sender
 
 854
 00:42:58,545 --> 00:43:01,813
 to sender. Now let's find out more about currentTitle, okay?
+的 currentTitle。我们再仔细了解下 currentTitle
 
 855
 00:43:01,882 --> 00:43:04,649
-We know that one-liner that is the currentTitle displayed.
+We know that one-liner that is the current title displayed.
+我们知道简介说的是现在显示的标题
 
 856
 00:43:04,718 --> 00:43:06,150
 I'm gonna hold down Option.
+按下 Option 键
 
 857
 00:43:06,219 --> 00:43:07,619
 See Option down here on the left, okay?
+我屏幕左下角显示我按下了 Option 键
 
 858
 00:43:07,688 --> 00:43:09,788
 I'm gonna hold down Option, and look.
+按住 Option 键的同时
 
 859
 00:43:09,857 --> 00:43:13,858
 When I do Option things that I mouse over turn blue
+把鼠标悬浮在这些名称上时
 
 860
 00:43:13,927 --> 00:43:15,293
 with a little dashed underline.
+会变蓝，还有下划线
 
 861
 00:43:15,362 --> 00:43:19,831
 And if I click, I get a little help, okay? So
+我点下去，就会弹出快速帮助
 
 862
 00:43:19,900 --> 00:43:21,967
 I'm getting that current title display from the button,
+除了说这是当前按钮展示的标题
 
 863
 00:43:22,035 --> 00:43:25,137
 but I'm also getting more detailed description and
+还有更详细的解释
 
 864
 00:43:25,206 --> 00:43:28,172
 I'm getting the declaration of this thing. And
+以及它的定义
 
 865
 00:43:28,241 --> 00:43:30,508
 you could see that this is not a func.
+你会发现这不是一个 func，方法
 
 866
 00:43:30,577 --> 00:43:33,912
 This is a var. So now you're seeing for the first time,
+这是一个 var，属性。你们第一次看到
 
 867
 00:43:33,980 --> 00:43:36,981
 the declaration of a property in Swift, okay?
+Swift 中属性的定义吧？
 
 868
 00:43:37,050 --> 00:43:39,952
 An instance variable. So this is an instance variable,
+这就是个实例变量
 
 869
 00:43:40,020 --> 00:43:42,620
 in UIButton, okay? Called var, makes sense, right?
+UIButton 类的一个实例变量
 
 870
 00:43:42,689 --> 00:43:45,123
 It's a variable, var. It's called currentTitle,
+用 var 关键字声明，叫做 currentTitle 的变量
 
 871
 00:43:45,192 --> 00:43:49,194
 of course. It's type is, string?
+类型是 String? 
 
 872
 00:43:51,565 --> 00:43:54,032
 Not sure, maybe button's not sure what the type is.
+难道按钮不确定类型是不是字符串？
 
 873
 00:43:54,101 --> 00:43:55,267
 No, I think button knows but,
+我认为按钮是知道的
 
 874
 00:43:55,336 --> 00:43:57,870
 we're just gonna assume this is string, for now. And
+我们暂时当是字符串好了
 
 875
 00:43:57,938 --> 00:44:00,772
 we'll see, where that takes us. Also notice this little
+看看会给我们带来什么麻烦。注意这里的
 
 876
 00:44:00,841 --> 00:44:03,842
 syntax means that, you can only get the current title,
+不起眼的语法，告诉你 currentTitle 是只读的
 
 877
 00:44:03,911 --> 00:44:07,613
 with this property. You can't set the current title. Now,
+你并不能通过这个来更改 currentTitle
 
 878
 00:44:07,681 --> 00:44:11,016
 what if I was like, well I'm interested. How would I set
+如果我就想要更改按钮的标题呢？
 
 879
 00:44:11,085 --> 00:44:13,618
 the current title? So you would want to, let's say,
+如何设置当前的标题？
 
 880
 00:44:13,687 --> 00:44:16,521
 go look in the documentation. How would you get there?
+你会想要查文档。文档在哪里？
 
 881
 00:44:16,590 --> 00:44:18,556
 Well, if you look down at the bottom, it says more.
+这下面有个 More
 
 882
 00:44:18,625 --> 00:44:21,159
 This property reference right here. If you click on that,
+点这个 Property Reference
 
 883
 00:44:21,228 --> 00:44:23,929
 it brings up the documentation. Okay?
+文档就出现了
 
 884
 00:44:23,997 --> 00:44:26,765
-And here's the documentation for CurrentTitle. Now what's
+And here's the documentation for currentTitle. Now what's
+currentTitle 的文档
 
 885
 00:44:26,834 --> 00:44:30,034
 cool about this, is from here, I can click on things.
+有趣的是，我可以点击许多的东西
 
 886
 00:44:30,103 --> 00:44:32,971
 Like String, I could find out about String. Or, look,
+比如 String，了解字符串类
 
 887
 00:44:33,040 --> 00:44:36,608
 I can click on the class that this is defined in, UIButton.
+我可以点击定义这个属性的类，UIButton
 
 888
 00:44:36,677 --> 00:44:39,411
 And here's the UIButton, and look at this section at
+这就是 UIButton 的文档
 
 889
 00:44:39,479 --> 00:44:43,182
 the start of UIButton called Overview. These are awesome,
+文档开始这个部分，Overview，概览很有用
 
 890
 00:44:43,250 --> 00:44:46,851
-and I strongly recommend Every class you go to use
+and I strongly recommend every class you go to use
+我建议每个用到的类
 
 891
 00:44:46,920 --> 00:44:48,453
 take the five minutes or
+都花个五分钟，最多是十分钟
 
 892
 00:44:48,521 --> 00:44:51,022
 ten minutes at the most to read through these overviews.
+认真阅读它的概览
 
 893
 00:44:51,091 --> 00:44:53,458
 Then you'll really understand how these classes work.
+然后你就能理解怎么使用这些类了
 
 894
 00:44:53,527 --> 00:44:55,860
 Look at this thing. It tells us for
+比如这个，给我举例说明
 
 895
 00:44:55,929 --> 00:44:58,530
 example how to configure the button's appearance.
+如何设置按钮的外观
 
 896
 00:44:58,599 --> 00:45:00,131
 It tells us all about this button's stage.
+这个告诉我们按钮的状态
 
 897
 00:45:00,200 --> 00:45:01,733
 Remember, we had that title for state.
+之前看到的 button(for: UIControlState)
 
 898
 00:45:01,802 --> 00:45:03,302
 And we didn't really know what the state was. Well,
+我们不清楚按钮的状态是什么
 
 899
 00:45:03,370 --> 00:45:05,904
 this tells us about that. Tells you about the content of
+这里就给出了解释。这个讲按钮的内容
 
 900
 00:45:05,973 --> 00:45:08,640
 a button. And you can put an image on there, evidently, and
+看来你可以放图片和文字
 
 901
 00:45:08,709 --> 00:45:12,543
 text. Those edge insets, whatever those are, explained.
+留边的解释
 
 902
 00:45:12,612 --> 00:45:15,180
 Even an interface builder, all those things in the inspector.
+甚至还包括界面编辑器，在检查器中出现的
 
 903
 00:45:15,249 --> 00:45:17,249
 Look, those are all explained, in detail.
+这些都详细地解释了
 
 904
 00:45:17,317 --> 00:45:19,651
 So this is a great thing to just read through this,
+阅读这个受益匪浅
 
 905
 00:45:19,720 --> 00:45:22,787
 understand this for all the common classes. And
+最好把常用类的概览都理解了
 
 906
 00:45:22,856 --> 00:45:26,090
 of course, all of the methods are listed here as well. For
+当然，所有能用的方法也列出来了
 
 907
 00:45:26,159 --> 00:45:26,925
 example, look at this one,
+比如看看这个
 
 908
 00:45:26,993 --> 00:45:29,995
 setTitle. Hm, that might be a way to set the title. And
+setTitle，也许可以用来设置标题
 
 909
 00:45:30,064 --> 00:45:33,532
 if I click on that, I get a full description of this. And
+如果我点击这个，就会转到更详细的解释
 
 910
 00:45:33,600 --> 00:45:36,668
 I even see that the state thing is here, so I can click
+这里还有那个 UIControlState
 
 911
 00:45:36,736 --> 00:45:39,771
 on that. And now I can see the control state, of course,
+我点击之后就到了 UIControlState 的文档
 
 912
 00:45:39,840 --> 00:45:41,973
 there's normal, highlighted button, disabled button,
+这里有 正常，高亮，禁用和选中
 
 913
 00:45:42,042 --> 00:45:44,275
 a selected button. They can each have their own title,
+不同的状态可以有不同的标题
 
 914
 00:45:44,344 --> 00:45:47,779
 cool. But you see how I'm navigating by just clicking
+学会我是怎么通过点击来浏览
 
 915
 00:45:47,848 --> 00:45:49,614
 through the various types and
+这些不同的类型的了？
 
 916
 00:45:49,683 --> 00:45:53,017
 all that you really want to get faster with doing that
+你最好尽快掌握
 
 917
 00:45:53,086 --> 00:45:55,954
 okay it's really important to be a good iOS developer to be
+成为好的 iOS 开发者
 
 918
 00:45:56,022 --> 00:46:00,325
 able to use the documentation effectively. All right, so
+高效地使用文档是不可获取的技能
 
 919
 00:46:00,394 --> 00:46:04,262
 we're back here, we got this thing currentTitle. It's this
+好，回到 currentTitle
 
 920
 00:46:04,331 --> 00:46:07,265
 type string question mark. And I told you that swift would
+它的类型是 String?。我说过 Swift
 
 921
 00:46:07,334 --> 00:46:10,101
 infer the type. And sure enough, look, a digit. It's
+能推测类型。那好吧，这是个数字
 
 922
 00:46:10,170 --> 00:46:12,770
 type is string question mark. Of course, because I just set
+类型也是 String?，因为我把一个
 
 923
 00:46:12,839 --> 00:46:14,606
 it equal to something that was string question mark, so
+String? 类型的值符给了它
 
 924
 00:46:14,675 --> 00:46:17,476
 it knows it's string question mark. So, let's go ahead and
+所以 digit 也是 String? 类型的
 
 925
 00:46:17,545 --> 00:46:18,944
 print this digit out. Okay,
+我把这个 digit 打印出来
 
 926
 00:46:19,013 --> 00:46:21,513
 it's saying touch digit was called. Let's try and print it
+把这个 touch digit was called 改成 digit
 
 927
 00:46:21,582 --> 00:46:24,883
 out. Now in another language, you might use printf.
+在其它语言中你可能用 printf
 
 928
 00:46:24,952 --> 00:46:30,022
 And you might say something like %s was touched.
+然后写 "%s was touched"
 
 929
 00:46:30,091 --> 00:46:31,856
 And then you would put digit right here,
+最后把 digit 写着这里
 
 930
 00:46:31,925 --> 00:46:36,160
 okay? Now unfortunately, you can't do this in Swift, okay?
+然而，Swift 里并不是这样操作的
 
 931
 00:46:36,229 --> 00:46:39,931
 There's no percent s business, okay? And no printf. Instead,
+不需要使用 %s 那些，当然也没有 printf
 
 932
 00:46:40,000 --> 00:46:43,701
 we still say print, okay? But, instead of doing percent s.
+我们用 print 就够了。取代 %s 的是
 
 933
 00:46:43,770 --> 00:46:48,840
-We can actually use the very magical\() parentheses.
+We can actually use the very magical \() parentheses.
+神奇的 \()
 
 934
 00:46:48,909 --> 00:46:50,842
 If you put that inside a string,
+如果放在在字符串中
 
 935
 00:46:50,910 --> 00:46:53,778
 then you can put anything you want inside there that can
+括号之间可以放任何
 
 936
 00:46:53,847 --> 00:46:55,947
 be converted to a string. And
+能用字符串表示的内容
 
 937
 00:46:56,016 --> 00:46:57,682
 it will include it there. Including,
+并且插入到字符串中间
 
 938
 00:46:57,751 --> 00:47:00,886
 a string itself. Can obviously be converted to a string. So
+字符串本身当然能用字符串表示
 
 939
 00:47:00,954 --> 00:47:03,521
 this way, you can embed strings in other strings.
+这就是在字符串中插入字符串的方法
 
 940
 00:47:03,590 --> 00:47:06,190
 Or even embed more complicated objects that know how to turn
+我们也能在字符串中插入更复杂的对象
 
 941
 00:47:06,259 --> 00:47:09,194
 themselves into a string, into strings. Okay, so this is how
+只要它们知道怎么用字符串表示它们本身
 
 942
 00:47:09,263 --> 00:47:13,331
-you do the print f business of printing things out. Okay,
+you do the printf business of printing things out. Okay,
+这就是取代 printf 的方法
 
 943
 00:47:13,400 --> 00:47:17,702
 now also I notice, we have a warning. This yellow thing is
+但注意到这里有个警告，这个黄色的
 
 944
 00:47:17,771 --> 00:47:20,438
 a warning, okay? And they can be yellow which are warnings
+可以黄色的，只是警告
 
 945
 00:47:20,507 --> 00:47:23,041
 in which case it'll compile and run. But, you still got to
+可以编译，可以运行。但你不能不改
 
 946
 00:47:23,110 --> 00:47:25,310
 fix it cuz you cannot submit any homework in this class
+这节课交的作业不能有警告
 
 947
 00:47:25,379 --> 00:47:28,647
 with warnings. You hear me? Or they can be red.
+清楚了吗？更不能有红色的
 
 948
 00:47:28,715 --> 00:47:31,917
 In red's case, it won't even build. So this one's yellow.
+那就是有错误，连编译都不行。这里还只是警告
 
 949
 00:47:31,985 --> 00:47:35,320
 How do we find out what it is? Well, we just click on it.
+怎么才知道是什么原因呢？点击一下
 
 950
 00:47:35,389 --> 00:47:38,390
 When we click on it, it says here the variable digit
+点了之后说 Variable 'digit' was never mutated
 
 951
 00:47:38,459 --> 00:47:41,359
 was never mutated. Means it was never changed.
+意思是变量 digit 没有被更改过
 
 952
 00:47:41,428 --> 00:47:45,597
 Consider changing to let constant, it says. Okay? And
+consider changing to 'let' constant，建议改用常量
 
 953
 00:47:45,666 --> 00:47:48,166
 you can see it even saying do you want me to fix it? I can
+它甚至还问是否想要解决这个问题？
 
 954
 00:47:48,235 --> 00:47:50,736
 replace var with let and it's even showing what that would
+说我能帮你把 var 改成 let，还给出了预览
 
 955
 00:47:50,804 --> 00:47:53,905
 look like to replace var with let. How helpful of it. So
+把 var 替换成 let。多省心！
 
 956
 00:47:53,974 --> 00:47:55,874
 actually, I'm gonna have to do that. I'm gonna click,
+那就让它改吧。点击确认
 
 957
 00:47:55,943 --> 00:47:59,143
 change it to let, warning gone. Now what is all that
+改成了 let，警告也没了。不过为啥要这样做？
 
 958
 00:47:59,212 --> 00:48:04,215
 about? It said digit was never mutated, it was never changed,
+既然 digit 没有被修改过
 
 959
 00:48:04,284 --> 00:48:08,353
 okay? So digit essentially was a constant.
+那它就是个常量
 
 960
 00:48:08,421 --> 00:48:11,089
 We gave it an initial value. It never got changed.
+除了我们给它的初始值以外就没变过
 
 961
 00:48:11,157 --> 00:48:14,359
 When you declare a constant you always want to use let.
+定义常量使用 let 关键字
 
 962
 00:48:14,428 --> 00:48:17,462
 Now why do we have a different word for a constant than for
+为什么常量和变量的名称不同呢？
 
 963
 00:48:17,531 --> 00:48:21,133
 a var? Well, because a constant isn't var.
+因为常量不仅是变量
 
 964
 00:48:21,202 --> 00:48:24,603
 It doesn't vary, a constant is constant.
+它不会改变，常量就是常量
 
 965
 00:48:24,672 --> 00:48:28,273
 And let is a great word because read this. Let digit
+let 这个关键字选的很好。连起来读很通顺
 
 966
 00:48:28,342 --> 00:48:32,277
 equal sender's current title. Okay, reads really nice.
+让 digit 等于调用函数的按钮现在的标题
 
 967
 00:48:32,345 --> 00:48:35,914
 Now why do we care about distinguishing these two?
+区分常量和变量的原因归根到底是为什么？
 
 968
 00:48:35,982 --> 00:48:39,450
 Two reasons. One if you're a reader of someone's code and
+两个原因。如果你读其它人的代码
 
 969
 00:48:39,519 --> 00:48:42,554
 you see let you know that this is not going to change, okay.
+看到 let 就知道这是个常量
 
 970
 00:48:42,623 --> 00:48:44,822
 You know the digit is going to be, never going to change.
+知道这个 digit 一定不会变
 
 971
 00:48:44,891 --> 00:48:46,525
 And in fact if someone did change it or
+即使有人修改了
 
 972
 00:48:46,593 --> 00:48:49,527
 if you tried to change someone else's code and change it,
+或者你尝试修改别人代码里的常量
 
 973
 00:48:49,596 --> 00:48:52,330
 compiler's gonna generate an error, okay. You can't change
+编译器就会报错，说你不能修改
 
 974
 00:48:52,399 --> 00:48:55,534
 something that's constant. But even more importantly,
+那是个常量。第二个更重要的原因是
 
 975
 00:48:55,603 --> 00:48:58,203
 it tells Swift that it's a constant and
+它告诉 Swift 这是个常量
 
 976
 00:48:58,271 --> 00:49:01,272
 that you intend it to be a constant. And so later,
+你希望这是个常量。之后
 
 977
 00:49:01,341 --> 00:49:05,209
 if you try to modify it, even if it's an array or
+如果你尝试修改它，对于数组和字典也是
 
 978
 00:49:05,278 --> 00:49:08,213
 a dictionary and you're trying to put something in the array
+如果你尝试向数组添加一个项
 
 979
 00:49:08,282 --> 00:49:10,715
 Okay? Or add something to the dictionary.
+或是给字典添加一对键值
 
 980
 00:49:10,784 --> 00:49:13,251
 It knows, you intended that to be a constant. So,
+Swift 知道你希望那是个常量
 
 981
 00:49:13,320 --> 00:49:17,656
 you know, error. So it's a way to tell Swift what you intend.
+于是会告诉你出错了。所以 let 是为了告诉 Swift 你的意图。
 
 982
 00:49:17,724 --> 00:49:21,093
 Now, the difference between a mutable array,
+数组分两种，可变和不可变
 
 983
 00:49:21,162 --> 00:49:22,961
 an array that you can add stuff to, and
+你可以向可变的数组添加项
 
 984
 00:49:23,029 --> 00:49:26,464
 an immutable one, is huge. Because if you pa, arrays and
+数组占的空间很大。Swift 中
 
 985
 00:49:26,533 --> 00:49:30,869
 Swift are passed around by copy. Arrays are passed by
+数组是通过拷贝来实现值传递，
 
 986
 00:49:30,938 --> 00:49:33,438
 copy. It's very unusual compared to other languages
+传递数组就是复制数组的过程
 
 987
 00:49:33,507 --> 00:49:35,306
 where an array would just be an object in the heap and
+而不是像其它的语言那样
 
 988
 00:49:35,375 --> 00:49:37,676
 you just pass a pointer to it. You were passing them it
+只是传递一个指向数组的指针
 
 989
 00:49:37,744 --> 00:49:40,244
 copies them every time you pass them to a function.
+Swift 中每次把数组传递到函数都会要求复制
 
 990
 00:49:40,313 --> 00:49:44,583
 Now that'd be very inefficient if they were all mutable. Cuz
+如果这些数组都是可变的，那会非常低效
 
 991
 00:49:44,652 --> 00:49:46,718
 you have to actually copy them in case someone changed it.
+因为一旦发生更改，就必须要实际拷贝
 
 992
 00:49:46,786 --> 00:49:48,853
 But Swift knows which ones are mutable and which aren't.
+Swift 知道数组是否可变
 
 993
 00:49:48,922 --> 00:49:51,623
 And when you pass an immutable one it only- But
+如果你传入的是一个只读数组
 
 994
 00:49:51,692 --> 00:49:53,225
 doesn't really efficient copy, okay,
+Swift 会采取更高效的方法
 
 995
 00:49:53,293 --> 00:49:55,794
 it doesn't actually copy the element. And in fact, until
+并不会真的拷贝数组里的项
 
 996
 00:49:55,863 --> 00:49:59,163
 you assigned it to a mutable variable by saying var equals
+直到你把这个数组赋值给一个变量之前
 
 997
 00:49:59,232 --> 00:50:01,766
 that, it doesn't even have to worry about that. And then it
+Swift 都不需要考虑拷贝的问题
 
 998
 00:50:01,835 --> 00:50:04,703
 can just do copy on write when you actually change it. Okay,
+而且就算拷贝也会采取写时拷贝（copy on write）的机制
 
 999
 00:50:04,771 --> 00:50:07,639
 so that's the var/let thing, get used to it,
+你们要习惯区别使用 var 和 let
 
 1000
 00:50:07,708 --> 00:50:10,441
 always do let for constants. All right, so let's run
+常量一定要用 let。好，我们现在运行
 
 1001
 00:50:10,510 --> 00:50:14,012
 this now. See what's going on here. This should work, right?
+看看什么情况，希望能够运行
 
 1002
 00:50:14,080 --> 00:50:16,648
 We're getting the current title. We're saying, it,
+我们获得了按钮当前的标题，然后打印
 
 1003
 00:50:16,717 --> 00:50:19,084
 well, whatever that title was was touched.
+某某按钮被按下了
 
 1004
 00:50:19,152 --> 00:50:23,454
 This should be good to go. Here we go. Seven. What?
+应该没问题。我试试，按下 7。怎么回事？
 
 1005
 00:50:23,523 --> 00:50:27,692
 Okay, well, it's kinda working.
+好吧，算是能用
 
 1006
 00:50:27,761 --> 00:50:29,695
 I mean it's definitely doing something different And
+每个按钮按下去打印的内容都不一样
 
 1007
 00:50:29,764 --> 00:50:30,763
 it kinda knows which button.
+而且我们也算是出现了相应的标题
 
 1008
 00:50:30,831 --> 00:50:33,732
 But what's all this optional quote business?
+但是为什么会有 Optional("") 呢？
 
 1009
 00:50:33,801 --> 00:50:38,504
 What's that about? >> Well, that's because
+这是什么造成的？
 
 1010
 00:50:38,572 --> 00:50:43,675
 digit is not a string, it's a string?, okay.
+这是因为 digit 不是字符串，是 String?
 
 1011
 00:50:43,744 --> 00:50:47,946
 So what is String? String? is a totally different type
+那什么是 String? 呢？String? 和普通字符串
 
 1012
 00:50:48,014 --> 00:50:52,951
 from String. It's called an optional. Alright? This
+根本不一样。它的类型叫做可选（Optional）
 
 1013
 00:50:53,019 --> 00:50:55,987
 is super important. So again, wake up if you're napping.
+这是重点，睡觉的同学可以起来看看了
 
 1014
 00:50:56,056 --> 00:50:59,958
 Okay? This is super important. Very few languages have this
+很重要很重要很重要。很少有编程语言
 
 1015
 00:51:00,027 --> 00:51:04,195
 concept. It's a great concept. It really makes the API really
+有这个概念。这是个很不错的概念。这让整个
 
 1016
 00:51:04,264 --> 00:51:06,931
 understandable throughout all of iOS. But it takes a little
+iOS API 通俗易懂，但是要求
 
 1017
 00:51:07,000 --> 00:51:10,869
 bit of getting used to, okay? So what is this type optional?
+你要适应它。那可选类型是什么？
 
 1018
 00:51:10,937 --> 00:51:15,340
 A type optional has only two values, set and
+可选类型的值只有两种情况 —— 有值，或缺省值
 
 1019
 00:51:15,408 --> 00:51:18,810
 not set, okay? That's the only two values it has.
+只会有这两种情况
 
 1020
 00:51:18,879 --> 00:51:22,681
 There's no other values. However, when it's in the set
+不可能是其他的值。当可选类型的为有值的时候
 
 1021
 00:51:22,749 --> 00:51:26,518
 case, it can have an associated value. Okay?
+它会有一个关联值
 
 1022
 00:51:26,586 --> 00:51:29,521
 A value that it kinda keeps on the side and
+另一个和这个可选一起存储的值
 
 1023
 00:51:29,590 --> 00:51:31,857
 you specify when you create the optional or
+你需要在定义可选类型的时候
 
 1024
 00:51:31,925 --> 00:51:34,826
 you declare it what type that associated value is.
+声明关联值的类型
 
 1025
 00:51:34,895 --> 00:51:37,896
 So this, the associated value is a string.
+我们这里，关联值的类型就是字符串
 
 1026
 00:51:37,964 --> 00:51:40,832
-We're talking about the value of a button of course. So
+We're talking about the title of a button, of course. So
+当然了，我说的是按钮的标题
 
 1027
 00:51:40,900 --> 00:51:42,167
 we would say the type
+我们把这个 digit 的类型
 
 1028
 00:51:42,236 --> 00:51:45,771
-of this digit is optional strength. Which means
+of this digit is optional String. Which means
+叫做 Optional String，可选字符串
 
 1029
 00:51:45,839 --> 00:51:48,773
 an optional who's associative value in the set state is
+一个在有值状态下关联值为字符串的可选类型
 
 1030
 00:51:48,842 --> 00:51:54,312
 a string. Okay? Now, in this case that's all fine and
+我们现在的情况是一定会有值
 
 1031
 00:51:54,381 --> 00:51:56,648
 good but we want the associated value here.
+但我只想要这个关联值
 
 1032
 00:51:56,717 --> 00:51:59,551
 Give me that associated value, that title, okay?
+我只要那个标题就可以了
 
 1033
 00:51:59,620 --> 00:52:01,619
 How do I get it out of here? And the answer for
+怎么才能解析出这个值呢？最简单的方法
 
 1034
 00:52:01,688 --> 00:52:06,191
 that is exclamation point. Okay, if you put
+后面加一个英文叹号 !
 
 1035
 00:52:06,260 --> 00:52:09,327
 the explanation point at the end of an optional then it
+如果你在可选类型的后面加上叹号
 
 1036
 00:52:09,396 --> 00:52:12,730
-will, if it's in the set state grab the associated value and
+will, if it's in the set state, grab the associated value and
+在可选类型有值的情况下，隐式解析出关联值
 
 1037
 00:52:12,799 --> 00:52:16,301
 give it to you. So now look at the type of digit.
+然后返还给你。我们再看看 digit 的类型
 
 1038
 00:52:16,370 --> 00:52:20,104
-It's a string. Okay, Swift able to infer that since you
+It's a string. Okay, Swift is able to infer that since you
+太好了，只是普通的字符串了。Swift 如此推测的原因是
 
 1039
 00:52:20,173 --> 00:52:25,944
 unwrapped this optional right here. You've got a string over
+你已经把可选类型强制解包了，所以你会得到一个字符串
 
 1040
 00:52:26,013 --> 00:52:31,850
 here. Now what if you do exclamation point and
+但是如果你在可选类型的后面加了一个叹号
 
 1041
 00:52:31,919 --> 00:52:35,320
 that optional is in the not set state? Because
+但是这个可选类型却缺省值呢？
 
 1042
 00:52:35,389 --> 00:52:37,856
 there's no associated value when it's in not state, that's
+因为在缺省值的时候是没有关连值的
 
 1043
 00:52:37,924 --> 00:52:39,958
 only when it's in associated. What happens to your app?
+只有在有值的时候才存在关联值。强制解包会发生什么呢？
 
 1044
 00:52:40,026 --> 00:52:45,797
 Anyone want to guess what happens? Crashes. Okay?
+猜猜会发生什么？你的程序会崩溃
 
 1045
 00:52:45,866 --> 00:52:50,702
 Kaboom. Now, I'm sure some of you conservative
+你的程序就炸了。我知道你们之中肯定有些保守派的
 
 1046
 00:52:50,771 --> 00:52:52,470
 folk out there are like, okay well that's it for
+现在在想，好吧我受够了
 
 1047
 00:52:52,539 --> 00:52:54,806
 me, an exclamation point! I'm never using that.
+我绝对不会用感叹号的
 
 1048
 00:52:54,875 --> 00:52:57,042
 I don't want my app to crash, that's horrible.
+人家才不想让程序崩溃呢，吓死宝宝了
 
 1049
 00:52:57,111 --> 00:53:00,312
 But actually having your app crash during development
+但其实在开发过程的时候程序就崩溃了是好事
 
 1050
 00:53:00,381 --> 00:53:03,081
 can be great, because you'll find bugs really
+因为你能够尽早发现 bug
 
 1051
 00:53:03,149 --> 00:53:05,784
 fast and you'll be dropped right into the debugger
+然后你会被马上带到调试界面
 
 1052
 00:53:05,853 --> 00:53:07,652
 where the crash happened so you can figure whats going on.
+告诉你哪里导致了崩溃，让你能理清楚
 
 1053
 00:53:07,721 --> 00:53:09,454
 How could this have happened?
+到底是怎么崩溃的
 
 1054
 00:53:09,522 --> 00:53:12,224
 So in this case were talking about the title of a button,
+如果我们这个情况下会缺省值
 
 1055
 00:53:12,293 --> 00:53:14,393
 that means the title of the button was never set and
+那就是这个按钮并没有标题
 
 1056
 00:53:14,461 --> 00:53:17,462
 this is touch digit. That should never have happen. Okay
+这个函数是我们按了数字，按钮没有标题不应该发生
 
 1057
 00:53:17,530 --> 00:53:20,098
 if that happened in something I shipped to my customer,
+如果按钮没有标题软件就卖给了客户
 
 1058
 00:53:20,167 --> 00:53:22,033
 customers would be complaining left, right and center.
+客户一定会彻头彻尾地批评这个软件
 
 1059
 00:53:22,102 --> 00:53:24,302
 There's a button that has no title on it,
+这里有个按钮，标题上什么也没写
 
 1060
 00:53:24,371 --> 00:53:25,737
 nothing on it and I click what,
+点下去之后就崩溃
 
 1061
 00:53:25,806 --> 00:53:27,072
 you know what I'm saying?
+懂我是什么意思了吗？
 
 1062
 00:53:27,141 --> 00:53:28,574
 So, you want to find those in development.
+所以你希望在开发阶段就能发现这些问题
 
 1063
 00:53:28,642 --> 00:53:30,642
 So crashing can be good sometimes.
+所以崩溃有的时候是好事情
 
 1064
 00:53:30,711 --> 00:53:33,444
 Now of course you don't always want to crash when you unwrap
+当然你并应该每次解包可选类型的时候都导致崩溃
 
 1065
 00:53:33,513 --> 00:53:36,215
 an optional and I'll show you in a little bit how to unwrap
+我还会再讲讲如何解包
 
 1066
 00:53:36,283 --> 00:53:39,084
 an optional and get it to associated value. But test it
+获取可选类型的关联值
 
 1067
 00:53:39,152 --> 00:53:42,654
 first to make sure that it's in the set state. Okay, but
+正常情况下都应该确认可选类型是否有值
 
 1068
 00:53:42,723 --> 00:53:44,789
 for now we do this. Let's run and see what this looks like.
+暂时我们先这样吧，先运行代码看看现在是什么情况
 
 1069
 00:53:44,858 --> 00:53:47,793
-It should work. But now we've unwrapped this thing,
+It should work. Now we've unwrapped this thing,
+应该没有问题了，我们已经解包了这个可选变量
 
 1070
 00:53:47,862 --> 00:53:48,893
 grabbed its associate value.
+得到了关联值
 
 1071
 00:53:48,962 --> 00:53:51,663
 And we know the current title should always be set so
+而且我们知道按钮的标题是一定存在的
 
 1072
 00:53:51,732 --> 00:53:53,798
 we'll not have to worry about crashing here. And
+应该不用担心会崩溃
 
 1073
 00:53:53,867 --> 00:53:56,868
 sure enough seven was touched, nine, whatever, three,
+好，7 was touched，9，6，3
 
 1074
 00:53:56,937 --> 00:54:00,705
 five, six, okay? All right, so we're rocking and
+5，6 被按下了。那我们很了不起哦
 
 1075
 00:54:00,774 --> 00:54:04,710
 rolling here. We're able to collect the digits from user.
+我们能够成功地接收用户按下按钮上的数字
 
 1076
 00:54:04,779 --> 00:54:07,546
 Now let's put them in the calculator display.
+现在我们把这些数字展示出来
 
 1077
 00:54:07,615 --> 00:54:09,581
 So we need to add a display to our calculator.
+所以我们要给我们的计算器加一个显示屏
 
 1078
 00:54:09,650 --> 00:54:12,083
 So we're gonna go back to our area here.
+先调出工具区
 
 1079
 00:54:12,152 --> 00:54:15,186
 Go down to the bottom half. Now be careful not to grab
+把下半部分的对象库拽出来。注意我们要使用的
 
 1080
 00:54:15,255 --> 00:54:17,856
 text field here because that's editable text and
+不是这里的这个 Text Field。那是用来输入文字的
 
 1081
 00:54:17,924 --> 00:54:20,025
-in a compilator you can't click on the display and
+in a calculator you can't click on the display and
+正常的计算器是不应该
 
 1082
 00:54:20,093 --> 00:54:22,728
 edit it. You type the numbers to put your numbers in. So
+让你点击显示屏修改结果的。你应该按数字按钮
 
 1083
 00:54:22,796 --> 00:54:25,164
-we're gonna use this one up here, which is labeled.
+we're gonna use this one up here, which is label.
+正确的选择是使用上面这个，Label
 
 1084
 00:54:25,232 --> 00:54:27,065
 By the way, if you click on one of these and
+顺便提一句，如果你点击这些对象中的其中一个
 
 1085
 00:54:27,134 --> 00:54:28,199
 leave your mouse there for a second,
+然后把鼠标就停留在那里
 
 1086
 00:54:28,268 --> 00:54:30,903
 it'll give you a detailed explanation of each of these
+Xcode 会详细地解释
 
 1087
 00:54:30,971 --> 00:54:34,473
 objects in the list. So I'm just gonna pick out a label
+任何一个在列表中的对象。我按住这个 Label
 
 1088
 00:54:34,542 --> 00:54:35,740
 and drag it up here to top,
+然后拖过来放在最上面
 
 1089
 00:54:35,809 --> 00:54:39,844
 maybe make a little more space for it. Move out a little bit.
+稍微多给它留点空间，把这些挪下来些
 
 1090
 00:54:39,913 --> 00:54:42,714
 So we've got this label. Once again just like I did for
+我们已经添加了这个标签，还是像之前一样
 
 1091
 00:54:42,783 --> 00:54:45,049
 the buttons I'm going to change the size.
+像更改按钮一样更改标签的大小
 
 1092
 00:54:45,118 --> 00:54:48,086
 Maybe I want to start with zero in there. Bigger font.
+把标签显示的文字改成 0，调大字号
 
 1093
 00:54:48,155 --> 00:54:51,689
 Let's go over here maybe even really big font, like 40 or
+还是点这个按钮，设置一个很大的字号，比如 40
 
 1094
 00:54:51,758 --> 00:54:55,927
 something like that. In a calculator the text is right
+在计算器中，显示器中的文字是右对齐的对吧
 
 1095
 00:54:55,996 --> 00:54:58,797
 aligned. Right? Text comes out from the right, so
+数字是从右边开始增加的
 
 1096
 00:54:58,866 --> 00:55:01,266
 we want to use this alignment right here.
+所以还应该调整这个对齐方式
 
 1097
 00:55:01,334 --> 00:55:05,470
 Right aligned. Okay? Maybe with some colors.
+改为右对齐。还可以改下颜色
 
 1098
 00:55:05,539 --> 00:55:07,773
 Let's put, let's make the background be blue.
+把背景色改成蓝色
 
 1099
 00:55:07,842 --> 00:55:10,576
 But I don't really like black on blue, so
+但是黑色的字就不够显眼了
 
 1100
 00:55:10,644 --> 00:55:14,179
 we'll go up here and change the color to be white. Okay?
+到上面来把字的颜色改成白色
 
 1101
 00:55:14,248 --> 00:55:17,583
