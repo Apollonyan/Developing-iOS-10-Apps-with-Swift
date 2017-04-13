@@ -21,7 +21,7 @@ enum ResourceType: String, CustomStringConvertible {
     case readingAssignment = "Reading Assignment"
     case programmingProject = "Programming Project"
 
-    static let all: [ResourceType] = [.video, .slides, .demoCode, .readingAssignment, .programmingProject]
+    static let all: LazyCollection<[ResourceType]> = [.video, .slides, .demoCode, .readingAssignment, .programmingProject].lazy
 
     var description: String {
         switch self {
@@ -44,14 +44,8 @@ struct Resource: CustomStringConvertible {
 
         if rawType.contains("video") {
             type = .video
-        } else if title.contains("Reading Assignment") {
-            type = .readingAssignment
-        } else if title.contains("Programming Project") {
-            type = .programmingProject
-        } else if title.contains("Demo Code") {
-            type = .demoCode
-        } else if title.contains("Slides") {
-            type = .slides
+        } else if let resType = ResourceType.all.first(where: { title.contains($0.rawValue) }) {
+            type = resType
         } else {
             fatalError("Unknown Raw Type")
         }
@@ -132,11 +126,11 @@ class ParsingDelegate: NSObject, XMLParserDelegate {
     }
 
     func parserDidEndDocument(_ parser: XMLParser) {
-        let sorted = ResourceType.all.map { type in
+        let sorted = ResourceType.all.map { [resources] type in
             resources.filter { $0.type == type } .sorted { $0.index < $1.index }
         }
 
-        var out = "[返回主页](/README.md) | [Back to Main Page](/en/README.md)\n\n"
+        var out = "[返回主页](../README.md) / [Back to Main Page](../en/README.md)\n\n"
         for (index, type) in ResourceType.all.enumerated() {
             if sorted[index].count > 0 {
                 out += "# \(type)\n\n"
@@ -144,7 +138,7 @@ class ParsingDelegate: NSObject, XMLParserDelegate {
             }
         }
 
-        let cwd = CommandLine.arguments.first { $0.contains("main.swift") } ?? FileManager.default.currentDirectoryPath
+        let cwd = CommandLine.arguments.first { $0.contains(#file) } ?? FileManager.default.currentDirectoryPath
         let url = URL(fileURLWithPath: cwd).deletingLastPathComponent().appendingPathComponent("download.md")
         do {
             try out.write(to: url, atomically: true, encoding: .utf8)

@@ -1,4 +1,4 @@
-[返回主页](/README.md) | [Back to Main Page](/en/README.md)
+[返回主页](../README.md) / [Back to Main Page](../en/README.md)
 
 # Videos
 
