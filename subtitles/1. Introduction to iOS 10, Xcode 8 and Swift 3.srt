@@ -430,7 +430,7 @@ Cocoa Touch 层
 87
 00:04:17,257 --> 00:04:20,058
 This is where buttons and text fields and things are, but
-这一层包含了按钮，文本框等控件
+这一层包含了按钮，文本字段等控件
 
 88
 00:04:20,127 --> 00:04:22,727
@@ -2025,7 +2025,7 @@ a library of iOS objects that you can build your app out of.
 406
 00:19:53,827 --> 00:19:57,262
 And it has things like buttons, text fields,
-比如按钮，文本框
+比如按钮，文本字段
 
 407
 00:19:57,331 --> 00:20:00,298
