@@ -1999,12 +1999,12 @@ of functional programming in mind. If you ever really wanna
 500
 00:27:06,126 --> 00:27:09,962
 kind of see a good example of how to apply this immutability
-看更多关于如何实现这种不可变性、
+看更多关于如何实现这种不可变性
 
 501
 00:27:10,030 --> 00:27:13,698
 and generics, and protocols and all that stuff to build
-泛型、协议和在这些基础上搭建
+和在泛型、协议这些基础上搭建
 
 502
 00:27:13,767 --> 00:27:16,968
@@ -2024,12 +2024,12 @@ all these things. Remember, that I said things like
 505
 00:27:24,144 --> 00:27:26,878
 the range is a sequence, or this thing is comparable,
-Range 是一个 Sequence（译者注：基础框架中的 Range 并不是 Sequence），或者这个是 Comparable 的之类的话
+记得我说过（在 SE-0065 之前）Range 是 Sequence
 
 506
 00:27:26,947 --> 00:27:29,414
 remember how I said things like that? Okay, well,
-记住我这种说法了吗？好，接下来
+或者这个是 Comparable 的之类的吗？好，接下来
 
 507
 00:27:29,483 --> 00:27:32,483
@@ -2089,7 +2089,7 @@ Swift 在基础层面已经对函数式编程
 518
 00:28:00,313 --> 00:28:04,849
 the fundamentals you need to do that. That's kind
-提供了一些你需要的支持。对于应该怎么选择编程思想
+提供了你需要的支持。对于应该怎么选择编程思想
 
 519
 00:28:04,918 --> 00:28:08,086
@@ -2134,7 +2134,7 @@ might help you build the apps that are more testable,
 527
 00:28:31,445 --> 00:28:32,777
 because it's a lot easier to write a test for
-这会让测试变得更容易。
+这会让测试变得更容易
 
 528
 00:28:32,846 --> 00:28:34,646
@@ -2224,12 +2224,12 @@ externalSecond 作为参数名
 545
 00:29:22,763 --> 00:29:25,430
 that you can put an under bar to make it so there's no
-你可以用一个下划线来代替
+你可以在没有外部参数名时
 
 546
 00:29:25,499 --> 00:29:30,068
 external name. We only do that 99.99% of the time with
-外部参数名。这种下划线的方式我们99.99%的时候只对
+用下划线来代替。这种下划线的方式我们99.99%的时候只对
 
 547
 00:29:30,137 --> 00:29:34,039
@@ -2334,7 +2334,7 @@ Most languages have that. Now on the topic of methods.
 567
 00:30:44,345 --> 00:30:48,447
 You've seen, actually you've seen both, but mostly seen and
-可以看到，实际上两个都在这里，但是通常你们更理解
+可以看到，实际上两个都在这里，但是通常你们更熟悉
 
 568
 00:30:48,516 --> 00:30:51,984
@@ -2344,17 +2344,17 @@ understood instance methods. These are methods,
 569
 00:30:52,052 --> 00:30:56,255
 or vars, that are being sent to an instance of the class
-或实例变量，可以通过给一个类、
+或实例变量，可以通过给一个类
 
 570
 00:30:56,323 --> 00:31:00,058
 struct or enum. In other words, one of them.
-结构体或枚举的实例发送消息来访问。换句话说，实例是它们的一员
+结构体或枚举的实例发送消息来访问。也就是给某一个具体对象
 
 571
 00:31:00,127 --> 00:31:04,429
 Like I create one of them: I create a double of 15.5,
-比如我可以创建它们的一员：我创建一个值为 15.5 的 Double
+比如我可以创建它们的一个实例：我创建一个值为 15.5 的 Double
 
 572
 00:31:04,498 --> 00:31:07,466
@@ -2394,32 +2394,32 @@ static func 意思是这个方法是
 579
 00:31:30,791 --> 00:31:34,726
 the type, not on instances of the type, on the type itself.
-类型方法，不是实例方法，而是类型本身的方法
+属于类型。不是属于实例的，而是类型本身的方法
 
 580
 00:31:34,795 --> 00:31:37,762
 For example, let's think about double here.
-例如，还是以 Double 来思考
+还是以 Double 举例
 
 581
 00:31:37,831 --> 00:31:43,502
 Double actually has quite a few static or type methods and
-Double 拥有一些类型方法和
+Double 拥有不少类型方法和
 
 582
 00:31:43,571 --> 00:31:47,773
 vars. You access them by sending the message to
-变量。可以通过发送消息来访问
+变量。可以通过发送消息给
 
 583
 00:31:47,841 --> 00:31:51,242
 Double to the actual word, capital D-O-U-B-L-E. You
-Double，通过确切的D-O-U-B-L-E这几个字母
+Double 来访问。一字不差，D-O-U-B-L-E
 
 584
 00:31:51,311 --> 00:31:54,012
 don't send it to an instance, you send it to that word. And
-不要发送给一个实例，而是发送给那个类型的单词
+不要发送给一个实例，而是发送给那个类型的名称
 
 585
 00:31:54,080 --> 00:31:57,715
@@ -2434,12 +2434,12 @@ Remember we said Double.pi and we got the value of pi?
 587
 00:32:00,821 --> 00:32:05,790
 Pi is a var, a computed var, on the class or
-π 是一个变量，一个计算变量，在类或
+π 是一个变量，一个计算变量
 
 588
 00:32:05,859 --> 00:32:09,594
 struct actually, double, but it also has other methods,
-结构体中真实存在，Double 也有一些其他方法
+属于 Double 这个结构体。Double 也有一些其他方法
 
 589
 00:32:09,663 --> 00:32:12,564
@@ -2449,7 +2449,7 @@ like abs. Abs takes a double value and
 590
 00:32:12,633 --> 00:32:16,701
 returns the absolute value of it. That is on the type.
-返回这个值的绝对值。这是类型中的方法
+返回这个值的绝对值。这是类型的方法
 
 591
 00:32:16,770 --> 00:32:21,039
@@ -2464,7 +2464,7 @@ if I have a double like x is equal 23.85.
 593
 00:32:23,444 --> 00:32:27,379
 So x is now a double. I can't say x Double.pi cause
-x 是一个 Double。这时我就不能让 x 调用 Double.pi 了
+x 是一个 Double 实例。这时不能通过 x 调用 Double.pi
 
 594
 00:32:29,149 --> 00:32:31,950
@@ -2499,7 +2499,7 @@ we're not sending them to an instance.
 600
 00:32:47,100 --> 00:32:51,035
 We mostly use them for utility methods, things like that.
-我们通常在工具类方法中使用类型方法，比如
+类型方法通常是类中的辅助方法，比如
 
 601
 00:32:51,104 --> 00:32:55,640
@@ -2539,27 +2539,27 @@ That you would send to an instance, and it would take
 608
 00:33:12,693 --> 00:33:16,160
 the absolute value of the thing you sent it to. But
-取这个实例的绝对值。但是
+取这个实例的绝对值
 
 609
 00:33:16,229 --> 00:33:19,030
 of course the type one has to have an argument because
-这个返回值需要有一个参数来表达它是什么类型，因为
+但是类型方法需要接受一个参数
 
 610
 00:33:19,099 --> 00:33:20,265
 you're sending it to the type double,
-你调用的是一个 Double 的实例
+因为你发送消息给 Double 类型
 
 611
 00:33:20,334 --> 00:33:21,699
 so there's no double involved.
-没有 Double 这个类型参与
+所以并没有 Double
 
 612
 00:33:21,768 --> 00:33:25,904
 There's no instance of a double involved. Everybody got
-也就不会返回一个 Double 的实例
+没有 Double 实例参与计算
 
 613
 00:33:25,972 --> 00:33:30,909
@@ -2569,7 +2569,7 @@ that? Alright: properties. You know all about properties.
 614
 00:33:30,978 --> 00:33:33,779
 We saw computed properties like display value in
-我们已经看过了存储属性，比如之前计算器中
+我们已经看过了计算属性，比如之前计算器中
 
 615
 00:33:33,847 --> 00:33:36,314
@@ -2599,7 +2599,7 @@ will get executed when your property changes.
 620
 00:33:51,065 --> 00:33:53,498
 Anytime your property changes just a little piece of code
-任何时候属性改变了，一段代码
+任何时候属性改变了，这段代码
 
 621
 00:33:53,567 --> 00:33:56,134
@@ -2654,12 +2654,12 @@ notice that it changed. By the way, if you have a property
 631
 00:34:24,798 --> 00:34:28,934
 which is a value type, (a struct or
-是值类型（结构体、
+是值类型，如结构体
 
 632
 00:34:29,003 --> 00:34:31,769
 something, like an array or an dictionary), this property
-数组、字典等），这些属性观察器
+数组、字典等，这些属性观察器
 
 633
 00:34:31,838 --> 00:34:34,639
@@ -2669,7 +2669,7 @@ observer stuff will happen if that thing gets changed,
 634
 00:34:34,708 --> 00:34:37,709
 if it gets mutated. So if you add something to the array,
-或是它们包含的内容被改变时触发。因此，如果向数组中添加元素
+或是包含的内容被改变时触发。比如向数组中添加元素
 
 635
 00:34:37,777 --> 00:34:40,112
@@ -2764,7 +2764,7 @@ just adding a curly brace doesn't make it a computed
 653
 00:35:25,826 --> 00:35:29,494
 property, you have to put get or set in there, but,
-原本你要里面加上 get 或 set，但是
+你要里面加上 get 或 set，但是
 
 654
 00:35:29,563 --> 00:35:33,031
@@ -2799,12 +2799,12 @@ see some stored property up there? It has not yet
 660
 00:35:46,880 --> 00:35:49,914
 been set to newValue but it's going to be. And then didSet,
-被设置成 newValue，但是马上就要设置了。然后是 didSet
+被设置成 newValue，但马上就要设置了
 
 661
 00:35:49,983 --> 00:35:52,917
 that code occurs after some property has been set and
-那些代码在属性被设置之后执行
+didSet 中的那些代码在属性被设置之后执行
 
 662
 00:35:52,986 --> 00:35:55,720
@@ -2844,7 +2844,7 @@ my background color changes. I inherit my background color
 669
 00:36:17,010 --> 00:36:21,413
 from my super class, UI view. Up the chain of super classes.
-父类 UIView 的，直到更高级的父类
+继承树最上层的父类 UIView 的
 
 670
 00:36:21,482 --> 00:36:22,847
@@ -2939,7 +2939,7 @@ Lazy initialization is a really powerful tool.
 688
 00:37:20,006 --> 00:37:23,975
 It's gonna get you out of a lot of binds in this class.
-这可以让你在类的设计中减少很多束缚
+这可以帮你减少很多的麻烦
 
 689
 00:37:24,044 --> 00:37:27,679
@@ -2949,7 +2949,7 @@ What does it mean? A lazy var, a var
 690
 00:37:27,748 --> 00:37:32,884
 that you say lazy in front of, whatever it's set equal to,
-在前面加上 lazy 关键字，不管他被赋什么值
+在前面加上 lazy 关键字，不管它被赋什么值
 
 691
 00:37:32,953 --> 00:37:36,688
@@ -3069,7 +3069,7 @@ And we didn't say, equals false. And we got an error.
 714
 00:38:34,648 --> 00:38:38,116
 It said we had no init, because we hadn't initialized
-要求我们必须初始化，我们没有初始化它
+说缺少构造器，因为我们没有初始化它
 
 715
 00:38:38,184 --> 00:38:42,921
@@ -3079,87 +3079,87 @@ that. Not only did they all have to be initialized, but
 716
 00:38:42,989 --> 00:38:45,457
 they all had to be initialized before you could even send
-它们要在可以被发送消息前就被初始化
+属性要在可以被发送消息前初始化
 
 717
 00:38:45,525 --> 00:38:50,095
 a message to that class, even internally. So
-即使在其内部也是如此
+即使在类内部也是如此
 
 718
 00:38:50,163 --> 00:38:52,697
 you can't invoke any of your own methods until you fully
-你甚至无法调用自己的任何一个方法，除非
+也就是你无法调用任何一个实例方法，直到
 
 719
 00:38:52,766 --> 00:38:55,834
 initialize yourself. What if one of the things you want to
-完全初始化了自身。如果你希望某个变量
+实例完全初始化了。如果你希望某个属性
 
 720
 00:38:55,902 --> 00:39:02,040
 initialize needs to call a method on yourself? It's
-的初始化过程中调用自身的一个方法要怎么办？
+的初始化过程调用另一个实例方法怎么办？
 
 721
 00:39:02,109 --> 00:39:05,243
 impossible. Because if you need to initialize something
-这是不可能的。因为如果你希望初始化
+这是不可能的。比如你需要初始化某个属性
 
 722
 00:39:05,312 --> 00:39:07,045
 to be allowed to send messages to yourself and you need
-过程中可以给自身发消息
+才能来给实例发消息
 
 723
 00:39:07,114 --> 00:39:09,047
 to send a message to yourself to initialize something,
-你需要给自身发送消息来初始化
+但这个属性的初始化，又要求实例已经完成了构造
 
 724
 00:39:09,116 --> 00:39:12,751
 it's a deadlock. You can't do it. Okay, well lazy let's you
-这是一个死锁。原本没法这么做，但是 lazy 帮你做到了
+这就陷入了僵局。原本没法这么做，但是可以通过 lazy 实现
 
 725
 00:39:12,820 --> 00:39:16,221
 do it. Because you can say for example, the last one there;
-因为你可以指出哪个最后做
+比如用这里最后的 myProperty 举例
 
 726
 00:39:16,290 --> 00:39:20,925
 lazy my property equals some method on myself. This is not
-将某个属性设置为 lazy 之后等同于自身的实例方法
+将这个延时属性设置为实例的某个方法的值
 
 727
 00:39:20,994 --> 00:39:24,896
 going to be executed until someone says my property and
-直到完全初始化完成之前，它都不会执行
+直到某人访问它之前，这段代码都不会运行
 
 728
 00:39:24,965 --> 00:39:27,733
 no one's allowed to access my property until I'm fully
-谁也不可能访问它的属性
+记住，直到实例初始化完成之前，谁也不能访问这个属性
 
 729
 00:39:27,801 --> 00:39:32,437
 initialized. So by definition there's no way
-所以很明确，不会有任何方式
+所以很明确
 
 730
 00:39:32,506 --> 00:39:35,440
 that that is gonna try to get initialized until I'm already
-可以初始化 lazy 变量直到自身完全初始化之前
+在实例完全初始化之前，延迟属性一定没有初始化
 
 731
 00:39:35,508 --> 00:39:40,011
 fully initialized. And yet this lazy thing counts as this
-而且 lazy 属性会被视作
+但这时 lazy 属性会被视作
 
 732
 00:39:40,080 --> 00:39:46,284
 thing having been initialized. So this is the big loophole.
-已经被初始化的属性。这是一个很大的漏洞
+已经初始化了。这是一个很大的“漏洞”
 
 733
 00:39:46,353 --> 00:39:49,554
@@ -3169,22 +3169,22 @@ lazy 属性被视为已初始化
 734
 00:39:49,623 --> 00:39:51,389
 even though it really hasn't yet. Because it's waiting for
-但实际上它没被初始化。它在等待
+但实际上它没被初始化，因为 myProperty 在等待
 
 735
 00:39:51,458 --> 00:39:55,393
 something to actually access myProperty. But it counts for
-某处访问它。但是为了
+某处实际访问它。所以这个漏洞的存在
 
 736
 00:39:55,462 --> 00:39:58,263
 the purposes of that rule, so now someone comes along later
-这个在规则下达成我们的目标，这种做法是值得的。现在某处访问了它
+是为了遵守那条规则。现在某处实际访问了它
 
 737
 00:39:58,332 --> 00:40:00,331
 and accesses it, now we can call this method. So
-我们调用这个方法
+我们再调用这个方法
 
 738
 00:40:00,400 --> 00:40:03,101
@@ -3224,7 +3224,7 @@ right from calculator brain, it's just a function,
 745
 00:40:19,352 --> 00:40:22,488
 in line function), you can actually have a closure
-一个内联的方法），你可以用一个闭包
+一个内联函数），你可以用一个闭包
 
 746
 00:40:22,556 --> 00:40:26,090
@@ -3249,7 +3249,7 @@ of that var. And then just put the little open parenthesis,
 750
 00:40:35,302 --> 00:40:38,237
 close parenthesis at the end. When we open parenthesis and
-在闭包的结尾。
+在闭包的结尾
 
 751
 00:40:38,305 --> 00:40:39,438
@@ -3369,22 +3369,22 @@ array angle bracket string. It's just kind of a special
 774
 00:41:45,606 --> 00:41:48,873
 way to declare an array and it actually seems to be
-它只是一种声明数组的特殊方式，比较被大众接受的方式
+[String] 这种声明数组的特殊方式更被大众接受
 
 775
 00:41:48,942 --> 00:41:51,443
 the preferred way. I actually prefer the other way because
-但是我比较喜欢另一种
+但是我比较喜欢用 Array<String>
 
 776
 00:41:51,512 --> 00:41:54,079
 it's a little clearer to you that are learning that this is
-比较清晰的告诉你这是个数组
+更明确地告诉你们这些学生，这是个数组
 
 777
 00:41:54,148 --> 00:41:57,182
 an array, because it says the word array and string.
-并且包含了 Array 和 String 两个单词
+毕竟包含了 Array 和 String 两个单词
 
 778
 00:41:57,251 --> 00:41:59,918
@@ -3394,26 +3394,26 @@ But open square bracket, close square bracket,
 779
 00:41:59,986 --> 00:42:02,187
 we know that's going to be index into an array so
-我们知道这是索引数组内容的方式
+我们知道这是通过索引访问数组元素的方式
 
 780
 00:42:02,256 --> 00:42:03,722
 it looks kind of array-ish but
-它看起来更有数组的风格
+它也看起来更有数组的风格
 
 781
 00:42:03,790 --> 00:42:08,594
 just get used to it. [String] means an array of string.
-我们也更习惯这种方式。[String] 代表一个包含字符串的数组
+习惯了就好了。[String] 代表一个包含字符串的数组
 
 782
 00:42:08,662 --> 00:42:11,997
-It's the declaration of the S and the name of that
-它是对元素类型为字符串的数组的声明
+That's the name of that type
+这是字符串数组这个类型的名称
 
 783
 00:42:12,066 --> 00:42:16,635
-type array of string. So if I had a string right here like
+array of string. So if I had a string right here like
 如果我有一些字符串
 
 784
@@ -3439,12 +3439,12 @@ you are appending has to be the same type obviously
 788
 00:42:30,684 --> 00:42:33,218
 as the type of everything in the array, however the type
-和数组中其他元素是同一个类型，
+和数组中其他元素是同一个类型
 
 789
 00:42:33,286 --> 00:42:36,955
 was declared. Notice that animals is in inferred.
-因为类型已经被声明了。注意这里 animals 已经被类型推断了
+因为类型已经被声明了。注意这里 animals 的类型已经
 
 790
 00:42:37,024 --> 00:42:40,225
@@ -3484,7 +3484,7 @@ Can anyone tell me why that's not gonna work?
 797
 00:42:53,073 --> 00:43:02,247
 Yeah? >> That's exactly right.
->> 答得好
+>> 答得好，给你颗糖吃
 
 798
 00:43:02,316 --> 00:43:06,485
@@ -3499,7 +3499,7 @@ it's immutable. So when we say append an ostrich onto
 800
 00:43:09,956 --> 00:43:13,025
 an immutable thing, it's going to crash my program.
-给了一个不可变东西，这会导致程序崩溃
+添加进这个不可变的数组，就会导致程序崩溃
 
 801
 00:43:13,093 --> 00:43:15,027
