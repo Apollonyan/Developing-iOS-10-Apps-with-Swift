@@ -1989,1214 +1989,1517 @@ really do a good job of doing real functional programming.
 498
 00:26:58,285 --> 00:27:02,153
 All of the Swift foundation is really designed with a lot
+Swift 的基础框架中很多是基于
 
 499
 00:27:02,222 --> 00:27:06,057
 of functional programming in mind. If you ever really wanna
+函数式编程思想设计的。如果你想
 
 500
 00:27:06,126 --> 00:27:09,962
 kind of see a good example of how to apply this immutability
+看更多关于如何实现这种不可变性、
 
 501
 00:27:10,030 --> 00:27:13,698
 and generics, and protocols and all that stuff to build
+泛型、协议和在这些基础上搭建
 
 502
 00:27:13,767 --> 00:27:16,968
 an architecture, chase down all the things that
+的体系的例子，就去查看
 
 503
 00:27:17,037 --> 00:27:21,006
 are going on in the foundation library: string and range and
+基础库中的实现方法，String、Range
 
 504
 00:27:21,075 --> 00:27:24,075
 all these things. Remember, that I said things like
+等所有内容。记住我说的类似于
 
 505
 00:27:24,144 --> 00:27:26,878
 the range is a sequence, or this thing is comparable,
+Range 是一个 Sequence（译者注：基础框架中的 Range 并不是 Sequence），或者这个是 Comparable 的之类的话
 
 506
 00:27:26,947 --> 00:27:29,414
 remember how I said things like that? Okay, well,
+记住我这种说法了吗？好，接下来
 
 507
 00:27:29,483 --> 00:27:32,483
 how do you express that? You use protocols,
+如何表达这些概念？你可以使用 Protocol（协议）
 
 508
 00:27:32,552 --> 00:27:37,822
 with these immutable types, that can be immutable and
+和那些不可变的类型
 
 509
 00:27:37,891 --> 00:27:41,593
 use generics. So I can't explain all that,
+以及 Generic（泛型）。我并不能在此一一解释
 
 510
 00:27:41,662 --> 00:27:44,362
 I've already spent too much time on it than I have to even
+因为已经花了太多时间在这些概念上，超过我
 
 511
 00:27:44,431 --> 00:27:45,964
 talk about it in the lecture today, but just so
+应该在今天的课程中讲解的内容，但是
 
 512
 00:27:46,033 --> 00:27:49,601
 you know, there is a huge advantage of programming in
+你们知道的，有时换一种编写代码的方式
 
 513
 00:27:49,669 --> 00:27:52,504
 a different way; it requires a real mindset change.
+会带来巨大的好处。这需要观念上的改变。
 
 514
 00:27:52,572 --> 00:27:55,440
 So hopefully, you'll take a class where maybe the whole
+希望你们有机会写一个类，里面全部内容
 
 515
 00:27:55,509 --> 00:27:56,641
 class is functional programming,
+都基于函数式编程思想
 
 516
 00:27:56,710 --> 00:27:58,110
 and really you'll get a feel for it.
+这样你们就会对这个概念有一定认识了。
 
 517
 00:27:58,179 --> 00:28:00,245
 Swift does a good job of supporting for
+Swift 在基础层面已经对函数式编程
 
 518
 00:28:00,313 --> 00:28:04,849
 the fundamentals you need to do that. That's kind
+提供了一些你需要的支持。对于应该怎么选择编程思想
 
 519
 00:28:04,918 --> 00:28:08,086
 of the long-winded answer to which do you choose. If you're
+我已经给出了长篇大论式的解答。如果你
 
 520
 00:28:08,154 --> 00:28:10,756
 doing more of a functional approach, even if you're doing
+正在学习更多关于函数式编程的知识，或者只是
 
 521
 00:28:10,824 --> 00:28:13,692
 a reference-based approach like what you're used to, try
+了解传统的基于引用的思想，都可以尝试
 
 522
 00:28:13,760 --> 00:28:16,361
 to lean towards immutability, try to ask yourself,
+向这种不可变的方式上转变。试着问自己
 
 523
 00:28:16,430 --> 00:28:21,299
 can this thing work and be immutable? Is there some
+这些内容不可变后还能正常运作吗？是否有
 
 524
 00:28:21,368 --> 00:28:24,169
 functionality in my program that I could share by creating
+一些功能可以通过泛型来共享其实现部分
 
 525
 00:28:24,238 --> 00:28:29,107
 a generic, for example. At least those leanings
+这种思想上的转变至少
 
 526
 00:28:29,176 --> 00:28:31,376
 might help you build the apps that are more testable,
+会帮助你构建更具有可测试性的应用
 
 527
 00:28:31,445 --> 00:28:32,777
 because it's a lot easier to write a test for
+这会让测试变得更容易。
 
 528
 00:28:32,846 --> 00:28:34,646
 something that's like a mathematical function where
+例如一个数学相关的函数
 
 529
 00:28:34,715 --> 00:28:36,515
 you know the data out is supposed to be the same for
+如果可以确认数据在经过处理后
 
 530
 00:28:36,584 --> 00:28:38,817
 the data in, than it is for something where there's
+和传入时保持相同，会比那些
 
 531
 00:28:38,886 --> 00:28:40,919
 a lot of data that you have to set everything up. Set this,
+需要设置很多输入数据的要容易的多。预先设置这个
 
 532
 00:28:40,988 --> 00:28:43,688
 set this and this and this, and now call the method,
+这个以及这个，然后调用方法
 
 533
 00:28:43,757 --> 00:28:47,925
 that's a lot more difficult to write test cases for, etc.
+为这样的方法编写测试用例会非常困难
 
 534
 00:28:47,994 --> 00:28:50,428
 So that's value and reference. Let's talk a little bit about
+以上说的是值和引用。接下来讲一些
 
 535
 00:28:50,497 --> 00:28:52,664
 the syntax of methods. I'm gonna go fast on this.
+方法的语法。我会加快一些速度
 
 536
 00:28:52,732 --> 00:28:54,366
 Hopefully, you all understand this.
+希望你们可以理解这些内容
 
 537
 00:28:54,435 --> 00:28:57,168
 All parameter names have external names and internal
+所有的参数包含外部参数名和内部参数名
 
 538
 00:28:57,237 --> 00:29:01,640
 names. The internal name is used inside the definition, or
+内部参数名用于函数的声明
 
 539
 00:29:01,709 --> 00:29:04,276
 the inside the implementation of the function.
+或函数内容的实现部分
 
 540
 00:29:04,345 --> 00:29:06,878
 So here I have these two functions, foo and bar. Bar
+有两个函数，foo 和 bar。bar 调用了 foo
 
 541
 00:29:06,947 --> 00:29:11,416
 calls foo. So you can see that inside foo's implementation,
+所以在 foo 的内部
 
 542
 00:29:11,484 --> 00:29:14,820
 it is using the first and the second, whereas bar,
+它用了 first 和 second 作为参数名，但是
 
 543
 00:29:14,889 --> 00:29:17,923
 when bar calls foo, it uses external first and
+bar 调用 foo 时， 使用了 externalFirst 和
 
 544
 00:29:17,991 --> 00:29:22,694
 external second, as the names of the items. And you know
+externalSecond 作为参数名
 
 545
 00:29:22,763 --> 00:29:25,430
 that you can put an under bar to make it so there's no
+你可以用一个下划线来代替
 
 546
 00:29:25,499 --> 00:29:30,068
 external name. We only do that 99.99% of the time with
+外部参数名。这种下划线的方式我们99.99%的时候只对
 
 547
 00:29:30,137 --> 00:29:34,039
 the first item. Why do we do it? Because sometimes the name
+第一个参数使用。为什么要这样做？因为有时通过函数名
 
 548
 00:29:34,107 --> 00:29:38,743
 of the method, and/or the type of that first argument, is
+或者第一个参数的类型
 
 549
 00:29:38,812 --> 00:29:41,780
 enough to make it clear what that thing is supposed to be,
+已经可以明确的推断出第一个参数应该是什么
 
 550
 00:29:41,849 --> 00:29:43,849
 so we don't need to put an external name.
+这时我们就没必要写外部参数名了
 
 551
 00:29:43,917 --> 00:29:45,683
 It's kinda clear. All the other parameters,
+这样显得更清晰。对于其他参数
 
 552
 00:29:45,752 --> 00:29:48,786
 we don't have the advantage of having the name of the method
+把参数名省略只留函数名没什么好处
 
 553
 00:29:48,855 --> 00:29:51,823
 there. So that's why we almost never put underbar for
+所以几乎不会在除第一个参数名之外的地方
 
 554
 00:29:51,892 --> 00:29:56,294
 the later ones. By the way, if you only put one
+使用下划线。顺带，如果只写了一个
 
 555
 00:29:56,363 --> 00:30:00,031
 parameter name, then that's both the external name and
+参数名，那么这个名称既是外部参数名
 
 556
 00:30:00,100 --> 00:30:03,468
 the internal name, and that's not that uncommon,
+也是内部参数名，这种情况并不罕见
 
 557
 00:30:03,537 --> 00:30:07,306
 you'll do that occasionally. All right, so you know all
+可以偶尔使用。好了，这些就是全部
 
 558
 00:30:07,374 --> 00:30:12,344
 that. When it comes to doing overriding, subclassing, in
+接下来是重写和子类
 
 559
 00:30:12,413 --> 00:30:15,747
 reference types and classes, when you override, you have to
+对于引用类型和对象，可以重写
 
 560
 00:30:15,816 --> 00:30:19,584
 explicitly let Swift know that you know you're doing that.
+你必须明确地让 Swift 知道你要重写
 
 561
 00:30:19,653 --> 00:30:21,753
 And you do that by putting the override keyword.
+要用 override 关键字
 
 562
 00:30:21,822 --> 00:30:25,823
 So if you override a method from your superclass you have
+所以，如果你要重写一个父类的方法
 
 563
 00:30:25,892 --> 00:30:29,728
 to say override func whatever. You can mark a method or
+必须使用 override func。可以将一个方法或
 
 564
 00:30:29,797 --> 00:30:33,732
 even a whole class final, and that means that it cannot be
+整个类标记为 final，这意味着它无法
 
 565
 00:30:33,801 --> 00:30:38,269
 overridden, subclasses will not be allowed to override it.
+被重写，子类不允许重写它
 
 566
 00:30:38,338 --> 00:30:42,841
 Most languages have that. Now on the topic of methods.
+大部分语言拥有这类语法。继续方法这个主题
 
 567
 00:30:44,345 --> 00:30:48,447
 You've seen, actually you've seen both, but mostly seen and
+可以看到，实际上两个都在这里，但是通常你们更理解
 
 568
 00:30:48,516 --> 00:30:51,984
 understood instance methods. These are methods,
+实例方法。实例方法
 
 569
 00:30:52,052 --> 00:30:56,255
 or vars, that are being sent to an instance of the class
+或实例变量，可以通过给一个类、
 
 570
 00:30:56,323 --> 00:31:00,058
 struct or enum. In other words, one of them.
+结构体或枚举的实例发送消息来访问。换句话说，实例是它们的一员
 
 571
 00:31:00,127 --> 00:31:04,429
 Like I create one of them: I create a double of 15.5,
+比如我可以创建它们的一员：我创建一个值为 15.5 的 Double
 
 572
 00:31:04,498 --> 00:31:07,466
 I have one, and I can send it messages.
+我有了一个实例，就可以给它发送消息
 
 573
 00:31:07,534 --> 00:31:11,503
-But types, like the type double, the type strength,
+But types, like the type double, the type string,
+但是类型，例如 Double，String
 
 574
 00:31:11,571 --> 00:31:15,808
 the type calculator brain, they can also have methods and
+CalculatorBrain，它们也可以拥有方法和
 
 575
 00:31:15,876 --> 00:31:21,279
 vars. Computed vars, no storage, but computed vars.
+变量。计算变量，没有存储空间，是计算得出的变量
 
 576
 00:31:21,348 --> 00:31:25,017
 All you do to add a method or a var to a type is
+要给类型添加方法或变量，只要
 
 577
 00:31:25,085 --> 00:31:27,385
 you put static in front of the declaration.
+将 static 关键字放在声明语句前面即可
 
 578
 00:31:27,454 --> 00:31:30,722
 So "static func whatever" means this is a function on
+static func 意思是这个方法是
 
 579
 00:31:30,791 --> 00:31:34,726
 the type, not on instances of the type, on the type itself.
+类型方法，不是实例方法，而是类型本身的方法
 
 580
 00:31:34,795 --> 00:31:37,762
 For example, let's think about double here.
+例如，还是以 Double 来思考
 
 581
 00:31:37,831 --> 00:31:43,502
 Double actually has quite a few static or type methods and
+Double 拥有一些类型方法和
 
 582
 00:31:43,571 --> 00:31:47,773
 vars. You access them by sending the message to
+变量。可以通过发送消息来访问
 
 583
 00:31:47,841 --> 00:31:51,242
 Double to the actual word, capital D-O-U-B-L-E. You
+Double，通过确切的D-O-U-B-L-E这几个字母
 
 584
 00:31:51,311 --> 00:31:54,012
 don't send it to an instance, you send it to that word. And
+不要发送给一个实例，而是发送给那个类型的单词
 
 585
 00:31:54,080 --> 00:31:57,715
 you've already seen at least one of these, which was pi.
+你已经看到过至少一个例子了，比如 π
 
 586
 00:31:57,784 --> 00:32:00,753
 Remember we said Double.pi and we got the value of pi?
+还记得我们通过 Double.pi 取得到了 π 的值吗？
 
 587
 00:32:00,821 --> 00:32:05,790
 Pi is a var, a computed var, on the class or
+π 是一个变量，一个计算变量，在类或
 
 588
 00:32:05,859 --> 00:32:09,594
 struct actually, double, but it also has other methods,
+结构体中真实存在，Double 也有一些其他方法
 
 589
 00:32:09,663 --> 00:32:12,564
 like abs. Abs takes a double value and
+例如 abs。abs 接收一个 Double 的值
 
 590
 00:32:12,633 --> 00:32:16,701
 returns the absolute value of it. That is on the type.
+返回这个值的绝对值。这是类型中的方法
 
 591
 00:32:16,770 --> 00:32:21,039
 You say Double.abs, Double.pi. As opposed to, for example,
+可以用 Double.abs，Double.pi。但是
 
 592
 00:32:21,108 --> 00:32:23,375
 if I have a double like x is equal 23.85.
+如果我有一个 Double 类型的实例 x，它等于23.85
 
 593
 00:32:23,444 --> 00:32:27,379
 So x is now a double. I can't say x Double.pi cause
+x 是一个 Double。这时我就不能让 x 调用 Double.pi 了
 
 594
 00:32:29,149 --> 00:32:31,950
 x is an instance of a double. You see the difference?
+因为 x 是 Double 的一个实例。你们是否明白了其中的区别？
 
 595
 00:32:32,019 --> 00:32:34,787
 We see saying x.pi, trying to send pi
+如果我们说 x.pi，尝试把 pi 发送给
 
 596
 00:32:34,855 --> 00:32:38,157
 to an instance versus sending pi to a type double.
+实例，对比发送 pi 给类型 Double 的区别
 
 597
 00:32:39,593 --> 00:32:42,460
 So what do we use these type methods for?
+为什么要用类型方法？
 
 598
 00:32:42,529 --> 00:32:45,263
 Well, we can't access any instance variables because
+我们没法访问任何一个实例变量
 
 599
 00:32:45,332 --> 00:32:47,032
 we're not sending them to an instance.
+因为我们没有给实例发送消息
 
 600
 00:32:47,100 --> 00:32:51,035
 We mostly use them for utility methods, things like that.
+我们通常在工具类方法中使用类型方法，比如
 
 601
 00:32:51,104 --> 00:32:55,640
 Constants like pi is a good example. Things that
+常量，π 就是一个很好的例子。还有那些
 
 602
 00:32:55,709 --> 00:32:59,177
 kind of are functions that are associated with this type but
+和这个类型本身关联
 
 603
 00:32:59,246 --> 00:33:00,846
 don't belong to a particular instance or
+但不属于任何一个特定的实例
 
 604
 00:33:00,914 --> 00:33:03,882
 wouldn't really operate on an instance. Now for example,
+或者不会真的对一个实例进行操作的方法。例如
 
 605
 00:33:03,951 --> 00:33:06,885
 you might have an instance method or
+可以有一个实例方法
 
 606
 00:33:06,954 --> 00:33:10,856
 even an instance var called abs, A-B-S, with no arguments,
+或一个实例变量叫做 abs，A-B-S，没有参数
 
 607
 00:33:10,925 --> 00:33:12,624
 That you would send to an instance, and it would take
+当你调用它时，它会
 
 608
 00:33:12,693 --> 00:33:16,160
 the absolute value of the thing you sent it to. But
+取这个实例的绝对值。但是
 
 609
 00:33:16,229 --> 00:33:19,030
 of course the type one has to have an argument because
+这个返回值需要有一个参数来表达它是什么类型，因为
 
 610
 00:33:19,099 --> 00:33:20,265
 you're sending it to the type double,
+你调用的是一个 Double 的实例
 
 611
 00:33:20,334 --> 00:33:21,699
 so there's no double involved.
+没有 Double 这个类型参与
 
 612
 00:33:21,768 --> 00:33:25,904
 There's no instance of a double involved. Everybody got
+也就不会返回一个 Double 的实例
 
 613
 00:33:25,972 --> 00:33:30,909
 that? Alright: properties. You know all about properties.
+所有人都明白了吗？属性，你们都知道什么是属性
 
 614
 00:33:30,978 --> 00:33:33,779
 We saw computed properties like display value in
+我们已经看过了存储属性，比如之前计算器中
 
 615
 00:33:33,847 --> 00:33:36,314
 our calculator. There's actually some really cool
+用来显示的数值。属性有一些非常棒的特性
 
 616
 00:33:36,383 --> 00:33:39,717
 features on properties. One of the most interesting ones is
+其中最有趣的一个是
 
 617
 00:33:39,786 --> 00:33:43,155
 property observers. What is a property observer?
+属性观察器。什么是属性观察器？
 
 618
 00:33:43,223 --> 00:33:45,891
 A property observer is a little piece of code that
+属性观察器是一些代码
 
 619
 00:33:45,959 --> 00:33:49,028
 will get executed when your property changes.
+可以在属性改变的时候自动执行
 
 620
 00:33:51,065 --> 00:33:53,498
 Anytime your property changes just a little piece of code
+任何时候属性改变了，一段代码
 
 621
 00:33:53,567 --> 00:33:56,134
 can get executed. Now you can actually find out
+就会被执行。你能准确的捕捉到
 
 622
 00:33:56,203 --> 00:33:58,403
 just before your property changes. Or
+属性将要改变之前，或者
 
 623
 00:33:58,471 --> 00:34:00,438
 you can find out just after your property changes.
+属性刚刚改变之后
 
 624
 00:34:00,507 --> 00:34:03,208
 Or both. And the way you do this, and this works for
+或者上述两种。这只能应用于
 
 625
 00:34:03,276 --> 00:34:06,378
 your stored properties, like userIs InTheMiddleOfTyping:
+存储属性，比如 userIsInTheMiddleOfTyping
 
 626
 00:34:06,447 --> 00:34:08,246
 we could put a property observer on there, and
+我们可以加一个属性观察器
 
 627
 00:34:08,315 --> 00:34:12,183
 execute some code every time we change that. It also works
+每次它被改变都会执行一段代码。这个功能
 
 628
 00:34:12,252 --> 00:34:15,654
 for inherited properties, so if you inherit something
+也对继承的属性有效，比如继承了某些
 
 629
 00:34:15,723 --> 00:34:19,691
 from your superclass, you can put these properties in and
+父类的属性，可以通过属性观察器
 
 630
 00:34:19,760 --> 00:34:24,730
 notice that it changed. By the way, if you have a property
+观察它们的改变。顺便，如果属性
 
 631
 00:34:24,798 --> 00:34:28,934
 which is a value type, (a struct or
+是值类型（结构体、
 
 632
 00:34:29,003 --> 00:34:31,769
 something, like an array or an dictionary), this property
+数组、字典等），这些属性观察器
 
 633
 00:34:31,838 --> 00:34:34,639
 observer stuff will happen if that thing gets changed,
+会在它们指向的值被改变时
 
 634
 00:34:34,708 --> 00:34:37,709
 if it gets mutated. So if you add something to the array,
+或是它们包含的内容被改变时触发。因此，如果向数组中添加元素
 
 635
 00:34:37,777 --> 00:34:40,112
 boom, the Property Observer will kick in and say,
+那就炸了，属性观察器会触发并告诉你
 
 636
 00:34:40,181 --> 00:34:43,081
 "that changed". How do these Property Observers
+“有东西改变了”。属性观察器是
 
 637
 00:34:43,149 --> 00:34:46,318
 work? They look a lot like a computed property. Remember
+基于什么原理工作的呢？它们很像计算属性那样。还记得
 
 638
 00:34:46,386 --> 00:34:48,286
 that the computed property displayValue had get and
+displayValue 的 get 方法执行时
 
 639
 00:34:48,355 --> 00:34:50,656
 then we had some code, And then we had set and
+我们在 get 中加入了一些别的代码，set 的时候
 
 640
 00:34:50,724 --> 00:34:53,057
 we had some code? This is similar except for
+也是一样。这基本上是类似的，除了
 
 641
 00:34:53,126 --> 00:34:57,329
 get and set it's will set, or did set.
+这个是 willSet 和 didSet
 
 642
 00:34:59,566 --> 00:35:01,332
 By the way, you probably would never (I don't even know if
+顺便，你可能永远不会（我也不知道
 
 643
 00:35:01,401 --> 00:35:04,236
 you can) use this in a computed property because
+是不是能这么做）将属性观察器用于计算属性，因为
 
 644
 00:35:04,304 --> 00:35:06,004
 you've got the set clause there so
+既然已经有了 set 语句
 
 645
 00:35:06,073 --> 00:35:07,339
 you can just put it right in set.
+完全可以将代码放在 set 里
 
 646
 00:35:07,407 --> 00:35:10,409
 You don't need to find out when it's set because you set
+根本不需要去监视何时它被改变，因为只有你的 set 方法在改变它
 
 647
 00:35:10,477 --> 00:35:13,311
 it. But for stored properties and inherited properties,
+但是存储属性和继承来的属性不一样
 
 648
 00:35:13,380 --> 00:35:15,880
 that make sense, so you have willSet.
+这时属性观察器有存在价值，所以有了 willSet
 
 649
 00:35:15,949 --> 00:35:18,683
 Now, willSet, first of all, you put it all in a curly
+现在，willSet，首先你要把大括号
 
 650
 00:35:18,752 --> 00:35:21,853
 brace after the property just like if you were doing
+放在属性的后面，像计算属性一样
 
 651
 00:35:21,922 --> 00:35:23,922
 a computed property but, this is not a computed property,
+但是这不是计算属性
 
 652
 00:35:23,991 --> 00:35:25,757
 just adding a curly brace doesn't make it a computed
+加上大括号不会让它变成计算属性
 
 653
 00:35:25,826 --> 00:35:29,494
 property, you have to put get or set in there, but,
+原本你要里面加上 get 或 set，但是
 
 654
 00:35:29,563 --> 00:35:33,031
 if I put willSet, then, inside that code,
+如果在里面加上了 willSet
 
 655
 00:35:33,100 --> 00:35:35,534
 there's a special variable just like there in the set
+会出现一个特殊的变量，和 set 计算属性时
 
 656
 00:35:35,603 --> 00:35:38,270
 case of computer property, called newValue, and
+的情况类似，叫做 newValue
 
 657
 00:35:38,338 --> 00:35:42,073
 that is the value that that thing is going to be set to.
+这个值将会被赋予给这个属性
 
 658
 00:35:42,142 --> 00:35:44,309
 It's not set yet. Some property,
+但是还没赋予给它。一些属性
 
 659
 00:35:44,378 --> 00:35:46,811
 see some stored property up there? It has not yet
+看到上面那些存储属性了吗？它还没
 
 660
 00:35:46,880 --> 00:35:49,914
 been set to newValue but it's going to be. And then didSet,
+被设置成 newValue，但是马上就要设置了。然后是 didSet
 
 661
 00:35:49,983 --> 00:35:52,917
 that code occurs after some property has been set and
+那些代码在属性被设置之后执行
 
 662
 00:35:52,986 --> 00:35:55,720
 the special variable in there is oldValue.
+在那里特殊变量叫做 oldValue
 
 663
 00:35:55,789 --> 00:35:58,456
 That's the value it used to have before it got set. So
+这个值是它被改变前的值
 
 664
 00:35:58,525 --> 00:36:01,159
 you can compare if they've changed, for
+你可以对比是否发生了变化
 
 665
 00:36:01,228 --> 00:36:05,864
 example. So where do we use these things?
+这些特性要用在哪里呢？
 
 666
 00:36:05,932 --> 00:36:08,734
 Probably the number one place that we use them is in our
+可能最重要的一个用途是在
 
 667
 00:36:08,803 --> 00:36:14,205
 Controller in view. Let's say I'm a button and
+控制视图中。比如，我是个按钮
 
 668
 00:36:14,274 --> 00:36:16,941
 my background color changes. I inherit my background color
+我的背景色改变了，我的背景色是继承自
 
 669
 00:36:17,010 --> 00:36:21,413
 from my super class, UI view. Up the chain of super classes.
+父类 UIView 的，直到更高级的父类
 
 670
 00:36:21,482 --> 00:36:22,847
 Every time the background color changes,
+每次背景色改变时
 
 671
 00:36:22,916 --> 00:36:25,116
 the button wants to redraw itself so
+这个按钮都想重绘自己
 
 672
 00:36:25,185 --> 00:36:29,688
 it will have var background color is a UI color,
+所以它有一个背景色属性，类型是 UIColor
 
 673
 00:36:29,757 --> 00:36:32,791
 open curly brace, didSet open curly brace
+添加一个大括号，didSet 再跟一个大括号
 
 674
 00:36:32,860 --> 00:36:38,630
 draw myself closed curly brace. Question? Okay,
+在这里重绘自身。有什么问题？
 
 675
 00:36:38,699 --> 00:36:41,599
 so the question is, if someone changes some stored property
+问题是，如果某人改变了存储属性
 
 676
 00:36:41,668 --> 00:36:44,502
 there, am I responsible for doing something about that
+我是否要负责在
 
 677
 00:36:44,571 --> 00:36:46,572
 in willSet or didSet? Do I have to actually set it? And
+willSet 或 didSet 中做些什么？我是否真的要去设置它？
 
 678
 00:36:46,640 --> 00:36:48,807
 the answer is no. Okay, that's being set somewhere else.
+答案是否。如果被别的什么地方改变了
 
 679
 00:36:48,875 --> 00:36:50,675
 You're just getting a chance to run some other code that
+你只是获得了一个机会去执行其他代码
 
 680
 00:36:50,744 --> 00:36:53,145
 you wanna run just before and just after it happens.
+你希望执行的是 set 前后的事情
 
 681
 00:36:53,213 --> 00:36:55,547
 But you're not responsible for setting the actual value.
+你无需负责 set 这件事本身
 
 682
 00:36:55,616 --> 00:36:57,716
 That's done for you. That's why you get to
+系统已经为你做好了，所以你得到是
 
 683
 00:36:57,784 --> 00:37:02,420
 see the old value and the new value in the two of them.
+oldValue 和 newValue
 
 684
 00:37:02,489 --> 00:37:05,323
 So we'll see this next week when we start drawing on
+我们下周讲屏幕绘图之后会涉及这些
 
 685
 00:37:05,392 --> 00:37:08,126
 screen, where we're gonna be watching properties change so
+那时我们会去观察属性改变
 
 686
 00:37:08,194 --> 00:37:14,166
 we can cause ourselves to redraw. Next, lazy properties.
+来决定什么时候去调用自身的重绘。接下来，lazy 属性
 
 687
 00:37:14,235 --> 00:37:19,938
 Lazy initialization is a really powerful tool.
+延时初始化是一个强大的工具
 
 688
 00:37:20,006 --> 00:37:23,975
 It's gonna get you out of a lot of binds in this class.
+这可以让你在类的设计中减少很多束缚
 
 689
 00:37:24,044 --> 00:37:27,679
 What does it mean? A lazy var, a var
+具体是什么意思？一个 lazy 变量，是一个变量
 
 690
 00:37:27,748 --> 00:37:32,884
 that you say lazy in front of, whatever it's set equal to,
+在前面加上 lazy 关键字，不管他被赋什么值
 
 691
 00:37:32,953 --> 00:37:36,688
 that equals doesn't actually happen until someone accesses
+都不会真的立刻执行，直到某处访问了这个值
 
 692
 00:37:36,757 --> 00:37:41,593
 that var. Until someone asks for the value of that var,
+直到某处需要这个变量的值之前
 
 693
 00:37:41,662 --> 00:37:45,030
 it doesn't actually do the initialization there.
+它都不会真的初始化
 
 694
 00:37:45,098 --> 00:37:46,698
 It doesn't do that equal something.
+这和常规的赋值不一样
 
 695
 00:37:46,767 --> 00:37:48,199
 So it's lazy. It's waiting.
+所以它是延时的。它会等待
 
 696
 00:37:48,268 --> 00:37:51,136
 Now why do you wanna be lazy? Well, one obvious reason
+为什么需要 lazy 呢？一个明显的原因
 
 697
 00:37:51,205 --> 00:37:53,772
 is like here, lazy var brain equals calculator
+像这样，lazy var brain = CalculatorBrain()
 
 698
 00:37:53,840 --> 00:37:56,307
 brain, what if calculator brain was really expensive to
+如果 CalculatorBrain 的创建非常耗资源
 
 699
 00:37:56,376 --> 00:37:58,843
 create. What if it opened a network connection because
+或者它会打开一个网络连接
 
 700
 00:37:58,912 --> 00:38:01,379
 we're going to share the calculation with the internet
+我们会把计算结果共享至互联网
 
 701
 00:38:01,448 --> 00:38:02,413
 or something, you know what I mean,
+或者一些其他情况，你应该知道我的意思了
 
 702
 00:38:02,482 --> 00:38:04,149
 do something that is expensive.
+总之就是做一些耗资源的操作
 
 703
 00:38:04,218 --> 00:38:05,083
 Well, you wouldn't want to do it,
+好吧，你肯定不想这样做
 
 704
 00:38:05,151 --> 00:38:08,253
 unless someone actually tried to access the brain,
+除非某处真的需要访问这个 brain
 
 705
 00:38:08,321 --> 00:38:10,922
 called set up operand on it or something. Then you would
+调用设置操作数或者其他什么。这时你才
 
 706
 00:38:10,991 --> 00:38:12,424
 want to actually do the work to create it.
+想要真的创建它
 
 707
 00:38:12,493 --> 00:38:14,493
 Okay so one reason to be lazy,
+这是一个需要 lazy 的理由
 
 708
 00:38:14,562 --> 00:38:17,128
 it's not that important of a reason it turns out, but
+延后高消耗的操作这点
 
 709
 00:38:17,197 --> 00:38:21,500
 one is to delay expensive operations. But
+似乎并没有那么重要
 
 710
 00:38:21,569 --> 00:38:25,236
 what's another reason to do it? Well, in Swift,
+但是另一个原因是，在 Swift 中
 
 711
 00:38:25,305 --> 00:38:30,275
 all vars have to be initialized. Remember that?
+所有的变量都要被初始化，还记得吗？
 
 712
 00:38:30,343 --> 00:38:32,143
 Remember we added userIsInTheMiddleOfTyping.
+我们曾添加了 userIsInTheMiddleOfTyping
 
 713
 00:38:32,212 --> 00:38:34,579
 And we didn't say, equals false. And we got an error.
+我们没有让它等于 false，这时产生了一个错误
 
 714
 00:38:34,648 --> 00:38:38,116
 It said we had no init, because we hadn't initialized
+要求我们必须初始化，我们没有初始化它
 
 715
 00:38:38,184 --> 00:38:42,921
 that. Not only did they all have to be initialized, but
+不仅所有变量都要初始化，而且
 
 716
 00:38:42,989 --> 00:38:45,457
 they all had to be initialized before you could even send
+它们要在可以被发送消息前就被初始化
 
 717
 00:38:45,525 --> 00:38:50,095
 a message to that class, even internally. So
+即使在其内部也是如此
 
 718
 00:38:50,163 --> 00:38:52,697
 you can't invoke any of your own methods until you fully
+你甚至无法调用自己的任何一个方法，除非
 
 719
 00:38:52,766 --> 00:38:55,834
 initialize yourself. What if one of the things you want to
+完全初始化了自身。如果你希望某个变量
 
 720
 00:38:55,902 --> 00:39:02,040
 initialize needs to call a method on yourself? It's
+的初始化过程中调用自身的一个方法要怎么办？
 
 721
 00:39:02,109 --> 00:39:05,243
 impossible. Because if you need to initialize something
+这是不可能的。因为如果你希望初始化
 
 722
 00:39:05,312 --> 00:39:07,045
 to be allowed to send messages to yourself and you need
+过程中可以给自身发消息
 
 723
 00:39:07,114 --> 00:39:09,047
 to send a message to yourself to initialize something,
+你需要给自身发送消息来初始化
 
 724
 00:39:09,116 --> 00:39:12,751
 it's a deadlock. You can't do it. Okay, well lazy let's you
+这是一个死锁。原本没法这么做，但是 lazy 帮你做到了
 
 725
 00:39:12,820 --> 00:39:16,221
 do it. Because you can say for example, the last one there;
+因为你可以指出哪个最后做
 
 726
 00:39:16,290 --> 00:39:20,925
 lazy my property equals some method on myself. This is not
+将某个属性设置为 lazy 之后等同于自身的实例方法
 
 727
 00:39:20,994 --> 00:39:24,896
 going to be executed until someone says my property and
+直到完全初始化完成之前，它都不会执行
 
 728
 00:39:24,965 --> 00:39:27,733
 no one's allowed to access my property until I'm fully
+谁也不可能访问它的属性
 
 729
 00:39:27,801 --> 00:39:32,437
 initialized. So by definition there's no way
+所以很明确，不会有任何方式
 
 730
 00:39:32,506 --> 00:39:35,440
 that that is gonna try to get initialized until I'm already
+可以初始化 lazy 变量直到自身完全初始化之前
 
 731
 00:39:35,508 --> 00:39:40,011
 fully initialized. And yet this lazy thing counts as this
+而且 lazy 属性会被视作
 
 732
 00:39:40,080 --> 00:39:46,284
 thing having been initialized. So this is the big loophole.
+已经被初始化的属性。这是一个很大的漏洞
 
 733
 00:39:46,353 --> 00:39:49,554
 Lazy var myProperty counts as having been initialized
+lazy 属性被视为已初始化
 
 734
 00:39:49,623 --> 00:39:51,389
 even though it really hasn't yet. Because it's waiting for
+但实际上它没被初始化。它在等待
 
 735
 00:39:51,458 --> 00:39:55,393
 something to actually access myProperty. But it counts for
+某处访问它。但是为了
 
 736
 00:39:55,462 --> 00:39:58,263
 the purposes of that rule, so now someone comes along later
+这个在规则下达成我们的目标，这种做法是值得的。现在某处访问了它
 
 737
 00:39:58,332 --> 00:40:00,331
 and accesses it, now we can call this method. So
+我们调用这个方法
 
 738
 00:40:00,400 --> 00:40:03,101
 do you see how deferring the calling of this method in
+你们理解了吗？推迟调用这个方法
 
 739
 00:40:03,169 --> 00:40:05,804
 order to initialize this gets us around that requirement
+使得我们可以摆脱
 
 740
 00:40:05,873 --> 00:40:08,173
 that everything be initialized?
+所有内容都要被初始化的限制
 
 741
 00:40:08,241 --> 00:40:10,309
 It's really tricky. And then the middle one there,
+这真的有点复杂。中间这个
 
 742
 00:40:10,377 --> 00:40:13,979
 someProperty, that's super tricky. Because you can
+someProperty，它更复杂。你可以
 
 743
 00:40:14,048 --> 00:40:17,216
 actually have a closure, (remember what a closure is,
+用一个 closure（闭包），（回忆下什么是闭包
 
 744
 00:40:17,284 --> 00:40:19,284
 right from calculator brain, it's just a function,
+在 CalculatorBrain 中用到过，其实闭包就是方法
 
 745
 00:40:19,352 --> 00:40:22,488
 in line function), you can actually have a closure
+一个内联的方法），你可以用一个闭包
 
 746
 00:40:22,556 --> 00:40:26,090
 to initialize your thing lazily. All you do is you
+来延时初始化一个变量。你要做的仅仅是
 
 747
 00:40:26,159 --> 00:40:28,493
 put the closure, open curly brace, close curly brace.
+把闭包写在这里，开始大括号，结束大括号
 
 748
 00:40:28,562 --> 00:40:31,796
 It obviously has to return something of the type
+显然，还要返回符合这个变量类型的结果
 
 749
 00:40:31,865 --> 00:40:35,233
-of that bar. And then just put the little open parenthesis,
+of that var. And then just put the little open parenthesis,
+然后还要加上一对小括号
 
 750
 00:40:35,302 --> 00:40:38,237
 close parenthesis at the end. When we open parenthesis and
+在闭包的结尾。
 
 751
 00:40:38,305 --> 00:40:39,438
 close parenthesis at the end of the closure,
+在闭包的结尾加上小括号
 
 752
 00:40:39,507 --> 00:40:42,674
 that means execute this closure right now. But
+意味着立刻执行这个闭包
 
 753
 00:40:42,742 --> 00:40:45,611
 it's not gonna execute right now, it's gonna act lazy so
+但是实际上它并不会立刻执行，因为它是 lazy 的
 
 754
 00:40:45,679 --> 00:40:50,381
 it's gonna happen later. And that means that that closure
+它会稍后才被执行。这意味着
 
 755
 00:40:50,450 --> 00:40:53,919
 inside could reference self. Because self will be fully
+闭包内部可以引用 self。因为当这个闭包被执行的时候
 
 756
 00:40:53,988 --> 00:40:56,154
 initialized by the time this closure gets executed,
+self 肯定已经被完全初始化了
 
 757
 00:40:56,223 --> 00:41:00,058
 since it's lazily executed. So
+前提是确保它是 lazy 的
 
 758
 00:41:00,127 --> 00:41:02,694
 lazy will get you out of some of these tricky wickets,
+lazy 可以使你摆脱这类棘手的处境
 
 759
 00:41:02,762 --> 00:41:04,963
 because when you see me talk about initialization,
+当你们听我讲到初始化时
 
 760
 00:41:05,032 --> 00:41:08,333
 you're gonna be like, "I don't want to do that, ever".
+你们可能会说“我永远不想那样做”
 
 761
 00:41:08,402 --> 00:41:09,701
 You're going to try and avoid it, and
+你们会尝试避免它
 
 762
 00:41:09,770 --> 00:41:12,704
 this is a good way to avoid it. So yeah,
+这就是一种很好的避免的方式
 
 763
 00:41:12,773 --> 00:41:18,810
 it still satisfies all those things. Alright, on to Array.
+它仍然满足所有规则。好了，下面讲 Array（数组）
 
 764
 00:41:18,879 --> 00:41:21,079
 Everybody knows what an array is. Everyone knows what
+所有人都知道数组是什么，所有人都知道泛型数组是什么
 
 765
 00:41:21,148 --> 00:41:23,549
 a generic array is. You just, when you declare the array,
+你肯定知道，因为当你声明一个数组时
 
 766
 00:41:23,617 --> 00:41:25,517
 you have to say what type of things are gonna
+必须指明它的内容的类型是什么
 
 767
 00:41:25,585 --> 00:41:28,553
 be in the array. There's a different syntax though,
+也有另一种语法
 
 768
 00:41:28,622 --> 00:41:32,724
 which I didn't introduce when I did dictionary in the demo.
+之前的 demo 中，我用了字典，但是没有提到过这个语法
 
 769
 00:41:32,793 --> 00:41:36,428
 But you can declare an array, those two yellow things
+你可以声明一个数组，上面黄色标注的两个声明方法
 
 770
 00:41:36,497 --> 00:41:38,696
 up there are exactly the same thing. So,
+是一样的
 
 771
 00:41:38,765 --> 00:41:39,464
 open square bracket,
+左半方括号
 
 772
 00:41:39,533 --> 00:41:41,934
 string close square bracket is exactly the same as saying
+String，右半方括号
 
 773
 00:41:42,002 --> 00:41:45,537
 array angle bracket string. It's just kind of a special
+这与 Array 加上一对尖括号，括起来 String，是等价的
 
 774
 00:41:45,606 --> 00:41:48,873
 way to declare an array and it actually seems to be
+它只是一种声明数组的特殊方式，比较被大众接受的方式
 
 775
 00:41:48,942 --> 00:41:51,443
 the preferred way. I actually prefer the other way because
+但是我比较喜欢另一种
 
 776
 00:41:51,512 --> 00:41:54,079
 it's a little clearer to you that are learning that this is
+比较清晰的告诉你这是个数组
 
 777
 00:41:54,148 --> 00:41:57,182
 an array, because it says the word array and string.
+并且包含了 Array 和 String 两个单词
 
 778
 00:41:57,251 --> 00:41:59,918
 But open square bracket, close square bracket,
+不过中括号的方式
 
 779
 00:41:59,986 --> 00:42:02,187
 we know that's going to be index into an array so
+我们知道这是索引数组内容的方式
 
 780
 00:42:02,256 --> 00:42:03,722
 it looks kind of array-ish but
+它看起来更有数组的风格
 
 781
 00:42:03,790 --> 00:42:08,594
 just get used to it. [String] means an array of string.
+我们也更习惯这种方式。[String] 代表一个包含字符串的数组
 
 782
 00:42:08,662 --> 00:42:11,997
 It's the declaration of the S and the name of that
+它是对元素类型为字符串的数组的声明
 
 783
 00:42:12,066 --> 00:42:16,635
 type array of string. So if I had a string right here like
+如果我有一些字符串
 
 784
 00:42:16,704 --> 00:42:21,106
 this giraffe, cow, doggie, and bird. Four animals in here,
+比如 Giraffe，Cow，Doggie，Bird 这四种动物
 
 785
 00:42:21,175 --> 00:42:24,475
 four strings and I said animals dot append ostrich,
+四个字符串，然后我调用 animals.append("Ostrich")
 
 786
 00:42:24,544 --> 00:42:28,147
 well append appends something onto the array, now the thing
+append 这个方法会将一些东西加入到数组中，
 
 787
 00:42:28,215 --> 00:42:30,616
 you are appending has to be the same type obviously
+你加入的新东西显然也必须
 
 788
 00:42:30,684 --> 00:42:33,218
 as the type of everything in the array, however the type
+和数组中其他元素是同一个类型，
 
 789
 00:42:33,286 --> 00:42:36,955
 was declared. Notice that animals is in inferred.
+因为类型已经被声明了。注意这里 animals 已经被类型推断了
 
 790
 00:42:37,024 --> 00:42:40,225
 By Swift, to be an array of string. Because Swift sees
+被 Swift 推断为 Array<String>，因为 Swift
 
 791
 00:42:40,294 --> 00:42:42,126
 that you sent it to an array of things and
+通过检查你在数组中包含的每一个元素
 
 792
 00:42:42,195 --> 00:42:44,096
 it looked at all the things and they were all strings.
+判断出它们全都是字符串
 
 793
 00:42:44,164 --> 00:42:46,965
 So it said, the animals must be an array of string. Now,
+所以它断定，animals 必然是一个 Array<String>
 
 794
 00:42:47,033 --> 00:42:50,335
 this line of code animals.append("Ostrich").
+这行代码 animals.append("Ostrich")
 
 795
 00:42:50,403 --> 00:42:51,036
 That's very bad.
+存在问题
 
 796
 00:42:51,104 --> 00:42:53,004
 Can anyone tell me why that's not gonna work?
+谁能告诉我它为什么有问题？
 
 797
 00:42:53,073 --> 00:43:02,247
 Yeah? >> That's exactly right.
+>> 答得好
 
 798
 00:43:02,316 --> 00:43:06,485
 We define this animal's variable with let, so
+我们声明 animals 时用的是 let
 
 799
 00:43:06,554 --> 00:43:09,888
 it's immutable. So when we say append an ostrich onto
+它是不可变的，所以我们 append("Ostrich")
 
 800
 00:43:09,956 --> 00:43:13,025
 an immutable thing, it's going to crash my program.
+给了一个不可变东西，这会导致程序崩溃
 
 801
 00:43:13,093 --> 00:43:15,027
