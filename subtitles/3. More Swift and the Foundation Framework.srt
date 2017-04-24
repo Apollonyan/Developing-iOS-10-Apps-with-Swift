@@ -2389,12 +2389,12 @@ you put static in front of the declaration.
 578
 00:31:27,454 --> 00:31:30,722
 So "static func whatever" means this is a function on
-static func 意思是这个方法是
+static func 意思是这个方法
 
 579
 00:31:30,791 --> 00:31:34,726
 the type, not on instances of the type, on the type itself.
-属于类型。不是属于实例的，而是类型本身的方法
+属于类型。不属于实例，是类型本身的方法
 
 580
 00:31:34,795 --> 00:31:37,762
@@ -2459,7 +2459,7 @@ You say Double.abs, Double.pi. As opposed to, for example,
 592
 00:32:21,108 --> 00:32:23,375
 if I have a double like x is equal 23.85.
-如果我有一个 Double 类型的实例 x，它等于23.85
+如果我有一个 Double 类型的实例 x，它等于 23.85
 
 593
 00:32:23,444 --> 00:32:27,379
@@ -2604,7 +2604,7 @@ Anytime your property changes just a little piece of code
 621
 00:33:53,567 --> 00:33:56,134
 can get executed. Now you can actually find out
-就会被执行。你能准确的捕捉到
+就会被执行。你能准确地捕捉到
 
 622
 00:33:56,203 --> 00:33:58,403
@@ -2929,7 +2929,7 @@ screen, where we're gonna be watching properties change so
 686
 00:37:08,194 --> 00:37:14,166
 we can cause ourselves to redraw. Next, lazy properties.
-来决定什么时候去调用自身的重绘。接下来，lazy 属性
+来决定什么时候去调用自身的重绘。接下来，lazy（延时）属性
 
 687
 00:37:14,235 --> 00:37:19,938
@@ -2944,7 +2944,7 @@ It's gonna get you out of a lot of binds in this class.
 689
 00:37:24,044 --> 00:37:27,679
 What does it mean? A lazy var, a var
-具体是什么意思？一个 lazy 变量，是一个变量
+具体是什么意思？一个延时变量，是一个变量
 
 690
 00:37:27,748 --> 00:37:32,884
@@ -3154,7 +3154,7 @@ that that is gonna try to get initialized until I'm already
 731
 00:39:35,508 --> 00:39:40,011
 fully initialized. And yet this lazy thing counts as this
-但这时 lazy 属性会被视作
+但这时延时属性会被视作
 
 732
 00:39:40,080 --> 00:39:46,284
@@ -3164,7 +3164,7 @@ thing having been initialized. So this is the big loophole.
 733
 00:39:46,353 --> 00:39:49,554
 Lazy var myProperty counts as having been initialized
-lazy 属性被视为已初始化
+延时属性被视为已初始化
 
 734
 00:39:49,623 --> 00:39:51,389
@@ -3264,7 +3264,7 @@ that means execute this closure right now. But
 753
 00:40:42,742 --> 00:40:45,611
 it's not gonna execute right now, it's gonna act lazy so
-但是实际上它并不会立刻执行，因为它是 lazy 的
+但是实际上它并不会立刻执行，因为它是延时执行的
 
 754
 00:40:45,679 --> 00:40:50,381
@@ -3274,7 +3274,7 @@ it's gonna happen later. And that means that that closure
 755
 00:40:50,450 --> 00:40:53,919
 inside could reference self. Because self will be fully
-闭包内部可以引用 self。因为当这个闭包被执行的时候
+闭包内部可以引用 self。因为当这个闭包执行的时候
 
 756
 00:40:53,988 --> 00:40:56,154
@@ -3284,7 +3284,7 @@ self 肯定已经被完全初始化了
 757
 00:40:56,223 --> 00:41:00,058
 since it's lazily executed. So
-前提是确保它是 lazy 的
+前提是确保它是延时执行的
 
 758
 00:41:00,127 --> 00:41:02,694
