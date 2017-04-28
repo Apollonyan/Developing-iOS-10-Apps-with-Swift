@@ -3219,7 +3219,7 @@ actually have a closure, (remember what a closure is,
 744
 00:40:17,284 --> 00:40:19,284
 right from calculator brain, it's just a function,
-在 CalculatorBrain 中用到过，其实闭包就是方法
+在 CalculatorBrain 中用到过，其实闭包就是函数
 
 745
 00:40:19,352 --> 00:40:22,488
@@ -3504,1590 +3504,1987 @@ an immutable thing, it's going to crash my program.
 801
 00:43:13,093 --> 00:43:15,027
 But actually, it won't even crash my program.
+其实不会真的导致程序崩溃
 
 802
 00:43:15,095 --> 00:43:15,727
 It won't even compile.
+而是连编译都无法通过
 
 803
 00:43:15,796 --> 00:43:17,796
 Like, Swift compiler's just gonna say, no way,
+Swift 编译器会告诉你，这样做不行
 
 804
 00:43:17,865 --> 00:43:19,865
 you can't do append of something or other.
+你没法 append 或者做其他操作
 
 805
 00:43:19,934 --> 00:43:22,467
 So that's a good one over there, you got that.
+这就是个很好的例子，你们已经掌握了
 
 806
 00:43:22,536 --> 00:43:24,336
 How about this one? I'll give you a second chance for
+那么这个呢？再给你们一次机会
 
 807
 00:43:24,405 --> 00:43:27,139
 everyone. Why is this one no good? Okay,
+下面这个有什么错误？
 
 808
 00:43:27,208 --> 00:43:31,477
-I'm trying to get animal[4] over there, why? Nobody?
+I'm trying to get animals[4] over there, why? Nobody?
+我尝试获取 animals[4]，为什么，谁要回答？
 
 809
 00:43:31,545 --> 00:43:38,717
 This one's easier. Array index, yes! Array index is
+这个问题比较简单。数组的索引，答得好，再发颗糖
 
 810
 00:43:38,786 --> 00:43:42,553
 out of bounds because arrays are indexed starting at zero.
+数组的索引值越界了，数组是从 0 开始索引的
 
 811
 00:43:42,622 --> 00:43:45,357
 Okay, so giraffe, cow, doggie, bird that's zero, one, two and
+所以 Giraffe，Cow，Doggie，Bird 对应 0，1，2，3
 
 812
 00:43:45,425 --> 00:43:48,727
 three. So if I say, give me array number four, bam,
+如果我说，把第四个给我，
 
 813
 00:43:48,795 --> 00:43:53,165
 crashed my program array index out of bounds.
+程序就会因为数组索引越界而崩溃
 
 814
 00:43:53,234 --> 00:43:57,669
 Let's talk about the fact that array is a sequence.
+下面讲讲数组作为一个 Sequence（序列）的特性
 
 815
 00:43:57,738 --> 00:44:00,872
 Array is actually a collection and collections are sequences.
+数组实际上是一个 Collection（集合），而集合又是序列
 
 816
 00:44:00,941 --> 00:44:05,577
 And a sequence means I can do for in on it. So if I say for
+一个序列意味着我可以对它进行 for...in 循环
 
 817
 00:44:05,646 --> 00:44:09,348
 animal in animals, my little for loop will get executed
+如果我说 for animal in animals，这个 for 循环就会执行四次
 
 818
 00:44:09,416 --> 00:44:12,651
 four times, once with animal being giraffe, next one with
+第一次 animal 取值为 Giraffe，第二次
 
 819
 00:44:12,720 --> 00:44:14,586
 animal being cow, next one with animal being doggie,
+animal 是 Cow，接下来是 Doggie
 
 820
 00:44:14,655 --> 00:44:19,791
 next one animal being bird. Okay, so that's a really cool
+最后一个是 Bird。这真是一个很棒的功能
 
 821
 00:44:19,860 --> 00:44:23,562
-feature. Remember this is the only four there is in swift.
+feature. Remember this is the only for there is in swift.
+记住这是 Swift 中唯一的 for 循环形式
 
 822
 00:44:23,631 --> 00:44:31,069
 For in, that's the only for there is, nothing else.
+for...in 这就是唯一的，没有其他了
 
 823
 00:44:31,138 --> 00:44:36,107
-So array in a lot of classes instructs
+So array in a lot of classes and structs
+在数组，以及 iOS 众多类和结构体中
 
 824
 00:44:36,176 --> 00:44:38,376
 in iOS have some interesting methods
+有一些有趣的方法
 
 825
 00:44:38,445 --> 00:44:43,648
 that have arguments that are closures. So I teach closures
+它们有闭包类型的参数
 
 826
 00:44:43,717 --> 00:44:45,851
 to you right at the beginning of the of the quarter.
+所以我在这期课程的开头就先讲了闭包
 
 827
 00:44:45,919 --> 00:44:48,520
 And why do I do that? Because closures are an important
+为什么我要先讲它，因为如果你想把 iOS API 用好
 
 828
 00:44:48,589 --> 00:44:51,456
 thing to understand if you want to really use iOS API
+就应该先理解闭包这个重要的概念
 
 829
 00:44:51,525 --> 00:44:55,794
 well. So let's take at this (just so we can learn a little
+我们看看这个（我们从中还可以学到
 
 830
 00:44:55,863 --> 00:44:58,497
 bit about how closures can make our API great,
+如何把我们自己的 API 设计的更好
 
 831
 00:44:58,565 --> 00:45:02,166
 especially again if you're doing functional programming,
+尤其是你要用函数式编程的话
 
 832
 00:45:02,235 --> 00:45:05,904
 closures can be really good), but why are closures so great?
+闭包可以从中起到很大作用），为什么闭包这么有用？
 
 833
 00:45:05,972 --> 00:45:08,907
 So let's look at this so, this first function right here
+我们看看这些，第一个方法
 
 834
 00:45:08,976 --> 00:45:11,776
 called filter is an array method.
+叫做 filter，是数组的方法
 
 835
 00:45:11,845 --> 00:45:16,515
-Nothing special about it, it's just funk and array.
+Nothing special about it, it's just func in array.
+它没什么特别的，只是一个数组的方法
 
 836
 00:45:16,584 --> 00:45:20,853
 It has one argument, which is called includeElement.
+它有一个参数，叫做 includeElement
 
 837
 00:45:22,590 --> 00:45:26,824
 And that argument is a function. It's a function that
+这个参数是一个函数
 
 838
 00:45:26,893 --> 00:45:29,827
 takes one argument which is of the same type of the things in
+这个函数有一个类型与数组元素类型一致的参数
 
 839
 00:45:29,896 --> 00:45:33,999
 the arrays, cuz it's a t. So I have an array angle bracket t.
+因为这个类型是 T，所以我有一个 Array<T>
 
 840
 00:45:34,067 --> 00:45:37,535
 It's a generic type so this function is declared in that
+这是一个泛型，这个函数是
 
 841
 00:45:37,604 --> 00:45:40,205
 generic type so the t means the same t, the same type. So
+基于这个泛型声明的。所以这个 T 是同一个 T，同一个类型
 
 842
 00:45:40,274 --> 00:45:43,141
 if I have an array of strings this filter expects this
+如果我有一个字符串数组，那么 filter 方法的参数
 
 843
 00:45:43,210 --> 00:45:46,044
 to be a function that takes a string. As its only argument.
+就是一个接收字符串作为唯一参数的函数
 
 844
 00:45:46,113 --> 00:45:48,280
 And it returns a Bool, so that's the argument.
+并且这个函数返回一个布尔值，这个函数就是 filter 方法的参数。
 
 845
 00:45:48,348 --> 00:45:50,549
 The argument is a function that takes a string and
+这个参数是一个函数，接收字符串并且返回布尔值
 
 846
 00:45:50,617 --> 00:45:53,184
 returns a Bool or takes a T, whatever that is, and
+或者接收一个是什么都可以的 T 类型
 
 847
 00:45:53,253 --> 00:45:56,388
 returns a Bool. And then what's the return
+返回一个布尔值。那么 filter 方法
 
 848
 00:45:56,457 --> 00:46:00,425
 value of this filter thing? It's an array of T, so another
+返回什么东西？返回的是 T 类型元素的数组
 
 849
 00:46:00,494 --> 00:46:03,629
 array with the same kind of elements. So what does filter
+是一个与原数组包含同类型元素的新数组。filter 到底做了什么工作？
 
 850
 00:46:03,697 --> 00:46:07,499
 do? Filter takes every single element In the array that
+filter 对你放入其中的每个元素
 
 851
 00:46:07,568 --> 00:46:10,435
 you're sending it to and it runs that little function. And
+执行一次传入的函数
 
 852
 00:46:10,504 --> 00:46:13,238
 if that function returns true, it includes it in the array it
+如果函数返回 true，就把那个元素包含在返回的数组中
 
 853
 00:46:13,307 --> 00:46:15,940
 returns. If it returns false it doesn't.
+如果函数返回 false
 
 854
 00:46:16,009 --> 00:46:17,408
 It throws it out. So
+就把那个元素过滤掉（不放入返回数组）
 
 855
 00:46:17,477 --> 00:46:21,346
 it's a filter: it's filtering your array and creating a new
+这就是 filter：它创建一个新数组来过滤原数组
 
 856
 00:46:21,415 --> 00:46:24,916
 array with all the things you don't want as defined by this
+根据作为参数传入的函数来判断
 
 857
 00:46:24,985 --> 00:46:26,885
 function that you're providing as an argument.
+哪些是你不想要的元素
 
 858
 00:46:26,954 --> 00:46:29,020
 With all the things you don't want thrown out. So for
+把你不想要的元素都过滤掉
 
 859
 00:46:29,089 --> 00:46:33,559
 example here, I have this var that I'm creating,
+例如：我有一个变量
 
 860
 00:46:33,627 --> 00:46:37,028
 bigNumbers, and I'm creating an array on the fly 2,
+叫做 bigNumbers，我紧接着创建了一个数组 [2,47,118,5,9]
 
 861
 00:46:37,097 --> 00:46:39,798
 47,118,5,9, (see? I created an array), and look,
+（看，我创建了一个数组）
 
 862
 00:46:39,867 --> 00:46:44,469
 I'm sending it a message right away. Yeah, I didn't have to
+我紧接着给数组发送了一个消息
 
 863
 00:46:44,538 --> 00:46:47,939
 put it into another var, by the way, I could have but,
+我没必要声明另一个变量，尽管我可以那样做
 
 864
 00:46:48,008 --> 00:46:51,509
 I just want all be on one line here. I created this array and
+但是在这里我更希望只用一行代码。我创建了这个数组
 
 865
 00:46:51,578 --> 00:46:53,445
 I'm sending it the message filter and
+然后给它发送消息 filter
 
 866
 00:46:53,514 --> 00:46:55,714
 look what I'm providing for the argument there.
+仔细看参数这里我写的是什么
 
 867
 00:46:57,284 --> 00:46:59,618
 That include element it has an underbar, so, you don't have
+因为 includeElement 的外部参数名有下划线，所以没必要
 
 868
 00:46:59,686 --> 00:47:03,488
 to actually put the include element column in there. So,
+真的写上 includeElement 这个参数名
 
 869
 00:47:03,557 --> 00:47:07,525
 what am I putting in there? That's a closure. So
+所以我在这里填入的是什么？是一个闭包
 
 870
 00:47:07,594 --> 00:47:11,496
 that means, it's a function. Now, Swift knows that this is
+这意味着，它是个函数。Swift 知道它
 
 871
 00:47:11,564 --> 00:47:13,031
 a function that returns a bool. So
+是个函数，而且会返回布尔值
 
 872
 00:47:13,100 --> 00:47:16,868
 I don't have to put the word return in there. I can use
+所以我没必要在闭包里加上 return
 
 873
 00:47:16,937 --> 00:47:20,639
 dollar zero to be the one and only argument to the function.
+我可以用 $0 代表闭包的第一个也是唯一的一个参数
 
 874
 00:47:20,708 --> 00:47:22,207
 And I'm just going to check and
+我接下来要检查
 
 875
 00:47:22,276 --> 00:47:23,875
 see if dollar zero is greater than 20, in other words,
+$0 是否比 20 大，也就是说
 
 876
 00:47:23,944 --> 00:47:28,947
 is this a big number. So I get back an array which has only
+检查它是不是个“大数字”。然后我取得了一个新数组
 
 877
 00:47:29,016 --> 00:47:32,951
 47 and 118 in it, because I've filtered out all the things
+里面只有 47 和 118，因为我已经把所有
 
 878
 00:47:33,020 --> 00:47:38,156
 where the value's not greater than 20. Imagine writing
+不满足大于 20 这个条件的数都过滤掉了。想象一下
 
 879
 00:47:38,225 --> 00:47:43,194
 this line of code without filter. You're gonna have
+如果不依靠 filter 来实现这行代码
 
 880
 00:47:43,263 --> 00:47:45,630
-to a four loop. You're gonna have to create another array.
+to a for loop. You're gonna have to create another array.
+你可能要写个 for 循环，然后创建一个新数组
 
 881
 00:47:45,699 --> 00:47:48,133
 You're gonna have to run this little function,
+然后执行这个小函数
 
 882
 00:47:48,202 --> 00:47:50,169
 call this function, create a new array and
+调用这个方法，创建新数组
 
 883
 00:47:50,237 --> 00:47:52,170
 add, append thing to do it. It's at least four or
+然后把符合条件的加进去
 
 884
 00:47:52,239 --> 00:47:55,807
 five lines of code. And here you get it in one line of
+至少也要四五行代码。用了 filter，只用一行代码就实现了
 
 885
 00:47:55,876 --> 00:47:59,311
 code, okay? So you see how closure there has helped us.
+闭包是如何帮我们实现这个功能的？你们理解了吗
 
 886
 00:47:59,380 --> 00:48:02,481
 This is also much more readable cuz you can read this
+这也让代码更具可读性
 
 887
 00:48:02,550 --> 00:48:05,718
 like this: Let the big numbers equal this array, but
+可以这样读：让 bigNumbers 等于这个数组
 
 888
 00:48:05,786 --> 00:48:08,053
 filter for things there are greater than 20.
+但是只要其中比 20 大的
 
 889
 00:48:09,223 --> 00:48:11,356
 That reads nicely, so I'm just clear.
+这样读起来太顺了，表达清晰
 
 890
 00:48:11,424 --> 00:48:14,426
 It's very easy to understand what's going on here.
+非常容易让人理解这行代码在做什么
 
 891
 00:48:14,495 --> 00:48:19,030
 So here's another one. It's called map. What does map do?
+另一个方法，叫做 map，它是做什么的？
 
 892
 00:48:19,099 --> 00:48:21,967
 It takes a closure, or a function. And
+它也接收一个闭包，或者说一个函数
 
 893
 00:48:22,036 --> 00:48:26,371
 it executes that function in order to transform each
+它会执行那个函数
 
 894
 00:48:26,439 --> 00:48:29,107
 of the elements in the array you're sending map to,
+将你传入数组的每个元素进行转化
 
 895
 00:48:29,175 --> 00:48:30,342
 to a new array.
+然后输出到一个新数组
 
 896
 00:48:30,411 --> 00:48:32,878
 Now that transformation could be anything that a function
+这种转化可以是任何形式的，只要通过函数能做到
 
 897
 00:48:32,946 --> 00:48:36,048
 can do. And you can convert it to any new type you want.
+甚至可以转化为任何你想要的新类型
 
 898
 00:48:36,116 --> 00:48:39,083
 Although it's one function, so it
+但是它是一个函数
 
 899
 00:48:39,152 --> 00:48:42,253
 coverts everything to the same type. So you could use it for
+它只能把所有东西转化为同一个类型
 
 900
 00:48:42,322 --> 00:48:44,790
 type conversions like I have here. I've taken 1,
+你可以用它来实现类型转化。例如这里
 
 901
 00:48:44,858 --> 00:48:48,059
 2, 3 and mapped it to the string versions of 1, 2, 3, so
+我把数字 1，2，3 映射成字符串形式的 "1"，"2"，"3"
 
 902
 00:48:48,128 --> 00:48:51,429
 now I have the new array with strings in it. String of 1,
+现在我得到了一个新数组，包含字符串的数组 ["1"，"2"，"3"]
 
 903
 00:48:51,498 --> 00:48:54,466
 string of 2, string of 3. That's a trivial mapping.
+这只是个意义不大的映射
 
 904
 00:48:54,535 --> 00:48:56,801
 But you can imagine much more powerful mappings where you
+你能不能想象出更加强大的映射
 
 905
 00:48:56,870 --> 00:48:58,036
 take each element of the array, and
+对数组的每个元素
 
 906
 00:48:58,105 --> 00:49:01,372
 call some complicated function on it, and get the result into
+调用非常复杂的函数，取得结果
 
 907
 00:49:01,441 --> 00:49:06,044
 a new array. So by creating a really powerful argument there
+放入新数组。这需要创建一个非常强大的函数作为参数
 
 908
 00:49:06,112 --> 00:49:09,014
 instead of String($0), something more powerful, you
+替代 String($0)，
 
 909
 00:49:09,083 --> 00:49:11,950
 can really have one line of code that's really expressive.
+你可以创造出意义丰富的单行代码
 
 910
 00:49:12,019 --> 00:49:15,587
 It can do a lot of things. One thing about this one: notice
+可以做很多事情。注意这个地方：
 
 911
 00:49:15,656 --> 00:49:19,224
 that after the word map, there's no parentheses,
+map 的后面没有小括号
 
 912
 00:49:19,293 --> 00:49:21,259
 no open parentheses. Did you notice that?
+没有左半小括号，注意到了吗？
 
 913
 00:49:21,328 --> 00:49:23,795
 You see the difference between filter and map, okay?
+你们是否注意到了 filter 和 map 的区别
 
 914
 00:49:23,864 --> 00:49:25,931
 When I called filter, I said open parentheses,
+当我调用 filter 时，我在后面写了个小括号
 
 915
 00:49:25,999 --> 00:49:28,634
 open curly brace, the function, curly brace, close
+然后是大括号，函数，大括号结束，小括号结束
 
 916
 00:49:28,703 --> 00:49:34,506
 parentheses. Here I just say, { String$0}, no parentheses.
+但是 map 这里，我只是用了 { String($0) }，没有小括号
 
 917
 00:49:34,575 --> 00:49:38,910
 And this is what's called the trailing closure syntax. You
+这种语法叫做尾随闭包
 
 918
 00:49:38,979 --> 00:49:42,981
 are allowed to have closures that are the last argument to
+当闭包作为最后一个参数时
 
 919
 00:49:43,050 --> 00:49:46,384
 a function. The outside of the parentheses of that function,
+你可以把闭包放到函数的参数部分的括号的外边
 
 920
 00:49:46,453 --> 00:49:49,621
 if they're trailing, see they're trailing the call. And
+如果是尾随闭包，它们跟在函数调用的尾部
 
 921
 00:49:49,690 --> 00:49:51,723
 in fact, if there's only one argument and
+实际上，如果只有一个参数
 
 922
 00:49:51,792 --> 00:49:53,759
 it's closure, you don't need the parentheses at all.
+并且这个参数是闭包，连小括号都不需要了
 
 923
 00:49:53,828 --> 00:49:55,560
 And that's what happened there with map.
+这种情形就是 map 这行代码这样
 
 924
 00:49:55,629 --> 00:49:59,130
 I'm just saying map, parentheses get rid of them.
+只是说 map，省略了小括号
 
 925
 00:49:59,199 --> 00:50:02,368
 Just put the closure there, trailing. And
+把闭包跟在后面
 
 926
 00:50:02,436 --> 00:50:04,436
 that also results in some pretty cool looking
+产生了像这行代码一样的很酷的效果
 
 927
 00:50:06,473 --> 00:50:09,641
 code right here, you see that? So you can use that anywhere
+你们理解了吗？你们可以在任何地方
 
 928
 00:50:09,710 --> 00:50:12,944
 that a closure is the last argument of function.
+用这个语法，只要最后一个参数是函数
 
 929
 00:50:13,013 --> 00:50:15,713
-You can take it outside of the curly braces. Cuz you already
+You can take it outside, just put the curly braces. Cuz you already
+你可以把闭包从小括号中提出来，只留下大括号这部分
 
 930
 00:50:15,782 --> 00:50:17,449
 got the curly braces, and that's why they do it.
+因为已经有大括号扩起来了，所以语法允许
 
 931
 00:50:17,517 --> 00:50:19,951
 You don't really need the parentheses around it as well.
+周围的小括号也不需要了
 
 932
 00:50:20,020 --> 00:50:20,786
 So put that at the end.
+把闭包直接放在尾部
 
 933
 00:50:20,854 --> 00:50:22,554
 And put all the rest of the arguments, if you had them,
+如果有其他参数的话
 
 934
 00:50:22,623 --> 00:50:27,158
 inside the parentheses right before. This last one, I won't
+仍然把它们放在小括号内。最后一个
 
 935
 00:50:27,227 --> 00:50:29,061
 go into the details, but it's a similar kind of thing.
+我不会深入讲解，不过这个和前面的 map 是类似的
 
 936
 00:50:29,129 --> 00:50:32,097
 Reduce: what reduce does is it takes an entire array and
+reduce，它的功能是将整个数组
 
 937
 00:50:32,165 --> 00:50:36,200
 reduces it to a single value. So here I'm reducing it by
+变成一个值，这里我把
 
 938
 00:50:36,269 --> 00:50:39,737
 adding all the numbers in the array up. So my closure is $0
+整个数组的数字都加起来，闭包写作 $0 + $1
 
 939
 00:50:39,806 --> 00:50:43,408
 + $1, because the argument it takes is a function that takes
+因为这个参数是有两个参数的函数
 
 940
 00:50:43,477 --> 00:50:46,245
 two elements. One of them is an element from the array and
+其中一个是数组中的一个元素
 
 941
 00:50:46,313 --> 00:50:49,247
 the other is the answer so far, and
+另一个是目前为止累计的结果
 
 942
 00:50:49,316 --> 00:50:52,317
 then it returns the new answer so far. So it just executes
+然后它返回新的结果
 
 943
 00:50:52,385 --> 00:50:55,453
 that function over and over and over on the arrays.
+所以 reduce 对数组不断地执行这个函数
 
 944
 00:50:55,522 --> 00:50:58,957
 By the way, notice that I can say this as sum = [1,
+注意到了吗，我也可以写成 let sum = [1,2,3].reduce(0, +)
 
 945
 00:50:59,026 --> 00:51:03,228
 2, 3].reduce(0, +) which is my starting so far value.
+0 代表初始的迭代值
 
 946
 00:51:03,297 --> 00:51:06,064
 Which I haven't added a name on, so it starts at 0 and
+它没有参数名，所以会从零开始
 
 947
 00:51:06,133 --> 00:51:09,200
 then I can say plus. The reason I can say plus right
+然后我可以只写个加号，最下面这行代码
 
 948
 00:51:09,269 --> 00:51:11,803
 there at the bottom line, is because plus
+可以直接写个加号的原因是
 
 949
 00:51:11,872 --> 00:51:14,406
 in Swift is not some kinda weird built-in thing,
+加号在 Swift 中不是什么特殊的内置的符号
 
 950
 00:51:14,474 --> 00:51:18,076
 it's just a function. It's a function that happens to be
+它仅仅是个函数。是这样一个函数
 
 951
 00:51:18,145 --> 00:51:20,745
 declared in a way that says, this is a function, but
+它是这样声明的，这是个函数
 
 952
 00:51:20,814 --> 00:51:23,348
 it's two arguments it's going either side of it.
+它的两个参数就是加号两侧的值
 
 953
 00:51:23,417 --> 00:51:28,453
 It's called an infix operator on a function. So
+这叫做 infix（中缀）操作符函数
 
 954
 00:51:28,521 --> 00:51:30,255
 since plus is just a function, and
+因为 + 是个函数
 
 955
 00:51:30,324 --> 00:51:31,556
 I'm taking a function as an argument,
+我把一个函数作为这里的参数
 
 956
 00:51:31,625 --> 00:51:34,826
 as long as it's a function that takes two arguments and
+因为它是一个接收两个参数
 
 957
 00:51:34,895 --> 00:51:37,962
 returns one, which is exactly what plus does, it works
+返回一个值的函数，就和加法运算是一致的
 
 958
 00:51:38,031 --> 00:51:40,265
 there. We could have done that in our calculator brain, too.
+所以它可以用在这里。我们可以把这种用法用在 CalculatorBrain 中
 
 959
 00:51:40,334 --> 00:51:45,003
 Remember all that closures we were doing ($0* $1),
+还记得那些形如 $0 * $1 的闭包吗
 
 960
 00:51:45,072 --> 00:51:50,909
 that could've just been *), ($0+$1), that could've just
+它可以被简化为 *，$0 + $1 可以被简化为 +
 
 961
 00:51:50,978 --> 00:51:54,813
 been +. Cuz + is a function that takes two doubles and
+因为 + 是一个函数，接收两个 Double 作为参数
 
 962
 00:51:54,882 --> 00:51:58,416
 returns a double. Plus also know how to plus other types,
+返回一个 Double，+ 也懂得怎么操作其他类型
 
 963
 00:51:58,485 --> 00:52:01,619
 ints. And it even knows how to plus and into a float,
+比如 Int，Float 也可以
 
 964
 00:52:01,688 --> 00:52:05,356
 for example, etc. You can plus strings together.
+你还可以对两个 String 相加
 
 965
 00:52:05,425 --> 00:52:07,525
 So that was just a little aside just to give you
+再说就有点远了，这里只做简单的介绍
 
 966
 00:52:07,594 --> 00:52:11,162
 an introduction there. You're gonna start seeing a lot of
+你还会看到很多方法
 
 967
 00:52:11,231 --> 00:52:12,631
 methods that take functions as arguments.
+它们的参数是有两个参数的函数
 
 968
 00:52:12,700 --> 00:52:15,667
 So I want you to start to get comfortable with that.
+我希望你们逐渐适应这种方式
 
 969
 00:52:15,736 --> 00:52:19,204
 Okay, dictionary. So we learned a lot about dictionary
+好了，下面讲 Dictionary（字典）。在第一讲中
 
 970
 00:52:19,273 --> 00:52:22,140
 in our first lecture. Dictionary also has this
+我们已经学了不少有关字典的知识了
 
 971
 00:52:22,208 --> 00:52:25,977
 special declaration syntax, which is open square bracket
+字典也有这种特殊的声明语法
 
 972
 00:52:26,046 --> 00:52:30,882
 key type colon value type closed square bracket. So
+左半方括号，键类型，冒号，值类型，右半方括号
 
 973
 00:52:30,951 --> 00:52:34,386
 those two things in yellow are equivalent.
+所以两个标注为黄色的部分是等价的
 
 974
 00:52:34,455 --> 00:52:36,755
 And the one on the bottom seems to be the preferred
+目前第二个好像更受欢迎一些
 
 975
 00:52:36,823 --> 00:52:41,960
 one these days. So you know you can create a dictionary.
+你们已经知道了能创建一个字典
 
 976
 00:52:42,029 --> 00:52:44,796
 By the way, I show you creating dictionaries from
+我这里展示的是如何通过类似常量的值
 
 977
 00:52:44,865 --> 00:52:46,198
 kind of constant values here.
+来创建一个字典
 
 978
 00:52:46,267 --> 00:52:48,667
 But you can create a dictionary just by saying,
+但是你也可以这样创建字典
 
 979
 00:52:48,736 --> 00:52:50,802
 let d equal dictionary. Open parenthesis,
+let d = Dictionary()（译者注：只有NSDictionary可以这样声明
 
 980
 00:52:50,871 --> 00:52:53,405
 close parenthesis. And if you say var d
+如果你用 Swift 的字典，必须在初始化时决定键值的类型）
 
 981
 00:52:53,474 --> 00:52:55,941
 equals dictionary, then now you can start appending items
+如果你说 var d = Dictionary()（译者注：这里也要加上键值的类型），你就有了一个空字典
 
 982
 00:52:56,009 --> 00:52:58,176
 onto it because you get an empty dictionary to start. But
+之后可以往里面加东西
 
 983
 00:52:58,245 --> 00:53:01,012
 here I'm starting my dictionary with stuff in it.
+这里我初始化字典时就包含了一些内容
 
 984
 00:53:01,081 --> 00:53:06,051
 That probably should say var pac12teamRankings
+这里应该用 var pac12teamRankings
 
 985
 00:53:06,119 --> 00:53:10,154
 because two lines later I say pac12teamRankings sub Cal
+因为隔了两行代码之后，我用了 pac12teamRankings["Cal"] = 12
 
 986
 00:53:10,223 --> 00:53:15,159
 equals 12. Note also that
+另外注意
 
 987
 00:53:15,228 --> 00:53:18,964
 when I try to get the ranking of Ohio State, it returns nil.
+我尝试获取键为 "Ohio State" 的值，返回的是 nil
 
 988
 00:53:19,032 --> 00:53:21,032
 And we know that when we use square brackets to get
+我们知道当用方括号
 
 989
 00:53:21,101 --> 00:53:22,367
 something out of the dictionary, it returns
+在字典中查询某个键时
 
 990
 00:53:22,436 --> 00:53:26,838
 an optional of our value type. Our value type here is ints,
+返回的是值类型的可选类型，这里我们的值类型是 Int
 
 991
 00:53:26,907 --> 00:53:32,544
 so it's gonna return an optional int.
+所以返回的是 Int?
 
 992
 00:53:32,613 --> 00:53:37,683
 Alright, enumeration. A dictionary is also
+下面是字典的枚举。字典也是一个 Collection
 
 993
 00:53:37,751 --> 00:53:40,852
 a collection and thus can be sequenced. So you can do for
+因此也是 Sequence，所以可以用 for...in 循环
 
 994
 00:53:40,921 --> 00:53:43,388
 in on it. Of course, a dictionary has keys and
+字典包含键和值
 
 995
 00:53:43,457 --> 00:53:48,326
 values. So we need a tuple to do our enumeration for
+所以我们要用一个元组来枚举
 
 996
 00:53:48,395 --> 00:53:52,964
 the tuple key common value in the dictionary. And
+写作 for (key, value) in dictionary
 
 997
 00:53:53,033 --> 00:53:56,468
 then it'll go through and key in value will be set.
+然后这个循环就开始了，会遍历所有的键值对
 
 998
 00:53:57,605 --> 00:53:59,104
 It's a perfectly straightforward way
+用这种方式对字典进行枚举或迭代
 
 999
 00:53:59,173 --> 00:54:04,643
 to enumerate or iterate over a dictionary. Okay,
+很完美，而且容易书写
 
 1000
 00:54:04,711 --> 00:54:08,547
 String. So string, you would think, is the simplest class
+String，你可能会认为
 
 1001
 00:54:08,615 --> 00:54:11,182
 in all of any language. It's just a string, right?
+String 是所有编程语言中最简单的类，它仅仅是个字符串
 
 1002
 00:54:11,251 --> 00:54:14,752
 Well, that turns out not to be so true. When you think of
+但是这种想法可能不那么正确
 
 1003
 00:54:14,821 --> 00:54:17,756
 a string that represents every language in the entire world,
+想象一下当一个字符串可以表达世界上所有语言的时候
 
 1004
 00:54:17,824 --> 00:54:21,760
 all of a sudden it got real complicated real fast.
+它突然间就变得复杂了
 
 1005
 00:54:21,828 --> 00:54:26,397
 Because some languages are ideographic. Some languages go
+因为一些语言是表意的
 
 1006
 00:54:26,466 --> 00:54:29,735
 right to left instead of left to right. Some languages have
+还有一些语言是从右往左书写的
 
 1007
 00:54:29,803 --> 00:54:34,639
 a lot of diacritic marks and accents in them. Some don't.
+一些语言有很多变音符或重音符，而另外一些没有
 
 1008
 00:54:34,708 --> 00:54:37,976
 Most languages don't use the same alphabet as we use.
+绝大多数语言和我们用的字母表不一样
 
 1009
 00:54:38,045 --> 00:54:40,412
 So string is super complicated,
+所以字符串其实非常复杂
 
 1010
 00:54:40,480 --> 00:54:43,982
 this is a very complicated class. Now string tries
+这是一个非常复杂的类
 
 1011
 00:54:44,050 --> 00:54:46,485
 its best and does a pretty good job of simplifying it for
+String 尽其所能让我们操作字符串变得容易
 
 1012
 00:54:46,553 --> 00:54:51,423
 your use. But the complexity is still there. Now the most
+但是复杂性还是存在的
 
 1013
 00:54:51,491 --> 00:54:54,393
 important complexity about a string is that representing
+现在最复杂的是
 
 1014
 00:54:54,462 --> 00:54:59,631
 a string is not always one character equals one
+String 能表达那些没法用一个“内部描述单元”来表达
 
 1015
 00:54:59,699 --> 00:55:04,269
 internal representation unit. Now the units, the kind of
+一个字符的语言，所谓“内部描述单元”指的是
 
 1016
 00:55:04,338 --> 00:55:06,804
 thing that's used to represent strings on the inside,
+String 用来表达一个字符串的内部结构
 
 1017
 00:55:06,873 --> 00:55:10,642
 are Unicodes. I had you skip that reading in assignment
+叫做 Unicode。在作业一中，我让你们跳过阅读这部分
 
 1018
 00:55:10,711 --> 00:55:13,344
 one, I'm putting it in for assignment two.
+现在我把这部分放在了作业二中
 
 1019
 00:55:13,413 --> 00:55:14,980
 It's really not that critical that you understand it.
+理解这部分内容并没有那么重要
 
 1020
 00:55:15,049 --> 00:55:16,248
 I think it's very interesting, though, so
+但是我觉得这是个很有趣的东西
 
 1021
 00:55:16,317 --> 00:55:19,918
 you probably want to read it. But the thing about Unicodes
+所以你可能愿意去阅读这些
 
 1022
 00:55:19,987 --> 00:55:22,420
 is it's not one Unicode equals one character.
+Unicode 的一个特点是，一个 Unicode 不等价于一个字符
 
 1023
 00:55:22,489 --> 00:55:27,392
 In fact, if you have like a little emoji of a dog barking,
+比如有一个类似狗叫的表情
 
 1024
 00:55:27,461 --> 00:55:30,562
 that might be three Unicode characters. It's only one with
+它很可能是由三个 Unicode 字符表达的
 
 1025
 00:55:30,630 --> 00:55:32,631
 regards to what you perceive to be a character. Or
+但看起来，它就是一个字符
 
 1026
 00:55:32,700 --> 00:55:36,902
 even more simply, the example I have here, the word cafe.
+来看个更简单的例子，café 这个单词
 
 1027
 00:55:36,970 --> 00:55:40,371
 It's got e accent aigu on the end, right, it's a French
+它的结尾有个闭音符，它是一个法语词
 
 1028
 00:55:40,440 --> 00:55:43,242
 word, e accent aigu. That could be four Unicodes,
+以 é 结尾。这个词可能是由 4 个 Unicode 构成的
 
 1029
 00:55:43,310 --> 00:55:45,710
 because there is a Unicode for e accent aigu.
+有一个单独的 Unicode 代表 é
 
 1030
 00:55:45,779 --> 00:55:49,548
 Or it could be five. It could be the e with another Unicode
+也有可能是由 5 个 Unicode 构成的。可能是 e 加上另一个
 
 1031
 00:55:49,616 --> 00:55:52,617
 character that says put an accent on that previous
+表达“给前面那个字符加上闭音符”这样含义的 Unicode
 
 1032
 00:55:52,686 --> 00:55:57,489
 character. So, when you have this kind of unknown how many
+当你不知道到底有多少字符来表达它的时候
 
 1033
 00:55:57,558 --> 00:56:00,325
 characters it represents, you need a new abstraction
+你需要一个新的抽象概念
 
 1034
 00:56:00,394 --> 00:56:04,495
 to represent what we perceive as humans to be a character.
+来表达我们人类认知上的字符
 
 1035
 00:56:04,564 --> 00:56:07,833
 Even that is difficult to truly define, when you think
+要针对世界上所有语言，定义出这种抽象概念非常困难
 
 1036
 00:56:07,901 --> 00:56:09,734
 of all the languages in the world. It's easy in English,
+只是针对英语的话很简单
 
 1037
 00:56:09,803 --> 00:56:15,274
 though. So that's really how we're gonna interact with
+这就是我们要利用 String 做的事情
 
 1038
 00:56:15,342 --> 00:56:17,976
 strings: to try to think of them in terms of characters.
+把它视作一串人类认知上的字符
 
 1039
 00:56:18,045 --> 00:56:19,711
 But a string itself is not actually
+但是 String 本身并不是
 
 1040
 00:56:19,780 --> 00:56:20,712
 a collection of characters.
+单纯的字符的集合
 
 1041
 00:56:20,781 --> 00:56:23,181
 A string is a more powerful internal structure,
+String 是一个内部非常强大的结构体
 
 1042
 00:56:23,250 --> 00:56:25,783
 it's got all the Unicodes in there and all that stuff,
+它包含了一串字符中所有的 Unicode 和其他东西
 
 1043
 00:56:25,852 --> 00:56:29,087
 it's not quite that. And that makes for a little bit of
+和你想象的不太一样，接下来
 
 1044
 00:56:29,156 --> 00:56:34,225
 complication as you're gonna see. Now, you can't string, is
+你会发现上面描述的特征会导致一些复杂性
 
 1045
 00:56:34,294 --> 00:56:37,229
 indexable which means you can use the open square brackets
+你没法用方括号，类似索引数组的形式
 
 1046
 00:56:37,297 --> 00:56:40,665
 just like you can in array to get one of the characters.
+取得字符串中的某个字符
 
 1047
 00:56:40,734 --> 00:56:43,736
 The only rub is what I said on the other slide that index
+麻烦的是，我讲之前某页时提到过
 
 1048
 00:56:43,804 --> 00:56:46,505
 is not an int. So if you have the word hello,
+String 的索引不是一个 Int 类型。你有一个单词 hello
 
 1049
 00:56:46,573 --> 00:56:53,378
 it's not like you can say, hello[1] equals e.
+你没法通过类似 hello[1] 的方式来取得字符 e
 
 1050
 00:56:53,447 --> 00:56:56,481
 You can't do it that way because it might,
+你没法那样做，因为可能有这种情况
 
 1051
 00:56:56,550 --> 00:56:59,050
 if it was cafe then cafe sub 3.
+如果这个单词是 café，然后取 café[3]
 
 1052
 00:56:59,119 --> 00:57:03,088
 It's not clear that you want a character at that point, and
+根据你提供的字符的位置
 
 1053
 00:57:03,157 --> 00:57:06,258
 so you've got to make sure you get the right index in there
+系统没法确保，你一定能得到正确的字符
 
 1054
 00:57:06,326 --> 00:57:08,961
 because that index behind the scenes can be quite
+因为这个索引位置的背后，实际上非常复杂
 
 1055
 00:57:09,029 --> 00:57:11,997
 complicated. There's this other struct for it, which is
+还有另外一个结构体，叫做 String.Index
 
 1056
 00:57:12,065 --> 00:57:15,267
 called a string.index. So let's say I had a string,
+我有一个字符串
 
 1057
 00:57:15,336 --> 00:57:18,870
 which I'm gonna call s and I'm gonna put hello into there.
+命名为 s，然后我把 "hello" 赋值给它
 
 1058
 00:57:18,939 --> 00:57:23,842
 Now, what if I wanted s[0] now, I can't do s[0],
+现在，我要取得 s[0]，当然没法写作 s[0]
 
 1059
 00:57:23,911 --> 00:57:25,678
 because we don't index strings by integers but
+因为没法通过整数来索引字符串
 
 1060
 00:57:25,746 --> 00:57:28,046
 let's say I want that. How do I get it? Well,
+我要那个字符，到底怎么拿到它？
 
 1061
 00:57:28,115 --> 00:57:31,450
 I start by calling this var, again using this var and
+首先我操作 s，调用 s.startIndex
 
 1062
 00:57:31,518 --> 00:57:34,386
 string called startIndex, okay? It gives us
+它返回给我一个 String.Index 类型的值
 
 1063
 00:57:34,455 --> 00:57:37,322
 a string.index. It's very important, we need to get
+下面很关键，我们需要一个变量保存这个 String.Index
 
 1064
 00:57:37,391 --> 00:57:39,958
 a hold of a string.index because the way we're gonna
+因为我们接下来要在字符串中
 
 1065
 00:57:40,027 --> 00:57:42,427
 move around in string is by taking index we know and
+以这个已知的索引为基准
 
 1066
 00:57:42,496 --> 00:57:44,963
 moving forward or backward by character, by human
+以人类认知的字符为单位向前或者向后移动
 
 1067
 00:57:45,032 --> 00:57:47,666
 understandable character. Not by Unicodes, because we
+不是以 Unicode 为单位
 
 1068
 00:57:47,734 --> 00:57:50,068
 don't know how many Unicodes there are per character but
+因为我们不知道每个字符到底用了几个 Unicode 来表达
 
 1069
 00:57:50,137 --> 00:57:52,637
 by character, we're gonna be moving back and forth.
+我们只知道根据字符来前后移动
 
 1070
 00:57:52,706 --> 00:57:54,506
 So we start with this first one.
+所以我们从第一个开始
 
 1071
 00:57:54,574 --> 00:57:56,941
 And so now I can create a variable firstChar which is of
+现在我创建一个变量叫做 firstChar
 
 1072
 00:57:57,010 --> 00:57:57,976
 this type Character,
+它是 Character 类型的
 
 1073
 00:57:58,045 --> 00:58:00,746
 that human understandable character.
+是人类认知上的字符
 
 1074
 00:58:00,814 --> 00:58:03,715
 That's gonna be equal s[firstIndex]. So see look,
+它将被赋值成 s[firstIndex]
 
 1075
 00:58:03,784 --> 00:58:06,552
 I've used square brackets to index into a string, but
+看，这里我用了方括号来索引字符串
 
 1076
 00:58:06,620 --> 00:58:10,722
 I had to use a String.Index not an Int. This first index
+我必须用 String.Index 而不是 Int 类型
 
 1077
 00:58:10,791 --> 00:58:13,091
 I got by asking the string "what's your first index"?
+我通过对那个字符串说“你的第一个索引是什么”，拿到了它的第一个索引
 
 1078
 00:58:13,160 --> 00:58:15,160
 Well this is kinda useless because I have to ask
+这个步骤好像没什么用处，因为我必须
 
 1079
 00:58:15,228 --> 00:58:17,161
 the string, what's the index of your first character and
+先向字符串索要它的第一个字符的索引
 
 1080
 00:58:17,230 --> 00:58:19,731
 then turn around say okay give me S of your first character.
+然后又说“好吧，我实际上要的是你的第一个字符”
 
 1081
 00:58:19,800 --> 00:58:20,899
 So that's not the interesting thing,
+这种方式一点也不有趣
 
 1082
 00:58:20,968 --> 00:58:23,835
 what if I want the next character. If I
+如果我要下一个字符呢?
 
 1083
 00:58:23,904 --> 00:58:27,006
 want the next character, I ask the string what's the index of
+如果我要下一个字符，我要对字符串说
 
 1084
 00:58:27,074 --> 00:58:30,975
 the character after your first character. And
+“你的第一个字符之后的字符的索引是什么”
 
 1085
 00:58:31,044 --> 00:58:33,178
 it'll give me a new index, of its second character and
+它会告诉我一个新的索引，是它的第二个字符的索引
 
 1086
 00:58:33,247 --> 00:58:37,215
 now I can get that one. Even that is a little bit like,
+这样我才能拿到第二个字符，这种感觉就像是
 
 1087
 00:58:37,284 --> 00:58:38,049
 my God, you're kidding me,
+大地母亲在忽悠着我
 
 1088
 00:58:38,118 --> 00:58:41,219
 this is really how I have to do this? What if I wanted
+我真的只能这么做吗?
 
 1089
 00:58:41,288 --> 00:58:44,056
 to go jump ahead though, and get the fourth, the fifth
+我想跳过前面的字符，直接取得第四个，第五个怎么办？
 
 1090
 00:58:44,124 --> 00:58:47,959
 character, let's say? Well I can jump ahead by saying s,
+我们要这样做，要对字符串 s 说
 
 1091
 00:58:48,028 --> 00:58:52,197
 give me the index of, starting at your first index,
+“从你的第一个索引开始”
 
 1092
 00:58:52,266 --> 00:58:53,832
 that's four ahead so jump four ahead,
+因为要跳到第四个，所以“往前跳四下”
 
 1093
 00:58:53,901 --> 00:58:58,770
 four characters ahead. This is all a little
+这样它就前进了四个字符
 
 1094
 00:58:58,839 --> 00:59:01,706
 tedious and of course this is not the actual way that we're
+这实在够无聊的，当然这不是我们和 String 打交道的常见方式
 
 1095
 00:59:01,775 --> 00:59:03,775
 interacting with strings. We're usually looking for
+我们常用的是寻找子串
 
 1096
 00:59:03,844 --> 00:59:07,346
 substrings, okay, or subranges of characters or
+或者子串所处的位置
 
 1097
 00:59:07,414 --> 00:59:09,281
 we're trying to find a character in a string.
+或者寻找一个字符串中是否存在某个字符
 
 1098
 00:59:10,684 --> 00:59:13,485
 By the way, you can use ranges, so I could say
+顺便，在这里你可以用 Range
 
 1099
 00:59:13,554 --> 00:59:17,021
 give me the substring which is firstIndex...secondIndex and
+所以我可以说，把 firstIndex...secondIndex 这个区间的子串给我
 
 1100
 00:59:17,090 --> 00:59:21,460
 it would give me he. A new string which is he, so
+这样它会返回我"he"。一个新字符串"he"
 
 1101
 00:59:21,528 --> 00:59:25,330
 you can use ranges there but they have to be string.index
+所以这里你可以用 Range，但是必须是 String.Index 类型的 Range
 
 1102
 00:59:25,398 --> 00:59:29,968
 not ints. So we want basically something that
+而不是 Int 类型的。所以其实我们真的很需要某个
 
 1103
 00:59:30,037 --> 00:59:34,673
 is a collection of characters. A string is not a collection
+类似一串字符的集合的东西。String 不是字符的集合
 
 1104
 00:59:34,742 --> 00:59:37,709
 of characters so you can't do for in, for example, on it.
+所以你没法对它用 for...in 循环
 
 1105
 00:59:37,778 --> 00:59:39,178
 You can't even say index(of:).
+你也没法对它用 index(of:) 方法
 
 1106
 00:59:39,246 --> 00:59:42,714
 Index(of:) is this great thing where you can,
+index(of:) 对于一个集合而言非常好用
 
 1107
 00:59:42,783 --> 00:59:44,215
 if you have a collection of things, you can say give
+你可以说
 
 1108
 00:59:44,284 --> 00:59:47,452
 me this index of this thing in there. You can't even do that
+把这个元素的索引找出来，
 
 1109
 00:59:47,521 --> 00:59:50,656
 with a string because it's not a collection. Luckily,
+但是你没法对 String 这样做，因为它不是 Collection
 
 1110
 00:59:50,724 --> 00:59:53,858
 string has a var which will give you a collection of its
+幸运的是，String 有一个变量会返回给你一个它包含的字符的集合
 
 1111
 00:59:53,927 --> 00:59:56,228
 characters. And not only is it gonna give
+它不仅会给你
 
 1112
 00:59:56,297 --> 00:59:58,964
 you a collection of its characters that you can for
+它包含的字符的集合，可以对它用
 
 1113
 00:59:59,032 --> 01:00:02,768
 in over and do index(of:), but the string indexes you get
+for...in 循环，或者调用 index(of:)，而且你通过这个集合
 
 1114
 01:00:02,836 --> 01:00:07,472
 from that collection will match what's in the string. So
+索引到的字符和字符串中实际包含的字符是匹配的
 
 1115
 01:00:07,541 --> 01:00:10,008
 you can use this collection of characters to find things in
+所以你可以用这个字符集合来查找字符
 
 1116
 01:00:10,077 --> 01:00:13,378
 there, get the index of a character, things like
+或者取得某个字符的索引，等等
 
 1117
 01:00:13,447 --> 01:00:15,947
 that. And then use the indexes you find there to go back to
+然后拿着你找到的索引，对原字符串说
 
 1118
 01:00:16,016 --> 01:00:20,752
 your string and say, okay now give me a substring. So
+现在给我一个指定的子串
 
 1119
 01:00:20,821 --> 01:00:24,890
 characters is the name of this var on string. So for example,
+String 下的这个变量名字叫做 characters
 
 1120
 01:00:24,958 --> 01:00:27,993
 if I want to iterate over all the characters one by one,
+举例来说，如果我要所有的字符，一个挨一个
 
 1121
 01:00:28,062 --> 01:00:29,828
 do a for loop over them I can say, for c:,
+用 for 循环遍历它们，我可以这样说
 
 1122
 01:00:29,897 --> 01:00:31,730
 which will be of type character,
+for c: Character in s.characters
 
 1123
 01:00:31,798 --> 01:00:36,334
 by the way, in s.characters. I can't say for c: in s, for
+我不能说 for c in s
 
 1124
 01:00:36,403 --> 01:00:40,372
 c: in s.characters. And that's just gonna call my for
+必须说 for c in s.characters
 
 1125
 01:00:40,441 --> 01:00:43,308
 loop once with each character. Question? Yeah,
+这样就能通过 for 循环变量遍历每一个字符了。有什么问题？
 
 1126
 01:00:43,377 --> 01:00:46,211
 great question. So if I do this over cafe,
+问得好！如果我对 café 做 for 循环
 
 1127
 01:00:46,279 --> 01:00:49,580
 what am I gonna get? I'm gonna get four characters, okay,
+我会得到什么？我会得到四个字符
 
 1128
 01:00:49,649 --> 01:00:52,150
 because that E-accent-agu that they use is considered in our
+因为 é 被视作
 
 1129
 01:00:52,219 --> 01:00:54,520
 human perception one character.
+一个人类认知中的字符
 
 1130
 01:00:54,588 --> 01:00:56,454
 I'll get four characters. So there is a character.
+我会得到四个字符，有一个 Character
 
 1131
 01:00:56,523 --> 01:00:58,423
 Characters are struct, right and in the character
+Character 是结构体，Character 中刚好
 
 1132
 01:00:58,491 --> 01:01:01,093
 there is a character that represents e-accent-agu.
+有一个能代表 é
 
 1133
 01:01:01,161 --> 01:01:02,360
 No matter how it's represented in the string,
+不论它在 String 内部是怎么表达的
 
 1134
 01:01:02,429 --> 01:01:03,895
 in the string it might be two characters, it might be one,
+也许是两个字符，也许是一个
 
 1135
 01:01:03,964 --> 01:01:06,565
 it doesn't matter. You're gonna get the one character
+都没有关系。因为你得到的是一个能代表它的 Character
 
 1136
 01:01:06,634 --> 01:01:09,567
 for it, so that's a really good question. How would I
+这个问题问得好
 
 1137
 01:01:09,636 --> 01:01:12,537
 know how many characters there are in a string? Again,
+我怎么才能知道到底一个字符串中有多少字符？
 
 1138
 01:01:12,606 --> 01:01:14,973
 from the user perspective. s.characters.count,
+人类认知的字符。s.characters.count
 
 1139
 01:01:15,042 --> 01:01:18,243
 not s.length or something, s.characters.count,
+不是 s.length 或者其他什么，就是 s.characters.count
 
 1140
 01:01:18,312 --> 01:01:21,679
 the count of the characters in the collection of characters
+意思是在这个字符串的字符集合中，元素的数量
 
 1141
 01:01:21,748 --> 01:01:26,250
 for this string. Also, what if I want to find the first space
+那么如果我要找字符串中的第一个空格怎么做？
 
 1142
 01:01:26,319 --> 01:01:29,121
 in a string? Got a string with a bunch of words, I wanna find
+有个字符串，它包含很多单词
 
 1143
 01:01:29,189 --> 01:01:34,559
 the first space. I would say s.characters.index(of: " ").
+我要找第一个空格。我应该用 s.characters.index(of: " ")
 
 1144
 01:01:34,628 --> 01:01:38,030
 And that's giving me a string.index(of: " ') that
+这会返回给我空格在字符集合中的索引
 
 1145
 01:01:38,098 --> 01:01:41,032
 collection of characters. I can then use that string in
+然后我可以利用这个索引
 
 1146
 01:01:41,101 --> 01:01:43,702
 that index though to go back to my string and do something.
+回到原字符串中做些什么事情
 
 1147
 01:01:43,771 --> 01:01:45,470
 Maybe insert something there or
+比如插入一些新字符
 
 1148
 01:01:45,539 --> 01:01:48,473
 delete the word that's right after the space or insert
+删除空格之后的那个单词
 
 1149
 01:01:48,542 --> 01:01:54,279
 another space. I'll have the index into the string now.
+或者插入另外一个空格。总之，我将会得到字符串的索引
 
 1150
 01:01:54,348 --> 01:01:58,850
 String is a value type, so when you do let versus var,
+String 是一个值类型，来对比下用 let 或 var 声明时的不同
 
 1151
 01:01:58,919 --> 01:02:02,420
 if you do let you cannot do things like append on to
+如果你用 let 声明，就没法做类似于 append 之类的操作
 
 1152
 01:02:02,489 --> 01:02:06,525
 the string cuz it's immutable. Most strings in Swift
+因为它是不可变的，Swift 中绝大多数字符串都是不可变的
 
 1153
 01:02:06,594 --> 01:02:09,027
 are immutable, that makes it super high performance.
+这使得它效率非常高
 
 1154
 01:02:09,096 --> 01:02:12,964
-But if you have a var you can do reading plus equals there
+But if you have a var you can do greeting plus equals there
+但是如果你用 var 声明 greeting，可以 greeting += " there"
 
 1155
 01:02:13,033 --> 01:02:16,235
 and so I can have hello there. It doesn't have any effect on
+然后得到字符串 "hello there"。这种操作不会改变 hello
 
 1156
 01:02:16,303 --> 01:02:19,304
 hello, the let one because that's immutable, right? Okay,
+因为 hello 是 let 声明的，不可变，明白了吗？
 
 1157
 01:02:19,373 --> 01:02:22,007
 so I can't do that. And I can use the characters to
+所以我没法对 hello 做类似的操作。我还可以通过 characters
 
 1158
 01:02:22,076 --> 01:02:24,876
 manipulate strings in really powerful ways. I can, I don't
+对字符串做出一些更强大的操作
 
 1159
 01:02:24,945 --> 01:02:27,279
 have time to talk about all of it, this is where you really
+我没时间讲解所有字符串操作相关的内容
 
 1160
 01:02:27,348 --> 01:02:29,915
 do need to read your reading assignment carefully. But for
+剩下的部分需要你们课后认真阅读
 
 1161
 01:02:29,984 --> 01:02:33,285
 example if I want to insert the word you into hello there,
+我就讲一个例子，如果我要在 hello 和 there 中间插入一个单词 you
 
 1162
 01:02:33,353 --> 01:02:36,621
 so it says hello you there, okay, I would just get the,
+变成 hello you there
 
 1163
 01:02:36,690 --> 01:02:40,425
-find the first base by doing characters.index(of: " "),
+find the first space by doing characters.index(of: " "),
+我要先通过 characters.index(of: " ") 找到第一个空格
 
 1164
 01:02:40,494 --> 01:02:43,762
 which I showed you on the previous slide. Then there's
+这个用法上一页我已经展示了
 
 1165
 01:02:43,831 --> 01:02:47,199
 a method in string called, insert the constant,
+然后 String 有个方法叫做 insert(contentsOf:at:)
 
 1166
 01:02:47,267 --> 01:02:50,569
 the content of this collection of characters
+这个方法可以在指定的位置插入复数字符构成的集合
 
 1167
 01:02:50,638 --> 01:02:55,040
 at this location, this string.index. So, when I want
+指定的位置是 String.Index 类型
 
 1168
 01:02:55,108 --> 01:02:58,443
 a collection of characters that represents " you", I say,
+我要插入 " you"，所以这个字符集合应该写作 " you".characters
 
 1169
 01:02:58,512 --> 01:03:02,080
 " you".characters, because it's the .characters, and
+因为它是 .characters
 
 1170
 01:03:02,149 --> 01:03:05,883
 it gives me a collection of characters for that string. So
+它返回给我的是 " you" 对应的字符的集合
 
 1171
 01:03:05,952 --> 01:03:09,021
 it seems a little weird but It actually turns out to work out
+这用法好像有点奇怪，但它确实可以准确地返回我要的结果
 
 1172
 01:03:09,089 --> 01:03:11,456
 pretty well. And there's a billion other functions,
+然后 Swift 中还有非常多的函数
 
 1173
 01:03:11,525 --> 01:03:12,924
 in Swift, many, many, many,
+非常，非常，非常多
 
 1174
 01:03:12,993 --> 01:03:15,027
 I can't talk about them all.
+我没法每个都讲
 
 1175
 01:03:15,095 --> 01:03:18,396
 Notice I say if let firstSpace, because that might
+注意到这里我用了 if let firstSpace，因为有可能
 
 1176
 01:03:18,465 --> 01:03:21,166
 return nil if it couldn't find it. So I wouldn't do it there,
+没找到指定的内容，就会返回空，这个大括号内的代码就不会执行
 
 1177
 01:03:21,234 --> 01:03:25,904
 I wouldn't insert it there. Yeah a bunch of other things
+也就不会对原字符串进行插入操作。这里还有一大堆其他方法
 
 1178
 01:03:25,972 --> 01:03:28,807
 checking where strings have prefixes or not.
+这个方法可以检查字符串是否包含某个前缀
 
 1179
 01:03:28,876 --> 01:03:31,109
 You can replace subrange, of course you have to find
+你可以替换子串，当然替换之前
 
 1180
 01:03:31,177 --> 01:03:33,044
 the range which usually you're gonna have to look at that
+你通常要通过访问字符串的字符集合
 
 1181
 01:03:33,113 --> 01:03:35,480
 collection of characters to find the ranges you wanna
+来确定要替换的范围
 
 1182
 01:03:35,549 --> 01:03:38,783
 replace things etc. Even cool methods like components
+更有趣的一个方法，你可以通过 components(separatedBy:)
 
 1183
 01:03:38,852 --> 01:03:42,020
-separated by string will take a string that has like calm or
+separated by string will take a string that has like comma or
+对一个包含逗号或者其他分隔字符的字符串
 
 1184
 01:03:42,089 --> 01:03:45,824
 separated values and grab all of the values and
+拆分得到所有子串
 
 1185
 01:03:45,893 --> 01:03:48,727
 put them in an array which is kinda fun. Okay so
+然后拿到一个包含这些子串的数组
 
 1186
 01:03:48,796 --> 01:03:52,864
 a lot: string has dozens and dozens of methods, you really
+讲了这么多，String 还有很多很多方法
 
 1187
 01:03:52,933 --> 01:03:55,100
 need to familiarize yourself. If you don't take the time to
+你需要去熟悉它们
 
 1188
 01:03:55,168 --> 01:03:57,235
 familiarize yourself with those thing in strings.
+如果你不在这上面花时间的话
 
 1189
 01:03:57,304 --> 01:03:58,971
 Then I guarantee you're going to be writing a program and
+我保证有一天你会遇到这种情况，你在写一个程序的时候
 
 1190
 01:03:59,039 --> 01:04:01,006
 you're going to want to do some string parsing or
+需要对字符串进行解析或其他某种操作
 
 1191
 01:04:01,075 --> 01:04:02,641
 something and you're going to write a whole bunch of
+你写了一大段代码来完成这个功能
 
 1192
 01:04:02,710 --> 01:04:04,276
 code to do it and then find out there was one method that
+然后发现其实只要一个原生的方法
 
 1193
 01:04:04,345 --> 01:04:05,878
 did exactly what you want in the string.
+就能实现你想要的功能
 
 1194
 01:04:07,514 --> 01:04:09,281
 There are things in there take closures and
+有些方法会接收闭包
 
 1195
 01:04:09,350 --> 01:04:10,516
 do all kinds of fun stuff so
+然后做各种有趣的操作
 
 1196
 01:04:10,584 --> 01:04:12,984
 make sure you pay attention to both to string and
+所以你要同时留意 String 和
 
 1197
 01:04:13,053 --> 01:04:16,754
 to the character view which is a collection of characters.
+和 String.CharacterView 也就是字符的集合
 
 1198
 01:04:16,823 --> 01:04:21,894
