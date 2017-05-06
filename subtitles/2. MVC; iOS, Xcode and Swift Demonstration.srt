@@ -1,4 +1,4 @@
-1
+﻿1
 00:00:00,401 --> 00:00:04,869
 [MUSIC]
 
@@ -1597,1602 +1597,2002 @@ what's the difference between a struct and a class?
 400
 00:20:09,409 --> 00:20:11,143
 I'm gonna talk in detail about it next week, but
+我下周会详细说明
 
 401
 00:20:11,211 --> 00:20:12,978
 I'm gonna tell you two important differences,
+但接下来会先说说两个重要区别
 
 402
 00:20:13,046 --> 00:20:14,880
 the two most important differences.
+非常重要的区别
 
 403
 00:20:14,949 --> 00:20:18,217
 One thing, classes have inheritance,
+第一个，类是可以继承的
 
 404
 00:20:18,285 --> 00:20:21,386
 structs do not, okay? So if you're building
+但结构体不行。所以如果你想
 
 405
 00:20:21,454 --> 00:20:23,956
 something that you think is gonna need to be sub classed
+构造一个能扩展的对象
 
 406
 00:20:24,024 --> 00:20:26,658
 to be extensible, you probably wanna make it a class. I'm
+就必须用类
 
 407
 00:20:26,727 --> 00:20:29,194
 gonna make my CalculatorBrain extensible in a different way
+我用其他方式扩展 CalculatorBrain
 
 408
 00:20:29,263 --> 00:20:30,195
 as you'll see, so
+如你马上所见的
 
 409
 00:20:30,264 --> 00:20:33,265
 it doesn't need to be a class. I could possibly change
+所以我没有使用类。如果我稍后改变主意
 
 410
 00:20:33,333 --> 00:20:35,534
 it back to a class if I change my idea later, but
+可以随时改为类
 
 411
 00:20:35,602 --> 00:20:38,303
 my current architecture does not need to be sub classed,
+但我当前的结构不需要 CalculatorBrain 的子类
 
 412
 00:20:38,372 --> 00:20:41,239
 so that's one difference. The other difference,
+这是其一。另外一个区别
 
 413
 00:20:41,308 --> 00:20:42,073
 huge difference, and
+本质的区别
 
 414
 00:20:42,142 --> 00:20:44,343
 the one that's gonna take the most getting used to for
+也是你需要理解的概念
 
 415
 00:20:44,411 --> 00:20:49,180
 you conceptually, is that classes live in the heap, and
+类存储在堆中
 
 416
 00:20:49,249 --> 00:20:53,151
 you have pointers to them. Structs do not live in
+通过指针传递。结构体存储在栈上
 
 417
 00:20:53,220 --> 00:20:58,156
 the heap, and they are passed around by copying them, okay?
+通过拷贝值传递
 
 418
 00:20:58,225 --> 00:21:02,293
 We call the copying style value types.
+我把拷贝值传递叫值类型
 
 419
 00:21:02,362 --> 00:21:06,564
 We call the, in the heap file, style, reference types.
+存储在堆中的方式叫引用类型
 
 420
 00:21:06,633 --> 00:21:09,067
 Because we have a reference to them in the class case,
+类通过引用来使用
 
 421
 00:21:09,136 --> 00:21:10,902
 we actually copy them around in the struct case.
+而结构体需要拷贝值使用
 
 422
 00:21:10,971 --> 00:21:14,105
 Now, you know, that might seem like a big restriction.
+那看起来，使用结构体会有很大的限制
 
 423
 00:21:14,174 --> 00:21:16,207
 I gotta copy these things around, what if they're big?
+结构体很大的时候，也会拷贝吗？
 
 424
 00:21:16,276 --> 00:21:19,912
 But as I mentioned on Monday, these things are passed around
+星期一提到的，凡是通过拷贝值传递的
 
 425
 00:21:19,980 --> 00:21:23,048
 copy on right. So when you pass them around, if you don't
+都会采用“写时复制”，也就是如果
 
 426
 00:21:23,117 --> 00:21:26,819
 actually change them, then no copy is actually made. Okay,
+没有改变它的值，那么是不会进行拷贝的
 
 427
 00:21:26,887 --> 00:21:30,155
 but it's all behind the scenes for you, all right?
+这些都是在内部自动完成的
 
 428
 00:21:30,224 --> 00:21:31,155
 So that's a huge difference.
+这就是本质的差别
 
 429
 00:21:31,224 --> 00:21:33,992
 Now why would I want my CalculatorBrain to be a struct
+为什么我会把 CalculatorBrain 定义为结构体而不用类呢？
 
 430
 00:21:34,060 --> 00:21:37,095
 instead of a class? Well, I don't imagine I'm gonna have
+因为我想象不到会有
 
 431
 00:21:37,164 --> 00:21:39,064
 a whole bunch of different people referencing it.
+其他地方需要引用它
 
 432
 00:21:39,133 --> 00:21:42,334
 The CalculatorBrain is a brain for an MVC.
+CalculatorBrain 是 MVC 的核心
 
 433
 00:21:42,402 --> 00:21:45,137
 So that MVC is gonna access it, but I, I don't see a lot
+所以 MVC 会访问它，除此之外
 
 434
 00:21:45,205 --> 00:21:49,008
 of other entities somehow trying to point to this thing.
+没有其他实体会尝试引用它
 
 435
 00:21:49,076 --> 00:21:50,875
 So I don't really need to be reference type,
+所以我不需要引用类型
 
 436
 00:21:50,944 --> 00:21:55,814
 okay. I can have it be a value type from that standpoint. So
+基于这点，我使用值类型
 
 437
 00:21:55,883 --> 00:21:58,250
 it's probably fine. Also it's a great opportunity for
+而且这是个很好机会
 
 438
 00:21:58,319 --> 00:22:01,286
 me to show you what it looks like to make a struct because
+让我展示如何使用结构体
 
 439
 00:22:01,355 --> 00:22:03,621
 making a struct looked almost just like being a class,
+像使用类一样使用结构体
 
 440
 00:22:03,690 --> 00:22:05,024
 but there's a couple minor differences,
+但多多少少还是有些区别的
 
 441
 00:22:05,092 --> 00:22:07,726
 which you're gonna see real soon here, okay?
+你很快就会知道
 
 442
 00:22:07,795 --> 00:22:09,895
 So now back to the public API,
+OK，回到 public API（公共接口）
 
 443
 00:22:09,963 --> 00:22:12,764
 what is the public API of this? Well, I know that
+这里需要定义什么公共接口呢？
 
 444
 00:22:12,832 --> 00:22:15,466
 this CalculatorBrain is gonna need a func that performs
+我知道 CalculatorBrain 需要一个方法来执行数学计算
 
 445
 00:22:15,535 --> 00:22:19,304
 operation. Okay, for sure because that's fundamentally
+这是最基本的要求
 
 446
 00:22:19,373 --> 00:22:22,508
 what it does. It performs an operation. And we'll use
+它需要执行数学计算
 
 447
 00:22:22,576 --> 00:22:25,210
 the same mechanism we used on Monday to define it.
+我们用周一使用的方式来定义它
 
 448
 00:22:25,279 --> 00:22:29,982
 I will have some mathematical symbol be the thing that
+我会通过数学符号
 
 449
 00:22:30,050 --> 00:22:35,620
 defines what operation we're performing, okay? And notice
+来判断需要执行什么计算
 
 450
 00:22:35,689 --> 00:22:40,125
 that I made the external name be blank. It's a close call
+注意，这里实参标签（argument label）为空
 
 451
 00:22:40,194 --> 00:22:42,561
 here as whether you would want it to be symbol.
+但你可能觉得实参标签叫 symbol 更好
 
 452
 00:22:42,629 --> 00:22:45,697
 In other words, would I call performOperation like this,
+或者说，我会这样调用 performOperation
 
 453
 00:22:45,766 --> 00:22:48,567
 okay, performOperation(symbol, whatever. Or
+performOperation(symbol: XXXXX)
 
 454
 00:22:48,636 --> 00:22:53,939
 whether I want it to be blank, and I say performOperation,
+相比之下，我觉得留空更好，我会这样读 performOperation
 
 455
 00:22:54,007 --> 00:22:56,475
 and I just put the string, the symbol in here like pi or
+然后把像 pi 或者其他符号放进去
 
 456
 00:22:56,543 --> 00:22:59,244
 whatever. It's a close call here,
+这更贴近调用的意思
 
 457
 00:22:59,313 --> 00:23:02,014
 this is a close judgement call as to which is better.
+很容看出哪种调用方式更好
 
 458
 00:23:02,082 --> 00:23:04,015
 I'm gonna go with this because I think reading this code,
+我会保留这样，因为我觉得代码更通顺易读
 
 459
 00:23:04,084 --> 00:23:07,586
 performOperation pi makes perfect sense to me.
+performOperation("π") 读起来更通顺
 
 460
 00:23:07,655 --> 00:23:10,121
 Adding the word symbol in there doesn't really
+在这里增加 symbol 字符作为实参标签
 
 461
 00:23:10,190 --> 00:23:11,489
 make it any clearer to me, so
+并没有提高可读性
 
 462
 00:23:11,558 --> 00:23:14,492
 that's the way I'm gonna go with this one. Okay,
+所以我选择这样写
 
 463
 00:23:14,561 --> 00:23:17,228
 what else do I need? Well, if you're performing operations,
+OK，接下来还要做什么？很明显，如果要执行计算
 
 464
 00:23:17,297 --> 00:23:19,531
 you have to have operands to perform one, right?
+就必须要一个操作数
 
 465
 00:23:19,600 --> 00:23:20,365
 If you're doing square root,
+如果要执行平方根
 
 466
 00:23:20,434 --> 00:23:22,234
 you have to do square root of something, whatever. So
+那么你必须对某个操作数执行平方根
 
 467
 00:23:22,303 --> 00:23:25,236
 I'm gonna have to have some func that sets the operand as
+所以我必须定义一个方法来设置操作数
 
 468
 00:23:25,305 --> 00:23:28,206
 well, okay? And again, I'm gonna have no external name,
+参数这里依然没有实参标签
 
 469
 00:23:28,275 --> 00:23:32,544
 and we'll call it the operand. And I'm gonna have my
+形参名称（parameter name）叫 operand
 
 470
 00:23:32,612 --> 00:23:35,814
 entire CalculatorBrain work in doubles. It's
+我让整个 CalculatorBrain 都使用 double（浮点类型）
 
 471
 00:23:35,883 --> 00:23:39,084
 gonna be a double precision CalculatorBrain, so I'm gonna
+所以 CalculatorBrain 是浮点精度的
 
 472
 00:23:39,152 --> 00:23:42,120
 have the operand be a double. Now, here's a case where I
+所以我定义 operand 也是浮点类型
 
 473
 00:23:42,188 --> 00:23:45,223
 definitely know that I don't wanna have an external name,
+这里我也没有定义实参标签
 
 474
 00:23:45,292 --> 00:23:48,393
 because saying setOperand (operand: 5.0), that's
+因为 setOperand(operand: 5.0) 并不通顺
 
 475
 00:23:48,461 --> 00:23:51,830
 ridiculous, that's completely redundant, don't need it.
+有点累赘，完全是多余的，所以不需要
 
 476
 00:23:51,899 --> 00:23:55,467
 It's very clear, if I do this, setOperand(5.0).
+setOperand(5.0) 更容易理解
 
 477
 00:23:55,536 --> 00:23:58,102
 That's clear what I'm talking about. So no question in my
+而且读起来也更通顺，我觉得
 
 478
 00:23:58,171 --> 00:24:01,173
 mind that that's better. And then you set the operand,
+这样更好。然后这里设置 operand
 
 479
 00:24:01,242 --> 00:24:03,775
 you perform operations, guess what? You gotta
+执行了某个运算，然后呢？
 
 480
 00:24:03,843 --> 00:24:08,013
 get the result. Now, I could have a func to getResult or
+你需要一个方法来获取计算结果。我可以定义一个方法
 
 481
 00:24:08,081 --> 00:24:12,150
 something like that. That returns a double, right?
+像 getResult 之类的，返回的是浮点类型
 
 482
 00:24:12,218 --> 00:24:15,420
 That's one thing I do. But that's really not very Swift.
+就像这样，但不推荐在 Swift 这么做
 
 483
 00:24:15,489 --> 00:24:18,556
 Really in Swift what you would do is you say, here's a result
+在 Swift 里，最好这样，定义一个 result 变量
 
 484
 00:24:18,625 --> 00:24:24,128
 var, that returns result. Now the only problem with that UI,
+这就是计算返回的结果。唯一要注意的是
 
 485
 00:24:24,197 --> 00:24:28,800
 or that API rather, is I don't want anyone to set my result.
+对于这个 API（应用程序接口），我不希望其它人能修改结果
 
 486
 00:24:28,869 --> 00:24:31,670
 I'm the calculator brain, I calculate the result. So
+结果应该计算器来计算
 
 487
 00:24:31,739 --> 00:24:33,438
 this needs to be read-only.
+所以要定义这个变量为只读
 
 488
 00:24:33,507 --> 00:24:38,210
 Anyone remember how we can make a var read-only?
+有谁知道怎么设置变量为只读？
 
 489
 00:24:38,279 --> 00:24:44,349
 No? Someone suggest let. And that's kinda
+没人知道吗？有人说用 let
 
 490
 00:24:44,418 --> 00:24:47,819
 not exactly what let does. Let makes it to constant,
+用 let 有点不太准确。因为 let 定义的是常量
 
 491
 00:24:47,888 --> 00:24:50,922
 meaning that it's read-only. But it can only set once.
+虽然也是只读，但 let 只能在定义的时候赋值
 
 492
 00:24:50,991 --> 00:24:54,059
 Whereas result is constantly changing. So we can't do let,
+计算结果需要不断变化，所以不能用 let
 
 493
 00:24:54,127 --> 00:24:56,528
 unfortunately. But it's a really good guess.
+但这是个好想法
 
 494
 00:24:56,596 --> 00:25:00,365
 Actually we do it with the computed property thing. Okay,
+实际上可以使用 computed property（计算型属性）
 
 495
 00:25:00,434 --> 00:25:02,467
 remember we computed that display value and
+记得之前定义 displayValue 变量的
 
 496
 00:25:02,536 --> 00:25:05,170
 we had get and set? Well, we just don't do the set, right?
+get 和 set 属性吗？只要去掉 set 就可以了
 
 497
 00:25:05,239 --> 00:25:07,706
 In this case we're just not gonna do. Just not put that on
+在这里，把 set 去掉，留下 get
 
 498
 00:25:07,775 --> 00:25:09,741
 there. Boom, this is a read-only property.
+这就是只读属性
 
 499
 00:25:09,810 --> 00:25:13,945
 Everybody got that? It's like currentTitle on button.
+就像 button 的 currentTitle 属性
 
 500
 00:25:14,014 --> 00:25:15,981
 It's get only. All right now,
+也是只读的。接下来
 
 501
 00:25:16,050 --> 00:25:18,917
 I'm gonna think a little bit about the internal
+在使用之前，我需要考虑下
 
 502
 00:25:18,985 --> 00:25:22,287
 implementation of this before I go and start using this
+这里内部如何实现
 
 503
 00:25:22,355 --> 00:25:26,091
 thing. I know that a calculator brain, internally,
+我知道计算器内部
 
 504
 00:25:26,160 --> 00:25:30,728
 it kind of accumulates its answer as it's going. And
+需要保存计算的结果
 
 505
 00:25:30,797 --> 00:25:34,700
 so I'm actually gonna have an internal var, and watch this,
+所以我定义一个私有变量，看这里
 
 506
 00:25:34,769 --> 00:25:40,004
 private var. I'm gonna call it accumulator, I'm
+private var（私有变量），命名为 accumulator
 
 507
 00:25:40,073 --> 00:25:43,441
 gonna make it a double, okay? So this is gonna be internal.
+类型为 double（浮点类型）。这是一个私有变量
 
 508
 00:25:43,510 --> 00:25:46,178
 So now, other people can't access this.
+其他外部成员无法访问它
 
 509
 00:25:46,246 --> 00:25:49,414
 That's what private means. And for all your homeworks for
+这就是私有的含义。在这季的所有作业里
 
 510
 00:25:49,483 --> 00:25:52,184
 this entire quarter, I want you to put private in front of
+我希望你在所有你认为是内部使用的变量前
 
 511
 00:25:52,252 --> 00:25:56,087
 things that you think are internal implementation.
+都增加 private 关键字
 
 512
 00:25:56,156 --> 00:25:59,191
 To any class you've create in this, in this course, okay?
+任何本课程中写的代码都这么做
 
 513
 00:25:59,260 --> 00:26:01,326
 So get used to doing that. It's very important.
+要成为一种习惯，这很重要
 
 514
 00:26:01,394 --> 00:26:04,529
 These three are not private. They're public.
+这三个不是私有的，是公有的
 
 515
 00:26:04,598 --> 00:26:07,065
 I'm gonna allow other people to call these. But
+其他外部成员可以访问调用它们
 
 516
 00:26:07,133 --> 00:26:12,070
 this one is internal. Now, one thing you notice is
+这个是内部私有的。有一点要注意
 
 517
 00:26:12,138 --> 00:26:16,441
 I don't have any error up here that says no initializer.
+这里没有初始化，但没有提示任何错误
 
 518
 00:26:16,510 --> 00:26:18,810
 Remember that when I created a var in
+记得之前在 ViewController 中
 
 519
 00:26:18,879 --> 00:26:20,178
 the view controller,
+创建变量吗？
 
 520
 00:26:20,247 --> 00:26:22,714
 and it said that there's no initializers. And I had to
+会抛出没有初始化的错误
 
 521
 00:26:22,782 --> 00:26:25,984
 make userInTheMiddleOfTyping equal false. Why don't
+必须初始化 userInTheMiddleOfTyping 等于 false
 
 522
 00:26:26,053 --> 00:26:30,255
 I have to do it here? That's because this is a struct. And
+为什么这里不需要呢？这是因为这是结构体
 
 523
 00:26:30,324 --> 00:26:33,258
 structs automatically get an initializer.
+结构体会自动提供一个构造器
 
 524
 00:26:33,327 --> 00:26:36,495
 That will initialize all of their uninitialized vars,
+通过那个构造器来初始化所有未初始化的属性
 
 525
 00:26:36,563 --> 00:26:38,163
 okay? You get a free initializer.
+所以你并不需要自己提供一个构造器
 
 526
 00:26:38,231 --> 00:26:40,365
 You don't get that with class. Only with the structs, so
+但在类中就不能这样做，只有结构体可以
 
 527
 00:26:40,433 --> 00:26:42,033
 there is one difference between class and structs.
+这也是类和结构体的一个区别
 
 528
 00:26:42,102 --> 00:26:44,570
 So we're gonna have a struct, for CalculatorBrain, or
+好，现在已经有个叫 CalculatorBrain 的结构体
 
 529
 00:26:44,638 --> 00:26:47,139
 an initializer for CalculatorBrain. That will
+它自动提供的构造器
 
 530
 00:26:47,207 --> 00:26:50,375
 take a double and it'll initialize as accumulator.
+会通过浮点类型的参数来初始化 accumulator 变量
 
 531
 00:26:50,444 --> 00:26:52,344
 But actually, I don't wanna do that.
+但实际上，我并不希望它这么做
 
 532
 00:26:52,413 --> 00:26:56,114
 Because let me think of what is accumulator's initial value
+我们真正想把 accumulator 初始化为什么？
 
 533
 00:26:56,182 --> 00:26:59,084
 really wanna be? When someone creates a CalculatorBrain,
+当 CalculatorBrain 被创建的时候
 
 534
 00:26:59,152 --> 00:27:02,020
 I don't wanna have them to tell me what the accumulator's
+我并不想知道 accumulator 变量的
 
 535
 00:27:02,089 --> 00:27:02,854
 initial value is.
+初始化值是多少
 
 536
 00:27:02,923 --> 00:27:05,724
 Because I know what the initial accumulator internally
+因为我认为 accumulator
 
 537
 00:27:05,793 --> 00:27:10,929
 its initial value is when I start up. It's not set.
+在我使用之前是不应该有值的
 
 538
 00:27:10,998 --> 00:27:13,098
 So I'm gonna make this be an optional.
+所以我把它的改为 optional（可选）类型
 
 539
 00:27:13,167 --> 00:27:15,467
 Do you see why I'm making that an optional?
+知道为什么吗？
 
 540
 00:27:15,535 --> 00:27:18,102
 Because the accumulator when I create my brain. I haven't
+因为我在创建 CalculatorBrain 的时候
 
 541
 00:27:18,171 --> 00:27:21,306
 accumulated any result. So I'm in this not set state.
+accumulator 没有记录任何结果，所以它是缺省值的可选类型
 
 542
 00:27:21,375 --> 00:27:24,009
 So, it's a perfect opportunity to make this a double or
+这是完美的解决方案，我可以在代码中把它设置为
 
 543
 00:27:24,078 --> 00:27:29,147
 an optional so I can express that in my code. All right? So
+使用可选的浮点类型
 
 544
 00:27:29,216 --> 00:27:31,549
 if I have this internal accumulator right here,
+如果 accumulator 是私有的
 
 545
 00:27:31,618 --> 00:27:33,218
 how can I use that to implement these?
+这些怎么实现呢？
 
 546
 00:27:33,286 --> 00:27:36,354
 Well, two of them are easy. Okay, setOperand
+这两个地方都很容易实现
 
 547
 00:27:36,423 --> 00:27:39,958
 just sets the accumulator equal to that operand. Okay,
+setOperand 方法只要设置 accumulator 等于入参 operand
 
 548
 00:27:40,026 --> 00:27:42,227
 cuz when you set a new operand to operate on,
+因为当你传入新的 operand 时
 
 549
 00:27:42,296 --> 00:27:45,096
 that replaces anything you have on your accumulator.
+就会覆盖掉 accumulator 的旧值
 
 550
 00:27:45,165 --> 00:27:47,999
 It's what you're now accumulating. So that, that
+这就是当前 accumulator 的值
 
 551
 00:27:48,068 --> 00:27:52,604
 could be any, any easier than that. And then we get results,
+这很容易做到。当你获取 result
 
 552
 00:27:52,673 --> 00:27:57,842
 you're just gonna return the accumulator. Now,
+你只要返回 accumulator 的值就可以了
 
 553
 00:27:57,911 --> 00:27:59,544
 we've got a couple of errors here that we
+我们看到这里提示有几个错误
 
 554
 00:27:59,613 --> 00:28:01,813
 have to deal with. What's this one right here?
+需要我们处理。这一个是什么错误？
 
 555
 00:28:01,882 --> 00:28:03,381
 This looks perfectly fine. How could this be bad?
+这看起来并没问题，为什么会出错呢？
 
 556
 00:28:03,450 --> 00:28:06,284
 Accumulator is an optional double, I'm setting it to
+accumulator 是可选浮点类型
 
 557
 00:28:06,353 --> 00:28:09,287
 a double. It's gotta work, what's the problem?
+赋给它一个浮点类型。这应该是可以的，会有什么问题？
 
 558
 00:28:09,356 --> 00:28:13,758
 Says I cannot assign to this property, because self is
+这里提示 “I cannot assign to this property, because
 
 559
 00:28:13,827 --> 00:28:18,296
 immutable. Self meaning the calculator brain is immutable.
+ self is immutable”。说因为 self 不能被修改
 
 560
 00:28:18,365 --> 00:28:21,834
 And it's saying, do you wanna fix this by making this method
+提示还说，如果你想修复这个错误
 
 561
 00:28:21,902 --> 00:28:25,403
 be mutating? You see he's trying to add this here.
+需要在该方法前增加 mutating。它已经提示这么做了
 
 562
 00:28:25,472 --> 00:28:26,738
 Another difference between structs and
+这是结构体和类的另一个区别
 
 563
 00:28:26,806 --> 00:28:30,475
 classes, if you have a method, okay? Or a property
+如果你有一个方法，或者属性
 
 564
 00:28:30,543 --> 00:28:33,879
 that you're setting, that well, if you have a method and
+当你在某个方法内
 
 565
 00:28:33,947 --> 00:28:36,715
 it changes the value of this thing,
+修改它的值
 
 566
 00:28:36,784 --> 00:28:41,753
 you have to mark it mutating. You have to tell Swift, this
+必须加上 mutating 关键字。你必须要告诉 Swift
 
 567
 00:28:41,821 --> 00:28:45,924
 method can change the value of this struct. Why is that?
+这个方法可以修改结构体的值。为什么会这样呢？
 
 568
 00:28:45,993 --> 00:28:48,627
 It's because of that copy on write thing. Remember,
+这和写时复制有关
 
 569
 00:28:48,696 --> 00:28:51,530
 I told you that structs are passed around by copying them.
+记得之前说过结构体通过拷贝传递
 
 570
 00:28:51,598 --> 00:28:53,632
 And when you write to them, then it copies it. So
+但当发生修改时，才会实际进行拷贝
 
 571
 00:28:53,700 --> 00:28:56,067
 it has to know you're writing it by calling setOperand.
+所以它必须知道你在调用 setOperand 修改了值
 
 572
 00:28:56,136 --> 00:28:58,036
 So, you have to make setOperand be mutating func.
+所以你必须为 setOperand 增加 mutating 关键字
 
 573
 00:28:58,105 --> 00:29:02,807
 So that's the difference between class and a struct.
+这是类和结构体的区别
 
 574
 00:29:02,876 --> 00:29:05,644
 With that, what's this error down here? A different error.
+下面还有一个不同的错误
 
 575
 00:29:05,713 --> 00:29:11,550
 Anyone know what this error is? Louder? Okay,
+谁知道这是什么错误？
 
 576
 00:29:11,619 --> 00:29:15,754
 the problem here is we're trying to return a double,
+在这里，我们尝试返回浮点类型
 
 577
 00:29:15,822 --> 00:29:20,893
 an accumulator is an optional. Okay, so it's saying here,
+但 accumulator 是可选浮点类型，所以这里提示
 
 578
 00:29:20,961 --> 00:29:25,797
 hey unwrap this. Now, I do not wanna do this here. Okay,
+没有解包，但我不想这么解包
 
 579
 00:29:25,866 --> 00:29:28,800
 because it's perfectly valid for the accumulator to be not
+因为这样的话，accumulator 就不能缺省可选值
 
 580
 00:29:28,869 --> 00:29:31,603
 set. In fact, this starts out not set. And in fact,
+但实际上，accumulator 一开始就是缺省值的
 
 581
 00:29:31,672 --> 00:29:34,406
 I can think already of another case where the accumulator is
+我能想到另一个例子，accumulator
 
 582
 00:29:34,475 --> 00:29:38,743
 gonna be not set. What if I say, five times three equals,
+会是缺省值。例如我要计算：“5 x 3 = ”
 
 583
 00:29:38,812 --> 00:29:42,180
 in my calculator? After I say five times,
+当我输入“5 x”
 
 584
 00:29:42,249 --> 00:29:44,883
 my accumulator is not set right now.
+的时候，accumulator 是缺省值的
 
 585
 00:29:44,952 --> 00:29:49,187
 Cuz I need the three equals until I can get the result. So
+因为我输入“3 =”时才会计算结果
 
 586
 00:29:49,256 --> 00:29:52,657
 my accumulator's often gonna be going back to not set.
+所以 accumulator 经常变成缺省值的可选类型
 
 587
 00:29:52,726 --> 00:29:56,228
 When we're in that weird five times three equals five times,
+在“5 x 3 =”中，输入“5 x”时
 
 588
 00:29:56,296 --> 00:29:58,897
 the accumulator's not set right now. Three, okay,
+accumulator 是缺省值的
 
 589
 00:29:58,966 --> 00:30:00,599
 the accumulator's set again, equals, okay,
+输入“3”时，accumulator 有值了，输入“=”号
 
 590
 00:30:00,668 --> 00:30:02,233
 here's the result. Okay,
+就计算出结果了
 
 591
 00:30:02,302 --> 00:30:04,536
 so I can't have this be exclamation point.
+所以这里不能有感叹号
 
 592
 00:30:04,604 --> 00:30:06,804
 Or this thing is gonna crash every time someone asks for
+这样的话，每次输入“5 x”的时候获取结果
 
 593
 00:30:06,873 --> 00:30:10,542
 the result after they say five times. So we can't have that.
+程序就会崩溃，肯定不能这样
 
 594
 00:30:10,611 --> 00:30:15,614
 So instead, I'm going to turn result into an optional. And
+所以取而代之的，把返回结果改为可选类型
 
 595
 00:30:15,682 --> 00:30:16,514
 that makes sense too.
+这是有道理的
 
 596
 00:30:16,583 --> 00:30:20,419
 Because if someone using this object in the middle of five
+因为如果输入“5 x”时
 
 597
 00:30:20,487 --> 00:30:24,156
 times says, what's the results? It'll tell you it's
+获取到的结果是什么？这里会返回缺省值
 
 598
 00:30:24,224 --> 00:30:26,925
 not set, because I'm in the middle of five times, right?
+因为还没执行计算
 
 599
 00:30:26,994 --> 00:30:30,128
 And in your homework, you're even gonna make it clearer to
+做作业的时候，你们尽量搞清楚
 
 600
 00:30:30,197 --> 00:30:33,298
 users of this why this might not be set, okay? So
+为什么这里会是缺省值
 
 601
 00:30:33,367 --> 00:30:35,968
 you'll see that. All right, so
+你会明白的
 
 602
 00:30:36,036 --> 00:30:40,005
 that's a good start to the implementation of this thing.
+这是一个好的开始
 
 603
 00:30:40,074 --> 00:30:42,841
 But before we go into deeper in this implementation,
+但在我们继续深入之前
 
 604
 00:30:42,909 --> 00:30:45,944
 let's go back to our controller and use this public
+我们回到 controller，并使用
 
 605
 00:30:46,012 --> 00:30:48,813
 API that I just designed. Okay, I wanna use this.
+我们刚刚设计的公开应用程序接口。OK，用这里
 
 606
 00:30:48,882 --> 00:30:50,615
 So I'm gonna go back to my controller. Now,
+回到 controller
 
 607
 00:30:50,684 --> 00:30:53,819
 I wanna have my controller and my model on screen on the same
+我希望 controller 和 model 并列在屏幕上
 
 608
 00:30:53,888 --> 00:30:56,654
 time. Just so I can see them side by side. And
+我可以同时看到它们
 
 609
 00:30:56,723 --> 00:30:59,291
 the best way to do that is to bring out this assistant
+最好的方式是点一下这个 assistant editor
 
 610
 00:30:59,359 --> 00:31:03,094
 editor thing again, right? And you can go up to the top.
+然后选择最上方这里
 
 611
 00:31:03,163 --> 00:31:06,264
 And you can actually manually pick. Or
+然后手动选择
 
 612
 00:31:06,333 --> 00:31:08,866
 I'm gonna teach you one little Alt thing.
+或者我教你使用 Alt 快捷键
 
 613
 00:31:08,935 --> 00:31:14,005
 If you hold down Alt and click on some other file over here,
+如果你按住 Alt 键，并点击其他文件
 
 614
 00:31:14,074 --> 00:31:15,840
 you'll get that to appear on the right.
+Assistant Editor 会在右边打开它
 
 615
 00:31:15,909 --> 00:31:18,110
 So Alt-clicking means bring it up on the right.
+Alt + 点击操作意味着在右边打开它
 
 616
 00:31:19,546 --> 00:31:23,348
 Okay, so here I have my model on the left.
+现在左边打开了 model
 
 617
 00:31:23,417 --> 00:31:25,651
 And here I have my controller on the right.
+右边打开了 controller
 
 618
 00:31:25,719 --> 00:31:29,821
 So what I need to do now is fix this broken code that is
+现在要做的就是修复代码
 
 619
 00:31:29,890 --> 00:31:34,726
 doing model stuff inside the controller by using the public
+把一些 controller 的逻辑替换成
 
 620
 00:31:34,795 --> 00:31:37,963
 API of my model. Now, notice that
+调用 model 的应用程序接口。这里需要注意
 
 621
 00:31:38,032 --> 00:31:41,967
 touchDigit does nothing when it comes to calculating.
+touchDigit 方法和计算过程无关
 
 622
 00:31:42,036 --> 00:31:44,002
 All it does is get the digits from the keyboard and
+它只是把键盘输入的值
 
 623
 00:31:44,071 --> 00:31:46,304
 put them in the display. It's not doing any calculating, so
+显示到 display 上，它没有参与任何计算
 
 624
 00:31:46,373 --> 00:31:47,639
 we don't have to touch that.
+所以我们不用管它
 
 625
 00:31:47,708 --> 00:31:50,575
 Same thing here with this display value computed var.
+这个 displayValue 变量也一样
 
 626
 00:31:50,644 --> 00:31:51,843
 All it's doing is converting
+它只是负责转换类型
 
 627
 00:31:51,912 --> 00:31:53,745
 the display from a double to a string and
+把 display 的值类型在浮点类型和字符串类型相互转换
 
 628
 00:31:53,814 --> 00:31:54,346
 back. That's all it does.
+它就只做这些
 
 629
 00:31:54,414 --> 00:31:56,515
 It has nothing to do with being a calculator.
+也没有参与到计算过程
 
 630
 00:31:56,584 --> 00:31:59,585
 That's just the UI for this particular calculator. So
+这些都是计算器的用户界面
 
 631
 00:31:59,653 --> 00:32:02,154
 the only thing we actually have to change is this method,
+实际上我们只需要改动这个方法
 
 632
 00:32:02,223 --> 00:32:07,025
 performOperation. Now, we know that this part in here
+performOperation。现在，我们知道这部分代码
 
 633
 00:32:07,093 --> 00:32:10,229
 does not belong in here. And in fact, I'll throw it over
+其实并不属于这里，我会把它丢到 model 里去
 
 634
 00:32:10,297 --> 00:32:12,630
 here in my model. Even though it's not gonna work there.
+尽管丢过去之后不能编译
 
 635
 00:32:12,699 --> 00:32:15,333
 But we'll throw it over there for now just to get it out of
+但为了规范，还是先把它丢过去再说
 
 636
 00:32:15,402 --> 00:32:20,405
 the way, okay? So now we need to somehow use this
+然后在这方法内部
 
 637
 00:32:20,474 --> 00:32:23,241
 API over here in this implementation. So,
+使用 model 的应用程序接口
 
 638
 00:32:23,310 --> 00:32:25,743
 let's look at all three parts of what has to do,
+我们需要修改 performOperation 方法
 
 639
 00:32:25,812 --> 00:32:28,513
 what we have to do in perform operation. First of all,
+的三个地方。第一个
 
 640
 00:32:28,582 --> 00:32:30,515
 if we're in the middle of typing a number,
+如果输入某个数字的过程中开始计算
 
 641
 00:32:30,584 --> 00:32:33,819
 we need to set that number as an operand, okay?
+必须要把数字存成操作数
 
 642
 00:32:33,887 --> 00:32:36,120
 Because obviously, the user typing in a number and
+因为很明显，用户输入一个数字
 
 643
 00:32:36,189 --> 00:32:38,857
 they perform an operation that number they were typing
+然后执行计算，那么输入的数字
 
 644
 00:32:38,926 --> 00:32:41,192
 needs to be an operand. So, right off the bat here.
+肯定是操作数，所以在这里
 
 645
 00:32:41,261 --> 00:32:44,996
 I'm gonna say, if the user is in the middle of typing,
+我会判断，如果用户在输入过程中计算
 
 646
 00:32:45,065 --> 00:32:48,733
 then I'm going to set the operand. Now, how do I
+那么我会把输入的值设置为操作数
 
 647
 00:32:48,802 --> 00:32:51,837
 communicate to my brain here? Where is my brain? [LAUGH] I
+那我怎么和 CalculatorBrain 沟通呢？
 
 648
 00:32:51,905 --> 00:32:54,806
 don't have a var for my brain. So let's create a var, and
+我需要，但又没有 CalculatorBrain 的实例，那就创建一个
 
 649
 00:32:54,875 --> 00:32:58,743
 it will be private. Because the model is almost always
+创建一个私有变量。因为在 controller 中，model 几乎
 
 650
 00:32:58,812 --> 00:33:01,947
 private to the controller. Cuz you don't want someone else
+都是私有的，因为其他地方不会，你也不希望它们用到
 
 651
 00:33:02,015 --> 00:33:05,216
 reaching in and messing with this controller's model. So
+controler 里面的 model 实例
 
 652
 00:33:05,285 --> 00:33:06,851
 I'm gonna make it a private var.
+所以定义私有变量
 
 653
 00:33:06,920 --> 00:33:11,890
 I'm gonna call it brain. Its type is CalculatorBrain, okay?
+变量名为 brain，类型为 CalculatorBrain
 
 654
 00:33:11,958 --> 00:33:14,793
 That's good. Now, as soon as I put this line of code in,
+很好，我刚写完这行代码
 
 655
 00:33:14,862 --> 00:33:18,297
 look what I get. The old, you don't have any initializers.
+就提示有错误了：你需要构造器
 
 656
 00:33:18,366 --> 00:33:20,732
 That's because this is not initialized.
+因为这里没有初始化
 
 657
 00:33:20,801 --> 00:33:23,802
 So I'm gonna initialize it by creating a CalculatorBrain.
+这里我通过构造一个 CalculatorBrain 来初始化
 
 658
 00:33:23,871 --> 00:33:26,104
 And you create a CalculatorBrain in exactly
+和创建类实例一样
 
 659
 00:33:26,173 --> 00:33:29,608
 the same way that you create as a class.
+结构体也需要这么创建
 
 660
 00:33:29,677 --> 00:33:32,477
 With the name of the type and then the parentheses.
+名字，类型，然后是括号
 
 661
 00:33:32,546 --> 00:33:36,080
 Now we have no arguments in here. Because we have no
+这里没有参数，因为我们
 
 662
 00:33:36,149 --> 00:33:39,384
 uninitialized var. Since we made this be an optional,
+没有未初始化的变量，因为这里定义为可选的
 
 663
 00:33:39,453 --> 00:33:41,987
 it's initialized to nil automatically for us for free,
+它默认会自动初始化为 nil
 
 664
 00:33:42,056 --> 00:33:44,389
 remember? So we have no uninitialized vars, so
+所以我们没有未初始化的变量
 
 665
 00:33:44,458 --> 00:33:46,858
 we just do open parentheses, closed parentheses. And
+我们只需要左括号，右括号
 
 666
 00:33:46,927 --> 00:33:49,895
 of course, we don't need this type, right?
+当然，这个类型也可以去掉
 
 667
 00:33:49,963 --> 00:33:54,099
 Because it gets inferred. So if we ask what type is this?
+因为代码会自动推断类型。如果问这是什么类型？
 
 668
 00:33:54,167 --> 00:33:56,735
 It says, that's a calculator brain. Has to be cuz that's
+代码会自动推断出是 CalculatorBrain 类型
 
 669
 00:33:56,804 --> 00:34:00,272
 what you set it to. All right, so now that we have a model,
+现在在 controller 中已经实例化了 model
 
 670
 00:34:00,341 --> 00:34:03,408
 our controller. This is the green arrow, talking from our
+这是绿色通道，连通
 
 671
 00:34:03,476 --> 00:34:07,212
 controller to the model. We can say, brain set your
+controller 和 model。我们可以这样来使用
 
 672
 00:34:07,281 --> 00:34:11,616
 operand to be whatever the display value is. And
+brain.setOperand(displayValue)
 
 673
 00:34:11,685 --> 00:34:14,452
 of course now we are not in the middle of typing, so I'll
+当然，用户已经没有在输入某个数字了
 
 674
 00:34:14,521 --> 00:34:17,989
 put that in here. So that's all we need to do to set
+把这一行移上来。这就是设置
 
 675
 00:34:18,058 --> 00:34:20,492
 the brain's operand. We only need to do if these are in
+brain 操作数的步骤。只需要判断用户
 
 676
 00:34:20,560 --> 00:34:21,860
 the middle of typing something new,
+是不是正在输入一个新值
 
 677
 00:34:21,929 --> 00:34:23,095
 and they hit an operation button.
+然后点击的运算符按钮
 
 678
 00:34:23,164 --> 00:34:26,031
 We need to give them that operand, okay?
+是我们就设置操作数为输入的值
 
 679
 00:34:26,099 --> 00:34:28,433
 Now, what about the stuff that was in here, okay?
+这一块怎么处理呢？
 
 680
 00:34:28,502 --> 00:34:30,935
 We get this mathematical symbol of the operation to do.
+我们获取到了计算运算符号
 
 681
 00:34:31,004 --> 00:34:32,471
 Now I'm just gonna let the brain do it.
+我需要通知 brain
 
 682
 00:34:32,540 --> 00:34:35,107
 So I'm just gonna say brain perform operation,
+我只需要输入
 
 683
 00:34:35,175 --> 00:34:37,942
 the mathematical symbol. That's it.
+brain.performOperation(mathematicalSymbol)
 
 684
 00:34:38,011 --> 00:34:40,745
 I'm just handing that off to the model. Because that's,
+我把这些都交给 model
 
 685
 00:34:40,814 --> 00:34:44,115
 this is not my job as a controller to do calculation.
+因为计算不是 controller 的工作
 
 686
 00:34:44,184 --> 00:34:45,718
 Okay I'm a UI guy.
+controller 属于用户界面
 
 687
 00:34:47,054 --> 00:34:49,954
 Now of course after the operation is done I need to
+在操作过后，我需要设置
 
 688
 00:34:50,023 --> 00:34:55,427
 set my display value equal to the brain's result.
+displayValue 等于 brain.result
 
 689
 00:34:55,495 --> 00:34:58,730
 But of course I can't do this because displayValue
+但我不能这么写，因为 displayValue
 
 690
 00:34:58,799 --> 00:35:02,801
 is a double. And the result, might be
+类型是浮点，但 brain.result
 
 691
 00:35:02,870 --> 00:35:05,837
 not set cuz it's an optional. So I'm gonna say here,
+是可选类型，可能缺省值。所以这里需要写
 
 692
 00:35:05,906 --> 00:35:08,173
 if I can let the result equal the brain to results.
+如果我可以让 result 等于 brain.result
 
 693
 00:35:08,242 --> 00:35:12,443
 In other words, if the brain's result is determined. Then I
+换句话说，如果 brain.result 是有值的
 
 694
 00:35:12,512 --> 00:35:17,983
 will let the displayValue equal the result. That's it.
+那么 displayValue 就等于这个值
 
 695
 00:35:18,052 --> 00:35:21,787
 Okay, so that little piece of code to input has completely
+OK，这一小段代码就可以把
 
 696
 00:35:21,855 --> 00:35:24,823
 taken all calculation out of the controller.
+把计算模块分出去
 
 697
 00:35:24,891 --> 00:35:26,725
 And put you into this other camp the model.
+全权交给 model 处理
 
 698
 00:35:26,794 --> 00:35:29,294
 And now we can spend the rest of this lecture making this
+剩下的时间我们都会构建这个
 
 699
 00:35:29,362 --> 00:35:30,695
 really powerful model.
+强大的 model
 
 700
 00:35:30,764 --> 00:35:32,397
 And nothing is gonna change over here.
+这边不会再有任何修改
 
 701
 00:35:32,466 --> 00:35:37,035
 I'm literally never gonna edit this code ever again. In fact,
+我基本上不会再修改这里的代码
 
 702
 00:35:37,104 --> 00:35:38,470
 I'm just gonna get it off the screen. And
+事实上我会隐藏它
 
 703
 00:35:38,538 --> 00:35:42,674
 we're gonna spend all of our time over here in the model.
+我们把时间都花在 model 上
 
 704
 00:35:42,743 --> 00:35:45,510
 So, let's start by making kind of a really dirt simple
+我们先简单处理下
 
 705
 00:35:45,579 --> 00:35:48,213
 implementation of performOperation here. Which
+实现 performOperation
 
 706
 00:35:48,282 --> 00:35:51,483
 is try to get this code that was already there to work.
+让这些代码通过编译就行
 
 707
 00:35:51,551 --> 00:35:53,785
 And mostly, that's just a matter of changing the names.
+首先，需要修改名字
 
 708
 00:35:53,854 --> 00:35:55,520
 Because this argument is symbol,
+因为参数名是 symbol
 
 709
 00:35:55,589 --> 00:35:58,056
 not mathematical symbol. So, we'll do that.
+不是 mathematicalSymbol
 
 710
 00:35:58,125 --> 00:36:00,658
 And instead of setting a display value cuz we're not in
+然后替换 displayValue
 
 711
 00:36:00,727 --> 00:36:01,560
 a UI any more.
+因为已经不再处理用户界面了
 
 712
 00:36:01,628 --> 00:36:04,462
 Now we're just setting the accumulator to that double pi.
+现在要设置 accumulator 等于 pi
 
 713
 00:36:04,531 --> 00:36:07,365
 Right, and the same thing here we're setting the accumulator
+同样，这里也需要设置 accumulator
 
 714
 00:36:07,434 --> 00:36:11,270
 to be the square root of the accumulator. Okay,
+等于根号 accumulator
 
 715
 00:36:11,338 --> 00:36:12,604
 now this is a problem right here.
+又报错了
 
 716
 00:36:12,672 --> 00:36:16,441
 This line, why? Accumulator is an optional.
+这里是为什么出错呢？accumulator 是可选类型
 
 717
 00:36:16,510 --> 00:36:20,479
 You can't take the square root of an optional. So I could say
+你不能对一个可选类型开根号
 
 718
 00:36:20,547 --> 00:36:24,082
 for example, if let operand equal the accumulator.
+我会写，如果让 operand 等于 accumulator
 
 719
 00:36:24,151 --> 00:36:29,054
 So if my accumulator is set, then I can tap the accumulator
+也就是如果 accumulator 有值，我再让 accumulator
 
 720
 00:36:29,123 --> 00:36:33,024
 be the square root of the operand, okay? Now,
+等于操作数的平方根
 
 721
 00:36:33,093 --> 00:36:35,427
 we have another warning right here on both of these lines.
+这两行还有另外的错误
 
 722
 00:36:35,496 --> 00:36:40,398
 Why do you think, does anyone know why this is? We seen it
+谁知道为什么吗？
 
 723
 00:36:40,467 --> 00:36:46,004
 before, five minutes ago. This
+我们5分钟前遇到过的
 
 724
 00:36:46,073 --> 00:36:49,708
 modifies this CalculatorBrain. So this method,
+这里修改了 CalculatorBrain 的私有变量
 
 725
 00:36:49,777 --> 00:36:53,478
 perfomOperation, also needs mutating in front of it,
+所以 perfomOperation 方法需要增加 mutating 关键字
 
 726
 00:36:53,547 --> 00:36:55,881
 okay? So I'll fix that, add mutating.
+加上就好了，不报错了
 
 727
 00:36:58,184 --> 00:37:00,018
 Adding this mutating takes a little bit getting used to.
+你有时候可能会忘记添加 mutating 关键字
 
 728
 00:37:00,086 --> 00:37:03,054
 But it's great because its compiler notices it. And it's
+但没关系，因为编译器会提醒你
 
 729
 00:37:03,123 --> 00:37:08,126
 gonna always be reminding you to do that. So believe it or
+它一定会提醒你添加
 
 730
 00:37:08,195 --> 00:37:11,964
 not we now have an MVC version of this calculator and if we
+OK，不管你信不信，MVC 版的计算器已经写完了
 
 731
 00:37:12,032 --> 00:37:21,707
 run it should just work. All right,
+如果你运行它，它肯定会工作的
 
 732
 00:37:21,775 --> 00:37:24,109
 here we go. Let's see. 7, 8, that's still working.
+我们来试试，7，8
 
 733
 00:37:24,177 --> 00:37:26,712
 Okay, that was in the controller. Pi, woah,
+controller 部分正常。试试 pi
 
 734
 00:37:26,780 --> 00:37:29,347
 that's working. It's going off to the model.
+正常工作着，值传递给 model 了
 
 735
 00:37:29,416 --> 00:37:32,517
 And this is actually executing. And it's causing
+实际执行的是这一行
 
 736
 00:37:32,586 --> 00:37:36,521
 the accumulator to get set to that double pi. And
+把 accumulator 设置成 pi 的值
 
 737
 00:37:36,590 --> 00:37:40,125
 then flicking at the result and putting it in display. How
+然后把结果显示到 display 上
 
 738
 00:37:40,193 --> 00:37:44,896
 about 81 square root, square root? All right, excellent,
+那么81开根，再开根呢？好的，没错
 
 739
 00:37:44,965 --> 00:37:47,532
 okay. So now we're starting in a place where exactly where we
+我们代码恢复到了之前的可用状态
 
 740
 00:37:47,601 --> 00:37:50,969
 were before. But we split off all of our calculating code
+并且我们把负责计算的代码分离出到
 
 741
 00:37:51,037 --> 00:37:54,640
 into this little class right here. So this is
+这里的一小块
 
 742
 00:37:54,708 --> 00:37:57,408
 a great opportunity now to enhance this to the max.
+这是我们优化这部分代码的好机会
 
 743
 00:37:57,477 --> 00:38:00,512
 So we are gonna use all kinds of cool, Swift stuff that you
+我们将会使用一些你从没见过的
 
 744
 00:38:00,581 --> 00:38:02,814
 probably did not see in other languages.
+Swift 语言仅有的特性
 
 745
 00:38:02,883 --> 00:38:06,385
 To make this a much more extensible calculator.
+让这个计算器更容易扩展
 
 746
 00:38:06,453 --> 00:38:09,454
 Cuz right now, man, if I wanna add more operations.
+因为现在，如果我们要增加运算符
 
 747
 00:38:09,523 --> 00:38:12,223
 I just get this huge switch statement case, this case,
+我需要增加 switch 代码块，添加 case 声明
 
 748
 00:38:12,292 --> 00:38:15,160
 that case. I'm gonna have to do if let operand equals
+而且每次我都必须要添加判断
 
 749
 00:38:15,229 --> 00:38:16,761
 accumulator every single time.
+如果常量 operand 等于 accumulator 之类的
 
 750
 00:38:16,830 --> 00:38:20,866
 For the things that are unary operations like square root.
+而且这些只是想平方根之类的一元计算
 
 751
 00:38:20,934 --> 00:38:23,569
 Imagine when I have the binary case like five times three
+想象下，如果我有二元操作，像“5 x 3 =”
 
 752
 00:38:23,637 --> 00:38:26,371
 equals. I'm gonna have to do the figuring out how to deal
+我需要考虑怎么处理
 
 753
 00:38:26,440 --> 00:38:28,973
 with the times and the equals for every single case.
+单个计算中出现的乘称号和等于号
 
 754
 00:38:29,042 --> 00:38:32,110
 Forget it. I can't do that. I need to build an engine here.
+算了，想都别想。我需要的是构造一个计算引擎
 
 755
 00:38:32,179 --> 00:38:33,545
 That can deal with constants.
+既可以处理常量
 
 756
 00:38:33,614 --> 00:38:35,880
 That can deal with these unary operations like square root.
+又可以处理像开根号之类的一元计算
 
 757
 00:38:35,949 --> 00:38:39,150
 That can deal with binary operations like multiply and
+还可以处理像加减之类的
 
 758
 00:38:39,219 --> 00:38:42,053
 plus and things like that. Okay? So that's exactly what
+二元计算。这是
 
 759
 00:38:42,122 --> 00:38:44,389
 we're going to do. We're going to enhance this model. Now,
+接下来要做的。我们继续优化我们的 model
 
 760
 00:38:44,458 --> 00:38:47,592
 as we do all this enhancement, we're not going to change it
+所有的优化，都不会影响外部
 
 761
 00:38:47,661 --> 00:38:50,061
 externally at all. And so the controller will not change.
+调用，controller 不需要任何修改
 
 762
 00:38:50,130 --> 00:38:51,930
 That's what's really cool about this. We can do our
+这是非常酷的
 
 763
 00:38:51,999 --> 00:38:53,898
 model development independent of our UI.
+在把用户界面的功能基本完成之后
 
 764
 00:38:53,967 --> 00:38:57,603
 Once we have the UI, that kind of does the basics, all right.
+就可以脱离 UI 只修改 model 的内部实现了
 
 765
 00:38:57,671 --> 00:39:00,638
 So what are we going to do here? Let's focus first.
+接下来我们要做什么呢？我们看这里
 
 766
 00:39:00,707 --> 00:39:02,774
 Let's get rid of this code, cuz we know that's a mess.
+我们先去掉这些代码，因为这写得不好
 
 767
 00:39:02,843 --> 00:39:06,144
 We're not going to do that. Let's focus on constants.
+我们换种方式。先看看常数
 
 768
 00:39:06,213 --> 00:39:10,315
 Wouldn't it be kind of cool if I could like, build a table.
+有没有其他更好的方式来实现呢？比如用某种参照表？
 
 769
 00:39:10,384 --> 00:39:12,951
 Okay, I'll do square brackets to hold my table. And
+OK，我用中括号定义表格
 
 770
 00:39:13,020 --> 00:39:18,623
 in this table, I had, like pi and double dot pi. And then,
+在表格里，我定义 "pi" : Double.pi
 
 771
 00:39:18,692 --> 00:39:22,060
 maybe I had e's does everyone know what the constant e is.
+然后，应该还有常数 e，
 
 772
 00:39:22,129 --> 00:39:24,262
 Mathematic 2.71 one something.
+一个无理数，约等于 2.71
 
 773
 00:39:24,331 --> 00:39:25,397
 We have a nice symbol for
+Swift 有专门的符号来表示它
 
 774
 00:39:25,465 --> 00:39:28,233
 that and not quite as nice as Double.pi. But it's called
+但不像 Double.pi 那么优雅
 
 775
 00:39:28,301 --> 00:39:33,005
 M under bar E. So, and I put all my constants in a table.
+它叫 M_E。好了，假设我把需要的常量都放在表格里了
 
 776
 00:39:33,073 --> 00:39:35,040
 And then here in performOperation,
+然后在 performOperation 方法里
 
 777
 00:39:35,109 --> 00:39:37,576
 I'll just look up the symbol in that table and
+我只需要在表格中查找符号
 
 778
 00:39:37,644 --> 00:39:40,245
 get the value. Wouldn't that be a lot more extensible for
+找到对应的值。这是不是更具有可扩展性？
 
 779
 00:39:40,313 --> 00:39:42,514
 constants? Right, I could add all the constants I want.
+我可以加入任何我想要的常量
 
 780
 00:39:42,582 --> 00:39:45,350
 I just, one line of code each. That would be a lot better
+一行一个，这肯定会比
 
 781
 00:39:45,419 --> 00:39:48,253
 than putting extra case this blah blah blah. Okay, so
+很多很多个 switch 的 case 要好
 
 782
 00:39:48,322 --> 00:39:50,822
 how can we do that? We need to create a table.
+OK，那我们怎样实现呢？首先要创建一个表格
 
 783
 00:39:50,891 --> 00:39:52,891
 So how do we create a table in Swift?
+那 Swift 怎么创建一个表格呢？
 
 784
 00:39:52,959 --> 00:39:56,995
 We use the struct called dictionary, okay? So
+Swift 有个结构体，叫 Dictionary（字典）
 
 785
 00:39:57,064 --> 00:39:59,865
 dictionary is how you create a hash table of things. And so
+字典是你创建哈希表的方法
 
 786
 00:39:59,934 --> 00:40:03,401
 I'm gonna create a private var.
+我定义一个私有变量
 
 787
 00:40:03,470 --> 00:40:05,870
 I'm gonna call it, I could call it Constants, but
+名字可以叫 Constants
 
 788
 00:40:05,939 --> 00:40:08,506
-I'm gonna call it Operations cuz I'm basically, eventually
+I'm gonna call it operations cuz I'm basically, eventually
+但我叫它 operations
 
 789
 00:40:08,575 --> 00:40:12,143
 going to enhance it to work for all of our operations.
+因为它最终会适用于我们所有的运算
 
 790
 00:40:12,212 --> 00:40:16,147
 And it's gonna be of type Dictionary. Now Dictionary,
+类型是 Dictionary
 
 791
 00:40:16,216 --> 00:40:18,716
 you're gonna see a new feature in Swift right here. It, this,
+你所见到的又一个 Swift 语言的特性
 
 792
 00:40:18,785 --> 00:40:22,554
 you have this feature in Java, as well. It is a generic type.
+你可能在 Java 中也见过，泛型
 
 793
 00:40:22,623 --> 00:40:25,157
 So a dictionary, it can be a dictionary that goes from
+字典，可以由几乎任何
 
 794
 00:40:25,226 --> 00:40:28,460
 almost any kind of key to almost any kind of value.
+键值对组成
 
 795
 00:40:28,528 --> 00:40:30,995
 Okay, the key has to implement a certain protocol.
+但键必须遵循某个协议
 
 796
 00:40:31,064 --> 00:40:32,797
 It basically has to be hashable. Okay,
+它基本上必须是 Hashable，具有哈希性
 
 797
 00:40:32,866 --> 00:40:35,534
 so as long as it's hashable, then it can be a key and
+所以只要是具有哈希性，就可以成为键
 
 798
 00:40:35,603 --> 00:40:38,336
 then the value can be any type. So you specify that,
+值可以是任何类型。所以你需要指定类型
 
 799
 00:40:38,405 --> 00:40:40,339
 same as in Java, the key type.
+和 Java 一样，指定键的类型
 
 800
 00:40:40,407 --> 00:40:42,975

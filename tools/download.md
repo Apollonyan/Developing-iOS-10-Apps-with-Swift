@@ -17,6 +17,8 @@
 13. [Timer and Animation](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/dd/9e/bc/dd9ebcdd-f8ad-05bd-e0a1-bc8163f78125/303-6364109281891900174-13_CS193p_2_27_17_720p3000cc.mp4)
 14. [Dynamic Animation Demo](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/69/e6/a6/69e6a628-a269-e496-b51d-afaf25c114a1/323-8980879071774720493-14_3_01_17_720p3000cc.mp4)
 15. [More Segues](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/6b/5f/54/6b5f5450-12d7-23cf-a3ec-2d313923875c/324-2875002592034152487-15_3_06_17_wip2_1080p_720p_3mb_cc.m4v)
+16. [Alerts and Action Sheets, Notifications, Application Lifecycle, and Persistence](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic127/v4/69/f6/c7/69f6c757-e44e-245e-f539-bee224372dc6/323-7683342428341604999-16_3_08_17_720p_3000cc.m4v)
+17. [Accessibility](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic127/v4/7d/68/df/7d68dfc6-f9eb-c72c-905c-7557d96a8b5b/330-3844304494261784016-17_3_13_17_2_720p_3000cc.m4v)
 
 # Slides
 
@@ -33,6 +35,7 @@
 12. [Lecture 12 Slides](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/38/ff/0d/38ff0d79-0ba4-94a2-2d3f-2e3e62ffbe23/309-3567392098680090005-CS193P_Winter_17_Lecture_12.pdf)
 13. [Lecture 13 Slides](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic122/v4/8e/4e/5d/8e4e5d8d-d403-28ff-3a2b-47fe17a00460/306-2848100867125253549-CS193P_Winter_17_Lecture_13.pdf)
 15. [Lecture 15 Slides](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic111/v4/82/e7/17/82e71729-4a3b-f604-4d4b-588a0b64c5de/311-6653904285911219618-CS193P_Winter_17_Lecture_15.pdf)
+16. [Lecture 16 Slides](https://itunesu-assets.itunes.apple.com/apple-assets-us-std-000001/CobaltPublic127/v4/d2/5f/36/d25f36ef-e1d7-c296-9094-621db387fea6/319-5542480879425152826-CS193P_Winter_17_Lecture_16.pdf)
 
 # Demo Code
 
