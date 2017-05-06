@@ -3559,7 +3559,7 @@ Okay, so giraffe, cow, doggie, bird that's zero, one, two and
 812
 00:43:45,425 --> 00:43:48,727
 three. So if I say, give me array number four, bam,
-如果我说，把第四个给我，
+如果我说，把第四个给我
 
 813
 00:43:48,795 --> 00:43:53,165
@@ -3659,7 +3659,7 @@ especially again if you're doing functional programming,
 832
 00:45:02,235 --> 00:45:05,904
 closures can be really good), but why are closures so great?
-闭包可以从中起到很大作用），为什么闭包这么有用？
+闭包可以从中起到很大作用），闭包为什么这么有用？
 
 833
 00:45:05,972 --> 00:45:08,907
@@ -3719,22 +3719,22 @@ to be a function that takes a string. As its only argument.
 844
 00:45:46,113 --> 00:45:48,280
 And it returns a Bool, so that's the argument.
-并且这个函数返回一个布尔值，这个函数就是 filter 方法的参数。
+并且这个函数返回一个布尔值
 
 845
 00:45:48,348 --> 00:45:50,549
 The argument is a function that takes a string and
-这个参数是一个函数，接收字符串并且返回布尔值
+所以 filter 的参数是一个函数，接收字符串
 
 846
 00:45:50,617 --> 00:45:53,184
 returns a Bool or takes a T, whatever that is, and
-或者接收一个是什么都可以的 T 类型
+也就是对应的 T 类型，并返回布尔值
 
 847
 00:45:53,253 --> 00:45:56,388
 returns a Bool. And then what's the return
-返回一个布尔值。那么 filter 方法
+那么 filter 方法本身
 
 848
 00:45:56,457 --> 00:46:00,425
@@ -3744,12 +3744,12 @@ value of this filter thing? It's an array of T, so another
 849
 00:46:00,494 --> 00:46:03,629
 array with the same kind of elements. So what does filter
-是一个与原数组包含同类型元素的新数组。filter 到底做了什么工作？
+是一个与原数组包含同类型元素的新数组
 
 850
 00:46:03,697 --> 00:46:07,499
 do? Filter takes every single element In the array that
-filter 对你放入其中的每个元素
+filter 有什么用？filter 对数组中的每个元素
 
 851
 00:46:07,568 --> 00:46:10,435
@@ -3774,7 +3774,7 @@ It throws it out. So
 855
 00:46:17,477 --> 00:46:21,346
 it's a filter: it's filtering your array and creating a new
-这就是 filter：它创建一个新数组来过滤原数组
+filter 就是过滤器：它创建一个新数组来过滤原数组
 
 856
 00:46:21,415 --> 00:46:24,916
@@ -3909,7 +3909,7 @@ You're gonna have to run this little function,
 882
 00:47:48,202 --> 00:47:50,169
 call this function, create a new array and
-调用这个方法，创建新数组
+调用这个函数，创建新数组
 
 883
 00:47:50,237 --> 00:47:52,170
@@ -4019,7 +4019,7 @@ string of 2, string of 3. That's a trivial mapping.
 904
 00:48:54,535 --> 00:48:56,801
 But you can imagine much more powerful mappings where you
-你能不能想象出更加强大的映射
+但你可以想象下功能更加强大的映射
 
 905
 00:48:56,870 --> 00:48:58,036
@@ -4039,7 +4039,7 @@ a new array. So by creating a really powerful argument there
 908
 00:49:06,112 --> 00:49:09,014
 instead of String($0), something more powerful, you
-替代 String($0)，
+替代 String($0)
 
 909
 00:49:09,083 --> 00:49:11,950
@@ -4049,7 +4049,7 @@ can really have one line of code that's really expressive.
 910
 00:49:12,019 --> 00:49:15,587
 It can do a lot of things. One thing about this one: notice
-可以做很多事情。注意这个地方：
+可以做很多事情。注意这个地方
 
 911
 00:49:15,656 --> 00:49:19,224
@@ -4289,7 +4289,7 @@ returns one, which is exactly what plus does, it works
 958
 00:51:38,031 --> 00:51:40,265
 there. We could have done that in our calculator brain, too.
-所以它可以用在这里。我们可以把这种用法用在 CalculatorBrain 中
+所以它可以用在这里，也可以用在 CalculatorBrain 中
 
 959
 00:51:40,334 --> 00:51:45,003
@@ -4379,7 +4379,7 @@ one these days. So you know you can create a dictionary.
 976
 00:52:42,029 --> 00:52:44,796
 By the way, I show you creating dictionaries from
-我这里展示的是如何通过类似常量的值
+我这里展示的是如何通过常量
 
 977
 00:52:44,865 --> 00:52:46,198
@@ -4389,27 +4389,27 @@ kind of constant values here.
 978
 00:52:46,267 --> 00:52:48,667
 But you can create a dictionary just by saying,
-但是你也可以这样创建字典
+但是你也可以先创建空字典
 
 979
 00:52:48,736 --> 00:52:50,802
 let d equal dictionary. Open parenthesis,
-let d = Dictionary()（译者注：只有NSDictionary可以这样声明
+比如 let d = [String:Int]()
 
 980
 00:52:50,871 --> 00:52:53,405
 close parenthesis. And if you say var d
-如果你用 Swift 的字典，必须在初始化时决定键值的类型）
+或者是创建可变的字典的变量
 
 981
 00:52:53,474 --> 00:52:55,941
 equals dictionary, then now you can start appending items
-如果你说 var d = Dictionary()（译者注：这里也要加上键值的类型），你就有了一个空字典
+比如 var d = [String:Int]()
 
 982
 00:52:56,009 --> 00:52:58,176
 onto it because you get an empty dictionary to start. But
-之后可以往里面加东西
+可以之后再往里面加东西
 
 983
 00:52:58,245 --> 00:53:01,012
@@ -4419,22 +4419,22 @@ here I'm starting my dictionary with stuff in it.
 984
 00:53:01,081 --> 00:53:06,051
 That probably should say var pac12teamRankings
-这里应该用 var pac12teamRankings
+这里应该用 var pac12teamRankings 而不是 let
 
 985
 00:53:06,119 --> 00:53:10,154
 because two lines later I say pac12teamRankings sub Cal
-因为隔了两行代码之后，我用了 pac12teamRankings["Cal"] = 12
+因为隔了两行代码之后
 
 986
 00:53:10,223 --> 00:53:15,159
 equals 12. Note also that
-另外注意
+我用了 pac12teamRankings["Cal"] = 12
 
 987
 00:53:15,228 --> 00:53:18,964
 when I try to get the ranking of Ohio State, it returns nil.
-我尝试获取键为 "Ohio State" 的值，返回的是 nil
+另外注意我尝试获取键为 "Ohio State" 的值，返回的是 nil
 
 988
 00:53:19,032 --> 00:53:21,032
@@ -4564,22 +4564,22 @@ your use. But the complexity is still there. Now the most
 1013
 00:54:51,491 --> 00:54:54,393
 important complexity about a string is that representing
-现在最复杂的是
+String 最复杂的是
 
 1014
 00:54:54,462 --> 00:54:59,631
 a string is not always one character equals one
-String 能表达那些没法用一个“内部描述单元”来表达
+显示的每一个字符
 
 1015
 00:54:59,699 --> 00:55:04,269
 internal representation unit. Now the units, the kind of
-一个字符的语言，所谓“内部描述单元”指的是
+并不是都能用一个字节表示的
 
 1016
 00:55:04,338 --> 00:55:06,804
 thing that's used to represent strings on the inside,
-String 用来表达一个字符串的内部结构
+String 内部用来表达一个字符串的编码
 
 1017
 00:55:06,873 --> 00:55:10,642
@@ -4684,7 +4684,7 @@ of all the languages in the world. It's easy in English,
 1037
 00:56:09,803 --> 00:56:15,274
 though. So that's really how we're gonna interact with
-这就是我们要利用 String 做的事情
+这就是我们使用 String 的方法
 
 1038
 00:56:15,342 --> 00:56:17,976
@@ -4714,27 +4714,27 @@ it's got all the Unicodes in there and all that stuff,
 1043
 00:56:25,852 --> 00:56:29,087
 it's not quite that. And that makes for a little bit of
-和你想象的不太一样，接下来
+和你想象的不太一样
 
 1044
 00:56:29,156 --> 00:56:34,225
-complication as you're gonna see. Now, you can't string, is
-你会发现上面描述的特征会导致一些复杂性
+complication as you're gonna see. Now, you can't; String is
+因此在使用 String 的时候还有其它不便之处
 
 1045
 00:56:34,294 --> 00:56:37,229
 indexable which means you can use the open square brackets
-你没法用方括号，类似索引数组的形式
+虽然 String 可以用类似索引数组的形式
 
 1046
 00:56:37,297 --> 00:56:40,665
 just like you can in array to get one of the characters.
-取得字符串中的某个字符
+通过方括号取得字符串中的某个字符
 
 1047
 00:56:40,734 --> 00:56:43,736
 The only rub is what I said on the other slide that index
-麻烦的是，我讲之前某页时提到过
+我之前提到过会带来的麻烦是
 
 1048
 00:56:43,804 --> 00:56:46,505
@@ -4758,13 +4758,13 @@ if it was cafe then cafe sub 3.
 
 1052
 00:56:59,119 --> 00:57:03,088
-It's not clear that you want a character at that point, and
-根据你提供的字符的位置
+It's not clear. You want a character at that point
+String 并不清楚你想要的是第四个字节还是整个字符
 
 1053
 00:57:03,157 --> 00:57:06,258
 so you've got to make sure you get the right index in there
-系统没法确保，你一定能得到正确的字符
+同时你还要确保自己提供的了正确的索引
 
 1054
 00:57:06,326 --> 00:57:08,961
@@ -4774,11 +4774,11 @@ because that index behind the scenes can be quite
 1055
 00:57:09,029 --> 00:57:11,997
 complicated. There's this other struct for it, which is
-还有另外一个结构体，叫做 String.Index
+因此产生了另外一个结构体，叫做 String.Index
 
 1056
 00:57:12,065 --> 00:57:15,267
-called a string.index. So let's say I had a string,
+called a String.Index. So let's say I had a string,
 我有一个字符串
 
 1057
@@ -4844,7 +4844,7 @@ don't know how many Unicodes there are per character but
 1069
 00:57:50,137 --> 00:57:52,637
 by character, we're gonna be moving back and forth.
-我们只知道根据字符来前后移动
+我们只根据字符来前后移动
 
 1070
 00:57:52,706 --> 00:57:54,506
@@ -4884,17 +4884,17 @@ I had to use a String.Index not an Int. This first index
 1077
 00:58:10,791 --> 00:58:13,091
 I got by asking the string "what's your first index"?
-我通过对那个字符串说“你的第一个索引是什么”，拿到了它的第一个索引
+我得到字符串的第一个索引，还要先问它才行
 
 1078
 00:58:13,160 --> 00:58:15,160
 Well this is kinda useless because I have to ask
-这个步骤好像没什么用处，因为我必须
+这个步骤感觉挺多余的
 
 1079
 00:58:15,228 --> 00:58:17,161
 the string, what's the index of your first character and
-先向字符串索要它的第一个字符的索引
+我先向字符串索要它的第一个字符的索引之后
 
 1080
 00:58:17,230 --> 00:58:19,731
@@ -4924,12 +4924,12 @@ the character after your first character. And
 1085
 00:58:31,044 --> 00:58:33,178
 it'll give me a new index, of its second character and
-它会告诉我一个新的索引，是它的第二个字符的索引
+它会给我一个新的索引，即它第二个字符的索引
 
 1086
 00:58:33,247 --> 00:58:37,215
 now I can get that one. Even that is a little bit like,
-这样我才能拿到第二个字符，这种感觉就像是
+这样我才能拿到第二个字符。这种感觉就像是
 
 1087
 00:58:37,284 --> 00:58:38,049
@@ -4949,7 +4949,7 @@ to go jump ahead though, and get the fourth, the fifth
 1090
 00:58:44,124 --> 00:58:47,959
 character, let's say? Well I can jump ahead by saying s,
-我们要这样做，要对字符串 s 说
+我们要这样做：对字符串 s 说
 
 1091
 00:58:48,028 --> 00:58:52,197
@@ -4989,12 +4989,12 @@ we're trying to find a character in a string.
 1098
 00:59:10,684 --> 00:59:13,485
 By the way, you can use ranges, so I could say
-顺便，在这里你可以用 Range
+顺便，在这里你可以用 Range，所以可以说
 
 1099
 00:59:13,554 --> 00:59:17,021
 give me the substring which is firstIndex...secondIndex and
-所以我可以说，把 firstIndex...secondIndex 这个区间的子串给我
+给我 firstIndex...secondIndex 区间的子串
 
 1100
 00:59:17,090 --> 00:59:21,460
@@ -5004,22 +5004,22 @@ it would give me he. A new string which is he, so
 1101
 00:59:21,528 --> 00:59:25,330
 you can use ranges there but they have to be string.index
-所以这里你可以用 Range，但是必须是 String.Index 类型的 Range
+所以这里你可以用 Range，但必须是 String.Index 类型的
 
 1102
 00:59:25,398 --> 00:59:29,968
 not ints. So we want basically something that
-而不是 Int 类型的。所以其实我们真的很需要某个
+而不是 Int 类型的。所以我们更希望的是
 
 1103
 00:59:30,037 --> 00:59:34,673
 is a collection of characters. A string is not a collection
-类似一串字符的集合的东西。String 不是字符的集合
+操作一串字符的集合。String 不是字符的集合
 
 1104
 00:59:34,742 --> 00:59:37,709
 of characters so you can't do for in, for example, on it.
-所以你没法对它用 for...in 循环
+所以你没法对它用 for...in 遍历
 
 1105
 00:59:37,778 --> 00:59:39,178
@@ -5028,7 +5028,7 @@ You can't even say index(of:).
 
 1106
 00:59:39,246 --> 00:59:42,714
-Index(of:) is this great thing where you can,
+index(of:) is this great thing where you can,
 index(of:) 对于一个集合而言非常好用
 
 1107
@@ -5039,7 +5039,7 @@ if you have a collection of things, you can say give
 1108
 00:59:44,284 --> 00:59:47,452
 me this index of this thing in there. You can't even do that
-把这个元素的索引找出来，
+把这个元素的索引找出来
 
 1109
 00:59:47,521 --> 00:59:50,656
@@ -5049,17 +5049,17 @@ with a string because it's not a collection. Luckily,
 1110
 00:59:50,724 --> 00:59:53,858
 string has a var which will give you a collection of its
-幸运的是，String 有一个变量会返回给你一个它包含的字符的集合
+幸运的是，String 有一个变量
 
 1111
 00:59:53,927 --> 00:59:56,228
 characters. And not only is it gonna give
-它不仅会给你
+不仅返回给你一个它包含的字符的集合
 
 1112
 00:59:56,297 --> 00:59:58,964
 you a collection of its characters that you can for
-它包含的字符的集合，可以对它用
+你还可以对这个字符集合用
 
 1113
 00:59:59,032 --> 01:00:02,768
@@ -5153,7 +5153,7 @@ I'll get four characters. So there is a character.
 
 1131
 01:00:56,523 --> 01:00:58,423
-Characters are struct, right and in the character
+Characters are struct, right? And in the character
 Character 是结构体，Character 中刚好
 
 1132
@@ -5218,7 +5218,7 @@ the first space. I would say s.characters.index(of: " ").
 
 1144
 01:01:34,628 --> 01:01:38,030
-And that's giving me a string.index(of: " ') that
+And that's giving me a string.index(of: " ") that
 这会返回给我空格在字符集合中的索引
 
 1145
@@ -5304,12 +5304,12 @@ do need to read your reading assignment carefully. But for
 1161
 01:02:29,984 --> 01:02:33,285
 example if I want to insert the word you into hello there,
-我就讲一个例子，如果我要在 hello 和 there 中间插入一个单词 you
+我就讲一个例子，如果我要在 hello 和 there 中间
 
 1162
 01:02:33,353 --> 01:02:36,621
 so it says hello you there, okay, I would just get the,
-变成 hello you there
+插入一个单词 you 变成 hello you there
 
 1163
 01:02:36,690 --> 01:02:40,425
@@ -5339,27 +5339,27 @@ at this location, this string.index. So, when I want
 1168
 01:02:55,108 --> 01:02:58,443
 a collection of characters that represents " you", I say,
-我要插入 " you"，所以这个字符集合应该写作 " you".characters
+我要插入代表 " you" 的字符集合
 
 1169
 01:02:58,512 --> 01:03:02,080
 " you".characters, because it's the .characters, and
-因为它是 .characters
+所以这个应该写作 " you".characters
 
 1170
 01:03:02,149 --> 01:03:05,883
 it gives me a collection of characters for that string. So
-它返回给我的是 " you" 对应的字符的集合
+因为 .characters 是 " you" 对应的字符集合
 
 1171
 01:03:05,952 --> 01:03:09,021
 it seems a little weird but It actually turns out to work out
-这用法好像有点奇怪，但它确实可以准确地返回我要的结果
+这用法好像有点奇怪，但它确实能达到我要的结果
 
 1172
 01:03:09,089 --> 01:03:11,456
 pretty well. And there's a billion other functions,
-然后 Swift 中还有非常多的函数
+Swift 中还有非常多的函数
 
 1173
 01:03:11,525 --> 01:03:12,924
@@ -5379,7 +5379,7 @@ Notice I say if let firstSpace, because that might
 1176
 01:03:18,465 --> 01:03:21,166
 return nil if it couldn't find it. So I wouldn't do it there,
-没找到指定的内容，就会返回空，这个大括号内的代码就不会执行
+没找到指定的内容，返回 nil 就不执行大括号内的代码
 
 1177
 01:03:21,234 --> 01:03:25,904
@@ -5414,7 +5414,7 @@ replace things etc. Even cool methods like components
 1183
 01:03:38,852 --> 01:03:42,020
 separated by string will take a string that has like comma or
-对一个包含逗号或者其他分隔字符的字符串
+对比如包含逗号或者其他分隔字符的字符串
 
 1184
 01:03:42,089 --> 01:03:45,824
@@ -5424,7 +5424,7 @@ separated values and grab all of the values and
 1185
 01:03:45,893 --> 01:03:48,727
 put them in an array which is kinda fun. Okay so
-然后拿到一个包含这些子串的数组
+然后返回一个包含这些子串的数组
 
 1186
 01:03:48,796 --> 01:03:52,864
@@ -5479,12 +5479,12 @@ do all kinds of fun stuff so
 1196
 01:04:10,584 --> 01:04:12,984
 make sure you pay attention to both to string and
-所以你要同时留意 String 和
+所以你要同时留意 String
 
 1197
 01:04:13,053 --> 01:04:16,754
 to the character view which is a collection of characters.
-和 String.CharacterView 也就是字符的集合
+和 String.CharacterView，也就是字符的集合
 
 1198
 01:04:16,823 --> 01:04:21,894
