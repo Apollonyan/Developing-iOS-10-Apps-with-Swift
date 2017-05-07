@@ -2,10 +2,14 @@
 
 [English Version](./en/README.md)
 
+以任意形式使用、修改、发布本项目和／或项目的内容等，表示您已阅读、同意、并遵守 [CC-BY-NC-SA 3.0 US 协议](#版权说明)。
+
 目前我们尚未完成翻译。如果您仅仅是想了解翻译的进度，您可以
 
 - [关注项目的更新](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/subscription)
 - [查看进度跟踪看板](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/projects/1)
+
+如果您想支持我们，目前可以点击项目右上角的 <a class="github-button" href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift" data-icon="octicon-star" data-show-count="true" aria-label="Star ApolloZhu/Developing-iOS-10-Apps-with-Swift on GitHub">Star</a> 按钮来 Star 本项目。同时也希望您能够通过各种社交平台，如 微信公众号，微博，博客，开发者头条，简书，CocoaChina，CSDN 等为我们宣传推广，以帮助更多有需要的人。
 
 如果您感兴趣，有能力，我们欢迎您参与项目。请提前阅读 [翻译指南／校对规则](./translation-instructions.md)，在领取任务前阅读 [任务相关说明](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/2)。不遵守该规定的翻译可能被直接关闭，请大家认真对待。
 
@@ -41,3 +45,7 @@
 The original work by Stanford University is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States License.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/us/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 United States License</a>.
+
+----
+
+<script async defer src="https://buttons.github.io/buttons.js">/*请忽略这段代码*/</script>

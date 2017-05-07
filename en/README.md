@@ -2,10 +2,14 @@
 
 [中文版本](../README.md)
 
+Using, modifying, publishing, distributing, or performing any act relating to this repository, means you read, agree with, and follow the [CC-BY-NC-SA 3.0 US License](#copyright-information) terms.
+
 We have not yet finished translating. You may view our progress by
 
 - [Watching the repository](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/subscription)
 - [Viewing Kanban for project progress](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/projects/1)
+
+You may also support us by clicking the <a class="github-button" href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift" data-icon="octicon-star" data-show-count="true" aria-label="Star ApolloZhu/Developing-iOS-10-Apps-with-Swift on GitHub">Star</a> button on the upper right corner of this repository. Meanwhile, we'd like you to share this repository or website with your friends, through social media platforms, such as reddit, twitter, facebook, tumblr, etc., as well as other developer forums and websites, so we may help more people in need.
 
 If you are interested in helping us translate, please read [Translation Instructions/Proofread Guidelines (Chinese)](../translation-instructions.md) carefully，and refer to [Must knows about collaboration (Chinese)](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/2). We reserve rights to close any pull request that doesn't follow these regulations.
 
@@ -41,3 +45,7 @@ The subtitles are provided as `.srt` files, therefore, you need video players th
 The original work by Stanford University is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States License.
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/us/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 United States License</a>.
+
+----
+
+<script async defer src="https://buttons.github.io/buttons.js">/*Please ignore this part*/</script>
