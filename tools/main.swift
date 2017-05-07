@@ -1,9 +1,7 @@
 //
-//  main.swift
-//  update
-//
 //  Created by Apollo Zhu on 3/12/17.
-//  Copyright © 2017 WWITDC. All rights reserved.
+//  This work is licensed under a
+//  Creative Commons Attribution-NonCommercial-ShareAlike 3.0 United States License.
 //
 
 import Foundation
@@ -47,7 +45,7 @@ struct Resource: CustomStringConvertible {
         } else if let resType = ResourceType.all.first(where: { title.contains($0.rawValue) }) {
             type = resType
         } else {
-            fatalError("Unknown Raw Type")
+            fatalError("Unknown Raw Type \(rawType)")
         }
 
         var parts: [String]
@@ -109,7 +107,11 @@ class ParsingDelegate: NSObject, XMLParserDelegate {
 
     func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
         if isParsingTitle {
-            title = String(data: CDATABlock, encoding: .utf8)!
+            if let title = String(data: CDATABlock, encoding: .utf8) {
+                self.title = title
+            } else {
+                fatalError("Unable to parse title from \(CDATABlock)")
+            }
         }
     }
 
@@ -132,10 +134,9 @@ class ParsingDelegate: NSObject, XMLParserDelegate {
 
         var out = "[返回主页](../README.md) / [Back to Main Page](../en/README.md)\n\n"
         for (index, type) in ResourceType.all.enumerated() {
-            if sorted[index].count > 0 {
-                out += "# \(type)\n\n"
-                    + "\(sorted[index].reduce("") { "\($0)\($1)\n" })\n"
-            }
+            guard !sorted[index].isEmpty else { fatalError("Missing Resources of Type \(type)") }
+            out += "# \(type)\n\n"
+                + "\(sorted[index].reduce("") { "\($0)\($1)\n" })\n"
         }
 
         let cwd = CommandLine.arguments.first { $0.contains(#file) } ?? FileManager.default.currentDirectoryPath
