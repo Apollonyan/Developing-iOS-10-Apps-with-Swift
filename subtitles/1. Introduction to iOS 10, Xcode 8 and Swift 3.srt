@@ -10,7 +10,7 @@ Stanford University.
 3
 00:00:07,308 --> 00:00:11,877
 Okay, well, welcome to CS193P, Stanford CS193P.
-欢迎参加 2017 年斯坦福 CS193P 课程
+欢迎参加 2017 年冬季学期斯坦福 CS193P 课程
 
 4
 00:00:13,481 --> 00:00:17,515
@@ -605,7 +605,7 @@ mostly that Core Services layer.
 122
 00:05:56,089 --> 00:05:58,356
 But there's a lot of other ones like Core Data framework,
-当然还有不少其他的框架，比如 Core Data 框架
+当然还有不少其它的框架，比如 Core Data 框架
 
 123
 00:05:58,425 --> 00:05:59,625
@@ -2650,7 +2650,7 @@ well, It's flashing, so it looks like it's working, but
 531
 00:26:01,394 --> 00:26:04,196
 of course, it's not doing anything. We haven't told our
-当然并不会有其他的什么效果
+当然并不会有其它的什么效果
 
 532
 00:26:04,264 --> 00:26:07,599
@@ -5096,7 +5096,7 @@ not set, okay? That's the only two values it has.
 1020
 00:51:18,879 --> 00:51:22,681
 There's no other values. However, when it's in the set
-不可能是其他的值。当可选类型的为有值的时候
+不可能是其它的值。当可选类型的为有值的时候
 
 1021
 00:51:22,749 --> 00:51:26,518

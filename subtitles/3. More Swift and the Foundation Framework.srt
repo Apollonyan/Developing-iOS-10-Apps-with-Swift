@@ -2254,7 +2254,7 @@ so we don't need to put an external name.
 551
 00:29:43,917 --> 00:29:45,683
 It's kinda clear. All the other parameters,
-这样显得更清晰。对于其他参数
+这样显得更清晰。对于其它参数
 
 552
 00:29:45,752 --> 00:29:48,786
@@ -2439,7 +2439,7 @@ Pi is a var, a computed var, on the class or
 588
 00:32:05,859 --> 00:32:09,594
 struct actually, double, but it also has other methods,
-属于 Double 这个结构体。Double 也有一些其他方法
+属于 Double 这个结构体。Double 也有一些其它方法
 
 589
 00:32:09,663 --> 00:32:12,564
@@ -2894,7 +2894,7 @@ the answer is no. Okay, that's being set somewhere else.
 679
 00:36:48,875 --> 00:36:50,675
 You're just getting a chance to run some other code that
-你只是获得了一个机会去执行其他代码
+你只是获得了一个机会去执行其它代码
 
 680
 00:36:50,744 --> 00:36:53,145
@@ -3004,7 +3004,7 @@ we're going to share the calculation with the internet
 701
 00:38:01,448 --> 00:38:02,413
 or something, you know what I mean,
-或者一些其他情况，你应该知道我的意思了
+或者一些其它情况，你应该知道我的意思了
 
 702
 00:38:02,482 --> 00:38:04,149
@@ -3024,7 +3024,7 @@ unless someone actually tried to access the brain,
 705
 00:38:08,321 --> 00:38:10,922
 called set up operand on it or something. Then you would
-调用设置操作数或者其他什么。这时你才
+调用设置操作数或者其它什么。这时你才
 
 706
 00:38:10,991 --> 00:38:12,424
@@ -3439,7 +3439,7 @@ you are appending has to be the same type obviously
 788
 00:42:30,684 --> 00:42:33,218
 as the type of everything in the array, however the type
-和数组中其他元素是同一个类型
+和数组中其它元素是同一个类型
 
 789
 00:42:33,286 --> 00:42:36,955
