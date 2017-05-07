@@ -4999,7 +4999,7 @@ give me the substring which is firstIndex...secondIndex and
 1100
 00:59:17,090 --> 00:59:21,460
 it would give me he. A new string which is he, so
-这样它会返回我"he"。一个新字符串"he"
+这样它会返回我 "he"。一个新字符串 "he"
 
 1101
 00:59:21,528 --> 00:59:25,330
@@ -5414,7 +5414,7 @@ replace things etc. Even cool methods like components
 1183
 01:03:38,852 --> 01:03:42,020
 separated by string will take a string that has like comma or
-对比如包含逗号或者其他分隔字符的字符串
+对包含逗号或者其他分隔字符的字符串
 
 1184
 01:03:42,089 --> 01:03:45,824
