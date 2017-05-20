@@ -2254,7 +2254,7 @@ so we don't need to put an external name.
 551
 00:29:43,917 --> 00:29:45,683
 It's kinda clear. All the other parameters,
-这样显得更清晰。对于其它参数
+这样显得更清晰。对于其他参数
 
 552
 00:29:45,752 --> 00:29:48,786
@@ -2439,12 +2439,12 @@ Pi is a var, a computed var, on the class or
 588
 00:32:05,859 --> 00:32:09,594
 struct actually, double, but it also has other methods,
-属于 Double 这个结构体。Double 也有一些其它方法
+属于 Double 这个结构体。Double 也有一些其他方法
 
 589
 00:32:09,663 --> 00:32:12,564
 like abs. Abs takes a double value and
-例如 abs。abs 接收一个 Double 的值
+例如 abs。abs 接受一个 Double 的值
 
 590
 00:32:12,633 --> 00:32:16,701
@@ -2894,7 +2894,7 @@ the answer is no. Okay, that's being set somewhere else.
 679
 00:36:48,875 --> 00:36:50,675
 You're just getting a chance to run some other code that
-你只是获得了一个机会去执行其它代码
+你只是获得了一个机会去执行其他代码
 
 680
 00:36:50,744 --> 00:36:53,145
@@ -3004,7 +3004,7 @@ we're going to share the calculation with the internet
 701
 00:38:01,448 --> 00:38:02,413
 or something, you know what I mean,
-或者一些其它情况，你应该知道我的意思了
+或者一些其他情况，你应该知道我的意思了
 
 702
 00:38:02,482 --> 00:38:04,149
@@ -3024,7 +3024,7 @@ unless someone actually tried to access the brain,
 705
 00:38:08,321 --> 00:38:10,922
 called set up operand on it or something. Then you would
-调用设置操作数或者其它什么。这时你才
+调用设置操作数或者其他什么。这时你才
 
 706
 00:38:10,991 --> 00:38:12,424
@@ -3439,7 +3439,7 @@ you are appending has to be the same type obviously
 788
 00:42:30,684 --> 00:42:33,218
 as the type of everything in the array, however the type
-和数组中其它元素是同一个类型
+和数组中其他元素是同一个类型
 
 789
 00:42:33,286 --> 00:42:36,955
@@ -3714,7 +3714,7 @@ if I have an array of strings this filter expects this
 843
 00:45:43,210 --> 00:45:46,044
 to be a function that takes a string. As its only argument.
-就是一个接收字符串作为唯一参数的函数
+就是一个接受字符串作为唯一参数的函数
 
 844
 00:45:46,113 --> 00:45:48,280
@@ -3724,7 +3724,7 @@ And it returns a Bool, so that's the argument.
 845
 00:45:48,348 --> 00:45:50,549
 The argument is a function that takes a string and
-所以 filter 的参数是一个函数，接收字符串
+所以 filter 的参数是一个函数，接受字符串
 
 846
 00:45:50,617 --> 00:45:53,184
@@ -3959,7 +3959,7 @@ So here's another one. It's called map. What does map do?
 892
 00:48:19,099 --> 00:48:21,967
 It takes a closure, or a function. And
-它也接收一个闭包，或者说一个函数
+它也接受一个闭包，或者说一个函数
 
 893
 00:48:22,036 --> 00:48:26,371
@@ -4279,7 +4279,7 @@ I'm taking a function as an argument,
 956
 00:51:31,625 --> 00:51:34,826
 as long as it's a function that takes two arguments and
-因为它是一个接收两个参数
+因为它是一个接受两个参数
 
 957
 00:51:34,895 --> 00:51:37,962
@@ -4304,7 +4304,7 @@ that could've just been *), ($0+$1), that could've just
 961
 00:51:50,978 --> 00:51:54,813
 been +. Cuz + is a function that takes two doubles and
-因为 + 是一个函数，接收两个 Double 作为参数
+因为 + 是一个函数，接受两个 Double 作为参数
 
 962
 00:51:54,882 --> 00:51:58,416
@@ -4719,7 +4719,7 @@ it's not quite that. And that makes for a little bit of
 1044
 00:56:29,156 --> 00:56:34,225
 complication as you're gonna see. Now, you can't; String is
-因此在使用 String 的时候还有其它不便之处
+因此在使用 String 的时候还有其他不便之处
 
 1045
 00:56:34,294 --> 00:56:37,229
@@ -5469,7 +5469,7 @@ did exactly what you want in the string.
 1194
 01:04:07,514 --> 01:04:09,281
 There are things in there take closures and
-有些方法会接收闭包
+有些方法会接受闭包
 
 1195
 01:04:09,350 --> 01:04:10,516
@@ -5489,1651 +5489,2064 @@ to the character view which is a collection of characters.
 1198
 01:04:16,823 --> 01:04:21,894
 All right, other classes. This is kind of quick summary here
+好了，接下来讲讲其他类。快速过一遍其他重要的类
 
 1199
 01:04:21,962 --> 01:04:25,130
 of other important classes. One is NSObject, NSObject is
+第一个是 NSObject，它是
 
 1200
 01:04:25,199 --> 01:04:30,902
 a class. It is the root of all Objective-C classes. An iOS
+所有 Objective-C 类的根类
 
 1201
 01:04:30,971 --> 01:04:34,305
 app written before a couple years ago when Swift came out,
+Swift 诞生之前的许多年间
 
 1202
 01:04:34,374 --> 01:04:36,975
 all the classes in there would inherit eventually from
+iOS 应用中所有类都要继承自 NSObject
 
 1203
 01:04:37,044 --> 01:04:40,011
 NSObject. So NSObject has a base functionality. You do not
+NSObject 具有很多基础性的功能
 
 1204
 01:04:40,080 --> 01:04:43,214
 need to subclass from NSObject to make a swift class.
+Swift 中的类不需要继承自 NSObject
 
 1205
 01:04:43,283 --> 01:04:45,850
 However there are some really obscure features still left in
+但是，iOS 中残留有很多比较复杂的功能
 
 1206
 01:04:45,919 --> 01:04:50,622
-IOS where to expecting a class that inherit from NSObject.
+iOS where to expecting a class that inherit from NSObject.
+仍然需要使用继承自 NSObject 的类
 
 1207
 01:04:52,025 --> 01:04:54,759
 If we even get to them, I'll show them to you. They're
+等用到的时候，我再展示给你们
 
 1208
 01:04:54,828 --> 01:04:57,095
 pretty rare. But that's just so you know what NSObject is.
+这种情况不会太多。你们知道 NSObject 是什么就够了
 
 1209
 01:04:57,164 --> 01:04:58,364
 Doesn't really have meaning to you,
+这对你们意义不大
 
 1210
 01:04:58,432 --> 01:05:00,965
 cuz you guys are gonna be Swift programmers.
+因为你们将要成为的是 Swift 程序员
 
 1211
 01:05:01,034 --> 01:05:04,235
 NSNumber is another class, it's a generic number
+其次是 NSNumber，是一个通用的数字容器
 
 1212
 01:05:04,304 --> 01:05:08,072
 holder. This is also inherited from Objective-C, you can tell
+NS 前缀表明，它也是从 Objective-C 那边继承来的
 
 1213
 01:05:08,141 --> 01:05:12,077
 by the NS there. Until we can hold any kind of number,
+它可以持有任何类型的数字
 
 1214
 01:05:12,145 --> 01:05:14,479
 floating point, decimal, you can even hold a bool,
+浮点数，小数，甚至是布尔值
 
 1215
 01:05:14,547 --> 01:05:16,982
 since it considers that a number where zero is false and
+因为它会把 0 当作 false
 
 1216
 01:05:17,050 --> 01:05:20,685
 one is true. Any nonzero is true. And you can also
+把 1 当作 true，非零的都当作 true
 
 1217
 01:05:20,754 --> 01:05:25,390
 do type conversions. Again, in swift, we're gonna be using
+你还可以对它做类型转换。不过，再次强调，在 Swift 中
 
 1218
 01:05:25,458 --> 01:05:28,627
 the actual concrete number classes like double an int and
+我们更倾向于使用固定的数字类型，如：Double，Int
 
 1219
 01:05:28,696 --> 01:05:32,698
 we'll use their constructors. To do type conversion.
+我们通过这些类型的构造器来做类型转换
 
 1220
 01:05:32,766 --> 01:05:35,767
 But just so that you know that NSNumber is around. Okay,
+知道 NSNumber 这些就够了
 
 1221
 01:05:35,835 --> 01:05:38,670
 date. Super important class. Anytime you are representing
+Date 是一个非常重要的结构体。任何时候，你想表达一个日期或时间
 
 1222
 01:05:38,738 --> 01:05:42,674
 a date or time, you're gonna wanna use this date struct.
+都要用到 Date 这个结构体
 
 1223
 01:05:42,743 --> 01:05:46,144
 And it has a lot of ancillary classes that go with it,
+而且还有一系列和它相关的辅助结构体
 
 1224
 01:05:46,212 --> 01:05:49,914
 like calendar, date formatter, date components like date
+比如 Calendar，DateFormatter，DateComponents
 
 1225
 01:05:49,983 --> 01:05:52,551
 components will tell you the month of a date. And
+DateComponents 可以告诉你某个日期对应的月份
 
 1226
 01:05:52,620 --> 01:05:54,686
 of course, what the month of is of a date depends on
+当然，还要知道日期所处的历法，才能确定它对应的月份
 
 1227
 01:05:54,755 --> 01:05:58,123
 the calendar it's in, cuz not everyone uses a calendar like
+因为不是所有人都和我们用一样的历法
 
 1228
 01:05:58,191 --> 01:06:00,258
 we do. All right, there's a lot of calendars
+世界上有许多历法
 
 1229
 01:06:00,327 --> 01:06:02,528
 all over the Earth that are different than ours.
+和我们使用的历法不同
 
 1230
 01:06:02,596 --> 01:06:05,697
 So anytime you're even contemplating putting a date
+因此，当你考虑在界面上摆放一个日期的时候
 
 1231
 01:06:05,766 --> 01:06:09,568
 anywhere in your UI you need to be using this class.
+都应该用这个结构体
 
 1232
 01:06:09,636 --> 01:06:12,270
 Because if you wanna have your app work in anything but
+如果你希望你的应用可以正常工作在非英语环境下
 
 1233
 01:06:12,339 --> 01:06:14,639
 English, you're gonna have to format your date, using
+你就必须用 DateFormatter 对日期进行格式化
 
 1234
 01:06:14,708 --> 01:06:19,744
 the DateFormatter, in whatever locale your app is running in.
+将日期转化成应用所处的本地化语言
 
 1235
 01:06:19,813 --> 01:06:22,514
 So date is super important. You would think date is really
+Date 非常重要，可能你之前低估了 Date
 
 1236
 01:06:22,583 --> 01:06:25,149
 easy, but no. Date actually has a lot of complexity to it,
+实际上 Date 非常复杂
 
 1237
 01:06:25,218 --> 01:06:27,352
 because of all the different ways we represent dates in
+因为世界上有许多种表达日期的方式
 
 1238
 01:06:27,420 --> 01:06:30,989
 the world. Same, similar to strings complexity. And
+这点和 String 的复杂性是类似的
 
 1239
 01:06:31,058 --> 01:06:35,060
-then there's data, D-A-T-A, that represents a bag o' bits.
+then there's data, D-A-T-A, that represents a bag of bits.
+然后是 Data，D-A-T-A，代表一串二进制数据
 
 1240
 01:06:35,129 --> 01:06:38,963
 Just a bits, bunch of bits in there. Usually this might be
+仅仅是一连串的二进制数据
 
 1241
 01:06:39,032 --> 01:06:42,066
 something like an image, the bits of an image, or
+它可能是个图片，图片的二进制数据
 
 1242
 01:06:42,135 --> 01:06:45,671
 something like that. Something you get over the the network.
+或者其他类似的东西，比如从网络获取的数据
 
 1243
 01:06:45,739 --> 01:06:47,806
 So data is how we represent those.
+这些东西我们都用 Data 来表达
 
 1244
 01:06:47,875 --> 01:06:49,875
 Notice that there is a struct, it's a value type.
+注意，它是个结构体，是值类型
 
 1245
 01:06:49,944 --> 01:06:54,045
 It gets passed around copy on right. And
+它通过值的复制来传递
 
 1246
 01:06:54,114 --> 01:06:56,882
 you'll start seeing data in UI maybe week five or
+你们将会在 UI 部分开始接触到它
 
 1247
 01:06:56,950 --> 01:07:00,686
 six of this class. All right, initialization.
+可能是这个课程的第五或第六周。接下来是 Initialization（构造）
 
 1248
 01:07:00,754 --> 01:07:04,122
 So initialization is very complicated. You're
+构造非常复杂
 
 1249
 01:07:04,191 --> 01:07:07,092
 gonna have to read the reading assignment on it eventually.
+你们必须完成有关这部分的课后阅读作业
 
 1250
 01:07:07,161 --> 01:07:11,996
 I'm gonna give you the really fast highlights of it. init
+我只会帮你们快速过一遍重点
 
 1251
 01:07:12,065 --> 01:07:15,500
 method, again, we can have them on classes or structs.
+类或结构体都可以拥有构造器
 
 1252
 01:07:15,569 --> 01:07:18,670
 They are used to initialize any of the properties that we
+用来初始化那些
 
 1253
 01:07:18,738 --> 01:07:22,674
 didn't initialize with equals or using lazy or they were
+没有使用等号赋值或延时加载，也不是可选类型的属性
 
 1254
 01:07:22,742 --> 01:07:25,811
 optionals. All those are taken care of and if there's one
+如果有至少一个属性符合以上特点
 
 1255
 01:07:25,879 --> 01:07:30,649
 left, or more than one left, then we need an initializer.
+我们就必须创建一个构造器
 
 1256
 01:07:30,718 --> 01:07:33,618
 To initialize it. And they're kind of a pain in the neck.
+这个规则有时很烦人
 
 1257
 01:07:33,687 --> 01:07:36,655
 Because, especially for classes. For structs,
+尤其对类而言
 
 1258
 01:07:36,723 --> 01:07:39,023
 they're not a pain in the neck. They are perfectly fine.
+对结构体而言，则没有这种烦恼
 
 1259
 01:07:39,092 --> 01:07:41,727
 Struct, you just have an init with whatever argue you want,
+结构体中，你会自动得到一个构造器
 
 1260
 01:07:41,795 --> 01:07:43,328
 arguments you want. And initialize your variables.
+接受所有需要初始化的属性为参数，并初始化它们
 
 1261
 01:07:43,397 --> 01:07:46,564
 It's all very simple. But for classes, it's a little more
+这很简单吧。但是对类而言，就稍微有点复杂了
 
 1262
 01:07:46,633 --> 01:07:49,201
 complicated. Now, whether you're a struct or a class,
+不论是类还是结构体
 
 1263
 01:07:49,269 --> 01:07:51,603
 you can have multiple init. And they can have different
+都可以拥有多个构造器
 
 1264
 01:07:51,672 --> 01:07:55,106
 arguments. As long as you give them enough arguments to be
+并且可以接受不同的参数。只要确保传给它们的参数
 
 1265
 01:07:55,175 --> 01:07:58,710
 able to initialize all their variables, you're good to go.
+足够用来初始化它们的全部变量
 
 1266
 01:07:58,779 --> 01:08:00,278
 So you can have as many inits as you want.
+因此你想创建多少构造器都可以
 
 1267
 01:08:00,347 --> 01:08:02,914
 And a lot of classes have multiple inits. Meaning on
+也确实有很多类都有不止一个构造器
 
 1268
 01:08:02,983 --> 01:08:04,649
 kinda how they are being used, how they are being created.
+意味着它们拥有多种不同的使用方式和创建方式
 
 1269
 01:08:04,718 --> 01:08:06,217
 Think of something like string.
+以 String 为例思考一下
 
 1270
 01:08:06,286 --> 01:08:07,852
 String has an init that takes a double.
+String 有一个接受 Double 的构造器
 
 1271
 01:08:07,921 --> 01:08:09,888
-It has a string that takes another sting if you want to
+It has a string that takes another string if you want to
+它还有接受另一个字符串的构造器
 
 1272
 01:08:09,956 --> 01:08:12,190
-make a copy of the string it turns out. It takes an init.
+make a copy of the string it turns out. It takes an Int.
+如果你要一份原字符串的拷贝就可以用这个构造器。
 
 1273
 01:08:12,259 --> 01:08:14,727
-It has all these things that you can compare to string.
+It has all these things that you can convert to string.
+它还可以接受 Int，以及所有可以转化为字符串的东西
 
 1274
 01:08:14,795 --> 01:08:16,929
-Or not all the things you compare string but
+Or not all the things you convert to string but
+或许不是所有
 
 1275
 01:08:16,997 --> 01:08:18,496
-a lot of things you can compare to a string.
+a lot of things you can convert to a string.
+但是相当多都是可以的
 
 1276
 01:08:18,565 --> 01:08:20,766
-It has an initialized that it will take that as an argument
+It has an initializer that it will take that as an argument
+String 会有对应的构造器，接受对应类型的参数
 
 1277
 01:08:20,834 --> 01:08:26,538
 for example. Callers execute your init by creating
+调用者通过执行你的构造器
 
 1278
 01:08:26,606 --> 01:08:29,841
 one of the thing. They just put the name of the type and
+来创造一个对应的实例
 
 1279
 01:08:29,909 --> 01:08:33,211
 parentheses and the arguments you want for that init. So
+他们可以通过类型名和小括号，传入你要求的参数来构造
 
 1280
 01:08:33,280 --> 01:08:35,514
 they pick which of your init that they want and
+他们会选用合适的构造器
 
 1281
 01:08:35,583 --> 01:08:37,416
 they call that one with those arguments.
+调用那个构造器，传入指定的参数
 
 1282
 01:08:37,484 --> 01:08:40,519
 We've seen many examples of this in our lecture, so far.
+在这门课程中，我们已经遇到过很多这种例子了
 
 1283
 01:08:43,490 --> 01:08:48,192
 You get some inits for free. If you're a base class, okay,
+有一些构造器系统会帮你自动生成。如果你有个基类
 
 1284
 01:08:48,261 --> 01:08:50,395
 you don't inherit from anything else.
+它没有继承自任何其他类
 
 1285
 01:08:50,463 --> 01:08:53,832
 You get a free init with no arguments. Congratulations.
+你会自动得到一个不含参数的构造器
 
 1286
 01:08:53,901 --> 01:08:56,401
 So that means, at least, people can create you.
+恭喜你，这意味着起码别人可以创建这个类的实例
 
 1287
 01:08:56,470 --> 01:08:58,169
 But, again, if you have any vars that aren't initialized,
+但是，如果你有些变量没被初始化
 
 1288
 01:08:58,238 --> 01:09:00,405
 you're gonna have to create your inits that initialize
+你就必须创建一个构造器来初始化它们
 
 1289
 01:09:00,474 --> 01:09:05,143
 them. Structs are even better. They get an init that has all
+结构体更加方便，它们会自动生成一个包含所有变量的构造器
 
 1290
 01:09:05,212 --> 01:09:10,181
 of their vars. Now if a struct implements even one of its own
+如果你添加了任何一个自定义的构造器
 
 1291
 01:09:10,250 --> 01:09:13,452
 initializers, it stops getting this one, this free one.
+结构体就会失去自动生成的那个构造器
 
 1292
 01:09:13,520 --> 01:09:15,920
 You only get the free one if you don't do any other ones.
+只有当你没有添加任何别的构造器时，它才会自动生成一个
 
 1293
 01:09:15,989 --> 01:09:17,022
 So it's like the default one.
+它就像是一个默认构造器
 
 1294
 01:09:17,091 --> 01:09:19,124
 And we saw this in the lecture also.
+这种情况我们之前也遇到了
 
 1295
 01:09:19,192 --> 01:09:23,428
 We got the free one in the init function, first operand.
+我们自动获得了这个 init(function:firstOperand:) 构造器
 
 1296
 01:09:23,497 --> 01:09:26,231
 We never wrote that init function, we got it for free.
+我们从来没写过这个方法，完全是自动获得的
 
 1297
 01:09:26,299 --> 01:09:30,068
-It just appeared and we were able to call it. , so
+It just appeared and we were able to call it, remember that? so
+它自然就存在了，我们也确实可以调用它，想起来了吗？
 
 1298
 01:09:30,137 --> 01:09:32,504
-structure nice you get the basic free init for
+structure is nice you get the basic free init for
+所以结构体很方便，你自动就获得了包含所有变量的构造器
 
 1299
 01:09:32,573 --> 01:09:37,275
-all your vars. What can you do inside of a nit? I'm
+all your vars. What can you do inside of a init? I'm
+在构造器中可以做什么呢？
 
 1300
 01:09:37,344 --> 01:09:40,445
 gonna start going fast here, okay. So here we go. One,
+这部分我会加快速度
 
 1301
 01:09:40,514 --> 01:09:43,382
 you can set any properties value even if that property
+首先，你可以给属性赋值，即使它已经被赋过值了
 
 1302
 01:09:43,450 --> 01:09:46,185
 already had its value set, you can reset something else.
+你可以重新给它赋成别的值
 
 1303
 01:09:46,253 --> 01:09:50,589
 You can set lets. So you're gonna have a let that's
+你可以设置 let 声明的属性，比如你有一个 let 声明的属性 x
 
 1304
 01:09:50,657 --> 01:09:54,826
-got less x equal 5. You can still reset it in your init.
+got lets x equal 5. You can still reset it in your init.
+可以令 x = 5，构造器内是可以这样做的
 
 1305
 01:09:54,895 --> 01:09:59,330
 Your init is allowed to set lets. You can call other init
+构造器内部允许对 let 声明的属性赋值
 
 1306
 01:09:59,399 --> 01:10:04,135
 methods okay in your own class or your own struct. And you do
+你还可以调用这个类或结构体的其他构造器
 
 1307
 01:10:04,204 --> 01:10:06,972
 that by saying self.init with whatever the arguments to that
+通过 self.init(<args>) 并且传入指定的参数来调用
 
 1308
 01:10:07,041 --> 01:10:10,175
 init method are so init methods can call each other.
+所以构造器是能互相调用的
 
 1309
 01:10:10,244 --> 01:10:13,278
 In a class, you can call super.init.
+在一个类的构造器中，你还能调用 super.init(<args>)
 
 1310
 01:10:13,347 --> 01:10:14,680
 An initializer from your super class.
+一个继承自父类的构造器
 
 1311
 01:10:14,748 --> 01:10:17,516
 Of course you need to get your super class initialized.
+这是理所当然的，你必须让父类也得以构造
 
 1312
 01:10:17,585 --> 01:10:19,517
 Now, when we start talking about class though,
+既然我们现在已经开始讨论类了
 
 1313
 01:10:19,586 --> 01:10:22,988
 and we start talking about calling inits in our super,
+并且提到调用父类的构造器
 
 1314
 01:10:23,057 --> 01:10:24,823
 and we start thinking about inheritance,
+我们就需要思考继承这个概念
 
 1315
 01:10:24,892 --> 01:10:27,859
 it gets really complicated. So
+这是个很复杂的概念
 
 1316
 01:10:27,928 --> 01:10:31,195
 let's start thinking about class and break this down.
+所以我们还是先思考类，不提继承
 
 1317
 01:10:31,264 --> 01:10:34,699
 Let's start with what are you required to do in an init for
+我们从这个问题切入：在类的构造器中我们必须做的事情是什么？
 
 1318
 01:10:34,768 --> 01:10:37,969
 a class? in a struct it's easy you're just required to
+在结构体中很简单
 
 1319
 01:10:38,038 --> 01:10:40,238
 initialize all your vars that aren't initialized. But
+我们只要把所有没被初始化的变量初始化就行了
 
 1320
 01:10:40,307 --> 01:10:43,809
 in a class what are you required to do? By the time
+但是在一个类中，我们必须做的事情有哪些？
 
 1321
 01:10:43,878 --> 01:10:46,345
 it's done you have to have initialized all your vars.
+你必须完成初始化所有变量的任务
 
 1322
 01:10:46,413 --> 01:10:50,048
 We know that. There are two types of initializers.
+这点我们已经知道了。存在两种构造器
 
 1323
 01:10:50,117 --> 01:10:51,583
 A convenience initializer.
+Convenience Initializer（便利构造器）
 
 1324
 01:10:51,651 --> 01:10:54,753
 This is only for classes. A convenience initializer and
+只有类才有便利构造器
 
 1325
 01:10:54,822 --> 01:10:57,055
 what's called a designated initializer.
+另一种被称为 Designated Initializer（指定构造器）
 
 1326
 01:10:57,124 --> 01:11:00,024
 Designated is the default. There's no keyword it's just
+不带任何关键词就会被默认为指定构造器
 
 1327
 01:11:00,093 --> 01:11:02,127
 if it's not marked convenience then it's a designated.
+如果没被标记为 convenience，它就是指定构造器
 
 1328
 01:11:02,195 --> 01:11:04,462
 Now here's where the rules come in.
+现在开始引入规则部分
 
 1329
 01:11:04,531 --> 01:11:08,133
 A designated initializer non convenience must and
+一个指定构造器，非便利构造器
 
 1330
 01:11:08,201 --> 01:11:12,870
 can only, call the designated initializer that it is in,
+必须调用且只能调用
 
 1331
 01:11:12,939 --> 01:11:15,974
 that is in it's immediate superclass,
+它直接继承的父类的指定构造器
 
 1332
 01:11:16,043 --> 01:11:19,478
 it's very important. It has to call a superclass init
+这点很关键，它必须调用父类的构造器
 
 1333
 01:11:19,546 --> 01:11:22,013
 and it has to get designated initializer. It cannot call
+并且必须是指定构造器
 
 1334
 01:11:22,082 --> 01:11:25,083
 it's convenience initializer in a superclass. Nor
+它没法调用父类的便利构造器
 
 1335
 01:11:25,152 --> 01:11:30,222
 can it call two classes up the inherent chain unless the one
+也没法调用继承关系中更上层的父类（的任何构造器）
 
 1336
 01:11:30,290 --> 01:11:32,691
 right above inherited the init from the one up above, and
+除非它的父类的构造器是继承自更上层父类的
 
 1337
 01:11:32,759 --> 01:11:36,094
 we'll talk about that in a second. You have to initialize
+这点我们过会再讲
 
 1338
 01:11:36,162 --> 01:11:39,898
 all of your properties before you call that super init.
+你必须初始化自身的所有属性，之后才能调用 super.init
 
 1339
 01:11:42,336 --> 01:11:43,435
 You must have completely
+你必须完完全全地
 
 1340
 01:11:43,504 --> 01:11:46,037
 done all the ones that you introduced in your class.
+把自己新引入的属性都初始化
 
 1341
 01:11:46,106 --> 01:11:48,740
 Get them initialized before you call super init. And,
+之后才能调用 super.init
 
 1342
 01:11:48,809 --> 01:11:51,809
 you have to call the super one before you can reinitialize or
+而且你只有在调用了 super.init 之后
 
 1343
 01:11:51,878 --> 01:11:54,846
-change the value of any of it's Properties, obviously,
+change the value of any of its properties, obviously,
+才能改变继承自父类的属性
 
 1344
 01:11:54,915 --> 01:11:57,816
 you gotta let your super class have a chance to initialize
+显然，你必须等你的父类把它自身构造完成
 
 1345
 01:11:57,885 --> 01:12:00,685
 itself before you start mucking with its properties.
+之后才能改变它的属性
 
 1346
 01:12:00,754 --> 01:12:03,322
-Otherwise, when units call super, it's probably gonna
+Otherwise, when your inits call super, it's probably gonna
+另外，当你初始化完毕自身的属性之后
 
 1347
 01:12:03,391 --> 01:12:05,557
-blast whatever you did to its properties.
+be last whatever you did to its properties.
+调用 super.init 通常就是你要做的最后一件事
 
 1348
 01:12:05,626 --> 01:12:10,862
 A convenience init can only, must and can only,
+一个便利构造器，必须且只能
 
 1349
 01:12:10,931 --> 01:12:16,268
 call an initializer in its own class, no super.
+调用其自身所在类的构造器，不能调用父类的构造器
 
 1350
 01:12:17,571 --> 01:12:18,603
 Only in your own class,
+只能是自身所在类的
 
 1351
 01:12:18,672 --> 01:12:22,040
 convenience initializer only in your own class. You can
+便利构造器只能调用自身所在类的构造器
 
 1352
 01:12:22,109 --> 01:12:24,109
 call it another convenience or you can call it designator,
+你可以在它内部调用其他便利构造器或者指定构造器
 
 1353
 01:12:24,177 --> 01:12:25,477
 but it has to be in your own class,
+但是都必须是你自身所在类的构造器
 
 1354
 01:12:25,546 --> 01:12:27,712
 not in your super class. And
+不能是父类的
 
 1355
 01:12:27,781 --> 01:12:30,682
 a convenience init has to call whatever init it's gonna call
+一个便利构造器必须先调用任何一个其他构造器
 
 1356
 01:12:30,751 --> 01:12:33,318
 in itself before it can set any of the property
+之后才能设置属性
 
 1357
 01:12:33,387 --> 01:12:37,189
 values. It's kind of different from an init that calls into
+这和构造器中调用父类构造器的情形相反
 
 1358
 01:12:37,258 --> 01:12:39,491
 super because that one has to do its initialization,
+指定构造器必须先初始化自身新引入的属性
 
 1359
 01:12:39,560 --> 01:12:41,426
 the designated one, before it calls super.
+然后才能调用父类的构造器
 
 1360
 01:12:41,495 --> 01:12:43,595
 This, in this case, you have to do convenience,
+但是到了便利构造器这里
 
 1361
 01:12:43,664 --> 01:12:46,164
 you have to call your other one first.
+你必须先调一个自身的其他构造器
 
 1362
 01:12:46,232 --> 01:12:50,969
 And the calling of all other inits, whatever you do, any
+任何其他构造器，无论调哪个都行
 
 1363
 01:12:51,037 --> 01:12:54,539
 inits that you have to call has to be done in all cases,
+任何情况下，在完成某个构造器的调用之后
 
 1364
 01:12:54,608 --> 01:12:57,342
 before you start calling methods on yourself or
+你才能开始调用自身的方法
 
 1365
 01:12:57,410 --> 01:12:58,309
 accessing properties.
+或者访问自身的属性
 
 1366
 01:12:58,378 --> 01:12:59,844
 Not setting the properties, but accessing them.
+不是设置属性的初始值，而是访问它们
 
 1367
 01:12:59,913 --> 01:13:02,580
 In other words, you have to be fully initialized before your
+换句话说就是，在你的便利构造器开始使用这个类之前
 
 1368
 01:13:02,649 --> 01:13:07,318
 init can start using your class. All right,
+你必须先完全构造自身
 
 1369
 01:13:07,387 --> 01:13:11,523
 whew is right: a lot of rules there, and a lot of them
+呼，终于讲完了这一大堆规则
 
 1370
 01:13:11,592 --> 01:13:15,260
 are conflicting and all that stuff. Let's make it even more
+而且其中一部分还相互冲突，纠缠不清
 
 1371
 01:13:15,329 --> 01:13:18,296
 complicated when we talk about inheriting inits. So,
+接下来讲继承构造器，事情会变得更复杂
 
 1372
 01:13:18,365 --> 01:13:20,832
 you wanna get some inits from your super class,
+你可能希望从父类继承一些构造器
 
 1373
 01:13:20,901 --> 01:13:24,402
 whoa, not so fast. If you don't implement
+不过先别急。如果你没有实现任何一个指定构造器
 
 1374
 01:13:24,471 --> 01:13:27,439
 any designated inits, you only implement convenience inits,
+你只实现了一些便利构造器
 
 1375
 01:13:27,507 --> 01:13:30,943
 then you'll inherit all of your super classes designated,
+这样的话你就能继承所有父类的指定构造器
 
 1376
 01:13:31,011 --> 01:13:32,744
 but only if you don't implement any of them.
+但是前提是你没有实现任何一个指定构造器
 
 1377
 01:13:32,813 --> 01:13:35,146
 And if you implement even one designated init,
+哪怕你只实现了一个指定构造器
 
 1378
 01:13:35,215 --> 01:13:38,984
 now you're not gonna inherit all your super classes. If you
+你就没法继承父类的任何指定构造器
 
 1379
 01:13:39,053 --> 01:13:43,154
 override all of your super classes designated inits,
+如果你重写了父类所有的指定构造器
 
 1380
 01:13:43,223 --> 01:13:47,926
 then you'll inherit all of its con, convenience inits.
+你就能继承父类所有的便利构造器
 
 1381
 01:13:47,995 --> 01:13:49,861
 Now why is that? That's because your superclass,
+为什么会这样呢？因为你的父类
 
 1382
 01:13:49,930 --> 01:13:52,297
 when it implements these convenience inits,
+实现它的便利构造器
 
 1383
 01:13:52,366 --> 01:13:55,534
 it depends on the designated inits being implemented,
+要建立在指定构造器已经实现的基础上
 
 1384
 01:13:55,602 --> 01:13:57,469
 so you have to implement them all.
+所以你要实现父类全部的指定构造器
 
 1385
 01:13:57,538 --> 01:13:59,337
 Of course, you could inherit them all by implementing
+当然，如果你没有实现任何一个指定构造器
 
 1386
 01:13:59,406 --> 01:14:04,008
 none of them as well. So, any init that you inherit by these
+也一样能继承父类全部的便利构造器。
 
 1387
 01:14:04,077 --> 01:14:06,611
 rules can be used to satisfy any of these other,
+你通过这些规则继承来的构造器也一样满足
 
 1388
 01:14:06,680 --> 01:14:09,982
 other requirements that we're talking about on the previous
+我们上一页讲到的“必须做的事情”
 
 1389
 01:14:10,050 --> 01:14:13,151
 stage. You can make an init required. You just say
+你可以通过 required init 把一个构造器变为必要构造器
 
 1390
 01:14:13,220 --> 01:14:16,187
 required init. Required is a key word, and that will
+required 是一个关键词
 
 1391
 01:14:16,256 --> 01:14:19,424
 make it so the subclass has to implement that init, okay,
+它要求所有子类必须实现这个构造器
 
 1392
 01:14:19,492 --> 01:14:23,628
 it's required. Failable inits, we talked about these with
+因为它是“必要的”。可失败构造器，我们以 Double 为例
 
 1393
 01:14:23,697 --> 01:14:26,664
 double. If you put a question mark after your init,
+如果你在 init 后面加一个问号
 
 1394
 01:14:26,733 --> 01:14:29,534
 init question mark, that means that this init can fail.
+init? 代表它是可失败的
 
 1395
 01:14:29,603 --> 01:14:32,871
 And that means that this init, or when you create this thing,
+意味着这个构造器，或者说当你创建这个实例的时候
 
 1396
 01:14:32,940 --> 01:14:35,740
 will return optional version of this class. So
+返回的是这个类型的可选类型
 
 1397
 01:14:35,809 --> 01:14:37,108
 we thought it was double.
+我们想一下 Double
 
 1398
 01:14:37,177 --> 01:14:39,878
 If we said double parentheses string, it would return
+如果我们通过传入一个字符串构造 Double
 
 1399
 01:14:39,947 --> 01:14:42,214
 an optional double. It was a failable init, and
+会返回一个 Double? 这就是一个可失败构造器
 
 1400
 01:14:42,282 --> 01:14:44,316
 that's because you could have said double of hello, and
+因为你有可能这样写：Double("hello")
 
 1401
 01:14:44,384 --> 01:14:46,451
 you would be like " I can't turn it into double: fail".
+你会得到这样的回答“我没法把它转化为 Double，失败了”
 
 1402
 01:14:46,519 --> 01:14:49,421
 And the way you fail out of a failable init is you just
+这种失败具体表现就是你得到的返回值是 nil
 
 1403
 01:14:49,489 --> 01:14:51,255
 return nil. Otherwise,
+另外
 
 1404
 01:14:51,324 --> 01:14:53,758
 you don't return anything out of init, it just initializes,
+通常你不用在构造器里写 return，因为它本身就是构造器
 
 1405
 01:14:53,827 --> 01:14:55,827
 but the one time you return anything is out
+但是仅有一种情况你要写 return
 
 1406
 01:14:55,896 --> 01:14:58,730
 a failed init, you can return nil. So, an example here is
+那就是可失败构造器失败的时候，你要 return nil
 
 1407
 01:14:58,799 --> 01:15:02,968
 UIImage. UIImaged named looks up that image in
+拿 UIImage 来举例，UIImage(named:) 会在 xcassets 文件中寻找
 
 1408
 01:15:03,036 --> 01:15:05,904
-the xe assets. Remember that xe assets thing that I moved
+the xcassets. Remember that xcassets thing that I moved
+指定的图片。还记得 xcassets 文件吗？
 
 1409
 01:15:05,973 --> 01:15:08,806
 off to supporting files at the beginning of the first demo?
+就是第一个 demo 中我移动到 Supporting Files 文件夹的那个
 
 1410
 01:15:08,875 --> 01:15:12,044
 This looks it up in there, of course, it might not find it.
+这个方法就是在那里寻找图片，当然有可能找不到
 
 1411
 01:15:12,113 --> 01:15:15,614
 So we do if let image = UIImage(named: "foo"),
+所以我们要这样写 if let image = UIImage(named: "foo")
 
 1412
 01:15:15,683 --> 01:15:17,516
 then we do something, otherwise we fail,
+如果找到了我们会做某些操作
 
 1413
 01:15:17,584 --> 01:15:22,754
-that UI image initializer failed. Alright, Any and
+that UIImage initializer failed. Alright, Any and
+如果 UIImage 构造失败我们就什么都不做
 
 1414
 01:15:22,822 --> 01:15:27,259
 AnyObject. There is no more init, we're done with init.
+下面是 Any 和 AnyObject
 
 1415
 01:15:27,327 --> 01:15:31,262
 Any and AnyObject: these are types, special types.
+Any 和 AnyObject 都是类型，特殊的类型
 
 1416
 01:15:31,331 --> 01:15:35,133
 These types really are almost exclusively used for backwards
+几乎可以这样理解，这些类型仅仅是为了向下兼容 Objective-C 而存在的
 
 1417
 01:15:35,202 --> 01:15:39,004
 compatibility with Objective C because Objective C had a type
+因为 Objective-C 中有一个类型叫做 id
 
 1418
 01:15:39,072 --> 01:15:41,740
 in it called id, which was kind of like Any,
+它和 Any 类似
 
 1419
 01:15:41,809 --> 01:15:46,444
 AnyObject actually. So Swift needed some compatibility, but
+确切地说它更像 AnyObject。Swift 需要兼容这些
 
 1420
 01:15:46,513 --> 01:15:48,980
 Swift doesn't really use Any very much, so
+Swift 中用到 Any 的情况并不多
 
 1421
 01:15:49,049 --> 01:15:52,884
 we wouldn't, Swift is strongly typed. So you wouldn't wanna
+Swift 是一个强类型语言
 
 1422
 01:15:52,953 --> 01:15:55,553
 have a type which is like, it can be anything. Okay, because
+一个能代表任意类型的类型，没有存在的必要
 
 1423
 01:15:55,622 --> 01:15:58,022
 that's what Any and AnyObject are, it's like anything,
+Any 和 AnyObject 具有能代表任何类型的特性
 
 1424
 01:15:58,091 --> 01:16:02,928
 any type. It's this weird kind of typeless type kinda thing.
+它们指代的是类型不明的东西
 
 1425
 01:16:02,997 --> 01:16:04,062
 The only difference between Any and
+Any 与 AnyObject 唯一的区别是
 
 1426
 01:16:04,131 --> 01:16:06,197
 AnyObject is AnyObject can only be a class,
+AnyObject 只能指代某个类
 
 1427
 01:16:06,266 --> 01:16:08,900
 it has be a reference type. Any can be anything,
+必须是引用类型，Any 没有这个限制
 
 1428
 01:16:08,969 --> 01:16:12,070
 reference or a value type, that's the only difference.
+引用类型或值类型都可以，这是它们之间唯一的区别
 
 1429
 01:16:12,139 --> 01:16:14,406
 So why do we have these AnyObject things?
+为什么要有 AnyObject 和 Any？
 
 1430
 01:16:14,475 --> 01:16:15,841
 Where are they gonna show up? Well,
+它们要用在哪里？
 
 1431
 01:16:15,909 --> 01:16:18,710
 there are some methods in iOS where one of the arguments
+iOS 中有一些方法确实需要能接受任何类型的参数
 
 1432
 01:16:18,779 --> 01:16:22,847
 truly could be anything. One example here is when you have
+比如：当你有很多 MVC 时
 
 1433
 01:16:22,916 --> 01:16:25,316
 multiple MVCs, which we're gonna learn about next week.
+这个我们下周会详细学
 
 1434
 01:16:25,385 --> 01:16:28,687
 The way you go from one to the next, next is called segueing,
+从一个跳转到另一个的方式叫做 Segue
 
 1435
 01:16:28,755 --> 01:16:30,622
 you segue from one MVC to the next.
+你能从一个 MVC Segue 到下一个
 
 1436
 01:16:30,690 --> 01:16:33,926
 And the thing that causes a segue to happen, okay,
+Segue 的发起者
 
 1437
 01:16:33,994 --> 01:16:37,095
 is the argument in this method called prepare for
+就是这个方法 prepare(for:sender:) 中
 
 1438
 01:16:37,164 --> 01:16:39,031
 segue called sender, okay,
+叫做 sender 的参数
 
 1439
 01:16:39,099 --> 01:16:42,067
 just like we had sender in the IB action. So
+和我们之前用到的 IBAction 中的 sender 是相似的
 
 1440
 01:16:42,136 --> 01:16:44,636
 the sender is the one who's causing this segue to happen,
+这个 sender 就是 Segue 的发起者
 
 1441
 01:16:44,704 --> 01:16:46,871
 well, a button could be causing a segue to happen,
+一个按钮可以发起 Segue
 
 1442
 01:16:46,940 --> 01:16:49,507
 a line in a table view could be causing it. Some custom
+TableView 中的一行也可以
 
 1443
 01:16:49,576 --> 01:16:53,211
 piece of code of yours could be causing this MVC to segue.
+一小段自定义的代码也可以
 
 1444
 01:16:53,280 --> 01:16:55,914
 So when you're preparing for it, you've gotta be
+所以当你准备 Segue 的时候
 
 1445
 01:16:55,983 --> 01:16:59,918
 able to say which one it was, and that's just Any. So
+你已经可以确定 sender 是什么东西了，这里用 Any 正合适
 
 1446
 01:16:59,987 --> 01:17:02,621
 if this were a Swift API, they wouldn't have done Any.
+不过如果是一个纯 Swift API，通常不会用 Any
 
 1447
 01:17:02,690 --> 01:17:05,958
 They'd have had a protocol where you could be a segue
+应该有一个协议类型代表那些能当做 Segue 发起者的东西
 
 1448
 01:17:06,026 --> 01:17:09,260
 sender. And you'd have to implement probably some
+而且你还要为这个协议实现一些合适的功能
 
 1449
 01:17:09,329 --> 01:17:14,099
 functionality that would make sense here. But in this case,
+使它可以在这里发挥作用。但是现在这里用的是 Any
 
 1450
 01:17:14,167 --> 01:17:17,302
 it's Any. It knows optional Any too because you can have
+而且是 Any?，因为这里它可以是 nil
 
 1451
 01:17:17,371 --> 01:17:20,339
-nil, the center could be nil. Where else will you see it?
+nil, the sender could be nil. Where else will you see it?
+sender 可以是 nil。还有哪里能遇到这种用法？
 
 1452
 01:17:20,407 --> 01:17:25,110
 You could have an array of AnyObject or an array of Any.
+你可以有一个以 AnyObject 或 Any 为元素的数组
 
 1453
 01:17:25,178 --> 01:17:28,113
 That could be an array that has doubles and strings and
+这样的数组能够同时包含 Double 和 String
 
 1454
 01:17:28,182 --> 01:17:31,283
 things mixed in there. Now you might be tempted to use this
+当你看到作业二的内容之后
 
 1455
 01:17:31,352 --> 01:17:34,786
 in your assignment number two when you see the assignment.
+你可能对这种用法跃跃欲试
 
 1456
 01:17:34,855 --> 01:17:35,721
 But you're not allowed to
+但是我不允许你们用
 
 1457
 01:17:35,789 --> 01:17:37,789
 because one of the required tasks says you can't use Any
+作业的要求中有一条写明了
 
 1458
 01:17:37,858 --> 01:17:41,493
 or AnyObject. Also you wouldn't be very Swifty.
+你不能用 Any 或 AnyObject。这种用法很不 Swifty
 
 1459
 01:17:41,562 --> 01:17:43,461
 In Swift, if we wanted to put doubles and
+Swift 中，如果我们要把 Double 和 String
 
 1460
 01:17:43,530 --> 01:17:46,265
 strings in the same array, we use an enum.
+放入同一个数组，应该使用 Enum（枚举）
 
 1461
 01:17:46,333 --> 01:17:48,200
 That's what we did with our operations array, and that's
+我们在之前（CalculatorBrain 中）存放操作符的数组就是这样实现的
 
 1462
 01:17:48,268 --> 01:17:51,236
 what we would do in Swift, so we wouldn't use AnyObject.
+这才是我们应该在 Swift 中用的方式，不要用 AnyObject
 
 1463
 01:17:51,305 --> 01:17:53,171
 Another thing you could possibly use Any for is for
+另外，可能用到 Any 的一种情况是
 
 1464
 01:17:53,240 --> 01:17:55,374
 a cookie, right, some piece of data that you're giving
+cookie，指的是：你要发送出去的一串数据
 
 1465
 01:17:55,442 --> 01:17:57,576
 out that you don't want people to know what class it is.
+你不希望别人知道它是什么类型
 
 1466
 01:17:57,645 --> 01:17:59,411
 And they're just gonna give it back to you at some point,
+他们只需要在某个时候原封不动的返回给你
 
 1467
 01:17:59,480 --> 01:18:00,578
 and you'll do something with it and
+然后你会对它做一些操作
 
 1468
 01:18:00,647 --> 01:18:01,379
 only you know what it is.
+只有你知道它是什么
 
 1469
 01:18:01,448 --> 01:18:03,514
 So you know, an opaque type, you could use it for
+只有你知道它的隐藏类型，只有你能用它
 
 1470
 01:18:03,583 --> 01:18:07,986
 that. How do we use something of type Any, because we can't
+我们要怎么使用 Any 类型的变量呢？
 
 1471
 01:18:08,055 --> 01:18:10,822
-send any messages to it cuz it's not of AnyType, so
+send any messages to it cuz it's not of any type, so
+我们没法给 Any 类型的变量发送消息，因为它不是任何类型
 
 1472
 01:18:10,891 --> 01:18:14,426
 we don't know any methods that it does or whatever. Instead,
+我们不知道它有哪些方法，我们对它一无所知
 
 1473
 01:18:14,494 --> 01:18:18,062
 we have convert it, and we convert type Any or, or
+所以我们必须对它进行转换，我们要把 Any 或 AnyObject
 
 1474
 01:18:18,131 --> 01:18:23,001
 AnyObject into some class that we know about using as.
+转换为我们已知的类型
 
 1475
 01:18:23,070 --> 01:18:26,205
 As is a key word, and we do as question mark because we don't
+as 是一个关键词，我们用 as? 是因为
 
 1476
 01:18:26,273 --> 01:18:28,073
 know for sure that we can convert something,
+我们也不确定它是不是能被转换成功
 
 1477
 01:18:28,142 --> 01:18:31,844
 so it's an optional. And we use it with if let.
+所以它是可选类型，我们通常和 if let 一起使用
 
 1478
 01:18:31,912 --> 01:18:33,412
 So if I had some variable unknown,
+如果我有一个未知类型的变量
 
 1479
 01:18:33,480 --> 01:18:36,214
 which is of type Any, so I don't really know what it is.
+它是 Any 类型，我不知道它的真实类型
 
 1480
 01:18:36,283 --> 01:18:39,284
 But I think it might be MyType, I'm not sure.
+但是我认为它可能 MyType 类型的，我也不太确定
 
 1481
 01:18:39,353 --> 01:18:42,487
 But I think that might be MyType in there. So I say,
+我认为它是 MyType，所以我可以写
 
 1482
 01:18:42,556 --> 01:18:46,825
-if let foo = unknown as MyType,
+if let foo = unknown as? MyType,
+if let foo = unknown as? MyType
 
 1483
 01:18:46,894 --> 01:18:52,197
 if let. Then inside there, foo is now going to be unknown,
+if let，然后 foo 就是那个未知的东西转换为 MyType 后的结果
 
 1484
 01:18:52,265 --> 01:18:56,668
 but as MyType. So I will be able to
+所以我能给 foo 发消息
 
 1485
 01:18:56,737 --> 01:18:59,738
-send foo message whatever my tape, I'll be able to send foo
+send foo message whatever MyType, I'll be able to send foo
+发送任何 MyType 可以接受的消息
 
 1486
 01:18:59,807 --> 01:19:02,341
 whatever MyType understands, methods and vars.
+任何它的方法或变量
 
 1487
 01:19:04,311 --> 01:19:06,478
 So that's how we use it. We use this "as?", it's called
+通过用 as? 这种方法，我们得以使用 Any 类型的变量
 
 1488
 01:19:06,547 --> 01:19:09,614
 casting. This casting, by the way, not just for AnyObject,
+这种操作叫做 Casting（类型检查），不仅是 AnyObject（或 Any）
 
 1489
 01:19:09,683 --> 01:19:12,951
 we can cast other things. For example, if I had a variable
+我们也可以检查其他类型。比如有一个变量 vc
 
 1490
 01:19:13,020 --> 01:19:15,987
 which is, vc which is a type UIViewController,
+它的类型是 UIViewController
 
 1491
 01:19:16,056 --> 01:19:19,324
 I could assign it to UI, to CalculatorViewController.
+我可以让它指向一个 CalculatorViewController
 
 1492
 01:19:19,393 --> 01:19:20,325
 Because CalculatorViewController is
+因为 CalculatorViewController 是
 
 1493
 01:19:20,393 --> 01:19:21,927
 a subclass of UIViewController. So
+UIViewController 的子类
 
 1494
 01:19:21,995 --> 01:19:26,031
 it is a UIViewController, so I could assign it to vc. But
+所以它也是一个 UIViewController，我可以用 vc 指向它
 
 1495
 01:19:26,099 --> 01:19:28,933
 if I assign it like this, with this typing,
+但是这样操作之后
 
 1496
 01:19:29,002 --> 01:19:32,604
 I cannot say vc.displayValue cuz vc.displayValue,
+我就没法访问 vc.displayValue 了
 
 1497
 01:19:32,672 --> 01:19:36,208
 displayValue is a var in CalculatorViewController,
+因为 displayValue 是 CalculatorViewController 的变量
 
 1498
 01:19:36,277 --> 01:19:38,643
 and vc is of type UIViewController.
+但是 vc 是 UIViewController 类型的
 
 1499
 01:19:38,712 --> 01:19:41,246
 Even though it points to a CalculatorViewController,
+尽管它实际指向的是 CalculatorViewController
 
 1500
 01:19:41,315 --> 01:19:43,681
 from Swift's perspective, it's typed as vc, and
+但是 Swift 现在把他视为 vc 的类型
 
 1501
 01:19:43,750 --> 01:19:47,753
 Swift is strongly typed. So if I wanted to send displayValue,
+因为 Swift 是强类型语言，如果我要访问 displayValue
 
 1502
 01:19:47,821 --> 01:19:50,655
 I would have to say, if I can let calcVC = vc
+我只能这样写 if let calcVC = vc as? CalculatorViewController
 
 1503
 01:19:50,724 --> 01:19:55,127
 as a CalculatorViewController Now I can send displayValue to
+之后我才能访问 calcVC 的 displayValue 属性
 
 1504
 01:19:55,195 --> 01:19:59,598
 calcVC. Cuz it's the type that you actually
+因为 vc 的类型是你强加给它的
 
 1505
 01:19:59,667 --> 01:20:02,234
 type it as that matters, not what it's pointing to. So you
+并不是它真实指向的类型
 
 1506
 01:20:02,302 --> 01:20:04,870
 have to use as to get it to be something that you really
+所以使用前必须先转换为你想要的那个类型
 
 1507
 01:20:04,939 --> 01:20:08,606
 wanna use. Okay, I'm gonna go a little bit over here.
+我会稍微拖点堂
 
 1508
 01:20:08,675 --> 01:20:11,376
 If you have to go, it's, it's fine, just keep it quiet.
+如果有人要走，可以先走，保持安静
 
 1509
 01:20:11,445 --> 01:20:13,778
 The last thing I'm gonna talk about is user defaults.
+最后一个知识点是 UserDefaults
 
 1510
 01:20:13,847 --> 01:20:15,647
 User defaults is a very lightweight,
+它是一个轻量级的、受限制的数据库
 
 1511
 01:20:15,716 --> 01:20:19,618
 limited database. It's a tiny little database that persists
+它是一个可以在应用多次启动之间保存持久化数据的微型数据库
 
 1512
 01:20:19,687 --> 01:20:21,687
 between launchings of your app. It's great for
+它非常适合用来
 
 1513
 01:20:21,756 --> 01:20:23,255
 things like settings and stuff like that.
+保存设置信息，或者类似的东西
 
 1514
 01:20:23,323 --> 01:20:26,424
 Don't put anything big in there. The only thing you can
+不要保存太大的数据
 
 1515
 01:20:26,493 --> 01:20:29,227
 put in this database is what's called a property list.
+你只能保存 Property List（属性列表）形式的数据
 
 1516
 01:20:29,296 --> 01:20:32,331
 A property list just means any combination of array,
+属性列表是以下这些类型的混合体：Array
 
 1517
 01:20:32,399 --> 01:20:34,133
 dictionary, string, date, data, or
+Dictionary、String、Date、Data
 
 1518
 01:20:34,201 --> 01:20:37,702
 a number, like int, float, double, whatever.
+或者 Int，Float，Double 等任意类型的数字
 
 1519
 01:20:37,771 --> 01:20:40,038
 That's what a property list is. It's just conceptual.
+这就是概念上的属性列表
 
 1520
 01:20:40,107 --> 01:20:42,707
 There's no actual type property list, unfortunately.
+并没有一个与之对应的真实类型
 
 1521
 01:20:42,776 --> 01:20:45,910
 If this were a Swift API, it probably would be such a type.
+如果这是个 Swift 的 API，它可能是一个确切类型
 
 1522
 01:20:45,979 --> 01:20:48,180
 It could be a protocol. But anyway, there's not.
+可能是个协议类型，可惜并不是
 
 1523
 01:20:48,248 --> 01:20:51,883
 This is from Objective-C. So since there's no type
+这是一个来自 Objective-C 的东西
 
 1524
 01:20:51,952 --> 01:20:55,287
-that represents that codgepodge of classes,
+that represents that hodgepodge of classes,
+所以没有一个类型能代表这个大杂烩
 
 1525
 01:20:55,355 --> 01:20:58,823
 this API that I'm gonna show user defaults uses Any. And
+下面我要向你们介绍的 UserDefaults API 中使用了 Any
 
 1526
 01:20:58,892 --> 01:21:01,593
 this is what it looks like. It has this core, set, and
+它们看上去是这样的，它的核心方法 set 和 get
 
 1527
 01:21:01,662 --> 01:21:05,931
 get. Set Any? Now that Any can't really be Any,
+set 接受 Any 类型？注意这里的 Any 并不是任何类型都可以
 
 1528
 01:21:06,000 --> 01:21:07,933
 it has to be one of those types, string, dictionary,
+它必须是这几种确切类型之一：String、Dictionary、Array 等
 
 1529
 01:21:08,001 --> 01:21:09,601
 array, whatever, it has to be be a Property List,
+总之它必须是一个属性列表
 
 1530
 01:21:09,670 --> 01:21:13,004
 forKey string. So you just put it, anything you want
+forKey: String 意味着你要设置一个关键字
 
 1531
 01:21:13,073 --> 01:21:14,506
 in this database under a certain key.
+什么都可以，数据将会被存储在这个关键字下
 
 1532
 01:21:14,575 --> 01:21:16,641
 And then you get it back out by saying, object for key, and
+然后你也可以获取里面的内容，通过 object(forKey:) 方法
 
 1533
 01:21:16,710 --> 01:21:19,210
 it returns you an Any. And it's an optional Any because
+它会返回给你一个 Any，一个可选类型的 Any
 
 1534
 01:21:19,279 --> 01:21:20,445
 it might not be in the database,
+因为数据库里可能没有指定关键字的数据
 
 1535
 01:21:20,514 --> 01:21:23,247
 in which it is returned nil. So it says any but
+这时就会返回 nil。虽然它返回 Any
 
 1536
 01:21:23,316 --> 01:21:27,286
 it's not really Any, it's Any as long as the property lists,
+但是这个 Any 并不是什么都可以，它依然还是个属性列表
 
 1537
 01:21:27,354 --> 01:21:29,521
 which means it's one of these ten classes or
+意味着它只能是那十种类型之一
 
 1538
 01:21:29,590 --> 01:21:32,123
 whatever. The way you read and
+这就是读取和写入它的方法
 
 1539
 01:21:32,192 --> 01:21:35,427
 write it, you don't create a user default by saying let
+你不需要通过 let x = UserDefaults()
 
 1540
 01:21:35,496 --> 01:21:37,595
 x equal user defaults with parentheses.
+创建一个 UserDefaults
 
 1541
 01:21:37,664 --> 01:21:41,533
 You say let defaults = UserDefaults.standard, so
+你应该通过 let defaults = UserDefaults.standard
 
 1542
 01:21:41,601 --> 01:21:45,270
 that's a type var on the user default struct.
+这是一个 UserDefaults 的类型变量
 
 1543
 01:21:45,339 --> 01:21:47,572
 And you get this standard UserDefaults and
+你可以取得这个叫做 standard 的 UserDefaults
 
 1544
 01:21:47,641 --> 01:21:49,541
 then you can send it things like set,
+然后你可以调用它的 set 方法
 
 1545
 01:21:49,610 --> 01:21:52,410
 that thing I was telling you, set Any. And here,
+像刚刚讲过的那样 set 任何属于属性列表的类型
 
 1546
 01:21:52,479 --> 01:21:55,446
 I've got three different sets, one of them setting of double,
+这里我展示了三种不同的 set，其一设置了 Double
 
 1547
 01:21:55,515 --> 01:21:58,016
 one setting an array of ints. An array of ints is okay
+另一个设置了一个 Int 类型的数组，这是允许的
 
 1548
 01:21:58,085 --> 01:22:01,086
 because array is part of property list. And so is int,
+因为数组可以是属性列表的一部分，Int 也是
 
 1549
 01:22:01,155 --> 01:22:04,355
 so that's okay. That's a property list. An array
+所以 Int 类型的数组是完全可以的，它是一个属性列表
 
 1550
 01:22:04,424 --> 01:22:06,424
 of ints is a property list, a property list. So is a double,
+Int 类型的数组是属性列表，一个单独的 Double 也是
 
 1551
 01:22:06,493 --> 01:22:09,061
 cuz it's one of those types. And I just set them in there.
+因为它也是属性列表包含的类型之一。这里我 set 过了
 
 1552
 01:22:09,129 --> 01:22:12,497
 And then when I get them out, I use that object for key.
+当我要 get 的时候，我要用 object(forKey:) 方法
 
 1553
 01:22:12,565 --> 01:22:14,432
 And actually for some common types,
+我要获取的是确切的类型
 
 1554
 01:22:14,501 --> 01:22:17,202
 like doubles, arrays and dictionaries, there's actually
+比如 Double，Array 或者 Dictionary
 
 1555
 01:22:17,271 --> 01:22:19,905
 a nice little method in there to give you that type back.
+有一些很便利的方法可以帮你直接取回指定的类型
 
 1556
 01:22:19,973 --> 01:22:23,441
 That's so you that don't get an Any back and
+这样你就不用先拿到一个 Any，然后在对它进行 as 操作了
 
 1557
 01:22:23,510 --> 01:22:26,778
 then have to do as. Because you know that objects for
+因为通过 object(forKey:) 拿到的是 Any
 
 1558
 01:22:26,847 --> 01:22:29,547
-key returns an Any until you give this Any and
+key returns an Any until you get this Any and
+你拿到它之后
 
 1559
 01:22:29,616 --> 01:22:32,217
-you have to go if this thing has a double,
+you have to go if this thing as a double,
+还要去判断它能不能 as 成 Double
 
 1560
 01:22:32,286 --> 01:22:34,286
 then I've got it. That would be annoying. So instead,
+然后才算真正拿到了它，这种做法太麻烦
 
 1561
 01:22:34,354 --> 01:22:36,789
 it just has a method called double that does that as for
+作为替代，有一个方法叫做 double(forKey:) 它帮你做了 as 的工作
 
 1562
 01:22:36,857 --> 01:22:40,825
 you. And if the as fails then you, I think either,
+而且如果获取失败了，我想想
 
 1563
 01:22:40,894 --> 01:22:43,094
 I don't know if it returns a double or an optional double,
+我也忘了它会返回 Double 还是 Double?
 
 1564
 01:22:43,163 --> 01:22:45,930
 but you might get zero back, you might get a nil.
+你可能得到 0，也可能是 nil
 
 1565
 01:22:45,999 --> 01:22:49,201
-I don't remember exactly. But for array in dictionary,
+I don't remember exactly. But for array and dictionary,
+我也记不清了。对于字典或数组
 
 1566
 01:22:49,269 --> 01:22:52,804
 a couple of interesting things to note. Obviously,
+它们有些有趣的特点，要特别注意
 
 1567
 01:22:52,873 --> 01:22:56,074
-the Anys that are inside the array in dictionary,
+the Anys that are inside the array and dictionary,
+它们作为返回值时，其中包含的元素 Any
 
 1568
 01:22:56,143 --> 01:22:59,077
 those will have to be property lists as well, the things that
+一样必须是属性列表
 
 1569
 01:22:59,145 --> 01:23:01,446
 are returned to you. And also know that dictionary,
+对于字典
 
 1570
 01:23:01,514 --> 01:23:03,915
 this convenience method dictionary,
+有一个方法是 dictionary(forKey:)
 
 1571
 01:23:03,984 --> 01:23:07,552
 it's the string is always the key in the dictionary.
+它的键必须是 String 类型的
 
 1572
 01:23:07,621 --> 01:23:12,157
 If you had a dictionary where the keys were say, ints.
+如果你有一个字典，键类型是 Int
 
 1573
 01:23:12,226 --> 01:23:14,926
 I think that's a valid key, yeah, in the dictionary, yeah,
+我记得 Int 是一个可以作为键的类型，没错，确实是
 
 1574
 01:23:14,995 --> 01:23:18,029
 it is. Then you would not use this convenience method.
+那你就不能用这个方法了
 
 1575
 01:23:18,098 --> 01:23:21,867
 You'd have to use object for key and then use as to turn it
+你必须用 object(forKey:) 然后再用 as 把它转换为
 
 1576
 01:23:21,936 --> 01:23:26,971
 back into a dictionary with int keys.
+以 Int 为键类型的字典
 
 1577
 01:23:27,040 --> 01:23:29,307
 Saving the database is autosave, so you actually
+这个数据库的保存是自动的
 
 1578
 01:23:29,376 --> 01:23:31,276
 don't have to save it. If you wanna force it to save because
+你没必要手工去保存它。如果你害怕自动保存会失效
 
 1579
 01:23:31,344 --> 01:23:33,144
 you're worried that the autosave might not happen.
+你希望强制保存它
 
 1580
 01:23:33,213 --> 01:23:35,413
 You're gonna exit your program or something, you can use this
+比如你可能强退了程序
 
 1581
 01:23:35,482 --> 01:23:37,382
 method synchronize. It's called synchronize defaults.
+你可以用这个方法手动同步：defaults.synchronize()
 
 1582
 01:23:37,451 --> 01:23:40,586
 It will synchronize it. That's almost it, assertions.
+它会同步数据库。最后是 Assertions（断言）
 
 1583
 01:23:40,654 --> 01:23:44,222
 Sorry, one last quick thing. Assertions are just a little
+抱歉，只剩最后一个小知识点了
 
 1584
 01:23:44,291 --> 01:23:48,360
 Swift function that takes a closure as the first argument
+断言只是 Swift 中的一个小函数，第一个参数是个闭包
 
 1585
 01:23:48,429 --> 01:23:51,596
 and a message as the second argument.
+第二个参数是一个消息字符串
 
 1586
 01:23:51,665 --> 01:23:55,400
 All it does is it executes the closure. If that returns true,
+它做的仅仅是执行这个闭包，如果返回为 true
 
 1587
 01:23:55,469 --> 01:23:58,437
 it does not crash your program. If it returns false,
+就什么都不做。如果返回为 false
 
 1588
 01:23:58,505 --> 01:24:02,006
 it crashes your program and prints that message out. So
+就会导致你的程序崩溃掉，并且输出这段消息
 
 1589
 01:24:02,075 --> 01:24:06,778
 you could put, you know, some validation call. This line of
+所以你可以把它用于验证合法性的场合
 
 1590
 01:24:06,847 --> 01:24:10,215
 code will not even execute in the version of your app that
+在你发布到 App Store 的版本中，这行代码不会执行
 
 1591
 01:24:10,284 --> 01:24:12,618
 you ship on the app store. When you build the app for
+当你用 Release 模式生成程序的时候
 
 1592
 01:24:12,686 --> 01:24:15,086
 release, the asserts are completely ignored.
+断言会被完全忽略掉
 
 1593
 01:24:15,155 --> 01:24:17,890
 It doesn't even actually give the closure, let alone crash.
+不会执行这段闭包，更不会崩溃
 
 1594
 01:24:17,958 --> 01:24:20,592
 It just ignores them, so this is a debugging thing only,
+仅仅是忽略掉它们。这只是个调试用的东西
 
 1595
 01:24:20,661 --> 01:24:24,863
 okay? That's it! For Friday,
+好了，讲完了
 
 1596
 01:24:24,932 --> 01:24:27,899
 we do have Friday session, it's at the normal time. And
+这周五我们会上课，老时间
 
 1597
 01:24:27,968 --> 01:24:29,568
 it's gonna be on source code management.
+会讲一些源码管理的知识
 
 1598
 01:24:29,637 --> 01:24:33,471
 A really cool way to manage your code even if you're just
+一种非常酷的管理源码的方法
 
 1599
 01:24:33,540 --> 01:24:36,074
 one programmer working on a project by yourself. And then
+即使你独自做项目，也有必要学习
 
 1600
 01:24:36,143 --> 01:24:39,010
 next week I'm going to talk about doing custom drawing
+下周我会讲自定义视图中的绘制
 
 1601
 01:24:39,079 --> 01:24:42,447
 in your own view. Multi-touch, like pinches and swipes, and
+还有各种手势，比如 Pinch（捏合手势）和 Swipe（轻扫手势）等
 
 1602
 01:24:42,516 --> 01:24:45,450
 things like that. And finally, multiple MVCs so
+最后是有关多个 MVC 的知识
 
 1603
 01:24:45,519 --> 01:24:48,119
 we can build a more powerful calculator.
+我们可以构建一个更强大的计算器
 
 1604
 01:24:48,188 --> 01:24:51,123
 Your assignment two has gone out. It's already posted.
+作业二已经布置完毕，发布出来了
 
 1605
 01:24:51,191 --> 01:24:54,259
 It's essentially enhancing your calculator with a lot of
+主要内容是加强你的计算器
 
 1606
 01:24:54,328 --> 01:24:57,129
 the things that I talked about today like tuples and
+运用我们今天讲的很多知识
 
 1607
 01:24:57,198 --> 01:24:59,831
 defaulting values and even value types.
+比如元组和默认值，还有值类型
 
 1608
 01:24:59,899 --> 01:25:01,934
 All kinds of stuff. So we'll have a lot of fun with that.
+运用各种知识去完成它，享受这个有趣的过程吧
 
 1609
 01:25:03,237 --> 01:25:03,935
 >> For more,
+>> 更多课程
 
 1610
 01:25:04,004 --> 01:25:12,510
 please visit us at standford.edu
+详见 stanford.edu
