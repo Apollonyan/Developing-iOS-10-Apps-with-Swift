@@ -5604,12 +5604,12 @@ But just so that you know that NSNumber is around. Okay,
 1221
 01:05:35,835 --> 01:05:38,670
 date. Super important class. Anytime you are representing
-Date 是一个非常重要的结构体。任何时候，你想表达一个日期或时间
+Date 是一个非常重要的结构体。任何时候
 
 1222
 01:05:38,738 --> 01:05:42,674
 a date or time, you're gonna wanna use this date struct.
-都要用到 Date 这个结构体
+你想表达一个日期或时间，都要用到 Date 这个结构体
 
 1223
 01:05:42,743 --> 01:05:46,144
@@ -5649,7 +5649,7 @@ all over the Earth that are different than ours.
 1230
 01:06:02,596 --> 01:06:05,697
 So anytime you're even contemplating putting a date
-因此，当你考虑在界面上摆放一个日期的时候
+因此，当你考虑在界面上展示一个日期的时候
 
 1231
 01:06:05,766 --> 01:06:09,568
@@ -5659,7 +5659,7 @@ anywhere in your UI you need to be using this class.
 1232
 01:06:09,636 --> 01:06:12,270
 Because if you wanna have your app work in anything but
-如果你希望你的应用可以正常工作在非英语环境下
+如果你希望你的应用可以在非英语环境下正常工作
 
 1233
 01:06:12,339 --> 01:06:14,639
@@ -5669,7 +5669,7 @@ English, you're gonna have to format your date, using
 1234
 01:06:14,708 --> 01:06:19,744
 the DateFormatter, in whatever locale your app is running in.
-将日期转化成应用所处的本地化语言
+把日期用当地的习惯表达
 
 1235
 01:06:19,813 --> 01:06:22,514
@@ -5729,12 +5729,12 @@ It gets passed around copy on right. And
 1246
 01:06:54,114 --> 01:06:56,882
 you'll start seeing data in UI maybe week five or
-你们将会在 UI 部分开始接触到它
+你们将会在第五或第六周 UI 部分开始接触到它
 
 1247
 01:06:56,950 --> 01:07:00,686
 six of this class. All right, initialization.
-可能是这个课程的第五或第六周。接下来是 Initialization（构造）
+接下来是 Initialization（构造）
 
 1248
 01:07:00,754 --> 01:07:04,122
@@ -5833,13 +5833,13 @@ So you can have as many inits as you want.
 
 1267
 01:08:00,347 --> 01:08:02,914
-And a lot of classes have multiple inits. Meaning on
+And a lot of classes have multiple inits. Depending on
 也确实有很多类都有不止一个构造器
 
 1268
 01:08:02,983 --> 01:08:04,649
 kinda how they are being used, how they are being created.
-意味着它们拥有多种不同的使用方式和创建方式
+创建过程取决于使用方式
 
 1269
 01:08:04,718 --> 01:08:06,217
@@ -6019,7 +6019,7 @@ You can set lets. So you're gonna have a let that's
 1304
 01:09:50,657 --> 01:09:54,826
 got lets x equal 5. You can still reset it in your init.
-可以令 x = 5，构造器内是可以这样做的
+let x = 5，构造器内仍然可以重设它
 
 1305
 01:09:54,895 --> 01:09:59,330
@@ -6084,7 +6084,7 @@ let's start thinking about class and break this down.
 1317
 01:10:31,264 --> 01:10:34,699
 Let's start with what are you required to do in an init for
-我们从这个问题切入：在类的构造器中我们必须做的事情是什么？
+我们从这个问题切入：在类的构造器中必须做的是什么？
 
 1318
 01:10:34,768 --> 01:10:37,969
@@ -6304,12 +6304,12 @@ This, in this case, you have to do convenience,
 1361
 01:12:43,664 --> 01:12:46,164
 you have to call your other one first.
-你必须先调一个自身的其他构造器
+你必须先调用一个自身的其他构造器
 
 1362
 01:12:46,232 --> 01:12:50,969
 And the calling of all other inits, whatever you do, any
-任何其他构造器，无论调哪个都行
+任何其他构造器，无论哪个都行
 
 1363
 01:12:51,037 --> 01:12:54,539
@@ -6429,7 +6429,7 @@ Of course, you could inherit them all by implementing
 1386
 01:13:59,406 --> 01:14:04,008
 none of them as well. So, any init that you inherit by these
-也一样能继承父类全部的便利构造器。
+也一样能继承父类全部的便利构造器
 
 1387
 01:14:04,077 --> 01:14:06,611
@@ -6534,12 +6534,12 @@ a failed init, you can return nil. So, an example here is
 1407
 01:14:58,799 --> 01:15:02,968
 UIImage. UIImaged named looks up that image in
-拿 UIImage 来举例，UIImage(named:) 会在 xcassets 文件中寻找
+拿 UIImage 举例，UIImage(named:) 会在
 
 1408
 01:15:03,036 --> 01:15:05,904
 the xcassets. Remember that xcassets thing that I moved
-指定的图片。还记得 xcassets 文件吗？
+xcassets 文件中寻找指定的图片。还记得 xcassets 文件吗？
 
 1409
 01:15:05,973 --> 01:15:08,806
@@ -6569,7 +6569,7 @@ that UIImage initializer failed. Alright, Any and
 1414
 01:15:22,822 --> 01:15:27,259
 AnyObject. There is no more init, we're done with init.
-下面是 Any 和 AnyObject
+下面是 Any 和 AnyObject，不讲构造器了
 
 1415
 01:15:27,327 --> 01:15:31,262
@@ -6579,12 +6579,12 @@ Any 和 AnyObject 都是类型，特殊的类型
 1416
 01:15:31,331 --> 01:15:35,133
 These types really are almost exclusively used for backwards
-几乎可以这样理解，这些类型仅仅是为了向下兼容 Objective-C 而存在的
+几乎可以这样理解，这些类型的存在仅仅是为了
 
 1417
 01:15:35,202 --> 01:15:39,004
 compatibility with Objective C because Objective C had a type
-因为 Objective-C 中有一个类型叫做 id
+向下兼容 Objective-C 中叫做 id 的一个类型
 
 1418
 01:15:39,072 --> 01:15:41,740
@@ -6614,7 +6614,7 @@ have a type which is like, it can be anything. Okay, because
 1423
 01:15:55,622 --> 01:15:58,022
 that's what Any and AnyObject are, it's like anything,
-Any 和 AnyObject 具有能代表任何类型的特性
+Any 和 AnyObject 能代表任何类型
 
 1424
 01:15:58,091 --> 01:16:02,928
@@ -6654,7 +6654,7 @@ Where are they gonna show up? Well,
 1431
 01:16:15,909 --> 01:16:18,710
 there are some methods in iOS where one of the arguments
-iOS 中有一些方法确实需要能接受任何类型的参数
+iOS 中有一些方法确实能接受任何类型的参数
 
 1432
 01:16:18,779 --> 01:16:22,847
@@ -6684,7 +6684,7 @@ Segue 的发起者
 1437
 01:16:33,994 --> 01:16:37,095
 is the argument in this method called prepare for
-就是这个方法 prepare(for:sender:) 中
+就是方法 prepare(for:sender:) 中
 
 1438
 01:16:37,164 --> 01:16:39,031
@@ -6724,7 +6724,7 @@ So when you're preparing for it, you've gotta be
 1445
 01:16:55,983 --> 01:16:59,918
 able to say which one it was, and that's just Any. So
-你已经可以确定 sender 是什么东西了，这里用 Any 正合适
+你要能接受任何类型的 sender，所以这里用 Any
 
 1446
 01:16:59,987 --> 01:17:02,621
@@ -6799,17 +6799,17 @@ Swift 中，如果我们要把 Double 和 String
 1460
 01:17:43,530 --> 01:17:46,265
 strings in the same array, we use an enum.
-放入同一个数组，应该使用 Enum（枚举）
+放入同一个数组，应该使用 enum（枚举）
 
 1461
 01:17:46,333 --> 01:17:48,200
 That's what we did with our operations array, and that's
-我们在之前（CalculatorBrain 中）存放操作符的数组就是这样实现的
+就像之前 CalculatorBrain 中存放操作符的数组
 
 1462
 01:17:48,268 --> 01:17:51,236
 what we would do in Swift, so we wouldn't use AnyObject.
-这才是我们应该在 Swift 中用的方式，不要用 AnyObject
+这才是我们在 Swift 中实现的方式，不要用 AnyObject
 
 1463
 01:17:51,305 --> 01:17:53,171
@@ -6854,7 +6854,7 @@ that. How do we use something of type Any, because we can't
 1471
 01:18:08,055 --> 01:18:10,822
 send any messages to it cuz it's not of any type, so
-我们没法给 Any 类型的变量发送消息，因为它不是任何类型
+我们没法给 Any 类型的变量发送消息。它不是任何类型
 
 1472
 01:18:10,891 --> 01:18:14,426
@@ -6869,7 +6869,7 @@ we have convert it, and we convert type Any or, or
 1474
 01:18:18,131 --> 01:18:23,001
 AnyObject into some class that we know about using as.
-转换为我们已知的类型
+用 as 转换为我们已知的类型
 
 1475
 01:18:23,070 --> 01:18:26,205
@@ -6939,12 +6939,12 @@ So that's how we use it. We use this "as?", it's called
 1488
 01:19:06,547 --> 01:19:09,614
 casting. This casting, by the way, not just for AnyObject,
-这种操作叫做 Casting（类型检查），不仅是 AnyObject（或 Any）
+这种操作叫 Casting（类型检查）。不仅是 AnyObject 和 Any
 
 1489
 01:19:09,683 --> 01:19:12,951
 we can cast other things. For example, if I had a variable
-我们也可以检查其他类型。比如有一个变量 vc
+其他类型我们也可以检查。比如有一个变量 vc
 
 1490
 01:19:13,020 --> 01:19:15,987
@@ -7019,17 +7019,17 @@ as a CalculatorViewController Now I can send displayValue to
 1504
 01:19:55,195 --> 01:19:59,598
 calcVC. Cuz it's the type that you actually
-因为 vc 的类型是你强加给它的
+因为 vc 明确声明了类型
 
 1505
 01:19:59,667 --> 01:20:02,234
 type it as that matters, not what it's pointing to. So you
-并不是它真实指向的类型
+所以 Swift 不考虑实际指向的类型
 
 1506
 01:20:02,302 --> 01:20:04,870
 have to use as to get it to be something that you really
-所以使用前必须先转换为你想要的那个类型
+因此使用前必须先转换为你想要的那个类型
 
 1507
 01:20:04,939 --> 01:20:08,606
@@ -7054,12 +7054,12 @@ User defaults is a very lightweight,
 1511
 01:20:15,716 --> 01:20:19,618
 limited database. It's a tiny little database that persists
-它是一个可以在应用多次启动之间保存持久化数据的微型数据库
+它是一个可以在应用多次启动之间
 
 1512
 01:20:19,687 --> 01:20:21,687
 between launchings of your app. It's great for
-它非常适合用来
+保存持久化数据的微型数据库，非常适合用来
 
 1513
 01:20:21,756 --> 01:20:23,255
@@ -7094,7 +7094,7 @@ a number, like int, float, double, whatever.
 1519
 01:20:37,771 --> 01:20:40,038
 That's what a property list is. It's just conceptual.
-这就是概念上的属性列表
+这就是属性列表的概念
 
 1520
 01:20:40,107 --> 01:20:42,707
@@ -7134,7 +7134,7 @@ this is what it looks like. It has this core, set, and
 1527
 01:21:01,662 --> 01:21:05,931
 get. Set Any? Now that Any can't really be Any,
-set 接受 Any 类型？注意这里的 Any 并不是任何类型都可以
+set 接受 Any? 类型。注意这里 Any 并不是任何类型都可以
 
 1528
 01:21:06,000 --> 01:21:07,933
@@ -7164,7 +7164,7 @@ And then you get it back out by saying, object for key, and
 1533
 01:21:16,710 --> 01:21:19,210
 it returns you an Any. And it's an optional Any because
-它会返回给你一个 Any，一个可选类型的 Any
+它会返回给你一个 Any?，一个可选类型的 Any
 
 1534
 01:21:19,279 --> 01:21:20,445
@@ -7239,7 +7239,7 @@ one setting an array of ints. An array of ints is okay
 1548
 01:21:58,085 --> 01:22:01,086
 because array is part of property list. And so is int,
-因为数组可以是属性列表的一部分，Int 也是
+因为数组可以是属性列表的一部分，Int 也行
 
 1549
 01:22:01,155 --> 01:22:04,355
@@ -7264,7 +7264,7 @@ And then when I get them out, I use that object for key.
 1553
 01:22:12,565 --> 01:22:14,432
 And actually for some common types,
-我要获取的是确切的类型
+我要获取的是常见的类型
 
 1554
 01:22:14,501 --> 01:22:17,202
@@ -7304,7 +7304,7 @@ then I've got it. That would be annoying. So instead,
 1561
 01:22:34,354 --> 01:22:36,789
 it just has a method called double that does that as for
-作为替代，有一个方法叫做 double(forKey:) 它帮你做了 as 的工作
+作为替代，叫做 double(forKey:) 的方法帮你做了 as 的工作
 
 1562
 01:22:36,857 --> 01:22:40,825
@@ -7444,7 +7444,7 @@ it crashes your program and prints that message out. So
 1589
 01:24:02,075 --> 01:24:06,778
 you could put, you know, some validation call. This line of
-所以你可以把它用于验证合法性的场合
+所以你可以把它用于验证合法性
 
 1590
 01:24:06,847 --> 01:24:10,215
@@ -7504,7 +7504,7 @@ next week I'm going to talk about doing custom drawing
 1601
 01:24:39,079 --> 01:24:42,447
 in your own view. Multi-touch, like pinches and swipes, and
-还有各种手势，比如 Pinch（捏合手势）和 Swipe（轻扫手势）等
+还有各种手势，比如 Pinch（捏合）和 Swipe（轻扫）等
 
 1602
 01:24:42,516 --> 01:24:45,450
