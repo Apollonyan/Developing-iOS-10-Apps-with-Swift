@@ -5,174 +5,217 @@
 2
 00:00:04,605 --> 00:00:10,876
 Stanford University. Welcome to Stanford CS193P,
+斯坦福大学。欢迎参加 2017 年冬季学期斯坦福 CS193P 课程，
 
 3
 00:00:10,945 --> 00:00:14,279
 this is Developing Applications for iOS,
+iOS 应用程序开发。
 
 4
 00:00:14,347 --> 00:00:18,984
 winter of 2017. This is the only lecture in this quarter
+这是本季度唯一一节我不打算
 
 5
 00:00:19,052 --> 00:00:23,122
 where I'm not going to do a demo, so this is all slides,
+做示例程序的课，所以这次全是幻灯片。
 
 6
 00:00:23,190 --> 00:00:27,025
 and that's because I'm pretty much going to try and
+那是因为我很想
 
 7
 00:00:27,094 --> 00:00:31,329
 get you fully up to speed on Swift. Everything that I'm
+让你们完全掌握 Swift。我今天讲到的
 
 8
 00:00:31,398 --> 00:00:34,233
 going to talk about today is covered either in your reading
+所有东西包括你们的今天截止的阅读任务1，
 
 9
 00:00:34,301 --> 00:00:37,236
 assignment one, which was due today, so hopefully you're
+所以希望你们已经完成了这项作业；
 
 10
 00:00:37,304 --> 00:00:39,904
 done with that, or it's in reading assignment two,
+或者是在阅读任务2中，
 
 11
 00:00:39,973 --> 00:00:43,942
 which is going out today and is due next Wednesday. So,
+它将会在今天放出，下周三截止。
 
 12
 00:00:44,010 --> 00:00:47,011
 why am I even covering this? Because I know that reading
+所以为什么我竟然会包括这个呢？因为我知道
 
 13
 00:00:47,080 --> 00:00:50,115
 through that reading assignment can be a big slog
+那个阅读任务的信息量太大，全部读完
 
 14
 00:00:50,184 --> 00:00:53,384
 through a lot of information, and I want you to understand
+并不是一件令人愉悦的事情，并且我希望你们
 
 15
 00:00:53,453 --> 00:00:56,822
 the things in there that are really important. As I go
+在这里理解这些非常重要的事情。
 
 16
 00:00:56,890 --> 00:00:59,358
 through the slides today, if you see something and
+今天我播放幻灯片的时候，如果你看到一些东西
 
 17
 00:00:59,426 --> 00:01:03,094
 I explain it and you're like, my gosh I didn't get that,
+和我对它的解释让你感觉 “我天你在说啥我完全搞不懂” 的话，
 
 18
 00:01:03,163 --> 00:01:06,131
 just make a note about whatever the topic is that I'm
+先把我讲的内容记下来
 
 19
 00:01:06,200 --> 00:01:07,532
 talking about and then you can go back and
+等回去之后你可以再次
 
 20
 00:01:07,601 --> 00:01:09,667
 read about it again in your reading assignment to try and
+阅读你的阅读任务的相关内容，试着
 
 21
 00:01:09,736 --> 00:01:11,770
 understand it. If you still don't understand it,
+去理解它。如果你依然搞不懂，
 
 22
 00:01:11,839 --> 00:01:15,440
 you can of course ask on the class forums.
+你当然可以在课堂论坛上提问。
 
 23
 00:01:15,509 --> 00:01:18,443
 You can think of this as kind of the highlights of the fist
+你可以把这当成最开始的两个
 
 24
 00:01:18,512 --> 00:01:21,613
 two reading assignments. Some of these are also highlights
+阅读任务的一种高亮。其中一些也是在最开始
 
 25
 00:01:21,682 --> 00:01:24,283
 of the first two lectures I did in the demos,
+的两节课中我做的示例程序中的高亮，
 
 26
 00:01:24,351 --> 00:01:25,817
 so there's a little bit of that in there to.
+// 结尾那个to是什么鬼
 
 27
 00:01:25,886 --> 00:01:28,787
 But, this is really kind of the important stuff in Swift,
+但是，我现在能教你们的
 
 28
 00:01:28,855 --> 00:01:30,121
 that I can teach you at this point.
+真的是 Swift 中很重要的内容。
 
 29
 00:01:30,190 --> 00:01:33,758
 There's more important stuff in Swift to come, okay,
+Swift 中还有更重要的东西要讲，
 
 30
 00:01:33,827 --> 00:01:38,263
 but I'll teaching it kinda as we go in the next two weeks.
+但我大概将会在接下来的两周里讲解它。
 
 31
 00:01:38,332 --> 00:01:41,500
 Okay, so lot of Swift topics,
+好了，这么多 Swift 的话题，
 
 32
 00:01:41,569 --> 00:01:43,769
 let's start with the first one, probably everybody's
+让我们从第一个开始，大概所有人
 
 33
 00:01:43,837 --> 00:01:45,537
 favorite topic when they first learn Swift,
+刚开始学习 Swift 时最喜欢的话题
 
 34
 00:01:45,606 --> 00:01:50,275
 which is optional. Optional is interesting in Swift,
+就是 Optional。Swift 中的 Optional 很有意思，
 
 35
 00:01:50,344 --> 00:01:53,345
 because not a lot of other languages have optional, so
+因为别的有 Optional 的语言并不多，所以
 
 36
 00:01:53,413 --> 00:01:56,047
 I'm sure, in fact I've heard, that some of you are like,
+我很确定，实际上我已经听说了，就是你们中有些人感觉，
 
 37
 00:01:56,116 --> 00:01:58,250
 "Hmm, I'm not sure I really understand that optional
+“额，我不确定我真的理解了 Optional 是个啥东西”。
 
 38
 00:01:58,318 --> 00:02:02,654
 thing". And that's probably okay, but by the end of next
+这没关系，但是在下周结束之前
 
 39
 00:02:02,723 --> 00:02:04,956
 week you should feel very confident with Optionals,
+你应该会感到对 Optional 很有把握了，
 
 40
 00:02:05,025 --> 00:02:07,659
 because you're gonna see that they are absolutely everywhere
+因为你将会看到它们实际上会出现在iOS中的任何地方。
 
 41
 00:02:07,728 --> 00:02:10,696
 in iOS. Now, I mentioned this in the lecture but
+现在，我在课上提到这个但是
 
 42
 00:02:10,765 --> 00:02:12,497
 I wanted to show it to you from a code,
+我想用一段代码向你展示它，
 
 43
 00:02:12,566 --> 00:02:16,134
 kind of a code point of view, which is that optional
+从代码的角度来看，Optional 除了枚举之外
 
 44
 00:02:16,203 --> 00:02:19,971
 is nothing more than an enum, it is fact just an enum,
+没啥别的东西，实际上它就是个枚举，
 
 45
 00:02:20,040 --> 00:02:23,408
@@ -193,6 +236,7 @@ You should all be familiar to that, with that from Java for
 49
 00:02:31,852 --> 00:02:33,351
 example, same thing in Swift.
+
 
 50
 00:02:33,420 --> 00:02:35,053
