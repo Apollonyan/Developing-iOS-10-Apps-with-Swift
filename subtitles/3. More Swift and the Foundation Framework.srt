@@ -5,12 +5,12 @@
 2
 00:00:04,605 --> 00:00:10,876
 Stanford University. Welcome to Stanford CS193P,
-斯坦福大学。欢迎参加 2017 年冬季学期斯坦福 CS193P 课程，
+斯坦福大学。欢迎参加 2017 年冬季学期斯坦福 CS193P 课程
 
 3
 00:00:10,945 --> 00:00:14,279
 this is Developing Applications for iOS,
-iOS 应用程序开发。
+iOS 应用程序开发
 
 4
 00:00:14,347 --> 00:00:18,984
@@ -20,7 +20,7 @@ winter of 2017. This is the only lecture in this quarter
 5
 00:00:19,052 --> 00:00:23,122
 where I'm not going to do a demo, so this is all slides,
-做示例程序的课，所以这次全是幻灯片。
+做示例程序的课，这次全是幻灯片
 
 6
 00:00:23,190 --> 00:00:27,025
@@ -35,22 +35,22 @@ get you fully up to speed on Swift. Everything that I'm
 8
 00:00:31,398 --> 00:00:34,233
 going to talk about today is covered either in your reading
-所有东西包括你们的今天截止的阅读任务1，
+所有东西包括你们的今天截止的阅读任务1
 
 9
 00:00:34,301 --> 00:00:37,236
 assignment one, which was due today, so hopefully you're
-所以希望你们已经完成了这项作业；
+所以希望你们已经完成了这项作业
 
 10
 00:00:37,304 --> 00:00:39,904
 done with that, or it's in reading assignment two,
-或者是在阅读任务2中，
+或者是在阅读任务2中
 
 11
 00:00:39,973 --> 00:00:43,942
 which is going out today and is due next Wednesday. So,
-它将会在今天放出，下周三截止。
+它将会在今天放出，下周三截止
 
 12
 00:00:44,010 --> 00:00:47,011
@@ -65,12 +65,12 @@ through that reading assignment can be a big slog
 14
 00:00:50,184 --> 00:00:53,384
 through a lot of information, and I want you to understand
-并不是一件令人愉悦的事情，并且我希望你们
+并不是一件令人愉悦的事情，并且我希望你们理解
 
 15
 00:00:53,453 --> 00:00:56,822
 the things in there that are really important. As I go
-在这里理解这些非常重要的事情。
+这些东西真的很重要
 
 16
 00:00:56,890 --> 00:00:59,358
@@ -80,7 +80,7 @@ through the slides today, if you see something and
 17
 00:00:59,426 --> 00:01:03,094
 I explain it and you're like, my gosh I didn't get that,
-和我对它的解释让你感觉 “我天你在说啥我完全搞不懂” 的话，
+和我对它的解释让你感觉 “我天你在说啥我完全搞不懂” 的话
 
 18
 00:01:03,163 --> 00:01:06,131
@@ -100,16 +100,16 @@ read about it again in your reading assignment to try and
 21
 00:01:09,736 --> 00:01:11,770
 understand it. If you still don't understand it,
-去理解它。如果你依然搞不懂，
+去理解它。如果你依然搞不懂
 
 22
 00:01:11,839 --> 00:01:15,440
 you can of course ask on the class forums.
-你当然可以在课堂论坛上提问。
+你当然可以在课堂论坛上提问
 
 23
 00:01:15,509 --> 00:01:18,443
-You can think of this as kind of the highlights of the fist
+You can think of this as kind of the highlights of the first
 你可以把这当成最开始的两个
 
 24
@@ -120,12 +120,12 @@ two reading assignments. Some of these are also highlights
 25
 00:01:21,682 --> 00:01:24,283
 of the first two lectures I did in the demos,
-的两节课中我做的示例程序中的高亮，
+的两节课中我做的示例程序中的高亮
 
 26
 00:01:24,351 --> 00:01:25,817
-so there's a little bit of that in there to.
-// 结尾那个to是什么鬼
+so there's a little bit of that in there too.
+所以也有一点那个
 
 27
 00:01:25,886 --> 00:01:28,787
@@ -170,7 +170,7 @@ which is optional. Optional is interesting in Swift,
 35
 00:01:50,344 --> 00:01:53,345
 because not a lot of other languages have optional, so
-因为别的有 Optional 的语言并不多，所以
+因为其他有 Optional 的语言并不多，所以
 
 36
 00:01:53,413 --> 00:01:56,047
@@ -220,171 +220,212 @@ is nothing more than an enum, it is fact just an enum,
 45
 00:02:20,040 --> 00:02:23,408
 this is the enum that is an optional. It's a generic type,
+这是个枚举，也是个 Optional。这是个泛型
 
 46
 00:02:23,476 --> 00:02:26,011
 kind of like array, how with array when you say the type,
+有点像数组，// todo
 
 47
 00:02:26,080 --> 00:02:29,013
 you say the type of the thing you're putting in the array.
+// todo
 
 48
 00:02:29,082 --> 00:02:31,783
 You should all be familiar to that, with that from Java for
+你们对此应该都不陌生，例如它在 Java 中
 
 49
 00:02:31,852 --> 00:02:33,351
 example, same thing in Swift.
-
+和在 Swift 中是一样的东西
 
 50
 00:02:33,420 --> 00:02:35,053
 So, with optional it is the same way,
+对于 Optional 也是一样的
 
 51
 00:02:35,122 --> 00:02:38,189
 you put this type and the type that's associated there, or
+你将这种类型和与之相关的类型，或者
 
 52
 00:02:38,258 --> 00:02:39,524
 not that's associated, but
+不与之相关，但是是
 
 53
 00:02:39,593 --> 00:02:41,393
 the type of the generic type that we're talking about,
+我们正在谈论的泛型的类型
 
 54
 00:02:41,462 --> 00:02:42,727
 that "T" in an optional,
+Optional 中的那个“T”
 
 55
 00:02:42,796 --> 00:02:45,297
 is just the type that's going to be the associated value.
+是将要与之关联的值的类型
 
 56
 00:02:45,366 --> 00:02:48,533
 When you look at this enum Optional,
+当你看这个枚举 Optional
 
 57
 00:02:48,602 --> 00:02:53,005
 it only has two cases: "none" which is "not set," and
+它只有两种情况：“none”意思是“未赋值”，然后
 
 58
 00:02:53,073 --> 00:02:56,241
 "some" which is "set". When it's in the some case, look:
+“some”意思是“已赋值”。当它处于 some 情况下是，看：
 
 59
 00:02:56,310 --> 00:02:59,645
 "(T)", you know what that is from the calculator demo,
+“（T）”，你们从计算器示例程序中知道这是什么
 
 60
 00:02:59,713 --> 00:03:02,480
 that's an associated value, just like when we had
+那是个关联值，就像当我们
 
 61
 00:03:02,549 --> 00:03:06,017
 operation in calculator it had associated values, like unary
+操作计算器时它有关联值，就像一元
 
 62
 00:03:06,086 --> 00:03:09,087
 operation had an associative value of a function, and
+运算符有一个函数关联值
 
 63
 00:03:09,155 --> 00:03:12,824
 constant had an associated value of the constant's value.
+常量有一个常量值的关联值
 
 64
 00:03:12,893 --> 00:03:15,260
 Same thing here, with optional, in the "some" case,
+在 Optional 的“some”情况下是一样的
 
 65
 00:03:15,329 --> 00:03:17,562
 the "set" case, it just has an associated value, and
+“已赋值”的情况下，它只是有一个关联值
 
 66
 00:03:17,631 --> 00:03:19,498
-it's whatever type the option was, so
+it's whatever type the optional was, so
+它也是 Optional 的类型，所以
 
 67
 00:03:19,566 --> 00:03:22,500
 if this is an optional string, then it would be a string.
+如果这是个 Optional 字符串，那么它将会是一个字符串
 
 68
 00:03:22,569 --> 00:03:28,240
 Now what makes optional like, " I don't really get optional,
+现在让你对 Optional 感到，“我没有真正掌握 Optional，
 
 69
 00:03:28,309 --> 00:03:30,041
 what is it?", it's because of all those question marks and
+Optional 到底是个啥？”的原因完全在于问号和
 
 70
 00:03:30,110 --> 00:03:32,577
 exclamation points. But, all those question marks and
+感叹号。但是，所有这些问号和
 
 71
 00:03:32,646 --> 00:03:35,146
 exclamation points, are just sugar,
+感叹号都是糖
 
 72
 00:03:35,215 --> 00:03:39,218
 syntactic sugar, to make your code look a little simpler and
+语法糖，为了让你的代码看起来更简单和
 
 73
 00:03:39,286 --> 00:03:42,153
 straight forward, because it's so common to use them. So,
+直观一点，因为它们经常被使用。所以，
 
 74
 00:03:42,222 --> 00:03:45,457
 I'm going to map this enum to that sugar.
+我要将这个枚举映射到那个糖上
 
 75
 00:03:46,926 --> 00:03:51,897
 Let's take a look, here's the first one: If I say let x:
+让我们来看看，这是第一个：如果我写
 
 76
 00:03:51,966 --> 00:03:56,835
 String?=nil, that's exactly the same as
+let x: String? = nil，那和写
 
 77
 00:03:56,904 --> 00:04:01,840
 saying let x = Optional<String>.none,
+let x = Optional<String>.none 是完全一样的
 
 78
 00:04:01,908 --> 00:04:05,777
 just like by saying array, I'd say
+就像数组一样
 
 79
 00:04:05,845 --> 00:04:09,147
 Array<String> that would mean I want an array of String,
+Array<String> 意思是我想要一个字符串数组
 
 80
 00:04:09,216 --> 00:04:11,683
 here when I say Optional <String>, that means I want
+在这里当我说 Optional<String> 时，意思是我想要
 
 81
 00:04:11,752 --> 00:04:16,321
 an Optional String. And I'm picking the none case, and
+一个 Optional 字符串。并且我选择了 none
 
 82
 00:04:16,389 --> 00:04:20,125
 in just the same way, if I say let x = Optional<string>=
+用同样的方式，如果我写 let x: String? = "hello"
 
 83
 00:04:20,194 --> 00:04:24,329
 hello, I'm just saying x = Optional<string>.some
+相当于我写 let x = Optional<String>.some("hello")
 
 84
 00:04:24,398 --> 00:04:28,800
 with associated value hello. Everyone got that? That's all
+所有人都懂了吧？这就是关于问号
 
 85
 00:04:28,869 --> 00:04:31,537
 that's happening there with the question mark thing.
+的全部事情了
 
 86
 00:04:31,605 --> 00:04:34,839
 And then here is the unwrap. When we do that exclamation
+然后这里是解包。当我们写感叹号时
 
 87
 00:04:34,908 --> 00:04:38,410
