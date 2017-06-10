@@ -65,12 +65,12 @@ through that reading assignment can be a big slog
 14
 00:00:50,184 --> 00:00:53,384
 through a lot of information, and I want you to understand
-并不是一件令人愉悦的事情，并且我希望你们理解
+并不是一件令人愉悦的事情，并且我希望你们能理解
 
 15
 00:00:53,453 --> 00:00:56,822
 the things in there that are really important. As I go
-这些东西真的很重要
+这些非常重要的东西
 
 16
 00:00:56,890 --> 00:00:59,358
@@ -135,22 +135,22 @@ But, this is really kind of the important stuff in Swift,
 28
 00:01:28,855 --> 00:01:30,121
 that I can teach you at this point.
-真的是 Swift 中很重要的内容。
+真的是 Swift 中很重要的内容
 
 29
 00:01:30,190 --> 00:01:33,758
 There's more important stuff in Swift to come, okay,
-Swift 中还有更重要的东西要讲，
+Swift 中还有更重要的东西要讲
 
 30
 00:01:33,827 --> 00:01:38,263
 but I'll teaching it kinda as we go in the next two weeks.
-但我大概将会在接下来的两周里讲解它。
+但我大概将会在接下来的两周里讲解它
 
 31
 00:01:38,332 --> 00:01:41,500
 Okay, so lot of Swift topics,
-好了，这么多 Swift 的话题，
+好了，这么多 Swift 的话题
 
 32
 00:01:41,569 --> 00:01:43,769
@@ -165,7 +165,7 @@ favorite topic when they first learn Swift,
 34
 00:01:45,606 --> 00:01:50,275
 which is optional. Optional is interesting in Swift,
-就是 Optional。Swift 中的 Optional 很有意思，
+就是 Optional。Swift 中的 Optional 很有意思
 
 35
 00:01:50,344 --> 00:01:53,345
@@ -175,12 +175,12 @@ because not a lot of other languages have optional, so
 36
 00:01:53,413 --> 00:01:56,047
 I'm sure, in fact I've heard, that some of you are like,
-我很确定，实际上我已经听说了，就是你们中有些人感觉，
+我很确定，实际上我已经听说了，就是你们中有些人感觉
 
 37
 00:01:56,116 --> 00:01:58,250
 "Hmm, I'm not sure I really understand that optional
-“额，我不确定我真的理解了 Optional 是个啥东西”。
+“额，我不确定我真的理解了 Optional 是个啥东西”
 
 38
 00:01:58,318 --> 00:02:02,654
@@ -190,12 +190,12 @@ thing". And that's probably okay, but by the end of next
 39
 00:02:02,723 --> 00:02:04,956
 week you should feel very confident with Optionals,
-你应该会感到对 Optional 很有把握了，
+你应该会感到对 Optional 很有把握了
 
 40
 00:02:05,025 --> 00:02:07,659
 because you're gonna see that they are absolutely everywhere
-因为你将会看到它们实际上会出现在iOS中的任何地方。
+因为你将会看到它们实际上会出现在iOS中的任何地方
 
 41
 00:02:07,728 --> 00:02:10,696
@@ -205,7 +205,7 @@ in iOS. Now, I mentioned this in the lecture but
 42
 00:02:10,765 --> 00:02:12,497
 I wanted to show it to you from a code,
-我想用一段代码向你展示它，
+我想用一段代码向你展示它
 
 43
 00:02:12,566 --> 00:02:16,134
@@ -215,7 +215,7 @@ kind of a code point of view, which is that optional
 44
 00:02:16,203 --> 00:02:19,971
 is nothing more than an enum, it is fact just an enum,
-没啥别的东西，实际上它就是个枚举，
+没啥别的东西，实际上它就是个枚举
 
 45
 00:02:20,040 --> 00:02:23,408
@@ -285,7 +285,7 @@ it only has two cases: "none" which is "not set," and
 58
 00:02:53,073 --> 00:02:56,241
 "some" which is "set". When it's in the some case, look:
-“some”意思是“已赋值”。当它处于 some 情况下是，看：
+“some”意思是“已赋值”。当它处于 some 情况下时，看：
 
 59
 00:02:56,310 --> 00:02:59,645
@@ -360,7 +360,7 @@ syntactic sugar, to make your code look a little simpler and
 73
 00:03:39,286 --> 00:03:42,153
 straight forward, because it's so common to use them. So,
-直观一点，因为它们经常被使用。所以，
+直观一点，因为它们经常被使用。所以
 
 74
 00:03:42,222 --> 00:03:45,457
@@ -415,12 +415,12 @@ hello, I'm just saying x = Optional<string>.some
 84
 00:04:24,398 --> 00:04:28,800
 with associated value hello. Everyone got that? That's all
-所有人都懂了吧？这就是关于问号
+所有人都懂了吧？这就是
 
 85
 00:04:28,869 --> 00:04:31,537
 that's happening there with the question mark thing.
-的全部事情了
+关于问号的全部事情了
 
 86
 00:04:31,605 --> 00:04:34,839
@@ -430,142 +430,177 @@ And then here is the unwrap. When we do that exclamation
 87
 00:04:34,908 --> 00:04:38,410
 point all we're doing is doing the switch to get things out
+我们只是在写一个 switch 来把 Optional 里的
 
 88
 00:04:38,478 --> 00:04:42,914
 of an optional, so we're switching on the optional,
+内容拿出来，所以我们在打开 Optional
 
 89
 00:04:42,983 --> 00:04:46,251
 and it's in the "Some" case, then we're going to grab that
+它处于“some”情况下，然后我们打算抓取那个
 
 90
 00:04:46,319 --> 00:04:49,053
 associated value just like we did in the calculator, and
+关联值，就像我们在计算器中做的那样
 
 91
 00:04:49,122 --> 00:04:51,923
 we say "let function" or "let value" to grab the associated
+我们用“let function”或者“let value”去抓取关联值
 
 92
 00:04:51,992 --> 00:04:53,325
 value, we're saying "let value" here and
+在这里我们用“let value”
 
 93
 00:04:53,393 --> 00:04:58,663
 it's grabbing that value that's associated with it.
+它抓取与它相关联的那个值
 
 94
 00:04:58,732 --> 00:05:00,798
 If it's in case none, where it's not set,
+如果它处于 none 情况下，也就是未赋值时
 
 95
 00:05:00,867 --> 00:05:04,002
 then it raises an exception and crashes your program,
+它会抛出一个例外使你的程序崩溃
 
 96
 00:05:04,071 --> 00:05:07,572
 we haven't talked about how to do that, it's quite easy, but
+我们还没有谈到如何做，这很简单，但是
 
 97
 00:05:07,641 --> 00:05:08,173
 that's what happens here,
+这就是这里发生的事情
 
 98
 00:05:08,241 --> 00:05:10,843
 that's all exclamation point is, it's basically a switch.
+感叹号的本质就是一个 switch
 
 99
 00:05:11,979 --> 00:05:15,447
 And then finally, If we do the "if let",
+最后，如果我们执行“if let”
 
 100
 00:05:15,515 --> 00:05:19,084
 "if let" is also just a switch, but
+“if let” 也只是个 switch，但是
 
 101
 00:05:19,153 --> 00:05:22,254
 in the none case of an if let, we don't raise an exception,
+此时处于 none 情况时不会抛出例外
 
 102
 00:05:22,323 --> 00:05:26,658
 we just break, break out of the switch, do nothing. Okay,
+只会跳出这个 switch，什么都不做
 
 103
 00:05:26,726 --> 00:05:29,361
 does that help you a little bit understand what optional
+这对帮助你理解什么是 Optional 有点帮助
 
 104
 00:05:29,429 --> 00:05:32,931
 is? Optional is a type, it's an enum, it's just like any
+吧？Optional 是一个类型，它是个枚举，它跟其他任何类型
 
 105
 00:05:33,000 --> 00:05:35,400
 other type, it just has this interesting behavior, and
+都一样，它只是有这些有趣的行为
 
 106
 00:05:35,468 --> 00:05:36,501
 it's got all the question marks and
+所有的问号和
 
 107
 00:05:36,570 --> 00:05:39,070
 exclamation points to make all the code look a little
+感叹号都是为了让代码看起来更简单一点
 
 108
 00:05:39,139 --> 00:05:42,407
 simpler. Now, there's even other stuff about optionals
+现在有一些 Optional 的其他的
 
 109
 00:05:42,476 --> 00:05:46,311
 that are interesting. Optionals can be chained.
+有意思的事情。Optional 可以被链接
 
 110
 00:05:46,380 --> 00:05:49,481
 Now what does this mean? Well, this is best shown by example.
+啥意思呢？额，这最好通过一个例子来展示
 
 111
 00:05:49,550 --> 00:05:53,885
 So, let's say I have a Optional UILabel like my
+假设我有一个类似于我的计算器中的 display
 
 112
 00:05:53,954 --> 00:05:57,556
 display in the calculator and it's got the text, that's also
+的 Optional UILabel 而且它有文本，那也是
 
 113
 00:05:57,625 --> 00:06:00,859
 an optional, Optional String, we all know that. And
+一个 Optional，Optional 字符串，我们都知道
 
 114
 00:06:00,928 --> 00:06:04,062
 let's say we want to get the hashValue which is just a var
+我们想得到 hashValue，也就是一个字符串的变量
 
 115
 00:06:04,131 --> 00:06:07,632
 on string, which hashes the string, gives you some integer
+它哈希这个字符串，给你一些代表它的整数
 
 116
 00:06:07,701 --> 00:06:10,401
 for it, I want to get that hashValue of what's in
+我想得到 display 中的字符串的 hashValue
 
 117
 00:06:10,470 --> 00:06:13,938
 the display. So then I would probably do some code that
+所以然后我大概会写一些类似于
 
 118
 00:06:14,007 --> 00:06:16,842
 looks like this, this is probably similar code to what
+这样的代码，这很可能和我们在计算器
 
 119
 00:06:16,911 --> 00:06:20,211
 we have in our calculator where I've got my display,
+中得到我的 display 的代码很像
 
 120
 00:06:20,280 --> 00:06:24,882
 that's my IBOutlet probably that display UILabel?, and
+那大概是我的 IBOutlet display: UILable?
 
 121
 00:06:24,951 --> 00:06:29,321
 I'm going go do "if let" here, because I don't want to crash
+这里我打算用“if let”，因为我不想让程序崩溃
 
 122
 00:06:29,390 --> 00:06:30,755
