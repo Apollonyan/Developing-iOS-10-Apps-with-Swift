@@ -595,7 +595,7 @@ we have in our calculator where I've got my display,
 120
 00:06:20,280 --> 00:06:24,882
 that's my IBOutlet probably that display UILabel?, and
-那大概是我的 IBOutlet display: UILable?
+那大概是我的 IBOutlet display: UILabel?
 
 121
 00:06:24,951 --> 00:06:29,321
@@ -605,142 +605,177 @@ I'm going go do "if let" here, because I don't want to crash
 122
 00:06:29,390 --> 00:06:30,755
 so I don't want to do exclamation points,
+所以我不想用感叹号
 
 123
 00:06:30,824 --> 00:06:32,524
 I'm going to do "if let", so I'm going to say "if let
+我想用“if let”，所以我打算写“if let
 
 124
 00:06:32,593 --> 00:06:35,794
 some temporary value equals to the display" (now temp1 is
+一个临时变量等于 display”（现在 temp1 是
 
 125
 00:06:35,863 --> 00:06:40,599
 the UILabel), and then I say, "if let temp2 = temp1.text",
+是 UILabel），然后我写“if let temp2 = temp1.txt”
 
 126
 00:06:40,667 --> 00:06:43,568
 I'm sending text to the UILabel and
+我正在将文本发送给 UILabel
 
 127
 00:06:43,637 --> 00:06:46,037
 now I'm getting back a String, not an Optional String, but
+现在我得到了一个字符串，不是 Optional 字符串，而是
 
 128
 00:06:46,106 --> 00:06:48,707
 a String, because I did "if let", then I can finally say,
+字符串，因为我用了“if let”，最后我写道
 
 129
 00:06:48,776 --> 00:06:51,542
 then "let x = temp2", which is the String,
+“let x = temp2.hashValue”，来获得一个字符串的
 
 130
 00:06:51,611 --> 00:06:55,747
 the hashValue. Okay, this is a lot of code to have to type to
+哈希值。ok，只是为了获得一个该死的哈希值
 
 131
 00:06:55,816 --> 00:07:00,084
 just get that dang hashValue, out of that UILabel's text.
+我们得写这么多代码，在那个 UILabel 的文本之外
 
 132
 00:07:00,153 --> 00:07:03,422
 With optional chaining, this same code looks like this,
+用 Optional Chaining，同样的代码看起来就像这样
 
 133
 00:07:03,490 --> 00:07:05,290
 the first line of those two lines.
+这两行中的第一行
 
 134
 00:07:05,359 --> 00:07:10,696
 "If let x = display?.text?.hashValue,
+“if let x = display?.text?.hashValue，
 
 135
 00:07:10,764 --> 00:07:16,568
 then do something with x". In that case of course, x will
+然后用 x 做一些事情”。当然在这种情况下，x 不是
 
 136
 00:07:16,636 --> 00:07:20,005
 be a non-optional, because I'm doing if let on it.
+一个 Optional，因为我用了if let
 
 137
 00:07:20,073 --> 00:07:23,408
 If I take the "if" off, and just do "let x =" all that,
+如果我将“if”删掉，只写“let x = ”的话
 
 138
 00:07:23,476 --> 00:07:27,045
 then x will be an optional Int. Now, how is this working?
+那么 x 将会是个 Optional Int。那么这是什么原理呢？
 
 139
 00:07:27,113 --> 00:07:28,547
 What's happening is that every time that you have one of
+每当你在 Optional
 
 140
 00:07:28,616 --> 00:07:31,750
 those question marks after an Optional, it's saying,
+后面加问号的时候
 
 141
 00:07:31,819 --> 00:07:35,620
 if this is in the set case, then grab it and keep on
+如果它处于已赋值的状态，那么抓取它然后继续
 
 142
 00:07:35,689 --> 00:07:39,324
 going, send the next thing. If it's in the nil case, then
+向后执行，发送下一个东西。如果它处于空的状态
 
 143
 00:07:39,393 --> 00:07:42,861
 just return nil for this whole expression, this entire line,
+整个表达式将返回空，整个一行
 
 144
 00:07:42,930 --> 00:07:45,998
 boom, it's just gonna return nil. If I'm if letting it,
+boom，它仅仅是返回空。如果我用 if let
 
 145
 00:07:46,066 --> 00:07:48,933
 then obviously the code won't get executed.
+那么很显然代码将不会被执行
 
 146
 00:07:49,002 --> 00:07:51,269
 You can do as many of these as you want in a row, and
+在一行中你想写多少写多少，并且
 
 147
 00:07:51,338 --> 00:07:55,574
 we do this all the time, this optional chaining is going to
+我们成天都在做这种事，你的代码中将会大量使用
 
 148
 00:07:55,642 --> 00:07:58,676
 be all over your code, and it makes perfect sense because
+Optional chaining，并且它很容易理解
 
 149
 00:07:58,745 --> 00:08:01,280
 again, we're using this question mark and exclamation
+因为我们使用问号和感叹
 
 150
 00:08:01,348 --> 00:08:04,316
 point. Here we happen to use the question mark when we're
+号。这里当我们访问它，声明它时
 
 151
 00:08:04,385 --> 00:08:07,952
 accessing it versus when we're declaring it. That's what it
+我们恰巧使用问号。这就是当你
 
 152
 00:08:08,021 --> 00:08:09,621
 means to use a question mark when you're accessing it,
+访问它时使用问号的含义
 
 153
 00:08:09,690 --> 00:08:12,557
 it means go get it, and if it's not set,
+它的意思是去得到它，如果它未赋值
 
 154
 00:08:12,626 --> 00:08:14,359
 then just return nil from this whole expression,
+那么整个表达式返回空
 
 155
 00:08:14,428 --> 00:08:15,661
 it will just bail out of the whole thing,
+它会保护整件事
 
 156
 00:08:15,729 --> 00:08:18,196
 It will never even execute hash value because we'll never
+它甚至不会执行 hash value 因为我们从未
 
 157
 00:08:18,265 --> 00:08:20,366
