@@ -350,7 +350,7 @@ exclamation points. But, all those question marks and
 71
 00:03:32,646 --> 00:03:35,146
 exclamation points, are just sugar,
-感叹号都是糖
+感叹号都只是糖
 
 72
 00:03:35,215 --> 00:03:39,218
@@ -775,183 +775,227 @@ it will just bail out of the whole thing,
 156
 00:08:15,729 --> 00:08:18,196
 It will never even execute hash value because we'll never
-它甚至不会执行 hash value 因为我们从未
+它甚至不会执行 hashValue 因为我们从未
 
 157
 00:08:18,265 --> 00:08:20,366
 get down to that end of it, if any of these things are nil.
+执行到底，如果它们当中任何一个为空
 
 158
 00:08:24,471 --> 00:08:26,971
 Another cool optional things we can do is optional
+我们能用 Optional 做的另一件很酷的事是 Optional
 
 159
 00:08:27,040 --> 00:08:31,543
 defaulting. So what if we had wanted to put a string in our
+defaulting。我们想将一个字符串放到一个类似于 display
 
 160
 00:08:31,612 --> 00:08:35,480
 UI label like in our display, but we know that if that
+的 UILabel 里面，但我们知道如果那个
 
 161
 00:08:35,548 --> 00:08:37,749
 string is nil, we don't want to put nil in there because
+字符串是空的，我们不想将它放进去
 
 162
 00:08:37,818 --> 00:08:40,418
 what'll happen to our label if we put nil in as the text?
+如果我们将空当成文本放到 label里面将会发生什么？
 
 163
 00:08:40,487 --> 00:08:43,822
 It'll collapse down, right, probably most of you saw that.
+它将会崩溃，对吧，可能你们中大部分人都已经见识过了
 
 164
 00:08:43,891 --> 00:08:44,889
 You have to put something in there,
+你必须在这里放一些东西
 
 165
 00:08:44,958 --> 00:08:47,759
 at least a space. So let's say that I want to do that,
+至少是个空格。所以让我们来实现这个功能
 
 166
 00:08:47,828 --> 00:08:50,829
 I want to put space in there if it's nil. This is the code
+如果为空的话我想在那儿放一个空格。代码
 
 167
 00:08:50,898 --> 00:08:53,565
 that it would look like here: I'd have my string, I would
+看起来差不多是这样的：我有个字符串，我想
 
 168
 00:08:53,634 --> 00:08:57,135
 say if the string is not nil, then put it in the display,
+如果字符串不是空的，那么将它放到字符串里
 
 169
 00:08:57,204 --> 00:09:02,341
 otherwise, if it is nil, put space in there. This looks
+其他情况下，如果它为空，在这放个空格。用
 
 170
 00:09:02,409 --> 00:09:06,845
 a lot cleaner with optional defaulting, which looks like
+Optional defaulting 的话代码会显得很简洁，看起来就像
 
 171
 00:09:06,913 --> 00:09:11,616
-this, display.text = s That means if s is nil, use
+this, display.text = s ?? " ". That means if s is nil, use
+这样，display.text = s ?? " "。它的意思是如果 s 为空，用
 
 172
 00:09:11,685 --> 00:09:15,788
 this other thing. It's like the default in case s is nil.
+另一个东西。它像 s 为空时的默认值
 
 173
 00:09:17,191 --> 00:09:20,993
 We will use this all the time as well. Everybody got that?
+我们也将会一直使用这个东西。所有人都懂了吧？
 
 174
 00:09:21,061 --> 00:09:23,862
 Just optional defaulting. Alright, so I bring those out
+只是个 Optional defaulting。好了，我把这些从
 
 175
 00:09:23,931 --> 00:09:25,463
 of the optional world just to highlight them,
+Optional 的世界中取出来只是为了强调它们
 
 176
 00:09:25,532 --> 00:09:27,432
 because there's a lot in the reading that you're doing
+// todo
 
 177
 00:09:27,501 --> 00:09:29,934
 about optional, but these are kind of the highlights.
+// todo
 
 178
 00:09:30,003 --> 00:09:32,437
 There are a couple more things actually I'll show you later,
+实际上之后还有一些我想展示给你们的东西
 
 179
 00:09:32,505 --> 00:09:35,707
 but basically that's it for optionals. Alright, tuples.
+但是基本上这就是 Optional 的全部内容了。好了，元组。
 
 180
 00:09:35,775 --> 00:09:38,743
 So I had you skip tuples in reading assignment one, but
+我在阅读任务1中跳过了元组，但
 
 181
 00:09:38,812 --> 00:09:41,947
 you'll be reading about them in reading assignment two.
+你们将会在阅读任务2中读到它们
 
 182
 00:09:42,015 --> 00:09:42,848
 What is a tuple?
+元组是什么？
 
 183
 00:09:42,916 --> 00:09:47,886
 A tuple is super simple, it's just a grouping of values,
+元组非常简单，它只是一组值
 
 184
 00:09:47,955 --> 00:09:51,189
 and you can use it anywhere you're using a type. What does
+你可以将它当成一种类型在任何地方使用
 
 185
 00:09:51,258 --> 00:09:54,692
 a tuple look like? It looks like this. This var here,
+元组长啥样呢？它长这个样。这里的变量，
 
 186
 00:09:54,761 --> 00:09:59,164
 this constant, actually x, I'm setting its type to be a tuple
+这个常量，就是 x，我将它的类型设置成一个元组
 
 187
 00:09:59,232 --> 00:10:04,002
-with a string and int and a w, that's its type. A tuple
+with a string and int and a double, that's its type. A tuple
+由 String 和 Int 和 Double 组成，那就是它的类型。一个元组内
 
 188
 00:10:04,071 --> 00:10:06,972
 can have any number of things in there, but realistically,
+可以包含任意多的类型，但是实际上
 
 189
 00:10:07,041 --> 00:10:09,908
 we probably only have three or four, sometime only two, but
+我们大概只会有3或4个，有时候只有俩，但
 
 190
 00:10:09,977 --> 00:10:15,980
 it can have any number. I can set x equal to parentheses,
+它可以有无穷多个。我可以使 x 等于一个圆括号
 
 191
 00:10:16,049 --> 00:10:19,451
 those three, any value of those three types. So here,
+这三个，这三个类型的任何值。在这里
 
 192
 00:10:19,519 --> 00:10:22,187
 I've set it to hello, 5, and 0.85.
+我将它设置为 “hello”，5和0.85
 
 193
 00:10:22,255 --> 00:10:26,591
 Now I can get the values out into individual variables by
+我可以将值拿出来赋给独立的变量
 
 194
 00:10:26,660 --> 00:10:31,496
-saying let parentheses three different variable names equal
+saying let parentheses three different variable names equal x.
+通过 let (word, number, value) = x
 
 195
 00:10:31,565 --> 00:10:34,432
-x. And now it will pull out the three different values
+And now it will pull out the three different values
+现在它将会把这三个不同的值
 
 196
 00:10:34,501 --> 00:10:36,968
 into the three separate variables, word, number, and
+赋给三个分开的变量，word，number 和
 
 197
 00:10:37,037 --> 00:10:41,039
 value. So it's kind of mirror image there,
+value。它在这像一个镜像图片
 
 198
 00:10:41,108 --> 00:10:43,141
 you can kinda go either, either direction,
+你可以向正向或反向的方向走
 
 199
 00:10:43,209 --> 00:10:46,511
 putting things in or out. We actually, believe it or not,
+把东西放进来或拿出去。我们实际上，信不信由你
 
 200
 00:10:46,580 --> 00:10:47,912
 don't do it that way most of the time,
+大多数时候并不这样用
 
 201
 00:10:47,981 --> 00:10:52,751
