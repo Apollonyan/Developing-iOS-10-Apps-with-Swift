@@ -965,7 +965,7 @@ Now I can get the values out into individual variables by
 194
 00:10:26,660 --> 00:10:31,496
 saying let parentheses three different variable names equal x.
-通过 let (word, number, value) = x
+通过 let (三个不同的变量名) = x
 
 195
 00:10:31,565 --> 00:10:34,432
@@ -1000,186 +1000,232 @@ don't do it that way most of the time,
 201
 00:10:47,981 --> 00:10:52,751
 because it is also possible to name the elements of a tuple.
+因为命名元组中的元素也是可以的
 
 202
 00:10:52,819 --> 00:10:55,987
 So here, I define x, same thing, string int double, but
+所以在这里，我定义了 x，和刚刚一样，String Int Double，但是
 
 203
 00:10:56,056 --> 00:10:57,456
 look, I've named each of them,
+看这儿，我已经命名了它们
 
 204
 00:10:57,524 --> 00:11:00,992
 I called the string part w, I called the int part i, and
+我把 String 部分叫做 w，把 Int 部分叫做 i，
 
 205
 00:11:01,061 --> 00:11:04,262
 I called the double part v for some reason. Now, I still set
+把 Double 部分叫做 v。现在我仍然用和刚才
 
 206
 00:11:04,331 --> 00:11:07,833
 it equal in exactly the same way, no difference there. But
+一样的方法给它赋值，没什么不同。但是
 
 207
 00:11:07,901 --> 00:11:10,735
 now I don't need to pull it out into separate variables.
+现在我不需要将其拉出到单独的变量中
 
 208
 00:11:10,804 --> 00:11:15,407
 I can just say x.w and get the w, the first component of it.
+我可以只写 x.w 来得到 w，也就是它的第一部分
 
 209
 00:11:15,476 --> 00:11:18,510
 You see that? This is how we do tuples, with names.
+看懂了吧？这就是通过命名来使用元组的方法
 
 210
 00:11:18,579 --> 00:11:21,446
 I strongly recommend you almost always use
+我强烈推荐你在几乎任何情况下都用
 
 211
 00:11:21,515 --> 00:11:24,183
 names with tuples. It's just a little easier to read,
+命名的方法使用元组。它使代码读起来更简单
 
 212
 00:11:24,251 --> 00:11:27,685
 clearer to say what your intent is as a programmer.
+作为一个程序员更清楚地表明你的意图
 
 213
 00:11:27,754 --> 00:11:28,654
 Because those names
+因为元组中
 
 214
 00:11:30,423 --> 00:11:32,590
 of the parts of the tuple can have good variable names.
+的部分的名字可以有很好的变量名
 
 215
 00:11:32,659 --> 00:11:35,927
 You're gonna see in your programming assignment number
+你们将会在编程任务2中看到
 
 216
 00:11:35,996 --> 00:11:39,564
 2, I'm gonna have you write a function that returns a tuple,
+我将让你们写一个返回元组的函数
 
 217
 00:11:39,633 --> 00:11:43,568
 and it's going to specify the names of the parts. Now even
+并且元组的部分必须具体命名。现在即便
 
 218
 00:11:43,637 --> 00:11:46,605
 if you name them, like we have x with the named ones,
+你已经命名了他们，就像我们用 x 命名他们
 
 219
 00:11:46,674 --> 00:11:50,075
 you can still do that thing where you just say, let (word,
+你依然可以做那些事，let (word,
 
 220
 00:11:50,143 --> 00:11:53,211
 num, val) equal x, and it'll still pull it out into
+num, val) = x，它依然会将其拉出到
 
 221
 00:11:53,280 --> 00:11:56,448
 individual ones, so naming them doesn't stop you from
+单独的变量中，所以命名他们不会阻止你
 
 222
 00:11:56,517 --> 00:11:59,751
 pulling them out by individual variable, if you want.
+将其拉出到单独的变量中，如果你想这么做的话
 
 223
 00:11:59,820 --> 00:12:03,254
 Also, in tuples, you can always put underbar for
+还有，在元组中，你无论何时都可以在
 
 224
 00:12:03,323 --> 00:12:07,125
 any of the names, like here I could say let word_ val or
+任何地方放下划线，就像这里我可以写 let (word, _, val) 或者
 
 225
 00:12:07,193 --> 00:12:11,096
 let word,_, val equal x, and then I would get word and
+let (word, _, val) = x，这样我可以得到 word 和
 
 226
 00:12:11,165 --> 00:12:15,367
 val into individual variables, and I would just ignore that
+val 的值，无视掉中间
 
 227
 00:12:15,435 --> 00:12:19,471
 middle one. Underbar in Swift always kinda means ignore
+那个。下划线在 Swift 中意味着无视
 
 228
 00:12:19,539 --> 00:12:22,341
 that, I'm not interested in that particular thing.
+它，我不在乎它的细节
 
 229
 00:12:22,409 --> 00:12:25,477
 We've already seen this with function parameters when we
+我们已经在当我们想无视函数参数
 
 230
 00:12:25,546 --> 00:12:29,048
 want to ignore the external name of a function parameter.
+的外部变量名时见过它了
 
 231
 00:12:29,116 --> 00:12:30,682
 Alright, so using tuples that return values,
+好了，用元组返回数据
 
 232
 00:12:30,751 --> 00:12:33,352
 like I said, you're gonna see this in the homework.
+就像我写的这样，你们将会在作业中看到这个
 
 233
 00:12:33,420 --> 00:12:36,354
 Nothing special here. It's a type like any other type, so
+没啥特别的东西。它跟其他任何一种类型都一样，所以
 
 234
 00:12:36,423 --> 00:12:39,057
 it can be the return type of a function. So, this is how you
+它可以作为函数的返回类型。所以，这就是你们让
 
 235
 00:12:39,126 --> 00:12:41,894
 can have a function that returns multiple values.
+一个函数返回多个值的方法
 
 236
 00:12:41,962 --> 00:12:44,696
 In some languages, it's very difficult to do this.
+在某些语言中，这一点很难做到
 
 237
 00:12:44,765 --> 00:12:46,998
 You have to create a structure or something to return.
+你必须创建一个结构体或其他东西来返回
 
 238
 00:12:47,067 --> 00:12:48,366
 However, it's very, very, very easy in Swift.
+然而，在 Swift 中这非常（*3）简单
 
 239
 00:12:48,435 --> 00:12:50,769
 You literally just do this. And
+你真的只需要这样做。并且
 
 240
 00:12:50,838 --> 00:12:54,273
 when you get the value that comes back from that function,
+当你函数的返回值时
 
 241
 00:12:54,341 --> 00:12:58,343
 you just access the elements by name. Notice that when I
+你可以用名字来访问元素。注意在代码中的 getSize()
 
 242
 00:12:58,411 --> 00:13:01,747
 returned it in my code there in getSize, I didn't have to
+当我返回它时，我不需要
 
 243
 00:13:01,816 --> 00:13:04,115
 give the names; I could if I wanted to,
+把名字带上；如果我想我也可以带上
 
 244
 00:13:04,184 --> 00:13:07,585
 I could have said return weight:150, height:, but
+我可以写 return (weight: 150, height: xxx)，但是
 
 245
 00:13:07,654 --> 00:13:11,390
 I decided, eh, I'm just gonna return the values. Okay,
+我决定，额，我只想返回数值。好了
 
 246
 00:13:11,458 --> 00:13:15,994
 another thing: range, range is an important little
+另一件事：Range，
 
 247
 00:13:16,063 --> 00:13:21,165
