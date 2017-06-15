@@ -145,7 +145,7 @@ things like UIButton or UIScrollView, okay?
 30
 00:01:43,037 --> 00:01:45,303
 Things that come from Apple or somewhere else,
-由苹果或是其它平台提供的
+由苹果或是其他平台提供的
 
 31
 00:01:45,372 --> 00:01:48,306
@@ -925,7 +925,7 @@ so it only asks for 10 and shows them. And if you scroll
 186
 00:09:25,232 --> 00:09:28,167
 down to somewhere else, it's gonna ask for that 10.
-滑动到了其它地方，它又去要另外 10 条
+滑动到了其他地方，它又去要另外 10 条
 
 187
 00:09:28,235 --> 00:09:31,135
@@ -950,7 +950,7 @@ a lot more efficient, both in terms of memory usage and
 191
 00:09:40,848 --> 00:09:42,848
 everything. Now you might be a little scared,
-和其它的方面。现在你可能会担心
+和其他的方面。现在你可能会担心
 
 192
 00:09:42,917 --> 00:09:44,749
@@ -1310,7 +1310,7 @@ calendar entries. Well, on a tiny screen it's barely gonna
 263
 00:13:31,811 --> 00:13:34,212
 be able to show me the 12 months, let alone the days and
-展示十二个月里全部的日子和其它内容
+展示十二个月里全部的日子和其他内容
 
 264
 00:13:34,281 --> 00:13:36,715
@@ -1390,7 +1390,7 @@ MVC 间的关系只会是
 279
 00:14:21,929 --> 00:14:24,662
 this view boundary. Now there can be other communication,
-作为另一个的视图。我们再看看其它种类的通信
+作为另一个的视图。我们再看看其他种类的通信
 
 280
 00:14:24,731 --> 00:14:26,798
@@ -1450,7 +1450,7 @@ a model can be defined any way it wants. It's UI independent,
 291
 00:14:56,863 --> 00:14:58,196
 it can talk to other models, whatever.
-所以能够联系其它模型
+所以能够联系其他模型
 
 292
 00:14:58,264 --> 00:15:00,966
@@ -1765,7 +1765,7 @@ Any time we wanna create a new class or new structure or
 354
 00:17:44,464 --> 00:17:46,764
 any kinda new data structure, this is what we do.
-或是其它数据类型的时候，我们都这样新建一个文件
+或是其他数据类型的时候，我们都这样新建一个文件
 
 355
 00:17:46,833 --> 00:17:51,937
@@ -1815,7 +1815,7 @@ here. And I'm gonna make sure I put it in the same group,
 364
 00:18:14,061 --> 00:18:16,861
 down here, as all the rest of my
-和其它文件同一个 Group 中
+和其他文件同一个 Group 中
 
 365
 00:18:16,930 --> 00:18:19,431
@@ -1860,7 +1860,7 @@ we need (in this model) to think a little bit about what its
 373
 00:18:42,922 --> 00:18:46,457
 public API is. In other words, what does this model allow
-公共接口，也就是这个模型允许其它人
+公共接口，也就是这个模型允许其他人
 
 374
 00:18:46,526 --> 00:18:48,393
@@ -1900,7 +1900,7 @@ public API，公共的接口是
 381
 00:19:06,813 --> 00:19:09,848
 allow other classes or other data structures to access.
-你允许其它类和结构体访问的方法和属性
+你允许其他类和结构体访问的方法和属性
 
 382
 00:19:09,916 --> 00:19:13,051
@@ -1945,7 +1945,7 @@ here than a class, all right? I'm gonna use a struct. Now,
 390
 00:19:39,780 --> 00:19:42,347
 you're probably used to using struct in other languages, but
-你可能在其它语言中使用过结构体
+你可能在其他语言中使用过结构体
 
 391
 00:19:42,416 --> 00:19:44,983
@@ -1955,7 +1955,7 @@ you probably think of it as just like a little collection
 392
 00:19:45,052 --> 00:19:48,753
 of other variables is a struct. In Swift,
-包含了些其它的变量
+包含了些其他的变量
 
 393
 00:19:48,822 --> 00:19:50,889
@@ -2030,7 +2030,7 @@ to be extensible, you probably wanna make it a class. I'm
 407
 00:20:26,727 --> 00:20:29,194
 gonna make my CalculatorBrain extensible in a different way
-我用其它方式扩展 CalculatorBrain
+我用其他方式扩展 CalculatorBrain
 
 408
 00:20:29,263 --> 00:20:30,195
@@ -2150,7 +2150,7 @@ instead of a class? Well, I don't imagine I'm gonna have
 431
 00:21:37,164 --> 00:21:39,064
 a whole bunch of different people referencing it.
-其它地方需要引用它
+其他地方需要引用它
 
 432
 00:21:39,133 --> 00:21:42,334
@@ -2165,7 +2165,7 @@ So that MVC is gonna access it, but I, I don't see a lot
 434
 00:21:45,205 --> 00:21:49,008
 of other entities somehow trying to point to this thing.
-没有其它实体会尝试引用它
+没有其他实体会尝试引用它
 
 435
 00:21:49,076 --> 00:21:50,875
@@ -2270,7 +2270,7 @@ whether I want it to be blank, and I say performOperation,
 455
 00:22:54,007 --> 00:22:56,475
 and I just put the string, the symbol in here like pi or
-然后把像 pi 或者其它符号放进去
+然后把像 pi 或者其他符号放进去
 
 456
 00:22:56,543 --> 00:22:59,244
@@ -2420,7 +2420,7 @@ var, that returns result. Now the only problem with that UI,
 485
 00:24:24,197 --> 00:24:28,800
 or that API rather, is I don't want anyone to set my result.
-对于这个 API（应用程序接口），我不希望其它人能修改结果
+对于这个 API（应用程序接口），我不希望其他人能修改结果
 
 486
 00:24:28,869 --> 00:24:31,670
@@ -2535,7 +2535,7 @@ gonna make it a double, okay? So this is gonna be internal.
 508
 00:25:43,510 --> 00:25:46,178
 So now, other people can't access this.
-其它外部成员无法访问它
+其他外部成员无法访问它
 
 509
 00:25:46,246 --> 00:25:49,414
@@ -2570,7 +2570,7 @@ These three are not private. They're public.
 515
 00:26:04,598 --> 00:26:07,065
 I'm gonna allow other people to call these. But
-其它外部成员可以访问调用它们
+其他外部成员可以访问调用它们
 
 516
 00:26:07,133 --> 00:26:12,070
@@ -3060,7 +3060,7 @@ I'm gonna teach you one little Alt thing.
 613
 00:31:08,935 --> 00:31:14,005
 If you hold down Alt and click on some other file over here,
-如果你按住 Alt 键，并点击其它文件
+如果你按住 Alt 键，并点击其他文件
 
 614
 00:31:14,074 --> 00:31:15,840
@@ -3245,7 +3245,7 @@ it will be private. Because the model is almost always
 650
 00:32:58,812 --> 00:33:01,947
 private to the controller. Cuz you don't want someone else
-都是私有的，因为其它地方不会，你也不希望它们用到
+都是私有的，因为其他地方不会，你也不希望它们用到
 
 651
 00:33:02,015 --> 00:33:05,216
@@ -3835,7 +3835,7 @@ We're not going to do that. Let's focus on constants.
 768
 00:39:06,213 --> 00:39:10,315
 Wouldn't it be kind of cool if I could like, build a table.
-有没有其它更好的方式来实现呢？比如用某种参照表？
+有没有其他更好的方式来实现呢？比如用某种参照表？
 
 769
 00:39:10,384 --> 00:39:12,951
@@ -5998,1220 +5998,1525 @@ to add a few that we don't even have in our table yet.
 
 1301
 01:07:46,333 --> 01:07:51,003
-So let's do times, come up in the space.
+So let's do times, command control space.
+添加个乘号吧，按 command + control + 空格
 
 1302
 01:07:51,071 --> 01:07:54,839
 Yeah, so here's times, but I'm also going to do the other
+选这个乘号。顺便把其他的也加上
 
 1303
 01:07:54,908 --> 01:07:58,476
 ones here divide and plus and it's just so we don't have to
+除号，加号，这样我们就不需要
 
 1304
 01:07:58,545 --> 01:08:03,148
 come back here again to do that. So there's divide, and
+最后再倒回来加这么几个按钮。选这个除号
 
 1305
 01:08:03,216 --> 01:08:08,120
 that there, I'll do another one, do plus and
+复制个放到这里，再复制一个，改成加号
 
 1306
 01:08:08,189 --> 01:08:13,491
 minus here. So I'm doing command control space,
+和减号。还是按 command + control + 空格
 
 1307
 01:08:13,560 --> 01:08:17,729
 I guess, to get this little emojis and
+调出对话框
 
 1308
 01:08:17,798 --> 01:08:23,769
 symbols thing and a plus, okay?
+选择表情符号
 
 1309
 01:08:23,837 --> 01:08:28,607
 And we need one other thing, equals, gotta have an equals
+我们还需要另外一个，等号，必不可少的
 
 1310
 01:08:28,676 --> 01:08:32,844
 button. So we'll put that down there, okay? So now we only
+把它放到这下面
 
 1311
 01:08:32,913 --> 01:08:35,580
 have times, so times is the only one that should work but
+现在我们只实现了乘法的代码，所以应该只有乘号能用
 
 1312
 01:08:35,649 --> 01:08:38,450
 let's see. Actually I'm gonna bring back that code so
+我们实际看看吧。我把代码也调出来
 
 1313
 01:08:38,518 --> 01:08:42,520
 you can see it at the same time. It's hard to see it all
+虽然不能一次看全，但至少有个对照
 
 1314
 01:08:42,589 --> 01:08:46,658
 at once, but. All right here we go, okay?
+好，我们来试试
 
 1315
 01:08:46,726 --> 01:08:50,161
 4 square root, that's still working, pi, still working.
+4 的平方根，正常，派，也能用
 
 1316
 01:08:50,230 --> 01:08:56,201
 How about 8 times 6 equals, wahoo, square root?
+8 乘 6 等于 ，哇哦，那平方根呢？
 
 1317
 01:08:56,269 --> 01:09:00,939
 Nice, okay, so times is working there beautifully.
+很好，乘法已经没有问题了
 
 1318
 01:09:01,008 --> 01:09:03,575
 Now the only thing is, we have to do divide and
+现在唯一剩下的就是除法那些了
 
 1319
 01:09:03,644 --> 01:09:06,478
 all that, so I guess what I have to do is,
+我应该只需要
 
 1320
 01:09:06,547 --> 01:09:09,747
 I go create this four times. And I'm gonna have to go
+把这个复制四遍。然后在这里
 
 1321
 01:09:09,816 --> 01:09:14,720
-here again and Ctrl+Space again, we'll do divide. And
+here again Cmd+Ctrl+Space again, we'll do divide. And
+command + control + 空格，替换成除号
 
 1322
 01:09:14,788 --> 01:09:19,324
-we'll go here and Ctrl+Space and we'll do plus. And
+we'll go here Cmd+Ctrl+Space and we'll do plus. And
+这里再 command + control + 空格 选加号
 
 1323
 01:09:19,392 --> 01:09:23,361
-then we're gonna go here and we'll do command, space, and
+then we're gonna go here and we'll do Cmd+Ctrl+Space, and
+这里再来一次 command + control + 空格
 
 1324
 01:09:23,430 --> 01:09:26,898
 we'll do minus, okay? Now, am I gonna have to write,
+选择减号。现在难道我需要
 
 1325
 01:09:26,967 --> 01:09:29,467
 write a method divide and go up here and
+写 divide，然后在上面
 
 1326
 01:09:29,536 --> 01:09:32,871
 copy and paste this and do one with divide? You know,
+把乘法的代码复制粘贴，乘号换除号？
 
 1327
 01:09:32,939 --> 01:09:35,674
 if I have to do that, all of a sudden, I'm feeling like,
+如果我必须这样做的话，我觉得
 
 1328
 01:09:35,743 --> 01:09:38,210
 this whole table business really didn't buy me that
+这个列表并不是那么能吸引我
 
 1329
 01:09:38,278 --> 01:09:41,313
 much, right? Cuz I'm still having to create a method for
+因为我还需要写不同的方法
 
 1330
 01:09:41,381 --> 01:09:44,082
 every single binary operation I want to do? I mean, for
+分别处理每个二元运算？
 
 1331
 01:09:44,151 --> 01:09:47,085
 unary operations it was nice because I had all these built
+对于一元运算来说还好，有现成的函数可以用
 
 1332
 01:09:47,153 --> 01:09:50,388
 in ones, I did have to make this one method. Yeah, I can
+虽然我还是自己写了一个
 
 1333
 01:09:50,457 --> 01:09:52,958
 even see with unary operations I wanna create a bunch more
+其实我还想加几个一元运算
 
 1334
 01:09:53,027 --> 01:09:54,826
 and I'm having to create these other functions.
+我还要写几个函数
 
 1335
 01:09:54,895 --> 01:09:56,795
 It's not really working out for me.
+这样表格是没有解决我的问题的
 
 1336
 01:09:56,864 --> 01:10:00,932
 Okay, so how are we gonna fix this? Well, we're gonna use
+那怎么改正呢？其实，我们要用到
 
 1337
 01:10:01,001 --> 01:10:04,736
 a feature in Swift, which is really powerful.
+Swift 中很强大的功能
 
 1338
 01:10:04,805 --> 01:10:06,204
 And you're gonna have to get used to it,
+你可能需要一段时间适应
 
 1339
 01:10:06,273 --> 01:10:07,706
 cuz it's not in a lot of other languages.
+因为其他的许多语言都是没有的
 
 1340
 01:10:07,775 --> 01:10:08,574
 It is in some other languages,
+还是有其他语言有这个功能的
 
 1341
 01:10:08,642 --> 01:10:09,975
 I don't wanna make it sound like it's not around,
+澄清一下，并不是说这个功能很小众
 
 1342
 01:10:10,043 --> 01:10:13,078
 it's definitely around. But may not be something you've
+挺流行的，虽然你们不一定用过
 
 1343
 01:10:13,147 --> 01:10:16,882
 used in any languages you've used and it's called closures.
+这个功能叫闭包
 
 1344
 01:10:16,951 --> 01:10:18,783
 Okay, how many people know what a closure is,
+有多少人知道闭包？
 
 1345
 01:10:18,852 --> 01:10:19,651
 have heard that before?
+或者至少听说过？
 
 1346
 01:10:19,719 --> 01:10:24,556
 See, almost none of you, so a closure is a function
+看吧，基本没人知道。闭包是指
 
 1347
 01:10:24,624 --> 01:10:29,394
 embedded right in line of your code, okay? And so,
+嵌入代码中的函数
 
 1348
 01:10:29,463 --> 01:10:33,665
 we can actually take multiply right here, select its code.
+我们其实可以选中 multiply 的代码
 
 1349
 01:10:33,734 --> 01:10:38,737
 I'm gonna cut it, go down here to where I used it and
+剪切，然后粘贴到下面
 
 1350
 01:10:38,805 --> 01:10:41,973
 paste it in there. Now if didn't quite work,
+我使用 multiply 的地方。不过还没完
 
 1351
 01:10:42,042 --> 01:10:45,744
 there's two things we need to do. One, this open curly brace
+有两个地方要稍微改一下。第一个，这个左大括号
 
 1352
 01:10:45,813 --> 01:10:50,348
 needs to be at the beginning. So, we're going to
+要放到最开始的地方
 
 1353
 01:10:50,417 --> 01:10:54,453
 replace this open curly brace with the keyword in, and
+然后把左大括号替换成关键字 in
 
 1354
 01:10:54,522 --> 01:10:56,855
 put the curly brace at the beginning. So
+然后放一个左大括号到开头
 
 1355
 01:10:56,923 --> 01:10:59,691
 that's how you take a function and put it right in line.
+这样我们就把一个函数变成了闭包
 
 1356
 01:10:59,760 --> 01:11:02,427
 Just literally copy and paste to write in there.
+只需要复制粘贴到使用的地方
 
 1357
 01:11:02,496 --> 01:11:05,997
 Change the curly brace to in and move it to the beginning,
+把左大括号换成 in，然后在最开始补一个
 
 1358
 01:11:06,066 --> 01:11:09,635
 okay, got that? So now we don't even need multiply,
+清楚了吗？这样我们就不需要 multiply 了
 
 1359
 01:11:09,703 --> 01:11:13,839
 all gone. Now this doesn't look much better.
+虽然摆脱了函数，但也没好多少
 
 1360
 01:11:15,242 --> 01:11:17,742
 It's still a lot of typing stuff in, but
+还是有很多类型定义
 
 1361
 01:11:17,811 --> 01:11:24,015
 let's use Swift's inference of type to make this a lot nicer.
+让我们试试用 Swift 的自动类型推导简化代码
 
 1362
 01:11:24,084 --> 01:11:29,288
 Swift knows that this, right here is this,
+Swift 知道这个闭包，是 (Double,Double) -> Double 类型的
 
 1363
 01:11:29,356 --> 01:11:33,358
 the associated value of that type. So it knows that this
+属于关联值的类型。所以 Swift 知道这个
 
 1364
 01:11:33,426 --> 01:11:36,261
 down here is a function that takes two doubles and
+是一个函数，接受两个 Double 型参数
 
 1365
 01:11:36,330 --> 01:11:40,298
 returns a double. So we don't need these types right here,
+返回一个 Double，所以不需要在这里声明类型
 
 1366
 01:11:40,367 --> 01:11:43,134
 get rid of those. Okay,
+把这些都去掉
 
 1367
 01:11:43,203 --> 01:11:45,037
 now it's starting to look better. In fact,
+这下子看起来好多了
 
 1368
 01:11:45,105 --> 01:11:49,908
 maybe if I go here and put some things on the same line.
+再整理下代码，放到一行里
 
 1369
 01:11:53,480 --> 01:11:56,615
 Yeah, now I'm liking it, okay. But we can do even better than
+现在看着就舒服多了，但还能更好
 
 1370
 01:11:56,684 --> 01:12:00,953
 this. Swift also knows that this returns something.
+因为 Swift 知道有返回值
 
 1371
 01:12:01,021 --> 01:12:05,424
-So we don't overturn, okay. Swift also will let you have
+So we don't need return, okay. Swift also will let you have
+所以不需要写 return。还有，不论又多少个参数
 
 1372
 01:12:05,492 --> 01:12:09,594
 any number of arguments you want. Called $0, $1, $2 $3,
+Swift 都允许使用 $0，$1，$2，$3 等等来表示
 
 1373
 01:12:09,663 --> 01:12:12,864
 for however how many. So I don't need that or that.
+不论多少都行。所以我不需要 op1，op2
 
 1374
 01:12:12,932 --> 01:12:17,770
 I can say $0 times $1.
+我可以直接用 $0 * $1
 
 1375
 01:12:19,807 --> 01:12:24,409
 Okay, now I'm winning. Now,
+这下我算是克服难题了
 
 1376
 01:12:24,477 --> 01:12:27,513
 the essentials of what is going on here is right there.
+只留下了最关键的部分
 
 1377
 01:12:27,581 --> 01:12:29,481
 And there's no extraneous types and
+没有像类型定义那样多余的东西
 
 1378
 01:12:29,550 --> 01:12:31,983
 all that business. And of course, that means for
+当然，这个方法也可以
 
 1379
 01:12:32,052 --> 01:12:36,087
 these other cases like divide, I can say divide.
+用在其他的地方，比如除法，$0 / $1
 
 1380
 01:12:36,156 --> 01:12:40,992
-And for add, here I can see plus, and for subtract,
+And for add, here I can say plus, and for subtract,
+加法，$0 + $1，减法，$0 - $1
 
 1381
 01:12:41,061 --> 01:12:45,163
 I can do minus, even for our friend change sign right here.
+连这个 changeSign 也行
 
 1382
 01:12:45,232 --> 01:12:49,101
 Okay, we can take this copy it paste,
+我们可以复制粘贴这个
 
 1383
 01:12:49,169 --> 01:12:54,506
 get rid of all this junk because this is just -$0,
+然后把这些乱七八糟的简化成 -$0
 
 1384
 01:12:54,574 --> 01:13:01,479
 okay? So, this closures allow you to do this thing where
+总之，闭包能够让你
 
 1385
 01:13:01,548 --> 01:13:04,749
 you get the essentials of what you're doing, right in there
+抓住重点，就地解决
 
 1386
 01:13:04,818 --> 01:13:07,419
 in line. So, you're not having to go look at some other
+不需要到其他地方
 
 1387
 01:13:07,488 --> 01:13:09,788
 method somewhere like changeSign up here.
+去找类似于 changeSign 这样具体实现的方法
 
 1388
 01:13:09,857 --> 01:13:13,558
 The other thing closures allow you to do, is to pass off to
+闭包还有个用处是
 
 1389
 01:13:13,627 --> 01:13:18,296
 methods some piece of code to execute if something fails,
+传给方法一段在运行失败的时候执行的代码
 
 1390
 01:13:18,365 --> 01:13:21,966
 or when something completes. Or do this and
+或者是执行完成时运行的代码
 
 1391
 01:13:22,035 --> 01:13:24,636
 animate it, while you're doing it, for example. You're gonna
+又或者在执行的过程中加上动画效果
 
 1392
 01:13:24,705 --> 01:13:27,439
 see API like that. So, being able to pass these methods
+你会看到许许多多像这样的 API
 
 1393
 01:13:27,507 --> 01:13:31,276
 around, you're gonna see. Really makes for great, great
+你会看到能够传递这些方法，是优秀 API 的基础
 
 1394
 01:13:31,344 --> 01:13:34,145
 API. So, you're just seeing the simplest possible use of
+这里你看到的只是最简单的例子
 
 1395
 01:13:34,214 --> 01:13:37,448
 it here. We just using as the associated value, but imagine
+我们只是把闭包当作关联值
 
 1396
 01:13:37,517 --> 01:13:40,084
 it as function, parameters and things like that. It's,
+你可以想象一下，把闭包当作函数或参数使用
 
 1397
 01:13:40,153 --> 01:13:43,922
 it's pretty incredible. Okay, so let's go see if that works.
+这是很难以置信的。好，来看看这样做行不行吧
 
 1398
 01:13:52,166 --> 01:13:57,001
 All right, 4 x 5 = 20, square root, cosine,
+试试 4 乘 5 等于，20 的平方根，余弦
 
 1399
 01:13:57,070 --> 01:14:03,074
 change sign, pi, cosine, this all working beautifully.
+变号，派，余弦，都是能用的
 
 1400
 01:14:03,143 --> 01:14:06,278
 And now, we can add as many new operations as we want,
+现在我们就可以很方便地添加运算了
 
 1401
 01:14:06,347 --> 01:14:10,715
 with one line each, okay. So, you see how I built a struct
+都只需要一行代码。看到为什么我说可以
 
 1402
 01:14:10,784 --> 01:14:13,385
 here that's extensible without having to do sub-classing, and
+构造可扩展的结构体，还不需要依赖子类那些的
 
 1403
 01:14:13,453 --> 01:14:16,054
 all that stuff. I can just add thing, and I could even go
+我可以自己添加新的运算
 
 1404
 01:14:16,122 --> 01:14:19,791
 further and make this public. If I make this operations
+或者是把 operations 标为 public
 
 1405
 01:14:19,860 --> 01:14:23,561
 table public. I also have to make operation public,
+当然这样 Operation 也要是 public 的
 
 1406
 01:14:23,630 --> 01:14:27,666
-then other people can get my calculator brain int and
+then other people can get my calculator brain and
+这样其他人就可以
 
 1407
 01:14:27,735 --> 01:14:31,603
 add operations to it, okay? So very,
+向我的 CalculatorBrain 中定义新运算了
 
 1408
 01:14:31,671 --> 01:14:36,140
 very sensible, not requiring any subclassing whatsoever.
+这是很明智的选择，不需要继承什么的
 
 1409
 01:14:36,209 --> 01:14:38,577
 So, structs can often be just as good,
+所以使用结构体至少是和类一样
 
 1410
 01:14:38,645 --> 01:14:41,547
 if not a little bit better design point for
+甚至比是类更好的设计
 
 1411
 01:14:41,615 --> 01:14:45,851
 classes. All right, the last thing that I wanna do here.
+最后要解决的是
 
 1412
 01:14:45,919 --> 01:14:50,955
 Let's go back to our simulator. Is talk about
+让我把模拟器调出来
 
 1413
 01:14:51,024 --> 01:14:54,726
 the layout of the UI. You see I have this layout right here.
+讲解 UI 的布局。现在你看到的界面是这样的
 
 1414
 01:14:54,795 --> 01:14:57,662
 Let's look what happens if I rotate this into landscape
+让我们看看横屏是什么样的
 
 1415
 01:14:57,731 --> 01:15:01,166
 mode. So, I'm gonna go up here in the simulator, and
+在模拟器的菜单中
 
 1416
 01:15:01,234 --> 01:15:04,870
 go to Hardware, Rotate Left. Okay, my calculator is
+选中 Hardware，Rotate left
 
 1417
 01:15:04,938 --> 01:15:08,507
 now completely unusable. Okay, cuz there's no equals, so
+这下计算器就完全不能用了，看不到等号
 
 1418
 01:15:08,575 --> 01:15:10,909
 I can't even do five times three equals, right? So
+我连五乘三都算不了
 
 1419
 01:15:10,977 --> 01:15:13,411
 it's completely useless, I guess I can still do pi,
+除了圆周率以外都没什么用了
 
 1420
 01:15:13,480 --> 01:15:16,247
 mm, but it's clear that's not what you want, right?
+很明显这不是我们想要的
 
 1421
 01:15:16,316 --> 01:15:20,652
 When you rotate, you wanna use that space in that way, okay?
+旋转之后我们要把横向空间利用起来
 
 1422
 01:15:20,721 --> 01:15:23,555
 And I promised you we were gonna build a UI that would
+我们一定会做到的
 
 1423
 01:15:23,624 --> 01:15:24,789
 work in all those things, and, in fact,
+构建一个响应式 UI
 
 1424
 01:15:24,858 --> 01:15:28,127
 we're gonna do that right now. Let's go back to our UI,
+说干就干。我们回到 UI
 
 1425
 01:15:28,195 --> 01:15:31,063
 and doing this is not gonna require any change to
+而且我们并不需要去
 
 1426
 01:15:31,131 --> 01:15:33,098
 our controller or our model. Okay,
+修改控制器或模型
 
 1427
 01:15:33,166 --> 01:15:35,734
 this is purely something we're gonna do in the view, and
+我们仅仅需要修改视图
 
 1428
 01:15:35,802 --> 01:15:38,837
 we're gonna do it with this business up down here. Okay,
+主要是通过下面的这个工具
 
 1429
 01:15:38,906 --> 01:15:41,840
 this multiple phones that we'll be able to click here,
+我们可以点击这些设备
 
 1430
 01:15:41,909 --> 01:15:43,575
 and see how things look in all these different
+和这些不同的屏幕方向
 
 1431
 01:15:43,644 --> 01:15:46,811
-orientations right here. And out basic strategy
+orientations right here. And our basic strategy
+查看界面的样子。我们的基本策略
 
 1432
 01:15:46,880 --> 01:15:51,049
 is we're gonna stack all these buttons into rows, and then
+是把这些按钮堆到一行里
 
 1433
 01:15:51,118 --> 01:15:54,953
 we're gonna stack all those rows on top of each other.
+然后再把这一行行的按钮叠起来
 
 1434
 01:15:55,021 --> 01:15:58,257
 And then we're gonna stack that with the display, to make
+最后把 display 也叠到上面
 
 1435
 01:15:58,325 --> 01:16:02,294
 this kind of block that has our UI. Then we're gonna tie
+这么一大块就是我们的 UI
 
 1436
 01:16:02,362 --> 01:16:06,698
 the edges of that block, to the edges of the device. So,
+最后把这整块的边界和设备的边界连接起来
 
 1437
 01:16:06,767 --> 01:16:10,636
 that as the device changes, that block of stuff, gets
+这样不同尺寸的设备上
 
 1438
 01:16:10,704 --> 01:16:13,939
 stretched out, or whatever. And the stuff inside,
+那一整坨会自动伸缩把界面填满
 
 1439
 01:16:14,007 --> 01:16:17,142
 is gonna automatically now how to resize the buttons and
+里面的那些控件，会自己相应地调整按钮的大小
 
 1440
 01:16:17,210 --> 01:16:20,112
 stuff to lay out. Okay, so that's all that we need to do
+这就是我们要做的
 
 1441
 01:16:20,180 --> 01:16:23,214
 to make that happen. To have nice rows and columns here,
+为了让最后的排列更整齐
 
 1442
 01:16:23,283 --> 01:16:25,984
 I'm gonna add one more button which you need for
+我再加一个按钮
 
 1443
 01:16:26,052 --> 01:16:29,487
 your homework anyway. Which is a dot button. One of your
+反正是你们作业里要有的——小数点
 
 1444
 01:16:29,556 --> 01:16:33,324
 homework assignment items, is to make floating point input
+作业的其中一项就是允许输入小数
 
 1445
 01:16:33,393 --> 01:16:35,727
 possible. This is already a floating point calculator.
+毕竟计算结果可以是小数
 
 1446
 01:16:35,796 --> 01:16:39,431
 I can say 4, 45. Well, I can't type here, sorry.
+我可以计算 4，45。好吧，搞错了，这不是模拟器
 
 1447
 01:16:39,500 --> 01:16:41,699
 But I can type 45 and hit square root. And
+但是我们是可以计算 45 的平方根的
 
 1448
 01:16:41,768 --> 01:16:43,902
 it would give me a floating point number, right?
+这个结果会是个小数，对吧？
 
 1449
 01:16:43,971 --> 01:16:45,837
 But you can't enter any floating point numbers,
+但是你却不能自己输入一个小数
 
 1450
 01:16:45,906 --> 01:16:47,639
 'cuz there's no dot, right? So,
+因为没有小数点
 
 1451
 01:16:47,708 --> 01:16:48,506
 that's part of your assignment.
+这就是你们在作业中要添加的
 
 1452
 01:16:48,575 --> 01:16:51,710
 So, I'll put that in there for you. Okay, so now,
+我就在这里把这个添加上好了
 
 1453
 01:16:51,779 --> 01:16:55,614
 I'm gonna take this row. And I'm gonna put it into a stack.
+我选中这一行，然后叠到一起
 
 1454
 01:16:55,682 --> 01:16:58,116
 It's gonna be a horizontal stack on its side. And you do
+把它们横着排在一起
 
 1455
 01:16:58,185 --> 01:17:03,922
 that up here with editor. Embed in Stack View, okay?
+方法是在菜单栏中选择 Editor，Embed In，Stack View
 
 1456
 01:17:03,990 --> 01:17:07,559
 So, when I do that, see, it stacks them up horizontally.
+点击之后它们就自动横着堆到一起了
 
 1457
 01:17:07,627 --> 01:17:10,762
 And I can inspect that stack, it's selected right here.
+现在选中了它，就可以设置这个栈的属性
 
 1458
 01:17:10,830 --> 01:17:14,065
 And you can see Stack View right there, it's horizontal.
+可以看到这个 StackView 是 Horizontal，横向的
 
 1459
 01:17:14,134 --> 01:17:17,902
 I'm gonna put some spacing in there, 10 points of spacing.
+把合理的 Space，间距设为 10
 
 1460
 01:17:17,971 --> 01:17:20,872
 I'm also gonna make sure, that they're equally spaced.
+最后选择 Fill Equally
 
 1461
 01:17:20,941 --> 01:17:24,142
 So, I want each of the squares in there to be the same width.
+这样每一个按钮的的尺寸都是一样的
 
 1462
 01:17:24,211 --> 01:17:26,979
 All right, so same thing here. Let's go this one.
+同样的，这一行也这么做
 
 1463
 01:17:27,047 --> 01:17:29,047
 Now, there's actually another way besides going up here,
+其实，这里还有另外一个方法
 
 1464
 01:17:29,115 --> 01:17:31,883
 editor, embed in. There's a button right here for it. So
+点击下面这个按钮就可以了
 
 1465
 01:17:31,952 --> 01:17:34,119
 common, there's a button right there, Embed in Stack,
+因为很常用，所以就有了这个 Embed In Stack 按钮
 
 1466
 01:17:34,187 --> 01:17:38,090
 so boom, I'll do that. Again, I'll put a space in here.
+一下子就好了。还是像之前那样设置间距
 
 1467
 01:17:38,158 --> 01:17:41,326
 Notice that the cosine button is wider than the 1, 2, 3.
+注意现在 cos 比其他的数字按钮要宽
 
 1468
 01:17:41,394 --> 01:17:43,728
 So, I'm gonna say fill equally and
+所以要改成 Fill Equally
 
 1469
 01:17:43,797 --> 01:17:46,265
 make them all the same width again,
+这样宽度才会一致
 
 1470
 01:17:49,269 --> 01:17:53,772
 Oops, sorry, again, so we'll do 10 and
+同样的，这一行也是间距 10
 
 1471
 01:17:53,841 --> 01:17:58,343
 fill equally. Same thing here,
+Fill Equally。这一行也是
 
 1472
 01:17:58,411 --> 01:18:02,314
 stack. Fill equally, 10 and we'll stack this one.
+Embed In Stack，Fill Equally，间距 10。最后这个也是
 
 1473
 01:18:07,887 --> 01:18:12,624
 Oops, dammit. Okay, now I'm gonna take these horizontal
+啊哦，不小心输错了。好，接下来选中这些横向的栈
 
 1474
 01:18:12,693 --> 01:18:16,194
 stacks. These five horizontal and stack them vertically. So,
+把这五个竖着叠在一起
 
 1475
 01:18:16,263 --> 01:18:19,731
 I'm gonna embed. Notice that it's pretty smart.
+点 Embed In Stack。Xcode 挺聪明的
 
 1476
 01:18:19,800 --> 01:18:20,965
 It noticed they were above each other so
+它注意到这些是竖着排列的
 
 1477
 01:18:21,034 --> 01:18:23,301
 it would automatically put it in a vertical stack. But,
+所以自动生成的是竖着排列的栈
 
 1478
 01:18:23,370 --> 01:18:25,837
 it pushed them all over to the left in the stack, and I
+但是却把所有的内容都堆到最左边了
 
 1479
 01:18:25,906 --> 01:18:29,107
 want them to spread out across the stack. So, I'm gonna have
+我希望的是把整个空间占满
 
 1480
 01:18:29,176 --> 01:18:34,179
 the alignment here, instead of leading, be fill, and
+所以我把这里 Alignment 的 Leading 改成 Fill
 
 1481
 01:18:34,247 --> 01:18:36,882
 that's gonna fill the whole width. And of course I want
+这样就会把整个都填满
 
 1482
 01:18:36,950 --> 01:18:39,718
 spacing here as well, so we'll do that. So look at this,
+当然我希望每一行之间也有间隔
 
 1483
 01:18:39,787 --> 01:18:42,553
 I got this beautiful keyboard, keypad right here for
+看啊，这个键盘多么整齐
 
 1484
 01:18:42,622 --> 01:18:47,292
 my calculator. Now, I'm gonna hook that up to this display.
+现在，我把这个和 display 叠在一起
 
 1485
 01:18:47,361 --> 01:18:48,760
 I'm just gonna select them both, and
+把两个都选中
 
 1486
 01:18:48,829 --> 01:18:52,865
 say stack them. Okay, puts them into a stack. The left
+然后 Embed in Stack
 
 1487
 01:18:52,933 --> 01:18:55,267
 line aligned it again, leading aligned it there so
+又变成了左对齐
 
 1488
 01:18:55,336 --> 01:18:59,437
 I'm gonna say fill, I don't want fill equally here though.
+同理改为 Fill 填充。但是这里我不能选 Fill Equally
 
 1489
 01:18:59,506 --> 01:19:02,507
 Cuz if I do fill equally here, it's gonna make this display
+因为那样 display
 
 1490
 01:19:02,576 --> 01:19:04,776
 the same height as the whole keypad, so
+会和键盘一样高
 
 1491
 01:19:04,845 --> 01:19:06,344
 I don't want that. So I just want fill,
+这并不是我想要的，所以保持 Fill 就可以了
 
 1492
 01:19:06,413 --> 01:19:08,980
 I want to fill this space, but I do want the spacing here so
+但我还是想要间隔，所以还是设为 10
 
 1493
 01:19:09,049 --> 01:19:12,985
 we'll do 10 points again. So, now that my whole UI in a nice
+现在我的整个 UI 就被封装到这么一个长方形中了
 
 1494
 01:19:13,053 --> 01:19:16,855
 whole rectangle here. And I'm just gonna tie the edges,
+最后把这些边界
 
 1495
 01:19:18,759 --> 01:19:23,996
 of this UI to the edges of the device basically, okay.
+和整个设备屏幕的边界捆绑起来
 
 1496
 01:19:24,064 --> 01:19:26,898
 Now, I'm gonna start here, whoops, I'm gonna start, yeah
+我选中这个，选错了，选中整个 UI
 
 1497
 01:19:26,967 --> 01:19:29,601
 be careful a little about that too. If you click on something
+你们也要注意，有可能你想选的是一个
 
 1498
 01:19:29,670 --> 01:19:32,470
 and drag it, see you might try to drag the inner one away.
+却有可能选中了内部的另一个控件
 
 1499
 01:19:32,539 --> 01:19:34,539
 A trick for not doing that, there's two tricks.
+有两个解决方案
 
 1500
 01:19:34,608 --> 01:19:39,611
 One, is you can do command shift I believe it is, yeah.
+一个是按住 control + shift
 
 1501
 01:19:39,679 --> 01:19:41,980
 Command shift will let you pick which one you want,
+然后选择具体是哪一个
 
 1502
 01:19:42,048 --> 01:19:44,415
 under the mouse. Actually it's control shift.
+所有鼠标下面的都会列出来
 
 1503
 01:19:44,484 --> 01:19:47,052
 Control shift under the mouse let's you pick it. But,
+control + shift 让你从一个列表中选择具体是哪一个
 
 1504
 01:19:47,121 --> 01:19:49,888
 another easy way is to use drag select,
+另一个方法是用拖拽选择
 
 1505
 01:19:49,957 --> 01:19:52,056
 to select the one you want, and then pick it up.
+把整个选中，然后再移动
 
 1506
 01:19:52,125 --> 01:19:56,395
 Okay, so I'm gonna use the blue lines, actually, to put
+现在我要使用这些蓝色的参考线
 
 1507
 01:19:56,463 --> 01:19:59,164
 this at the proper space on the left edge and top.
+放置在左上角合适的位置s
 
 1508
 01:19:59,232 --> 01:20:03,435
 And now I'm gonna do the magic to hook it to an edge. And
+接着我要用一种很神奇的方法添加约束
 
 1509
 01:20:03,504 --> 01:20:06,437
 I do that with the Ctrl key, just like we did dragging into
+我按下了 control 键，和拖到代码里是一样的
 
 1510
 01:20:06,506 --> 01:20:10,308
 the code. But here, I'm gonna drag from this selected thing.
+但是这里是从选中的这个
 
 1511
 01:20:10,377 --> 01:20:12,344
 Make sure the whole thing is selected. And
+要确保把整个都选中了
 
 1512
 01:20:12,413 --> 01:20:16,615
 Ctrl+Drag up to the top. So we can tie it to the top.
+按 control 然后拖拽到顶部，这样就建立好到顶部的约束了
 
 1513
 01:20:16,684 --> 01:20:18,850
 And when you let go, it's gonna say,
+当你放手的时候，它会问你
 
 1514
 01:20:18,919 --> 01:20:22,053
 what relationship do you want between this big box and
+这一整块到顶部的关系是什么？
 
 1515
 01:20:22,122 --> 01:20:26,791
 the top? And, and really it's talking about the outer edge.
+这里主要是指外层
 
 1516
-01:20:26,860 --> 01:20:28,626
+01:20:26,860 -- 01:20:28,626
 And you can try and make them the same width, or
+你当然可以选择 Equal Widths 等宽
 
 1517
 01:20:28,695 --> 01:20:30,628
 the same height, which really doesn't make sense here.
+或是 Equal Heights 等高，但这两个都不合适
 
 1518
 01:20:30,697 --> 01:20:33,565
 Or you can pin this vertical spacing to the top
+所以我们选这个 Vertical Spacing to Top
 
 1519
 01:20:33,634 --> 01:20:34,532
 layout guide.
+Layout Guide
 
 1520
 01:20:34,601 --> 01:20:37,770
 So I basically pinned it to the top. And same thing here,
+也就是固定离顶部一定距离
 
 1521
 01:20:37,838 --> 01:20:41,840
 I can go to the left and pin the leading space. And
+同理，左边选 Leading Space 来固定
 
 1522
 01:20:41,909 --> 01:20:45,543
 I can go to the right and pin, pin the trailing space. And
+右边选 Trailing Space
 
 1523
 01:20:45,612 --> 01:20:50,616
 I can go to the bottom and sorry, yes, the bottom, and
+底部也是这样
 
 1524
 01:20:50,684 --> 01:20:53,585
 pin the bottom space, the vertical space in the bottom.
+选 Vertical Spacing to Bottom Layout Guide
 
 1525
 01:20:53,654 --> 01:20:56,822
 Now we're just seeing pinning it to edges, but you can use
+我们只是固定它四周到屏幕的距离
 
 1526
 01:20:56,890 --> 01:21:00,058
 this mechanism to Ctrl+Drag between any two elements and
+但还可以按 control 从一个元素拖拽到另一个
 
 1527
 01:21:00,127 --> 01:21:03,428
 say, make these two the same width, line up the left edges,
+让它们等宽，对齐左边界
 
 1528
 01:21:03,497 --> 01:21:04,429
 line up the tops.
+对齐顶部等等
 
 1529
 01:21:04,498 --> 01:21:05,897
 You see what I'm saying? And
+懂我的意思吧？
 
 1530
 01:21:05,966 --> 01:21:10,102
 once you have that ability to have all your items have rules
+当你把所有的内容都约束起来
 
 1531
 01:21:10,170 --> 01:21:12,671
 of their relation to each other, now you can imagine how
+定义了相互之间的关系，这个时候
 
 1532
 01:21:12,739 --> 01:21:16,174
 you can rotate the whole thing and have it all look good,
+在旋转之后保持美观不再是问题
 
 1533
 01:21:16,243 --> 01:21:19,010
 because it's following rules about what to do.
+因为它们可以根据规则调整
 
 1534
 01:21:19,079 --> 01:21:22,647
 Now one thing about these two pins, okay, those I pinned to
+不过要注意这两个约束
 
 1535
 01:21:22,716 --> 01:21:25,650
 where I wanted them. But these two pins are not what I want.
+它们确实是固定到了正确的地方，但和我想的有出入
 
 1536
 01:21:25,719 --> 01:21:28,320
 It's pinning it this far from the edge. So
+它到边上的距离太远了
 
 1537
 01:21:28,388 --> 01:21:30,822
 how do I fix that? You can actually double-click on that.
+怎么解决这个问题？你可以双击
 
 1538
 01:21:30,891 --> 01:21:32,890
 If you double-click on this I-beam,
+如果你双击这个看起来像 I 的线段
 
 1539
 01:21:32,959 --> 01:21:36,962
 it says, yes, I'm pinning this 113 points from the edge. And
+Xcode 告诉你，右边距是 113 点
 
 1540
 01:21:37,030 --> 01:21:40,032
 you can go up here and try to pick Standard Value.
+点击这边可以选 Standard Value，标准值
 
 1541
 01:21:40,100 --> 01:21:42,601
 But that's grayed out, so we're gonna use 0.
+但是因为是灰色的不能用，所以这里就填 0
 
 1542
 01:21:42,669 --> 01:21:46,104
 So you almost want either Standard Value, if available,
+所以一般如果有标准值就用
 
 1543
 01:21:46,172 --> 01:21:47,939
 or 0. So in this case,
+没有就用 0。拿这个情况举例
 
 1544
 01:21:48,008 --> 01:21:52,844
 0 means 0 points from this layout guide edge, okay? And
+0 是指到右边布局边界线的距离为 0 点
 
 1545
 01:21:52,913 --> 01:21:55,280
 same thing with this one down here, I'm gonna double-click.
+同理，下面也这样处理。双击
 
 1546
 01:21:55,349 --> 01:21:57,950
 By the way, we can also see these things, okay?
+其实我们还可以这样修改
 
 1547
 01:21:58,018 --> 01:22:01,386
 If we select this, we can go over to the size inspector.
+当我们选中了之后，看这个属性检查器
 
 1548
 01:22:01,455 --> 01:22:04,189
 You can see all these things down at the bottom here,
+这些约束都能在下面找到
 
 1549
 01:22:04,258 --> 01:22:07,492
 okay, all these connections to the edges, right?
+这些和边界的关系
 
 1550
 01:22:07,561 --> 01:22:10,929
 See this one's 301. So I'm gonna double-click on this
+所以我们现在是固定底边距为 301。我还是双击
 
 1551
 01:22:10,998 --> 01:22:14,299
 I-beam, and here, standard value is available. So I'm
+这条线段，然后这里可以选 Use Standard Value
 
 1552
 01:22:14,368 --> 01:22:17,669
 gonna pick the standard value, okay? And it puts it there.
+那就用这个标准值，把下面固定好
 
 1553
 01:22:17,737 --> 01:22:20,806
 Now so they tied it to the bottom and stretched this out.
+现在固定到底部之后，把整个都拉伸了
 
 1554
 01:22:20,874 --> 01:22:23,609
 Now it didn't quite stretch out the way we wanted here,
+但并不是以我们想要的方式
 
 1555
 01:22:23,677 --> 01:22:27,545
 right? So some of these, rows in the inside,
+这应该是我们 StackView
 
 1556
 01:22:27,614 --> 01:22:30,048
 we didn't get the right attributes on.
+有的属性没设置好
 
 1557
 01:22:30,116 --> 01:22:32,951
 So let's go back and check them all. We got fill equally,
+让我们再都检查一遍。
 
 1558
 01:22:33,019 --> 01:22:36,187
 horizontally, and all of them, yeah? We do, right?
+我们都设置为了 Fill Equally
 
 1559
 01:22:36,256 --> 01:22:40,258
 And how about this? Here I'm gonna use the Ctrl+Click.
+那稍微再大些的这个呢？我按 control 再点击
 
 1560
 01:22:40,327 --> 01:22:44,029
 We'll pick this stack view. See this one, okay,
+选中这个 StackView
 
 1561
 01:22:44,097 --> 01:22:47,499
 this is this inner one, wants to also be filled equally,
+就是里面的这个，这个也要是 Fill Equally
 
 1562
 01:22:47,568 --> 01:22:50,769
 right? We want all these rows, not including this top guy,
+我们希望除了 display 之外
 
 1563
 01:22:50,838 --> 01:22:53,338
 but all these inner interior rows to be the same.
+每一行都等高
 
 1564
 01:22:53,407 --> 01:22:58,109
 So I'm gonna go fill equally here to fix that,
+所以这里选 Fill Equally 来解决
 
 1565
 01:22:58,178 --> 01:23:01,447
 okay? So now I have this thing that can stretch out,
+现在我这个就可以随便伸缩了
 
 1566
 01:23:01,515 --> 01:23:04,115
 because it's got these stacks that have rules about
+因为这些 StackView 规定了如何填充
 
 1567
 01:23:04,184 --> 01:23:07,952
 how to fill. And then I've hooked them to the edges, so
+我也自己把它们关联到了边界
 
 1568
 01:23:08,021 --> 01:23:11,389
 that now when I switch orientations, it adjusts,
+现在我换到横屏的时候，它就会自动调整了
 
 1569
 01:23:11,458 --> 01:23:17,762
 even if I go to a smaller device, okay? Or
+甚至我用一个小一些的设备都没问题
 
 1570
 01:23:17,831 --> 01:23:22,534
 a large device. Now one thing that's
+也可以是大一点的设备
 
 1571
 01:23:22,602 --> 01:23:26,004
 interesting about the very smallest device, an iPhone 4,
+不过有趣的是，针对最小的 iPhone 4
 
 1572
 01:23:26,072 --> 01:23:29,641
 is that in this orientation, it can't fit everything. You
+在横屏的时候，并不能够装下所有的内容
 
 1573
 01:23:29,710 --> 01:23:34,279
 see that? The display is just, it can't fit it. So this is
+看到了吗？display 因为放不下就消失了
 
 1574
 01:23:34,348 --> 01:23:36,515
 why it's great to be able to see this in Interface Builder,
+所以在设计的时候就能看到这些问题很有帮助
 
 1575
 01:23:36,584 --> 01:23:39,517
 cuz we can go back here and pick a smaller font, for
+因为我们能及时挑选一个小一些的字号
 
 1576
 01:23:39,586 --> 01:23:42,153
 example. We can even, you know, have our font be
+或者是定义一个变量存储字体
 
 1577
 01:23:42,222 --> 01:23:45,224
 variable, but there's no way to have the font automatically
+不过我们并没有自动缩放字号的功能
 
 1578
 01:23:45,292 --> 01:23:48,426
 squinched down, unfortunately. There's no autoshrink for
+很遗憾地，按钮并没有自动缩小
 
 1579
 01:23:48,495 --> 01:23:51,596
 buttons like there is for labels. So sorry about that.
+不像是文本框，这没办法
 
 1580
 01:23:51,665 --> 01:23:54,266
 But we would pick a smaller font that would work upon all
+但是我们可以挑一个比较小的字号
 
 1581
 01:23:54,335 --> 01:23:57,936
 of our platforms maybe, okay? All right, so we have this.
+保证能够适应所有的设备
 
 1582
 01:23:58,005 --> 01:24:01,472
 And, of course, now if we run it in the simulator, we can
+现在我们再在模拟器里运行
 
 1583
 01:24:01,541 --> 01:24:05,210
 rotate it in the simulator as well and see it working there.
+旋转之后一样也是正常的
 
 1584
 01:24:05,278 --> 01:24:07,645
 And if we had a device, we could run it on our device and
+如果你有自己的设备的话，也可以用自己的试试
 
 1585
 01:24:07,714 --> 01:24:09,380
 do it there. So here we go. Here's our iPhone 7.
+好，iPhone 7 出来了
 
 1586
 01:24:09,449 --> 01:24:12,451
 7 times 9 equals. It's still working.
+7 乘 9 等于，没问题
 
 1587
 01:24:12,520 --> 01:24:14,586
 Square root, that's good. And when we rotate,
+平方根，也正确。现在旋转
 
 1588
 01:24:14,655 --> 01:24:16,554
 by the way, I'm gonna rotate using Command key.
+不过这次我用快捷键
 
 1589
 01:24:16,623 --> 01:24:19,557
 Okay, Command left and right arrows, you'll see it down in
+command + 左箭头或右箭头
 
 1590
 01:24:19,626 --> 01:24:22,060
 the lower left corner here, but Command Rotate.
+具体我按了哪个你可以在左下角看到
 
 1591
 01:24:22,129 --> 01:24:27,399
 See that? Okay, so you can see we had to do very little
+看到了吗？我们并没有做太多的修改
 
 1592
 01:24:27,468 --> 01:24:30,702
 to make this thing adapt. And this is a fairly simple UI,
+就实现了自适应的 UI。当然我们这个算简单的
 
 1593
 01:24:30,771 --> 01:24:32,938
 a lot of rectangles. More complicated UI,
+全部都是长方形。对于复杂一些的
 
 1594
 01:24:33,007 --> 01:24:36,041
 we'd do a little bit more. And in about week five, four or
+自然需要做更多的处理。在大约第四、五周的时候
 
 1595
 01:24:36,109 --> 01:24:39,611
 five, I'll go into detail about how we build these, even
+我们还会继续讲解
 
 1596
 01:24:39,679 --> 01:24:42,447
 for complicated UIs how we build these rotatable things,
+如何让复杂的界面处理好屏幕旋转
 
 1597
 01:24:42,516 --> 01:24:45,951
 etc. Okay, so that's it. Your homework
+好，今天的课就到这里
 
 1598
 01:24:46,019 --> 01:24:48,353
 is basically to reproduce what I did in these first two
+你们的作业就是完成我们这两节课完成的内容
 
 1599
 01:24:48,422 --> 01:24:50,255
 lectures and then add a couple of things.
+然后添加一些其他的功能
 
 1600
 01:24:50,324 --> 01:24:53,391
 Add a little label up there, add some buttons, change some
+添加一个额外的文本框，添加一些按钮
 
 1601
 01:24:53,460 --> 01:24:56,662
 colors, that kind of business, pretty straightforward.
+改一些颜色，这些小东西，都算简单的
 
 1602
 01:24:56,730 --> 01:24:59,497
 Make it work with floating point inputs and
+处理小数的输入
 
 1603
 01:24:59,566 --> 01:25:02,901
 that's due next Wednesday. I'm here if you have questions,
+作业下周三交，有问题的同学下课可以问我
 
 1604
 01:25:02,969 --> 01:25:05,804
 and I'll see you then. >> For more,
+下周三见。
 
 1605
 01:25:05,873 --> 01:25:14,379
 please visit us at stanford.edu.
+>> 更多课程详见 stanford.edu
