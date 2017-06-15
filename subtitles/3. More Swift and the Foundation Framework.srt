@@ -1225,331 +1225,413 @@ I decided, eh, I'm just gonna return the values. Okay,
 246
 00:13:11,458 --> 00:13:15,994
 another thing: range, range is an important little
-另一件事：Range，
+另一件事：Range，Range 是 Swift 中重要的
 
 247
 00:13:16,063 --> 00:13:21,165
 struct in Swift: all that it represents is two end points.
+小结构体：它代表两个端点
 
 248
 00:13:21,234 --> 00:13:24,536
 So a range is useful for, for example, a selection of text,
+所以 Range 很好用，举个例子，文本的选择
 
 249
 00:13:24,604 --> 00:13:27,806
 where the selection starts and where the selection ends.
+选择开始的地方和选择结束的地方
 
 250
 00:13:27,874 --> 00:13:32,610
 It's also good for a sub-slice of an array. If you've got
+它也很适合分割一个数组。如果你有一个
 
 251
 00:13:32,679 --> 00:13:35,180
 array of 100 elements, you might want the 15th to
+有100个元素的数组，你可能想要其中从第15个到
 
 252
 00:13:35,248 --> 00:13:38,250
 the 40th one, so you could specify that range, 15 to 40.
+第40个这一段，你可以写一个 Range，从15到40
 
 253
 00:13:38,319 --> 00:13:41,086
 So range is this really simple little struct, which kind of
+所以 Range 是个很简单的结构体，看起来
 
 254
 00:13:41,155 --> 00:13:43,655
 looks like this. I say kind of, because it's a little more
+就像这样。我说“像”，因为它比这还更
 
 255
 00:13:43,723 --> 00:13:45,991
 complicated than this, but it basically looks like this.
+复杂一点，但它看起来大概就是这样的
 
 256
 00:13:46,059 --> 00:13:49,061
 It's a generic type like array because of course, you can
+这是个像数组的泛型，因为当然，你可以
 
 257
 00:13:49,129 --> 00:13:52,097
 have a range of ints. You could have a range of floats.
+有一个整数的 Range。你可以有一个浮点数的 Range
 
 258
 00:13:52,166 --> 00:13:55,200
 You could have a range of strings even. Okay, so
+你甚至可以有一个字符串的 Range。ok，所以
 
 259
 00:13:55,269 --> 00:13:57,836
 that T right there could be float, float, int,
+那个 T 可以是浮点数，整数，
 
 260
 00:13:57,905 --> 00:14:01,139
 string. T is restricted a little bit, and I haven't
+字符串。T 有一些限制，我还没有
 
 261
 00:14:01,208 --> 00:14:03,374
 really talked about how you restrict a generic type.
+真正讲到如何限制一个泛型
 
 262
 00:14:03,443 --> 00:14:04,610
 But that T is restricted,
+但这个 T 被限制了
 
 263
 00:14:04,678 --> 00:14:07,746
 and it has to be what's called comparable. That's because
+它必须是可比较的。那是因为
 
 264
 00:14:07,815 --> 00:14:10,481
 range needs to make sure that the start index is less than
+Range 需要确保起始端点要小于
 
 265
 00:14:10,550 --> 00:14:13,619
 the end index. That's part of what a range is defined to be.
+终止端点。这是 Range 的定义的一部分
 
 266
 00:14:13,687 --> 00:14:16,354
 So that T has to be something that can be compared
+所以 T 必须是可以比较的东西
 
 267
 00:14:16,423 --> 00:14:19,258
 to see if the start index is less than the end index,
+查看开始端点是否小于终止端点
 
 268
 00:14:19,326 --> 00:14:23,495
 minor thing there. So, for example, a range of int
+这是个小事。所以，举个例子，整数的 Range
 
 269
 00:14:23,563 --> 00:14:25,964
 would be great for specifying a range in an array,
+很适合具体说明数组中的 Range
 
 270
 00:14:26,032 --> 00:14:28,667
 cuz an array is indexed by integers, right, starting at 0
+因为数组的下标是整数，对吧，从0开始
 
 271
 00:14:28,735 --> 00:14:32,170
 and going up to the number of things in the array.
+// todo
 
 272
 00:14:32,239 --> 00:14:37,643
 Now there are other more powerful, more capable ranges,
+还有一些更强大，更好用的 Range
 
 273
 00:14:37,712 --> 00:14:41,113
 like CountableRange. A CountableRange is
+例如 CountableRange。CountableRange
 
 274
 00:14:41,181 --> 00:14:43,916
 just like a range, except for that you can count through
+类似于 Range，特别之处在于你可以通过
 
 275
 00:14:43,984 --> 00:14:47,485
 intermediate values between the start and the end.
+起始端点和终止端点的中间的值计数
 
 276
 00:14:47,554 --> 00:14:50,856
 Okay, it's like a range of ints. A CountableRange means
+ok，它看起来就像整数的 Range。CountableRange 的意思是
 
 277
 00:14:50,924 --> 00:14:54,092
 the begin point and end point and one point each.
+起始点和终止点以及中间每个点
 
 278
 00:14:54,160 --> 00:14:57,429
 Now as you stride through that range, it depends on what
+现在你一步步通过这个 Range，它依赖于
 
 279
 00:14:57,498 --> 00:15:00,565
 the type is. Striding through a range of ints is different
+它的类型。一步步通过整数的 Range 和
 
 280
 00:15:00,634 --> 00:15:03,735
 then striding through a range of floats, or striding through
+一步步通过浮点数或者是字符串
 
 281
 00:15:03,804 --> 00:15:06,471
 a range of strings. There's a little difference there, and
+的 Range 不同。这里有点不同之处
 
 282
 00:15:06,539 --> 00:15:07,539
 we'll talk about that in a minute.
+我很快会讲到这一点
 
 283
 00:15:08,809 --> 00:15:10,508
 There's a special syntax for
+Range 的语法
 
 284
 00:15:10,577 --> 00:15:15,581
 doing range, which is "dot dot less-than" or "dot dot dot".
+很特别，也就是“..<”或者“...”
 
 285
 00:15:15,649 --> 00:15:20,018
 Dot Dot Less-than means that you put the start index and
+..< 的意思是你将开始点
 
 286
 00:15:20,087 --> 00:15:22,988
 the end index on either side of the dot dot less than.
+与终止点放到 ..< 的两侧
 
 287
 00:15:23,056 --> 00:15:26,457
 And that means go from the start index to the end index,
+那意味着从开始点到终止点
 
 288
 00:15:26,526 --> 00:15:29,428
 but don't include the end index, not inclusive of it,
+但不包括终止点，不包括它
 
 289
 00:15:29,497 --> 00:15:32,731
 and the dot dot dot includes both ends. So for
+... 同时包括两个端点。举个
 
 290
 00:15:32,800 --> 00:15:36,067
 example, in an array, let's have an array of four strings,
+例子，在数组中，有四个字符串
 
 291
 00:15:36,136 --> 00:15:39,370
 a, b, c, d, and let's say that I want to get the c and
+a b c f，假设我想把 c 和
 
 292
 00:15:39,439 --> 00:15:43,742
 the d out of there, I can say array sub, ( just
+d 拿出来，我可以写 array[]，（就像
 
 293
 00:15:43,811 --> 00:15:48,947
 like how I can say array sub 5 or array sub 3 is the fourth
+我可以写 array[5] 或者 array[3] 是数组中
 
 294
 00:15:49,015 --> 00:15:52,350
 index of the array), I can also specify a range and
+的第四个元素），我也可以写一个 Range
 
 295
 00:15:52,419 --> 00:15:55,654
 get a sub array, a slice of the array, it's called. So
+来得到一个子数组，也就是数组中的一部分。
 
 296
 00:15:55,722 --> 00:15:59,290
 I can say 2...3, which means index 2 in the array,
+我可以写 2...3，意思是数组中第二个元素
 
 297
 00:15:59,359 --> 00:16:03,161
 which is c because a is index 0, b is index 1, c is index 2,
+也就是 c，因为 a 是[0]，b是[1]，c是[2]
 
 298
 00:16:03,230 --> 00:16:07,032
 dot dot dot index 3, which is the d inclusive, cuz it's dot
+点点点[3]，也就包括了 d，因为它是
 
 299
 00:16:07,101 --> 00:16:10,135
 dot dot. And then the less than 1 would be exclusive,
+…。有小于号的那个是不包括的
 
 300
 00:16:10,203 --> 00:16:13,672
 so that's why the d wouldn't be included in that one. So
+所以这就是为什么在这一个 d 不会被包括。
 
 301
 00:16:13,740 --> 00:16:16,508
 see how I'm using a range to get a sub slice of an array,
+看我如何使用 Range 来得到数组的一部分
 
 302
 00:16:16,577 --> 00:16:18,977
 that's kind of cool. By the way,
+很酷吧。顺带一提
 
 303
 00:16:19,046 --> 00:16:22,314
 if you say give me the array from 6...8,
+如果你写给我这个数组的6到8
 
 304
 00:16:22,382 --> 00:16:25,016
 that's going to crash at run time with an array index out
+在运行时将会崩溃，因为数组下标
 
 305
 00:16:25,085 --> 00:16:28,053
 of bounds because this array only has four elements. So
+越界，因为这个数组只有4个元素。所以
 
 306
 00:16:28,121 --> 00:16:32,824
 just because I'm accessing this subscripting with a range
+即便是用 Range 而非数字来访问下标时
 
 307
 00:16:32,892 --> 00:16:35,827
 instead of with a number, it still has to be in bounds.
+它依然需要在边界之内
 
 308
 00:16:35,896 --> 00:16:38,797
 And then if I say array[4...1],
+然后如果我写 array[4...1]
 
 309
 00:16:38,866 --> 00:16:42,233
 that also will crash at run time, because the range
+运行时一样会崩溃，因为 Range
 
 310
 00:16:42,302 --> 00:16:44,970
 is going to look at that and say I can't create a range
+会看着它说我不能创建一个
 
 311
 00:16:45,039 --> 00:16:47,272
 where the start value is greater than the end value,
+开始点大于终止点的 Range
 
 312
 00:16:47,341 --> 00:16:50,776
 can't be a backwards range, that's why that type like
+不能是个前后颠倒的 Range，这就是为什么它的类型，类似于
 
 313
 00:16:50,844 --> 00:16:53,278
 int has to be comparable, of course you can compare ints.
+整数，必须是可比较的，当然你可以比较整数
+
 
 314
 00:16:54,781 --> 00:16:59,718
 One thing very important to understand: a string,
+理解一件事非常重要：一个字符串
 
 315
 00:16:59,787 --> 00:17:04,089
 a subrange of a string is not a range of ints.
+一个字符串的子串不是整数 Range
 
 316
 00:17:05,859 --> 00:17:08,093
 You might think it is, right, I've got this string,
+你们可能觉得是，对吧，我得到了这个字符串
 
 317
 00:17:08,162 --> 00:17:10,629
 100 characters, you might think strings sub 15 to 40
+有100个字符，你可能会想 string[15..<40]
 
 318
 00:17:10,697 --> 00:17:12,998
 would be the 15th character to the 40th. And
+就是从第15个字符到第40个
 
 319
 00:17:13,066 --> 00:17:17,068
 it's not: a string subrange is a range of string.index,
+但并不是：字符串的子串是 String.index 的 Range
 
 320
 00:17:17,137 --> 00:17:18,971
 which is a different little data type, and
+是个稍微有点不同的数据类型
 
 321
 00:17:19,039 --> 00:17:20,806
 I'm going to talk all about that in a few slides.
+我将会在接下来的幻灯片中讲到它
 
 322
 00:17:20,875 --> 00:17:23,541
 But I just want to make it really clear,
+我只想让它清晰一点
 
 323
 00:17:23,610 --> 00:17:27,846
 that it is possible to say string subrange start..<end,
+写 string[start..<end] 是可以的
 
 324
 00:17:27,914 --> 00:17:31,716
 but start and end are not ints, they're string.indexes,
+但是 start 和 end 不是整数，他们是 string.index
 
 325
 00:17:31,785 --> 00:17:35,587
 and we'll see how that works. If the type
+我们将会看到它是如何工作的。如果你用 ..<
 
 326
 00:17:35,656 --> 00:17:38,089
 of the range that you create with dot dot less than or
+或者 … 创建的 Range 的类型
 
 327
 00:17:38,158 --> 00:17:41,793
 dot dot dot, if that type is an int, (actually,
+如果那个类型是整数，（实际上
 
 328
 00:17:41,861 --> 00:17:44,863
