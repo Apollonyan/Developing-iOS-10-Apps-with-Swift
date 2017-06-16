@@ -1636,242 +1636,302 @@ dot dot dot, if that type is an int, (actually,
 328
 00:17:41,861 --> 00:17:44,863
 if it's strideable by int, they can be strided by int so
+// todo
 
 329
 00:17:44,932 --> 00:17:48,000
 it's not gonna be float, but I'm not really prepared to
+所以它不会是浮点数，但我还没准备好
 
 330
 00:17:48,068 --> 00:17:52,771
 talk to you about strideable), but if the range has
+给你们讲 strideable），但如果 Range 的
 
 331
 00:17:52,840 --> 00:17:57,008
 ints on either end, so it's a range from 2 to 7, for
+任意一个端点是整数，例如一个从2到7的 Range
 
 332
 00:17:57,077 --> 00:18:00,145
 example, then it automatically creates that countable range,
+它会自动创建一个 CountableRange
 
 333
 00:18:00,214 --> 00:18:03,248
 that more capable range.
+那个更好用的 Range
 
 334
 00:18:03,317 --> 00:18:06,485
 That range then becomes what's called a sequence, And
+那个 Range 之后会变成一个叫做 Sequence（序列）的东西
 
 335
 00:18:06,554 --> 00:18:10,188
 sequences can be iterated through or enumerated, and
+Sequence 可以被迭代或者罗列
 
 336
 00:18:10,257 --> 00:18:14,726
 the way you do that is with "for in", so Swift's for
+实现方法是用“for in”语句，就是 Swift 中的 for
 
 337
 00:18:14,795 --> 00:18:19,430
 statement, this is the only one there is. It's called
+语句，这是这里唯一的 for 语句。
 
 338
 00:18:19,499 --> 00:18:24,069
 "for in" and all it ever means is, I want to go and enumerate
+“for in”的意思是，我想要遍历这个 Sequence
 
 339
 00:18:24,138 --> 00:18:28,206
 all the values of a sequence. I'm going to talk about what
+中所有的值。我打算讲讲什么东西
 
 340
 00:18:28,275 --> 00:18:31,009
 things that can be sequenced. Countable range is 1,
+可以成为 Sequence。CountableRange可以
 
 341
 00:18:31,078 --> 00:18:33,044
 because if an int goes from 0 to 7, and
+因为如果是从0到7的整数，并且
 
 342
 00:18:33,113 --> 00:18:36,815
 it's a countable range, then it can go 0, 1, 2, 3, 4, 5, 6,
+它是个 CountableRange，那么它可以遍历 0 1 2 3 4 5 6
 
 343
 00:18:36,884 --> 00:18:42,353
 7. Arrays are sequences, sequences of their elements.
+7。数组是 Sequence，它的元素的 Sequence
 
 344
 00:18:42,422 --> 00:18:45,591
 So you can "for in" through an array. Dictionaries are also,
+所以你可以用“for in”遍历一个数组。字典也可以
 
 345
 00:18:45,659 --> 00:18:49,161
 and we'll see that a little later. So here's how you do
+过一会儿我们就会看到。这里是一个类似于C语言的
 
 346
 00:18:49,230 --> 00:18:54,132
 a normal C-like for loop, for (i = 0; i < 20; i++).
+for 循环语句，for (i = 0; i < 20; i++)
 
 347
 00:18:54,201 --> 00:18:56,901
 You cannot do that in Swift, that syntax simply doesn't
+你在 Swift 中不能这样写，这个语法压根就
 
 348
 00:18:56,970 --> 00:19:01,807
 exist. Instead you would say for i in the range 0..<20,
+不存在。作为替代你应该写 for i in 0..<20
 
 349
 00:19:01,875 --> 00:19:04,509
 because notice I said it's less than 20, not less than or
+注意我写的是小于20，不是小于或
 
 350
 00:19:04,578 --> 00:19:10,448
 equal to 20, so 0..<20 means go through that. And so
+等于20，所以 0..<20 意思是遍历它
 
 351
 00:19:10,517 --> 00:19:12,984
 that little block of code is going to be executed once for
+这一小块儿代码将被执行
 
 352
 00:19:13,053 --> 00:19:17,155
 0, 1, 2, 3, 4, all the way up to number 19, so
+0 1 2 3 4 直到 19
 
 353
 00:19:17,224 --> 00:19:19,057
 that's same thing as what you see there.
+那和你们在那里看到的一样
 
 354
 00:19:19,126 --> 00:19:21,860
 Now what about floats? Floats are a little weird.
+那浮点数呢？浮点数稍微有点奇怪
 
 355
 00:19:21,929 --> 00:19:28,066
-What if I wanted to do for{i = 0.5; i <= 15.25; i += 0.}.
+What if I wanted to do for (i = 0.5; i <= 15.25; i += 0.3).
+我该如何实现 for (i = 0.5; i <= 15.25; i+=0.3)
 
 356
 00:19:28,135 --> 00:19:32,905
 Whoa, how am I gonna do that? I can't, for
+噫，我该咋办呢？我不能写，例
 
 357
 00:19:32,973 --> 00:19:38,076
 example, say for i in 0.5...15.25.
+如，写 for i in 0.5...15.25
 
 358
 00:19:38,145 --> 00:19:42,447
 How does it know to go by 0.3? And the answer is, it doesn't.
+它怎么知道每次加 0.3 呢？答案是，不能
 
 359
 00:19:42,516 --> 00:19:47,219
 In fact, a range like that, 0.5...15.25 is not a countable
+事实上，像这样的 Range，0.5...15.25，不是一个
 
 360
 00:19:47,287 --> 00:19:50,923
 range, it's just range. It only knows the start and end,
+CountableRange，它只是 Range。它只知道起始点与终止点
 
 361
 00:19:50,991 --> 00:19:53,725
 it knows nothing about what's in between, so
+它对中间一无所知，所以
 
 362
 00:19:53,794 --> 00:19:56,995
 it cannot be a sequence, it can't be for in over. But
+它不能成为一个 Sequence，它不能用在 for in 里。但是
 
 363
 00:19:57,064 --> 00:20:01,567
 luckily, there's this great global function called stride.
+幸运的是，有一个叫做 stride 的很帮的全局函数
 
 364
 00:20:01,635 --> 00:20:04,636
 Stride takes a from and a to, or a through,
+stride 接受一个 from 和一个 to，或者 through
 
 365
 00:20:04,704 --> 00:20:06,939
 (depending whether you wanna go through to the end,
+（取决于你是否想遍历到最后
 
 366
 00:20:07,008 --> 00:20:09,341
 or just to to and not including it), and
+或者仅仅是到那儿但不包括它），和
 
 367
 00:20:09,409 --> 00:20:11,476
 a by, which is, what it's going to step by.
+一个 by，意思是，每一步加上的数值大小
 
 368
 00:20:11,545 --> 00:20:15,781
 So here, I say stride from 0.5 through 15.25,
+所以在这，我写 stride(from: 0.5, through: 15.25
 
 369
 00:20:15,849 --> 00:20:19,351
 because I want less than or equal to, by 0.3, and
+因为我想小于或等于，by: 0.3)
 
 370
 00:20:19,419 --> 00:20:23,254
 that's gonna create a new object, it's a CountableRange.
+那会创建一个新对象，它是个 CountableRange
 
 371
 00:20:23,323 --> 00:20:26,024
 Now it's a special CountableRange, it knows
+它是一个特别的 CountableRange，它知道
 
 372
 00:20:26,093 --> 00:20:30,261
-how to count from 0.25 to 15.25 by that 0.3 step. You
+how to count from 0.5 to 15.25 by that 0.3 step. You
+如何从 0.5 每隔 0.3 数到 15.25。你
 
 373
 00:20:30,330 --> 00:20:32,797
 don't need to worry about how it implements it, Stride just
+不需要关心它是如何实现的，stride 只是
 
 374
 00:20:32,866 --> 00:20:35,633
 creates you a CountableRange. Actually this will be called
+给你创建了个 CountableRange。实际上它被称作
 
 375
 00:20:35,702 --> 00:20:39,204
 a ClosedCountableRange because it counts through to the end,
+ClosedCountableRange，因为它遍历到最后
 
 376
 00:20:39,273 --> 00:20:42,374
 so it's a dot dot dot kind of range of a dot dot
+所以它是个 ... 类的 Range
 
 377
 00:20:42,442 --> 00:20:45,978
 less than kind of range. So I have a CountableRange, and
+// todo。所以我有了 CountableRange，并且
 
 378
 00:20:46,046 --> 00:20:49,648
 it's a sequence, so I can for in it, so I say for i in.
+它是个 Sequence，所以我能用 for in 了，所以我写for i in
 
 379
 00:20:49,717 --> 00:20:53,451
 Stride, I'd probably say for f in, or even better than f or
+stride，我可能会写 for f in，或者比 f 或者 i 更好的名字
 
 380
 00:20:53,520 --> 00:20:56,688
 i. A lot of times, by the way, on my slides, I'm gonna use
+顺带一提，大多数时候在我的幻灯片里，我会用
 
 381
 00:20:56,756 --> 00:20:59,457
 variables like i or x or d because I want it to fit on my
+类似于 i 或 x 的变量名，因为我想使它在我的幻灯片上更
 
 382
 00:20:59,526 --> 00:21:02,594
 slide, I don't want it to be wrapping. It's hard for you to
+合适，我不想让它换行（wrapping）。如果幻灯片上的代码
 
 383
 00:21:02,663 --> 00:21:05,264
 read the slide if the code's always wrapping around, so
+到处都在换行你们读起来会很难受，所以
 
 384
 00:21:05,332 --> 00:21:07,799
 just because you see me using i and d and f doesn't mean
+你们不要因为看到我用 i 和 d 还有 f
 
 385
 00:21:07,868 --> 00:21:10,401
 that's license to have those kind of terrible names for
+就以为可以给你们的变量起这么
 
 386
 00:21:10,470 --> 00:21:14,773
 your variables. You need to have meaningful names. So
+糟糕的名字。你需要起有意义的名字。所以
 
 387
 00:21:14,842 --> 00:21:16,274
 that's how for in works here,
+for in 就是这样用的
 
 388
 00:21:16,343 --> 00:21:18,076
