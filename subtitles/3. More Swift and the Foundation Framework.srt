@@ -1936,66 +1936,82 @@ for in 就是这样用的
 388
 00:21:16,343 --> 00:21:18,076
 because stride is gonna return a CountableRange,
+因为 stride 会返回一个 CountableRange
 
 389
 00:21:18,145 --> 00:21:20,779
 ClosedCountableRange in this case. So
+在这种情况下是 CloseCountableRange
 
 390
 00:21:20,848 --> 00:21:25,450
 that's how you do your standard for loops from C.
+这就是实现 C 中的标准 for 循环的方法
 
 391
 00:21:25,518 --> 00:21:29,587
 Alright, let's talk about the data structures in Swift.
+好了，让我们谈谈 Swift 中的数据结构
 
 392
 00:21:29,656 --> 00:21:31,823
 You've already learned about three of the four of them,
+你们已经学了它们四个中的三个了
 
 393
 00:21:31,891 --> 00:21:37,296
 which are classes, structures, and enums. In our lecture,
+分别是类，结构体，枚举。在课上
 
 394
 00:21:37,365 --> 00:21:39,130
 we already did all three of those things.
+这三种东西我们都做过了
 
 395
 00:21:39,199 --> 00:21:41,233
 We had a class, which is our view controller subclass.
+我们做过类，就是我们的 ViewController 的子类
 
 396
 00:21:41,302 --> 00:21:42,634
 We had a struct, which is our calculator brain.
+我们做过结构体，就是我们的 Calculator Brain
 
 397
 00:21:42,703 --> 00:21:45,304
 And we had enum, which was our operation.
+并且还做过枚举，就是我们的 Operation
 
 398
 00:21:46,607 --> 00:21:49,407
 The fourth one is protocols, and
+第四个是协议（protocols）
 
 399
 00:21:49,476 --> 00:21:51,776
 I'm not gonna talk about that until next week or
+直到下个星期或者下个星期之后
 
 400
 00:21:51,845 --> 00:21:54,446
 even the week after. Protocols are super, duper important,
+我才会讲到它。协议是非常重要的
 
 401
 00:21:54,515 --> 00:21:56,314
 I don't want to make it sound like they're not important,
+我不想让它们听起来似乎它们不重要的样子
 
 402
 00:21:56,383 --> 00:21:58,817
 But they're new to a lot of you, and so I'm gonna try and
+但它对于你们大部分人来说是十分陌生的，所以我觉得
 
 403
 00:21:58,886 --> 00:22:01,119
 ease you in with these ones that are more familiar,
+// todo
 
 404
 00:22:01,188 --> 00:22:03,855
