@@ -2016,158 +2016,198 @@ ease you in with these ones that are more familiar,
 404
 00:22:01,188 --> 00:22:03,855
 although different in Swift probably than what you're used
+尽管在 Swift 中的东西可能不同于你们之前使用的
 
 405
 00:22:03,924 --> 00:22:06,258
 to, they're still more familiar to you.
+你还是更熟悉它们的
 
 406
 00:22:06,326 --> 00:22:09,594
 Let's just review quickly these three structs and what's
+这里我们就快速复习一下这三块儿内容以及他们的
 
 407
 00:22:09,663 --> 00:22:13,665
 the same and different about them. So what's the same?
+相同点与不同点。所以相同点是啥呢？
 
 408
 00:22:13,733 --> 00:22:14,599
 They're declared very,
+它们的声明非常
 
 409
 00:22:14,668 --> 00:22:16,601
 very similar: they have different key word, but
+非常相似：它们有不同的关键字，但
 
 410
 00:22:16,670 --> 00:22:17,869
 they're almost exactly the same.
+它们几乎是相同的
 
 411
 00:22:17,938 --> 00:22:20,405
 The only difference really is a class can specify a super
+唯一的不同是类可以指明它的父
 
 412
 00:22:20,473 --> 00:22:23,675
 class, otherwise they're declared exactly the same.
+类，除此之外他们的声明完全相同
 
 413
 00:22:23,744 --> 00:22:26,611
 They can all have properties and functions, So,
+它们都可以有属性和函数，因此
 
 414
 00:22:26,680 --> 00:22:30,015
 they're all very similar in that way. The only thing here
+如此看来它们都非常相似。唯一一件事
 
 415
 00:22:30,084 --> 00:22:34,452
 is that there cannot be any stored properties in an enum.
+就是枚举中不能有储存属性
 
 416
 00:22:34,521 --> 00:22:37,956
 Enum keeps any data it has in associated values, so it can't
+枚举把它的数据保存在关联值中，所以它不能
 
 417
 00:22:38,025 --> 00:22:41,025
 have any stored properties, but it can have computed
+任何储存属性，但是它可以有计算
 
 418
 00:22:41,094 --> 00:22:44,930
 properties and they certainly all can have functions.
+属性并且它们当然都可以有函数
 
 419
 00:22:44,998 --> 00:22:47,532
 Another thing that's very similar is they can all
+还有很相似的一点是除了枚举它们
 
 420
 00:22:47,601 --> 00:22:50,001
 have initializers except enums. Enums don't need
+都能初始化。枚举不需要
 
 421
 00:22:50,070 --> 00:22:52,571
 an initializer cuz you just say the case you want, but
+初始化因为你只是说明了你想要的情况，但
 
 422
 00:22:52,640 --> 00:22:56,441
 structs and classes have initializers. Okay, so
+结构体和类有初始化。ok，所以
 
 423
 00:22:56,510 --> 00:22:58,543
 that's the same. Now what are the differences?
+这就是相同点。现在不同点是啥呢？
 
 424
 00:22:58,612 --> 00:23:01,880
 Well of course, inheritance is a big difference for classes.
+当然了，继承是类的一个很大的不同点
 
 425
 00:23:01,948 --> 00:23:05,784
 Classes have inheritance. Structs and enums do not. But
+类有继承。结构体和枚举没有。但是
 
 426
 00:23:05,853 --> 00:23:08,820
 the most important difference, which I mentioned last time,
+最主要的不同点，是我上次提到的
 
 427
 00:23:08,889 --> 00:23:12,857
 is that structs and enums are value types, and
+就是结构体和枚举是值类型
 
 428
 00:23:12,926 --> 00:23:16,194
 classes are reference types. So let's go into that and talk
+而类是引用类型。让我们深入讲解
 
 429
 00:23:16,262 --> 00:23:18,096
 about it just a little more. It's so important, I'm gonna
+一下这个问题。这很重要，我打算
+
 
 430
 00:23:18,165 --> 00:23:22,534
 talk about it again. A value type, what does that mean?
+把它再讲一遍。值类型是什么意思？
 
 431
 00:23:22,602 --> 00:23:26,404
 It means that it's copied when you pass it as an argument
+它的意思是当你把它作为参数传送它时它被复制了
 
 432
 00:23:26,473 --> 00:23:27,906
 It's copied, even if you just assign it to another variable,
+它被复制了，甚至如果你仅仅是把它分配给其他变量
 
 433
 00:23:27,907 --> 00:23:29,340
 to a function.
+或是函数
 
 434
 00:23:29,410 --> 00:23:33,445
 it gets copied. If you assign it to a let, it's immutable,
+它得到的是拷贝。如果将它分配给一个 let，它是不可改变的
 
 435
 00:23:33,514 --> 00:23:36,314
 that's very important to understand. If you assigned
+理解这一点很重要。如果你分配
 
 436
 00:23:36,383 --> 00:23:40,785
 a value type to a let, using let x equal that thing,
+一个值类型给 let，用 let x = 那个东西
 
 437
 00:23:40,854 --> 00:23:44,155
-you just made it immutable, No matter how complicated it is.
+you just made it immutable, no matter how complicated it is.
+你仅仅是使它不可改变，不管它有多复杂
 
 438
 00:23:44,224 --> 00:23:45,890
 If it's an array or dictionary,
+如果它是个数组或字典
 
 439
 00:23:45,959 --> 00:23:49,261
 you can't add any elements. If it's a calculatorBrain,
+你不能增加任何元素。如果它是 CalculatorBrain
 
 440
 00:23:49,329 --> 00:23:52,130
 it means you can't call any of its mutable functions, So
+你将不能调用它的任何可变的函数，所以
 
 441
 00:23:52,199 --> 00:23:55,800
 you can't do perform operation on it. Now in assignment two,
+你不能对它进行操作。现在在任务二中
 
 442
 00:23:55,869 --> 00:23:58,704
 I'm gonna have you add a method to the calculator brain
+我打算让你们给 CalculatorBrain 增加一个方法
 
 443
 00:23:58,772 --> 00:24:01,539
