@@ -6009,22 +6009,22 @@ you can set any properties value even if that property
 1302
 01:09:43,450 --> 01:09:46,185
 already had its value set, you can reset something else.
-你可以重新给它赋成别的值
+你可以重新给变量赋成别的值
 
 1303
 01:09:46,253 --> 01:09:50,589
 You can set lets. So you're gonna have a let that's
-你可以设置 let 声明的属性，比如你有一个 let 声明的属性 x
+还可以初始化 let 声明的常量。比如有一个属性 let x = 5
 
 1304
 01:09:50,657 --> 01:09:54,826
 got lets x equal 5. You can still reset it in your init.
-let x = 5，构造器内仍然可以重设它
+构造器内仍然可以重设它（误：常量不能重新赋值）
 
 1305
 01:09:54,895 --> 01:09:59,330
 Your init is allowed to set lets. You can call other init
-构造器内部允许对 let 声明的属性赋值
+所以构造器内只允许对常量属性赋初值
 
 1306
 01:09:59,399 --> 01:10:04,135
@@ -7548,5 +7548,5 @@ All kinds of stuff. So we'll have a lot of fun with that.
 
 1610
 01:25:04,004 --> 01:25:12,510
-please visit us at standford.edu
+please visit us at stanford.edu
 详见 stanford.edu
