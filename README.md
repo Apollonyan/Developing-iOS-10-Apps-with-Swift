@@ -11,7 +11,7 @@
 
 如果您想支持我们，目前可以点击项目右上角的 <a class="github-button" href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift" data-icon="octicon-star" data-show-count="true" aria-label="Star ApolloZhu/Developing-iOS-10-Apps-with-Swift on GitHub">Star</a> 按钮来 Star 本项目。同时也希望您能够通过各种社交平台，如 微信公众号，微博，博客，开发者头条，简书，CocoaChina，CSDN 等为我们宣传推广，以帮助更多有需要的人。
 
-如果您感兴趣，有能力，我们欢迎您参与项目。请提前阅读 [翻译指南／校对规则](./translation-instructions.md)，在领取任务前阅读 [任务相关说明](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/2)。不遵守该规定的翻译可能被直接关闭，请大家认真对待。
+如果您感兴趣，有能力，我们欢迎您参与项目。请提前阅读 [翻译标准／校对规则](./translation-style-guide.md)，在领取任务前阅读 [任务相关说明](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/2)。不遵守该规定的翻译可能被直接关闭，请大家认真对待。
 
 ### 下载字幕
 
