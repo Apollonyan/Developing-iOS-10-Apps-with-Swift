@@ -875,12 +875,12 @@ Optional 的世界中取出来只是为了强调它们
 176
 00:09:25,532 --> 00:09:27,432
 because there's a lot in the reading that you're doing
-// todo
+因为这有很多你已经阅读过的关于 Optional 的东西了
 
 177
 00:09:27,501 --> 00:09:29,934
 about optional, but these are kind of the highlights.
-// todo
+但是还是有一些强调点的
 
 178
 00:09:30,003 --> 00:09:32,437
@@ -2011,7 +2011,7 @@ But they're new to a lot of you, and so I'm gonna try and
 403
 00:21:58,886 --> 00:22:01,119
 ease you in with these ones that are more familiar,
-// todo
+等你们更熟悉时你们就会更方便地理解它
 
 404
 00:22:01,188 --> 00:22:03,855
@@ -2202,7 +2202,7 @@ it means you can't call any of its mutable functions, So
 441
 00:23:52,199 --> 00:23:55,800
 you can't do perform operation on it. Now in assignment two,
-你不能对它进行操作。现在在任务二中
+你不能对它进行操作。在任务二中
 
 442
 00:23:55,869 --> 00:23:58,704
@@ -2212,222 +2212,277 @@ I'm gonna have you add a method to the calculator brain
 443
 00:23:58,772 --> 00:24:01,539
 that is gonna let you use the calculator brain when it's
+那使你们在当 CalculatorBrain 是不可改变的时候
 
 444
 00:24:01,608 --> 00:24:04,843
 immutable, which is kinda cool. You still wouldn't be
+使用它，这很酷。你依然不能
 
 445
 00:24:04,912 --> 00:24:07,545
 able to perform operation but you can be able to something
+操作它但是你可以做一些重要的
 
 446
 00:24:07,614 --> 00:24:12,350
 very important, immutably. Now because of this, this kind of
+不可改变的事情。因此，值类型的
 
 447
 00:24:12,419 --> 00:24:15,487
-copyright-on-write behavior of value types, you must,
+copy-on-write behavior of value types, you must,
+写入时复制的行为，你必须
 
 448
 00:24:15,556 --> 00:24:18,957
 of course, mark all the functions that are going to
+标记所有函数
 
 449
 00:24:19,026 --> 00:24:23,094
 modify it as mutating. And that's how the Swift knows,
+并且这也是 Swift 知道
 
 450
 00:24:23,163 --> 00:24:27,299
 "Oops, I've gotta make a copy of this, an actual real copy,
+“哦，我得到了它的一个拷贝，一个真正的拷贝
 
 451
 00:24:27,368 --> 00:24:31,135
 if someone writes to it". Now a reference class is pretty
+如果有人往它里面写数据的话。“引用类型是很
 
 452
 00:24:31,204 --> 00:24:34,639
 different in that it gets stored in the heap somewhere
+不同的，它被储存在一个堆中
 
 453
 00:24:34,708 --> 00:24:37,909
 with a pointer to it, and when you pass it around to
+有一个指针指向它，当你把它传送到
 
 454
 00:24:37,978 --> 00:24:41,713
 a function or to assign it to another variable or something
+函数中或将它分配给另一个变量之类的东西时
 
 455
 00:24:41,782 --> 00:24:46,618
 like that, you're just passing a pointer around to it.
+你只是在传送指向它的指针
 
 456
 00:24:46,687 --> 00:24:51,089
 Now, by the way, when you say, let x equal a reference type,
+现在，顺带一提，当你写，let x = 一个引用类型时
 
 457
 00:24:51,158 --> 00:24:54,626
 you can still send it messages that will mutate it.
+你依然可以给它发送使它转变的信息
 
 458
 00:24:55,996 --> 00:24:58,764
 All you're saying is the pointer can't change, but
+你们都被告知指针是不能改变的，但是
 
 459
 00:24:58,833 --> 00:25:01,533
 what it points to can always be changed.
+指针指向的东西在任何时候都能改变
 
 460
 00:25:01,601 --> 00:25:05,137
 Now reference types are what you're used to.
+引用类型是你们习惯的
 
 461
 00:25:05,205 --> 00:25:08,974
 Most languages that have object-oriented reference
+大部分语言都有面向对象的引用
 
 462
 00:25:09,043 --> 00:25:15,213
 types. Reference types are a little bit Wild West- I
+类型。引用类型有点狂野——我
 
 463
 00:25:15,282 --> 00:25:17,816
 don't have time to teach you this, I hope you'll get to see
+没时间给你们讲这个，我希望你们在斯坦福的时光里可以
 
 464
 00:25:17,885 --> 00:25:19,651
 this sometime in your career at Stanford, but
+可以见到它
 
 465
 00:25:19,720 --> 00:25:21,820
 there is a different way of thinking about programming
+有一种不同的编程思想，它与你们之前
 
 466
 00:25:21,888 --> 00:25:23,988
 than you're used to: it's called functional programming.
+接触到的不同：它叫做函数式编程
 
 467
 00:25:24,057 --> 00:25:25,089
 How many people have heard the phrase,
+有多少人曾经听说过这个词
 
 468
 00:25:25,158 --> 00:25:29,227
 functional programming? So about half of you. The idea
+函数式编程？有一半左右。函数式编程
 
 469
 00:25:29,296 --> 00:25:31,663
 of functional programming is: you don't want this Wild West
+的思想是：你不想要这样的狂野
 
 470
 00:25:31,732 --> 00:25:34,599
 where you've got these objects with multiple people pointing
+你得到这些有多人指向它们的对象
 
 471
 00:25:34,668 --> 00:25:37,936
 at them, any of whom could modify it at any time.
+它们中任何一个在任何时间都能修改它
 
 472
 00:25:38,004 --> 00:25:41,105
 That leaves you open to a lot of difficulty in verifying
+这给你核实你的程序的正确性
 
 473
 00:25:41,174 --> 00:25:42,975
 the correctness of your program.
+带来了不小的困难
 
 474
 00:25:43,043 --> 00:25:46,278
 Whereas if you have a lot of objects that are immutable,
+然而如果你有一大堆不可改变的对象
 
 475
 00:25:46,346 --> 00:25:49,715
 you know they can't change, and their APIs are basically
+你知道它们不可能被改变，并且它们的 API 基本上
 
 476
 00:25:49,783 --> 00:25:52,718
 like mathematical functions where data goes in and
+类似于数学函数，数据输入后
 
 477
 00:25:52,786 --> 00:25:55,520
 predictable data comes out, because there's
+可预计的数据输出，因为
 
 478
 00:25:55,588 --> 00:25:59,291
 not all this side-effecting, data-effecting other objects
+不是所有 // todo
 
 479
 00:25:59,359 --> 00:26:02,194
 that someone else is pointing to in all this.
+// todo
 
 480
 00:26:02,262 --> 00:26:04,595
 It's this really well-contained little thing.
+这是个非常好的东西
 
 481
 00:26:04,664 --> 00:26:08,433
 Now iOS was not developed with functional programming in mind
+iOS 完全不是由函数式编程
 
 482
 00:26:08,502 --> 00:26:11,603
 at all. But the people who invented Swift,
+开发的。但是发明 Swift 的这群人
 
 483
 00:26:11,671 --> 00:26:15,074
 they were thinking about functional programming, So
+它们用函数式编程思考，所以
 
 484
 00:26:15,142 --> 00:26:17,009
 you can kind of mix a lot of the elements of
+你可以混合很多函数式编程
 
 485
 00:26:17,077 --> 00:26:19,244
 functional programming into your application,
+的元素到你的应用程序中
 
 486
 00:26:19,312 --> 00:26:22,080
 if you're building an iOS application. Now that's a new
+如果你正在开发一款 iOS 应用程序。现在它是 iOS 的
 
 487
 00:26:22,149 --> 00:26:26,051
 frontier in iOS, because for however long, 20 years,
+新边界，因为不管多久，20年
 
 488
 00:26:26,119 --> 00:26:28,120
 really, or 30 years, really, if you consider all the way
+或是30年，如果你考虑到
 
 489
 00:26:28,188 --> 00:26:31,723
 back to the invention of the technology that led to iOS,
+所有的引领 iOS 的技术的发明
 
 490
 00:26:31,792 --> 00:26:36,028
 people have been programming with basically
+人们已经基本上只在
 
 491
 00:26:36,096 --> 00:26:39,831
 reference types only, for their object-orienting.
+面向对象时用引用类型编程
 
 492
 00:26:39,900 --> 00:26:42,534
 But when you do this programming with structs and
+但当你用结构体和枚举，特别是协议
 
 493
 00:26:42,603 --> 00:26:46,104
 enums, and especially when you throw in protocols, (which I
+（就是我给你说的那个可重要的，但是
 
 494
 00:26:46,173 --> 00:26:47,939
 told you I was gonna tell you that are very important, but
+现在不能给你讲的那个东西，以及泛型）
 
 495
 00:26:48,008 --> 00:26:51,843
 I cannot explain to you yet, and generics),
+编程时，当你开始完全掌握
 
 496
 00:26:51,912 --> 00:26:54,579
 when you start throwing those things all in there, you can
+这些所有的东西时，你就
 
 497
 00:26:54,648 --> 00:26:58,216
 really do a good job of doing real functional programming.
+真的可以把函数式编程做的很好了
 
 498
 00:26:58,285 --> 00:27:02,153
