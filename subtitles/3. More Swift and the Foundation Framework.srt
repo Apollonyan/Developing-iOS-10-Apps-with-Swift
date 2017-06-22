@@ -5,12 +5,12 @@
 2
 00:00:04,605 --> 00:00:10,876
 Stanford University. Welcome to Stanford CS193P,
-斯坦福大学。欢迎参加 2017 年冬季学期斯坦福 CS193P 课程
+斯坦福大学。>> 欢迎参加 2017 年冬季学期
 
 3
 00:00:10,945 --> 00:00:14,279
 this is Developing Applications for iOS,
-iOS 应用程序开发
+斯坦福 CS193P 课程，iOS 应用程序开发
 
 4
 00:00:14,347 --> 00:00:18,984
@@ -30,12 +30,12 @@ and that's because I'm pretty much going to try and
 7
 00:00:27,094 --> 00:00:31,329
 get you fully up to speed on Swift. Everything that I'm
-让你们完全掌握 Swift。我今天讲到的
+让你们完全掌握 Swift。我今天讲到的内容
 
 8
 00:00:31,398 --> 00:00:34,233
 going to talk about today is covered either in your reading
-所有东西包括你们的今天截止的阅读任务1
+包括在你们的今天截止的阅读任务一
 
 9
 00:00:34,301 --> 00:00:37,236
@@ -45,12 +45,12 @@ assignment one, which was due today, so hopefully you're
 10
 00:00:37,304 --> 00:00:39,904
 done with that, or it's in reading assignment two,
-或者是在阅读任务2中
+或者是在阅读任务二中
 
 11
 00:00:39,973 --> 00:00:43,942
 which is going out today and is due next Wednesday. So,
-它将会在今天放出，下周三截止
+也就是今天的作业，下周三截止
 
 12
 00:00:44,010 --> 00:00:47,011
@@ -65,12 +65,12 @@ through that reading assignment can be a big slog
 14
 00:00:50,184 --> 00:00:53,384
 through a lot of information, and I want you to understand
-并不是一件令人愉悦的事情，并且我希望你们能理解
+并不是一件令人愉悦的事情
 
 15
 00:00:53,453 --> 00:00:56,822
 the things in there that are really important. As I go
-这些非常重要的东西
+并且我希望你们能理解这些非常重要
 
 16
 00:00:56,890 --> 00:00:59,358
@@ -80,7 +80,7 @@ through the slides today, if you see something and
 17
 00:00:59,426 --> 00:01:03,094
 I explain it and you're like, my gosh I didn't get that,
-和我对它的解释让你感觉 “我天你在说啥我完全搞不懂” 的话
+或我对它的解释让你感觉 “我天完全搞不懂”
 
 18
 00:01:03,163 --> 00:01:06,131
@@ -95,12 +95,12 @@ talking about and then you can go back and
 20
 00:01:07,601 --> 00:01:09,667
 read about it again in your reading assignment to try and
-阅读你的阅读任务的相关内容，试着
+试着通过阅读任务的相关内容理解
 
 21
 00:01:09,736 --> 00:01:11,770
 understand it. If you still don't understand it,
-去理解它。如果你依然搞不懂
+如果你依然搞不懂
 
 22
 00:01:11,839 --> 00:01:15,440
@@ -110,27 +110,27 @@ you can of course ask on the class forums.
 23
 00:01:15,509 --> 00:01:18,443
 You can think of this as kind of the highlights of the first
-你可以把这当成最开始的两个
+你可以把这当成给最开始的
 
 24
 00:01:18,512 --> 00:01:21,613
 two reading assignments. Some of these are also highlights
-阅读任务的一种高亮。其中一些也是在最开始
+两个阅读任务勾重点
 
 25
 00:01:21,682 --> 00:01:24,283
 of the first two lectures I did in the demos,
-的两节课中我做的示例程序中的高亮
+最开始两节课的示例程序中的重点
 
 26
 00:01:24,351 --> 00:01:25,817
 so there's a little bit of that in there too.
-所以也有一点那个
+也会包含一些
 
 27
 00:01:25,886 --> 00:01:28,787
 But, this is really kind of the important stuff in Swift,
-但是，我现在能教你们的
+但是，我现在教你们的
 
 28
 00:01:28,855 --> 00:01:30,121
@@ -145,7 +145,7 @@ Swift 中还有更重要的东西要讲
 30
 00:01:33,827 --> 00:01:38,263
 but I'll teaching it kinda as we go in the next two weeks.
-但我大概将会在接下来的两周里讲解它
+但我大概将会在接下来的两周里讲解
 
 31
 00:01:38,332 --> 00:01:41,500
@@ -195,177 +195,177 @@ week you should feel very confident with Optionals,
 40
 00:02:05,025 --> 00:02:07,659
 because you're gonna see that they are absolutely everywhere
-因为你将会看到它们实际上会出现在iOS中的任何地方
+因为你将会看到它们实际上会出现在 iOS 中的任何地方
 
 41
 00:02:07,728 --> 00:02:10,696
 in iOS. Now, I mentioned this in the lecture but
-现在，我在课上提到这个但是
+我在课上提到这个
 
 42
 00:02:10,765 --> 00:02:12,497
 I wanted to show it to you from a code,
-我想用一段代码向你展示它
+但是我想用一段代码向你展示它
 
 43
 00:02:12,566 --> 00:02:16,134
 kind of a code point of view, which is that optional
-从代码的角度来看，Optional 除了枚举之外
+从代码的角度来看
 
 44
 00:02:16,203 --> 00:02:19,971
 is nothing more than an enum, it is fact just an enum,
-没啥别的东西，实际上它就是个枚举
+Optional 实际上就是个枚举
 
 45
 00:02:20,040 --> 00:02:23,408
 this is the enum that is an optional. It's a generic type,
-这是个枚举，也是个 Optional。这是个泛型
+这是 Optional 作为泛型枚举的定义
 
 46
 00:02:23,476 --> 00:02:26,011
 kind of like array, how with array when you say the type,
-有点像数组，// todo
+有点像 Array<T>，泛型数组的定义
 
 47
 00:02:26,080 --> 00:02:29,013
 you say the type of the thing you're putting in the array.
-// todo
+需要声明元素的类型
 
 48
 00:02:29,082 --> 00:02:31,783
 You should all be familiar to that, with that from Java for
-你们对此应该都不陌生，例如它在 Java 中
+你们对此应该都不陌生，就像 Java 一样
 
 49
 00:02:31,852 --> 00:02:33,351
 example, same thing in Swift.
-和在 Swift 中是一样的东西
+在 Swift 中也是一样的
 
 50
 00:02:33,420 --> 00:02:35,053
 So, with optional it is the same way,
-对于 Optional 也是一样的
+同理，对于 Optional
 
 51
 00:02:35,122 --> 00:02:38,189
-you put this type and the type that's associated there, or
-你将这种类型和与之相关的类型，或者
+you put this type, the type that's associated, there,
+尖括号里的类型 T
 
 52
 00:02:38,258 --> 00:02:39,524
-not that's associated, but
-不与之相关，但是是
+or not that's associated, but
+不是作为实际关联值的类型
 
 53
 00:02:39,593 --> 00:02:41,393
-the type of the generic type that we're talking about,
-我们正在谈论的泛型的类型
+the type of the generic type that we're talking about.
+而是我们正在谈论的泛型
 
 54
 00:02:41,462 --> 00:02:42,727
 that "T" in an optional,
-Optional 中的那个“T”
+Optional 中的那个 T
 
 55
 00:02:42,796 --> 00:02:45,297
 is just the type that's going to be the associated value.
-是将要与之关联的值的类型
+相当于关联值的占位符
 
 56
 00:02:45,366 --> 00:02:48,533
 When you look at this enum Optional,
-当你看这个枚举 Optional
+这个枚举 Optional
 
 57
 00:02:48,602 --> 00:02:53,005
 it only has two cases: "none" which is "not set," and
-它只有两种情况：“none”意思是“未赋值”，然后
+它只有两种情况：.none，未赋值
 
 58
 00:02:53,073 --> 00:02:56,241
 "some" which is "set". When it's in the some case, look:
-“some”意思是“已赋值”。当它处于 some 情况下时，看：
+和 .some，已赋值。当它为 .some 时
 
 59
 00:02:56,310 --> 00:02:59,645
-"(T)", you know what that is from the calculator demo,
-“（T）”，你们从计算器示例程序中知道这是什么
+"(T)". You know what that is from the calculator demo,
+注意这个 (T)。从计算器示例程序中你们知道
 
 60
 00:02:59,713 --> 00:03:02,480
 that's an associated value, just like when we had
-那是个关联值，就像当我们
+那是个关联值
 
 61
 00:03:02,549 --> 00:03:06,017
 operation in calculator it had associated values, like unary
-操作计算器时它有关联值，就像一元
+就像计算器中的运算
 
 62
 00:03:06,086 --> 00:03:09,087
 operation had an associative value of a function, and
-运算符有一个函数关联值
+比如一元运算符有一个函数作为关联值
 
 63
 00:03:09,155 --> 00:03:12,824
 constant had an associated value of the constant's value.
-常量有一个常量值的关联值
+常量有一个关联的常量值
 
 64
 00:03:12,893 --> 00:03:15,260
 Same thing here, with optional, in the "some" case,
-在 Optional 的“some”情况下是一样的
+Optional 的 .some 是一样的
 
 65
 00:03:15,329 --> 00:03:17,562
 the "set" case, it just has an associated value, and
-“已赋值”的情况下，它只是有一个关联值
+已赋值的情况下，它也有一个关联值
 
 66
 00:03:17,631 --> 00:03:19,498
 it's whatever type the optional was, so
-它也是 Optional 的类型，所以
+关联值的类型决定于可选值的类型
 
 67
 00:03:19,566 --> 00:03:22,500
 if this is an optional string, then it would be a string.
-如果这是个 Optional 字符串，那么它将会是一个字符串
+如果这是个可选字符串，那么关联值将会是一个字符串
 
 68
 00:03:22,569 --> 00:03:28,240
 Now what makes optional like, " I don't really get optional,
-现在让你对 Optional 感到，“我没有真正掌握 Optional，
+其实让你感到“我理解不了 Optional
 
 69
 00:03:28,309 --> 00:03:30,041
 what is it?", it's because of all those question marks and
-Optional 到底是个啥？”的原因完全在于问号和
+Optional 到底是个啥？”的原因
 
 70
 00:03:30,110 --> 00:03:32,577
 exclamation points. But, all those question marks and
-感叹号。但是，所有这些问号和
+完全在于问号和感叹号
 
 71
 00:03:32,646 --> 00:03:35,146
 exclamation points, are just sugar,
-感叹号都只是糖
+但是，所有这些问号和感叹号都只是语法糖
 
 72
 00:03:35,215 --> 00:03:39,218
 syntactic sugar, to make your code look a little simpler and
-语法糖，为了让你的代码看起来更简单和
+目的是让代码看起来更简单和直观
 
 73
 00:03:39,286 --> 00:03:42,153
 straight forward, because it's so common to use them. So,
-直观一点，因为它们经常被使用。所以
+特别是当它们经常被使用
 
 74
 00:03:42,222 --> 00:03:45,457
 I'm going to map this enum to that sugar.
-我要将这个枚举映射到那个糖上
+我把语法糖改用原本枚举的方法写出来
 
 75
 00:03:46,926 --> 00:03:51,897
@@ -400,7 +400,7 @@ here when I say Optional <String>, that means I want
 81
 00:04:11,752 --> 00:04:16,321
 an Optional String. And I'm picking the none case, and
-一个 Optional 字符串。并且我选择了 none
+一个可选字符串，并且我选择了 .none
 
 82
 00:04:16,389 --> 00:04:20,125
@@ -415,12 +415,12 @@ hello, I'm just saying x = Optional<string>.some
 84
 00:04:24,398 --> 00:04:28,800
 with associated value hello. Everyone got that? That's all
-所有人都懂了吧？这就是
+所有人都懂了吧？
 
 85
 00:04:28,869 --> 00:04:31,537
 that's happening there with the question mark thing.
-关于问号的全部事情了
+这就是关于问号的全部了
 
 86
 00:04:31,605 --> 00:04:34,839
@@ -435,12 +435,12 @@ point all we're doing is doing the switch to get things out
 88
 00:04:38,478 --> 00:04:42,914
 of an optional, so we're switching on the optional,
-内容拿出来，所以我们在打开 Optional
+内容拿出来，所以我们判断 Optional
 
 89
 00:04:42,983 --> 00:04:46,251
 and it's in the "Some" case, then we're going to grab that
-它处于“some”情况下，然后我们打算抓取那个
+它处于 .some 情况下，那我们就抓取那个
 
 90
 00:04:46,319 --> 00:04:49,053
@@ -450,12 +450,12 @@ associated value just like we did in the calculator, and
 91
 00:04:49,122 --> 00:04:51,923
 we say "let function" or "let value" to grab the associated
-我们用“let function”或者“let value”去抓取关联值
+我们用 let function 或者 let value 去抓取关联值
 
 92
 00:04:51,992 --> 00:04:53,325
 value, we're saying "let value" here and
-在这里我们用“let value”
+在这里我们用 let value
 
 93
 00:04:53,393 --> 00:04:58,663
@@ -465,22 +465,22 @@ it's grabbing that value that's associated with it.
 94
 00:04:58,732 --> 00:05:00,798
 If it's in case none, where it's not set,
-如果它处于 none 情况下，也就是未赋值时
+如果它处于 .none 情况下，也就是未赋值时
 
 95
 00:05:00,867 --> 00:05:04,002
 then it raises an exception and crashes your program,
-它会抛出一个例外使你的程序崩溃
+它会抛出一个异常使你的程序崩溃
 
 96
 00:05:04,071 --> 00:05:07,572
 we haven't talked about how to do that, it's quite easy, but
-我们还没有谈到如何做，这很简单，但是
+我们还没有谈到如何做，这很简单
 
 97
 00:05:07,641 --> 00:05:08,173
 that's what happens here,
-这就是这里发生的事情
+但这就是这里发生的事情
 
 98
 00:05:08,241 --> 00:05:10,843
@@ -490,17 +490,17 @@ that's all exclamation point is, it's basically a switch.
 99
 00:05:11,979 --> 00:05:15,447
 And then finally, If we do the "if let",
-最后，如果我们执行“if let”
+最后，如果我们执行 if let
 
 100
 00:05:15,515 --> 00:05:19,084
 "if let" is also just a switch, but
-“if let” 也只是个 switch，但是
+if let 也只是个 switch
 
 101
 00:05:19,153 --> 00:05:22,254
 in the none case of an if let, we don't raise an exception,
-此时处于 none 情况时不会抛出例外
+但是在 .none 时不会抛出异常
 
 102
 00:05:22,323 --> 00:05:26,658
@@ -510,12 +510,12 @@ we just break, break out of the switch, do nothing. Okay,
 103
 00:05:26,726 --> 00:05:29,361
 does that help you a little bit understand what optional
-这对帮助你理解什么是 Optional 有点帮助
+希望这对帮助你理解什么是 Optional 有点帮助
 
 104
 00:05:29,429 --> 00:05:32,931
 is? Optional is a type, it's an enum, it's just like any
-吧？Optional 是一个类型，它是个枚举，它跟其他任何类型
+Optional 是一个类型，它是个枚举，它跟其他任何类型
 
 105
 00:05:33,000 --> 00:05:35,400
@@ -525,12 +525,12 @@ other type, it just has this interesting behavior, and
 106
 00:05:35,468 --> 00:05:36,501
 it's got all the question marks and
-所有的问号和
+所有的问号和感叹号
 
 107
 00:05:36,570 --> 00:05:39,070
 exclamation points to make all the code look a little
-感叹号都是为了让代码看起来更简单一点
+都是为了让代码看起来更简单一点
 
 108
 00:05:39,139 --> 00:05:42,407
@@ -555,12 +555,12 @@ So, let's say I have a Optional UILabel like my
 112
 00:05:53,954 --> 00:05:57,556
 display in the calculator and it's got the text, that's also
-的 Optional UILabel 而且它有文本，那也是
+的 Optional UILabel。而且它有 text 文本
 
 113
 00:05:57,625 --> 00:06:00,859
 an optional, Optional String, we all know that. And
-一个 Optional，Optional 字符串，我们都知道
+那也是一个 Optional，可选字符串
 
 114
 00:06:00,928 --> 00:06:04,062
@@ -570,7 +570,7 @@ let's say we want to get the hashValue which is just a var
 115
 00:06:04,131 --> 00:06:07,632
 on string, which hashes the string, gives you some integer
-它哈希这个字符串，给你一些代表它的整数
+它哈希这个字符串，给你一个代表它的整数
 
 116
 00:06:07,701 --> 00:06:10,401
@@ -580,27 +580,27 @@ for it, I want to get that hashValue of what's in
 117
 00:06:10,470 --> 00:06:13,938
 the display. So then I would probably do some code that
-所以然后我大概会写一些类似于
+所以我大概会写一些类似于
 
 118
 00:06:14,007 --> 00:06:16,842
 looks like this, this is probably similar code to what
-这样的代码，这很可能和我们在计算器
+这样的代码，这很可能和我们在计算器中
 
 119
 00:06:16,911 --> 00:06:20,211
 we have in our calculator where I've got my display,
-中得到我的 display 的代码很像
+得到我的 display 的代码很像
 
 120
 00:06:20,280 --> 00:06:24,882
 that's my IBOutlet probably that display UILabel?, and
-那大概是我的 IBOutlet display: UILabel?
+那大概是我的 @IBOutlet display: UILabel?
 
 121
 00:06:24,951 --> 00:06:29,321
 I'm going go do "if let" here, because I don't want to crash
-这里我打算用“if let”，因为我不想让程序崩溃
+这里我打算用 if let，因为我不想让程序崩溃
 
 122
 00:06:29,390 --> 00:06:30,755
@@ -610,17 +610,17 @@ so I don't want to do exclamation points,
 123
 00:06:30,824 --> 00:06:32,524
 I'm going to do "if let", so I'm going to say "if let
-我想用“if let”，所以我打算写“if let
+我想用 if let，所以我打算写如果让
 
 124
 00:06:32,593 --> 00:06:35,794
 some temporary value equals to the display" (now temp1 is
-一个临时变量等于 display”（现在 temp1 是
+一个临时变量 temp1 等于 display（现在 temp1 是
 
 125
 00:06:35,863 --> 00:06:40,599
 the UILabel), and then I say, "if let temp2 = temp1.text",
-是 UILabel），然后我写“if let temp2 = temp1.txt”
+是 UILabel），然后我写 if let temp2 = temp1.text
 
 126
 00:06:40,667 --> 00:06:43,568
@@ -630,57 +630,57 @@ I'm sending text to the UILabel and
 127
 00:06:43,637 --> 00:06:46,037
 now I'm getting back a String, not an Optional String, but
-现在我得到了一个字符串，不是 Optional 字符串，而是
+现在我得到了一个字符串，不是可选字符串，而是
 
 128
 00:06:46,106 --> 00:06:48,707
 a String, because I did "if let", then I can finally say,
-字符串，因为我用了“if let”，最后我写道
+字符串，因为我用了 if let，最后我写道
 
 129
 00:06:48,776 --> 00:06:51,542
 then "let x = temp2", which is the String,
-“let x = temp2.hashValue”，来获得一个字符串的
+let x = temp2.hashValue，来获得字符串的哈希值
 
 130
 00:06:51,611 --> 00:06:55,747
 the hashValue. Okay, this is a lot of code to have to type to
-哈希值。ok，只是为了获得一个该死的哈希值
+我们写这么多代码只是为了
 
 131
 00:06:55,816 --> 00:07:00,084
 just get that dang hashValue, out of that UILabel's text.
-我们得写这么多代码，在那个 UILabel 的文本之外
+获得一个 UILabel 文本那该死的哈希值
 
 132
 00:07:00,153 --> 00:07:03,422
 With optional chaining, this same code looks like this,
-用 Optional Chaining，同样的代码看起来就像这样
+用 Optional Chaining，可选链接
 
 133
 00:07:03,490 --> 00:07:05,290
 the first line of those two lines.
-这两行中的第一行
+同样的代码能用第一行表示
 
 134
 00:07:05,359 --> 00:07:10,696
 "If let x = display?.text?.hashValue,
-“if let x = display?.text?.hashValue，
+if let x = display?.text?.hashValue
 
 135
 00:07:10,764 --> 00:07:16,568
 then do something with x". In that case of course, x will
-然后用 x 做一些事情”。当然在这种情况下，x 不是
+然后用 x 做一些事情。当然在这种情况下，x 不是
 
 136
 00:07:16,636 --> 00:07:20,005
 be a non-optional, because I'm doing if let on it.
-一个 Optional，因为我用了if let
+一个 Optional，因为我用了 if let
 
 137
 00:07:20,073 --> 00:07:23,408
 If I take the "if" off, and just do "let x =" all that,
-如果我将“if”删掉，只写“let x = ”的话
+如果我将 if 删掉，只写 let x = 的话
 
 138
 00:07:23,476 --> 00:07:27,045
@@ -715,7 +715,7 @@ just return nil for this whole expression, this entire line,
 144
 00:07:42,930 --> 00:07:45,998
 boom, it's just gonna return nil. If I'm if letting it,
-boom，它仅仅是返回空。如果我用 if let
+它仅仅是返回空。如果我用 if let
 
 145
 00:07:46,066 --> 00:07:48,933
@@ -730,72 +730,72 @@ You can do as many of these as you want in a row, and
 147
 00:07:51,338 --> 00:07:55,574
 we do this all the time, this optional chaining is going to
-我们成天都在做这种事，你的代码中将会大量使用
+我们成天都在做这种事，你的代码中将会
 
 148
 00:07:55,642 --> 00:07:58,676
 be all over your code, and it makes perfect sense because
-Optional chaining，并且它很容易理解
+大量使用可选链接。并且它很容易理解
 
 149
 00:07:58,745 --> 00:08:01,280
 again, we're using this question mark and exclamation
-因为我们使用问号和感叹
+因为问号和感叹号
 
 150
 00:08:01,348 --> 00:08:04,316
 point. Here we happen to use the question mark when we're
-号。这里当我们访问它，声明它时
+我们在访问它时会用
 
 151
 00:08:04,385 --> 00:08:07,952
 accessing it versus when we're declaring it. That's what it
-我们恰巧使用问号。这就是当你
+声明的时候也会用
 
 152
 00:08:08,021 --> 00:08:09,621
 means to use a question mark when you're accessing it,
-访问它时使用问号的含义
+这就是访问它时使用问号的含义
 
 153
 00:08:09,690 --> 00:08:12,557
 it means go get it, and if it's not set,
-它的意思是去得到它，如果它未赋值
+它的意思是有关联值就去获取
 
 154
 00:08:12,626 --> 00:08:14,359
 then just return nil from this whole expression,
-那么整个表达式返回空
+未赋值那么整个表达式返回空
 
 155
 00:08:14,428 --> 00:08:15,661
 it will just bail out of the whole thing,
-它会保护整件事
+它会保护整个过程
 
 156
 00:08:15,729 --> 00:08:18,196
 It will never even execute hash value because we'll never
-它甚至不会执行 hashValue 因为我们从未
+如果当中任何一个为空，它甚至不会执行 hashValue
 
 157
 00:08:18,265 --> 00:08:20,366
 get down to that end of it, if any of these things are nil.
-执行到底，如果它们当中任何一个为空
+因为我们不会执行到底
 
 158
 00:08:24,471 --> 00:08:26,971
 Another cool optional things we can do is optional
-我们能用 Optional 做的另一件很酷的事是 Optional
+我们能用 Optional 做的另一件很酷的事是
 
 159
 00:08:27,040 --> 00:08:31,543
 defaulting. So what if we had wanted to put a string in our
-defaulting。我们想将一个字符串放到一个类似于 display
+可选默认值。我们想将一个字符串放到类似于 display
 
 160
 00:08:31,612 --> 00:08:35,480
 UI label like in our display, but we know that if that
-的 UILabel 里面，但我们知道如果那个
+的 UILabel 里面，但如果我们知道那个
 
 161
 00:08:35,548 --> 00:08:37,749
@@ -805,7 +805,7 @@ string is nil, we don't want to put nil in there because
 162
 00:08:37,818 --> 00:08:40,418
 what'll happen to our label if we put nil in as the text?
-如果我们将空当成文本放到 label里面将会发生什么？
+如果我们将空当成文本放到 label 里面将会发生什么？
 
 163
 00:08:40,487 --> 00:08:43,822
@@ -830,7 +830,7 @@ I want to put space in there if it's nil. This is the code
 167
 00:08:50,898 --> 00:08:53,565
 that it would look like here: I'd have my string, I would
-看起来差不多是这样的：我有个字符串，我想
+看起来差不多是这样的：我有个字符串
 
 168
 00:08:53,634 --> 00:08:57,135
@@ -840,23 +840,23 @@ say if the string is not nil, then put it in the display,
 169
 00:08:57,204 --> 00:09:02,341
 otherwise, if it is nil, put space in there. This looks
-其他情况下，如果它为空，在这放个空格。用
+其他情况下，如果它为空，在这放个空格
 
 170
 00:09:02,409 --> 00:09:06,845
 a lot cleaner with optional defaulting, which looks like
-Optional defaulting 的话代码会显得很简洁，看起来就像
+用可选默认值的话代码会显得很简洁
 
 171
 00:09:06,913 --> 00:09:11,616
 this, display.text = s ?? " ". That means if s is nil, use
-这样，display.text = s ?? " "。它的意思是如果 s 为空，用
+就像这样，display.text = s ?? " "。意思是如果 s 为空
 
 172
 00:09:11,685 --> 00:09:15,788
 this other thing. It's like the default in case s is nil.
-另一个东西。它像 s 为空时的默认值
-
+就用另一个东西，也就是 s 为空时的默认值
+ 
 173
 00:09:17,191 --> 00:09:20,993
 We will use this all the time as well. Everybody got that?
@@ -865,22 +865,22 @@ We will use this all the time as well. Everybody got that?
 174
 00:09:21,061 --> 00:09:23,862
 Just optional defaulting. Alright, so I bring those out
-只是个 Optional defaulting。好了，我把这些从
+就是给可选提供默认值。好了，我提到的
 
 175
 00:09:23,931 --> 00:09:25,463
 of the optional world just to highlight them,
-Optional 的世界中取出来只是为了强调它们
+只是 Optional 的世界中想再次强调的
 
 176
 00:09:25,532 --> 00:09:27,432
 because there's a lot in the reading that you're doing
-因为这有很多你已经阅读过的关于 Optional 的东西了
+因为你已经阅读过很多关于 Optional 的东西了
 
 177
 00:09:27,501 --> 00:09:29,934
 about optional, but these are kind of the highlights.
-但是还是有一些强调点的
+但是这些还是需要强调的
 
 178
 00:09:30,003 --> 00:09:32,437
@@ -890,17 +890,17 @@ There are a couple more things actually I'll show you later,
 179
 00:09:32,505 --> 00:09:35,707
 but basically that's it for optionals. Alright, tuples.
-但是基本上这就是 Optional 的全部内容了。好了，元组。
+但这基本上就是可选的全部内容了
 
 180
 00:09:35,775 --> 00:09:38,743
 So I had you skip tuples in reading assignment one, but
-我在阅读任务1中跳过了元组，但
+下一个，元组。虽然在阅读任务一中跳过了
 
 181
 00:09:38,812 --> 00:09:41,947
 you'll be reading about them in reading assignment two.
-你们将会在阅读任务2中读到它们
+但你们将会在任务二中读到它们 
 
 182
 00:09:42,015 --> 00:09:42,848
@@ -915,12 +915,12 @@ A tuple is super simple, it's just a grouping of values,
 184
 00:09:47,955 --> 00:09:51,189
 and you can use it anywhere you're using a type. What does
-你可以将它当成一种类型在任何地方使用
+你在任何使用类型地方，都可以用元组
 
 185
 00:09:51,258 --> 00:09:54,692
 a tuple look like? It looks like this. This var here,
-元组长啥样呢？它长这个样。这里的变量，
+元组长啥样呢？它长这个样。这里的变量
 
 186
 00:09:54,761 --> 00:09:59,164
@@ -930,22 +930,22 @@ this constant, actually x, I'm setting its type to be a tuple
 187
 00:09:59,232 --> 00:10:04,002
 with a string and int and a double, that's its type. A tuple
-由 String 和 Int 和 Double 组成，那就是它的类型。一个元组内
+由 String，Int 和 Double 组成，那就是它的类型
 
 188
 00:10:04,071 --> 00:10:06,972
 can have any number of things in there, but realistically,
-可以包含任意多的类型，但是实际上
+一个元组内可以包含任意多的类型，但是实际上
 
 189
 00:10:07,041 --> 00:10:09,908
 we probably only have three or four, sometime only two, but
-我们大概只会有3或4个，有时候只有俩，但
+我们大概只会有3或4个，有时候只有俩
 
 190
 00:10:09,977 --> 00:10:15,980
 it can have any number. I can set x equal to parentheses,
-它可以有无穷多个。我可以使 x 等于一个圆括号
+但它可以有无穷多个。我可以使 x 等于一个圆括号
 
 191
 00:10:16,049 --> 00:10:19,451
@@ -955,7 +955,7 @@ those three, any value of those three types. So here,
 192
 00:10:19,519 --> 00:10:22,187
 I've set it to hello, 5, and 0.85.
-我将它设置为 “hello”，5和0.85
+我将它设置为 "hello"，5 和 0.85
 
 193
 00:10:22,255 --> 00:10:26,591
@@ -990,7 +990,7 @@ you can kinda go either, either direction,
 199
 00:10:43,209 --> 00:10:46,511
 putting things in or out. We actually, believe it or not,
-把东西放进来或拿出去。我们实际上，信不信由你
+把东西放进来或拿出去。信不信由你，我们实际上
 
 200
 00:10:46,580 --> 00:10:47,912
@@ -1005,12 +1005,12 @@ because it is also possible to name the elements of a tuple.
 202
 00:10:52,819 --> 00:10:55,987
 So here, I define x, same thing, string int double, but
-所以在这里，我定义了 x，和刚刚一样，String Int Double，但是
+这里我定义的 x 也是 (String, Int, Double)
 
 203
 00:10:56,056 --> 00:10:57,456
 look, I've named each of them,
-看这儿，我已经命名了它们
+但看这儿，我已经命名了它们
 
 204
 00:10:57,524 --> 00:11:00,992
@@ -1065,12 +1065,12 @@ Because those names
 214
 00:11:30,423 --> 00:11:32,590
 of the parts of the tuple can have good variable names.
-的部分的名字可以有很好的变量名
+每个部分都可以有很好的变量名
 
 215
 00:11:32,659 --> 00:11:35,927
 You're gonna see in your programming assignment number
-你们将会在编程任务2中看到
+你们将会在编程任务二中看到
 
 216
 00:11:35,996 --> 00:11:39,564
@@ -1090,7 +1090,7 @@ if you name them, like we have x with the named ones,
 219
 00:11:46,674 --> 00:11:50,075
 you can still do that thing where you just say, let (word,
-你依然可以做那些事，let (word,
+你依然可以用 let (word,
 
 220
 00:11:50,143 --> 00:11:53,211
@@ -1115,7 +1115,7 @@ Also, in tuples, you can always put underbar for
 224
 00:12:03,323 --> 00:12:07,125
 any of the names, like here I could say let word_ val or
-任何地方放下划线，就像这里我可以写 let (word, _, val) 或者
+任何地方放下划线，就像这里我可以写
 
 225
 00:12:07,193 --> 00:12:11,096
@@ -1125,17 +1125,17 @@ let (word, _, val) = x，这样我可以得到 word 和
 226
 00:12:11,165 --> 00:12:15,367
 val into individual variables, and I would just ignore that
-val 的值，无视掉中间
+val 的值，无视掉中间那个
 
 227
 00:12:15,435 --> 00:12:19,471
 middle one. Underbar in Swift always kinda means ignore
-那个。下划线在 Swift 中意味着无视
+划线在 Swift 中意味着无视它
 
 228
 00:12:19,539 --> 00:12:22,341
 that, I'm not interested in that particular thing.
-它，我不在乎它的细节
+我不在乎它的细节
 
 229
 00:12:22,409 --> 00:12:25,477
@@ -1185,17 +1185,17 @@ You have to create a structure or something to return.
 238
 00:12:47,067 --> 00:12:48,366
 However, it's very, very, very easy in Swift.
-然而，在 Swift 中这非常（*3）简单
+然而，在 Swift 中这非常简单
 
 239
 00:12:48,435 --> 00:12:50,769
 You literally just do this. And
-你真的只需要这样做。并且
+你真的只需要用元组
 
 240
 00:12:50,838 --> 00:12:54,273
 when you get the value that comes back from that function,
-当你函数的返回值时
+并且当你函数的返回值时
 
 241
 00:12:54,341 --> 00:12:58,343
@@ -1215,27 +1215,27 @@ give the names; I could if I wanted to,
 244
 00:13:04,184 --> 00:13:07,585
 I could have said return weight:150, height:, but
-我可以写 return (weight: 150, height: xxx)，但是
+我可以写 return (weight: 150, height: xxx)
 
 245
 00:13:07,654 --> 00:13:11,390
 I decided, eh, I'm just gonna return the values. Okay,
-我决定，额，我只想返回数值。好了
+但是我决定，额，我只想返回数值
 
 246
 00:13:11,458 --> 00:13:15,994
 another thing: range, range is an important little
-另一件事：Range，Range 是 Swift 中重要的
+另一个内容：Range。Range 是 Swift 中重要的
 
 247
 00:13:16,063 --> 00:13:21,165
 struct in Swift: all that it represents is two end points.
-小结构体：它代表两个端点
+结构体：它代表两个端点
 
 248
 00:13:21,234 --> 00:13:24,536
 So a range is useful for, for example, a selection of text,
-所以 Range 很好用，举个例子，文本的选择
+所以举个例子， Range 适用于文本的选择
 
 249
 00:13:24,604 --> 00:13:27,806
@@ -1285,17 +1285,17 @@ have a range of ints. You could have a range of floats.
 258
 00:13:52,166 --> 00:13:55,200
 You could have a range of strings even. Okay, so
-你甚至可以有一个字符串的 Range。ok，所以
+你甚至可以有一个字符串的 Range
 
 259
 00:13:55,269 --> 00:13:57,836
 that T right there could be float, float, int,
-那个 T 可以是浮点数，整数，
+所以那个 T 可以是浮点数，整数，字符串
 
 260
 00:13:57,905 --> 00:14:01,139
 string. T is restricted a little bit, and I haven't
-字符串。T 有一些限制，我还没有
+T 有一些限制，我还没有
 
 261
 00:14:01,208 --> 00:14:03,374
@@ -1310,17 +1310,17 @@ But that T is restricted,
 263
 00:14:04,678 --> 00:14:07,746
 and it has to be what's called comparable. That's because
-它必须是可比较的。那是因为
+它必须是 Comparable，可比较的
 
 264
 00:14:07,815 --> 00:14:10,481
 range needs to make sure that the start index is less than
-Range 需要确保起始端点要小于
+那是因为 Range 需要确保起点小于终点
 
 265
 00:14:10,550 --> 00:14:13,619
 the end index. That's part of what a range is defined to be.
-终止端点。这是 Range 的定义的一部分
+这是 Range 定义的一部分
 
 266
 00:14:13,687 --> 00:14:16,354
@@ -1335,7 +1335,7 @@ to see if the start index is less than the end index,
 268
 00:14:19,326 --> 00:14:23,495
 minor thing there. So, for example, a range of int
-这是个小事。所以，举个例子，整数的 Range
+这是个细节。所以，举个例子，整数的 Range
 
 269
 00:14:23,563 --> 00:14:25,964
@@ -1345,12 +1345,12 @@ would be great for specifying a range in an array,
 270
 00:14:26,032 --> 00:14:28,667
 cuz an array is indexed by integers, right, starting at 0
-因为数组的下标是整数，对吧，从0开始
+因为数组的下标是整数，对吧
 
 271
 00:14:28,735 --> 00:14:32,170
 and going up to the number of things in the array.
-// todo
+从 0 开始，一直到小于数组长度的整数
 
 272
 00:14:32,239 --> 00:14:37,643
@@ -1360,12 +1360,12 @@ Now there are other more powerful, more capable ranges,
 273
 00:14:37,712 --> 00:14:41,113
 like CountableRange. A CountableRange is
-例如 CountableRange。CountableRange
+例如 CountableRange，也是个 Range
 
 274
 00:14:41,181 --> 00:14:43,916
 just like a range, except for that you can count through
-类似于 Range，特别之处在于你可以通过
+但特别之处在于你可以通过
 
 275
 00:14:43,984 --> 00:14:47,485
@@ -1375,52 +1375,52 @@ intermediate values between the start and the end.
 276
 00:14:47,554 --> 00:14:50,856
 Okay, it's like a range of ints. A CountableRange means
-ok，它看起来就像整数的 Range。CountableRange 的意思是
+它看起来就像整数的 Range
 
 277
 00:14:50,924 --> 00:14:54,092
 the begin point and end point and one point each.
-起始点和终止点以及中间每个点
+CountableRange 包含了起点，终点，以及中间每个点
 
 278
 00:14:54,160 --> 00:14:57,429
 Now as you stride through that range, it depends on what
-现在你一步步通过这个 Range，它依赖于
+遍历 Range 的过程因值的具体类型而不同
 
 279
 00:14:57,498 --> 00:15:00,565
 the type is. Striding through a range of ints is different
-它的类型。一步步通过整数的 Range 和
+遍历整数 Range 和
 
 280
 00:15:00,634 --> 00:15:03,735
 then striding through a range of floats, or striding through
-一步步通过浮点数或者是字符串
+遍历浮点数
 
 281
 00:15:03,804 --> 00:15:06,471
 a range of strings. There's a little difference there, and
-的 Range 不同。这里有点不同之处
+或者是字符串的 Range 都不同
 
 282
 00:15:06,539 --> 00:15:07,539
 we'll talk about that in a minute.
-我很快会讲到这一点
+具体不同之处，我很快会讲到
 
 283
 00:15:08,809 --> 00:15:10,508
 There's a special syntax for
-Range 的语法
+Range 的有个特别的语法
 
 284
 00:15:10,577 --> 00:15:15,581
 doing range, which is "dot dot less-than" or "dot dot dot".
-很特别，也就是“..<”或者“...”
+也就是 ..< 或者 ...
 
 285
 00:15:15,649 --> 00:15:20,018
 Dot Dot Less-than means that you put the start index and
-..< 的意思是你将开始点
+..< 的用法是你将开始点
 
 286
 00:15:20,087 --> 00:15:22,988
@@ -1440,42 +1440,42 @@ but don't include the end index, not inclusive of it,
 289
 00:15:29,497 --> 00:15:32,731
 and the dot dot dot includes both ends. So for
-... 同时包括两个端点。举个
+... 同时包括两个端点
 
 290
 00:15:32,800 --> 00:15:36,067
 example, in an array, let's have an array of four strings,
-例子，在数组中，有四个字符串
+举个例子，在数组中，有四个字符串
 
 291
 00:15:36,136 --> 00:15:39,370
 a, b, c, d, and let's say that I want to get the c and
-a b c f，假设我想把 c 和
+a b c d。假设我想把 c 和
 
 292
 00:15:39,439 --> 00:15:43,742
-the d out of there, I can say array sub, ( just
-d 拿出来，我可以写 array[]，（就像
+the d out of there, I can say array sub, (just
+d 拿出来，我可以写 array[]
 
 293
 00:15:43,811 --> 00:15:48,947
 like how I can say array sub 5 or array sub 3 is the fourth
-我可以写 array[5] 或者 array[3] 是数组中
+就像我可以写 array[5]，或 array[3]（数组中第四个）
 
 294
 00:15:49,015 --> 00:15:52,350
 index of the array), I can also specify a range and
-的第四个元素），我也可以写一个 Range
+我也可以写一个 Range 作为下标
 
 295
 00:15:52,419 --> 00:15:55,654
 get a sub array, a slice of the array, it's called. So
-来得到一个子数组，也就是数组中的一部分。
+来得到一个子数组，也就是数组中的一部分
 
 296
 00:15:55,722 --> 00:15:59,290
 I can say 2...3, which means index 2 in the array,
-我可以写 2...3，意思是数组中第二个元素
+我可以写 2...3，意思是数组中第三个元素
 
 297
 00:15:59,359 --> 00:16:03,161
@@ -1485,12 +1485,12 @@ which is c because a is index 0, b is index 1, c is index 2,
 298
 00:16:03,230 --> 00:16:07,032
 dot dot dot index 3, which is the d inclusive, cuz it's dot
-点点点[3]，也就包括了 d，因为它是
+...3，也就包括了 d，因为 ... 是闭区间
 
 299
 00:16:07,101 --> 00:16:10,135
 dot dot. And then the less than 1 would be exclusive,
-…。有小于号的那个是不包括的
+有小于号的那个是不包括的
 
 300
 00:16:10,203 --> 00:16:13,672
@@ -1500,7 +1500,7 @@ so that's why the d wouldn't be included in that one. So
 301
 00:16:13,740 --> 00:16:16,508
 see how I'm using a range to get a sub slice of an array,
-看我如何使用 Range 来得到数组的一部分
+我使用 Range 来得到数组的一部分的方法
 
 302
 00:16:16,577 --> 00:16:18,977
@@ -1510,7 +1510,7 @@ that's kind of cool. By the way,
 303
 00:16:19,046 --> 00:16:22,314
 if you say give me the array from 6...8,
-如果你写给我这个数组的6到8
+如果你写给我这个数组的 6...8
 
 304
 00:16:22,382 --> 00:16:25,016
@@ -1520,7 +1520,7 @@ that's going to crash at run time with an array index out
 305
 00:16:25,085 --> 00:16:28,053
 of bounds because this array only has four elements. So
-越界，因为这个数组只有4个元素。所以
+越界，因为这个数组只有四个元素。所以
 
 306
 00:16:28,121 --> 00:16:32,824
@@ -1555,43 +1555,43 @@ where the start value is greater than the end value,
 312
 00:16:47,341 --> 00:16:50,776
 can't be a backwards range, that's why that type like
-不能是个前后颠倒的 Range，这就是为什么它的类型，类似于
+Range 不能是前后颠倒的。因此必须是可比较的
 
 313
 00:16:50,844 --> 00:16:53,278
 int has to be comparable, of course you can compare ints.
-整数，必须是可比较的，当然你可以比较整数
+类似于整数那样的（当然你可以比较整数）
 
 
 314
 00:16:54,781 --> 00:16:59,718
 One thing very important to understand: a string,
-理解一件事非常重要：一个字符串
+注意，理解一件事非常重要
 
 315
 00:16:59,787 --> 00:17:04,089
 a subrange of a string is not a range of ints.
-一个字符串的子串不是整数 Range
+获取字符串的子串不是通过整数 Range
 
 316
 00:17:05,859 --> 00:17:08,093
 You might think it is, right, I've got this string,
-你们可能觉得是，对吧，我得到了这个字符串
+你们可能觉得是，我得到了这个字符串
 
 317
 00:17:08,162 --> 00:17:10,629
 100 characters, you might think strings sub 15 to 40
-有100个字符，你可能会想 string[15..<40]
+有 100 个字符，你可能会想 string[15..<40]
 
 318
 00:17:10,697 --> 00:17:12,998
 would be the 15th character to the 40th. And
-就是从第15个字符到第40个
+就是从第 15 个字符到第 40 个
 
 319
 00:17:13,066 --> 00:17:17,068
 it's not: a string subrange is a range of string.index,
-但并不是：字符串的子串是 String.index 的 Range
+但并不是：字符串的子串是 String.Index 的 Range
 
 320
 00:17:17,137 --> 00:17:18,971
@@ -1606,7 +1606,7 @@ I'm going to talk all about that in a few slides.
 322
 00:17:20,875 --> 00:17:23,541
 But I just want to make it really clear,
-我只想让它清晰一点
+我只想说明一点
 
 323
 00:17:23,610 --> 00:17:27,846
@@ -1616,7 +1616,7 @@ that it is possible to say string subrange start..<end,
 324
 00:17:27,914 --> 00:17:31,716
 but start and end are not ints, they're string.indexes,
-但是 start 和 end 不是整数，他们是 string.index
+但是 start 和 end 不是整数，他们是 String.Index
 
 325
 00:17:31,785 --> 00:17:35,587
@@ -1626,37 +1626,37 @@ and we'll see how that works. If the type
 326
 00:17:35,656 --> 00:17:38,089
 of the range that you create with dot dot less than or
-或者 … 创建的 Range 的类型
+或者 ... 创建的 Range 的类型
 
 327
 00:17:38,158 --> 00:17:41,793
 dot dot dot, if that type is an int, (actually,
-如果那个类型是整数，（实际上
+如果那个类型是整数
 
 328
 00:17:41,861 --> 00:17:44,863
 if it's strideable by int, they can be strided by int so
-// todo
+也就可以作为整数遍历的
 
 329
 00:17:44,932 --> 00:17:48,000
 it's not gonna be float, but I'm not really prepared to
-所以它不会是浮点数，但我还没准备好
+那自然不会是浮点数。但我还没准备好
 
 330
 00:17:48,068 --> 00:17:52,771
 talk to you about strideable), but if the range has
-给你们讲 strideable），但如果 Range 的
+给你们讲 Strideable。总之如果 Range 的
 
 331
 00:17:52,840 --> 00:17:57,008
 ints on either end, so it's a range from 2 to 7, for
-任意一个端点是整数，例如一个从2到7的 Range
+任意一个端点是整数，例如一个从 2 到 7 的 Range
 
 332
 00:17:57,077 --> 00:18:00,145
 example, then it automatically creates that countable range,
-它会自动创建一个 CountableRange
+它会自动创建为一个 CountableRange
 
 333
 00:18:00,214 --> 00:18:03,248
@@ -1676,17 +1676,17 @@ Sequence 可以被迭代或者罗列
 336
 00:18:10,257 --> 00:18:14,726
 the way you do that is with "for in", so Swift's for
-实现方法是用“for in”语句，就是 Swift 中的 for
+实现方法是用 for in 语句
 
 337
 00:18:14,795 --> 00:18:19,430
 statement, this is the only one there is. It's called
-语句，这是这里唯一的 for 语句。
+也就是 Swift 中唯一的 for 语句
 
 338
 00:18:19,499 --> 00:18:24,069
 "for in" and all it ever means is, I want to go and enumerate
-“for in”的意思是，我想要遍历这个 Sequence
+for in 的意思是，我想要遍历这个 Sequence
 
 339
 00:18:24,138 --> 00:18:28,206
@@ -1696,57 +1696,57 @@ all the values of a sequence. I'm going to talk about what
 340
 00:18:28,275 --> 00:18:31,009
 things that can be sequenced. Countable range is 1,
-可以成为 Sequence。CountableRange可以
+可以成为 Sequence。CountableRange 可以
 
 341
 00:18:31,078 --> 00:18:33,044
 because if an int goes from 0 to 7, and
-因为如果是从0到7的整数，并且
+比如 0 到 7 的整数 CountableRange
 
 342
 00:18:33,113 --> 00:18:36,815
 it's a countable range, then it can go 0, 1, 2, 3, 4, 5, 6,
-它是个 CountableRange，那么它可以遍历 0 1 2 3 4 5 6
+自然可以遍历 0 1 2 3 4 5 6 7
 
 343
 00:18:36,884 --> 00:18:42,353
 7. Arrays are sequences, sequences of their elements.
-7。数组是 Sequence，它的元素的 Sequence
+数组是 Sequence，由它元素构成的序列
 
 344
 00:18:42,422 --> 00:18:45,591
 So you can "for in" through an array. Dictionaries are also,
-所以你可以用“for in”遍历一个数组。字典也可以
+所以你可以用 for in 遍历一个数组。字典也可以
 
 345
 00:18:45,659 --> 00:18:49,161
 and we'll see that a little later. So here's how you do
-过一会儿我们就会看到。这里是一个类似于C语言的
+过一会儿我们就会看到。这相当于 C 语言
 
 346
 00:18:49,230 --> 00:18:54,132
 a normal C-like for loop, for (i = 0; i < 20; i++).
-for 循环语句，for (i = 0; i < 20; i++)
+for (i = 0; i < 20; i++) 这个 for 循环语句
 
 347
 00:18:54,201 --> 00:18:56,901
 You cannot do that in Swift, that syntax simply doesn't
-你在 Swift 中不能这样写，这个语法压根就
+你在 Swift 中不能这样写，这个语法已经
 
 348
 00:18:56,970 --> 00:19:01,807
 exist. Instead you would say for i in the range 0..<20,
-不存在。作为替代你应该写 for i in 0..<20
+不存在了。作为替代你应该写 for i in 0..<20
 
 349
 00:19:01,875 --> 00:19:04,509
 because notice I said it's less than 20, not less than or
-注意我写的是小于20，不是小于或
+注意我写的是小于 20，不是小于或
 
 350
 00:19:04,578 --> 00:19:10,448
 equal to 20, so 0..<20 means go through that. And so
-等于20，所以 0..<20 意思是遍历它
+等于 20，所以 0..<20 意思是遍历它
 
 351
 00:19:10,517 --> 00:19:12,984
@@ -1776,12 +1776,12 @@ What if I wanted to do for (i = 0.5; i <= 15.25; i += 0.3).
 356
 00:19:28,135 --> 00:19:32,905
 Whoa, how am I gonna do that? I can't, for
-噫，我该咋办呢？我不能写，例
+噫，我该咋办呢？我不能写
 
 357
 00:19:32,973 --> 00:19:38,076
 example, say for i in 0.5...15.25.
-如，写 for i in 0.5...15.25
+for i in 0.5...15.25
 
 358
 00:19:38,145 --> 00:19:42,447
@@ -1791,12 +1791,12 @@ How does it know to go by 0.3? And the answer is, it doesn't.
 359
 00:19:42,516 --> 00:19:47,219
 In fact, a range like that, 0.5...15.25 is not a countable
-事实上，像这样的 Range，0.5...15.25，不是一个
+事实上，像 0.5...15.25 这样的只是 Range
 
 360
 00:19:47,287 --> 00:19:50,923
 range, it's just range. It only knows the start and end,
-CountableRange，它只是 Range。它只知道起始点与终止点
+不是 CountableRange，它只知道起点与终点
 
 361
 00:19:50,991 --> 00:19:53,725
@@ -1806,32 +1806,32 @@ it knows nothing about what's in between, so
 362
 00:19:53,794 --> 00:19:56,995
 it cannot be a sequence, it can't be for in over. But
-它不能成为一个 Sequence，它不能用在 for in 里。但是
+它不能作为一个序列遍历
 
 363
 00:19:57,064 --> 00:20:01,567
 luckily, there's this great global function called stride.
-幸运的是，有一个叫做 stride 的很帮的全局函数
+幸运的是，有一个叫做 stride 的全局函数
 
 364
 00:20:01,635 --> 00:20:04,636
 Stride takes a from and a to, or a through,
-stride 接受一个 from 和一个 to，或者 through
+stride 接受一个 from，和一个 through 或者 to
 
 365
 00:20:04,704 --> 00:20:06,939
 (depending whether you wanna go through to the end,
-（取决于你是否想遍历到最后
+取决于你是想遍历到最后
 
 366
 00:20:07,008 --> 00:20:09,341
 or just to to and not including it), and
-或者仅仅是到那儿但不包括它），和
+还是仅仅是到那儿但不包括它
 
 367
 00:20:09,409 --> 00:20:11,476
 a by, which is, what it's going to step by.
-一个 by，意思是，每一步加上的数值大小
+和一个 by，意思是，每一步加上的数值大小
 
 368
 00:20:11,545 --> 00:20:15,781
@@ -1856,12 +1856,12 @@ Now it's a special CountableRange, it knows
 372
 00:20:26,093 --> 00:20:30,261
 how to count from 0.5 to 15.25 by that 0.3 step. You
-如何从 0.5 每隔 0.3 数到 15.25。你
+如何从 0.5 每隔 0.3 数到 15.25
 
 373
 00:20:30,330 --> 00:20:32,797
 don't need to worry about how it implements it, Stride just
-不需要关心它是如何实现的，stride 只是
+你不需要关心它是如何实现的，stride 只是
 
 374
 00:20:32,866 --> 00:20:35,633
@@ -1875,38 +1875,38 @@ ClosedCountableRange，因为它遍历到最后
 
 376
 00:20:39,273 --> 00:20:42,374
-so it's a dot dot dot kind of range of a dot dot
-所以它是个 ... 类的 Range
+so it's a dot dot dot kind of range instead of a dot dot
+所以它是个 ... 类的 Range，而不是 ..<
 
 377
 00:20:42,442 --> 00:20:45,978
 less than kind of range. So I have a CountableRange, and
-// todo。所以我有了 CountableRange，并且
+所以我有了 CountableRange，并且
 
 378
 00:20:46,046 --> 00:20:49,648
 it's a sequence, so I can for in it, so I say for i in.
-它是个 Sequence，所以我能用 for in 了，所以我写for i in
+它是个序列，所以能用 for in 了：for i in
 
 379
 00:20:49,717 --> 00:20:53,451
 Stride, I'd probably say for f in, or even better than f or
-stride，我可能会写 for f in，或者比 f 或者 i 更好的名字
+stride，我可能会用 for f in，或者比 f 或 i 更好的名字
 
 380
 00:20:53,520 --> 00:20:56,688
 i. A lot of times, by the way, on my slides, I'm gonna use
-顺带一提，大多数时候在我的幻灯片里，我会用
+顺带一提，为了放进幻灯片里
 
 381
 00:20:56,756 --> 00:20:59,457
 variables like i or x or d because I want it to fit on my
-类似于 i 或 x 的变量名，因为我想使它在我的幻灯片上更
+我会用类似 i 或 x 的变量名
 
 382
 00:20:59,526 --> 00:21:02,594
 slide, I don't want it to be wrapping. It's hard for you to
-合适，我不想让它换行（wrapping）。如果幻灯片上的代码
+我不想让代码被换行。如果幻灯片上的代码
 
 383
 00:21:02,663 --> 00:21:05,264
@@ -1976,7 +1976,7 @@ We had a class, which is our view controller subclass.
 396
 00:21:41,302 --> 00:21:42,634
 We had a struct, which is our calculator brain.
-我们做过结构体，就是我们的 Calculator Brain
+我们做过结构体，就是我们的 CalculatorBrain
 
 397
 00:21:42,703 --> 00:21:45,304
@@ -1986,7 +1986,7 @@ And we had enum, which was our operation.
 398
 00:21:46,607 --> 00:21:49,407
 The fourth one is protocols, and
-第四个是协议（protocols）
+第四个是 protocol，协议
 
 399
 00:21:49,476 --> 00:21:51,776
@@ -2011,17 +2011,17 @@ But they're new to a lot of you, and so I'm gonna try and
 403
 00:21:58,886 --> 00:22:01,119
 ease you in with these ones that are more familiar,
-等你们更熟悉时你们就会更方便地理解它
+先介绍你们更熟悉的这三个
 
 404
 00:22:01,188 --> 00:22:03,855
 although different in Swift probably than what you're used
-尽管在 Swift 中的东西可能不同于你们之前使用的
+尽管在 Swift 中或多或少有些不同
 
 405
 00:22:03,924 --> 00:22:06,258
 to, they're still more familiar to you.
-你还是更熟悉它们的
+但相较而言你还是更熟悉它们的
 
 406
 00:22:06,326 --> 00:22:09,594
@@ -2051,12 +2051,12 @@ they're almost exactly the same.
 411
 00:22:17,938 --> 00:22:20,405
 The only difference really is a class can specify a super
-唯一的不同是类可以指明它的父
+唯一的不同是类可以指明它的父类
 
 412
 00:22:20,473 --> 00:22:23,675
 class, otherwise they're declared exactly the same.
-类，除此之外他们的声明完全相同
+除此之外他们的声明完全相同
 
 413
 00:22:23,744 --> 00:22:26,611
@@ -2081,7 +2081,7 @@ Enum keeps any data it has in associated values, so it can't
 417
 00:22:38,025 --> 00:22:41,025
 have any stored properties, but it can have computed
-任何储存属性，但是它可以有计算
+有任何储存属性，但是它可以有计算
 
 418
 00:22:41,094 --> 00:22:44,930
@@ -2096,22 +2096,22 @@ Another thing that's very similar is they can all
 420
 00:22:47,601 --> 00:22:50,001
 have initializers except enums. Enums don't need
-都能初始化。枚举不需要
+都能初始化。枚举（注：一般）不需要
 
 421
 00:22:50,070 --> 00:22:52,571
 an initializer cuz you just say the case you want, but
-初始化因为你只是说明了你想要的情况，但
+因为你可以直接说明你想要的情况
 
 422
 00:22:52,640 --> 00:22:56,441
 structs and classes have initializers. Okay, so
-结构体和类有初始化。ok，所以
+结构体和类一般都有初始化
 
 423
 00:22:56,510 --> 00:22:58,543
 that's the same. Now what are the differences?
-这就是相同点。现在不同点是啥呢？
+这就是相同点。不同点是啥呢？
 
 424
 00:22:58,612 --> 00:23:01,880
@@ -2121,7 +2121,7 @@ Well of course, inheritance is a big difference for classes.
 425
 00:23:01,948 --> 00:23:05,784
 Classes have inheritance. Structs and enums do not. But
-类有继承。结构体和枚举没有。但是
+类有继承，结构体和枚举没有。但是
 
 426
 00:23:05,853 --> 00:23:08,820
@@ -2157,17 +2157,17 @@ It means that it's copied when you pass it as an argument
 432
 00:23:26,473 --> 00:23:27,906
 It's copied, even if you just assign it to another variable,
-它被复制了，甚至如果你仅仅是把它分配给其他变量
+甚至如果你仅仅是把它
 
 433
 00:23:27,907 --> 00:23:29,340
 to a function.
-或是函数
+分配给其他变量或是函数都会拷贝
 
 434
 00:23:29,410 --> 00:23:33,445
 it gets copied. If you assign it to a let, it's immutable,
-它得到的是拷贝。如果将它分配给一个 let，它是不可改变的
+如果将它分配给一个 let，它是不可改变的
 
 435
 00:23:33,514 --> 00:23:36,314
@@ -2182,7 +2182,7 @@ a value type to a let, using let x equal that thing,
 437
 00:23:40,854 --> 00:23:44,155
 you just made it immutable, no matter how complicated it is.
-你仅仅是使它不可改变，不管它有多复杂
+不管它有多复杂，你已经使它不可改变了
 
 438
 00:23:44,224 --> 00:23:45,890
@@ -2227,7 +2227,7 @@ able to perform operation but you can be able to something
 446
 00:24:07,614 --> 00:24:12,350
 very important, immutably. Now because of this, this kind of
-不可改变的事情。因此，值类型的
+不改变就能完成的事情。因此，为了实现值类型的
 
 447
 00:24:12,419 --> 00:24:15,487
@@ -2237,22 +2237,22 @@ copy-on-write behavior of value types, you must,
 448
 00:24:15,556 --> 00:24:18,957
 of course, mark all the functions that are going to
-标记所有函数
+标记所有改变值的函数为 mutating
 
 449
 00:24:19,026 --> 00:24:23,094
 modify it as mutating. And that's how the Swift knows,
-并且这也是 Swift 知道
+这是为了 Swift 知道
 
 450
 00:24:23,163 --> 00:24:27,299
 "Oops, I've gotta make a copy of this, an actual real copy,
-“哦，我得到了它的一个拷贝，一个真正的拷贝
+“哦，我需要实际拷贝它，得到一个真正的副本
 
 451
 00:24:27,368 --> 00:24:31,135
 if someone writes to it". Now a reference class is pretty
-如果有人往它里面写数据的话。“引用类型是很
+如果有人往它里面写数据的话。”引用类型是很
 
 452
 00:24:31,204 --> 00:24:34,639
@@ -2277,7 +2277,7 @@ like that, you're just passing a pointer around to it.
 456
 00:24:46,687 --> 00:24:51,089
 Now, by the way, when you say, let x equal a reference type,
-现在，顺带一提，当你写，let x = 一个引用类型时
+现在，顺带一提，当你写 let x = 一个引用类型时
 
 457
 00:24:51,158 --> 00:24:54,626
@@ -2287,7 +2287,7 @@ you can still send it messages that will mutate it.
 458
 00:24:55,996 --> 00:24:58,764
 All you're saying is the pointer can't change, but
-你们都被告知指针是不能改变的，但是
+虽然指针是不能改变的，但是
 
 459
 00:24:58,833 --> 00:25:01,533
@@ -2302,27 +2302,27 @@ Now reference types are what you're used to.
 461
 00:25:05,205 --> 00:25:08,974
 Most languages that have object-oriented reference
-大部分语言都有面向对象的引用
+大部分语言都有面向对象的引用类型
 
 462
 00:25:09,043 --> 00:25:15,213
 types. Reference types are a little bit Wild West- I
-类型。引用类型有点狂野——我
+引用类型有点狂野
 
 463
 00:25:15,282 --> 00:25:17,816
 don't have time to teach you this, I hope you'll get to see
-没时间给你们讲这个，我希望你们在斯坦福的时光里可以
+我没时间给你们讲这个，我希望你们
 
 464
 00:25:17,885 --> 00:25:19,651
 this sometime in your career at Stanford, but
-可以见到它
+在斯坦福的时光里可以接触它
 
 465
 00:25:19,720 --> 00:25:21,820
 there is a different way of thinking about programming
-有一种不同的编程思想，它与你们之前
+还有一种不同的编程思想，它与你们之前
 
 466
 00:25:21,888 --> 00:25:23,988
@@ -2347,7 +2347,7 @@ of functional programming is: you don't want this Wild West
 470
 00:25:31,732 --> 00:25:34,599
 where you've got these objects with multiple people pointing
-你得到这些有多人指向它们的对象
+你有这些有多人指向它们的对象
 
 471
 00:25:34,668 --> 00:25:37,936
@@ -2382,17 +2382,17 @@ like mathematical functions where data goes in and
 477
 00:25:52,786 --> 00:25:55,520
 predictable data comes out, because there's
-可预计的数据输出，因为
+可预计的数据输出
 
 478
 00:25:55,588 --> 00:25:59,291
 not all this side-effecting, data-effecting other objects
-不是所有 // todo
+因为不会受到其它的数据影响
 
 479
 00:25:59,359 --> 00:26:02,194
 that someone else is pointing to in all this.
-// todo
+也不会存在被多个指针引用的情况
 
 480
 00:26:02,262 --> 00:26:04,595
@@ -2402,57 +2402,57 @@ It's this really well-contained little thing.
 481
 00:26:04,664 --> 00:26:08,433
 Now iOS was not developed with functional programming in mind
-iOS 完全不是由函数式编程
+iOS 完全不是按函数式编程开发的
 
 482
 00:26:08,502 --> 00:26:11,603
 at all. But the people who invented Swift,
-开发的。但是发明 Swift 的这群人
+但是发明 Swift 的这群人
 
 483
 00:26:11,671 --> 00:26:15,074
 they were thinking about functional programming, So
-它们用函数式编程思考，所以
+它们考虑到了函数式编程，所以
 
 484
 00:26:15,142 --> 00:26:17,009
 you can kind of mix a lot of the elements of
-你可以混合很多函数式编程
+如果你正在开发一款 iOS 应用程序
 
 485
 00:26:17,077 --> 00:26:19,244
 functional programming into your application,
-的元素到你的应用程序中
+你可以把函数式编程的元素
 
 486
 00:26:19,312 --> 00:26:22,080
 if you're building an iOS application. Now that's a new
-如果你正在开发一款 iOS 应用程序。现在它是 iOS 的
+混合到你的应用程序中
 
 487
 00:26:22,149 --> 00:26:26,051
 frontier in iOS, because for however long, 20 years,
-新边界，因为不管多久，20年
+这属于开发 iOS 的前沿思想，因为过去 20 年
 
 488
 00:26:26,119 --> 00:26:28,120
 really, or 30 years, really, if you consider all the way
-或是30年，如果你考虑到
+或者是 30 年，如果把给 iOS 
 
 489
 00:26:28,188 --> 00:26:31,723
 back to the invention of the technology that led to iOS,
-所有的引领 iOS 的技术的发明
+奠基的技术发明都算上的话
 
 490
 00:26:31,792 --> 00:26:36,028
 people have been programming with basically
-人们已经基本上只在
+人们为了追求面向对象
 
 491
 00:26:36,096 --> 00:26:39,831
 reference types only, for their object-orienting.
-面向对象时用引用类型编程
+基本上只用了引用类型
 
 492
 00:26:39,900 --> 00:26:42,534
@@ -2467,22 +2467,22 @@ enums, and especially when you throw in protocols, (which I
 494
 00:26:46,173 --> 00:26:47,939
 told you I was gonna tell you that are very important, but
-现在不能给你讲的那个东西，以及泛型）
+现在不能给你讲的那个东西），
 
 495
 00:26:48,008 --> 00:26:51,843
 I cannot explain to you yet, and generics),
-编程时，当你开始完全掌握
+以及泛型编程时
 
 496
 00:26:51,912 --> 00:26:54,579
 when you start throwing those things all in there, you can
-这些所有的东西时，你就
+当你开始完全掌握这些东西时
 
 497
 00:26:54,648 --> 00:26:58,216
 really do a good job of doing real functional programming.
-真的可以把函数式编程做的很好了
+你就真的可以把函数式编程做的很好了
 
 498
 00:26:58,285 --> 00:27:02,153
@@ -2522,17 +2522,17 @@ all these things. Remember, that I said things like
 505
 00:27:24,144 --> 00:27:26,878
 the range is a sequence, or this thing is comparable,
-记得我说过（在 SE-0065 之前）Range 是 Sequence
+记得我说过 CountableRange 是 Sequence
 
 506
 00:27:26,947 --> 00:27:29,414
 remember how I said things like that? Okay, well,
-或者这个是 Comparable 的之类的吗？好，接下来
+或者这个是 Comparable 的之类的吗？
 
 507
 00:27:29,483 --> 00:27:32,483
 how do you express that? You use protocols,
-如何表达这些概念？你可以使用 Protocol（协议）
+那如何表达这些概念？你可以使用 Protocol（协议）
 
 508
 00:27:32,552 --> 00:27:37,822
