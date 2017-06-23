@@ -79,12 +79,12 @@ in the calculator case, it's the brains of the calculator,
 
 17
 00:01:02,329 --> 00:01:04,496
-it's the thing that calculates, tha's the model,
+it's the thing that calculates, that's the model,
 负责计算的那个部分就是模型
 
 18
 00:01:04,564 --> 00:01:08,500
-and tha's a UI independent part. It's what the app is,
+and that's a UI independent part. It's what the app is,
 和 UI 是没有关系的。仅仅是背后的逻辑
 
 19
@@ -94,7 +94,7 @@ not how it displays or anything like that.
 
 20
 00:01:10,637 --> 00:01:13,838
-How it displays is the controlle's job. So
+How it displays is the controller's job. So
 决定如何展示的是 Controller，控制器
 
 21
@@ -3250,7 +3250,7 @@ private to the controller. Cuz you don't want someone else
 651
 00:33:02,015 --> 00:33:05,216
 reaching in and messing with this controller's model. So
-controler 里面的 model 实例
+controller 里面的 model 实例
 
 652
 00:33:05,285 --> 00:33:06,851
@@ -3619,8 +3619,8 @@ modifies this CalculatorBrain. So this method,
 
 725
 00:36:49,777 --> 00:36:53,478
-perfomOperation, also needs mutating in front of it,
-所以 perfomOperation 方法需要增加 mutating 关键字
+performOperation, also needs mutating in front of it,
+所以 performOperation 方法需要增加 mutating 关键字
 
 726
 00:36:53,547 --> 00:36:55,881
@@ -6134,7 +6134,7 @@ if I have to do that, all of a sudden, I'm feeling like,
 1328
 01:09:35,743 --> 01:09:38,210
 this whole table business really didn't buy me that
-这个列表并不是那么能吸引我
+这个列表并不是很好的设计
 
 1329
 01:09:38,278 --> 01:09:41,313
@@ -6174,7 +6174,7 @@ It's not really working out for me.
 1336
 01:09:56,864 --> 01:10:00,932
 Okay, so how are we gonna fix this? Well, we're gonna use
-那怎么改正呢？其实，我们要用到
+那要怎么做呢？其实，我们要用到
 
 1337
 01:10:01,001 --> 01:10:04,736
@@ -6259,7 +6259,7 @@ needs to be at the beginning. So, we're going to
 1353
 01:10:50,417 --> 01:10:54,453
 replace this open curly brace with the keyword in, and
-然后把左大括号替换成关键字 in
+我们把左大括号替换成关键字 in
 
 1354
 01:10:54,522 --> 01:10:56,855
@@ -6349,7 +6349,7 @@ this. Swift also knows that this returns something.
 1371
 01:12:01,021 --> 01:12:05,424
 So we don't need return, okay. Swift also will let you have
-所以不需要写 return。还有，不论又多少个参数
+所以不需要写 return。还有，不论有多少个参数
 
 1372
 01:12:05,492 --> 01:12:09,594
@@ -6474,7 +6474,7 @@ it here. We just using as the associated value, but imagine
 1396
 01:13:37,517 --> 01:13:40,084
 it as function, parameters and things like that. It's,
-你可以想象一下，把闭包当作函数或参数使用
+你可以想象一下，把闭包这种函数当作参数使用
 
 1397
 01:13:40,153 --> 01:13:43,922
@@ -6549,12 +6549,12 @@ if not a little bit better design point for
 1411
 01:14:41,615 --> 01:14:45,851
 classes. All right, the last thing that I wanna do here.
-最后要解决的是
+最后要做的是
 
 1412
 01:14:45,919 --> 01:14:50,955
 Let's go back to our simulator. Is talk about
-让我把模拟器调出来
+（先让我把模拟器调出来）
 
 1413
 01:14:51,024 --> 01:14:54,726
@@ -6684,7 +6684,7 @@ that as the device changes, that block of stuff, gets
 1438
 01:16:10,704 --> 01:16:13,939
 stretched out, or whatever. And the stuff inside,
-那一整坨会自动伸缩把界面填满
+那一个部分会自动伸缩把界面填满
 
 1439
 01:16:14,007 --> 01:16:17,142
@@ -6709,7 +6709,7 @@ I'm gonna add one more button which you need for
 1443
 01:16:26,052 --> 01:16:29,487
 your homework anyway. Which is a dot button. One of your
-反正是你们作业里要有的——小数点
+反正是你们作业里要有的：小数点
 
 1444
 01:16:29,556 --> 01:16:33,324
@@ -7029,7 +7029,7 @@ Okay, so I'm gonna use the blue lines, actually, to put
 1507
 01:19:56,463 --> 01:19:59,164
 this at the proper space on the left edge and top.
-放置在左上角合适的位置s
+放置在左上角合适的位置
 
 1508
 01:19:59,232 --> 01:20:03,435
@@ -7072,7 +7072,7 @@ the top? And, and really it's talking about the outer edge.
 这里主要是指外层
 
 1516
-01:20:26,860 -- 01:20:28,626
+01:20:26,860 --> 01:20:28,626
 And you can try and make them the same width, or
 你当然可以选择 Equal Widths 等宽
 
@@ -7279,7 +7279,7 @@ we didn't get the right attributes on.
 1557
 01:22:30,116 --> 01:22:32,951
 So let's go back and check them all. We got fill equally,
-让我们再都检查一遍。
+让我们再都检查一遍
 
 1558
 01:22:33,019 --> 01:22:36,187
@@ -7514,7 +7514,7 @@ that's due next Wednesday. I'm here if you have questions,
 1604
 01:25:02,969 --> 01:25:05,804
 and I'll see you then. >> For more,
-下周三见。
+下周三见
 
 1605
 01:25:05,873 --> 01:25:14,379

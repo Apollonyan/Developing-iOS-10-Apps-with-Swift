@@ -11,7 +11,7 @@ We have not yet finished translating. You may view our progress by
 
 You may also support us by clicking the <a class="github-button" href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift" data-icon="octicon-star" data-show-count="true" aria-label="Star ApolloZhu/Developing-iOS-10-Apps-with-Swift on GitHub">Star</a> button on the upper right corner of this repository. Meanwhile, we'd like you to share this repository or website with your friends, through social media platforms, such as reddit, twitter, facebook, tumblr, etc., as well as other developer forums and websites, so we may help more people in need.
 
-If you are interested in helping us translate, please read [Translation Instructions/Proofread Guidelines (Chinese)](../translation-instructions.md) carefully，and refer to [Must knows about collaboration (Chinese)](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/2). We reserve rights to close any pull request that doesn't follow these regulations.
+If you are interested in helping us translate, please read [Translation Style Guide/Proofread Guidelines (Chinese)](../translation-style-guide.md) carefully，and refer to [Must knows about collaboration (Chinese)](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/2). We reserve rights to close any pull request that doesn't follow these regulations.
 
 ### Download Subtitles
 
