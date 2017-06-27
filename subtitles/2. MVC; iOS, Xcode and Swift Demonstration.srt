@@ -3845,7 +3845,7 @@ OK，我用中括号定义表格
 770
 00:39:13,020 --> 00:39:18,623
 in this table, I had, like pi and double dot pi. And then,
-在表格里，我定义 "pi" : Double.pi
+在表格里，我定义 "π" : Double.pi
 
 771
 00:39:18,692 --> 00:39:22,060
@@ -3929,8 +3929,8 @@ I'm gonna create a private var.
 
 787
 00:40:03,470 --> 00:40:05,870
-I'm gonna call it, I could call it Constants, but
-名字可以叫 Constants
+I'm gonna call it, I could call it constants, but
+名字可以叫 constants
 
 788
 00:40:05,939 --> 00:40:08,506
@@ -4080,7 +4080,7 @@ for operations sub-symbol? This operation sub-symbol,
 817
 00:41:40,334 --> 00:41:44,002
 that's how you look up a symbol in a dictionary, right?
-意思是用 symbol 来查询字典
+意思是在字典中查找 symbol
 
 818
 00:41:44,071 --> 00:41:46,437
@@ -4135,7 +4135,7 @@ why I have to do if let there, and if the constant is there,
 828
 00:42:11,232 --> 00:42:13,865
 now I can set my accumulator equal to that constant,
-就让 accumulator = constant
+就更新 accumulator = constant
 
 829
 00:42:13,934 --> 00:42:17,135
@@ -4250,7 +4250,7 @@ if we wanna have a dictionary that has mixed things in it,
 851
 00:43:28,742 --> 00:43:31,577
 we need to create a type here that represents those
-那我们就需要一个新的类型代表他们
+那我们就需要一个新的类型代表它们
 
 852
 00:43:31,645 --> 00:43:34,112
@@ -4305,7 +4305,7 @@ or a class, it's gonna be an enum. Does everyone
 862
 00:44:02,009 --> 00:44:04,943
 know what an enum is in other classes? It's basically a data
-有谁从其它课程听说过枚举的吗？
+有谁从其他课程听说过枚举的吗？
 
 863
 00:44:05,012 --> 00:44:07,646
@@ -4330,12 +4330,12 @@ Swift 也是一样的。我把它叫做 Operation
 867
 00:44:15,722 --> 00:44:18,456
 and it's gonna have case constant and
-它有 case constant 和
+它的情况有 case constant（常数）和
 
 868
 00:44:18,525 --> 00:44:22,994
 case unaryOperation. So those are the two kinds of things.
-case unaryOperation，这就是两种情况
+case unaryOperation（一元运算）两种
 
 869
 00:44:23,063 --> 00:44:26,798
@@ -4355,7 +4355,7 @@ of these, to say Operation.constant, because
 872
 00:44:34,841 --> 00:44:39,044
 this is a constant. We'll just comment that out for a second.
-因为他们是常数。暂时先注释这部分
+因为它们是常数。暂时先注释这部分
 
 873
 00:44:39,112 --> 00:44:42,147
@@ -4585,7 +4585,7 @@ and like get this associated value? Well, how would you
 918
 00:47:09,496 --> 00:47:11,796
 look at the values of an enum in another language?
-你在其它语言中是如何判断枚举类型的值的？
+你在其他语言中是如何判断枚举类型的值的？
 
 919
 00:47:11,865 --> 00:47:14,265
@@ -4995,7 +4995,7 @@ only, well, it's basically gonna show you the result or
 1000
 00:51:19,913 --> 00:51:22,013
 the value of any var that it finds.
-和其它所有变量的值
+和其他所有变量的值
 
 1001
 00:51:22,082 --> 00:51:24,916
@@ -5140,7 +5140,7 @@ Absolutely, you can use a function as a type anywhere
 1029
 00:52:56,409 --> 00:52:59,344
 you can use any other type. Argument to a method,
-在你任何其它使用类型的地方用
+在你任何其他使用类型的地方用
 
 1030
 00:52:59,413 --> 00:53:03,215
@@ -5305,7 +5305,7 @@ this unary operation. What are we gonna do? Well we just want
 1062
 00:54:45,719 --> 00:54:49,954
 to call this thing with the accumulator. Okay?
-我们调用 function(acuumulator!)
+我们调用 function(accumulator!)
 
 1063
 00:54:50,023 --> 00:54:52,657
@@ -5315,7 +5315,7 @@ But of course we'd better, I'm sorry, we want our accumulator
 1064
 00:54:52,726 --> 00:54:55,093
 to equal, calling that function with the accumulator.
-acuumulator = function(accumulator!)
+accumulator = function(accumulator!)
 
 1065
 00:54:55,162 --> 00:54:57,963
@@ -5360,12 +5360,12 @@ accumulator 是否为空
 1073
 00:55:21,288 --> 00:55:23,888
 accumulator is an optional, so it can be equal to nil or
-既然 acuumulator 是可选的，那就可能是 nil
+既然 accumulator 是可选的，那就可能是 nil
 
 1074
 00:55:23,957 --> 00:55:26,325
 it's equal to something else, and it has an associated value
-也有可能是其它的关联值
+也有可能是其他的关联值
 
 1075
 00:55:26,393 --> 00:55:30,929
@@ -6060,12 +6060,12 @@ if we're not in the middle of PendingBinaryOperation,
 1213
 01:03:11,124 --> 01:03:14,893
 this is not set. So it's an optional. All right, so
-pbo 就是未赋值的。所以它是可选的
+pbo 就是未赋值的，所以它是可选的
 
 1214
 01:03:14,962 --> 01:03:17,128
 when you've pressed the times,
-当你按下乘号（和其它二元运算）的时候
+当你按下乘号（和其他二元运算）的时候
 
 1215
 01:03:17,197 --> 01:03:21,065
@@ -6365,7 +6365,7 @@ It's the third time, mutating, all right, excellent,
 1274
 01:06:24,785 --> 01:06:28,153
 I love it when people catch on real quick. So, yeah, that
-我就喜欢这种教一遍就会的
+我就喜欢这种一点即通的学生
 
 1275
 01:06:28,222 --> 01:06:30,288
@@ -6455,7 +6455,7 @@ you get a menu and you can say, Edit All in Scope. And
 1292
 01:07:17,070 --> 01:07:22,674
 now when you change this, it's changing it everywhere. Okay,
-现在你改这一个地方，其它的都会跟着改
+现在你改这一个地方，其他的都会跟着改
 
 1293
 01:07:22,742 --> 01:07:25,077
