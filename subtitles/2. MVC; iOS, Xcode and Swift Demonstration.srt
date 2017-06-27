@@ -3845,7 +3845,7 @@ OK，我用中括号定义表格
 770
 00:39:13,020 --> 00:39:18,623
 in this table, I had, like pi and double dot pi. And then,
-在表格里，我定义 "pi" : Double.pi
+在表格里，我定义 "π" : Double.pi
 
 771
 00:39:18,692 --> 00:39:22,060
@@ -3929,8 +3929,8 @@ I'm gonna create a private var.
 
 787
 00:40:03,470 --> 00:40:05,870
-I'm gonna call it, I could call it Constants, but
-名字可以叫 Constants
+I'm gonna call it, I could call it constants, but
+名字可以叫 constants
 
 788
 00:40:05,939 --> 00:40:08,506
@@ -3995,2006 +3995,2507 @@ same as in Java, the key type.
 800
 00:40:40,407 --> 00:40:42,975
 So I'm gonna have my key be a string like pi or e.
+字典键的类型用 String，比如 π 或 e
 
 801
 00:40:43,043 --> 00:40:46,477
 And then the value is going to be a double,
+值的类型为 Double
 
 802
 00:40:46,546 --> 00:40:50,982
-like Double.pi here, or _E, okay? And believe it or
+like Double.pi here, or M_E, okay? And believe it or
+比如 Double.pi 和 M_E
 
 803
 00:40:51,051 --> 00:40:54,019
 not, I can actually say equals this syntax and
+其实我还可以直接写等于下面这个
 
 804
 00:40:54,088 --> 00:40:57,822
 it will create one for me with that step in there, okay? So
+就能初始化我的字典了
 
 805
 00:40:57,891 --> 00:41:00,693
 open square bracket, key colon value comma key colon value,
+所以中括号里面，键，冒号，值，逗号
 
 806
 00:41:02,029 --> 00:41:04,696
 that's how you can put a dictionary.
+如此循环，构成字典
 
 807
 00:41:04,765 --> 00:41:06,798
 Now of course, you can add things to a dictionary and
+当然了，你可以向字典
 
 808
 00:41:06,867 --> 00:41:08,367
 remove things, and get things out of dictionary.
+添加、查询或移除内容
 
 809
 00:41:08,435 --> 00:41:09,934
 I'll show you that in a second. But
+这我们马上会讲到
 
 810
 00:41:10,003 --> 00:41:13,304
 this is a nice way to do this. So
+但这种方法更直观
 
 811
 00:41:13,373 --> 00:41:17,843
 let's do that. Okay, so we have this nice dictionary.
+我们就这样创建了一个字典
 
 812
 00:41:17,912 --> 00:41:20,011
 So now we could use this dictionary of operations and
+我们现在结合字典 operation
 
 813
 00:41:20,080 --> 00:41:21,714
 performOperation. I'm gonna say,
+和方法 performOperation
 
 814
 00:41:23,316 --> 00:41:30,054
 if I can let the constant that I want equal the operation
+if let constant = operation[symbol]
 
 815
 00:41:30,123 --> 00:41:35,293
 that matches that symbol then, now why am I doing if let here
+如果能在 operation 中找到 symbol 对应的运算
 
 816
 00:41:35,362 --> 00:41:40,265
 for operations sub-symbol? This operation sub-symbol,
+但为什么要用 if let 呢？这种下标语法
 
 817
 00:41:40,334 --> 00:41:44,002
 that's how you look up a symbol in a dictionary, right?
+意思是在字典中查找 symbol
 
 818
 00:41:44,071 --> 00:41:46,437
 Operation to the dictionary, click on it, right?
+operation 是个字典，对吧
 
 819
 00:41:46,506 --> 00:41:49,574
 To dictionary, strings and doubles. So you look it up.
+Dictionary<String, Double>
 
 820
 00:41:49,643 --> 00:41:52,444
 When you look it up, it returns an optional of
+你查询返回的结果，是包含值的可选类型
 
 821
 00:41:52,512 --> 00:41:55,980
 the value. Why, anyone think why it would do that?
+有人知道为什么是可选的吗？
 
 822
 00:41:56,049 --> 00:41:56,948
 >> It might not be there.
+>> 因为键可能不存在
 
 823
 00:41:57,017 --> 00:41:58,149
 >> Exactly, it might not be in
+>> 没错，正是因为 symbol 可能
 
 824
 00:41:58,218 --> 00:42:01,353
 the table. Okay, what if I say operations sub X,
+不在字典里。如果我说 operation["x"]
 
 825
 00:42:01,422 --> 00:42:04,522
 that's gonna return not set, because there's no
+那就会返回 nil，因为 x 不在里面
 
 826
 00:42:04,591 --> 00:42:08,126
 X in this table. Only pi and e are in there, okay? So that's
+在字典里的只有 π 和 e
 
 827
 00:42:08,195 --> 00:42:11,163
 why I have to do if let there, and if the constant is there,
+这就是我为什么要用 if let。如果存在这个常数
 
 828
 00:42:11,232 --> 00:42:13,865
 now I can set my accumulator equal to that constant,
+就更新 accumulator = constant
 
 829
 00:42:13,934 --> 00:42:17,135
 okay? Because this constant is gonna be a Double, because
+因为 constant 是 Double
 
 830
 00:42:17,204 --> 00:42:21,239
 this is a Dictionary that has Doubles as its values, okay?
+因为字典的值是 Double
 
 831
 00:42:21,308 --> 00:42:22,140
 That's cool. Let's go ahead.
+好，这就是我们要做的
 
 832
 00:42:22,209 --> 00:42:23,909
 Let's run it. That's all we need to do. So
+现在运行试试看
 
 833
 00:42:23,978 --> 00:42:27,579
 now we've built, for constants only, a much more extensible
+虽然目前只有常数，但我们现在写好了
 
 834
 00:42:27,648 --> 00:42:30,983
 internal architecture here, to our calculator brain.
+CalculatorBrain 内部可扩展的结构
 
 835
 00:42:31,051 --> 00:42:33,384
 So of course, square root's not gonna work, okay,
+当然还不能用平方根
 
 836
 00:42:33,453 --> 00:42:38,123
 but pi works, and if I add an e button, it would do e. Okay,
+但可以用 π。如果我加个 e，那个也能用
 
 837
 00:42:38,192 --> 00:42:40,658
 everybody cool with what I did there? But
+大家都理解我干了什么吗？
 
 838
 00:42:40,727 --> 00:42:44,363
 of course, that's kind of useless just for constants.
+当然，只能处理常数就太没用了
 
 839
 00:42:44,431 --> 00:42:48,066
 We wanna be something like this, watch this. Quote,
+我们想要把这些加上
 
 840
 00:42:48,135 --> 00:42:51,770
 do my Emoji & Symbols here.
+先把我的 Emoji & Symbols 调出来
 
 841
 00:42:51,839 --> 00:42:55,106
 There's our square root, square root colon,
+找到平方根，"√" :
 
 842
 00:42:55,175 --> 00:43:00,913
 what do we wanna put over here? How about square root?
+这边放什么呢？放个 sqrt？
 
 843
 00:43:00,981 --> 00:43:05,217
 Okay, and maybe a cosine. Put cosine there.
+那余弦呢？ "cos" : cos
 
 844
 00:43:05,286 --> 00:43:09,121
 And wouldn't that be cool if we could do that, okay?
+如果能这样做该多好啊
 
 845
 00:43:09,189 --> 00:43:10,922
 Because now we'd really have an extensible table,
+因为这样我们这个多功能的字典
 
 846
 00:43:10,991 --> 00:43:14,492
 it can do constant and also can do these unary functions.
+既能放常数，又能放一元运算符
 
 847
 00:43:14,561 --> 00:43:17,696
 But we got a problem here, because square root is most
+但有个问题，因为 sqrt
 
 848
 00:43:17,765 --> 00:43:21,900
 definitely not a Double, right? Square root
+肯定不是 Double
 
 849
 00:43:21,969 --> 00:43:25,337
 is like a function, so that's no good. So we're gonna,
+因为 sqrt 是个函数，这就不行了
 
 850
 00:43:25,406 --> 00:43:28,674
 if we wanna have a dictionary that has mixed things in it,
+如果我们向要往字典中放不同类型的值
 
 851
 00:43:28,742 --> 00:43:31,577
 we need to create a type here that represents those
+那我们就需要一个新的类型代表它们
 
 852
 00:43:31,645 --> 00:43:34,112
 mixed things. So that's what we're gonna do, we're gonna
+所以我们要做的就是
 
 853
 00:43:34,181 --> 00:43:37,315
 create a new type, okay? This is gonna have a data type that
+创建一个新的类型
 
 854
 00:43:37,384 --> 00:43:39,784
 you're gonna be somewhat used to, to other languages, but
+你们可能接触过这个数据类型
 
 855
 00:43:39,853 --> 00:43:42,287
 you're gonna see it much more powerful in Swift.
+但在 Swift 中它更为强大
 
 856
 00:43:42,356 --> 00:43:46,058
 I'm gonna make it a private type that's embedded inside my
+我会把这个类型定义在
 
 857
 00:43:46,126 --> 00:43:49,127
 CalculatorBrain, so you can have types within types and
+ CalculatorBrain 的内部
 
 858
 00:43:49,196 --> 00:43:51,563
 it's just a scoping issue, that's just a naming issue,
+所以可以存在嵌套类型
 
 859
 00:43:51,632 --> 00:43:54,165
 okay? The name of this is gonna be CalculatorBrain,
+只不过会因为作用域导致名字是
 
 860
 00:43:54,234 --> 00:43:57,368
 the dot, what I call it here. And it's not gonna be a struct
+CalculatorBrain.我给它的名字
 
 861
 00:43:57,437 --> 00:44:01,940
 or a class, it's gonna be an enum. Does everyone
+它的类型不会是类或结构体，而是 enum，枚举
 
 862
 00:44:02,009 --> 00:44:04,943
 know what an enum is in other classes? It's basically a data
+有谁从其他课程听说过枚举的吗？
 
 863
 00:44:05,012 --> 00:44:07,646
 structure that has discrete values. Right,
+它每个情况都是独一无二的
 
 864
 00:44:07,714 --> 00:44:10,015
 it can only be one, like case this, case that, whatever.
+分别用 case 定义
 
 865
 00:44:10,084 --> 00:44:11,950
 It can only be one of a discrete value and
+变量只能为其中的某种情况
 
 866
 00:44:12,019 --> 00:44:15,653
 the same thing here in Swift. I'm gonna call it Operation,
+Swift 也是一样的。我把它叫做 Operation
 
 867
 00:44:15,722 --> 00:44:18,456
 and it's gonna have case constant and
+它的情况有 case constant（常数）和
 
 868
 00:44:18,525 --> 00:44:22,994
 case unaryOperation. So those are the two kinds of things.
+case unaryOperation（一元运算）两种
 
 869
 00:44:23,063 --> 00:44:26,798
 And then I'm gonna make this Dictionary return an Operation
+接着我把字典的值改为 Operation
 
 870
 00:44:26,867 --> 00:44:31,370
 instead of a Double. Okay, so that means I have change all
+而不是 Double。这意味着我要
 
 871
 00:44:31,438 --> 00:44:34,772
 of these, to say Operation.constant, because
+把这些放进 Operation.constant
 
 872
 00:44:34,841 --> 00:44:39,044
 this is a constant. We'll just comment that out for a second.
+因为它们是常数。暂时先注释这部分
 
 873
 00:44:39,112 --> 00:44:42,147
 And then this is also an Operation.constant.
+e 也是个 Operation.constant
 
 874
 00:44:42,215 --> 00:44:46,384
 This one will be an Operation.unaryOperation.
+平方根是 Operation.unaryOperation
 
 875
 00:44:46,453 --> 00:44:49,854
 I can just call that Operation.unary.
+虽然可以就叫 Operation.unary
 
 876
 00:44:49,923 --> 00:44:51,289
 We'll say unary operation.
+但还是就用 unaryOperation 吧
 
 877
 00:44:51,358 --> 00:44:55,160
 Operation.unaryOperation, okay?
+余弦也是 Operation.unaryOperation
 
 878
 00:44:55,228 --> 00:44:58,763
 Cool! Okay, we can't do this anymore, of course, cuz now
+好！等等，下面就不能这么写了
 
 879
 00:44:58,832 --> 00:45:01,299
 it's not a constant that we're pulling out of there.
+因为我们获取的已经不是常量了
 
 880
 00:45:01,368 --> 00:45:05,237
 It's actually an operation, okay? And obviously,
+我们获取的是 Operation
 
 881
 00:45:05,305 --> 00:45:08,439
 we can't do that because this constant here,
+当然我们也不能赋值给 accumulator
 
 882
 00:45:08,508 --> 00:45:12,277
 is now an operation not a double. So we can't say that
+因为 Operation 不是 Double
 
 883
 00:45:12,346 --> 00:45:16,582
 equals that, okay? So this is good. This is getting better.
+现在开始慢慢好转了
 
 884
 00:45:16,650 --> 00:45:19,084
 We've got our table to be able to have both things. But
+字典里能同时装两种类型
 
 885
 00:45:19,153 --> 00:45:22,954
 in doing this, I've lost the fundamental meaning
+但我把最基本的功能都丢完了
 
 886
 00:45:23,023 --> 00:45:25,757
 of all of these things. I commented it out. So
+都变成了注释
 
 887
 00:45:25,826 --> 00:45:29,227
 now this table is kind of useless, right?
+这字典就显得很无用了
 
 888
 00:45:29,296 --> 00:45:30,929
 It knows that pi is a constant.
+虽然知道圆周率是常数
 
 889
 00:45:30,998 --> 00:45:33,631
 It knows that square root is a unary operation.
+知道平方根是一元运算
 
 890
 00:45:33,700 --> 00:45:36,668
 But it's so what? Because we can't do any of them. And
+但又怎样？我们什么也干不了
 
 891
 00:45:36,737 --> 00:45:40,773
 this is where, something you've heard of before,
+这下子你们之前听到的
 
 892
 00:45:40,841 --> 00:45:44,242
 associated values comes in. Remember optional has
+关联值就能派上用场了
 
 893
 00:45:44,311 --> 00:45:46,845
 this thing where when it's in the set stage it has this
+还记得可选类型在不为空的时候
 
 894
 00:45:46,914 --> 00:45:49,681
 associated value that's associated with the set state,
+会关联一个关联值吗？
 
 895
 00:45:49,750 --> 00:45:54,953
 but is not associated with the not set state? Okay, optional
+只在有值的时候关联，为空的时候就没有？
 
 896
 00:45:55,022 --> 00:45:59,925
 is an enum. It's an enum with two cases. The not set case,
+可选类型其实是个有两个 case 的枚举
 
 897
 00:45:59,994 --> 00:46:03,094
-which is called none and the set case, which is called sum.
+which is called none and the set case, which is called some.
+为空的时候是 .none，有值是 .some
 
 898
 00:46:03,163 --> 00:46:06,398
-And in the sum case, it has a little associated value with
+And in the some case, it has a little associated value with
+在为 .some 的时候，就有一个关联值
 
 899
 00:46:06,467 --> 00:46:10,034
 it. And we can do the exact same thing, okay? In our enum,
+我们也能这么做
 
 900
 00:46:10,103 --> 00:46:13,739
 when the case is a constant, we can have an associated
+在我们枚举为 constant 时，可以有个关联的 Double
 
 901
 00:46:13,807 --> 00:46:16,441
 Double. And that's, we just put it right there and
+就把 (Double) 接在后面
 
 902
 00:46:16,510 --> 00:46:19,344
 we can actually could have multiple associated values.
+如果想的话我们还可以有多个 Double
 
 903
 00:46:19,413 --> 00:46:21,880
 We only need one for constants. But we can have
+这里我们只需要一个就够了
 
 904
 00:46:21,949 --> 00:46:25,550
 this associated value. Okay, so associated values
+所以 constant 可以有 Double 作为关联值
 
 905
 00:46:25,619 --> 00:46:28,587
 are something not specific to optionals. It's for
+所以不只是可选类型有关联值
 
 906
 00:46:28,656 --> 00:46:33,525
 all enums in Swift. So this is super powerful because now
+所有的枚举类型都有。这样我们就能
 
 907
 00:46:33,593 --> 00:46:37,295
 when I add a constant into this table, for example,
+在把常数加到字典里时
 
 908
 00:46:37,364 --> 00:46:41,699
 I can just associate Double.pi with it.
+把它和 Double.pi 关联起来
 
 909
 00:46:41,768 --> 00:46:47,205
 Same thing with this constant, I'll just associate the value
+这个常量同理，关联 M_E
 
 910
 00:46:47,274 --> 00:46:50,575
 of e with it. Okay, now we'll get to these ones in a second.
+下面两个再稍等一下
 
 911
 00:46:50,644 --> 00:46:53,111
 A little more complicated there. All right, so
+稍微有些复杂
 
 912
 00:46:53,180 --> 00:46:56,314
 now I've got a table with got constants in there and
+现在我的字典已经有常量了
 
 913
 00:46:56,383 --> 00:46:57,649
 I actually know the values.
+并且我也知道具体是多少
 
 914
 00:46:57,718 --> 00:47:00,685
 So down here, when I get the operation out of here, right,
+所以下面从字典 operation 提取的时候
 
 915
 00:47:00,754 --> 00:47:02,187
 this is a type Operation,
+我要如何从这个枚举 Operation 中
 
 916
 00:47:02,255 --> 00:47:06,057
 it's one of these enums. How do I look at each of these,
+确定究竟是哪一种情况
 
 917
 00:47:06,126 --> 00:47:09,428
 and like get this associated value? Well, how would you
+然后获得它的关联值呢？
 
 918
 00:47:09,496 --> 00:47:11,796
 look at the values of an enum in another language?
+你在其他语言中是如何判断枚举类型的值的？
 
 919
 00:47:11,865 --> 00:47:14,265
 You would probably switch on them. So
+你一般会用 switch 语句
 
 920
 00:47:14,334 --> 00:47:16,268
 I'm gonna switch on this operation and
+所以我用 switch 判断 operation
 
 921
 00:47:16,336 --> 00:47:20,939
 I'm gonna do a case for when it's a constant. And
+用一个 case 判断是否是常数
 
 922
 00:47:21,008 --> 00:47:25,444
 I'm gonna do a case, we'll do colon and break.
+case .constant(Double): break
 
 923
 00:47:25,512 --> 00:47:27,445
 And I'm gonna do a case for when it's a unaryOperation,
+然后看是否是一元运算
 
 924
 00:47:27,514 --> 00:47:31,650
 and break on that case, okay? And I don't even have to
+case .unaryOperation: break
 
 925
 00:47:31,718 --> 00:47:34,286
 say default here, because these are the only two values
+我这里 default 都不用，因为这两种
 
 926
 00:47:34,354 --> 00:47:36,087
 that an operation can be, cuz it's an enum,
+就是 operation 所有可能的情况了
 
 927
 00:47:36,156 --> 00:47:39,591
 it only has one of these two values. Now here, you can see,
+作为枚举只有可能是这两种中的一个
 
 928
 00:47:39,660 --> 00:47:42,327
 it already put this in parentheses right here.
+你可能注意到这里已经把 Double 放到括号里了
 
 929
 00:47:42,395 --> 00:47:46,264
 Okay, it wants to help you get that associated value out.
+它这是在帮你把关联值提取出来
 
 930
 00:47:46,333 --> 00:47:47,866
 Okay, awesome, how do we do that?
+好啊，那具体怎么做呢？我们用
 
 931
 00:47:47,935 --> 00:47:51,536
 We say let associatedConstantValue or
+let associatedConstantValue
 
 932
 00:47:51,605 --> 00:47:55,940
 whatever we wanna call this variable. And
+let 关联值，或是更好的名字
 
 933
 00:47:56,009 --> 00:47:59,044
 that means inside here, associatedConstantValue
+结果就是 associatedConstantValue
 
 934
 00:47:59,113 --> 00:48:01,813
 is gonna be that associated value. Now we would never call
+会被赋值为关联的值。当然我们要重命名
 
 935
 00:48:01,881 --> 00:48:04,783
 it associatedConstantValue. We'll rename it in a second.
+不可能叫 associatedConstantValue
 
 936
 00:48:04,851 --> 00:48:06,585
 But now what are we gonna do with it? Well,
+现在暂时就先这样
 
 937
 00:48:06,653 --> 00:48:09,454
 in the constant case we're just gonna set our accumulator
+在是常数的情况下，我们就更新 accumulator
 
 938
 00:48:09,522 --> 00:48:12,924
 to that associated value. Now, why we wouldn't call this
+accumulator = associatedConstantValue
 
 939
 00:48:12,993 --> 00:48:15,494
 associatedConstantValue? Well, first of all, anyone reading
+为什么不叫 associatedConstantValue 呢？
 
 940
 00:48:15,562 --> 00:48:18,129
 this code knows that this is the associated value,
+因为每个读这段代码的人都知道那是关联值
 
 941
 00:48:18,198 --> 00:48:21,466
 so you don't need to say associated. And we know i's
+所以可以省略掉代表关联的 associated
 
 942
 00:48:21,535 --> 00:48:24,002
 a constant because we're in the constant case, so
+因为我们已经知道是常数了
 
 943
 00:48:24,071 --> 00:48:25,737
 i's really a waste to say that.
+所以可以省略代表常数的 constant
 
 944
 00:48:25,805 --> 00:48:29,074
 So, we would just say value here. Cuz that's what it is,
+所以叫它 value 就可以了
 
 945
 00:48:29,143 --> 00:48:33,712
 i's the constant value that's associated with it, okay?
+它就是作为常数的关联值
 
 946
 00:48:33,781 --> 00:48:37,415
 We don't need break. Everybody got that?
+注意这里不需要 break，大家记住了吗？
 
 947
 00:48:37,484 --> 00:48:39,917
 By the way, switches are slightly different in Swift in
+Swift 中 switch 的不同点在于
 
 948
 00:48:39,986 --> 00:48:42,921
 that they don't fall into each other. When you have constant,
+并不会自动进入下一个 case
 
 949
 00:48:42,990 --> 00:48:45,957
 it does this, and it's done. It doesn't go down, fall down
+常数情况的代码执行完就直接跳出
 
 950
 00:48:46,026 --> 00:48:49,161
 to the next case, okay? So you don't need break at the end
+并不会去下一个 case，所以不需要 break
 
 951
 00:48:49,230 --> 00:48:51,697
 of every single one, which is really nice. All right?
+不用每个情况都加，是件很棒的事情
 
 952
 00:48:51,765 --> 00:48:54,032
 So this is great. So should this work? I think so.
+很好，那现在能用了吗？
 
 953
 00:48:54,101 --> 00:49:03,208
 Let's try it. All right.
+我们运行试试看
 
 954
 00:49:03,276 --> 00:49:05,711
 So. Pi, okay, square root we haven't done anything with,
+好，圆周率，平方根还没有做好
 
 955
 00:49:05,779 --> 00:49:08,514
 but pi should work. Let's try. Bingo, okay.
+但圆周率是没问题的。让我们试试
 
 956
 00:49:08,582 --> 00:49:10,748
 So you see how pi is working here?
+好诶！想明白为什么圆周率可以用了吗？
 
 957
 00:49:10,817 --> 00:49:14,852
 We're saying to look up pi in this table. It finds that
+我们在字典里找到 π
 
 958
 00:49:14,921 --> 00:49:17,756
 it's a constant operation with this as the associated value.
+值是 .constant，关联值是 Double.pi
 
 959
 00:49:17,825 --> 00:49:21,893
 We switch on that operation. Find out that it's a constant.
+然后我们用 switch 判断，得知是个常数
 
 960
 00:49:21,962 --> 00:49:25,364
 We let value equal the associated value,
+然后把 value 赋值为关联的值
 
 961
 00:49:25,432 --> 00:49:27,099
 and then we just set that to the accumulator.
+最后赋值给 accumulator
 
 962
 00:49:28,568 --> 00:49:31,470
 And now that's our result, the next time they ask for result
+那就是我们计算的结果，现在 result
 
 963
 00:49:31,538 --> 00:49:33,572
 that's what we got. Okay, now let's do unary operation.
+的值就是 Double.pi。接着实现一元运算
 
 964
 00:49:33,641 --> 00:49:35,740
 Okay, this one's a little tougher, okay?
+这个稍微困难一些
 
 965
 00:49:35,809 --> 00:49:41,846
 Cuz really what I wanna do is this. Right?
+因为我想要做到的
 
 966
 00:49:41,915 --> 00:49:45,851
 The associated value wants to be those functions.
+是把函数作为关联值
 
 967
 00:49:47,220 --> 00:49:50,021
 Can I do that in Swift? Of course!
+Swift 允许我这样做吗？当然！
 
 968
 00:49:50,090 --> 00:49:52,924
 We wouldn't be here if we couldn't do that.
+如果不行的话我自然是不会这样讲的
 
 969
 00:49:52,993 --> 00:49:55,861
 How do we make an associated value be a function?
+怎么样把函数作为关联值呢？
 
 970
 00:49:55,929 --> 00:49:58,997
 Well the cool thing about Swift is that functions
+Swift 中很牛的是
 
 971
 00:49:59,066 --> 00:50:03,802
 are normal types. Just like a double, any struct,
+函数也是一种普通的类型，和 Double
 
 972
 00:50:03,871 --> 00:50:06,905
 a class, no difference between that and a double.
+以及所有的类和结构体一样，没有区别的
 
 973
 00:50:06,974 --> 00:50:09,608
 So how do I go back up to my enum, and it have
+我们回到上面定义枚举的地方
 
 974
 00:50:09,676 --> 00:50:12,677
 an associated type here be a double? How do I say,
+常数的关联值是 Double
 
 975
 00:50:12,746 --> 00:50:15,514
 the type which is a function that takes a double and
+但我要怎么描述接受一个 Double 作为参数
 
 976
 00:50:15,582 --> 00:50:17,415
 returns a double? Cuz that's what I want in here.
+返回一个 Double 的函数的类型？
 
 977
 00:50:17,484 --> 00:50:18,750
 This is a unary operation, so
+这就是括号里的一元运算的类型
 
 978
 00:50:18,819 --> 00:50:21,419
 I need this to be a function that takes a double and
+这个函数接受一个 Double
 
 979
 00:50:21,488 --> 00:50:24,489
 returns a double. We just type it, function that takes
+返回一个 Double，那就直接打出来呗
 
 980
 00:50:24,557 --> 00:50:27,226
 a double, returns a double. Just type it right in there.
+(Double) -> Double
 
 981
 00:50:28,596 --> 00:50:32,364
 This is a type. Just a type, just like string,
+这就是它的类型，就像是 String 那样的
 
 982
 00:50:32,433 --> 00:50:35,133
 but it happens to be a function. Now I'm
+只不过这个类型代表函数
 
 983
 00:50:35,202 --> 00:50:37,669
 going to take a time-out right here just to show you a little
+为了让你们能更好的理解
 
 984
 00:50:37,738 --> 00:50:39,237
 bit more about this function types,
+函数这种类型
 
 985
 00:50:39,306 --> 00:50:41,906
 to make sure you're getting this. And what I'm gonna do is
+我这里稍微花时间讲讲
 
 986
 00:50:41,975 --> 00:50:44,476
 I'm gonna create a new thing called a playground.
+我现在 File > New 一个 Playground
 
 987
 00:50:44,544 --> 00:50:46,978
 So a playground is just a place we can play around with
+playground 是实验 iOS 代码的好地方
 
 988
 00:50:47,047 --> 00:50:49,948
 iOS code. Okay? So you just say new playground,
+这里选 Playground 之后
 
 989
 00:50:50,017 --> 00:50:52,884
 this is gonna be an iOS playground. I'm gonna call it
+Platform 选 iOS
 
 990
 00:50:52,953 --> 00:50:55,420
 my CalculatorPlayground, I can call it anything I want.
+Name 叫 CalculatorPlayground
 
 991
 00:50:55,489 --> 00:50:57,355
 Just gonna save it on disk so that what I
+当然叫什么都可以，然后 Next
 
 992
 00:50:57,424 --> 00:50:59,791
 type in here when I'm playing gets saved for the next time.
+找个地方保存我将要写的代码
 
 993
 00:50:59,860 --> 00:51:01,593
 You can put it anywhere you want.
+其实放哪里都可以
 
 994
 00:51:01,662 --> 00:51:04,863
 I recommend the same place, home directory, Developer.
+但我建议放到 ~/Developer 下
 
 995
 00:51:04,932 --> 00:51:07,598
 Okay, don't put it inside another project or whatever.
+当然不要放到另一个项目里面去
 
 996
 00:51:07,667 --> 00:51:10,535
 And you can see the playground looks like this. On the left,
+playground 就长这样
 
 997
 00:51:10,604 --> 00:51:14,039
 you can type any iOS code you want. And on the right,
+左边你可以写 iOS 代码
 
 998
 00:51:14,108 --> 00:51:17,442
 it's going to evaluate what's on the left and show you not
+右边会执行你的代码
 
 999
 00:51:17,511 --> 00:51:19,845
 only, well, it's basically gonna show you the result or
+给你展示包括结果
 
 1000
 00:51:19,913 --> 00:51:22,013
 the value of any var that it finds.
+和其他所有变量的值
 
 1001
 00:51:22,082 --> 00:51:24,916
 So here it found this var string, str, and it's
+它这里找到了字符串变量 str
 
 1002
 00:51:24,985 --> 00:51:28,587
 showing you the value of str over here. Okay? So I can say,
+于是就把字符串的内容显示出来了
 
 1003
 00:51:28,656 --> 00:51:33,125
 for example, let i = 27 and it's gonna say that 27 is what
+我可以写 let i = 27，右边就会显示 27
 
 1004
 00:51:33,194 --> 00:51:38,763
 it sees there. But I'm gonna create a new var.
+就像你看到的这样。但我要另外定义个变量
 
 1005
 00:51:38,832 --> 00:51:42,601
 I'm gonna call it f. Its type is gonna be a function that
+var f，接受一个 Double 返回一个 Double
 
 1006
 00:51:42,670 --> 00:51:46,671
 takes a double and returns a double. Okay, that's its type.
+类型是 (Double) -> Double
 
 1007
 00:51:46,740 --> 00:51:49,808
 I could have said f, var f string, but
+虽然我可以让 f 作为字符串
 
 1008
 00:51:49,877 --> 00:51:52,043
 I said it's a function that takes a double and
+不过我就是想要这样一个函数
 
 1009
 00:51:52,112 --> 00:51:54,346
 returns a double. And I'm gonna set the value of f.
+然后我要把这个变量 f 的值
 
 1010
 00:51:54,414 --> 00:51:58,316
 I'm gonna set it equal to square root. Okay,
+设为平方根 sqrt
 
 1011
 00:51:58,385 --> 00:51:59,684
 I mean it's a function that takes a double and
+函数 sqrt 也是接受一个 Double
 
 1012
 00:51:59,753 --> 00:52:02,688
 returns a double. So I can say f = square root. Now how do I
+返回一个 Double，所以可以 f = sqrt
 
 1013
 00:52:02,756 --> 00:52:07,493
 actually call this function? Well I'm gonna let x equal f
+那我怎么调用这个函数呢？
 
 1014
 00:52:07,561 --> 00:52:12,598
 of 81, for example. Okay, so I call this variable,
+let x = f(81)，就是这样
 
 1015
 00:52:12,666 --> 00:52:14,466
 right here, which is a double that takes a double,
+这里我把接受一个 Double 返回一个 Double 的变量
 
 1016
 00:52:14,534 --> 00:52:17,269
 just like it was a function. And if I were to go back and
+像普通函数那样调用了
 
 1017
 00:52:17,338 --> 00:52:22,674
 change this to cosine, look what happens. Okay,
+我把 f 改为余弦 cos 看看会发生什么
 
 1018
 00:52:22,742 --> 00:52:25,510
 so now f is cosine so now I'm getting the cosine of 81.
+现在 f 就是 cos，然后得到了 81 的余弦
 
 1019
 00:52:25,579 --> 00:52:27,078
 I can even write my own function,
+其实我还可以用自己写的函数
 
 1020
 00:52:27,147 --> 00:52:29,748
 how bout func changeSign,
+比如变号 changeSign
 
 1021
 00:52:29,817 --> 00:52:33,752
 let's say it takes a double and
+接受一个 Double 作为参数
 
 1022
 00:52:33,821 --> 00:52:37,222
 returns a double, okay. So it's a regular function,
+返回值是一个 Double
 
 1023
 00:52:37,291 --> 00:52:40,125
 returns the changeSigned operand, right,
+像普通函数一样 return -operand
 
 1024
 00:52:40,194 --> 00:52:43,261
 operand changed sign. So now I could go down here and
+现在到下面
 
 1025
 00:52:43,330 --> 00:52:47,666
 change this to be changeSign, function I wrote. And
+把 f 改为我写的 changeSign
 
 1026
 00:52:47,734 --> 00:52:50,536
 now I'm getting minus 81. Okay? So everyone's seeing how
+就得到了 -81
 
 1027
 00:52:50,604 --> 00:52:53,538
-this type functions as a type? They're just normal type.
+this type, functions as a type? They're just normal type.
+大家看到表示函数的类型了吗？
 
 1028
 00:52:53,607 --> 00:52:56,341
 Absolutely, you can use a function as a type anywhere
+和普通的一样，函数类型可以
 
 1029
 00:52:56,409 --> 00:52:59,344
 you can use any other type. Argument to a method,
+在你任何其他使用类型的地方用
 
 1030
 00:52:59,413 --> 00:53:03,215
 associated value in an enum, local variable, anything.
+比如方法的参数，枚举的关联值
 
 1031
 00:53:03,284 --> 00:53:06,451
 No restriction on it, okay? I'm even gonna take the,
+局部变量，等等，没有限制
 
 1032
 00:53:06,520 --> 00:53:09,287
 note also, by the way, the change sign has an external
+稍微注意一下，changeSign 的参数
 
 1033
 00:53:09,356 --> 00:53:11,823
 name, operand. When you tall, call change sign,
+有 operand 作为参数名，所以调用
 
 1034
 00:53:11,891 --> 00:53:15,493
 looks like this. See? We've got this operand. It's okay,
+会是 changeSign(operand:)
 
 1035
 00:53:15,562 --> 00:53:18,296
 when I call it down here, I don't have to say f(operand).
+我在 f 这里的时候并不需要 f(operand:)
 
 1036
 00:53:18,365 --> 00:53:21,166
 In fact, I can't say that. And that's because f
+更准确地说是不能这么调用
 
 1037
 00:53:21,235 --> 00:53:23,835
 is just a function that takes a double, returns a double.
+因为 f 只是接受一个 Double 返回一个 Double
 
 1038
 00:53:23,904 --> 00:53:25,403
 It can be any function that takes a double and
+任何一个这样的函数都是可以的
 
 1039
 00:53:25,472 --> 00:53:27,940
 returns a double, so you can't have those external names in
+所以这里并不能有实参标签
 
 1040
 00:53:28,008 --> 00:53:29,741
 there, cuz it can be any function.
+毕竟可以是任何函数
 
 1041
 00:53:29,809 --> 00:53:33,678
 As you change it you can't be changing this, so, anyway,
+改变 f 不应该改变其调用的方法
 
 1042
 00:53:33,747 --> 00:53:37,315
 just a minor note there. So I'm gonna take changeSign,
+这是我想稍微提一下的地方
 
 1043
 00:53:37,384 --> 00:53:40,952
 actually, and copy and paste it back into my code up here,
+其实我要把 changeSign 复制粘贴
 
 1044
 00:53:41,021 --> 00:53:44,056
 so I just made a new function, it's even a nice global
+作为一个新的全局函数
 
 1045
 00:53:44,124 --> 00:53:46,458
 to this file, function called changeSign. And
+加到计算器的这个文件里
 
 1046
 00:53:46,527 --> 00:53:49,894
 I can go back here and say, changeSign, let's do something
+然后把它加到字典里
 
 1047
 00:53:49,963 --> 00:53:54,232
 for changeSign. I think I can remember how to do this,
+让我们找个合适的符号
 
 1048
 00:53:54,301 --> 00:53:57,435
 there, Ctrl + C, Cmd + Ctrl + Space, something like that,
+command + control + 空格
 
 1049
 00:53:57,504 --> 00:54:01,606
 let's go here. Edit, Okay, we need something for
+或者 Edit > Emoji & Symbols
 
 1050
 00:54:01,675 --> 00:54:03,942
 changeSign, I think I have one here, this one, okay?
+找一个符号代表 changeSign，
 
 1051
 00:54:04,011 --> 00:54:06,445
 It's not really change sign [LAUGH] but,
+就 ± 吧，虽然并不是这个意思（笑）
 
 1052
 00:54:06,513 --> 00:54:09,747
 it's all right we'll use it for that. And, so
+就决定是你了，所以这是
 
 1053
 00:54:09,816 --> 00:54:17,256
 this is an operation, an Operation.unaryOperation(chan-
+Operation.unaryOperation(changeSign)
 
 1054
 00:54:17,324 --> 00:54:21,460
 geSign). Okay? Perfectly legal. Okay, everybody got
+这样做是可以的，看到了吗？
 
 1055
 00:54:21,528 --> 00:54:26,531
 that? So now, down here in our switch, in the same
+接下来到 switch 里
 
 1056
 00:54:26,600 --> 00:54:29,501
 way that we grabbed the constant value with let value,
+就像我们获取常量值一样
 
 1057
 00:54:29,570 --> 00:54:33,371
 let's grab that associated function with let function.
+我们也把关联的函数用 let function
 
 1058
 00:54:33,440 --> 00:54:35,207
 And again we can call, this doesn't have to be a function.
+当然不一定要叫 function
 
 1059
 00:54:35,275 --> 00:54:38,777
 This could be f. It could be func. Can't be func, because
+可以是 f，`func`。不能直接是 func
 
 1060
 00:54:38,846 --> 00:54:42,480
 that's a keyword, but function it could be. Okay? So we got
+因为那是个关键字，但 function 是可以的
 
 1061
 00:54:42,549 --> 00:54:45,650
 this unary operation. What are we gonna do? Well we just want
+现在我们得到了这个一元运算，下一步呢？
 
 1062
 00:54:45,719 --> 00:54:49,954
 to call this thing with the accumulator. Okay?
+我们调用 function(accumulator!)
 
 1063
 00:54:50,023 --> 00:54:52,657
 But of course we'd better, I'm sorry, we want our accumulator
+哦，忘了，最后赋值给 accumulator
 
 1064
 00:54:52,726 --> 00:54:55,093
 to equal, calling that function with the accumulator.
+accumulator = function(accumulator!)
 
 1065
 00:54:55,162 --> 00:54:57,963
 We'd better check though to make sure this is not nil. So
+最好再确认 accumulator 是否为空
 
 1066
 00:54:58,032 --> 00:54:59,531
 I'm actually gonna do something a little different.
+这里我用个不同的方法
 
 1067
 00:54:59,599 --> 00:55:02,267
 Instead of if let, I'm gonna say if the accumulator does
+我不用 if let，而是用 if accumulator
 
 1068
 00:55:02,335 --> 00:55:07,272
 not equal nil. Then we'll do this. This is another
+!= nil 那就进行计算
 
 1069
 00:55:07,341 --> 00:55:12,677
 way to protect against this crashing your app. Okay,
+这是避免程序崩溃的另一种方式
 
 1070
 00:55:12,746 --> 00:55:16,648
 somewhat similar to if let operand equal accumulator,
+和 if let operand = accumulator 是类似的
 
 1071
 00:55:16,717 --> 00:55:20,285
 but I'm just actually checking to see if accumulator is in
+只不过这里是直接判断
 
 1072
 00:55:20,354 --> 00:55:21,220
 the not set state,
+accumulator 是否为空
 
 1073
 00:55:21,288 --> 00:55:23,888
-accumulator isn't optional, so it can be equal to nil or
+accumulator is an optional, so it can be equal to nil or
+既然 accumulator 是可选的，那就可能是 nil
 
 1074
 00:55:23,957 --> 00:55:26,325
 it's equal to something else, and it has an associated value
+也有可能是其他的关联值
 
 1075
 00:55:26,393 --> 00:55:30,929
 like these things. All right? That's all we need to do.
+就像是 Operation 的 case 有关联值一样
 
 1076
 00:55:30,998 --> 00:55:33,231
 Let's take a look. Whoops, we, we have errors there?
+我们要干的就这些。啊哦，有错？
 
 1077
 00:55:33,300 --> 00:55:39,771
 No, we don't. Okay. All right.
+啊，虚惊一场
 
 1078
 00:55:39,840 --> 00:55:45,076
 So, pi, still good. 81, square root.
+看看圆周率，没问题。81 开根
 
 1079
 00:55:45,145 --> 00:55:49,180
 Working like a charm. Okay, and again if we add cosine and
+完美解决。如果我们把余弦
 
 1080
 00:55:49,249 --> 00:55:51,016
 those which we are going to add those in a second, but for
+和其他的那些等会儿加进来之后
 
 1081
 00:55:51,085 --> 00:55:53,618
 time I'm not adding them in. But we'll add cosine and
+虽然我没有时间把所有的按钮都加进来
 
 1082
 00:55:53,687 --> 00:55:55,653
 all, actually I'm, forget it, let's do it.
+但是我至少可以，啊，其实我们有时间
 
 1083
 00:55:55,722 --> 00:55:59,357
 Let's go back to our UI right here and let's add those other
+让我们回到 Storyboard，加些按钮
 
 1084
 00:55:59,426 --> 00:56:04,495
 buttons. Let's put cosine in here. Cosine,
+把余弦放在这里，cos
 
 1085
 00:56:04,564 --> 00:56:09,301
 and let's even put our little change sign that we did there.
+然后把变号的那个加到这里
 
 1086
 00:56:09,370 --> 00:56:14,472
 Ctrl+Cmd+Space, there we go. Change sign.
+control + command + 空格
 
 1087
 00:56:14,541 --> 00:56:17,475
 Put the change sign in there. So we'll put those in there
+把 ± 放在这里，这就是
 
 1088
 00:56:17,544 --> 00:56:19,144
 and that's all we need to do in my UI.
+目前对 UI 做出的改动 
 
 1089
 00:56:19,213 --> 00:56:21,046
 It can just run again, because my brain,
+让我们再运行一遍
 
 1090
 00:56:21,114 --> 00:56:23,348
 my model already knows how to do those operations.
+我的模型已经知道如何处理这两个了
 
 1091
 00:56:23,416 --> 00:56:26,018
 So I can put any operation my brain knows how to do
+所以我可以把所有支持的运算
 
 1092
 00:56:26,086 --> 00:56:28,386
 into my calculator's UI and it'll just work.
+加到 UI 里，因为都可以直接用
 
 1093
 00:56:28,455 --> 00:56:32,524
 So here we got, you know, how about pi cosine, -1.0,
+我们试试 cos(π) = -1
 
 1094
 00:56:32,593 --> 00:56:38,029
 all right? Change sign, positive 1.0. All right, so
+没问题。变号得正一
 
 1095
 00:56:38,098 --> 00:56:42,300
 this is really looking nice, because our calculator brain,
+看起来不错，因为并没有
 
 1096
 00:56:42,369 --> 00:56:44,903
 still hardly any code in here, and yet
+给 CalculatorBrain 加很多代码
 
 1097
 00:56:44,972 --> 00:56:48,373
 now it's fully extensible for both constants and
+现在已经支持加常数
 
 1098
 00:56:48,442 --> 00:56:52,711
 unary operations. What's next? Binary operations.
+和一元运算了。那接下来就是二元运算
 
 1099
 00:56:52,780 --> 00:56:57,382
 5 times 3 equals, okay, much more difficult, right?
+5 * 3 = 这样更复杂的
 
 1100
 00:56:57,451 --> 00:57:01,286
 Because there's actually two operations there when we do 5
+因为这里同时会进行两个运算
 
 1101
 00:57:01,355 --> 00:57:05,323
 times 3 equals. There's the times, which puts you in this
+5 * 3 = 中有乘法，会让你进入一个
 
 1102
 00:57:05,392 --> 00:57:09,160
 weird pending state, and then there's the equals which
+奇怪的等待期，又有一个等于
 
 1103
 00:57:09,229 --> 00:57:13,364
 actually finishes the 5 times 3 equals, right? So I'm
+这才结束 5 * 3 =，是吧？
 
 1104
 00:57:13,433 --> 00:57:17,535
 gonna need some data structure to remember the 5 times
+所以直到按下等号之前
 
 1105
 00:57:17,604 --> 00:57:20,805
 until the equals comes along. Okay, so let's do that,
+我需要一个数据结构保存 5 *
 
 1106
 00:57:20,874 --> 00:57:23,608
 let's add a data structure for that. Actually, before we even
+让我们这就添加一个数据结构
 
 1107
 00:57:23,677 --> 00:57:26,945
 do that, let's back up here and talk about all this mess.
+不过在那之前
 
 1108
 00:57:27,014 --> 00:57:29,848
 What's this gonna be like for binary operations? So we need
+我们先让 Operation 支持二元运算
 
 1109
 00:57:29,917 --> 00:57:34,753
 a binary operation here. And what's its type gonna be?
+所以我们先加一个 case binaryOperation
 
 1110
 00:57:34,821 --> 00:57:39,491
 What's its associated value gonna be? What do you think?
+你觉得它关联值的类型是什么呢？
 
 1111
 00:57:41,295 --> 00:57:44,195
 How about a function that takes two double and
+是接受两个 Double 返回 Double 的 函数
 
 1112
 00:57:44,264 --> 00:57:47,432
 returns a double? All right, and we're also gonna need
+(Double, Double) -> Double
 
 1113
 00:57:47,500 --> 00:57:50,602
 an equals operation as well. And so
+同时还要有个 case equals
 
 1114
 00:57:50,671 --> 00:57:53,438
 we can just go down here and do, for example, times,
+然后我们到下面把乘号
 
 1115
 00:57:53,507 --> 00:57:57,542
 let's do times. Oops, space, there we go.
+command + control + 空格
 
 1116
 00:57:57,611 --> 00:58:01,747
 I've got a nice mathematical times symbol here. Okay,
+用数学里这个漂亮的乘号 ×
 
 1117
 00:58:01,815 --> 00:58:05,851
 we have to enter in Operation.binaryOperation. And
+值是 Operation.binaryOperation
 
 1118
 00:58:05,919 --> 00:58:09,821
 we need multiply basically here. So I'm gonna make my own
+这里我们要有一个实现乘法的函数
 
 1119
 00:58:09,890 --> 00:58:13,058
 multiply function. We'll just put multiply there.
+所以我就自己写一个，叫 multiply
 
 1120
 00:58:13,126 --> 00:58:18,563
 Also of course, I need equals which is Operation.equals.
+还需要一个 "=" : Operation.equals
 
 1121
 00:58:18,632 --> 00:58:21,600
 Okay, put those on my table. So this multiply,
+把这些都放进字典里
 
 1122
 00:58:21,668 --> 00:58:24,903
 where's that? There's no function called multiply.
+但 multiply 是从哪里来的呢？
 
 1123
 00:58:24,972 --> 00:58:26,605
 Well, just like I did changeSign up here,
+没有那就像 changeSign 一样
 
 1124
 00:58:26,674 --> 00:58:28,406
 I'm gonna create my own little func,
+在上面自己写一个 multiply 函数
 
 1125
 00:58:28,475 --> 00:58:32,144
 multiply. It's gonna take op1, which is a Double,
+第一个参数是为 Double 的 op1
 
 1126
 00:58:32,213 --> 00:58:34,012
 and op2, which is a Double. And
+第二个参数 op2 也是 Double
 
 1127
 00:58:34,081 --> 00:58:39,451
 it's gonna return a Double, of course. Oops, and
+返回值是一个 Double
 
 1128
 00:58:39,520 --> 00:58:41,954
 it's just gonna return op1 times op2, okay?
+然后就 return op1 * op2
 
 1129
 00:58:42,022 --> 00:58:45,190
 So I got this nice function up here. Fits in here nice,
+multiply 就写好了
 
 1130
 00:58:45,259 --> 00:58:48,727
 no error, everything's fine there, got that. So
+没有编译错误
 
 1131
 00:58:48,795 --> 00:58:52,898
 now we have the hard part of what do we do with the case
+现在就可以开始解决难题了
 
 1132
 00:58:52,966 --> 00:58:56,701
 here that is binary operation? We still have a function,
+在 case .binaryOperation 时究竟做什么
 
 1133
 00:58:56,770 --> 00:58:59,337
 but now it's a function that takes two doubles and returns
+我们仍然可以用 let function 获取关联值
 
 1134
 00:58:59,406 --> 00:59:04,042
 a double. All right, so what are we gonna do here? Get,
+不过是接受两个 Double 返回个 Double
 
 1135
 00:59:04,111 --> 00:59:08,046
 like I said, we're gonna need some kind of data structure
+我们现在需要的是一个数据结构
 
 1136
 00:59:08,115 --> 00:59:09,848
 to remember five times and
+用来记忆 5 *
 
 1137
 00:59:09,917 --> 00:59:13,518
 wait till we get another case which is equals, okay?
+直到我们等到 case .equals
 
 1138
 00:59:13,587 --> 00:59:16,187
 And we're gonna have to do something in here. So
+这里先补个 break 占位
 
 1139
 00:59:16,256 --> 00:59:19,758
 let's take a time out here and create another data structure
+那我们就来定义这个类型
 
 1140
 00:59:19,827 --> 00:59:22,994
 to remember five times while we're waiting for
+来保存 5 * 直到 3 =
 
 1141
 00:59:23,063 --> 00:59:26,097
 three equals to happen. So I'm gonna make it a struct.
+我会用一个结构体
 
 1142
 00:59:26,166 --> 00:59:29,434
 It's also gonna be an embedded private struct, just like this
+这会是个嵌套的私有结构体
 
 1143
 00:59:29,503 --> 00:59:33,805
 was embedded private enum. So the name of this enum,
+就像这个嵌套的私有枚举一样
 
 1144
 00:59:33,874 --> 00:59:36,975
 its full name is CalculatorBrain.Operation, but
+它名字叫做 CalculatorBrain.Operation
 
 1145
 00:59:37,044 --> 00:59:39,410
 as long as I'm using it inside this struct,
+但只要我们在这个类里面调用
 
 1146
 00:59:39,479 --> 00:59:42,447
 we can just call it operation, like we did right here.
+就可以只叫它 Operation
 
 1147
 00:59:42,516 --> 00:59:44,315
 Okay, so same thing here.
+这里同理
 
 1148
 00:59:44,384 --> 00:59:48,186
 I'm gonna call this one PendingBinaryOperation.
+我把它叫做 PendingBinaryOperation
 
 1149
 00:59:48,255 --> 00:59:50,255
 Okay, it's gonna be a PendingBinaryOperation.
+因为它是即将完成的二元运算
 
 1150
 00:59:50,324 --> 00:59:54,326
 And it's gonna have two vars. One is the function which is
+里面有两个变量。其一是二元函数
 
 1151
 00:59:54,395 --> 00:59:59,231
 gonna be, it takes two Doubles, returns a Double. And
+let function: (Double, Double) -> Double
 
 1152
 00:59:59,299 --> 01:00:03,368
 it's going to have the first operand, which is a Double.
+另一个是 let firstOperand: Double
 
 1153
 01:00:03,437 --> 01:00:06,904
 So it's just gonna be a struct that holds those two things.
+所以就是有两个变量的这么一个结构体
 
 1154
 01:00:06,973 --> 01:00:10,842
 Now never forget that structs in Swift can have methods and
+不要忘了结构体里也可以有方法
 
 1155
 01:00:10,911 --> 01:00:11,877
 things like that. In fact,
+以及其他的那些
 
 1156
 01:00:11,945 --> 01:00:13,745
 I'm gonna put a method on here just to remind us of that.
+我现在就写一个提醒大家
 
 1157
 01:00:13,814 --> 01:00:16,749
 I'm gonna have a func called perform which will
+就叫 func perform
 
 1158
 01:00:16,817 --> 01:00:19,684
 perform this binary operation. Now what does
+执行这个二元函数
 
 1159
 01:00:19,753 --> 01:00:23,689
 it need to perform it? It needs a second operand.
+那它需要什么参数？它需要第二个算子，并返回 Double
 
 1160
 01:00:26,126 --> 01:00:29,260
 Okay? And it's gonna return a double. Okay,
+(with secondOperand: Double) -> Double
 
 1161
 01:00:29,329 --> 01:00:32,497
 now, notice the naming here. Why did I use this naming,
+注意这里的命名。为什么
 
 1162
 01:00:32,566 --> 01:00:36,735
 with as my external and here secondOperand as my internal?
+实参标签是 with，形参名称是 secondOperand
 
 1163
 01:00:36,804 --> 01:00:38,336
 Well, secondOperand is the internal,
+secondOperand 是内部使用的
 
 1164
 01:00:38,405 --> 01:00:40,071
 because that's what this argument is.
+因为这个参数就是我的第二个算子
 
 1165
 01:00:40,140 --> 01:00:42,574
 And in my code here, I want the firstOperand and
+并且我希望 firstOperand 和
 
 1166
 01:00:42,643 --> 01:00:44,643
 secondOperand to have the right names. But
+secondOperand 的命名风格类似
 
 1167
 01:00:44,711 --> 01:00:47,713
 I'm using with because when someone calls this, they're
+但我还要求调用时加一个 with 作为实参标签
 
 1168
 01:00:47,781 --> 01:00:50,482
 gonna say perform(with: 5.0). And of course,
+也就是类似 perform(with: 5.0)
 
 1169
 01:00:50,551 --> 01:00:53,284
 if they're performing a pending binary operation, so
+因为这是在完成未完成的二元运算
 
 1170
 01:00:53,353 --> 01:00:56,221
 this makes perfect sense. If you say binary operation,
+所以这段代码用英文读起来很通顺
 
 1171
 01:00:56,290 --> 01:01:00,859
 perform(with: 5.0). It makes sense, right? And these
+用 5.0 完成二元运算，能理解吧？
 
 1172
 01:01:00,928 --> 01:01:03,228
 internal names, even though they're only used internally,
+而形参名称虽然只是内部使用
 
 1173
 01:01:03,296 --> 01:01:05,797
 you can think of them as part of the documentation.
+但你需要把它视为注释文档的一部分
 
 1174
 01:01:05,866 --> 01:01:08,833
 Cuz anyone who sees the documentation of this method,
+因为所有查阅这个方法文档的人
 
 1175
 01:01:08,902 --> 01:01:12,070
 he's gonna see both with and secondOperand, see? So they're
+都能同时看见 with 和 secondOperand
 
 1176
 01:01:12,139 --> 01:01:14,773
 kind of getting a little bit of documentation that that
+所以他们可以知道计算二元运算
 
 1177
 01:01:14,841 --> 01:01:18,577
 with is with the secondOperand to this binary operation.
+with 的是 secondOperand
 
 1178
 01:01:18,645 --> 01:01:23,882
 Okay, and how would we perform this? Well, we would just
+那我们要怎么计算呢？
 
 1179
 01:01:23,951 --> 01:01:30,255
 return the firstOperand times the secondOperand, okay? But
+返回它们相乘就好了
 
 1180
 01:01:30,324 --> 01:01:33,525
 we're not doing times here, we're doing this function.
+但这里不该用乘法，而是调用这个 function
 
 1181
 01:01:33,593 --> 01:01:37,696
 So I'm gonna call it that function with the firstOperand
+return function(firstOperand, secondOperand)
 
 1182
 01:01:37,765 --> 01:01:40,799
 and the secondOperand. Okay, this is a really simple little
+perform 这个函数挺简单的
 
 1183
 01:01:40,868 --> 01:01:42,667
 method, but I just wanted to make it clear.
+但这样能让代码更简明
 
 1184
 01:01:42,736 --> 01:01:46,604
 Notice this method doesn't have mutating on it. Because
+但这个方法并没有 mutating 修饰
 
 1185
 01:01:46,673 --> 01:01:49,374
 it doesn't actually change the PendingBinaryOperation,
+因为它并没有改变 PendingBinaryOperation
 
 1186
 01:01:49,443 --> 01:01:52,044
 right? It just returns to the evaluation of the function,
+它只是返回了 function 的计算结果
 
 1187
 01:01:52,112 --> 01:01:56,882
 but it doesn't change any internal values. Also notice,
+并没有修改变量的值
 
 1188
 01:01:56,951 --> 01:02:01,253
 these are lets. That's because I'm gonna create this
+更何况这两个是 let
 
 1189
 01:02:01,321 --> 01:02:04,256
 PendingBinaryOperation in a moment with these two things
+因为创建 PendingBinaryOperation
 
 1190
 01:02:04,325 --> 01:02:06,225
 set and I'm never gonna change them.
+之后就不会改了
 
 1191
 01:02:06,293 --> 01:02:10,596
 So they are constants in this struct. Now, also notice,
+所以我选择用常量
 
 1192
 01:02:10,664 --> 01:02:13,398
 no error that says you don't have an initializer and you
+还有注意到这里没有构造器
 
 1193
 01:02:13,467 --> 01:02:17,569
 have these two uninitialized vars. Again, this is a struct.
+但却没有报错说有两个未初始化的变量
 
 1194
 01:02:17,637 --> 01:02:20,105
 Structs automatically get a free initializer
+这是因为结构体会自动提供构造器
 
 1195
 01:02:20,174 --> 01:02:23,041
 which will initialize all of these things. And
+并通过那个构造器初始化所有属性
 
 1196
 01:02:23,109 --> 01:02:25,110
 in fact, let's use that right now.
+我们现在就用来看看
 
 1197
 01:02:25,178 --> 01:02:29,814
 I'm gonna create a private var, which I'm gonna call pbo,
+我定义一个 private var pbo
 
 1198
 01:02:29,883 --> 01:02:33,551
 PendingBinaryOperation, but only temporarily, because
+PendingBinaryOperation 首字母简写
 
 1199
 01:02:33,620 --> 01:02:36,354
 this is a bad name. I'm mostly doing it so things won't
+但这个烂名字只是暂时的，为了避免换行
 
 1200
 01:02:36,423 --> 01:02:38,890
 wrap, cuz I'm using a big font so you can see here. I'm gonna
+我为了你们能看清，把字号调得很大
 
 1201
 01:02:38,959 --> 01:02:41,726
 go actually change this back to a better name in a second.
+之后我们再改为一个更好的名字
 
 1202
 01:02:41,795 --> 01:02:46,431
 But this pbo is a PendingBinaryOperation,
+pbo 是 PendingBinaryOperation
 
 1203
 01:02:46,500 --> 01:02:48,366
 and optional.
+而且是可选的
 
 1204
 01:02:48,435 --> 01:02:50,936
 Why is this an optional PendingBinaryOperation?
+为什么是可选的 PendingBinaryOperation？
 
 1205
 01:02:51,004 --> 01:02:53,538
 Cuz we're not always in the middle of a binaryOperation.
+因为我们并不总是在等待的过程中
 
 1206
 01:02:53,607 --> 01:02:56,174
 Only when the person taps five times. Okay,
+只有在按如 5 * 时才会有值
 
 1207
 01:02:56,243 --> 01:02:57,575
 if we'd said five square root,
+如果计算根号五
 
 1208
 01:02:57,644 --> 01:03:00,078
 we're not in the middle of a PendingBinaryOperation, so
+我们就没在这个等待过程中
 
 1209
 01:03:00,147 --> 01:03:02,914
 this has to be not set. Are you starting to get a feel for
+所以这就会是在未赋值的状态
 
 1210
 01:03:02,983 --> 01:03:05,250
 how we use optionals all over the place,
+感受到为了准确表达
 
 1211
 01:03:05,318 --> 01:03:09,354
 to be semantically exactly what we mean? And here,
+使得可选无处不在了吗？
 
 1212
 01:03:09,423 --> 01:03:11,056
 if we're not in the middle of PendingBinaryOperation,
+如果我们不是在等待的话
 
 1213
 01:03:11,124 --> 01:03:14,893
 this is not set. So it's an optional. All right, so
+pbo 就是未赋值的，所以它是可选的
 
 1214
 01:03:14,962 --> 01:03:17,128
 when you've pressed the times,
+当你按下乘号（和其他二元运算）的时候
 
 1215
 01:03:17,197 --> 01:03:21,065
 5 times, all I'm gonna do here is remember, or create,
+我就新建一个 PendingBinaryOperation
 
 1216
 01:03:21,134 --> 01:03:23,068
 a PendingBinaryOperation.
+把按下的 5 * 存储下来，也就是
 
 1217
 01:03:23,137 --> 01:03:26,371
 So I'm gonna say pbo = PendingBinaryOperation.
+pbo = PendingBinaryOperation
 
 1218
 01:03:26,440 --> 01:03:30,942
 Now when I tab here, and I do the open parentheses. Look,
+按制表符键，然后左括号
 
 1219
 01:03:31,011 --> 01:03:34,446
 it's showing me that there's already an initializer,
+自动提示了构造器，再按 tab 键补全
 
 1220
 01:03:34,515 --> 01:03:37,682
 one that, tab, takes function and firstOperand.
+它接受 function 和 firstOperand
 
 1221
 01:03:37,751 --> 01:03:41,453
 Woo-hoo! So this is that free initializer I get,
+啊哈！这就是我免费得到的构造器
 
 1222
 01:03:41,521 --> 01:03:45,224
 because I'm a struct down here, not a class. So what is
+原因是我用的是结构体，不是类
 
 1223
 01:03:45,292 --> 01:03:47,792
 the function? Well, that's just this function right here,
+那 function 是什么？
 
 1224
 01:03:47,861 --> 01:03:49,394
 that we got as our associated value.
+就是 binaryOperation
 
 1225
 01:03:49,463 --> 01:03:51,396
 That's the function in the binaryOperation.
+的那个关联值 function
 
 1226
 01:03:51,465 --> 01:03:52,864
 And what's the firstOperand?
+那 firstOperand 呢？
 
 1227
 01:03:52,933 --> 01:03:55,567
 Well, it's our current accumulator, right,
+嗯，那个就是 accumulator，既然是 5 *
 
 1228
 01:03:55,636 --> 01:04:00,639
 five times are equal if it's a five, okay? Now,
+那 accumulator 就是 5 吧
 
 1229
 01:04:00,708 --> 01:04:04,843
 here I'm unwrapping it, so I better do if accumulator
+这里我用的是强制解包，所以我最好
 
 1230
 01:04:04,912 --> 01:04:08,213
 does not equal nil. Cuz I don't want to crash here and
+确认它不为空，因为我并不想程序崩溃
 
 1231
 01:04:08,282 --> 01:04:10,983
 I'm, so that means I'm gonna ignore times. If you've
+如果是我就忽略掉
 
 1232
 01:04:11,051 --> 01:04:12,984
 pressed times and you haven't given me an operand,
+如果按乘号之前没有输入数字
 
 1233
 01:04:13,053 --> 01:04:15,520
 we're just gonna ignore that. It's like if you start up your
+那我就直接忽略
 
 1234
 01:04:15,588 --> 01:04:18,290
 calculator and say, times 3 equals, I'm gonna ignore it,
+就像是你一打开计算器就按 * 3 =
 
 1235
 01:04:18,358 --> 01:04:21,426
 because I don't have any operands who times it by.
+因为没有第一个算子，所以直接忽略乘法
 
 1236
 01:04:21,495 --> 01:04:25,530
 Okay, so that's good, that's what I want. Also, when I
+很好，这是我想要的
 
 1237
 01:04:25,599 --> 01:04:29,768
 have this times, I'm gonna set my accumulator here to nil.
+还有，这里要设 accumulator = nil
 
 1238
 01:04:29,837 --> 01:04:33,671
 Because I'm in this weird half state five times,
+因为我现在处在这奇怪的等待阶段
 
 1239
 01:04:33,740 --> 01:04:35,874
 my accumulator is waiting for
+我的累加器正在等待
 
 1240
 01:04:35,943 --> 01:04:38,410
 the three equals to be set to anything.
+完成 3 = 这后面半步
 
 1241
 01:04:38,479 --> 01:04:42,814
 So I'm setting it to nil not set for the moment. All right,
+所以现在要暂时设为空
 
 1242
 01:04:42,882 --> 01:04:45,750
 so that's it, that's all I need to do when times is hit.
+这就是我按下乘号时要做的
 
 1243
 01:04:45,819 --> 01:04:49,454
 But now when equals is hit, I have the the three, and
+现在按下了等号，我得到了 3
 
 1244
 01:04:49,523 --> 01:04:51,223
 I need to calculate five times three.
+我需要计算 5 * 3
 
 1245
 01:04:51,292 --> 01:04:54,325
 So I need to actually call this perform down here. So
+所以我需要调用 perform(with:)
 
 1246
 01:04:54,394 --> 01:04:56,862
 I'm gonna put this in its own little method. I'm gonna call
+我把这部分放到单独的函数里
 
 1247
 01:04:56,930 --> 01:05:01,133
 it performBinaryOperation, actually, we'll even say
+叫做 performPendingBinaryOperation
 
 1248
 01:05:01,201 --> 01:05:05,604
 performPendingBinary, oops, BinaryOperation, okay.
+performPendingBinaryOperation()
 
 1249
 01:05:05,672 --> 01:05:06,638
 I'm putting it in another method,
+放到另一个方法中
 
 1250
 01:05:06,707 --> 01:05:09,775
 you'll see why in a moment. Okay, so I'm gonna do private
+等会你就知道为什么了。定义
 
 1251
 01:05:09,843 --> 01:05:14,513
 func which is that, now what am I gonna do in here? Well,
+private func performPendingBinaryOperation
 
 1252
 01:05:14,581 --> 01:05:18,516
 here I'm going to perform that pendingBinaryOperation. So
+这里我需要进行未完成的那个二元运算
 
 1253
 01:05:18,585 --> 01:05:22,988
 I'm gonna do pbo.perform, and what am I gonna perform with?
+而 secondOperand 就是 accumulator
 
 1254
 01:05:23,057 --> 01:05:26,591
 I'm gonna perform with the current accumulator, okay?
+所以是 pbo?.perform(with: accumulator!)
 
 1255
 01:05:26,660 --> 01:05:30,662
 Now notice this put a question mark right there, okay?
+注意 pbo 后有一个问号
 
 1256
 01:05:30,731 --> 01:05:32,231
 The reason I need a question mark there, really,
+这里的问号
 
 1257
 01:05:32,299 --> 01:05:35,767
 what I wanted was exclamation point. Because pbo, here,
+我们之前都是用的感叹号
 
 1258
 01:05:35,836 --> 01:05:38,103
 is an optional, and I need to unwrap it.
+因为这是个 Optional，所以需要解包
 
 1259
 01:05:38,172 --> 01:05:40,773
 But what's really cool is if instead of exclamation point,
+但是很厉害的是，如果不用感叹号
 
 1260
 01:05:40,841 --> 01:05:44,410
 you put question mark, then it will unwrap it, but
+而是用问号的话，依然可以解包
 
 1261
 01:05:44,478 --> 01:05:47,479
 it's not set, it will just ignore this line.
+如果为空的话，就直接忽略这一行
 
 1262
 01:05:47,548 --> 01:05:51,216
 Ignore the rest of the line, okay? So
+更准确的说是忽略这行之后的代码
 
 1263
 01:05:51,284 --> 01:05:53,185
 that's kind of a cool feature. But I'm not gonna do that,
+这是很厉害的功能，但我并不会这么用
 
 1264
 01:05:53,254 --> 01:05:55,353
 cuz I didn't really talked enough about it, so
+因为我已经讲了够多了，所以直接
 
 1265
 01:05:55,422 --> 01:05:58,523
 I'm gonna unwrap it. So here I need to make sure pbo is not
+强制解包。同时我要保证 pbo 不为空
 
 1266
 01:05:58,591 --> 01:06:02,327
 nil. And I need to make sure that the accumulator is also
+同时还要保证 accumulator
 
 1267
 01:06:02,395 --> 01:06:05,463
 not nil, okay? So if those two things aren't true,
+也不为空。如果不满足任一条件
 
 1268
 01:06:05,532 --> 01:06:06,899
 I don't really want to be
+我并不希望
 
 1269
 01:06:06,967 --> 01:06:08,967
 doing this line of code right here,
+执行下面这行代码
 
 1270
 01:06:09,035 --> 01:06:11,737
 right? So I'm performing it, I get the results and
+所以我完成运算之后
 
 1271
 01:06:11,806 --> 01:06:16,141
 I'm going to put that in my accumulator, okay?
+把结果保存在 accumulator 里
 
 1272
 01:06:16,210 --> 01:06:21,146
 So my accumulator is no longer nil, why is this happening?
+accumulator 就不为空了。为什么报错？
 
 1273
 01:06:21,215 --> 01:06:24,716
 It's the third time, mutating, all right, excellent,
+第三次了哦？没错，要加 mutating，很好
 
 1274
 01:06:24,785 --> 01:06:28,153
 I love it when people catch on real quick. So, yeah, that
+我就喜欢这种一点即通的学生
 
 1275
 01:06:28,222 --> 01:06:30,288
 needs to be mutating, cuz this is changing the accumulator.
+所以这个函数是 mutating 的，因为改了 accumulator
 
 1276
 01:06:30,357 --> 01:06:33,325
 So it's modifying the internal state of the calculator brain.
+也就是修改了 CalculatorBrain 的状态
 
 1277
 01:06:33,394 --> 01:06:36,828
 Now, the other thing is no longer am I in the middle
+现在我也就没有在等待完成二元运算了
 
 1278
 01:06:36,897 --> 01:06:39,231
 of a pendingBinaryOperation, so I have to set that to nil.
+所以要把让 pbo = nil
 
 1279
 01:06:40,468 --> 01:06:42,900
 Okay, cuz I wanna be consistent in all my
+我这样保证了
 
 1280
 01:06:42,969 --> 01:06:45,604
 code that when that's nil, I'm not in the middle of a pending
+当 pbo 为空时，就没在二元运算
 
 1281
 01:06:45,673 --> 01:06:49,608
 operation. I just had the three equals, okay,
+过程中。连按三次等号就是个例子
 
 1282
 01:06:49,677 --> 01:06:53,945
 everybody set? Now, I told you I didn't like pbo as a name.
+好吧？我之前说了不喜欢 pbo
 
 1283
 01:06:54,014 --> 01:06:56,648
 It's a bad name, okay? Someone looking at it would have to go
+这是个烂名字。其他人看到了
 
 1284
 01:06:56,717 --> 01:06:58,316
 look at the declaration to figure out it.
+还需要去看实际的定义来理解
 
 1285
 01:06:58,385 --> 01:07:01,386
 A better name here would be pendingBinaryOperation, so
+最好叫做 pendingBinaryOperation
 
 1286
 01:07:01,455 --> 01:07:04,522
 I'm gonna change it to that. And here's how you can change
+所以我把所有 pbo 改为 pendingBinaryOperation
 
 1287
 01:07:04,591 --> 01:07:07,058
 the name of something all throughout the context
+你在当前上下文修改变量名称的方法
 
 1288
 01:07:07,127 --> 01:07:08,760
 that it's in. You just mouse over it,
+是通过把鼠标移到变量上
 
 1289
 01:07:08,829 --> 01:07:10,395
 I haven't clicked on it, I moused over it.
+我没有点击，就悬停在上面
 
 1290
 01:07:10,464 --> 01:07:13,598
 You see that little arrow that appears? If you click on that
+看到右边那个小箭头了吗？点击之后
 
 1291
 01:07:13,667 --> 01:07:17,001
 you get a menu and you can say, Edit All in Scope. And
+你会看到一个菜单，点 Edit All in Scope
 
 1292
 01:07:17,070 --> 01:07:22,674
 now when you change this, it's changing it everywhere. Okay,
+现在你改这一个地方，其他的都会跟着改
 
 1293
 01:07:22,742 --> 01:07:25,077
 so I changed it from pbo to PendingBinaryOperation.
+这样我就把 pbo 改为 pendingBinaryOperation 了
 
 1294
 01:07:25,145 --> 01:07:27,946
 You can see why I did that, because I didn't want
+现在你就可以看出我为什么用 pbo 了
 
 1295
 01:07:28,015 --> 01:07:31,416
 the wrapping to happen when we were first doing it, okay?
+因为我不希望出现这样换行的情况
 
 1296
 01:07:31,485 --> 01:07:34,085
 So that's it, that's all we need to do for
+所以这就是我们针对
 
 1297
 01:07:34,154 --> 01:07:36,721
 our little Pending BinaryOperation, so
+未完成二元运算的处理
 
 1298
 01:07:36,790 --> 01:07:40,626
 let's go ahead and add some pending, some binary, so let'a
+我们这就去添加一些
 
 1299
 01:07:40,694 --> 01:07:43,928
 add some binary operations to our UI. In fact, I'm going
+二元运算符到 UI 界面上吧
 
 1300
 01:07:43,997 --> 01:07:46,264
 to add a few that we don't even have in our table yet.
+同时也把字典里补充上
 
 1301
 01:07:46,333 --> 01:07:51,003
