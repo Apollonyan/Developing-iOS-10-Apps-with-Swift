@@ -10,7 +10,7 @@
 
 ----
 
-如果您感兴趣，有能力，我们欢迎您参与翻译/校对本项目。详情见 [任务相关说明](./CONTRIBUTING.md)。
+如果您感兴趣，有能力，我们欢迎您参与翻译/校对本项目。详情见 [任务相关说明](./CONTRIBUTING.md) 。
 
 ### 翻译进度
 
@@ -42,4 +42,4 @@
 ----
 
 <script async defer src="https://buttons.github.io/buttons.js">/*请忽略这段代码*/</script>
- 
+

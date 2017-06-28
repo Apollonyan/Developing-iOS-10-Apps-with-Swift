@@ -1,3 +1,5 @@
+<meta charset="utf-8">
+
 # 任务相关说明
 
 欢迎加入翻译的队伍！去年的现在还没有翻译完，为了避免这样的情况再次发生，希望能有更多的小伙伴们加入。Swifters of China, unite!
@@ -16,11 +18,9 @@
 
 **翻译、校对任务的序号不是指字幕文件中行数，而是指**
 
-```
-67 <----此处的数字
- 00:03:04,860 --> 00:03:06,960
- we talked about the NSNumber format and all that.
-```
+    67 <----此处的数字
+    00:03:04,860 --> 00:03:06,960
+    we talked about the NSNumber format and all that.
 
 ## 进行翻译
 
