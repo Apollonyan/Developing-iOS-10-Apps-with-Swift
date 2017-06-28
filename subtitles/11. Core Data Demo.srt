@@ -1,18 +1,22 @@
 1
 00:00:00,401 --> 00:00:04,569
-[MUSIC]
+本字幕由志愿者义务贡献，采用许可协议
+知识共享 署名-非商业性使用-相同方式共享 3.0 美国
 
 2
 00:00:04,638 --> 00:00:08,339
 Stanford University.
+斯坦福大学
 
 3
 00:00:08,408 --> 00:00:11,075
 >> Welcome to Stanford CS193P,
+欢迎参加 2017 年冬季学期斯坦福
 
 4
 00:00:11,144 --> 00:00:13,978
 developing applications for iOS.
+CS193P 课程，iOS 应用程序开发
 
 5
 00:00:14,047 --> 00:00:16,414
@@ -6364,4 +6368,5 @@ we'll learn all about the final project in Autolayout.
 
 1592
 01:16:04,760 --> 01:16:14,768
-For more, please visit us at stanford.edu.
+>> For more, please visit us at stanford.edu.
+>> 更多课程详见 stanford.edu

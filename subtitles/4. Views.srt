@@ -1,18 +1,22 @@
 1
 00:00:00,401 --> 00:00:04,502
-[MUSIC]
+本字幕由志愿者义务贡献，采用许可协议
+知识共享 署名-非商业性使用-相同方式共享 3.0 美国
 
 2
 00:00:04,571 --> 00:00:07,372
 Stanford University.
+斯坦福大学
 
 3
 00:00:07,441 --> 00:00:11,075
 >> All right, well, welcome to Stanford CS193P,
+欢迎参加 2017 年冬季学期斯坦福
 
 4
 00:00:11,144 --> 00:00:15,714
 that's Developing Applications for iOS, winter of 2017.
+CS193P 课程，iOS 应用程序开发
 
 5
 00:00:15,782 --> 00:00:20,785
@@ -7577,3 +7581,4 @@ And then we'll start talking about multiple MVCs.
 1895
 01:21:20,776 --> 01:21:31,384
 >> For more, please visit us at stanford.edu.
+>> 更多课程详见 stanford.edu
