@@ -501,120 +501,120 @@ from being tall and
 00:04:43,350 --> 00:04:47,085
 thin to being wide and          
 less tall.                      
-
+细变得宽，且高度值更小
 106
 00:04:47,154 --> 00:04:49,654
 And that causes all             
 those stack views and           
-
+正因为如此，stack views 和
 107
 00:04:49,723 --> 00:04:52,123
 everything else to start        
 getting resized as well,        
-
+其它布局也也重置了，
 108
 00:04:52,192 --> 00:04:56,361
 because they're all subviews    
 of this top level view, okay?   
-
+因为他们都是这个顶级视图的子视图，懂了吗？
 109
 00:04:56,430 --> 00:04:59,497
 If you were going to add        
 views to the view hierarchy     
-
+如果你不想用拖拽的方式添加视图，
 110
 00:04:59,566 --> 00:05:01,866
 programmatically rather         
 than dragging and               
-
+而是用输入代码的方式
 111
 00:05:01,935 --> 00:05:04,502
 dropping them, then you would   
 need this view because it's     
-
+你需要用到这个视图，因为它是
 112
 00:05:04,571 --> 00:05:06,204
 the top of the entire           
 view hierarchy.                 
-
+整个视图层的顶层
 113
 00:05:06,273 --> 00:05:07,606
 And you would kinda             
 work your way down              
-
+你可能会想知道你需要
 114
 00:05:07,674 --> 00:05:09,907
 to find out where you           
 want to put that view.          
-
+把那个视图放在哪
 115
 00:05:09,976 --> 00:05:12,410
 But we don't otherwise          
 actually look at this view      
-
+但其实我们不需要知道把它放哪，
 116
 00:05:12,479 --> 00:05:14,846
 much because we usually         
 have outlets, rights?           
-
+因为我们有输出口，对吧？    //???
 117
 00:05:14,915 --> 00:05:17,982
 IBOutlets--like the display     
 that points to the label--that  
-
+IBOutlets（输出口）-- 比如在标签栏上显示那个点  //???
 118
 00:05:18,051 --> 00:05:19,484
 gives us access to that label.  
-
+这（指IBOutlets）能让我们去修改那个标签栏
 119
 00:05:19,552 --> 00:05:20,451
 That's all we want, so          
-
+这就是我想实现的，那么
 120
 00:05:20,520 --> 00:05:22,988
 we don't have to go looking     
 at the top level view and       
-
+我们不再需要一个一个的去找顶级视图了，
 121
 00:05:23,056 --> 00:05:26,290
 looking all down the views,     
 okay?                           
-
+对吧？
 122
 00:05:26,359 --> 00:05:28,059
 So this is important            
 to know about but               
-
+那么这就是我们重点需要知道的，
 123
 00:05:28,128 --> 00:05:31,896
 surprisingly you don't          
 access it that much, okay.      
-
+但好在我们不需要过多的去使用它，好吧。
 124
 00:05:31,965 --> 00:05:33,764
 This view is automatically      
 hooked up for you in            
-
+当你拖出了一个视图控件时，这个视图会
 125
 00:05:33,833 --> 00:05:35,967
 Interface Builder when you      
 drag out a View Controller.     
-
+自动连接到你的图形开发界面上。
 126
 00:05:36,035 --> 00:05:38,002
 It's just all                   
 magically hooked up,            
-
+就这么神奇的连接上了，
 127
 00:05:38,071 --> 00:05:40,071
 you don't have to               
 worry about that.               
-
+你完全不需要担心。
 128
 00:05:40,140 --> 00:05:43,241
 Okay, let's talk about          
 initialization of the UIView.   
-
+好了，接下来我们将讨论初始化UIView(UI界面)
 129
 00:05:43,309 --> 00:05:46,378
 As usual, when you saw          
