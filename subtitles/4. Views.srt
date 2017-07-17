@@ -3605,310 +3605,387 @@ Those do kind of what you would think, right?
 901
 00:37:37,889 --> 00:37:40,023
 draw atPoint draws it where that's the upper left hand
+draw(atPoint) 会用atPoint作为图片的左上角
 
 902
 00:37:40,092 --> 00:37:42,091
 corner, it draws it in its natural size.
+用默认的尺寸画出图片
 
 903
 00:37:42,160 --> 00:37:45,694
 draw inRect is going to scale it to fit inside
+draw(inRect) 会缩放图片去适应
 
 904
 00:37:45,763 --> 00:37:48,164
 the rectangle that you provide.
+你提供的长方形
 
 905
 00:37:48,233 --> 00:37:50,332
 And drawAsPattern is gonna tile it.
+drawAsPattern 将会把图片铺满你提供的长方形
 
 906
 00:37:50,401 --> 00:37:52,067
 So presumably that's a small image and
+大概就像，你有一个小图片
 
 907
 00:37:52,136 --> 00:37:53,869
 you're drawing a texture or something.
+你随便画一些东西在图片上
 
 908
 00:37:53,938 --> 00:37:56,306
 And it's gonna repeat it over and
+然后用图片重复的去填充到
 
 909
 00:37:56,374 --> 00:37:59,342
 over to fill the rectangle, okay?
+长方形内部，直到填满
 
 910
 00:37:59,410 --> 00:38:01,110
 I'll fix this slide and repost it.
+我会把这里修复，然后重新发布一下
 
 911
 00:38:01,179 --> 00:38:05,748
 Alright, one thing to be careful of with UIView.
+在 UIView 里有一点需要特别注意
 
 912
 00:38:05,817 --> 00:38:07,917
 When UIView changes size,
+当 UIView 的尺寸改变时
 
 913
 00:38:07,986 --> 00:38:11,587
 you do not get asked to redraw by default.
+UIView 将会被默认重绘，并且你将不会得到任何提醒
 
 914
 00:38:11,656 --> 00:38:13,556
 What it does is, believe it or
+确实是这样，不管你想不相信
 
 915
 00:38:13,625 --> 00:38:17,293
 not, takes what you've drawn, grabs the pixels, and
+把你所画的，抓着像素
 
 916
 00:38:17,362 --> 00:38:20,229
 stretches them to fit the new bounds.
+然后直接拉伸他们去适应你的新区域
 
 917
 00:38:20,298 --> 00:38:22,465
 Okay, now, this is often not what you want.
+大多数情况下，你肯定不想要这样的结果
 
 918
 00:38:22,533 --> 00:38:24,667
 Often, what you want is, okay, if my bounds change,
+什么才是你想到的呢，如果我的边界（尺寸）变了
 
 919
 00:38:24,736 --> 00:38:28,170
 ask me to redraw again in my new bounds, okay?
+问一下我，在新的区域重绘怎么样？
 
 920
 00:38:28,239 --> 00:38:30,039
 So how is this controlled?
+怎么去控制重绘呢？
 
 921
 00:38:30,108 --> 00:38:33,042
 It's controlled via this var in UIView called contentMode.
+通过 UIView 中叫做 contentMode 的变量去控制它
 
 922
 00:38:33,110 --> 00:38:36,245
 And the contentMode can be things like left, right, top,
+contentMode 可能是像这样的东西：左，右，顶部
 
 923
 00:38:36,314 --> 00:38:38,014
 bottom, topRight, topLeft.
+底部，右上，左上
 
 924
 00:38:38,083 --> 00:38:40,150
 That's basically saying, take my bits and
+通常像是在说，拿着我这些东西
 
 925
 00:38:40,218 --> 00:38:42,618
 shove them up into the left corner you know,
+放到左下角去
 
 926
 00:38:42,687 --> 00:38:44,621
 one of these spots, center or right.
+中间或者右侧的那些
 
 927
 00:38:44,690 --> 00:38:46,656
 Don't touch, don't do anything with them,
+不要碰，什么都别做
 
 928
 00:38:46,724 --> 00:38:48,123
 just move them in the new bounds.
+就把他们移动到新的区域就行了
 
 929
 00:38:48,192 --> 00:38:50,560
 Well, that's likely to cut off what you've drawn or something
+这就好像，把你所绘制的或其他的什么东西
 
 930
 00:38:50,628 --> 00:38:52,928
 like that depending on how much the bounds have changed.
+根据边界的变化去分割开来
 
 931
 00:38:52,997 --> 00:38:54,630
 Like when you rotate, you know,
+当你旋转的时候
 
 932
 00:38:54,699 --> 00:38:56,699
 the bounds changes quite a bit.
+边界会改变一点
 
 933
 00:38:56,768 --> 00:38:58,334
 There's also the scaling ones.
+这也算是缩放
 
 934
 00:38:58,403 --> 00:39:00,703
 And this is the default, scaleToFill.
+scaleToFill 是默认的处理方式
 
 935
 00:39:00,772 --> 00:39:03,873
 And that says, take my bits and take my new bounds and
+拿着我的东西，拿着我的新边界
 
 936
 00:39:03,942 --> 00:39:05,241
 scale it to fill.
+缩放然后去填充
 
 937
 00:39:05,310 --> 00:39:07,243
 I can preserve the aspect ratio if I want.
+如果我想保持宽高比
 
 938
 00:39:07,311 --> 00:39:08,044
 Although, again,
+那么
 
 939
 00:39:08,113 --> 00:39:10,079
 that's probably gonna cut something off.
+可能就要把一些东西分割了
 
 940
 00:39:10,148 --> 00:39:13,215
 But the real one that you want is redraw.
+但你真正想要的是重绘
 
 941
 00:39:13,284 --> 00:39:15,518
 If you set your contentMode to be .redraw,
+如果 contentMode 的值为 .redraw
 
 942
 00:39:15,587 --> 00:39:18,221
 then when your bounds change, your draw is gonna be
+当你的边界改变时，你所画的将会
 
 943
 00:39:18,289 --> 00:39:22,892
 called--your drawRect, draw with the rect argument.
+调用 drawRect ，用 rect 的参数重绘
 
 944
 00:39:22,960 --> 00:39:25,194
 So in your assignment three, you're gonna wanna do this.
+在作业三中，你要的就是重绘
 
 945
 00:39:25,263 --> 00:39:26,429
 You can actually do this,
+实际上你可以这样做
 
 946
 00:39:26,498 --> 00:39:28,264
 you can do it in code by setting that var.
+在代码中设置那个变量去重绘
 
 947
 00:39:28,332 --> 00:39:30,433
 But you can also do it in Interface Builder, okay?
+但是你也可以在 Interface Builder 中去实现重绘
 
 948
 00:39:30,501 --> 00:39:32,569
 In the Utilities window, in the Inspector preview.
+在 Utilities （工具）窗口中，在 Inspector preview （检查器）中
 
 949
 00:39:32,637 --> 00:39:35,905
 Just, I think it's the very top one, contentMode.
+就像上边那个 contentMode
 
 950
 00:39:35,974 --> 00:39:39,776
 All right, so I'm, I'm gonna be leaving the slides here so
+好的，这里先放一放
 
 951
 00:39:39,844 --> 00:39:42,245
 I will tell you what's coming up.
+我要告诉你们下边要做什么
 
 952
 00:39:42,313 --> 00:39:45,147
 I'm gonna do this demo right now where I'm gonna do
+我现在要做一个演示，我将会用
 
 953
 00:39:45,216 --> 00:39:48,084
 a custom view, a FaceView, a UIView that draws a face.
+一个 custom view, 一个 FaceView, 一个 UIView 来画一张脸
 
 954
 00:39:48,152 --> 00:39:50,920
 And then Wednesday, I'm gonna talk about gestures.
+下周三，我将会讲一下手势
 
 955
 00:39:50,988 --> 00:39:53,055
 We'll add some gestures to control our face.
+我将会添加一个手势来控制这张脸
 
 956
 00:39:53,124 --> 00:39:55,658
 And I'm gonna start talking about multiple MVCs,
+我将会讲一下多重 MVCs
 
 957
 00:39:55,726 --> 00:39:58,794
 I'll finish up with multiple MVCs next week.
+我会在下周讲完多重 MVCs
 
 958
 00:39:58,863 --> 00:40:01,964
 Your assignment three requires you to do multiple MVCs, so
+作业三需要做多重 MVCs
 
 959
 00:40:02,033 --> 00:40:04,500
 I'm not going to make it due until a week from next Monday,
+我不会在下周一的一个星期之前到期
 
 960
 00:40:04,569 --> 00:40:06,802
 because you'll need next Monday's lecture.
+你们需要下周一的课程
 
 961
 00:40:06,871 --> 00:40:10,306
 However, I'll probably ship the assignment, the write-up,
+不过，我可能在周三会派发作业，写作
 
 962
 00:40:10,375 --> 00:40:12,909
 on Wednesday, because a big part of that assignment
+因为作业很大的一部分是
 
 963
 00:40:12,977 --> 00:40:15,478
 is drawing your own custom view and you'll certainly know
+绘制自定义视图，你现在所需要知道的是
 
 964
 00:40:15,547 --> 00:40:18,080
 everything you need to know to do that right off the bat.
+你马上就要开始了
 
 965
 00:40:18,149 --> 00:40:19,983
 So you can kind of get started on the view, and
+你现在可以着手视图了
 
 966
 00:40:20,051 --> 00:40:22,418
 then next Monday, you can start doing the multiple MVCs.
+下周一你就能够做多重 MVCs 了
 
 967
 00:40:22,486 --> 00:40:25,354
 And you'll still have a full week until the next Monday,
+知道下周一之前，你仍有一整周的时间
 
 968
 00:40:25,423 --> 00:40:27,156
 to get that done, alright.
+去完成它
 
 969
 00:40:27,225 --> 00:40:28,858
 No Friday section this week.
+本周没有周五的课程了
 
 970
 00:40:30,061 --> 00:40:33,562
 Okay, so as with most demos in this course,
+这节课会包含几乎全部的演示
 
 971
 00:40:33,631 --> 00:40:36,666
 I'm going to start from scratch, okay.
+我要从头开始了
 
 972
 00:40:36,735 --> 00:40:38,101
 We're going to do a completely new app.
+我们要做一个新的完整的 app
 
 973
 00:40:38,170 --> 00:40:39,836
 No more calculator in here.
+不再是计算器了
 
 974
 00:40:39,905 --> 00:40:41,603
 So I could click on here to open my calculator.
+我可以按这里来打开我的计算器
 
 975
 00:40:41,672 --> 00:40:45,508
 But instead, I'm gonna go back here to Create a new project.
+取而代之的，我们将要回到这里重新创建一个项目
 
 976
 00:40:45,576 --> 00:40:47,576
 Okay, it's gonna be Single View Application,
+应该是 Single View Application （单视图应用）
 
 977
 00:40:47,645 --> 00:40:48,877
 as I told you they all would be.
+
 
 978
 00:40:48,946 --> 00:40:51,747
