@@ -3670,7 +3670,7 @@ UIView 将会被默认重绘，并且你将不会得到任何提醒
 914
 00:38:11,656 --> 00:38:13,556
 What it does is, believe it or
-确实是这样，不管你想不相信
+确实是这样，不管你相不相信
 
 915
 00:38:13,625 --> 00:38:17,293
@@ -3820,7 +3820,7 @@ called--your drawRect, draw with the rect argument.
 944
 00:39:22,960 --> 00:39:25,194
 So in your assignment three, you're gonna wanna do this.
-在作业三中，你要的就是重绘
+在作业三中，你要的做就是重绘
 
 945
 00:39:25,263 --> 00:39:26,429
@@ -3830,12 +3830,12 @@ You can actually do this,
 946
 00:39:26,498 --> 00:39:28,264
 you can do it in code by setting that var.
-在代码中设置那个变量去重绘
+在代码中设置那个变量去实现重绘
 
 947
 00:39:28,332 --> 00:39:30,433
 But you can also do it in Interface Builder, okay?
-但是你也可以在 Interface Builder 中去实现重绘
+当然你也可以在 Interface Builder 中去实现重绘
 
 948
 00:39:30,501 --> 00:39:32,569
@@ -3875,27 +3875,27 @@ And then Wednesday, I'm gonna talk about gestures.
 955
 00:39:50,988 --> 00:39:53,055
 We'll add some gestures to control our face.
-我将会添加一个手势来控制这张脸
+我将会添加一些手势来控制这张脸
 
 956
 00:39:53,124 --> 00:39:55,658
 And I'm gonna start talking about multiple MVCs,
-我将会讲一下多重 MVCs
+我将会讲一下多重 MVC
 
 957
 00:39:55,726 --> 00:39:58,794
 I'll finish up with multiple MVCs next week.
-我会在下周讲完多重 MVCs
+我会在下周讲完多重 MVC
 
 958
 00:39:58,863 --> 00:40:01,964
 Your assignment three requires you to do multiple MVCs, so
-作业三需要做多重 MVCs
+作业三需要做多重 MVC
 
 959
 00:40:02,033 --> 00:40:04,500
 I'm not going to make it due until a week from next Monday,
-我不会在下周一的一个星期之前到期
+作业不会在下周一前到期
 
 960
 00:40:04,569 --> 00:40:06,802
@@ -3905,7 +3905,7 @@ because you'll need next Monday's lecture.
 961
 00:40:06,871 --> 00:40:10,306
 However, I'll probably ship the assignment, the write-up,
-不过，我可能在周三会派发作业，写作
+不过，我可能会在周三派发作业，写作
 
 962
 00:40:10,375 --> 00:40:12,909
@@ -3925,7 +3925,7 @@ everything you need to know to do that right off the bat.
 965
 00:40:18,149 --> 00:40:19,983
 So you can kind of get started on the view, and
-你现在可以着手视图了
+你现在可以开始着手视图了
 
 966
 00:40:20,051 --> 00:40:22,418
@@ -3935,7 +3935,7 @@ then next Monday, you can start doing the multiple MVCs.
 967
 00:40:22,486 --> 00:40:25,354
 And you'll still have a full week until the next Monday,
-知道下周一之前，你仍有一整周的时间
+直到下周一之前，你们仍有一整周的时间
 
 968
 00:40:25,423 --> 00:40:27,156
@@ -3955,7 +3955,7 @@ Okay, so as with most demos in this course,
 971
 00:40:33,631 --> 00:40:36,666
 I'm going to start from scratch, okay.
-我要从头开始了
+好的，我要从头开始了
 
 972
 00:40:36,735 --> 00:40:38,101
@@ -3975,12 +3975,12 @@ So I could click on here to open my calculator.
 975
 00:40:41,672 --> 00:40:45,508
 But instead, I'm gonna go back here to Create a new project.
-取而代之的，我们将要回到这里重新创建一个项目
+取而代之的，我们将要回到这里重新创建一个新的项目
 
 976
 00:40:45,576 --> 00:40:47,576
 Okay, it's gonna be Single View Application,
-应该是 Single View Application （单视图应用）
+Okay，这应该是 Single View Application （单视图应用）
 
 977
 00:40:47,645 --> 00:40:48,877
