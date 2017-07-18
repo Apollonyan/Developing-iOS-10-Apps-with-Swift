@@ -3605,7 +3605,7 @@ Those do kind of what you would think, right?
 901
 00:37:37,889 --> 00:37:40,023
 draw atPoint draws it where that's the upper left hand
-draw(atPoint) 会用atPoint作为图片的左上角
+draw(atPoint) 会用 atPoint 作为图片的左上角
 
 902
 00:37:40,092 --> 00:37:42,091
@@ -3620,12 +3620,12 @@ draw(inRect) 会缩放图片去适应
 904
 00:37:45,763 --> 00:37:48,164
 the rectangle that you provide.
-你提供的长方形
+你提供的矩形
 
 905
 00:37:48,233 --> 00:37:50,332
 And drawAsPattern is gonna tile it.
-drawAsPattern 将会把图片铺满你提供的长方形
+drawAsPattern 将会把图片铺满你提供的矩形
 
 906
 00:37:50,401 --> 00:37:52,067
@@ -3645,7 +3645,7 @@ And it's gonna repeat it over and
 909
 00:37:56,374 --> 00:37:59,342
 over to fill the rectangle, okay?
-长方形内部，直到填满
+矩形内部，直到填满
 
 910
 00:37:59,410 --> 00:38:01,110
@@ -3675,7 +3675,7 @@ What it does is, believe it or
 915
 00:38:13,625 --> 00:38:17,293
 not, takes what you've drawn, grabs the pixels, and
-把你所画的，抓着像素
+把你所绘制的，抓着像素
 
 916
 00:38:17,362 --> 00:38:20,229
@@ -3710,7 +3710,7 @@ It's controlled via this var in UIView called contentMode.
 922
 00:38:33,110 --> 00:38:36,245
 And the contentMode can be things like left, right, top,
-contentMode 可能是像这样的东西：左，右，顶部
+contentMode 的值是这样的：左，右，顶部
 
 923
 00:38:36,314 --> 00:38:38,014
@@ -3780,17 +3780,17 @@ And that says, take my bits and take my new bounds and
 936
 00:39:03,942 --> 00:39:05,241
 scale it to fill.
-缩放然后去填充
+缩放然后去填充它
 
 937
 00:39:05,310 --> 00:39:07,243
 I can preserve the aspect ratio if I want.
-如果我想保持宽高比
+如果我想的话，我也能保持宽高比
 
 938
 00:39:07,311 --> 00:39:08,044
 Although, again,
-那么
+但是
 
 939
 00:39:08,113 --> 00:39:10,079
@@ -3810,7 +3810,7 @@ If you set your contentMode to be .redraw,
 942
 00:39:15,587 --> 00:39:18,221
 then when your bounds change, your draw is gonna be
-当你的边界改变时，你所画的将会
+当你的边界改变时，你所绘制的将会
 
 943
 00:39:18,289 --> 00:39:22,892
@@ -3890,7 +3890,7 @@ I'll finish up with multiple MVCs next week.
 958
 00:39:58,863 --> 00:40:01,964
 Your assignment three requires you to do multiple MVCs, so
-作业三需要做多重 MVC
+作业三需要用到多重 MVC
 
 959
 00:40:02,033 --> 00:40:04,500
@@ -3930,7 +3930,7 @@ So you can kind of get started on the view, and
 966
 00:40:20,051 --> 00:40:22,418
 then next Monday, you can start doing the multiple MVCs.
-下周一你就能够做多重 MVCs 了
+下周一你就能够做多重 MVC 了
 
 967
 00:40:22,486 --> 00:40:25,354
@@ -3980,36 +3980,42 @@ But instead, I'm gonna go back here to Create a new project.
 976
 00:40:45,576 --> 00:40:47,576
 Okay, it's gonna be Single View Application,
-Okay，这应该是 Single View Application （单视图应用）
+Okay，就像我和你们说的，
 
 977
 00:40:47,645 --> 00:40:48,877
 as I told you they all would be.
-
+这都应该选 Single View Application （单视图应用）
 
 978
 00:40:48,946 --> 00:40:51,747
 I'm gonna call this one FaceIt, okay.
+我们把它叫做 FaceIt
 
 979
 00:40:51,816 --> 00:40:53,449
 And it's gonna start out just drawing a face, but
+我们只绘制一张脸，但是
 
 980
 00:40:53,517 --> 00:40:55,184
 it's gonna do much more eventually.
+他将会有包含很多的事件
 
 981
 00:40:55,253 --> 00:40:58,654
 And, still no core data or testing stuff yet, so
+仍然没有核心数据或者测试的部门
 
 982
 00:40:58,723 --> 00:41:00,790
 I'm just gonna do FaceIt here.
+那么，我们现在就开始做 FaceIt 吧
 
 983
 00:41:00,859 --> 00:41:02,191
 It's gonna say where do you want it?
+
 
 984
 00:41:02,260 --> 00:41:04,360
