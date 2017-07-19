@@ -1,6 +1,6 @@
 # Developing iOS 10 Apps with Swift 字幕简体中文翻译项目
 
-[English Version](./en/README.md)
+[English Version (Outdated)](./en/README.md)
 
 ### 版权说明
 
@@ -10,7 +10,7 @@
 
 ----
 
-如果您感兴趣，有能力，我们欢迎您参与翻译/校对本项目。详情见 [任务相关说明](./CONTRIBUTING.md) 。
+如果您感兴趣，有能力，我们欢迎您参与翻译/校对本项目。详情见 [任务相关说明](./.github/CONTRIBUTING.md) 。
 
 ### 翻译进度
 
