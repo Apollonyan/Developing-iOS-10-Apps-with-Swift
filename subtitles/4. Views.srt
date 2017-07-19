@@ -4070,7 +4070,7 @@ move them out of our way.
 994
 00:41:18,910 --> 00:41:22,444
 So they don't distract us every time we look at
-这样每次我们看导航的时候
+这样每次我们看 Navigator （导航）的时候
 
 995
 00:41:22,513 --> 00:41:24,513
@@ -4080,7 +4080,7 @@ the Navigator here.
 996
 00:41:24,582 --> 00:41:27,783
 Because we don't need those for this demo.
-因为这次的演示根本不要这些东西
+因为这次的演示根本不需要这些东西
 
 997
 00:41:27,852 --> 00:41:32,154
@@ -4090,7 +4090,7 @@ So just like every other thing we've done, we have a view.
 998
 00:41:32,223 --> 00:41:35,324
 Here's our story board with our view.
-这是我们的视图的 story board （故事板）
+这是我们视图的 story board （故事板）
 
 999
 00:41:35,392 --> 00:41:37,393
@@ -4150,7 +4150,7 @@ But this time, for
 1010
 00:41:59,784 --> 00:42:02,985
 CalculatorBrain we chose Swift File because it, you know,
-CalculatorBrain 我们我们选择为 Swift 文件，原因你知道的
+CalculatorBrain 我们选择为 Swift File，原因你知道的
 
 1011
 00:42:03,053 --> 00:42:04,186
@@ -4205,7 +4205,7 @@ But this is a subclass of UIView.
 1021
 00:42:23,742 --> 00:42:25,607
 I'm gonna call it FaceView,
-我称它为 FaceView
+我把它叫做 FaceView
 
 1022
 00:42:25,676 --> 00:42:28,177
@@ -4220,51 +4220,62 @@ Okay, it's a good name.
 1024
 00:42:29,981 --> 00:42:31,714
 Alright, so we click here.
-
+然后，我们点这里
 
 1025
 00:42:31,782 --> 00:42:33,382
 It says, where do you wanna put it?
+它说，你想把它放在哪里？
 
 1026
 00:42:33,451 --> 00:42:35,618
 We usually wanna be very careful to put it in the same
+我们通常特别小心，要把它像其他文件一样
 
 1027
 00:42:35,687 --> 00:42:37,052
 place as everything else is.
+放在同一个位置
 
 1028
 00:42:37,121 --> 00:42:38,521
 You don't want it in Supporting Files, and
+你不会想把它放到 Supporting Files 里
 
 1029
 00:42:38,589 --> 00:42:40,422
 you don't want it at this top level, the project level.
+你不会想把它放在顶级目录或项目目录
 
 1030
 00:42:40,491 --> 00:42:42,858
 You want it inside this folder right here,
+你想把它放到这个文件夹里
 
 1031
 00:42:42,927 --> 00:42:44,560
 that has all your stuff in it.
+这里有你所有的东西
 
 1032
 00:42:44,629 --> 00:42:46,462
 So we'll do that.
+那么我们就这么做
 
 1033
 00:42:46,531 --> 00:42:48,397
 Alright, so here's our FaceView.
+好了，这就是我们的 FaceView
 
 1034
 00:42:48,466 --> 00:42:51,567
 And you can see right off the bat in FaceView, we get this.
 
+
 1035
 00:42:51,636 --> 00:42:54,970
 Which is our draw, okay, the draw with the rect.
+
 
 1036
 00:42:55,039 --> 00:42:57,340
