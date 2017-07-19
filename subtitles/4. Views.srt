@@ -4095,7 +4095,7 @@ Here's our story board with our view.
 999
 00:41:35,392 --> 00:41:37,393
 Oops, not that small.
-哦，也没那么少
+哦，不用这么小
 
 1000
 00:41:37,462 --> 00:41:39,862
@@ -4145,17 +4145,17 @@ That's how we add new files to our project.
 1009
 00:41:58,783 --> 00:41:59,716
 But this time, for
-但这次
+创建 CalculatorBrain 时，
 
 1010
 00:41:59,784 --> 00:42:02,985
 CalculatorBrain we chose Swift File because it, you know,
-CalculatorBrain 我们选择为 Swift File，原因你知道的
+我们选择为 Swift File，原因你知道的
 
 1011
 00:42:03,053 --> 00:42:04,186
 it wasn't a UI thing.
-这不是一个 UI 组件
+它不是一个 UI 组件
 
 1012
 00:42:04,255 --> 00:42:06,288
@@ -4165,7 +4165,7 @@ It didn't inherit from any iOS class.
 1013
 00:42:06,357 --> 00:42:09,391
 But now we're gonna choose Cocoa Touch Class, because
-现在我们要选 Cocoa Touch Class，因为
+但这次，我们要选 Cocoa Touch Class，因为
 
 1014
 00:42:09,460 --> 00:42:12,461
@@ -4185,7 +4185,7 @@ It says, what do you want it to be a subclass of?
 1017
 00:42:16,234 --> 00:42:18,401
 And we want UIView, but you can see there's other things.
-我们想要的是 UIView，但是我们看到了其他的东西
+我们想要的是 UIView，但是我们也看到了其他的东西
 
 1018
 00:42:18,469 --> 00:42:19,902
@@ -4195,7 +4195,7 @@ UIViewController 和
 1019
 00:42:19,971 --> 00:42:21,337
 other things that we'll learn later in the quarter.
-其他的东西，我会在课程后段去讲
+其他我会在课程后段去讲的东西
 
 1020
 00:42:21,405 --> 00:42:23,673
@@ -4245,12 +4245,12 @@ You don't want it in Supporting Files, and
 1029
 00:42:38,589 --> 00:42:40,422
 you don't want it at this top level, the project level.
-你不会想把它放在顶级目录或项目目录
+你不会想把它放在顶级目录也就是项目目录
 
 1030
 00:42:40,491 --> 00:42:42,858
 You want it inside this folder right here,
-你想把它放到这个文件夹里
+你应该把它放到这个文件夹里
 
 1031
 00:42:42,927 --> 00:42:44,560
@@ -4270,56 +4270,67 @@ Alright, so here's our FaceView.
 1034
 00:42:48,466 --> 00:42:51,567
 And you can see right off the bat in FaceView, we get this.
-
+现在在 FaceView 中，你立刻就能看到，我们有这些东西
 
 1035
 00:42:51,636 --> 00:42:54,970
 Which is our draw, okay, the draw with the rect.
-
+在我们的绘制方法，绘制矩形的
 
 1036
 00:42:55,039 --> 00:42:57,340
 Notice that it is commented out.
+注意，这里是被注释的
 
 1037
 00:42:57,408 --> 00:42:59,041
 And that's because for
+那是因为
 
 1038
 00:42:59,110 --> 00:43:03,145
 performance reasons, iOS doesn't want to ask views that
+性能的原因，IOS不会让
 
 1039
 00:43:03,214 --> 00:43:05,214
 don't actually do any drawing, to draw.
+实际上不会做任何绘制的视图去绘制
 
 1040
 00:43:05,283 --> 00:43:06,816
 Because it has to keep a backing store for
+它会把他们留在后台
 
 1041
 00:43:06,884 --> 00:43:09,818
 them, and there's memory stores and all this stuff.
 
+
 1042
 00:43:09,887 --> 00:43:11,921
 So by default this comes commented out.
+所以这些默认会被注释掉
 
 1043
 00:43:11,989 --> 00:43:13,956
 But of course, our FaceView is going to draw.
+当然，我们的 FaceView 会去绘制
 
 1044
 00:43:14,025 --> 00:43:15,458
 It's going to draw a face.
+它要绘制一张脸
 
 1045
 00:43:15,527 --> 00:43:18,227
 So we're going to un-comment it out.
+我们要取消这个注释
 
 1046
 00:43:19,396 --> 00:43:22,331
 Okay, now we have a FaceView here,
+好了，我们现在有 FaceView 了
 
 1047
 00:43:22,400 --> 00:43:23,432
