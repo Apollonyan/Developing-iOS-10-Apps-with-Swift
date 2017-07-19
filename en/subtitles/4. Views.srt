@@ -2406,36 +2406,36 @@ things like that.
 00:21:32,692 --> 00:21:35,359
 Then you set drawing            
 attributes in the context,      
-
+然后在环境中调整绘制属性
 502
 00:21:35,427 --> 00:21:37,962
 like the colors you wanna use,  
 the fonts if you're doing       
-
+比如你想要的颜色，字体，
 503
 00:21:38,031 --> 00:21:41,432
 text, line widths,              
 those kinds of things.          
-
+线宽度，等等。
 504
 00:21:41,501 --> 00:21:43,300
 You set those all up, and       
 then you stroke and fill.       
-
+当你设置好后，就写入 stroke 和 fill 代码
 505
 00:21:43,369 --> 00:21:44,801
 And that's it, stroking and     
-
+然后就完成了，stroking 和 filling
 506
 00:21:44,870 --> 00:21:47,804
 filling are actually the only   
 two directives that actually    
-
+是仅有的两条命令，也是真正的
 507
 00:21:47,873 --> 00:21:49,740
 cause something to              
 happen on screen.               
-
+能让东西显示在屏幕上
 508
 00:21:49,809 --> 00:21:50,574
 But keep in mind that, like,    
