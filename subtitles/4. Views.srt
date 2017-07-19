@@ -551,74 +551,92 @@ programmatically rather than dragging and
 111
 00:05:01,935 --> 00:05:04,502
 dropping them, then you would need this view because it's
+你需要用到这个视图，因为它是
 
 112
 00:05:04,571 --> 00:05:06,204
 the top of the entire view hierarchy.
+整个视图层的顶层
 
 113
 00:05:06,273 --> 00:05:07,606
 And you would kinda work your way down
+你可能会想知道你需要
 
 114
 00:05:07,674 --> 00:05:09,907
 to find out where you want to put that view.
+把那个视图放在哪
 
 115
 00:05:09,976 --> 00:05:12,410
 But we don't otherwise actually look at this view
+但其实我们不需要知道把它放哪
 
 116
 00:05:12,479 --> 00:05:14,846
 much because we usually have outlets, rights?
+因为我们有输出口，对吧？    //???
 
 117
 00:05:14,915 --> 00:05:17,982
 IBOutlets--like the display that points to the label--that
+IBOutlets（输出口）-- 比如在标签栏上显示那个点  //???
 
 118
 00:05:18,051 --> 00:05:19,484
 gives us access to that label.
+这（指IBOutlets）能让我们去修改那个标签栏
 
 119
 00:05:19,552 --> 00:05:20,451
 That's all we want, so
+这就是我想实现的，那么
 
 120
 00:05:20,520 --> 00:05:22,988
 we don't have to go looking at the top level view and
+我们不再需要一个一个的去找顶级视图了
 
 121
 00:05:23,056 --> 00:05:26,290
 looking all down the views, okay?
+对吧？
 
 122
 00:05:26,359 --> 00:05:28,059
 So this is important to know about but
+那么这就是我们重点需要知道的
 
 123
 00:05:28,128 --> 00:05:31,896
 surprisingly you don't access it that much, okay.
+但好在我们不需要过多的去使用它，好吧
 
 124
 00:05:31,965 --> 00:05:33,764
 This view is automatically hooked up for you in
+当你拖出了一个视图控件时，这个视图会
 
 125
 00:05:33,833 --> 00:05:35,967
 Interface Builder when you drag out a View Controller.
+自动连接到你的图形开发界面上
 
 126
 00:05:36,035 --> 00:05:38,002
 It's just all magically hooked up,
+就这么神奇的连接上了
 
 127
 00:05:38,071 --> 00:05:40,071
 you don't have to worry about that.
+你完全不需要担心
 
 128
 00:05:40,140 --> 00:05:43,241
 Okay, let's talk about initialization of the UIView.
+好了，接下来我们将讨论初始化 UIView
 
 129
 00:05:43,309 --> 00:05:46,378
@@ -2111,34 +2129,42 @@ lines and arcs and things like that.
 501
 00:21:32,692 --> 00:21:35,359
 Then you set drawing attributes in the context,
+然后在环境中调整绘制属性
 
 502
 00:21:35,427 --> 00:21:37,962
 like the colors you wanna use, the fonts if you're doing
+比如你想要的颜色，字体
 
 503
 00:21:38,031 --> 00:21:41,432
 text, line widths, those kinds of things.
+线宽度，等等
 
 504
 00:21:41,501 --> 00:21:43,300
 You set those all up, and then you stroke and fill.
+当你设置好后，就写入 stroke 和 fill 代码
 
 505
 00:21:43,369 --> 00:21:44,801
 And that's it, stroking and
+然后就完成了，stroking 和 filling
 
 506
 00:21:44,870 --> 00:21:47,804
 filling are actually the only two directives that actually
+是仅有的两条命令，也是真正的
 
 507
 00:21:47,873 --> 00:21:49,740
 cause something to happen on screen.
+能让东西显示在屏幕上
 
 508
 00:21:49,809 --> 00:21:50,574
 But keep in mind that, like,
+但记住，                       //???
 
 509
 00:21:50,642 --> 00:21:55,279
@@ -2147,118 +2173,147 @@ a font is basically just a really exquisite path filled,
 510
 00:21:55,348 --> 00:21:57,614
 okay, or stroked and filled.
+好了，开始 stroked 和 filled
 
 511
 00:21:57,683 --> 00:22:00,884
 So you can do a lot with stroking and filling.
+所以在 stroking 和 filling 的帮助下，你可以做很多事情
 
 512
 00:22:00,953 --> 00:22:03,420
 So UIBezierPath kinda encapsulates all of those
+所以， UIBezierpath 会封装那些
 
 513
 00:22:03,489 --> 00:22:05,956
 Core Graphics concepts into an object.
+核心图形概念到对象中    //???
 
 514
 00:22:06,025 --> 00:22:08,525
 And so I have an example here to show you how I would use
+所以我这里有个例子向你们展示，
 
 515
 00:22:08,594 --> 00:22:12,929
 UIBezierPath to draw a triangle on screen.
+如何用 UIBezierPath 在屏幕上画一个三角形
 
 516
 00:22:12,998 --> 00:22:14,965
 First, I'm gonna create the path by just saying,
+像刚刚说的，我要先创建一个路径
 
 517
 00:22:15,033 --> 00:22:16,099
 path = UIBezierPath().
+（代码）
 
 518
 00:22:16,168 --> 00:22:17,768
 There are other initializers for it,
+这里有其它的东西会被初始化
 
 519
 00:22:17,837 --> 00:22:18,735
 which we'll see in the demo.
+这些东西我们将在 demo 中看到
 
 520
 00:22:18,804 --> 00:22:21,371
 But this one just creates a blank path to start.
+但这里我们只创建一个空路径作为起点
 
 521
 00:22:21,440 --> 00:22:23,206
 Then, you move around with the path.
+然后，你需要移动这个路径
 
 522
 00:22:23,275 --> 00:22:25,876
 So like I can say, move to, which (80,
+像我说的，移动它到（80，50）
 
 523
 00:22:25,945 --> 00:22:29,480
 50) is like halfway across this, this little screen.
+差不多到一半穿过这个小屏幕
 
 524
 00:22:29,548 --> 00:22:32,949
 This is small screen, let's say, 160 points wide.
+这个小屏幕我们设置160点宽
 
 525
 00:22:33,018 --> 00:22:34,751
 80 and then 50 down, okay?
+80下至50，怎样？   //???
 
 526
 00:22:34,820 --> 00:22:39,556
 Then I'm gonna add a line down to 140, 50, see that, okay?
+然后我要加一条线，大概140，也许50？ //???
 
 527
 00:22:39,625 --> 00:22:42,659
 Then I'm gonna add another line over to 10,
+然后我要再加另一条线超过10， //???
 
 528
 00:22:42,728 --> 00:22:45,929
 off to the left, I'm still 150 down.
+直至到左端，仍然下至150 //???
 
 529
 00:22:45,998 --> 00:22:48,832
 Then I'm gonna close the path, okay, using close, and
+然后我要闭合路径，使用闭合功能
 
 530
 00:22:48,901 --> 00:22:51,101
 that just closes it back to the start.
+让它与起始点闭合。
 
 531
 00:22:51,170 --> 00:22:53,436
 So look, I made a triangle, okay, really easy.
+看，我画了个三角形，非常简单
 
 532
 00:22:53,505 --> 00:22:56,940
 Now, the only thing is, all this code right here would
+现在，唯一的一件事是，这些代码
 
 533
 00:22:57,009 --> 00:23:00,410
 actually draw, instead of that triangle right there,
+真的会绘制出三角形吗
 
 534
 00:23:00,479 --> 00:23:03,113
 would draw this: nothing.
+会吗：不会
 
 535
 00:23:03,182 --> 00:23:06,083
 You would see no drawing with that code because we haven't
+你看不到用代码绘制的三角形因为我们还
 
 536
 00:23:06,151 --> 00:23:07,117
 stroked or filled it.
+没有 stroked 或者 filled 它
 
 537
 00:23:07,186 --> 00:23:09,386
 The stroking and filling is what draws.
+stroking 和 filling 是我们绘制的（最后一步）
 
 538
 00:23:09,455 --> 00:23:10,754
 So how do we do the stroking and fill?
+那么我们如何 stroking 和 fill？
 
 539
 00:23:10,823 --> 00:23:13,157
