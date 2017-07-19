@@ -4000,12 +4000,12 @@ And it's gonna start out just drawing a face, but
 980
 00:40:53,517 --> 00:40:55,184
 it's gonna do much more eventually.
-他将会有包含很多的事件
+以后他会有更多功能
 
 981
 00:40:55,253 --> 00:40:58,654
 And, still no core data or testing stuff yet, so
-仍然没有核心数据或者测试的部门
+仍然没有核心数据或者测试的部分
 
 982
 00:40:58,723 --> 00:41:00,790
@@ -4015,171 +4015,212 @@ I'm just gonna do FaceIt here.
 983
 00:41:00,859 --> 00:41:02,191
 It's gonna say where do you want it?
-
+这好像在说，你想把它放在哪
 
 984
 00:41:02,260 --> 00:41:04,360
 I'm gonna put it in the same place the calculator is,
+我要把它和计算器放在同一个地方，
 
 985
 00:41:04,428 --> 00:41:05,094
 in my Developer.
+在我得开发里
 
 986
 00:41:05,163 --> 00:41:06,228
 I'm not gonna be using SCM.
+我不会用 SCM
 
 987
 00:41:06,297 --> 00:41:06,963
 But of course,
+当然
 
 988
 00:41:07,032 --> 00:41:09,165
 those of you come who came to Friday section,
+你们当中上过周五课程的
 
 989
 00:41:09,234 --> 00:41:10,633
 you'll know how to use that.
+会知道如何使用它
 
 990
 00:41:10,702 --> 00:41:13,603
 And here is my new app here.
+这是我的新 app
 
 991
 00:41:13,671 --> 00:41:15,538
 And I'm also going to do my standard thing,
+我将要做我每次都做的事了
 
 992
 00:41:15,607 --> 00:41:17,706
 where I'm gonna take these supporting files and
+我要把这些 supporting files （支持文件）
 
 993
 00:41:17,775 --> 00:41:18,841
 move them out of our way.
+打包放起来
 
 994
 00:41:18,910 --> 00:41:22,444
 So they don't distract us every time we look at
+这样每次我们看导航的时候
 
 995
 00:41:22,513 --> 00:41:24,513
 the Navigator here.
+他们就不会打扰我们了
 
 996
 00:41:24,582 --> 00:41:27,783
 Because we don't need those for this demo.
+因为这次的演示根本不要这些东西
 
 997
 00:41:27,852 --> 00:41:32,154
 So just like every other thing we've done, we have a view.
+就像我们原来做的，我们现在有一个 view （视图）
 
 998
 00:41:32,223 --> 00:41:35,324
 Here's our story board with our view.
+这是我们的视图的 story board （故事板）
 
 999
 00:41:35,392 --> 00:41:37,393
 Oops, not that small.
+哦，也没那么少
 
 1000
 00:41:37,462 --> 00:41:39,862
 And of course, we have our controller.
+当然，我们还有控制器
 
 1001
 00:41:39,931 --> 00:41:41,530
 And I'm gonna delete this out of the controller,
+我要想往常一样
 
 1002
 00:41:41,599 --> 00:41:43,800
 as usual here.
+把这些都删除了
 
 1003
 00:41:43,868 --> 00:41:47,303
 And this time, we're going to start right off here
+这次，我们要从这里开始
 
 1004
 00:41:47,372 --> 00:41:50,539
 by building a custom UIView, custom UIView subclass.
+创建一个自定义的 UIView，自定义的 UIView 子类
 
 1005
 00:41:50,608 --> 00:41:52,274
 Now, the way we do that is the saw way we built
+现在，我们就像创建 CalculatorBrain 一样
 
 1006
 00:41:52,343 --> 00:41:53,176
 the CalculatorBrain.
+去创建它就可以了
 
 1007
 00:41:53,245 --> 00:41:54,811
 We go here, new file, right.
+在这，new file （新建文件），好了
 
 1008
 00:41:54,879 --> 00:41:58,714
 That's how we add new files to our project.
+这样会向我们的项目中添加一个新文件
 
 1009
 00:41:58,783 --> 00:41:59,716
 But this time, for
+但这次
 
 1010
 00:41:59,784 --> 00:42:02,985
 CalculatorBrain we chose Swift File because it, you know,
+CalculatorBrain 我们我们选择为 Swift 文件，原因你知道的
 
 1011
 00:42:03,053 --> 00:42:04,186
 it wasn't a UI thing.
+这不是一个 UI 组件
 
 1012
 00:42:04,255 --> 00:42:06,288
 It didn't inherit from any iOS class.
+它不继承自任何 IOS 类
 
 1013
 00:42:06,357 --> 00:42:09,391
 But now we're gonna choose Cocoa Touch Class, because
+现在我们要选 Cocoa Touch Class，因为
 
 1014
 00:42:09,460 --> 00:42:12,461
 it's gonna be a subclass of a Cocoa Touch UIKit class.
+它将是 Cocoa Touch UIKit 类的子类
 
 1015
 00:42:12,530 --> 00:42:13,463
 So we click that.
+我们点击它
 
 1016
 00:42:13,531 --> 00:42:16,165
 It says, what do you want it to be a subclass of?
+它说了，你想要他做谁的子类？
 
 1017
 00:42:16,234 --> 00:42:18,401
 And we want UIView, but you can see there's other things.
+我们想要的是 UIView，但是我们看到了其他的东西
 
 1018
 00:42:18,469 --> 00:42:19,902
 UIViewController, and
+UIViewController 和
 
 1019
 00:42:19,971 --> 00:42:21,337
 other things that we'll learn later in the quarter.
+其他的东西，我会在课程后段去讲
 
 1020
 00:42:21,405 --> 00:42:23,673
 But this is a subclass of UIView.
+但这个是一个 UIView 的子类
 
 1021
 00:42:23,742 --> 00:42:25,607
 I'm gonna call it FaceView,
+我称它为 FaceView
 
 1022
 00:42:25,676 --> 00:42:28,177
 because it's a view that draws a face.
+因为它是绘制一张脸的视图
 
 1023
 00:42:28,246 --> 00:42:29,912
 Okay, it's a good name.
+好，这是个好名字
 
 1024
 00:42:29,981 --> 00:42:31,714
 Alright, so we click here.
+
 
 1025
 00:42:31,782 --> 00:42:33,382
