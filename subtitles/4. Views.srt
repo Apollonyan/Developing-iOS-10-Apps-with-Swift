@@ -4335,218 +4335,272 @@ Okay, now we have a FaceView here,
 1047
 00:43:22,400 --> 00:43:23,432
 it doesn't draw anything.
+它现在什么也不绘制
 
 1048
 00:43:23,501 --> 00:43:26,803
 But I actually wanna briefly go back to our storyboard, and
+让我们回到我们的故事板
 
 1049
 00:43:26,871 --> 00:43:28,938
 put a FaceView in the storyboard.
+把 FaceView 放到故事板里
 
 1050
 00:43:29,007 --> 00:43:32,875
 And it's really simple but I want to show it to you.
+虽然很简单，但是我还是想演示给你们
 
 1051
 00:43:32,943 --> 00:43:33,976
 if we go down to the Object Palette at the bottom here,
+现在看一下下方的 Object Palette （对象调色板）
 
 1052
 00:43:33,977 --> 00:43:35,010
 And again,
+然后
 
 1053
 00:43:35,080 --> 00:43:36,512
 where we got our buttons and
+这是我们的按钮和
 
 1054
 00:43:36,580 --> 00:43:38,481
 labels, you know I could search here forever.
+标签，就像你知道的，我们总可以在这里搜索
 
 1055
 00:43:38,550 --> 00:43:40,316
 There's no FaceView in here.
+这里没有 FaceView 啊
 
 1056
 00:43:40,385 --> 00:43:43,252
 But I can go down towards the bottom here, and
+但让我们看下边
 
 1057
 00:43:43,320 --> 00:43:44,420
 you will see this one.
+你会看到这个
 
 1058
 00:43:44,489 --> 00:43:47,023
 It's actually almost at the very bottom, it's View.
+这几乎是最下边了，这是个 View （视图）
 
 1059
 00:43:47,091 --> 00:43:49,291
 See, it represents a rectangular region which draws
+看，它代表一个矩形区域，
 
 1060
 00:43:49,360 --> 00:43:51,293
 and receives events, as promised.
+矩形区域会按照约定去绘制和接受事件
 
 1061
 00:43:51,362 --> 00:43:54,063
 And so I can pick this guy up and drag him out.
+我可以选中这家伙，把它拽出来
 
 1062
 00:43:54,132 --> 00:43:58,568
 Okay, and drop him here inside this view controller.
+好了，把它拽到视图控制器里
 
 1063
 00:43:58,636 --> 00:44:00,402
 And remember that the top level view in this view
+记住，顶层视图是这个视图控制器里
 
 1064
 00:44:00,471 --> 00:44:02,738
 controller is a var called view.
+的一个叫做 view 的变量
 
 1065
 00:44:02,807 --> 00:44:04,807
 Okay, a very important var.
+嗯，很重要的一个变量
 
 1066
 00:44:04,876 --> 00:44:08,010
 Now, I want this view to fill the whole space.
+现在，我想让这个视图填充所有的空白部分
 
 1067
 00:44:08,079 --> 00:44:11,314
 So I'm actually gonna use the blue dash lines to
+事实上，我要用到这些蓝色的虚线去
 
 1068
 00:44:11,382 --> 00:44:15,518
 make this thing fit the entire space, you see that?
+让这些东西去填充所有的空白，看到了吗？
 
 1069
 00:44:15,586 --> 00:44:18,988
 Now, well, I also want to do the Ctrl-dragging to
+好了，我还要按住Ctrl键，然后拖拽到这个边缘
 
 1070
 00:44:19,056 --> 00:44:21,590
 the edges that we did in calculator, remember that?
+就像我们做计算器时做过的一样，记住了吗？
 
 1071
 00:44:21,659 --> 00:44:23,992
 But it's actually kind of hard to do this because I want it
+事实上这么做真的有点难，因为我想它
 
 1072
 00:44:24,061 --> 00:44:25,795
 all the way to the edges.
+整个贴近边缘
 
 1073
 00:44:25,863 --> 00:44:29,131
 But since I used the blue lines, I can use a really cool
+但我用蓝色虚线了，我能用下边这个
 
 1074
 00:44:29,200 --> 00:44:31,067
 feature which is down here, this button.
+非常酷的特性，这个按钮
 
 1075
 00:44:31,135 --> 00:44:33,068
 You see this button in the lower right here?
+看到这个右下方的按钮了吗？
 
 1076
 00:44:33,137 --> 00:44:34,603
 It says Resolve Auto Layout Issues.
+它说 Resolve Auto Layout Issues （解决自动布局问题）
 
 1077
 00:44:34,672 --> 00:44:35,705
 If you click that,
+如果你点击它
 
 1078
 00:44:35,773 --> 00:44:39,942
 one of the choices is to Reset to Suggested Constraints.
+其中一个选项是 Reset to Suggested Constraints （重设至建议约束）
 
 1079
 00:44:40,011 --> 00:44:43,779
 So that is the system saying, I'll make your constraints for
+那就是说系统在说，我会根据你对蓝色虚线的做法
 
 1080
 00:44:43,848 --> 00:44:45,914
 you based on what you did with the blue lines.
+为你建立约束
 
 1081
 00:44:45,983 --> 00:44:47,483
 So I'm gonna look at your blue lines.
+我们来看看蓝色虚线
 
 1082
 00:44:47,552 --> 00:44:49,752
 Since I used blue lines all at the edges,
+因为所有边缘我都用到蓝色虚线了
 
 1083
 00:44:49,821 --> 00:44:52,354
 if I say Reset to Suggested Constraints,
+如果我说 重设至建议约束
 
 1084
 00:44:52,423 --> 00:44:54,957
 it's gonna hook those things to the edges.
+他就会把这些固定到边缘
 
 1085
 00:44:55,026 --> 00:44:56,592
 Because that's what it looked I wanted.
+因为那看起来就是我想要的
 
 1086
 00:44:56,661 --> 00:45:00,128
 Now I can double-check what it gave me by clicking here on
+现在我要双击这里
 
 1087
 00:45:00,197 --> 00:45:01,730
 the Size Inspector.
+Size Inspector （尺寸检查器）
 
 1088
 00:45:01,799 --> 00:45:02,998
 And if you look down towards the bottom of
+如果你看下边这个
 
 1089
 00:45:03,067 --> 00:45:05,400
 the Size Inspector, you can see all your constraints.
+尺寸检查器，你会看见你的所有约束
 
 1090
 00:45:05,469 --> 00:45:07,536
 And look at that, perfect Trailing Space to Superview,
+看看，完美，Trailing Space to Superview （扩展到父视图）
 
 1091
 00:45:07,605 --> 00:45:08,738
 leading space here.
+把空白引导到这里
 
 1092
 00:45:08,806 --> 00:45:10,640
 Excellent, all exactly what I want.
+太棒了，这就是我要的
 
 1093
 00:45:10,708 --> 00:45:13,943
 So here, I've gotten all my Auto-Layout with one click.
+这里，我通过一次点击就获得我全部的自动布局
 
 1094
 00:45:14,011 --> 00:45:16,412
 And that's going to be possible to do quite a bit.
+而且可能还能做得更多
 
 1095
 00:45:16,481 --> 00:45:17,846
 If you use those blue lines and
+如果你用这些蓝色虚线
 
 1096
 00:45:17,915 --> 00:45:19,882
 you say Reset to Suggested Constraints,
+你说，重设至建议约束
 
 1097
 00:45:19,951 --> 00:45:21,617
 often it'll at least get close.
+基本上，我们就已经很接近了
 
 1098
 00:45:21,686 --> 00:45:24,987
 And then you can kinda tweak the ones it didn't get right.
+如果还没达到预期，你可以拧这个
 
 1099
 00:45:25,056 --> 00:45:27,656
 Now, the other crucial thing I have to do here
+我现在要做的另一件重要的事情是
 
 1100
 00:45:27,725 --> 00:45:30,559
 is that this is currently a UIView.
+这是目前的 UIView
 
 1101
 00:45:30,628 --> 00:45:33,496
