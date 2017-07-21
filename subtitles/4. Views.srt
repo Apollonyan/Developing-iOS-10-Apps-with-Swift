@@ -4605,82 +4605,102 @@ is that this is currently a UIView.
 1101
 00:45:30,628 --> 00:45:33,496
 If I go over here to this inspector here,
+看一下 inspector （检查器）这里
 
 1102
 00:45:33,564 --> 00:45:37,299
 which is the Identity Inspector, you can see that
+这个 Identity Inspector （定义检查器）
 
 1103
 00:45:37,368 --> 00:45:41,637
 the class of the selected thing is UIView.
+你会发现，选择的类是 UIView
 
 1104
 00:45:41,706 --> 00:45:43,372
 So no matter what I put in my draw,
+所以无论我放什么在我的绘制里
 
 1105
 00:45:43,441 --> 00:45:44,406
 it would never be called.
+它永远都不会被调用
 
 1106
 00:45:44,475 --> 00:45:47,476
 Because this is not a FaceView, it's a UIView.
+因为这不是 FaceView，它是一个 UIView
 
 1107
 00:45:47,545 --> 00:45:51,847
 But I can just click here, and go down and choose FaceView.
+但是我可以点这里，拉到下边选择 FaceView
 
 1108
 00:45:51,915 --> 00:45:55,518
 And now I've made this a FaceView.
+现在，我已经让他成为一个 FaceView 了
 
 1109
 00:45:55,586 --> 00:45:57,119
 all the code I put in my draw is going to draw in here.
+我放在绘制里的所有代码都将在这里绘制出来
 
 1110
 00:45:57,120 --> 00:45:58,653
 So now,
+现在，
 
 1111
 00:45:58,723 --> 00:45:59,488
 And that's it,
+搞定了，
 
 1112
 00:45:59,556 --> 00:46:02,158
 that's all I need to do to put a custom view into my UI.
+这就是我要在我的 UI 里定义自定义视图所要做的全部了
 
 1113
 00:46:02,226 --> 00:46:03,825
 It's very common to want to put a custom view
+在 UI 定义自定义视图
 
 1114
 00:46:03,894 --> 00:46:04,426
 in, in the UI.
+是很平常的
 
 1115
 00:46:04,495 --> 00:46:07,830
 So that's why it's so simple to do.
+所以它做起来如此的简单
 
 1116
 00:46:07,899 --> 00:46:11,767
 Now all we need to do here is in our FaceView,
+我们接下来要在 FaceView 中
 
 1117
 00:46:11,836 --> 00:46:14,636
 write the code that draws--draws our face.
+写代码，绘制我们的脸了
 
 1118
 00:46:14,705 --> 00:46:16,538
 So what are we gonna do to draw a face?
+那么我们怎么来绘制一张脸呢？
 
 1119
 00:46:16,607 --> 00:46:20,243
 Well, I'm just gonna draw the kind of emoji face, this round
+我们将绘制一个像 emoji 类似的脸，这个圆作为
 
 1120
 00:46:20,311 --> 00:46:23,779
 circle for a head, two round eyes, a little smile.
+头，两个圆作为眼睛，再来点微笑
 
 1121
 00:46:23,848 --> 00:46:25,614
