@@ -2157,99 +2157,99 @@ So how do we do the stroking and fill?
 539
 00:23:10,823 --> 00:23:13,157
 Well, we need to set the colors that we wanna fill and
-
+首先，我们需要设置我们fill和stroke
 540
 00:23:13,226 --> 00:23:15,792
 stroke with.
-
+的颜色
 541
 00:23:15,861 --> 00:23:17,261
 But here, I'm taking green and
-
+在这里，我将使用绿色并且
 542
 00:23:17,330 --> 00:23:18,829
 sending it the message setFill.
-
+传递信息给setFill
 543
 00:23:18,897 --> 00:23:21,865
 So you actually set your color to fill with
-
+所以在设定你的填充颜色时，实际上
 544
 00:23:21,934 --> 00:23:24,601
 by sending a message to a color.
-
+是通过传递一个信息给颜色
 545
 00:23:24,670 --> 00:23:25,969
 You get a color, and you send it a message,
-
+你选择一个颜色，然后向其发送一条信息，
 546
 00:23:26,038 --> 00:23:27,237
 set that as my fill color.
-
+设置那个颜色作为我的填充色，
 547
 00:23:27,306 --> 00:23:28,104
 And the same thing with a stroke,
-
+同理在stroke上，
 548
 00:23:28,173 --> 00:23:28,772
 set it as a stroke color.
-
+设置其为stroke的颜色
 549
 00:23:28,840 --> 00:23:32,842
 So I set my stroke color to red, my fill color to green.
-
+所有我设置我的stroke的颜色为红色，我的填充色为绿色
 550
 00:23:32,911 --> 00:23:35,613
 But when I'm talking about attributes like line width,
-
+但当我准备设置属性比如线条宽度，
 551
 00:23:35,681 --> 00:23:38,716
 I send that to the path, to the UIBezierPath.
-
+我会向路径传送信息，到UIBezierPath
 552
 00:23:38,784 --> 00:23:41,318
 Set your line width to three, okay, so I do that.
-
+设置线宽度为3，好了，我设置好了
 553
 00:23:41,387 --> 00:23:45,622
 Now, if I say path.fill, now I get a green triangle.
-
+现在，如果我输入代码path.fill,我会得到一个绿色的三角形
 554
 00:23:45,691 --> 00:23:46,823
 Because my fill color was green,
-
+因为我的填充色是绿色，
 555
 00:23:46,892 --> 00:23:48,859
 and it takes that path and it fills it in.
-
+它会根据路径来填充颜色
 556
 00:23:48,927 --> 00:23:50,594
 That's what fill does.
-
+那就是填充所起到的作用
 557
 00:23:50,663 --> 00:23:53,563
 And similarly, if I say path.stroke,
-
+同样的，如果我输入path.stroke,
 558
 00:23:53,632 --> 00:23:55,332
 I get a red line around.
-
+我会得到红色的线条
 559
 00:23:55,401 --> 00:23:58,802
 Because the path that I took to get around there gets
-
+因为我设置的路径，我们会得到三条
 560
 00:23:58,871 --> 00:24:02,206
 stroked with a three-point wide red line.
-
+三个点宽的红色线条
 561
 00:24:02,274 --> 00:24:04,841
 So that's it, that's quite simple actually.
-
+完成了，其实非常简单
 562
 00:24:04,910 --> 00:24:05,543
 That's how we draw.
-
+这就是我们绘制的过程
 563
 00:24:07,579 --> 00:24:08,979
 And, UIBezierPath also knows how to draw a lot of common
