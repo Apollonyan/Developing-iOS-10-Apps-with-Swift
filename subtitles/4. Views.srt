@@ -4705,78 +4705,97 @@ circle for a head, two round eyes, a little smile.
 1121
 00:46:23,848 --> 00:46:25,614
 Okay, a very simple face.
+一张很简单的脸
 
 1122
 00:46:25,682 --> 00:46:28,584
 And, let's start by drawing the skull of our face, the,
+我们先画脸的轮廓
 
 1123
 00:46:28,653 --> 00:46:30,253
 kind of the head of this face.
+这张脸的头部
 
 1124
 00:46:31,556 --> 00:46:33,456
 And I just start doing that in draw here.
+我在这开始画
 
 1125
 00:46:33,524 --> 00:46:36,758
 I'm going to use UIBezierPath to do all this.
+我们用 UIBezierPath 来画这些
 
 1126
 00:46:36,827 --> 00:46:39,528
 So I don't actually even need to get the context.
+我都不需要上下文
 
 1127
 00:46:39,597 --> 00:46:41,864
 That UI get graphics, get context, don't even do that.
+图像啊，上线文啊，统统不需要
 
 1128
 00:46:41,933 --> 00:46:43,499
 Just use UIBezierPath automatically
+就用 UIBezierPath，它就会
 
 1129
 00:46:43,568 --> 00:46:44,833
 knows what context you're in.
+自动知道你的上下文
 
 1130
 00:46:44,902 --> 00:46:46,902
 So you don't have to do any of that.
+所以其他什么你都不用去做
 
 1131
 00:46:46,971 --> 00:46:48,637
 So what do I need to do though?
+我们接下来干什么呢？
 
 1132
 00:46:48,706 --> 00:46:51,874
 I need to kind of think of how big my face is.
+我需要考虑一下这张脸要多大
 
 1133
 00:46:51,942 --> 00:46:54,543
 I want my face, if I'm in portrait or landscape, I also
+我想要我的脸成为肖像或者是风景的一部分
 
 1134
 00:46:54,611 --> 00:46:57,613
 want my face to kind of be the smaller of the two sides,
+我也想让两边，高度，宽度
 
 1135
 00:46:57,682 --> 00:46:58,481
 the height or the width.
+变小一点
 
 1136
 00:46:58,549 --> 00:46:59,248
 You know what I mean?
+你们知道我的意思吗？
 
 1137
 00:46:59,317 --> 00:47:02,451
 Because I always want the face to fully fit in there.
-
+我总是想让脸去完整的填充这里
+skull Radius
 1138
 00:47:02,519 --> 00:47:06,522
 So I'm going to let my skullRadius, so that's gonna
+我要让头的半径，这就是我
 
 1139
 00:47:06,590 --> 00:47:10,559
 be the radius of my skull, okay, equal the minimum.
+头的半径，可以等于最小值
 
 1140
 00:47:10,628 --> 00:47:11,927
