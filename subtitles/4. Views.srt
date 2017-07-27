@@ -4800,502 +4800,625 @@ be the radius of my skull, okay, equal the minimum.
 1140
 00:47:10,628 --> 00:47:11,927
 And there's this nice min,
+这是漂亮的最小值
 
 1141
 00:47:11,996 --> 00:47:14,129
 you see that min function right there?
+你看这里有一个最小值函数
 
 1142
 00:47:14,198 --> 00:47:16,799
 It's generic-typed like an array.
+像是一个 generic-typed 的数组
 
 1143
 00:47:16,868 --> 00:47:18,200
 Array of T, so that's the T.
+T 类型数组，那就是说 T
 
 1144
 00:47:18,268 --> 00:47:19,368
 It will take any type.
+他可以是任意的类型
 
 1145
 00:47:19,437 --> 00:47:20,836
 And it will compare two things, and
+他会比较两样东西，然后
 
 1146
 00:47:20,905 --> 00:47:22,572
 return the one that's the lowest.
+返回最小的那个
 
 1147
 00:47:22,640 --> 00:47:25,808
 So I'm going to get the minimum of my bound,
+我要获取边界的最小值
 
 1148
 00:47:25,876 --> 00:47:30,412
 bounds.size.width and my bounds.size.height.
+边界的尺寸，宽度，高度
 
 1149
 00:47:30,481 --> 00:47:32,814
 And then I'm going to divide it by 2, because it's radius,
+然后除以2，因为是圆角
 
 1150
 00:47:32,883 --> 00:47:33,915
 not diameter.
 
+
 1151
 00:47:33,984 --> 00:47:35,618
 So now, see what I'm doing here?
+看看我做了什么？
 
 1152
 00:47:35,686 --> 00:47:38,954
 I'm just making it so that my radius of my skull will be
+我这么做，是为了我头的圆角会变得
 
 1153
 00:47:39,023 --> 00:47:41,424
 smaller of the width or height.
+和高度或宽度一样小
 
 1154
 00:47:41,492 --> 00:47:43,392
 And then, what about where I want the skull to be?
+我要把这个头放到哪呢
 
 1155
 00:47:43,461 --> 00:47:44,860
 Well, I want it to be right in the center.
+我就把它放在中间
 
 1156
 00:47:44,929 --> 00:47:51,700
 So can I say, let skullCenter equal my center?
+那我能说，让头中央等于我的中心吗？
 
 1157
 00:47:51,769 --> 00:47:53,736
 Okay, that's a method, can I say that?
+那是一个方法，我能那样说吗？
 
 1158
 00:47:53,805 --> 00:47:55,838
 That's a var, anything wrong with that?
+那是一个变量，有什么不对吗？
 
 1159
 00:47:55,906 --> 00:47:58,241
 No, I see shaking heads--why not, what's wrong with that?
+不，我看到有摇头的了，为什么不行呢，哪里错了？
 
 1160
 00:48:00,511 --> 00:48:01,077
 Yeah?
+恩？
 
 1161
 00:48:04,215 --> 00:48:07,483
 He says because it'll start from the top left.
+他说因为它会从左上方开始
 
 1162
 00:48:07,551 --> 00:48:08,684
 Not quite.
+不全对
 
 1163
 00:48:08,753 --> 00:48:10,419
 Anyone else wanna take a stab at this one?
+谁想说说吗？
 
 1164
 00:48:12,490 --> 00:48:16,558
 It's because center, while it is the center of this view,
+那种是因为中间，那是视图的中间
 
 1165
 00:48:16,627 --> 00:48:18,995
 it's in the wrong coordinate system.
+那是错误的坐标系统
 
 1166
 00:48:19,063 --> 00:48:21,330
 This center is in my superview's coordinate system
+这个中间是我的父视图的坐标系统
 
 1167
 00:48:21,398 --> 00:48:22,464
 and I'm in draw.
+我在绘画里
 
 1168
 00:48:22,533 --> 00:48:24,099
 I need to be in my coordinate system.
+我需要在我自己的坐标系统里
 
 1169
 00:48:24,168 --> 00:48:26,268
 So there's actually two things I can do here.
+这里我有两种解决方案
 
 1170
 00:48:26,336 --> 00:48:28,804
 One I could use this cool function in view called
+其一，我可以用这个视图中叫
 
 1171
 00:48:28,872 --> 00:48:31,640
 convert which will convert a point
+convert 的酷方法，它会把一个点
 
 1172
 00:48:31,709 --> 00:48:33,509
 from one coordinate system to another.
+从一个坐标系统转换到另一个坐标系统
 
 1173
 00:48:33,577 --> 00:48:37,045
 So I can go down to this one okay,
+我要到这里
 
 1174
 00:48:37,114 --> 00:48:39,481
 convert CGPoint from view, and
+把 CGPoint 从 view 转换到
 
 1175
 00:48:39,550 --> 00:48:44,353
 I could convert this point center from my superview.
+我能转换这个点到我父视图的中心
 
 1176
 00:48:46,290 --> 00:48:48,423
 Okay, so just using center I can convert it.
+好了，那就用我能转换的中心
 
 1177
 00:48:48,492 --> 00:48:51,526
 That would be fine, because I've converted it from one
+那很好，我可以把一个点从
 
 1178
 00:48:51,595 --> 00:48:53,462
 coordinate system, my superviews, to mine.
+一个坐标系统，即父视图的，转换到我的坐标系统
 
 1179
 00:48:55,032 --> 00:48:56,298
 That's probably a little,
+这代码读起来
 
 1180
 00:48:56,366 --> 00:48:57,733
 someone reading this code is like,
+有点像这种感觉
 
 1181
 00:48:57,802 --> 00:48:59,135
 hm, why are they doing that?
+恩，为什么这么做？
 
 1182
 00:48:59,203 --> 00:49:03,505
 A simpler way to do it is probably just to create
+一个简单的解决方案可能是只创建一个点
 
 1183
 00:49:03,574 --> 00:49:08,944
 a point, a CGPoint, that is my bounds midX, that's my
+一个 CGPoint，我边界的 midX，那是
 
 1184
 00:49:09,013 --> 00:49:14,850
 middle X, see, that's a rect thing, and my bounds midY.
+中间的 X，看，那是一个矩形，我的 midY
 
 1185
 00:49:14,919 --> 00:49:17,453
 Okay.
+好了
 
 1186
 00:49:17,521 --> 00:49:18,687
 So I'm just creating the point that is the center,
+我只是创建了一个在中心的点
 
 1187
 00:49:18,688 --> 00:49:19,854
 That makes sense?
+这有什么意义吗？
 
 1188
 00:49:19,923 --> 00:49:22,525
 much more straightforwardly there.
+更简单而已
 
 1189
 00:49:22,593 --> 00:49:24,860
 All right, so now I have my radius and the center.
+我现在有圆角和中心了
 
 1190
 00:49:24,929 --> 00:49:26,494
 Now I need to draw a circle.
+我需要绘制一个圆
 
 1191
 00:49:26,563 --> 00:49:27,629
 So how do I draw a circle?
+怎么绘制一个圆呢？
 
 1192
 00:49:27,698 --> 00:49:29,865
 I'm gonna do that with UIBezierPath.
+我将用 UIBezierPath 来实现
 
 1193
 00:49:29,934 --> 00:49:33,002
 So I'm gonna say let path equal a UIBezierPath.
+我要说让路径等于一个 UIBezierPath
 
 1194
 00:49:33,071 --> 00:49:34,836
 Now, when we look at the constructors for
+好了，我们来看看这个 UIBezierPath 容器
 
 1195
 00:49:34,905 --> 00:49:38,807
 UIBezierPath here you can see that we can draw an arc.
+这里，我们可以画一个弧线
 
 1196
 00:49:38,876 --> 00:49:40,342
 Which is actually what I'm going to use.
+这就是我要用的
 
 1197
 00:49:40,411 --> 00:49:42,611
 We could draw an oval, which would be cool,
+我要画一个椭圆，这会很酷
 
 1198
 00:49:42,679 --> 00:49:44,346
 except the argument is a rect, and
+除了这其实是一个矩形
 
 1199
 00:49:44,414 --> 00:49:45,614
 I have the center and the radius.
+我有中心和圆角
 
 1200
 00:49:45,682 --> 00:49:47,983
 So I can't, I don't really want to use oval.
+我不能，我不能真的用椭圆
 
 1201
 00:49:48,052 --> 00:49:48,984
 We could draw a rectangle.
+我们应该画一个矩形
 
 1202
 00:49:49,052 --> 00:49:51,186
 I want a circle, so that's no good.
+我想要一个圆，这可不好了
 
 1203
 00:49:51,255 --> 00:49:52,121
 Or a rounded rect.
+或者一个圆角的矩形
 
 1204
 00:49:52,190 --> 00:49:53,355
 I actually want the circle,
+事实上我想要一个圆
 
 1205
 00:49:53,423 --> 00:49:55,090
 not a rectangle of any kind, okay?
+不是一个像这样的矩形啊？
 
 1206
 00:49:55,158 --> 00:49:57,560
 So I'm gonna use this one right here which draws an arc.
+我将用这里的这个画一个弧形
 
 1207
 00:49:57,628 --> 00:50:01,263
 It just takes a center point and it draws a sweeping arc.
+只需要一个中心点，它就能画一个完整的弧线
 
 1208
 00:50:01,332 --> 00:50:03,966
 And I'm gonna draw this arc all the way around
+我将这么画所有周围的弧线
 
 1209
 00:50:04,035 --> 00:50:06,101
 to make a circle, okay?
+来画一个圆
 
 1210
 00:50:06,169 --> 00:50:06,835
 So how does that work?
+能行吗？
 
 1211
 00:50:06,904 --> 00:50:09,070
 Here, I'm gonna make some more space.
+我将制造更多的空间
 
 1212
 00:50:09,139 --> 00:50:11,807
 All right, so it wants to know the center of the arc.
+他想知道弧线的中心
 
 1213
 00:50:11,876 --> 00:50:14,309
 Well, that's my skull center, right?
+好了，我头的中心?
 
 1214
 00:50:14,378 --> 00:50:16,478
 It wants to know the radius of the arc, well,
+他想知道弧线的半径
 
 1215
 00:50:16,547 --> 00:50:19,080
 that's my skullRadius, this easy.
+这就是我头的半径，这很简单
 
 1216
 00:50:19,149 --> 00:50:20,749
 It wants to know the start angle.
+他想知道初始角度
 
 1217
 00:50:20,817 --> 00:50:24,052
 So that's the angle that it's gonna start sweeping.
+这就是我们开始的角度
 
 1218
 00:50:24,121 --> 00:50:24,920
 I'm gonna choose 0,
+我要选 0
 
 1219
 00:50:24,989 --> 00:50:30,526
 the angle 0 is straight out to your right.
+角度 0 直指你的右侧
 
 1220
 00:50:31,662 --> 00:50:32,861
 Okay, so if you're looking at the screen,
+好了，如果你看下屏幕
 
 1221
 00:50:32,930 --> 00:50:35,830
 to the right straight across, that's 0.
 
+
 1222
 00:50:35,899 --> 00:50:37,099
 And it's in radians,
 
+
 1223
 00:50:37,167 --> 00:50:40,235
 how many people know what radians are to measure angle?
+有多少人知道用弧度来测量角度
 
 1224
 00:50:40,304 --> 00:50:41,269
 Okay most of you.
+大多数都知道
 
 1225
 00:50:41,338 --> 00:50:43,138
 So radians instead of degrees,
+弧度来代替度数
 
 1226
 00:50:43,207 --> 00:50:45,908
 we measure how much we're going up by radians.
+我们来测量我们需要多少弧度
 
 1227
 00:50:45,976 --> 00:50:49,244
 Radians go from zero all the way around to two pi.
+弧度从 0 到 2π
 
 1228
 00:50:49,313 --> 00:50:50,412
 Around the circle.
+围绕圆
 
 1229
 00:50:50,481 --> 00:50:53,949
 Start at zero and then it will go around, pi over two,
+从 0 开始，然后 π，2π，
 
 1230
 00:50:54,018 --> 00:50:56,852
 pi, you know, then pi is 180 degrees and
-
+你知道的，π 代表180度
 1231
 00:50:56,921 --> 00:50:59,521
 then around to two pi is 360 degrees.
+2π 代表360度
 
 1232
 00:50:59,590 --> 00:51:02,191
 So it's in radians, so this end angle has to be in radians
+这是弧度，这个结束的角度应该是弧度
 
 1233
 00:51:02,259 --> 00:51:03,592
 and I wanna go all the way around.
+我要绕一圈
 
 1234
 00:51:03,661 --> 00:51:05,761
 So it's 2 times pi.
+所以是2倍的 π
 
 1235
 00:51:05,830 --> 00:51:08,163
 We know that Double.pi is pi.
+我们知道 Double.pi 就是 π
 
 1236
 00:51:08,232 --> 00:51:10,766
 And then clockwise is whether I'm gonna draw the arc around
+然后 clockwise 是我是否要让弧线
 
 1237
 00:51:10,835 --> 00:51:12,301
 clockwise or the other way.
+围绕 clockwise 或者其他路径
 
 1238
 00:51:12,370 --> 00:51:14,336
 It doesn't matter because I'm going all the way around to
+那不重要，因为我将要绕一圈
 
 1239
 00:51:14,405 --> 00:51:16,171
 get back to the start anyway.
+来回到初始的位置
 
 1240
 00:51:16,240 --> 00:51:17,706
 So I'll just say false.
+我会说 false
 
 1241
 00:51:17,775 --> 00:51:19,841
 There you go, counter-clockwise.
+好了，counter-clockwise
 
 1242
 00:51:19,910 --> 00:51:22,110
 Now, I got a warning here, an error.
+现在，我要警示这里，一个错误
 
 1243
 00:51:22,179 --> 00:51:22,845
 Let's look at that error.
+让我们看看这个错误
 
 1244
 00:51:22,913 --> 00:51:26,147
 What does it say, it says the binary operator* (and is
+他说，二进制操作符 * (and is
 
 1245
 00:51:26,216 --> 00:51:29,485
 pointing to this little multiplier right here) cannot
+pointing to this little multiplier right here)不能
 
 1246
 00:51:29,553 --> 00:51:32,121
 be applied to 'Int' and 'Double'.
+不能被转换为 Int 和 Double
 
 1247
 00:51:32,189 --> 00:51:33,489
 Why is it saying that?
+为什么这么说呢
 
 1248
 00:51:34,959 --> 00:51:36,759
 These arguments to UIBezierPath,
+这个 UIBezierPath 的参数
 
 1249
 00:51:36,827 --> 00:51:39,428
 the floating point arguments like a startAngle and
+浮点点参数像是开始角度
 
 1250
 00:51:39,497 --> 00:51:42,531
 endAngle, what type do you think it's supposed to be?
+和结束角度，你认为应该是什么类型？
 
 1251
 00:51:45,836 --> 00:51:47,803
 No one?
+没人吗？
 
 1252
 00:51:47,872 --> 00:51:50,472
 I hear it being whispered, yes, CGFloat.
+我听见有人小声说，是的，CGFloat
 
 1253
 00:51:50,541 --> 00:51:52,541
 All drawing has to be CGFloat.
+所有的绘制应该是 CGFloat
 
 1254
 00:51:52,610 --> 00:51:56,011
 So is Double.pi, is that a CG float?
+所有 Double.pi 是一个 CG 浮点类型吗
 
 1255
 00:51:56,080 --> 00:51:57,045
 No, it's a double.
+当然不是，它是一个 double 类型
 
 1256
 00:51:57,114 --> 00:51:59,214
 Is two a CGFloat?
+两个是一个 CGFloat 吗
 
 1257
 00:51:59,283 --> 00:52:00,382
 Well it might be.
+有可能是
 
 1258
 00:52:00,450 --> 00:52:02,784
 But Swift would have to infer that it's a CGFloat.
+但是 Swift 会推断那是一个 CGFloat
 
 1259
 00:52:02,853 --> 00:52:05,187
 And right now Swift is confused about what that's
+现在 Swift 困惑了，这应该
 
 1260
 00:52:05,256 --> 00:52:07,122
 supposed to be because it knows this argument is
+是它知道的
 
 1261
 00:52:07,191 --> 00:52:08,724
 supposed to be a CGFloat, but
-
+一个 CGFloat 类型参数，但是
 1262
 00:52:08,793 --> 00:52:10,425
 the thing you're multiplying it by is a Double.
+但是你这里乘的却是一个 Double 类型
 
 1263
 00:52:10,494 --> 00:52:12,628
 So Swift doesn't know what to infer here.
+所以 Swift 不知道该怎么做了
 
 1264
 00:52:12,697 --> 00:52:15,264
 Doesn't know whether to refer that to as a Double or
+
 
 1265
 00:52:15,332 --> 00:52:16,265
