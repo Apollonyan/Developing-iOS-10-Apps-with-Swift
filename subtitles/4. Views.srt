@@ -5418,131 +5418,162 @@ So Swift doesn't know what to infer here.
 1264
 00:52:12,697 --> 00:52:15,264
 Doesn't know whether to refer that to as a Double or
-
+不知道应该指定为 Double 类型或者
 
 1265
 00:52:15,332 --> 00:52:16,265
 a CGFloat.
+CGFloat 类型
 
 1266
 00:52:16,333 --> 00:52:20,302
 So the fix here, luckily, CGFloat has a pi.
+修复，幸运的是，CGFloat 有 π
 
 1267
 00:52:22,105 --> 00:52:23,439
 Just like double does.
+就像 double 那样
 
 1268
 00:52:23,507 --> 00:52:26,308
 Now, everybody's happy, because Swift knows how to
+所有人都开心了，因为 Swift 知道
 
 1269
 00:52:26,377 --> 00:52:29,745
 interpret this literal as a CGFloat.
+如何把解释成一个 CGFloat 类型
 
 1270
 00:52:29,813 --> 00:52:32,247
 And this argument to the endAngle is now a CGFloat.
+这个结束角度的参数现在是 CGFloat 类型了
 
 1271
 00:52:32,316 --> 00:52:33,114
 So now everybody's happy.
+所有人都开心了
 
 1272
 00:52:33,183 --> 00:52:36,151
 It's only complained that we don't use path yet.
+现在唯一需要抱怨的就是我们还没有用路径
 
 1273
 00:52:36,220 --> 00:52:37,519
 Okay?
+Okay？
 
 1274
 00:52:37,587 --> 00:52:39,554
 Excellent, so now we got this arc going all around.
+太棒了，我们现在有一个弧形圆了
 
 1275
 00:52:39,623 --> 00:52:42,558
 Let's set something about the path like it's line width for
+我们为这个路径设置一些像线宽度的东西，举个例子
 
 1276
 00:52:42,626 --> 00:52:45,193
 example, we'll set a nice, fairly thick line,
+我将设置一个漂亮的，有点粗的线
 
 1277
 00:52:45,262 --> 00:52:48,330
 five points wide, that's what that means,
+五个点那么宽，这就是它的意思
 
 1278
 00:52:48,398 --> 00:52:50,432
 five point zero, five points wide.
 
+
 1279
 00:52:50,501 --> 00:52:52,334
 And then let's set the color.
+我们再设一下颜色
 
 1280
 00:52:52,403 --> 00:52:56,171
 So I'm gonna get UIColor, let's say, blue color and
+我将用到 UIColor，比如说，蓝色
 
 1281
 00:52:56,240 --> 00:53:00,743
 we'll say set, and by the way there's setFill and setStroke.
+我们说设置，顺便的设置填充和描边
 
 1282
 00:53:00,811 --> 00:53:02,110
 There's also just set.
+这些都仅仅是设置就行
 
 1283
 00:53:02,179 --> 00:53:04,346
 Set sets both the fill and the stroke.
+设置填充和描边
 
 1284
 00:53:04,415 --> 00:53:06,482
 Here we only need to set the stroke color, but
+这里我们需要设置的只有描边颜色，
 
 1285
 00:53:06,550 --> 00:53:09,351
 I'll just say set so that you learn about that one.
+但我设置目的是为了让你们学习一下
 
 1286
 00:53:09,420 --> 00:53:13,521
 And now I can just say path stroke okay and
+描边已经好了
 
 1287
 00:53:13,590 --> 00:53:15,924
 it's going to stroke that path.
+要开始描边了
 
 1288
 00:53:15,992 --> 00:53:17,025
 So let's see what this looks like.
+让我们看看是什么样的
 
 1289
 00:53:17,094 --> 00:53:19,495
 Let's go do iPhone 7 here.
+换成 iPhone 7
 
 1290
 00:53:21,899 --> 00:53:24,600
 So hopefully this is gonna draw our skull.
+但愿会绘制我们的头
 
 1291
 00:53:35,979 --> 00:53:37,145
 There we go, a skull.
+好啦，一个头
 
 1292
 00:53:37,214 --> 00:53:38,647
 Whoo, first time, excellent.
+噢，第一次，超赞
 
 1293
 00:53:38,715 --> 00:53:42,083
 Okay, now I don't like the look of that very
+我非常不喜欢他的样子
 
 1294
 00:53:42,152 --> 00:53:44,419
 much because it goes all the way to the edges and
+因为它抵到所有的边框了
 
 1295
 00:53:44,488 --> 00:53:46,555
 with a thick line that's actually cut off a little bit.
+
 
 1296
 00:53:46,623 --> 00:53:49,057
