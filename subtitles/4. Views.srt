@@ -5578,130 +5578,162 @@ with a thick line that's actually cut off a little bit.
 1296
 00:53:46,623 --> 00:53:49,057
 So I want to move that in a little bit so we'll do that.
+我要把它往里移动一点，我们就这么做
 
 1297
 00:53:49,126 --> 00:53:51,794
 Let's rotate and go from portrait to landscape.
+我们旋转一下，从纵向到横向
 
 1298
 00:53:54,731 --> 00:53:57,032
 Not good, not good.
+不好，不好
 
 1299
 00:53:57,101 --> 00:53:58,734
 Okay, why is that happening?
+为什么这样了
 
 1300
 00:53:58,802 --> 00:53:59,234
 That it's doing that.
+这就应该这样
 
 1301
 00:53:59,303 --> 00:54:00,401
 Well, that's that content
+这是我们讨论
 
 1302
 00:54:00,470 --> 00:54:01,904
 mode thing I was talking about, right?
+的内容模式，对吧？
 
 1303
 00:54:01,972 --> 00:54:05,307
 It's not calling my draw when it goes to this other
+当他达到其他边界的时候，
 
 1304
 00:54:07,744 --> 00:54:11,113
 bound size right there, so it's just scaling the bits.
+他不会调用我的绘图，所以只是缩放它
 
 1305
 00:54:11,181 --> 00:54:12,547
 So let's fix both of those things,
+让我们把两边这些固定一下
 
 1306
 00:54:12,616 --> 00:54:15,784
 let's make it go in a little bit, and let's fix those bits.
+我们让它往里一点，然后固定这些
 
 1307
 00:54:15,853 --> 00:54:18,887
 To fix the bits, we're just gonna go back to our
+为了固定这些，我们只需回到我们的
 
 1308
 00:54:18,956 --> 00:54:22,024
 storyboard, and click on our view right here.
+storyboard，然后点击我们 view 这里
 
 1309
 00:54:22,092 --> 00:54:23,459
 Lets get rid of this.
+先不管这个
 
 1310
 00:54:23,527 --> 00:54:28,029
 Okay, click on our View, and go over to Utilities.
+好了，点击我们的 View，转到 Utilities（工具）
 
 1311
 00:54:28,098 --> 00:54:30,866
 Inspect this with the Attributes Inspector and look,
+使用属性检查器检查并查看
 
 1312
 00:54:30,934 --> 00:54:34,603
 the very first one, Content Mode, Scales to Fill.
+第一个，Content Mode （内容模式），Scales to Fill （自适应填充）
 
 1313
 00:54:34,671 --> 00:54:37,605
 Every time the bounds change it's scales to bits to fill
+每次边界改变，它就会缩放并且去填充
 
 1314
 00:54:37,674 --> 00:54:40,375
 and we want Redraw.
+我们想要重新绘制
 
 1315
 00:54:40,444 --> 00:54:42,777
 We could also probably use Center, but
+我们也可以用中心点
 
 1316
 00:54:42,846 --> 00:54:45,280
 I actually want Redraw because if my bounds got smaller for
+但是，我们事实上我们是因为边界变小了，才要重新绘制
 
 1317
 00:54:45,349 --> 00:54:47,148
 example, I'd wanna draw my face smaller.
+比如说我想把脸画的小一点
 
 1318
 00:54:47,217 --> 00:54:49,951
 I wouldn't want to get cut off.
+我又不想它被分离开
 
 1319
 00:54:50,020 --> 00:54:51,052
 Okay, so there's Redraw.
+好了，我们可以用重绘
 
 1320
 00:54:51,121 --> 00:54:53,588
 That fixed that one, that was easy to fix.
+那个修复了那个，这很很容易修复
 
 1321
 00:54:53,657 --> 00:54:56,725
 What about making this thing kinda smaller?
+怎么能把它弄得再小点呢？
 
 1322
 00:54:56,793 --> 00:55:02,631
 To do that, I'm actually gonna create a var called scale.
+想这么做，我们可以创建一个叫做 scale 的变量
 
 1323
 00:55:02,699 --> 00:55:06,268
 And it's a drawing thing so it's a CGFloat.
+那是绘制出来的，所以它是一个 CGFloat
 
 1324
 00:55:06,336 --> 00:55:09,871
 And I'm going to set it to let's say 0.9 and
+我现在要配置它，我们说 0.9
 
 1325
 00:55:09,940 --> 00:55:11,406
 that's going to mean 90%.
+那就是说 90% 的意思
 
 1326
 00:55:11,475 --> 00:55:13,574
 All I'm going to do is take my radius and
+我将要把我的半径
 
 1327
 00:55:13,643 --> 00:55:15,777
 multiply it by that scale.
+乘以那个比例
 
 1328
 00:55:15,846 --> 00:55:17,780
