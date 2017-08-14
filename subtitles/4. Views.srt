@@ -5738,146 +5738,182 @@ multiply it by that scale.
 1328
 00:55:15,846 --> 00:55:17,780
 So by multiplying my radius by 0.9 or
+把半径乘以 0.9 或者 
 
 1329
 00:55:17,848 --> 00:55:21,450
 90% it should zoom move it in a little bit right.
+90%, 它应该会缩小一点
 
 1330
 00:55:21,518 --> 00:55:23,585
 Kind of in from the edges by 90%.
+类似边界的 90%
 
 1331
 00:55:23,653 --> 00:55:29,358
 So let's see if both those things got fixed.
+让我们再来看看那些固定的东西
 
 1332
 00:55:33,864 --> 00:55:34,929
 So the 90% worked.
+90% 好使了
 
 1333
 00:55:34,998 --> 00:55:40,235
 Clearly, it's in 90% and the rotation works also.
+很清晰，它是 90% 并且旋转也同样应用了
 
 1334
 00:55:40,303 --> 00:55:42,204
 So we're off to a good start here,
+现在我们有一个好的开端
 
 1335
 00:55:42,273 --> 00:55:43,405
 things seem to be working just fine.
+看起来都按照预期一样好使了
 
 1336
 00:55:43,474 --> 00:55:45,974
 Alright, so, what's the next thing we wanna do?
+那我们接下来要做什么呢？
 
 1337
 00:55:46,043 --> 00:55:47,943
 Well, we wanna draw eyes and
+我们要开始画眼睛、
 
 1338
 00:55:48,012 --> 00:55:50,579
 a mouth and things like that, I wanna start thinking
+嘴类似的东西，让我先思考一下
 
 1339
 00:55:50,647 --> 00:55:52,814
 a little bit about my internal architecture.
+我内部的结构
 
 1340
 00:55:52,883 --> 00:55:55,817
 And I'm kinda liking the idea of having some private funcs,
+我刚倾向于有一些内部私有方法的点子
 
 1341
 00:55:55,886 --> 00:55:58,454
 like give me the path for the skull.
+比如给我一个头轮廓的路径
 
 1342
 00:56:00,257 --> 00:56:04,526
 And have that return a UIBezierPath that
+然后返回一个我可以
 
 1343
 00:56:04,595 --> 00:56:06,562
 I can then stroke.
+进行描边的 UIBezierPath 实例
 
 1344
 00:56:06,630 --> 00:56:08,130
 And then I'll have the same thing, give me the path for
+我将要对眼睛做同样的事情，给我一个眼睛的路径
 
 1345
 00:56:08,199 --> 00:56:09,464
 the eye, give me a path for
+给我一个嘴的路径
 
 1346
 00:56:09,533 --> 00:56:10,398
 the mouth, you see what I mean?
+你们明白我的意思了吧？
 
 1347
 00:56:10,467 --> 00:56:11,466
 I'll get all these.
+我会得到全部这些
 
 1348
 00:56:11,535 --> 00:56:14,436
 And so I can just take this code down here
+所以我可以拿下边这些
 
 1349
 00:56:14,505 --> 00:56:16,505
 that creates this path for the skull and
+创建头轮廓路径的代码
 
 1350
 00:56:16,573 --> 00:56:19,941
 I'll just put it up here and I'll just return this path.
+然后我把它放在这，然后我会返回这些路径
 
 1351
 00:56:20,010 --> 00:56:24,412
 And then, down here, instead of saying paths.stroke,
+下边这里，取代 paths.stroke
 
 1352
 00:56:24,481 --> 00:56:27,883
 I'll say pathForSkull().stroke().
+我会用 pathForSkull().stroke()
 
 1353
 00:56:27,951 --> 00:56:29,784
 Do you see that?
+你们懂了吗？
 
 1354
 00:56:29,853 --> 00:56:32,087
 Now, another thing is the skullRadius and
+另外的是 skullRadius
 
 1355
 00:56:32,156 --> 00:56:34,756
 the skullCenter, I want all the other things like the eyes
+和 skullCenter，我想要全部的其他东西都想眼睛
 
 1356
 00:56:34,825 --> 00:56:38,059
 and the mouth to all be relative to that.
+和嘴一样都和那个关联
 
 1357
 00:56:38,128 --> 00:56:40,462
 So if I make my skull small I need the eyes to get smaller,
+我会使轮廓变小，我需要眼睛变小
 
 1358
 00:56:40,531 --> 00:56:42,730
 the mouth to get smaller, everything to move in.
+嘴也变小，把这些都移进来
 
 1359
 00:56:42,799 --> 00:56:44,232
 So I'm gonna use these two guys,
+我要用到这两个东西
 
 1360
 00:56:44,301 --> 00:56:46,801
 I'm gonna make them instead of being local variables in draw,
+我要用它们替代 draw 里的本地变量
 
 1361
 00:56:46,870 --> 00:56:51,707
 I'm gonna move them out and make them be private vars.
+我要把他们移出来然后让他们变成私有变量
 
 1362
 00:56:51,775 --> 00:56:55,410
 And in specific they're gonna be private computed vars.
+具体点说他们是可计算的私有变量
 
 1363
 00:56:55,479 --> 00:56:58,346
 So I'm just gonna take what they were before and
+
 
 1364
 00:56:58,415 --> 00:57:01,516
