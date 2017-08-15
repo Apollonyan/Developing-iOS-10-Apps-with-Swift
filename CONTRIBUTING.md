@@ -38,7 +38,7 @@
 
 ## 提交翻译
 
-1. **全部** 翻译完之后提交 pull request，你会看到它出现在 [这里](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/pulls)，具体步骤可以参考 [教程](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)
+1. **全部** 翻译完之后提交 pull request，你会看到它出现在 [这里](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/pulls)，具体步骤可以参考 [教程](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)。
 2. 如果有，请在提交信息中注明我们需要特别注意的地方，和其他任务行之外的改动。
 2. 我们会进行简单的校对。多半您在主项目的 pull request 下会被拒绝合并，request changes，这是正常的现象。
 3. 请 merge 您 fork 下的 pull request，建议然后再简单地确认一下。
