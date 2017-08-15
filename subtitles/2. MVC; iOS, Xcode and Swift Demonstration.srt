@@ -1841,7 +1841,7 @@ actually, let's just make it fill the whole screen.
 369
 00:18:27,208 --> 00:18:30,175
 If we look in the navigator, now we have three files,
-如果我们看这里的导航面板，现在就有三个文件了
+如果我们看这里的导航器，现在就有三个文件了
 
 370
 00:18:30,244 --> 00:18:33,512

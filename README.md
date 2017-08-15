@@ -16,7 +16,9 @@
 
 我们目前完成了前三集的内容，详情请 [查看进度跟踪看板](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/projects/1)。您也可以 [关注（Watch）项目的更新](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/subscription)，获得最新动态。如果您有任何建议或意见，或是在观看视频时发现了翻译有误的地方，请 [反馈](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/new) 给我们，或发电子邮件到 [public-apollonian@outlook.com](mailto:public-apollonian@outlook.com)。
 
-如果您想支持我们，请点击项目右上角的 <a class="github-button" href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift" data-icon="octicon-star" data-show-count="true" aria-label="Star ApolloZhu/Developing-iOS-10-Apps-with-Swift on GitHub">Star</a> 按钮来 Star 本项目。同时也希望您能够通过各种国内外社交平台，如 微信公众号，微博，博客，开发者头条，简书，CSDN 等为我们宣传推广，以帮助更多有需要的人。当然，与时俱进，我们也即将支持微信或支付宝打赏。资金的用途尚未定，但一定会保持公开透明。
+如果您想支持我们，请点击项目右上角的 <a class="github-button" href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift" data-icon="octicon-star" data-show-count="true" aria-label="Star ApolloZhu/Developing-iOS-10-Apps-with-Swift on GitHub">Star</a> 按钮来 Star 本项目。同时也希望您能够通过各种国内外社交平台，如 微信公众号，微博，博客，开发者头条，简书，CSDN 等为我们宣传推广，以**吸引更多的人加入翻译，加快翻译速度**，同时帮助更多有需要的人。
+
+当然，与时俱进，我们之后可能会支持微信或支付宝打赏（资金的用途尚未定，但一定会保持公开透明）。
 
 ### 下载
 
@@ -42,4 +44,10 @@
 ----
 
 <script async defer src="https://buttons.github.io/buttons.js">/*请忽略这段代码*/</script>
-
+<script type="text/javascript">
+  window.onload = function () {
+    var realH1 = document.getElementById("developing-ios-10-apps-with-swift-字幕简体中文翻译项目");
+    document.getElementsByClassName("project-name")[0].innerHTML = realH1.innerHTML;
+    realH1.style.display="none";
+  }
+</script>

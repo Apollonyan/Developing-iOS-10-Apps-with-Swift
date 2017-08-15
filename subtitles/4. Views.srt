@@ -517,1490 +517,1862 @@ Okay, let's talk about initialization of the UIView.
 129
 00:05:43,309 --> 00:05:46,378
 As usual, when you saw the lecture from last time,
+就如你从上节课所看到的
 
 130
 00:05:46,446 --> 00:05:49,981
 you probably realize, whoa, initialization has a lot of
+你可能会觉得，初始化很麻烦
 
 131
 00:05:50,049 --> 00:05:54,152
 caveats when you're talking about initializing a class,
+在初始化的时候有很多条条框框
 
 132
 00:05:54,220 --> 00:05:55,170
 Remember all those rules I was going through?
+还记得我讲过的那些规则吗？
 
 133
 00:05:55,171 --> 00:05:56,121
 right?
+是吧？
 
 134
 00:05:56,189 --> 00:06:00,224
 Required convenience and its inheritance, all this stuff.
+必要（required）、便利（convenience）、继承构造器
 
 135
 00:06:00,293 --> 00:06:02,960
 So we try to avoid initializers generally as much
+所以我们会避免去接触这些
 
 136
 00:06:03,029 --> 00:06:05,963
 as we can by doing all the things I talked
+尽可能的通过我讲的其他方法
 
 137
 00:06:06,032 --> 00:06:07,932
 about on Wednesday, like setting things equal or
+比如我星期三讲的，比如直接赋值
 
 138
 00:06:08,001 --> 00:06:10,501
 even using lazy or something like that.
+甚至是使用延迟存储属性
 
 139
 00:06:10,570 --> 00:06:12,170
 But if you can't avoid it,
+但如果还是无法避免的话
 
 140
 00:06:12,239 --> 00:06:14,873
 UIView has an interesting initializer situation.
+UIView 的构造过程是很有趣的
 
 141
 00:06:14,942 --> 00:06:19,343
 It has two initializers that you have to deal with.
+你要实现它的两个构造器
 
 142
 00:06:19,412 --> 00:06:22,513
 Okay, one of them, init, with the frame is the argument, is
+其中一个是接受 frame 作为参数的
 
 143
 00:06:22,582 --> 00:06:25,549
 the one that you would call if you're trying to create a view
+你在代码中就是通过这个方法构造视图
 
 144
 00:06:25,618 --> 00:06:30,155
 in code, which you'll probably never do in this class, okay?
+虽然我们这节课几乎不会用到
 
 145
 00:06:30,223 --> 00:06:31,555
 Because you're always gonna use or
+因为你们一般都是使用
 
 146
 00:06:31,624 --> 00:06:33,425
 do it in Interface Builder with Xcode.
+Xcode 里的 Interface Builder
 
 147
 00:06:33,494 --> 00:06:37,261
 But, so that's the kind of in-code one.
+但是代码里就是用这个
 
 148
 00:06:37,330 --> 00:06:40,097
 And init with this coder thing,
+另外一个通过 coder 构造的
 
 149
 00:06:40,166 --> 00:06:41,566
 which I'll talk about right at the end of class,
+我留到这节课最后讲
 
 150
 00:06:41,635 --> 00:06:44,302
 but it's not important to know early on.
+你们不用着急了解这个
 
 151
 00:06:44,371 --> 00:06:47,371
 That's the init that gets called when your stuff come
+调用这个构造器的是那些
 
 152
 00:06:47,440 --> 00:06:48,874
 outs of Interface Builder, right?
+在 Interface Builder 里的
 
 153
 00:06:48,942 --> 00:06:52,377
 When it comes from, when you built in Xcode.
+也就是你从 Xcode 里拖出来的那些
 
 154
 00:06:52,445 --> 00:06:54,312
 All the stuff that you're building in Interface Builder
+所有那些 Interface Builder 里构建的
 
 155
 00:06:54,381 --> 00:06:56,214
 essentially gets coded,
+其实都会被编码
 
 156
 00:06:56,283 --> 00:06:58,383
 that's what this coder business is about.
+这就是 coder 这个转码器作为参数的原因
 
 157
 00:06:58,451 --> 00:07:02,553
-Gets coded into an XML file, kind of freeze dried.
+Gets coded into an XML file, kind of freeze-dried.
+UI 以 XML 文件的格式存储，就这样被定住了
 
 158
 00:07:02,622 --> 00:07:05,323
 And then when you run your program, that XML file gets
+当你运行程序的时候，那个 XML 文件
 
 159
 00:07:05,392 --> 00:07:07,591
 loaded in and it's kind of the instructions for
+作为指令加载
 
 160
 00:07:07,660 --> 00:07:10,929
 how to create all those objects, okay?
+指导如何创建那些对象
 
 161
 00:07:10,998 --> 00:07:12,864
 And init with coder is the initializer it uses
+使用的就是 init(coder:) 这个构造器
 
 162
 00:07:12,932 --> 00:07:14,232
 to recreate the view.
+来创建视图
 
 163
 00:07:14,301 --> 00:07:17,402
 So if you have any code that needs to go in an initializer,
+如果你有需要放到构造器里的代码
 
 164
 00:07:17,471 --> 00:07:19,804
 like you need to initialize some var in your UIView,
+比如说初始化 UIView 里的一个变量
 
 165
 00:07:19,873 --> 00:07:21,806
 you have to do it like this.
+你需要这样做
 
 166
 00:07:21,875 --> 00:07:23,741
 Override both of these inits,
+两个构造器都要重写（override）
 
 167
 00:07:23,810 --> 00:07:26,911
 one of them is a required init, the coder one.
+init(coder:) 这个是必要的
 
 168
 00:07:26,980 --> 00:07:29,780
 And we create some other method like this green setup
+我们一般是用像这个绿色的 setup
 
 169
 00:07:29,849 --> 00:07:30,615
 method I have.
+这样的方法
 
 170
 00:07:30,683 --> 00:07:33,118
 And just call that method from both of them.
+两个构造器里都调用这个方法
 
 171
 00:07:33,186 --> 00:07:35,653
 That way you're guaranteed that whether your custom view
+这样就能保证， 无论你自己的视图
 
 172
 00:07:35,722 --> 00:07:38,156
 is created in code or created in Interface Builder,
+是通过代码还是 Interface Builder 构造
 
 173
 00:07:38,224 --> 00:07:43,694
 it will get initialized properly.
+都能够正确地完成构造
 
 174
 00:07:43,763 --> 00:07:46,697
 If you have vars that have to be initialized, you may not be
+如果你有需要初始化的变量
 
 175
 00:07:46,766 --> 00:07:49,501
 able to use this mechanism of course because you can't
+你可能没法使用这种办法，因为你不能
 
 176
 00:07:49,569 --> 00:07:52,337
 call methods in yourself until you're initialized.
+在完成构造之前调用你自己的函数
 
 177
 00:07:52,406 --> 00:07:55,706
 So you might have to have that var initialization be
+所以你可能需要把初始化变量的部分
 
 178
 00:07:55,775 --> 00:07:58,142
 somewhat duplicated there.
+在两个构造器中重复写一遍
 
 179
 00:07:58,211 --> 00:08:00,978
 There's another alternative to initialization though and this
+这里还有一种另外的初始化方法
 
 180
 00:08:01,047 --> 00:08:03,514
 is for any other object that comes out of Interface Builder
+适用于所有通过 Interface Builder 构造的
 
 181
 00:08:03,583 --> 00:08:05,583
 which is called awakeFromNib.
+叫做 awakeFromNib
 
 182
 00:08:05,652 --> 00:08:07,018
 Okay, awakeFromNib.
+那这个 awakeFromNib
 
 183
 00:08:07,087 --> 00:08:09,554
 This is sent to every single object that ever comes out
+每一个对象都会调用
 
 184
 00:08:09,623 --> 00:08:12,491
 of Interface Builder file, okay, that you edit
+只要是通过 Interface Builder 构造的都是
 
 185
 00:08:12,559 --> 00:08:14,125
 in the story board there including views and
+包括你 Storyboard 里编辑的那些视图
 
 186
 00:08:14,194 --> 00:08:15,426
 your View Controller for that matter.
+你的视图控制器那些
 
 187
 00:08:15,495 --> 00:08:19,664
-And so
+And so you can do some initialization here but it doesn't
+因此虽然这不是构造器，但你可以进行些初始化工作
 
 188
 00:08:19,733 --> 00:08:22,634
-the "Your object must be completely initialized."
+count as the "Your object must be completely initialized."
+因此像“你必须完全初始化才能调用函数”
 
 189
 00:08:22,702 --> 00:08:26,271
 Those restrictions are not satisfied by this.
+这些约束是不能满足的
 
 190
 00:08:26,339 --> 00:08:28,940
 But still you can put code in there, you get, get going.
+但是你还是可以放部分初始化的代码在这里的
 
 191
 00:08:29,009 --> 00:08:30,475
 And we're gonna learn all kinds of ways to do
+我们还会学到各种各样的方法
 
 192
 00:08:30,544 --> 00:08:32,944
 initialization throughout our system down the road,
+我们之后会慢慢了解这些构造方法
 
 193
 00:08:33,013 --> 00:08:35,514
 but that's basically how you initialize UIViews.
+以上就是构造 UIView 的方法
 
 194
 00:08:37,250 --> 00:08:40,085
 Okay so we're gonna talk now about UIView
+我们接下来讲 UIView
 
 195
 00:08:40,153 --> 00:08:43,287
 as this rectangular area in which we're gonna draw.
+作为一个矩形画布的用法
 
 196
 00:08:43,356 --> 00:08:45,256
 And so to do that we need talk about some types.
+在讲那个之前需要先了解几个其他的类型
 
 197
 00:08:45,324 --> 00:08:47,492
 They're some very important types that you need to know.
+你们需要掌握几个非常重要的类型
 
 198
 00:08:47,561 --> 00:08:49,627
 One of them is CGFloat.
+其中一个是 CGFloat
 
 199
 00:08:49,696 --> 00:08:51,796
 So CGFloat is a floating point value.
+CGFloat 代表一个浮点数
 
 200
 00:08:51,865 --> 00:08:54,665
 All of your coordinates that you're gonna be drawing in
+所以你在坐标系里绘制的坐标
 
 201
 00:08:54,734 --> 00:08:57,668
 are all floating point values, but they're not doubles,
+都是这些浮点数构成的，不过不是 Double
 
 202
 00:08:57,737 --> 00:09:00,238
 they're not floats, they're CGFloats.
+不是 Float，而是 CGFloat
 
 203
 00:09:00,307 --> 00:09:01,206
 So this is a type,
+所以这是一个类型
 
 204
 00:09:01,274 --> 00:09:04,142
 a real type that you have to use all the time
+你们要使用的就是这个类型
 
 205
 00:09:04,210 --> 00:09:06,378
 when you're doing anything with the drawing, okay?
+来完成所有的绘制
 
 206
 00:09:07,347 --> 00:09:08,947
 CG stands for Core Graphics,
+CG 代表的是 Core Graphics，核心图形库
 
 207
 00:09:09,016 --> 00:09:11,916
 this is the "graphics float" right here, okay?
+所以 CGFloat 是 “绘图用浮点数”
 
 208
 00:09:11,985 --> 00:09:15,553
 There's also a CGPoint which is just a struct with two
+还有一个叫 CGPoint 的结构体
 
 209
 00:09:15,622 --> 00:09:18,956
 things in it, x and y, they're both CGFloats, CGPoint
+由 x 和 y 两个 CGFloat 组成
 
 210
 00:09:19,025 --> 00:09:21,993
 represents a point in your coordinate system somewhere.
+CGPoint 代表坐标系里某处的一个点
 
 211
 00:09:22,061 --> 00:09:24,395
 Again, floating point coordinates.
+同样的，用浮点数表示坐标
 
 212
 00:09:24,464 --> 00:09:27,465
 There's also CGSize, which represents an extent.
+还有 CGSize，代表大小
 
 213
 00:09:27,534 --> 00:09:29,134
 You know, a width and a height, okay?
+也就是宽和高
 
 214
 00:09:29,202 --> 00:09:32,370
 Only, it's just the struct, with two CGFloats, width and
+所以 CGSize 也是一个 CGFloat 组成的结构体
 
 215
 00:09:32,438 --> 00:09:33,805
 height, simple.
+width 和 height
 
 216
 00:09:33,874 --> 00:09:36,775
 And there's CGRect, of course, which is a rectangle.
+还有 CGRect，理所当然的代表一个矩形
 
 217
 00:09:36,843 --> 00:09:39,844
 It's a struct that has an origin, which is CGPoint, and
+这是一个结构体，由一个 CGPoint 作为 origin，原点
 
 218
 00:09:39,913 --> 00:09:41,445
 an extent, which is a size.
+和一个 CGSize 表示大小
 
 219
 00:09:41,514 --> 00:09:44,282
 So a rectangle represents a size, okay?
+这个矩形代表的大小
 
 220
 00:09:44,350 --> 00:09:47,585
 So creating a CGRect--there's actually quite a few
+所以构造 CGRect 有很多方法
 
 221
 00:09:47,654 --> 00:09:48,953
 initializers for it.
+有很多的构造器
 
 222
 00:09:49,021 --> 00:09:50,087
 You can create an origin and size,
+可以通过原点和大小
 
 223
 00:09:50,156 --> 00:09:52,490
 you can do an x y with height, things like that.
+或者使用 横坐标，纵坐标，宽，高
 
 224
 00:09:52,559 --> 00:09:54,792
 And CGRect also has a lot of really cool,
+同时，CGRect 还有很多实用
 
 225
 00:09:54,861 --> 00:09:59,630
 little convenience vars and funcs and thing like that.
+方便的属性和方法，比如
 
 226
 00:09:59,699 --> 00:10:01,399
 maxY, midY, those'll tell you thing like where's the left
+maxY，midY，或者是告诉你最左边位置的
 
 227
 00:10:01,400 --> 00:10:03,100
 Like minX,
+minX
 
 228
 00:10:03,169 --> 00:10:06,370
 edge of your rect to the top to the left or the bottom.
+有这些告诉你最顶部，左边，下面位置的属性
 
 229
 00:10:06,439 --> 00:10:08,239
 The middle points, etc.
+或者是中点的位置
 
 230
 00:10:08,308 --> 00:10:11,976
 There's also nice functions like intersects other rect
+还有些方法，比如 intersects(CGRect)
 
 231
 00:10:12,044 --> 00:10:14,846
 will return whether the two rectangles cross over.
+返回两个 CGRect 是否有交集
 
 232
 00:10:14,915 --> 00:10:18,182
 And there's even contains whether a point
+或者是 contains(CGPoint)
 
 233
 00:10:18,251 --> 00:10:20,351
 is inside the rectangle, etc.
+判断一个点是否在矩形中
 
 234
 00:10:20,420 --> 00:10:22,253
 So there's quite a few of these.
+这样的还有不少
 
 235
 00:10:22,322 --> 00:10:23,587
 I can't put them all on the slide, so
+我没法把全都列举出来
 
 236
 00:10:23,656 --> 00:10:27,024
 you're gonna wanna familiarize yourselves with CGRect.
+你应该尽快熟悉 CGRect
 
 237
 00:10:27,093 --> 00:10:28,827
 Because it probably has a lot of things in there that
+因为 CGRect 包含了很多东西
 
 238
 00:10:28,895 --> 00:10:31,162
 you would otherwise be writing your own code to do.
+可以省去你自己写代码实现的麻烦
 
 239
 00:10:32,465 --> 00:10:34,164
 Okay, so now that we have those types,
+好，现在我们已经了解了这些类型
 
 240
 00:10:34,233 --> 00:10:36,734
 those four types, we can start talking about this coordinate
+以上提到的四种类型，我们可以开始讲
 
 241
 00:10:36,803 --> 00:10:39,104
 system that we're gonna be doing our drawing in.
+我们绘图的坐标系了
 
 242
 00:10:39,172 --> 00:10:40,805
 Now, the most important thing to understand,
+现在你们最需要记住的就是
 
 243
 00:10:40,874 --> 00:10:43,808
 the simplest thing, is that the origin of this coordinate
+很简单，坐标系的原点
 
 244
 00:10:43,877 --> 00:10:47,211
 system is in the upper left of the screen.
+在屏幕的左上角
 
 245
 00:10:47,280 --> 00:10:50,481
 It's not Cartesian coordinates which the origin would be in
+这和笛卡尔坐标系不同，
 
 246
 00:10:50,550 --> 00:10:52,716
 the lower left of the screen because in Cartesian
+原点并不在屏幕的左下角
 
 247
 00:10:52,785 --> 00:10:54,986
 coordinates increasing y means up, but
+因为在笛卡尔坐标系中增加 y 代表向上
 
 248
 00:10:55,054 --> 00:10:57,255
 in this coordinate system increasing y means going down,
+但是 UIKit 中增加 y 代表向下
 
 249
 00:10:57,323 --> 00:10:59,156
 down the screen, okay?
+更靠屏幕下方
 
 250
 00:10:59,225 --> 00:11:00,625
 So very important to understand that.
+所以这是非常重要的
 
 251
 00:11:00,693 --> 00:11:06,063
 So you can see that point I have up there, 500,35 that's
+你看我这里的这个点，(500, 35)
 
 252
 00:11:06,132 --> 00:11:11,302
 500 over and 35 down from the origin upper left, okay?
+代表向右 500，向下 35
 
 253
 00:11:11,371 --> 00:11:15,874
 Now, the units in here that we're drawing are points.
+在绘图时我们用的单位是点
 
 254
 00:11:15,942 --> 00:11:19,043
 Okay, be very careful that you understand the unit
+要注意理解这里的单位
 
 255
 00:11:19,112 --> 00:11:21,245
 terminology here, okay?
+这个用词，要注意了
 
 256
 00:11:21,314 --> 00:11:23,281
 It's in points, not pixels.
+是点，不是像素
 
 257
 00:11:23,349 --> 00:11:26,784
 A pixel is like the smallest possible little light
+一个像素是指最小的能发光的单位
 
 258
 00:11:26,853 --> 00:11:29,120
 that can be turned on on your screen.
+屏幕通过让像素发光来显示内容
 
 259
 00:11:29,189 --> 00:11:33,023
 Okay, now some devices have a lot of pixels
+在有些设备上，许多个像素一起
 
 260
 00:11:33,092 --> 00:11:36,394
 per point--they're very dense.
+用来显示一个点——非常密集
 
 261
 00:11:36,462 --> 00:11:39,030
 And that's really great, because if you're drawing
+这是很好的，因为如果你绘制
 
 262
 00:11:39,098 --> 00:11:41,899
 smooth curves--like fonts are just
+一条平滑的曲线，比如显示文字
 
 263
 00:11:41,968 --> 00:11:44,568
 smooth curves being drawn--you don't get jaggy edges,
+绘制这种线条，就不会产生锯齿
 
 264
 00:11:44,637 --> 00:11:47,204
 because there's so many tiny little points, okay?
+要保证平滑就需要很多的点
 
 265
 00:11:47,273 --> 00:11:50,308
 But we can't make it, so that we draw in the pixel space,
+但屏幕上并没有那么多点，所以需要靠像素
 
 266
 00:11:50,377 --> 00:11:54,111
 otherwise, on a very dense pixel screen,
+因此，在一个分辨率高的屏幕上
 
 267
 00:11:54,180 --> 00:11:55,980
 our image would be really small.
+图片会显得很小
 
 268
 00:11:56,049 --> 00:11:57,815
 And then, in an undense one, it'd be really big,
+在分辨率偏低的屏幕上会显得很大
 
 269
 00:11:57,883 --> 00:11:59,217
 because the pixels are really big.
+因为每个像素很大
 
 270
 00:11:59,285 --> 00:12:01,419
 So we instead of drawing in pixels,
+所以不用像素绘制
 
 271
 00:12:01,488 --> 00:12:03,154
 we draw in points, okay?
+而是用点为单位
 
 272
 00:12:03,222 --> 00:12:05,757
 This is the same point by the way that is like the point
+这里的提到的点和字号
 
 273
 00:12:05,825 --> 00:12:06,558
 size of a font.
+是一个概念
 
 274
 00:12:06,626 --> 00:12:11,162
 A 12 point font, same word there, same point, okay?
+12 号（point）字体也指的是这个点（point）
 
 275
 00:12:12,932 --> 00:12:16,601
 So, you can find out though how many pixels there are per
+如果你想要知道每个点里有多少个像素
 
 276
 00:12:16,669 --> 00:12:19,304
 point, in other words how high resolution your screen is,
+也就是屏幕分辨率有多高
 
 277
 00:12:19,372 --> 00:12:23,508
 with this var in UIView called contentScaleFactor.
+可以通过 UIView 里 contentScaleFactor 这个属性
 
 278
 00:12:23,576 --> 00:12:25,710
 It's a CGFloat, it's either gonna be one, two, or
+这是个 CGFloat，数值可能是 1，2 或 3
 
 279
 00:12:25,778 --> 00:12:27,044
 three currently.
+就目前来看是这样
 
 280
 00:12:27,113 --> 00:12:29,480
 Like, the iPhone 7 Plus is three.
+比如 iPhone 7 Plus 就是 3
 
 281
 00:12:29,549 --> 00:12:32,216
 Three pixels per point in each direction.
+每个点在每个方向有三个像素点
 
 282
 00:12:32,284 --> 00:12:37,088
 And the older like iPhone 4s maybe?
+像老一点的比如 iPhone 4s
 
 283
 00:12:37,156 --> 00:12:39,457
 Maybe all the way back to the 4 would be one.
+或者是 iPhone 4 就会是一个像素点
 
 284
 00:12:39,525 --> 00:12:42,193
 Okay, some of the older iPads would be one.
+那些老一些的 iPad 也会是一个
 
 285
 00:12:42,262 --> 00:12:44,495
 The newer iPads would be two.
+新一些的应该是二个像素点
 
 286
 00:12:44,563 --> 00:12:45,863
-So, If you're doing anything where you have to pay
+So, If you're doing anything
+如果你
 
 287
 00:12:45,864 --> 00:12:47,164
-Okay?
+where you have to pay
+需要关心
 
 288
 00:12:47,233 --> 00:12:49,033
 attention to the number of pixels of points,
+每个点里有多少个像素
 
 289
 00:12:49,101 --> 00:12:50,167
 this is what you need.
+这就是你需要的
 
 290
 00:12:50,236 --> 00:12:52,770
 Now the great thing is, most of the time you don't care
+不过好消息是你们大多数时候并不需要
 
 291
 00:12:52,838 --> 00:12:55,773
 because when you're using iOS to draw with a font,
+因为如果你让 iOS 系统绘制文字
 
 292
 00:12:55,841 --> 00:12:58,642
 it's automatically gonna do super smooth turns, and
+会自动用平滑的线条显示出来
 
 293
 00:12:58,711 --> 00:13:00,978
 you don't even have to know what the scale factor is.
+你根本不用在意缩放比是多少
 
 294
 00:13:01,047 --> 00:13:02,846
 Even if you're just drawing an arc,
+甚至即使你只是画一个圆弧
 
 295
 00:13:02,915 --> 00:13:06,083
 it'll make sure you do as little jaggies as possible.
+它也会尽量减少锯齿的数量
 
 296
 00:13:06,152 --> 00:13:07,785
 So, you rarely have to know this.
+所以你基本不需要知道这个
 
 297
 00:13:07,853 --> 00:13:09,753
 But actually, wake up.
+但其实，睡着的注意了
 
 298
 00:13:09,822 --> 00:13:11,355
 You do need to know for assignment three, okay?
+你需要在第三个作业中用到
 
 299
 00:13:11,424 --> 00:13:13,857
 So assignment three, you will have to know this.
+所以你在作业三中会用到
 
 300
 00:13:13,926 --> 00:13:17,027
 Alright, now.
+好的，现在
 
 301
 00:13:17,096 --> 00:13:21,965
 The most important var in all of UIView is this one: bounds.
+所有 UIView 里做重要的属性就是这个了：bounds
 
 302
 00:13:22,034 --> 00:13:25,135
 And even in that really important var,
+在代表边界的这个变量中
 
 303
 00:13:25,204 --> 00:13:29,273
 really what you care about is the size.
+你最需要的是它的 size，大小
 
 304
 00:13:29,342 --> 00:13:32,576
 This is, in your drawing coordinate system,
+这是在整个坐标系中
 
 305
 00:13:32,645 --> 00:13:34,378
 the space you have to draw in.
+你能够绘制内容的部分
 
 306
 00:13:34,447 --> 00:13:37,515
 This is basically the size of your view in your own drawing
+这个代表了在绘制的坐标系里
 
 307
 00:13:37,584 --> 00:13:38,683
 coordinate system.
+你视图的大小
 
 308
 00:13:38,752 --> 00:13:40,818
 So any time you're doing any drawing and
+所以你在绘制的时候
 
 309
 00:13:40,887 --> 00:13:43,688
 you wanna draw something that's as wide as your view,
+如果想要画的和视图一样宽
 
 310
 00:13:43,757 --> 00:13:46,223
 you're gonna use bounds.size.width here.
+就用 bounds.size.width
 
 311
 00:13:46,292 --> 00:13:49,560
 And you're almost always gonna have your bounds' origin be
+大部分时候 bounds 的 origin（原点）都会在
 
 312
 00:13:49,628 --> 00:13:52,897
 (0, 0) so if you want put something in upper left you're
+(0, 0)。所以如果你想画到左上角
 
 313
 00:13:52,966 --> 00:13:56,200
 gonna put it at (0, 0) or close to (0, 0).
+那就放到 (0，0) 或者接近的地方
 
 314
 00:13:56,268 --> 00:13:57,334
 So this rect, bounds,
+所以 bounds 这个 CGRect
 
 315
 00:13:57,403 --> 00:13:59,336
 is describing the area have to draw in.
+代表的就是可绘制的区域
 
 316
 00:13:59,405 --> 00:14:01,839
 Now it's important because you obviously want to,
+这是很重要的，因为你肯定会想让
 
 317
 00:14:01,908 --> 00:14:05,142
 depending on your size, draw yourself appropriately.
+不同屏幕大小都能正确显示绘制的内容
 
 318
 00:14:05,211 --> 00:14:07,812
 And it's also important because there are two other
+另外一个原因是，还有两个属性
 
 319
 00:14:07,880 --> 00:14:12,016
 vars that often get confused by students with bounds, and
+学生经常和 bounds 搞混
 
 320
 00:14:12,085 --> 00:14:16,920
 which are quite different: that is frame and center.
+其实差别还挺大的：frame 和 center
 
 321
 00:14:16,989 --> 00:14:20,825
 So frame and center have nothing to do
+frame 和 center 对于
 
 322
 00:14:20,894 --> 00:14:23,994
 with where you're drawing, that's bounds.
+绘图来说毫无干系，只要 bounds
 
 323
 00:14:24,063 --> 00:14:27,665
 Frame and center is where you are in your super view.
+frame 和 center 是告诉你在父视图中的位置
 
 324
 00:14:29,402 --> 00:14:32,136
 So here's a picture of that frame and center.
+这是 frame 和 center 的描述
 
 325
 00:14:32,205 --> 00:14:35,473
 So center is where your center is in your superview's
+center，是指你的中心在父视图
 
 326
 00:14:35,542 --> 00:14:38,309
 coordinate system and frame is a rectangle that completely
+坐标系里的位置，frame 是一个矩形
 
 327
 00:14:38,377 --> 00:14:41,612
 encases you in your superview's coordinate system.
+在父视图坐标系里完全包含你的边框
 
 328
 00:14:41,681 --> 00:14:44,515
 And you might think, well the size of my frame is gonna be
+你可能会想，frame 的 size 应该和
 
 329
 00:14:44,584 --> 00:14:47,752
 exactly the same size as my bounds size, right?
+bounds 的 size 是一样大的，是吧？
 
 330
 00:14:47,821 --> 00:14:53,157
 And the answer is no, because views can be rotated.
+其实不然。因为我们可以旋转视图
 
 331
 00:14:53,225 --> 00:14:56,194
-And if you have ever rotated a view like this green one,
+And if you have a rotated view like this green one,
+比如我们这里旋转的绿色视图
 
 332
 00:14:56,262 --> 00:14:57,962
 Inside the code that's drawing in View B, its bounds just
+在那个 View B 绘图，bounds 就是
 
 333
 00:14:57,963 --> 00:14:59,663
 View B.
+View B 的边界
 
 334
 00:14:59,732 --> 00:15:01,933
 looks like a normal rectangle, the fact that it's rotated,
+虽然被旋转了，但和在普通的矩形中没有区别
 
 335
 00:15:02,001 --> 00:15:03,934
 it doesn't even know it's rotated.
+其实它都不知道被旋转了
 
 336
 00:15:04,003 --> 00:15:06,637
 But if you look at the center of it, or if you look at
+但如果你观察它的 center
 
 337
 00:15:06,706 --> 00:15:10,574
 the frame that encloses it, look, it's not the same size.
+和包含它的 frame，仔细看，大小是不一样的
 
 338
 00:15:10,643 --> 00:15:12,193
-It has to be bigger because, to the superview, View A,
+It has to be bigger because,
+frame 必须要大些
 
 339
 00:15:12,194 --> 00:15:13,744
-It's bigger.
+to the superview, View A,
+因为对于父视图 View A
 
 340
 00:15:13,813 --> 00:15:16,547
 View B kinda looks like a diamond, right?
+View B 是一个菱形
 
 341
 00:15:16,616 --> 00:15:17,915
 So it has to be bigger.
+所以必须要大些才能包含
 
 342
 00:15:17,984 --> 00:15:22,920
 So the bottom line here, never use frame or center to draw.
+最下面这一行写的，“切忌在绘制中使用 frame 和 center”
 
 343
 00:15:22,989 --> 00:15:25,923
 Frame and center are only used to position you
+frame 和 center 只是用来定位
 
 344
 00:15:25,992 --> 00:15:26,557
 in your super view.
+你在父视图中的位置
 
 345
 00:15:26,626 --> 00:15:28,126
 Okay, you can use either one.
+任选一个都行
 
 346
 00:15:28,194 --> 00:15:29,794
 If you set the center, it'll move the frame,
+如果你设置 center，frame 会跟着动
 
 347
 00:15:29,863 --> 00:15:31,896
 if you set the frame, it'll adjust the center, okay.
+如果你设置 frame，center 会相应调整
 
 348
 00:15:31,964 --> 00:15:32,764
 They're tied together.
+他们是相关联的
 
 349
 00:15:34,801 --> 00:15:35,699
 Okay.
+好
 
 350
 00:15:35,768 --> 00:15:37,735
 How do we create views?
+那我们如何创建视图呢？
 
 351
 00:15:37,804 --> 00:15:39,336
 Okay, because I already told you we don't really use
+因为我已经告诉过你们
 
 352
 00:15:39,405 --> 00:15:40,571
 the initializer, we don't, you know,
+我们并不怎么用构造器
 
 353
 00:15:40,640 --> 00:15:42,406
 create them in code very much.
+来在代码中创建视图
 
 354
 00:15:42,475 --> 00:15:43,474
 What we usually do is we drag them out
+我们一般是拖到 Interface Builder 里
 
 355
 00:15:43,475 --> 00:15:44,474
 Okay?
+是吧？
 
 356
 00:15:44,543 --> 00:15:47,411
 from the Object Palette in the bottom of the utilities window
+从右边工具区下面的对象库（Object Palette）
 
 357
 00:15:47,479 --> 00:15:49,013
 in Interface Builder.
+拖到 Interface Builder 里
 
 358
 00:15:49,081 --> 00:15:52,316
 But if I built a custom view, Paul's view or
+但如果我自己写的自定义视图，比如 Paul'sView
 
 359
 00:15:52,385 --> 00:15:56,420
 something, it's not going to be in the palette, okay.
+什么的，肯定是不会出现在对象库里的
 
 360
 00:15:56,489 --> 00:15:58,556
 Xcode didn't ship with my view in the palette.
+Xcode 并不是在对象库里带着我的视图发布的
 
 361
 00:15:58,625 --> 00:16:01,491
 So instead, there's a generic view, just plain UIView, and
+所以我们就用通用的视图，纯 UIView
 
 362
 00:16:01,560 --> 00:16:03,594
 you're gonna drag that in.
+就把那个拖进去
 
 363
 00:16:03,663 --> 00:16:05,696
 But then, you're gonna inspect it using the top half of
+但是你还需要“观察”它
 
 364
 00:16:05,765 --> 00:16:07,298
 the utilities pane on the right, right?
+用右边工具区上半部分
 
 365
 00:16:07,367 --> 00:16:09,200
 You're gonna inspect it and
+你观察的目的
 
 366
 00:16:09,268 --> 00:16:11,568
 change its class to not be UIView.
+是把 class 从 UIView
 
 367
 00:16:11,637 --> 00:16:14,272
 It's gonna be your subclass of UIView, so Paul view or
+改为你自己写的 UIView 子类，比如 Paul'sView
 
 368
 00:16:14,340 --> 00:16:15,673
 whatever, okay?
+或者是其他什么的
 
 369
 00:16:15,742 --> 00:16:17,374
 And this is a very important step to remember.
+你要记住这很重要的一步
 
 370
 00:16:17,443 --> 00:16:19,977
 When you create a custom view and you drag it into your UI,
+当你编写一个自定义视图，拖进 UI 之后
 
 371
 00:16:20,046 --> 00:16:22,346
 you have to change its class to be your custom class.
+你需要把类改为你自定义的类
 
 372
 00:16:22,415 --> 00:16:24,615
 And we'll see that in the demo, how it works.
+我们会在示例中看到如何操作
 
 373
 00:16:26,152 --> 00:16:27,385
 When you create it in code, of course,
+如果你是纯代码构造的话
 
 374
 00:16:27,453 --> 00:16:29,319
 you're just doing UIView(frame:),
+那自然是使用 UIView(frame:)
 
 375
 00:16:29,388 --> 00:16:30,888
 and you provide the frame, okay?
+然后把 frame 传进去
 
 376
 00:16:30,957 --> 00:16:33,357
 And that frame, remember, what does it describe?
+还记得这 frame 代表的是什么吗？
 
 377
 00:16:33,426 --> 00:16:35,826
 Describes where this view is gonna be in its super view
+它是说子视图应该放到父视图
 
 378
 00:16:35,894 --> 00:16:39,097
 when it gets added, that's all the frame is doing, okay?
+的哪个位置，这就是它的作用
 
 379
 00:16:39,165 --> 00:16:41,232
 And you can create it with UIView(), no arguments.
+或者是用 UIView()，没有参数
 
 380
 00:16:41,300 --> 00:16:43,234
 Then it will be zero width, zero height, and
+构造出来宽和高都为零
 
 381
 00:16:43,303 --> 00:16:45,903
 it'll be at zero, zero, so you won't even see it, so.
+位于 (0, 0)，所以你是看不到它的
 
 382
 00:16:45,971 --> 00:16:47,070
 But you could come along later and
+但你可以之后再设置
 
 383
 00:16:47,139 --> 00:16:50,508
 change its frame and/or its center to move it around.
+通过更改 frame 和/或 center 来移动它
 
 384
 00:16:51,944 --> 00:16:53,210
 Here, it's a really quick example,
+这里是个简单的例子
 
 385
 00:16:53,279 --> 00:16:54,245
 how to create a view in code.
+展示如何用代码创建视图
 
 386
 00:16:54,314 --> 00:16:56,413
 I'm gonna create a UILabel.
+我创建一个 UILabel
 
 387
 00:16:56,482 --> 00:16:59,283
 UILabel is just a subclass of UIView.
+UILabel 是 UIView 的一个子类
 
 388
 00:16:59,352 --> 00:17:01,719
 And notice that on the second line there,
+注意这里的第二行
 
 389
 00:17:01,788 --> 00:17:05,255
 I'm just saying label = UILabel(frame:) of whatever.
+我用的是 let label = UILabel(frame: 边框)
 
 390
 00:17:05,324 --> 00:17:07,992
-So I'm giving it this frame, 20, 20, 150, right?
+So I'm giving it this frame, 20, 20, 100, 50, right?
+所以我给的是 (20, 20, 100, 50)
 
 391
 00:17:08,061 --> 00:17:10,427
 And then I'm setting the text to "Hello".
+我把文字设为 "Hello"
 
 392
 00:17:10,496 --> 00:17:13,497
 Well, if I was doing this code in a UIViewController,
+如果我在 UIViewController 里写这段代码
 
 393
 00:17:13,566 --> 00:17:15,866
 then I could put it at that top level view,
+那我需要把它放到最顶层的视图里
 
 394
 00:17:15,935 --> 00:17:18,769
 it'd look like that, view.addSubview, okay?
+就用 view.addSubview
 
 395
 00:17:18,838 --> 00:17:20,438
 And it would add the subview.
+然后它就会把它加上去了
 
 396
 00:17:20,506 --> 00:17:23,540
 Custom views, so why do I ever need a custom view?
+那我为什么需要自定义的视图呢？
 
 397
 00:17:23,609 --> 00:17:25,410
 Either I need to do custom drawing or
+要么是我需要自己绘图
 
 398
 00:17:25,478 --> 00:17:28,479
 I need to do custom multi-touch input, okay?
+要么是我需要自定义多点触控输入的处理
 
 399
 00:17:28,547 --> 00:17:29,480
 Those are the reasons
+这两个是主要的原因
 
 400
 00:17:29,549 --> 00:17:31,682
 that you're gonna create a custom view.
+可能会让你自定义视图
 
 401
 00:17:31,750 --> 00:17:34,284
 And so we're gonna focus on the drawing, and
+我们主要是讲绘图
 
 402
 00:17:34,353 --> 00:17:36,754
 the drawing is very, very simple, okay?
+绘图是很，很简单的
 
 403
 00:17:36,822 --> 00:17:39,556
 There's this one method that's called draw.
+有一个方法叫 draw
 
 404
 00:17:39,625 --> 00:17:42,626
 And it takes one argument, which is a rect.
+接受一个参数 rect
 
 405
 00:17:42,695 --> 00:17:45,062
-For historical reasons, we sometimes call it drawrect,
+For historical reasons, we sometimes call it drawRect,
+因为历史原因我们有时把它叫做 drawRect
 
 406
 00:17:45,131 --> 00:17:47,165
-but it's not actually called drawrect anymore.
+but it's not actually called drawRect anymore.
+虽然现在已经不叫这个名字了
 
 407
 00:17:47,233 --> 00:17:50,001
 It's called draw, and the argument is called rect.
+现在名字叫 draw，参数叫 rect
 
 408
 00:17:53,539 --> 00:17:55,907
 And this draw is gonna be sent to you by the system.
+系统会调用你这个方法
 
 409
 00:17:55,975 --> 00:17:58,742
 It's sent to your UIView subclass,
+发送给 UIView 的子类
 
 410
 00:17:58,811 --> 00:18:01,345
 you override it, and it gets sent to you by the system when
+你重写这个方法，系统调用这个方法
 
 411
 00:18:01,414 --> 00:18:03,447
 the system wants you to draw yourself.
+会是在当系统想要你绘制的时候
 
 412
 00:18:03,516 --> 00:18:06,450
 This is the only way you can draw in your view,
+这是你在视图里绘制的唯一方法
 
 413
 00:18:06,519 --> 00:18:09,019
 is to be asked by the system to draw.
+那就是通过系统给你机会绘制
 
 414
 00:18:09,088 --> 00:18:13,524
 There is no other way to draw in iOS.
+在 iOS 上绘图就没有其他方法了
 
 415
 00:18:13,593 --> 00:18:15,793
 So what's that rectangle about?
+那个 rect 是用来干什么的呢？
 
 416
 00:18:15,862 --> 00:18:18,462
 That rectangle is some sub-area in your bounds
+那个 rect 是你 bounds 里的一部分
 
 417
 00:18:18,531 --> 00:18:19,930
 that it wants you to draw.
+系统希望你绘制的部分
 
 418
 00:18:19,999 --> 00:18:22,533
 Now, that's a performance enhancement, because you can
+这样能够优化性能
 
 419
 00:18:22,602 --> 00:18:25,269
 ignore that and draw your whole view, if you'd like.
+因为如果需要，你可以忽略其他部分
 
 420
 00:18:25,337 --> 00:18:27,438
 But like in your assignment three, you're probably gonna
+比如在作业三中
 
 421
 00:18:27,506 --> 00:18:29,106
 wanna pay attention to this rectangle because
+你应该注意这个 rect
 
 422
 00:18:29,175 --> 00:18:32,510
 your assignment three's draw is gonna be pretty expensive,
+因为作业三的绘图非常复杂
 
 423
 00:18:32,579 --> 00:18:34,846
 so you wanna draw as little as possible.
+所以你应该能少画就少画
 
 424
 00:18:36,216 --> 00:18:37,914
 So that's what this draw is, very simple,
+这就是 draw，非常简单
 
 425
 00:18:37,983 --> 00:18:40,117
 it's just called by the system, time for you to draw.
+由系统调用
 
 426
 00:18:40,186 --> 00:18:41,385
 It's the only way to draw.
+这也是唯一的绘制方法
 
 427
 00:18:41,454 --> 00:18:43,855
 So it's really, really easy to understand.
+非常好理解
 
 428
 00:18:44,790 --> 00:18:48,325
 Never call this method, ever.
+千万不要自己调用这个方法
 
 429
 00:18:48,394 --> 00:18:49,827
 If you ever call this method, it's wrong.
+如果你自己调用的话，那就是错误的
 
 430
 00:18:50,796 --> 00:18:51,895
 The system calls this method,
+这个方法是由系统调用的
 
 431
 00:18:51,964 --> 00:18:54,198
 the system's the only one who calls this method.
+只应该让系统来调用
 
 432
 00:18:54,267 --> 00:18:56,233
 So what happens if you need to draw?
+那如果你希望绘制该怎么做呢？
 
 433
 00:18:56,302 --> 00:18:58,468
 Something changed, and you wanna redraw.
+有些内容发生了变化，你想要重画
 
 434
 00:18:58,537 --> 00:19:00,638
 You call one of these two methods, setNeedsDisplay or
+你可以调用这个方法，setNeedsDisplay
 
 435
 00:19:00,706 --> 00:19:02,873
 setNeedsDisplay with the argument of a rect.
+没有参数，或者带个参数 rect
 
 436
 00:19:02,942 --> 00:19:05,309
 And that's telling the system, hey, system,
+告诉系统说：“嘿
 
 437
 00:19:05,378 --> 00:19:06,744
 my view needs to be redrawn.
+我的视图需要重画
 
 438
 00:19:06,813 --> 00:19:08,212
 Please ask me to redraw it.
+让我来重画吧”
 
 439
 00:19:08,280 --> 00:19:10,247
 And at some appropriate time in the future,
+然后在将来某个合适的时间
 
 440
 00:19:10,316 --> 00:19:11,915
 it will ask you to redraw it.
+系统会让你重画
 
 441
 00:19:11,984 --> 00:19:14,218
 But it knows better than you when the best time to draw is,
+系统比你更清楚什么时候适合重画
 
 442
 00:19:14,287 --> 00:19:15,486
 believe me.
+相信我
 
 443
 00:19:15,555 --> 00:19:17,721
 And the rect that you can pass, that's just the rect
+如果你有 rect 作为参数，那个 rect
 
 444
 00:19:17,790 --> 00:19:19,723
 that's gonna be passed onto your draw.
+就会作为传给 draw 的参数
 
 445
 00:19:19,792 --> 00:19:22,426
 So setNeedsDisplay with a rect is like an optimized
+所以 setNeedsDisplay(CGRect)
 
 446
 00:19:22,494 --> 00:19:23,494
 setNeedsDisplay.
+是个优化的版本
 
 447
 00:19:23,563 --> 00:19:24,695
 It's like, I need to be redrawn, but
+就像是说：“我想要重画
 
 448
 00:19:24,763 --> 00:19:25,596
 only this part of me.
+但仅仅是这一部分”
 
 449
 00:19:25,665 --> 00:19:30,701
 And you can send this to any UIView, say, redraw this view.
+你可以发送这个函数给任何 UIView，让它重画
 
 450
 00:19:30,770 --> 00:19:33,069
 Usually, views send it to themselves though because
+不过一般都是视图自己调用
 
 451
 00:19:33,138 --> 00:19:36,774
 they're the ones who know best when they need to be redrawn,
+因为它们自己最了解是否需要重画
 
 452
 00:19:36,843 --> 00:19:37,441
 okay?
+是吧？
 
 453
 00:19:38,477 --> 00:19:39,643
 Alright.
+好
 
 454
 00:19:39,712 --> 00:19:43,580
-So, how do I implement this drawrect,
+So, how do I implement this drawRect,
+那我如何实现这个 drawRect
 
 455
 00:19:43,649 --> 00:19:48,352
 draw, draw with a CGRect argument guy?
+draw(CGRect) 呢？
 
 456
 00:19:48,421 --> 00:19:50,554
 And the answer is, you're gonna do it with paths.
+答案是使用路径
 
 457
 00:19:50,623 --> 00:19:54,057
 You're gonna create paths, and then you're going to stroke
+创建一些路径，然后描边
 
 458
 00:19:54,126 --> 00:19:57,161
 them and fill them to make shapes and things like that.
+填色，以此绘制图形等
 
 459
 00:19:57,230 --> 00:20:00,097
 And then you're also gonna use text and images.
+然后你还可以用文字和图片
 
 460
 00:20:00,166 --> 00:20:03,134
 So that's the primary way that you're going to draw
+这是我们主要在这里
 
 461
 00:20:03,202 --> 00:20:04,167
 in there, okay?
+绘制的方法
 
 462
 00:20:04,236 --> 00:20:06,103
 So we'll talk about text and images in a minute.
+我等下再讲文字和图片
 
 463
 00:20:06,171 --> 00:20:08,171
 Let's talk about the drawing with the paths first.
+我们先讲如何画路径
 
 464
 00:20:08,240 --> 00:20:09,473
 There's really two ways to do it.
+有两种方法
 
 465
 00:20:09,541 --> 00:20:11,442
 One is, you can get what's called a context,
+一种是获得 context，上下文
 
 466
 00:20:11,510 --> 00:20:14,010
 a drawing context, and I'll show you how to get it.
+用来绘制的上下文，我会告诉你如何获取
 
 467
 00:20:14,079 --> 00:20:17,547
 And then you can send messages to that context like, move to
+然后你发消息给 context 说
 
 468
 00:20:17,616 --> 00:20:21,718
 this point, draw a line to here, add an arc over here,
+移动到这个点，画一条线到这里，在这里加一个圆弧
 
 469
 00:20:21,787 --> 00:20:24,655
 put some text over here, things like that, okay?
+在这里放几个字，像这样的操作
 
 470
 00:20:24,724 --> 00:20:26,256
 Actually, the text we're gonna do in a different way,
+但是我们文字会通过另一种方法实现
 
 471
 00:20:26,325 --> 00:20:27,892
 but, so that's one way.
+但这就是其中一种方法
 
 472
 00:20:27,960 --> 00:20:31,028
 And then the other way is, you can create a path object,
+另一种方法是，创建一个路径对象
 
 473
 00:20:31,097 --> 00:20:34,798
 okay, using UIBezierPath, and it's the same kind of thing.
+使用 UIBezierPath，还是类似的操作
 
 474
 00:20:34,867 --> 00:20:37,067
 But you're gonna create this object that you're gonna tell
+但是你要先创建一个对象
 
 475
 00:20:37,136 --> 00:20:39,403
 that object, okay, I want this path to be moving to here, and
+然后告诉这个对象，我先要路径移到这里
 
 476
 00:20:39,472 --> 00:20:41,438
 then a line here, and then an arc over to here, okay?
+然后这里有条线，这里有个圆弧，好吧？
 
 477
 00:20:41,507 --> 00:20:42,606
 So you create this path, and
+所以你先创建一个路径
 
 478
 00:20:42,674 --> 00:20:44,709
 then you send a message to that path saying, okay,
+然后发消息给路径说
 
 479
 00:20:44,777 --> 00:20:45,810
 stroke it.
+给路径描边
 
 480
 00:20:45,878 --> 00:20:47,744
 So it's a subtle difference, but you'll see.
+很细微的区别，你们之后会看到
 
 481
 00:20:47,813 --> 00:20:49,880
 We're gonna focus mainly on the UIBezierPath way,
+我们主要是使用 UIBezierpath
 
 482
 00:20:49,949 --> 00:20:51,415
 because it's kind of a little simpler.
+因为相比起来更简单
 
 483
 00:20:51,484 --> 00:20:53,517
 So let's understand the concepts here of
+我们再来了解一些概念
 
 484
 00:20:53,586 --> 00:20:56,153
 Core Graphics, that's what the CG is that you're seeing in
+Core Graphics，这就是你看到的这些 CG
 
 485
 00:20:56,222 --> 00:20:57,020
 all the places here.
+所代表的，还真是无处不在
 
 486
 00:20:57,089 --> 00:21:00,224
 And the number one thing about Core Graphics is,
+第一个关于核心图形库的是
 
 487
 00:21:00,293 --> 00:21:01,391
 we need a context.
+我们需要一个上下文
 
 488
 00:21:01,460 --> 00:21:03,927
 And that context might be a drawing context for on-screen,
+这个 context 可以是在屏幕上绘图的上下文
 
 489
 00:21:03,996 --> 00:21:06,062
 it might be a printing context if we're printing,
+可以是打印用的上下文
 
 490
 00:21:06,131 --> 00:21:08,999
 might be a context of drawing to an off-screen bitmap, etc.
+可以是在后台绘制位图的上下文等
 
 491
 00:21:09,067 --> 00:21:12,236
 The one you care about is obviously the context to
+我们所在意的 context 自然是
 
 492
 00:21:12,304 --> 00:21:13,937
-draw in your drawrect.
+draw in your drawRect.
+在 drawRect 中用的上下文
 
 493
 00:21:14,006 --> 00:21:15,539
 And you get that by calling this function.
+获取它是通过调用这个函数
 
 494
 00:21:15,608 --> 00:21:16,573
 This is just a Swift function,
+一个 Swift 函数
 
 495
 00:21:16,642 --> 00:21:17,975
 it's not on a class or anything.
+并不属于某个类
 
 496
 00:21:18,043 --> 00:21:20,511
 UIGraphicsGetCurrentContext(), and
+叫做 UIGraphicsGetCurrentContext()
 
 497
 00:21:20,580 --> 00:21:23,847
 that's going to get you a context that you can then
+这回返回给你一个支持
 
 498
 00:21:23,916 --> 00:21:27,618
 tell it to create a path by moving and all that stuff.
+创建路径和移动等等的上下文
 
 499
 00:21:27,686 --> 00:21:30,387
 Which is what you do then, you create these paths out of
+这些就是你接下来要做的
 
 500
 00:21:30,456 --> 00:21:32,623
 lines and arcs and things like that.
+通过线条和圆弧等构成路径
 
 501
 00:21:32,692 --> 00:21:35,359
@@ -5601,1982 +5973,2477 @@ Let's see Eye is case left case right, okay.
 1400
 00:58:35,912 --> 00:58:38,713
 So I mean it's perfectly fine to use an enum
+所以用枚举是没有问题的
 
 1401
 00:58:38,782 --> 00:58:40,549
 just to represent something simple like this.
+特别是用来表示这种简单的内容
 
 1402
 00:58:40,617 --> 00:58:43,451
 You don't have to always be doing methods and
+并不总是需要函数
 
 1403
 00:58:43,520 --> 00:58:44,419
 associated values.
+和关联值
 
 1404
 00:58:44,488 --> 00:58:45,820
 We don't have any associated values here.
+我们这里不需要关联值
 
 1405
 00:58:45,889 --> 00:58:49,057
 We're just representing it as a way to specify in this API,
+我们只是用一种方法来让 API 更明确地
 
 1406
 00:58:49,125 --> 00:58:54,228
 which eye we want the path, the UIBezierPath, for.
+说明哪只眼睛需要 UIBezierpath
 
 1407
 00:58:54,297 --> 00:58:57,766
 So, by the way, also I wanna have some constants
+所以顺便我还需要一些常量
 
 1408
 00:58:57,834 --> 00:59:01,069
 that tell me where the eye is relative to the center and
+告诉我两个眼睛到中心的相对距离
 
 1409
 00:59:01,137 --> 00:59:04,038
 where the mouth is and how big the eyes are.
+嘴巴的位置在哪里，眼睛有多大
 
 1410
 00:59:04,107 --> 00:59:07,075
 So to save a little bit of time here, I'm going to just
+为了节约点时间
 
 1411
 00:59:07,143 --> 00:59:11,913
 type those in at the bottom here real quick.
+我在这下面快速地输进去
 
 1412
 00:59:11,982 --> 00:59:13,581
 Look how fast I typed them in.
+看我打得多快
 
 1413
 00:59:13,650 --> 00:59:14,716
 This is, by the way, how we do
+顺带说一下
 
 1414
 00:59:16,253 --> 00:59:20,188
 constants in swift we just create a struct and we make
+我们在 Swift 里常量都是用个结构体
 
 1415
 00:59:20,257 --> 00:59:25,193
 static lets on it which are all of our constants and
+然后用 static let 定义所有的常量
 
 1416
 00:59:25,262 --> 00:59:28,463
 what's really cool about this, one it groups them together.
+这样做的好处是，你把这些集中在一起
 
 1417
 00:59:28,532 --> 00:59:29,697
 Like here I have Ratios,
+比如我这里的 Ratios
 
 1418
 00:59:29,766 --> 00:59:33,634
 it's all the ratios between the skull radius and all these
+这是脸半径和所有其他部分的比例
 
 1419
 00:59:33,703 --> 00:59:36,271
 things I want to do like the eye offset and the mouth.
+比如到眼睛和嘴巴的间距
 
 1420
 00:59:37,240 --> 00:59:38,473
 Also it types them.
+同时还声明了类型
 
 1421
 00:59:38,541 --> 00:59:40,608
 You see these are typed constants.
+你看这些都是指定类型的常量
 
 1422
 00:59:40,677 --> 00:59:42,811
 I can put the type in there, because they're just vars,
+我可以声明类型，因为这些就是变量
 
 1423
 00:59:42,880 --> 00:59:45,580
 they're static vars on this struct.
+就是结构体的静态变量
 
 1424
 00:59:45,649 --> 00:59:46,948
 Okay. We don't have any storage
+虽然我们没有任何属性
 
 1425
 00:59:47,016 --> 00:59:47,481
 in this struct.
+在这个结构体里
 
 1426
 00:59:47,550 --> 00:59:48,483
 Doesn't have any methods.
+也没有任何方法
 
 1427
 00:59:48,552 --> 00:59:50,318
 It just is only used for constants here.
+这个只是用来存储变量的
 
 1428
 00:59:50,387 --> 00:59:54,523
 Now, I'm gonna use these constants down here, and
+现在我就用这下面的这些常量
 
 1429
 00:59:54,591 --> 00:59:56,191
 I'm gonna use the skull radius and
+结合上面的 skullRadius
 
 1430
 00:59:56,259 --> 00:59:59,360
 center up here to calculate the path for the eye.
+和 skullCenter 来计算 pathForEye
 
 1431
 00:59:59,429 --> 01:00:00,295
 So how am I gonna do that?
+那我要怎么做呢？
 
 1432
 01:00:00,363 --> 01:00:03,331
 First I need the center of the eye.
+首先我需要计算眼睛的中心
 
 1433
 01:00:03,400 --> 01:00:05,901
 Now, I'm gonna create a function to calculate
+现在，我需要一个函数来计算
 
 1434
 01:00:05,969 --> 01:00:06,902
 the center of the eye.
+眼睛的中心
 
 1435
 01:00:06,970 --> 01:00:09,337
 But I only need it for pathForEye.
+但是我只需要在 pathForEye 里面使用
 
 1436
 01:00:09,406 --> 01:00:13,108
 So I'm actually gonna put it inside pathForEye.
+所以我就把它放在 pathForEye 里
 
 1437
 01:00:13,176 --> 01:00:16,277
 So I'm gonna create a function here, centerOfEye.
+我在这里写一个函数，centerOfEye
 
 1438
 01:00:16,346 --> 01:00:18,746
 Just gonna type it in quick here to save some time.
+节约时间，还是快速地输进去
 
 1439
 01:00:18,815 --> 01:00:20,015
 I'll go through it though.
+但我还是要讲讲
 
 1440
 01:00:20,083 --> 01:00:23,051
 And centerOfEye, look how it's inside pathForEye.
+看我是怎么把 centerOfEye 放到 pathForEye 里的
 
 1441
 01:00:23,120 --> 01:00:25,954
 And that's perfectly legal, some of you are probably using
+这完全是符合语法的，你们其中的一些
 
 1442
 01:00:26,023 --> 01:00:27,855
 that strategy in your assignment two.
+已经在作业二中采用了这个技巧了
 
 1443
 01:00:27,924 --> 01:00:30,225
 I think I mentioned it in a hint, that you can do it.
+我认为我之前提示过，你可以这么做
 
 1444
 01:00:30,294 --> 01:00:33,160
 And all it does is, it keeps centerOfEye inside here,
+这样我们就可以把 centerOfEye 留在这里面
 
 1445
 01:00:33,229 --> 01:00:34,729
 because it's not needed anywhere else.
+因为并不需要在其他的地方使用
 
 1446
 01:00:34,797 --> 01:00:36,564
 So now, readers of my code don't have to worry about this
+这样读代码的人就不需要担心
 
 1447
 01:00:36,633 --> 01:00:37,899
 thing being called somewhere else, and
+这个函数会被其他地方调用
 
 1448
 01:00:37,968 --> 01:00:39,267
 what it's semantics might be out there.
+也不用多想它是做什么的
 
 1449
 01:00:39,336 --> 01:00:41,702
 They already know that it's only used in this nice,
+他们可以知道这个函数只会在这个
 
 1450
 01:00:41,771 --> 01:00:44,239
 little space right here, so it's kind of a nice way to
+很小的部分用到，所以这是一个很好的方法
 
 1451
 01:00:44,308 --> 01:00:46,842
 arrange your code to make it a little more readable.
+组织你的代码，增加代码的可读性
 
 1452
 01:00:48,245 --> 01:00:49,510
 So how does centerOfEye work?
+那 centerOfEye 是怎么实现的？
 
 1453
 01:00:49,579 --> 01:00:51,279
 Well it takes the eye, and
+它接受一个 Eye 作为参数
 
 1454
 01:00:51,348 --> 01:00:54,782
 it just gets the eye offset by taking the skull radius and
+计算眼睛到中心间距的方法，从把脸的半径
 
 1455
 01:00:54,851 --> 01:00:56,584
 dividing it by one of those constants,
+除以 Ratios.skullRadiusToEyeOffset
 
 1456
 01:00:56,653 --> 01:00:59,287
 the ratio between the skull radius to the eye offset,
+脸半径和眼睛到中心间距的常量比例
 
 1457
 01:00:59,356 --> 01:01:01,322
 that's how much it's gonna offset the eye.
+这样就能算出眼睛到中心的间距
 
 1458
 01:01:01,391 --> 01:01:03,991
 Now I'm gonna offset the eye the same amount up as I do
+我想让眼睛到中心的横纵间距
 
 1459
 01:01:04,060 --> 01:01:04,726
 to the sides.
+都是这个
 
 1460
 01:01:05,963 --> 01:01:09,230
 So the line between the nose of our face, and
+如果我们用线把鼻子
 
 1461
 01:01:09,299 --> 01:01:11,332
 the two eyes is gonna be equilateral triangles, or no,
+和两个眼睛连起来，会是一个等边三角形
 
 1462
 01:01:11,401 --> 01:01:13,134
 not quite equilaterals.
+不完全等边
 
 1463
 01:01:13,203 --> 01:01:13,935
 It can be a little wider, but
+稍微有点宽（等腰直角）
 
 1464
 01:01:14,004 --> 01:01:19,040
 the same distance going up as it is going out to the sides.
+总之向上和向旁边的位移是一样的
 
 1465
 01:01:19,109 --> 01:01:20,709
 I'm gonna start with the eyeCenter being in the center.
+接着我以 eyeCenter 作为中心
 
 1466
 01:01:20,710 --> 01:01:22,310
 And then,
+然后
 
 1467
 01:01:22,378 --> 01:01:24,145
 I'm starting with the eye in the center of the face, and
+先把中心放在脸的中心
 
 1468
 01:01:24,214 --> 01:01:26,080
 then I'm gonna move it up and over.
+然后向上和旁边移
 
 1469
 01:01:26,149 --> 01:01:27,515
 Okay. So here I'm moving it up.
+所以我先向上移动
 
 1470
 01:01:27,584 --> 01:01:30,352
 Notice that up is minus the eye offset,
+要注意向上移是减法
 
 1471
 01:01:30,420 --> 01:01:34,222
 because decreasing y is up, increasing y is down.
+因为减少 y 是向上，增加 y 是向下
 
 1472
 01:01:34,291 --> 01:01:38,793
 And for x, I'm going to add the eye offset or
+对于 x，我会加上 eyeOffset
 
 1473
 01:01:38,862 --> 01:01:41,129
 subtract the eye offset,
+或者是减去 eyeOffset
 
 1474
 01:01:41,197 --> 01:01:43,164
 depending on whether it's the left eye or the right eye.
+取决于是左眼还是右眼
 
 1475
 01:01:43,233 --> 01:01:46,234
 So for the left eye, I'm going to subtract the eye offset.
+所以对于左眼，是减去间距
 
 1476
 01:01:46,303 --> 01:01:48,437
 And for the right eye, I'm going to add the eye offset.
+右眼是加上间距
 
 1477
 01:01:49,506 --> 01:01:50,371
 Okay?
+对吧？
 
 1478
 01:01:50,440 --> 01:01:51,773
 Everyone understand that little
+大家应该都理解这个
 
 1479
 01:01:51,842 --> 01:01:52,974
 construct right there, I hope.
+构造方法了吧，至少我希望是这样
 
 1480
 01:01:54,144 --> 01:01:55,343
 Okay and then it's returning the center.
+最后返回这个中心的位置
 
 1481
 01:01:55,412 --> 01:01:57,044
 So now I have the center of the eye.
+现在我得到眼睛的中心了
 
 1482
 01:01:57,113 --> 01:01:58,880
 So using the center of the eye,
+接着用眼睛的中心
 
 1483
 01:01:58,948 --> 01:02:02,084
 I can say let the eye radius equal the skull radius
+然后计算眼睛半径，用脸的半径
 
 1484
 01:02:05,321 --> 01:02:10,024
 divided by the ratio for that one,
+除以和眼睛半径的比例
 
 1485
 01:02:10,093 --> 01:02:16,364
 which is skullRadiusToEyeRadius.
+也就是 Ratios.skullRadiusToEyeRadius
 
 1486
 01:02:16,432 --> 01:02:18,766
 Okay, so that's what I'm gonna do.
+这是计算的方法
 
 1487
 01:02:18,835 --> 01:02:21,469
 And I'm gonna let the eyeCenter just
+然后 let eyeCenter = centerOfEye(eye)
 
 1488
 01:02:21,538 --> 01:02:23,137
 equal centerOfEye, whichever eye.
+把 eye 传给函数计算出中心坐标
 
 1489
 01:02:23,206 --> 01:02:25,306
 The eye that's up here.
+就是把上面的参数 eye
 
 1490
 01:02:25,375 --> 01:02:28,510
 So I'm just calling this little function right here.
+传给 centerOfEye 这个函数
 
 1491
 01:02:30,981 --> 01:02:33,681
 And so I have those two things.
+现在我有了这两个东西
 
 1492
 01:02:33,750 --> 01:02:35,583
 So I can just create another circle.
+我就能创建另一个圆了
 
 1493
 01:02:35,652 --> 01:02:39,087
 So I'm going to let path equal UIBezierPath and
+我让 path 等于 UIBezierPath
 
 1494
 01:02:39,156 --> 01:02:40,555
 do that arc again.
+还是用 arc 那个构造器
 
 1495
 01:02:40,623 --> 01:02:42,190
 Here the center is the eye center.
+中心是 eyeCenter
 
 1496
 01:02:42,258 --> 01:02:44,492
 And the radius is the eye radius.
+半径是 eyeRadius
 
 1497
 01:02:44,560 --> 01:02:46,461
 And the start angle is still zero.
+开始角度还是零
 
 1498
 01:02:46,529 --> 01:02:49,530
 Then end angle is still CGFloat.pi* 2, and clockwise,
+终止角度还是 CGFloat.pi * 2，是否顺时针
 
 1499
 01:02:49,599 --> 01:02:50,264
 it doesn't matter.
+无所谓
 
 1500
 01:02:50,333 --> 01:02:52,400
 I'll go the other way this time.
+这次我就换个方向吧
 
 1501
 01:02:52,469 --> 01:02:54,769
 Okay, so there's my path.
+这就是我的路径了
 
 1502
 01:02:54,838 --> 01:02:58,439
 Let's set path.lineWidth equal 5.0 again.
+同样把线宽 lineWidth 设为 5.0
 
 1503
 01:02:58,508 --> 01:03:00,341
 Starting to get tired of typing that.
+重复这些都开始觉得有些烦了
 
 1504
 01:03:00,410 --> 01:03:01,876
 It's probably not a good thing.
+看来这不是个很好的设计
 
 1505
 01:03:01,945 --> 01:03:03,145
 And then let's return the path.
+最后返回这个路径
 
 1506
 01:03:04,848 --> 01:03:06,013
 Okay. So that's it.
+好，就是这样了
 
 1507
 01:03:06,082 --> 01:03:07,949
 So that gets the path for either the left eye or
+这个方法返回左眼或右眼
 
 1508
 01:03:08,018 --> 01:03:11,052
 the right eye.
+的路径
 
 1509
 01:03:11,120 --> 01:03:14,356
 we'll say pathForEye, the left eye, stroke.
+在 draw 里调用 pathForEye(.left).stroke()
 
 1510
 01:03:15,959 --> 01:03:19,561
 Okay, pathForEye, the right eye, stroke.
+同理，描右眼的路径
 
 1511
 01:03:21,131 --> 01:03:22,964
 Okay, I hope everyone's comfortable with the fact that
+我希望大家能适应
 
 1512
 01:03:23,033 --> 01:03:24,866
 I'm calling a method, taking this return value, and
+我调用了一个方法，拿着返回值
 
 1513
 01:03:24,934 --> 01:03:26,201
 immediately sending it a message.
+立刻给它发消息
 
 1514
 01:03:29,339 --> 01:03:30,271
 So, let's see how this went.
+让我们看看效果如何
 
 1515
 01:03:30,340 --> 01:03:31,239
 Let's see if we got this right.
+看看是否做对了
 
 1516
 01:03:39,282 --> 01:03:40,348
 Look at that.
+看啊 
 
 1517
 01:03:40,417 --> 01:03:41,415
-FIrst time.
+First time.
+一次成功
 
 1518
 01:03:41,484 --> 01:03:42,884
 It's really going well today.
+今天还挺顺利的
 
 1519
 01:03:42,953 --> 01:03:45,186
-Okay, so there's our two lines, they look good.
+Okay, so there's our two eyes, they look good.
+所以这就是我们的两个眼睛，看起来不错
 
 1520
 01:03:45,255 --> 01:03:46,621
 You know what would be kind of cool though?
+你们觉得怎样能更酷一点呢？
 
 1521
 01:03:46,690 --> 01:03:48,957
 If we could have open eyes and closed eyes.
+比如我们能让它睁开和闭上眼睛？
 
 1522
 01:03:50,460 --> 01:03:52,760
-So how could we, how could we have open eyes and
+So how could we, how could we have open eyes and closed eyes?
+那我们如何实现睁眼和闭眼呢？
 
 1523
 01:03:52,829 --> 01:03:54,229
-How about this: let's go up here and just like we had this
+How about this: let's go up here
+这样如何：我们到上面
 
 1524
 01:03:54,230 --> 01:03:55,630
-closed eyes?
+and just like we had this
+就像我们之前做的
 
 1525
 01:03:55,698 --> 01:03:58,633
 var scale which by the way notice I left the var public.
+scale 这个变量。注意我这里把 scale 保留为公开
 
 1526
 01:03:58,701 --> 01:04:00,568
 Scale, so that people who are using my face view,
+所以使用 FaceView 的人
 
 1527
 01:04:00,637 --> 01:04:02,236
 they can control the size of the face.
+他们可以控制脸的大小
 
 1528
 01:04:02,305 --> 01:04:03,505
 I don't mind.
+这我不介意
 
 1529
 01:04:03,573 --> 01:04:06,107
 And, I'm also gonna have eyes open, which is going to be
+这里我添加一个 eyesOpen
 
 1530
 01:04:06,176 --> 01:04:08,409
 a bool, which will start out being false.
+是一个布偶型变量，初始值为 false
 
 1531
 01:04:08,478 --> 01:04:10,344
 And we're just gonna make our pathForEye,
+然后我们让 pathForEye
 
 1532
 01:04:10,413 --> 01:04:13,314
 look at this var, look at the value of this var.
+根据这个变量的值
 
 1533
 01:04:13,383 --> 01:04:15,583
 And either have the eyes open or closed.
+生成开着或闭着的眼睛
 
 1534
 01:04:15,651 --> 01:04:18,052
 So, I'm back here in path for eye.
+我们回到 pathForEye
 
 1535
 01:04:18,121 --> 01:04:21,322
 So, if the eyes are open then we're just gonna do what we
+如果睁着眼睛，就还是按照
 
 1536
 01:04:21,391 --> 01:04:23,925
 were already doing here, this business.
+我们已经有的这部分做
 
 1537
 01:04:23,994 --> 01:04:26,027
 Okay, because that's what we did so far.
+因为我们之前就是这样的
 
 1538
 01:04:26,096 --> 01:04:27,962
 But if the eyes are closed,
+但如果眼睛是闭着的
 
 1539
 01:04:28,031 --> 01:04:29,497
 then I want the path to be different.
+那我们就换另一种路径
 
 1540
 01:04:29,566 --> 01:04:31,099
 So, watch what I'm gonna do here.
+看我在这里是怎么做的
 
 1541
 01:04:31,168 --> 01:04:37,172
 Let path be a UIBezierPath without a value to start.
+只声明 path 为 UIBezierpath，不赋值
 
 1542
 01:04:39,075 --> 01:04:42,744
 Okay, and then I set it here, and I'm gonna set it here, and
+然后再在两个分支里分别初始化
 
 1543
 01:04:42,812 --> 01:04:44,212
 that's allowed.
+这是允许的
 
 1544
 01:04:44,281 --> 01:04:46,147
 In other words Swift is smart enough to know,
+换句话说，Swift 很聪明
 
 1545
 01:04:46,216 --> 01:04:49,417
 you created a let, which can only be initialized once.
+知道 let 声明的常量只能初始化一次
 
 1546
 01:04:49,486 --> 01:04:52,019
 But you conditionally initialized it here,
+但是你可以根据不同的情况初始化
 
 1547
 01:04:52,088 --> 01:04:54,356
 because now I'm gonna say path equals.
+在 else 里我让 path 等于
 
 1548
 01:04:54,424 --> 01:04:56,257
 And for the closed case I'm just gonna make
+闭眼的情况
 
 1549
 01:04:56,326 --> 01:04:58,793
 a bezier path that starts out blank.
+先初始化一个空的路径
 
 1550
 01:04:58,862 --> 01:05:00,662
 And then I'm gonna just move to, line to,
+移动到起点，然后画一条线
 
 1551
 01:05:00,730 --> 01:05:04,032
 to make a little horizontal line for a closed eye.
+用一条短横线表示闭着的眼睛
 
 1552
 01:05:04,100 --> 01:05:07,435
 So, I'm gonna say path.move(to: ) to move to
+所以我先用 path.move(to:)
 
 1553
 01:05:07,504 --> 01:05:12,974
 a point, CGPoint, we use this constructor right here.
+移动到一个 CGPoint 点，用这个构造器
 
 1554
 01:05:13,043 --> 01:05:18,512
 Not that one, let's use, this one, CGFloat.
+啊，不是这个，应该是 CGFloat 这个
 
 1555
 01:05:18,581 --> 01:05:20,548
 And the point we're gonna move to we're gonna move to
+我们要移动到的点
 
 1556
 01:05:20,617 --> 01:05:24,652
 the eyeCenter x minus the eyeRadius.
+是眼睛中心横坐标减去半径
 
 1557
 01:05:24,720 --> 01:05:26,087
 So, we're gonna move to the center of the eye and
+移动到眼睛中心
 
 1558
 01:05:26,156 --> 01:05:29,023
 back up with the eye there.
+然后到左边的起点
 
 1559
 01:05:29,092 --> 01:05:31,092
 And we're gonna be at the eyeCenter.y.
+纵坐标和眼睛中心一致
 
 1560
 01:05:31,161 --> 01:05:32,994
 So, we're gonna right in the eyeCenter and
+我们穿过眼睛的中心
 
 1561
 01:05:33,063 --> 01:05:34,229
 we're gonna draw a horizontal line so
+画一条横线
 
 1562
 01:05:34,298 --> 01:05:36,664
 we're gonna move to the left side of it.
+我们移动到左边之后
 
 1563
 01:05:36,733 --> 01:05:41,303
 And then we're going to add a line to the right side.
+接着要画一条线到右边
 
 1564
 01:05:41,371 --> 01:05:47,008
 So, another CGPoint which is this one again.
+另一个 CGFloat 也用同一个构造器
 
 1565
 01:05:47,076 --> 01:05:49,543
 And this one is going to be the eyeCenter.x
+这个点横坐标是在眼睛中心
 
 1566
 01:05:49,612 --> 01:05:51,779
 plus the eyeRadius.
+加上眼睛的半径
 
 1567
 01:05:51,848 --> 01:05:56,184
 And it's still at the eyeCenter, okay?
+纵坐标还是和中心一样
 
 1568
 01:05:56,253 --> 01:05:57,685
 Make sense?
+是吧？
 
 1569
 01:05:57,754 --> 01:05:59,087
 Two more parentheses in there.
+（这里还缺了两个括号）
 
 1570
 01:06:00,256 --> 01:06:01,089
 Everyone see what I did there?
+大家都看清楚我做了什么吗？
 
 1571
 01:06:01,158 --> 01:06:03,758
 But I just wanna make sure you understood this
+最重要的是你们理解了这个
 
 1572
 01:06:03,827 --> 01:06:04,759
 thing of let path.
+let path 的用法
 
 1573
 01:06:04,827 --> 01:06:08,129
 You don't have to say equals here as long as this if then
+你可以不用声明的同时赋初值
 
 1574
 01:06:08,198 --> 01:06:12,867
 still only initializes it once and doesn't change it.
+只要你之后有且只有初始化过一次
 
 1575
 01:06:12,936 --> 01:06:14,135
 Because it's still a valid let.
+这样它都是个合法的常量
 
 1576
 01:06:15,671 --> 01:06:17,305
 So, let's go take a look at that.
+我们来看看效果
 
 1577
 01:06:25,015 --> 01:06:26,815
 Okay, eyes closed.
+很好，眼睛是闭着的
 
 1578
 01:06:26,883 --> 01:06:28,148
 Excellent, okay?
+很好
 
 1579
 01:06:28,217 --> 01:06:29,350
 They're closed eyes.
+两个闭着的眼睛
 
 1580
 01:06:29,419 --> 01:06:31,386
 We can go back here, set this to true.
+我们到这里改为 true
 
 1581
 01:06:31,454 --> 01:06:34,522
 And again, we should get open eyes.
+这下我们应该得到的是睁开的眼睛
 
 1582
 01:06:35,992 --> 01:06:37,158
 Questions?
+有问题吗？
 
 1583
 01:06:37,227 --> 01:06:39,894
 So, the question is when do people do a custom
+好，问题是问什么时候人们会用
 
 1584
 01:06:39,962 --> 01:06:42,931
 view like this when they draw off their own thing?
+自定义视图来画这些东西？
 
 1585
 01:06:42,999 --> 01:06:45,900
 In other words, when they don't use this built in things
+换句话说，为什么不用内建的
 
 1586
 01:06:45,969 --> 01:06:48,502
-like button and things like that well it depends on
+like button and things like that. Well, it depends on
+按钮那些来实现？这个要看情况
 
 1587
 01:06:48,571 --> 01:06:50,471
 the content that they are providing.
+主要看要画的是什么内容
 
 1588
 01:06:50,540 --> 01:06:53,107
 But a lot of times, maybe they are not drawing with arcs and
+如果不画圆或圆弧
 
 1589
 01:06:53,175 --> 01:06:56,277
 circles, maybe they're drawing with images and text okay?
+只是图片和文字就不用了
 
 1590
 01:06:56,346 --> 01:06:59,380
 They're laying how they want down to a level or
+仅仅是布局，只要在一定范围内
 
 1591
 01:06:59,449 --> 01:07:02,349
-in an orientation that those can do or maybe they're doing
+in an orientation that those can do. Or maybe they're doing
+能够完成就不需要自己画
 
 1592
 01:07:02,418 --> 01:07:05,553
 text along a curve, which you can do with this for example.
+像是让文字显示到一条曲线上这种操作
 
 1593
 01:07:05,622 --> 01:07:06,721
 So, it's that kind of thing.
+这种复杂一点的就能且只能自己绘制了
 
 1594
 01:07:06,790 --> 01:07:08,456
 You might not see raw drawing like this.
+一般你是看不到这种单纯画图的
 
 1595
 01:07:08,525 --> 01:07:10,091
 We're doing raw drawing because it's simple and
+我们直接画线的原因是构图简单
 
 1596
 01:07:10,160 --> 01:07:13,328
 I'm trying to show you how you do it.
+只是给你做个示范
 
 1597
 01:07:13,396 --> 01:07:14,796
 But there are apps that are drawing
+不过外面也有那种画图程序
 
 1598
 01:07:14,865 --> 01:07:16,530
 apps where you can take your finger and draw.
+你可以用自己的手指画图
 
 1599
 01:07:16,599 --> 01:07:18,799
 They would clearly do this as well right,
+想这些程序是需要自己画线的
 
 1600
 01:07:18,868 --> 01:07:20,868
 some of you might do that as your final project.
+你们可以考虑作为期末项目来做
 
 1601
 01:07:20,937 --> 01:07:23,138
 Okay, so anyway there's our eye.
+总之，眼睛我们画好了
 
 1602
 01:07:23,206 --> 01:07:25,873
 So, we've got our eyes going, we've got our skull.
+我们画了眼睛，画了脸的轮廓
 
 1603
 01:07:25,942 --> 01:07:26,607
 How about our mouth?
+那嘴巴呢？
 
 1604
 01:07:26,676 --> 01:07:28,409
 We've gotta get the mouth going so let's go do that.
+接下来我们就画嘴
 
 1605
 01:07:28,478 --> 01:07:30,144
 And we're gonna do the same thing there.
+我们还是用类似的方法
 
 1606
 01:07:30,213 --> 01:07:34,882
 I'm gonna have a private func pathForMouth and
+我定义一个私有方法 pathForMouth
 
 1607
 01:07:34,951 --> 01:07:38,453
 it's gonna be a UIBezierPath.
+返回 UIBezierpath
 
 1608
 01:07:38,521 --> 01:07:40,154
 So, how I'm going to do the mouth.
+那怎么画嘴呢？
 
 1609
 01:07:40,223 --> 01:07:41,956
 Actually, I'm going to start by drawing the mouth as
+我先把嘴巴画成一个
 
 1610
 01:07:42,025 --> 01:07:42,991
 a rectangle,
+长方形
 
 1611
 01:07:43,059 --> 01:07:45,426
 just to show you where I'm gonna put it on screen.
+给你们看看我要把嘴放在什么位置
 
 1612
 01:07:45,494 --> 01:07:47,795
 And then we'll turn it, we'll use a bezier curve,
+然后我们再把它换成一条贝塞尔曲线
 
 1613
 01:07:47,864 --> 01:07:49,130
 actually, to make the mouth.
+来画这个嘴
 
 1614
 01:07:49,199 --> 01:07:51,832
 So, how am I going to do that?
+那怎么做呢？
 
 1615
 01:07:51,901 --> 01:07:54,468
 First, I'm going to calculate
+首先我需要计算一些内容
 
 1616
 01:07:54,537 --> 01:07:57,638
 some things like the width of the mouth, the height of
+比如嘴巴的宽度，高度
 
 1617
 01:07:57,707 --> 01:08:00,307
 the mouth, and the offset of the mouth--the offset down
+以及嘴巴下部到脸中心的间距
 
 1618
 01:08:00,376 --> 01:08:03,411
 from the middle of the face--using more of these
+使用的是我们的那些
 
 1619
 01:08:03,480 --> 01:08:05,980
 ratios.
+比例
 
 1620
 01:08:06,049 --> 01:08:07,214
 So, I'm just calculating the mouth, width,
+这三个计算的就是嘴的
 
 1621
 01:08:07,283 --> 01:08:09,350
 height, and offset.
+宽、高、间距
 
 1622
 01:08:09,418 --> 01:08:11,619
 Now, I'm gonna use that to create the rectangle in which
+接着我用这几个构成一个矩形
 
 1623
 01:08:11,688 --> 01:08:13,354
 I'm going to put the mouth.
+最终嘴会放在这个里面
 
 1624
 01:08:13,423 --> 01:08:18,993
 Let's do that, let mouthRect equal and so the mouthRect
+我让嘴巴的矩形等于，let mouthRect =
 
 1625
 01:08:19,061 --> 01:08:21,462
 is gotta be offset down by the mouth offset.
+这个矩形向下移了 mouthOffset 那么多
 
 1626
 01:08:21,531 --> 01:08:23,831
 And it's gonna be the width and height, so let's do that.
+然后宽和高都是计算出来了的
 
 1627
 01:08:23,899 --> 01:08:28,602
 So, CGRect we'll use this constructor right here,
+所以用 CGRect 这个
 
 1628
 01:08:28,671 --> 01:08:32,573
 CGFloat, we'll do the skull's center dot x
+全是 CGFloat 的构造器。X 在脸中心横坐标
 
 1629
 01:08:32,642 --> 01:08:36,511
 minus the mouth's width, divided by two.
+减去嘴巴宽度一半的地方
 
 1630
 01:08:36,580 --> 01:08:39,514
 So that's, because we obviously want the mouth
+因为我们希望嘴巴是在面部
 
 1631
 01:08:39,582 --> 01:08:42,450
 centered in there, and then for y,
+居中的。对于纵坐标
 
 1632
 01:08:42,518 --> 01:08:46,354
 we'll use the skullCenter.y plus the mouthOffset.
+是脸中心向下移动 mouthOffset
 
 1633
 01:08:47,523 --> 01:08:48,389
 And again it's plus,
+再次强调是加上
 
 1634
 01:08:48,458 --> 01:08:52,093
 because plus is down in our drawing system.
+因为在这个坐标系里加代表向下
 
 1635
 01:08:52,162 --> 01:08:57,932
 And the width is just the mouthWidth and
+宽度就是 mouthWidth
 
 1636
 01:08:58,001 --> 01:09:00,368
 the height is the mouthHeight.
+高度就是 mouthHeight
 
 1637
 01:09:00,437 --> 01:09:04,005
 Let me make this a little easier to read like this.
+让我这样整理一下代码
 
 1638
 01:09:12,649 --> 01:09:13,414
 Everyone understand what I'm
+大家都明白
 
 1639
 01:09:13,483 --> 01:09:14,948
 doing there with the mouse rect?
+我怎么处理 mouthRect 了吧？
 
 1640
 01:09:15,017 --> 01:09:16,383
 Let's just draw this rect.
+我们就先把这个矩形画出来
 
 1641
 01:09:16,452 --> 01:09:19,720
 So, I can say let path equal UIBezierPath.
+我让 path 等于 UIBezierpath
 
 1642
 01:09:19,789 --> 01:09:21,355
 BezierPath knows how do a rect.
+因为它知道如何画矩形
 
 1643
 01:09:21,424 --> 01:09:23,724
 It's this one down here.
+就用这里的这个构造器
 
 1644
 01:09:23,793 --> 01:09:29,531
 The rect is our mouthRect and let's just return that path.
+rect 参数就是 mouthRect。最后返回它
 
 1645
 01:09:30,700 --> 01:09:32,433
 So, now we've got a path for the mouth.
+我们得到了嘴巴的路径
 
 1646
 01:09:32,501 --> 01:09:34,102
 Let's go down here and
+我们到下面
 
 1647
 01:09:34,170 --> 01:09:38,139
 stroke it by saying pathForMouth().stroke().
+通过 pathForMouth().stroke() 描线
 
 1648
 01:09:38,208 --> 01:09:40,909
 Let's see what this looks like.
+让我们看看现在是什么样子
 
 1649
 01:09:48,851 --> 01:09:49,917
 Okay, excellent.
+很好
 
 1650
 01:09:49,986 --> 01:09:51,352
 So, we have a mouth.
+我们有了一张嘴
 
 1651
 01:09:51,421 --> 01:09:53,721
 Kinda looks like a robot face.
+看着有点像个机器人
 
 1652
 01:09:53,790 --> 01:09:57,024
 We want it to have a nice curve, a smile or a frown.
+我们希望嘴是一条曲线，开心或不开心
 
 1653
 01:09:57,092 --> 01:09:59,527
 So, we gotta start thinking a little bit how we're gonna
+我们需要稍微考虑一下
 
 1654
 01:09:59,596 --> 01:10:03,297
 represent whether this is smiling or frowning.
+如何表示开不开心
 
 1655
 01:10:03,366 --> 01:10:07,669
 And so I'm gonna introduce another var, up at the top,
+所以我需要在最上面有另一个变量
 
 1656
 01:10:07,737 --> 01:10:09,736
 here, just like I have it with the eyes are open.
+就像 eyesOpen 一样
 
 1657
 01:10:09,805 --> 01:10:15,109
 I'm gonna have a var which I'm gonna call mouthCurvature and
+我把它叫做 mouthCurvature，曲率
 
 1658
 01:10:15,178 --> 01:10:17,445
 make it be a Double.
+是 Double 类型的
 
 1659
 01:10:17,513 --> 01:10:21,015
 I'll set it to, let's say 1.0 and
+我把它设为 1.0
 
 1660
 01:10:21,083 --> 01:10:25,553
 the semantics of this I'm going to have it be that
+我让这个数值意思是
 
 1661
 01:10:25,622 --> 01:10:30,491
 1.0 is full smile and minus 1.0 is full frown.
+1.0 代表最开心，-1.0 最不开心
 
 1662
 01:10:30,560 --> 01:10:33,093
 And this is going to be public and this is going to be
+这个同样是公开的
 
 1663
 01:10:33,162 --> 01:10:35,963
 the public API that someone uses when they want to use my
+如果别人要用，这就是公共接口的一部分
 
 1664
 01:10:36,032 --> 01:10:39,299
 FaceView to tell me how much this mouth should be smiling.
+使用 FaceView 的人可以告诉我嘴应该怎么弯
 
 1665
 01:10:39,368 --> 01:10:41,836
 Okay, the mouth curvature right here.
+好，嘴巴的曲率有了
 
 1666
 01:10:41,904 --> 01:10:43,270
 And I've just defined it this way.
+我这样定义的它
 
 1667
 01:10:43,339 --> 01:10:46,073
 It's public, I've documented it.
+这是公开的，我也写了文档
 
 1668
 01:10:46,142 --> 01:10:48,242
 And so people can set it to whatever they want.
+人们就可以随便设置了
 
 1669
 01:10:48,311 --> 01:10:50,043
 So I'm going to use this now to do it.
+接着我就使用这个变量
 
 1670
 01:10:50,112 --> 01:10:52,713
 Now one thing is I've defined it as a double because,
+注意这里类型是 Double
 
 1671
 01:10:52,782 --> 01:10:55,983
 you know I'm not actually doing the drawing right now
+因为我并没有在绘图
 
 1672
 01:10:56,052 --> 01:10:58,152
 I'm just talking conceptually what curvature is.
+这只是概念上的曲率
 
 1673
 01:10:58,221 --> 01:11:01,722
 So, I need to convert this in the some meaningful CGFloat,
+所以之后我需要转换为 CGFloat
 
 1674
 01:11:01,791 --> 01:11:03,824
 and then use that to draw this mouth.
+再用来绘制嘴部
 
 1675
 01:11:03,893 --> 01:11:05,459
 So, how am I gonna do that?
+怎么做呢？
 
 1676
 01:11:05,528 --> 01:11:08,562
 The way I'm gonna do that do that is let's get this back up
+还是看着界面给你们讲解
 
 1677
 01:11:08,631 --> 01:11:12,033
 here and I'll show you, on the rectangle that we have here.
+我们这里有个矩形
 
 1678
 01:11:14,170 --> 01:11:15,803
 I'm gonna use what's called a Bezier curve,
+然后我要用一条贝塞尔曲线
 
 1679
 01:11:15,871 --> 01:11:17,639
 how many people know what is Bezier curve is?
+有多少人知道贝塞尔曲线是什么？
 
 1680
 01:11:18,908 --> 01:11:20,474
 Only one person!
+只有一个？！
 
 1681
 01:11:20,543 --> 01:11:23,777
 My Gosh, okay so a Bezier curve is just
+好吧，贝塞尔曲线
 
 1682
 01:11:23,846 --> 01:11:27,114
 two end points a line between two end points but
+其实就是两点之间的一条线
 
 1683
 01:11:27,183 --> 01:11:30,050
 there are two other points called control points.
+同时还有另外两个控制点
 
 1684
 01:11:30,119 --> 01:11:31,518
 And you can kinda think it as,
+你可以把它想象成
 
 1685
 01:11:31,587 --> 01:11:34,188
 think of it as the line starts out at the start,
+这条线从起点开始
 
 1686
 01:11:34,256 --> 01:11:36,957
 starts heading for one of the control points.
+朝着第一个控制点走
 
 1687
 01:11:37,026 --> 01:11:39,693
 As it gets close, it starts heading for the other one.
+当快要接近的时候，就朝着另一个控制点走
 
 1688
 01:11:39,762 --> 01:11:41,395
 And as it gets close to that one, it starts heading for
+当快要接近另一个的点的时候，就朝着
 
 1689
 01:11:41,464 --> 01:11:42,596
 the end, okay.
+终点走过去
 
 1690
 01:11:42,665 --> 01:11:45,032
 So, the control points kind of pull on the line and
+所以控制点相当于把线“拉”出来
 
 1691
 01:11:45,101 --> 01:11:46,234
 give it some curve.
+给线一个曲率
 
 1692
 01:11:46,302 --> 01:11:48,335
 And you can put those control points anywhere you want.
+控制点可以随意放置
 
 1693
 01:11:48,404 --> 01:11:50,571
 Obviously, we're gonna put ours like this.
+当然，我们需要这么放
 
 1694
 01:11:50,639 --> 01:11:53,774
 So, my start is gonna be right here in the middle of this
+起点就在左边的中点
 
 1695
 01:11:53,843 --> 01:11:56,110
 line and my end is gonna be right here.
+终点在右边的中点
 
 1696
 01:11:56,179 --> 01:11:58,378
 So we're gonna draw a line across here.
+我们画一条线穿过这里
 
 1697
 01:11:58,447 --> 01:12:00,047
 And my two control points are going to
+我的控制点会在这下面
 
 1698
 01:12:00,115 --> 01:12:04,752
 be down here somewhere, on both sides of his chin.
+某个地方，在下巴的两边
 
 1699
 01:12:04,821 --> 01:12:06,087
-the line is gonna start here, start down towards this one.
+the line is gonna start here,
+这条线会从这里开始，
 
 1700
 01:12:06,088 --> 01:12:07,354
-And so
+start down towards this one.
+朝着这个点前进
 
 1701
 01:12:07,424 --> 01:12:08,322
 Whoop. Starting going to
+快到的时候又开始
 
 1702
 01:12:08,391 --> 01:12:09,090
 the other one.
+朝着另一个点
 
 1703
 01:12:09,158 --> 01:12:11,192
 Whoop. Come back up here. And make a little smile.
+最后回到终点，这样就是一个笑脸了
 
 1704
 01:12:11,261 --> 01:12:14,228
 And if I move my control points up to
+如果我把控制点
 
 1705
 01:12:14,297 --> 01:12:15,129
 the top, then whoop.
+移到上面
 
 1706
 01:12:15,198 --> 01:12:15,897
 It'll be a frown.
+那就是不高兴了
 
 1707
 01:12:17,700 --> 01:12:19,033
 Everyone understand that.
+大家都理解
 
 1708
 01:12:19,101 --> 01:12:19,967
 So I need four points.
+所以我需要四个点
 
 1709
 01:12:20,036 --> 01:12:21,702
 The start, the end, and the two control points.
+起点，终点，两个控制点
 
 1710
 01:12:21,770 --> 01:12:22,570
 Let's do those.
+说干就干
 
 1711
 01:12:24,507 --> 01:12:25,973
 The start is easy,
+起点很简单
 
 1712
 01:12:26,042 --> 01:12:28,442
 that's just the middle of the left edge, okay.
+就是左边的中点
 
 1713
 01:12:28,510 --> 01:12:31,912
 So I can say the start is CGPoint.
+所以 start 这个 CGPoint
 
 1714
 01:12:31,981 --> 01:12:36,116
 And again we'll do this kind of CGPoint.
+还是用 CGFloat 构造
 
 1715
 01:12:36,185 --> 01:12:41,655
 And it's going to be the mouth rect, our little mouth rect,
+横坐标是 mouthRect 的
 
 1716
 01:12:41,724 --> 01:12:46,193
 MinX, that's the left edge, the minimum X, and
+minX，最左边最小的 x 坐标值
 
 1717
 01:12:46,262 --> 01:12:51,499
 mouthRect.midY, that's halfway up the mouth rect.
+mouthRect.midY，它中点的纵坐标
 
 1718
 01:12:51,567 --> 01:12:55,136
 And the end is going to be CGPoint.
+终点也是个 CGPoint
 
 1719
 01:12:55,205 --> 01:12:56,871
 This float.
+由 CGFloat 构造
 
 1720
 01:12:56,940 --> 01:13:00,575
-And this one's gonna be the mouthrect.maxX and
+And this one's gonna be the mouthRect.maxX and
+这次取最大值 mouthRect.maxX
 
 1721
 01:13:00,643 --> 01:13:03,377
-mouthrect.midY on the other side.
+mouthRect.midY on the other side.
+因为是在另一边，所以纵坐标不变
 
 1722
 01:13:03,446 --> 01:13:04,712
 So the two ends, start and end,
+两个端点，start 和 end
 
 1723
 01:13:04,780 --> 01:13:06,981
 are right in the middle of my mouth rect on either side.
+是我 mouthRect 左右两边的中点
 
 1724
 01:13:07,050 --> 01:13:09,483
 So now I need those two control points.
+我还需要那两个控制点
 
 1725
 01:13:09,552 --> 01:13:12,519
 For the control points I need to think of how far down
+我需要考虑那两个控制点
 
 1726
 01:13:12,588 --> 01:13:13,887
 they're going to be.
+他们需要向下移多远
 
 1727
 01:13:13,956 --> 01:13:16,190
 And it depends on the mouth curvature.
+这个还取决于嘴的曲率
 
 1728
 01:13:16,258 --> 01:13:19,059
 The more smile I want, the farther down they need to be.
+越开心，这两个点越下面
 
 1729
 01:13:19,128 --> 01:13:21,929
 The more frown I want, the farther up they need to be.
+越伤心，两个点越上面
 
 1730
 01:13:21,998 --> 01:13:25,666
 So I'm gonna create another thing called smileOffset.
+所以我还需要一个 smileOffset
 
 1731
 01:13:25,735 --> 01:13:28,703
 And this is gonna be a CGFloat, because it's gonna be
+一个 CGFloat 类型的变量
 
 1732
 01:13:28,771 --> 01:13:32,173
 something that I'm using to do drawing here.
+因为画图的时候会用到
 
 1733
 01:13:32,241 --> 01:13:38,512
 And I'm gonna make it equal to the mouthCurvature,
+我让它等于 mouthCurvature
 
 1734
 01:13:38,581 --> 01:13:44,718
 which is a double, times the mouth rect.height.
+一个 Double，乘上 mouthRect 的高
 
 1735
 01:13:44,787 --> 01:13:47,988
 So I will move down those control points all the way
+所以我把两个控制点向下移动
 
 1736
 01:13:48,057 --> 01:13:51,959
 the entire height of a mouth rect if I'm fully smiling.
+如果是最开心，移动的就是整个矩形的高度
 
 1737
 01:13:52,027 --> 01:13:54,261
 Now, there's some problems with this line of code.
+但是这行代码还有问题
 
 1738
 01:13:54,330 --> 01:13:56,563
 One is, if you look at these things right here,
+其中一个是，你看这个信息说
 
 1739
 01:13:56,632 --> 01:13:59,300
 it's saying you can't multiply a Double times a Float.
+你不能把 CGFloat 和 Double 相乘
 
 1740
 01:13:59,368 --> 01:14:01,536
 This is a float, this is a double.
+这是个 CGFloat，这是个 Double
 
 1741
 01:14:01,604 --> 01:14:04,238
 So I'm gonna have to convert this to a float
+所以我需要把 Double 转为 CGFloat
 
 1742
 01:14:04,306 --> 01:14:07,008
 by using a constructor for CGFloat.
+通过的是 CGFloat 的构造器
 
 1743
 01:14:07,076 --> 01:14:10,077
 Luckily, it has one that takes a double okay.
+幸运的是，CGFloat 有一个接受 Double 的构造器
 
 1744
 01:14:10,146 --> 01:14:13,914
 Another thing here is smile offset has to be between,
+另外一个是，smileOffset 必须要
 
 1745
 01:14:13,983 --> 01:14:15,249
 you know, one, or sorry,
+啊，不是它
 
 1746
 01:14:15,318 --> 01:14:18,485
 mouth curvature here has to be between one and minus one.
+mouthCurvature 必须要在 0 和 1 之间
 
 1747
 01:14:18,554 --> 01:14:20,020
 So I'm gonna enforce that.
+我要保证它符合条件
 
 1748
 01:14:20,089 --> 01:14:22,789
 Because I wouldn't want this path curvature to be five, and
+因为我不希望 mouthCurvature 被设为 5
 
 1749
 01:14:22,858 --> 01:14:23,891
 now he's smiling so
+然后笑得
 
 1750
 01:14:23,960 --> 01:14:26,160
 big that it's, you know, on the floor literally.
+合不拢嘴
 
 1751
 01:14:26,229 --> 01:14:26,960
 Jaws on the floor.
+下巴都掉到地上了
 
 1752
 01:14:27,029 --> 01:14:27,795
 We don't want that.
+这并不是我们所期望的
 
 1753
 01:14:27,863 --> 01:14:29,664
 So I'm going to use min and max to do that.
+所以我通过 min 和 max 来实现
 
 1754
 01:14:29,732 --> 01:14:33,067
 I'm gonna say max minus one of min
+选择 mouthCurvature 和 1 里小的那个
 
 1755
 01:14:33,136 --> 01:14:36,236
 of the mouth curvature and one.
+然后选择 -1 和结果中更大的那个
 
 1756
 01:14:36,305 --> 01:14:38,972
 And that's going to restrict it to be between minus one
+这就就能把它限制在负一
 
 1757
 01:14:39,041 --> 01:14:39,774
 and one.
+和一之间
 
 1758
 01:14:41,310 --> 01:14:42,143
 Everybody got that.
+相信大家能理解
 
 1759
 01:14:42,211 --> 01:14:46,047
 I'm just using min and max to do that there.
+如何使用 min 和 max 实现
 
 1760
 01:14:46,115 --> 01:14:48,549
 And notice that it's automatically
+注意自动类型推导
 
 1761
 01:14:48,618 --> 01:14:50,584
 made these be doubles, which is fine.
+把这两个判为了 Double，这是没问题的
 
 1762
 01:14:50,653 --> 01:14:53,087
 So the result of min and max is double, and
+因为 min 和 max 的结果都是 Double
 
 1763
 01:14:53,156 --> 01:14:54,789
 that's being converted to a CGFloat.
+然后最后转换成了 CGFloat
 
 1764
 01:14:54,857 --> 01:14:55,656
 That works fine.
+这个就没问题了
 
 1765
 01:14:56,859 --> 01:14:58,993
 Okay, so now that I have that smile offset,
+现在我得到了 smileOffset
 
 1766
 01:14:59,061 --> 01:15:00,961
 I can say how far down my control points are.
+我就能知道控制点应该放多远
 
 1767
 01:15:01,030 --> 01:15:04,465
 So I'm gonna let cp1, which is control point one, it's gonna
+我让 cp1，第一个控制点
 
 1768
 01:15:04,533 --> 01:15:08,402
 be smile offset times the mouth rect height down.
+向下移动间距乘上高度的点
 
 1769
 01:15:08,470 --> 01:15:10,871
 And I'm gonna make the two control points be
+然后我让两个控制点
 
 1770
 01:15:10,939 --> 01:15:14,242
 one third of the way in from the edges of the mouth rect.
+位于矩形三分点的位置
 
 1771
 01:15:15,611 --> 01:15:16,977
 Does that make sense?
+合理吧？
 
 1772
 01:15:17,046 --> 01:15:19,513
 We wanted to kinda head down, we wanted to kinda
+我们的线向下走
 
 1773
 01:15:19,582 --> 01:15:21,982
 be one-third of the way along from each side.
+两边都是在三分点的地方开始转折
 
 1774
 01:15:22,051 --> 01:15:23,583
 So cp1 is gonna be on the left.
+所以 cp1 在左边
 
 1775
 01:15:23,652 --> 01:15:27,188
 That's gonna be a CGPoint.
+cp1 是个 CGPoint
 
 1776
 01:15:27,256 --> 01:15:29,189
 And this again.
+还是用 CGFloat 构造
 
 1777
 01:15:29,258 --> 01:15:35,196
 And so this one will be the start.x.
+横坐标基于 start
 
 1778
 01:15:35,265 --> 01:15:37,364
 Start is where we're starting right here.
+start 就是线的起点
 
 1779
 01:15:37,433 --> 01:15:40,434
 Plus the mouthRect.width divided by three.
+加上矩形宽度的三分之一
 
 1780
 01:15:40,503 --> 01:15:42,637
 So I'm going a third of the way across.
+横着走了三分之一
 
 1781
 01:15:42,705 --> 01:15:47,441
 And then the y is a start.y plus the smile offset
+纵坐标就是起点的纵坐标加上间距
 
 1782
 01:15:47,510 --> 01:15:50,211
 which could be negative if mouth curvature is negative.
+如果曲率是负的，那 smileOffset 也是负的
 
 1783
 01:15:50,279 --> 01:15:52,246
 Smile offset might be negative, meaning going up.
+如果是负数，那最后的结果就是在上面
 
 1784
 01:15:52,315 --> 01:15:53,881
 And so, this will be a frown.
+也就体现出伤心
 
 1785
 01:15:53,949 --> 01:15:56,116
 Or it could be positive and then it will go down.
+如果是正的那就在下面
 
 1786
 01:15:56,185 --> 01:15:59,786
 Then cp2 is almost exactly the same so I'll copy and
+第二个控制点基本一样，我直接复制
 
 1787
 01:15:59,855 --> 01:16:01,288
 paste it, cp2.
+粘贴，改为 cp2
 
 1788
 01:16:01,356 --> 01:16:04,858
 It's just that here we're gonna go to the end and
+只不过横坐标是终点
 
 1789
 01:16:04,927 --> 01:16:08,295
 move back by mouthRect.width.
+向回走三分之一
 
 1790
 01:16:08,364 --> 01:16:11,732
 But it's still it's at the same level okay because we
+纵坐标不变
 
 1791
 01:16:11,801 --> 01:16:15,002
 want it to come down, go across, and then come back up.
+这样就是向下，向右，向上了
 
 1792
 01:16:15,070 --> 01:16:16,704
 So now that we have these control points and
+现在有了控制点
 
 1793
 01:16:16,772 --> 01:16:19,973
 the start and the end, now we can draw that in the path.
+和起点终点，我们就能构成路径了
 
 1794
 01:16:20,042 --> 01:16:21,842
 So we'll just do go our Bézier path right here.
+这是一个贝塞尔曲线
 
 1795
 01:16:21,910 --> 01:16:25,479
 We'll leave the rect in there at first so we can see it.
+我们先把这个矩形留在这里作为参照
 
 1796
 01:16:25,548 --> 01:16:31,285
 And I'm just gonna tell the path to move to a CGPoint,
+最后我只需要 path.move(to:
 
 1797
 01:16:31,353 --> 01:16:35,155
 which is the start and, actually,
+让路径移动到 CGPoint
 
 1798
 01:16:35,224 --> 01:16:38,658
 you don't even need to do that.
+其实不用这样
 
 1799
 01:16:38,727 --> 01:16:40,328
 You just say, move to the start.
+直接移动到 start 就可以了
 
 1800
 01:16:41,831 --> 01:16:45,098
 And then, we're gonna draw a curve, addCurve,
+然后画一个曲线
 
 1801
 01:16:45,167 --> 01:16:47,901
 which adds one of the Bezier curves.
+添加我们的贝塞尔曲线
 
 1802
 01:16:47,970 --> 01:16:48,736
 And we're going to the end.
+一直到 end
 
 1803
 01:16:48,805 --> 01:16:54,341
 And the control point is cp1, and the other is cp2.
+控制点分别是 cp1 和 cp2
 
 1804
 01:16:54,409 --> 01:16:54,976
 So let's take a look.
+让我们看看效果
 
 1805
 01:17:04,320 --> 01:17:06,820
 Alright, excellent, so we have mouth curvature is 1.0,
+很好，现在嘴巴的弧度是 1.0
 
 1806
 01:17:06,889 --> 01:17:08,722
 we've got a nice big old smile.
+非常灿烂的笑容
 
 1807
 01:17:08,791 --> 01:17:10,891
 Okay, we don't really want this square there anymore,
+我们不需要这个矩形了
 
 1808
 01:17:10,960 --> 01:17:13,127
 rectangle, so we'll get rid of that.
+把它去掉，所以
 
 1809
 01:17:13,196 --> 01:17:15,763
 We can just do that by creating an empty Bezier
+改为创建一个空的曲线
 
 1810
 01:17:15,831 --> 01:17:16,931
 curve to start.
+作为初始值
 
 1811
 01:17:16,999 --> 01:17:21,502
 Also, we want the path's lineWidth to be 5.0.
+同时我们把 path.lineWidth 设为 5.0
 
 1812
 01:17:21,570 --> 01:17:23,704
 One nice, even amount.
+这个更合适的线的宽度
 
 1813
 01:17:23,773 --> 01:17:25,606
 And let's go ahead and check some other things.
+我们再测试一下其他的值
 
 1814
 01:17:25,675 --> 01:17:28,375
 Let's see if the mouth of minus 0.5.
+比如 -0.5
 
 1815
 01:17:28,444 --> 01:17:31,912
 Let's see if that gives us a slight frown.
+看看是不是看起来像稍微不开心
 
 1816
 01:17:31,981 --> 01:17:33,447
 Should give us a slight frown, right.
+应该是略微噘嘴的样子
 
 1817
 01:17:40,156 --> 01:17:42,690
 Neat, okay.
+很好，正是如此
 
 1818
 01:17:42,759 --> 01:17:45,392
 Alright, what's the last thing I'm gonna show.
+那最后我要讲什么呢
 
 1819
 01:17:45,461 --> 01:17:47,094
 One thing that's a little bit of a pain is
+有一个麻烦的事就是
 
 1820
 01:17:47,162 --> 01:17:49,296
 every time I wanna check the mouthCurvature,
+每次我要测试 mouthCurvature 的时候
 
 1821
 01:17:49,365 --> 01:17:50,698
 I gotta go run the app.
+我都需要重新运行这个程序
 
 1822
 01:17:50,766 --> 01:17:52,299
 Back, change it, run.
+回来改了之后又要重新开始
 
 1823
 01:17:52,368 --> 01:17:53,934
 Or every time eyes open, eyes closed.
+包括睁眼，闭眼
 
 1824
-01:17:54,002 --> 01:17:57,204
-Back and forth.
+01:17:54,002 --> 01:17:56,204
+Back and forth. Wouldn't it be cool, if I could 
+这样来回切换。如果我能够直接在
 
 1825
-01:17:57,273 --> 01:18:00,007
-in Interface Builder, okay?
+01:17:56,205 --> 01:18:00,007
+just see these things in Interface Builder, okay?
+Interface Builder 里看到这些该多好
 
 1826
 01:18:00,076 --> 01:18:01,141
 I can see a button
+比如我可以看到一个按钮长什么样子
 
 1827
 01:18:01,210 --> 01:18:02,976
 when I change it's things in Interface Builder.
+修改都在 Interface Builder 里显示出来了
 
 1828
 01:18:03,045 --> 01:18:06,013
 And wouldn't it even be cooler if I could have an inspector
+更好的是如果我能够有个检查器
 
 1829
 01:18:06,081 --> 01:18:06,947
 in Interface Builder,
+在 Interface Builder 里
 
 1830
 01:18:07,016 --> 01:18:09,382
 that would let me inspect these things.
+用来设置我的这些东西
 
 1831
 01:18:09,451 --> 01:18:10,584
 Well, of course we can do that.
+当然这是可以实现的
 
 1832
 01:18:10,653 --> 01:18:12,753
-How do we do that.
+How do we do that?
+怎么做呢？
 
 1833
 01:18:12,821 --> 01:18:16,357
 We go up here, and we just make this IBDesignable, okay.
+我们只需要在上面标记为 @IBDesignable
 
 1834
 01:18:17,793 --> 01:18:21,428
 If you put IBDesignable in front of a UIView at the top,
+如果你把  @IBDesignable 标记在 UIView 前面
 
 1835
 01:18:21,497 --> 01:18:26,400
 then when you go over to your storyboard, at the top, you're
+当你进入 Storyboard 的时候
 
 1836
 01:18:26,469 --> 01:18:29,703
 gonna see it here, compiling that code, integrating it into
+你会看到 Xcode 编译这些代码
 
 1837
 01:18:29,772 --> 01:18:32,639
 Interface Builder, and showing it to you.
+整合并显示到 Interface 里
 
 1838
 01:18:32,708 --> 01:18:35,809
 Okay now unfortunately we don't have an inspector here
+但我们还没有一个检查器
 
 1839
 01:18:35,878 --> 01:18:37,778
 that allows us to inspect those things.
+来让我们更改属性
 
 1840
 01:18:37,847 --> 01:18:39,346
 But we can do that as well.
+但我们马上就做
 
 1841
 01:18:39,415 --> 01:18:40,514
 Go back to FaceView here.
+回到 FaceView
 
 1842
 01:18:40,583 --> 01:18:41,715
 And I'm going to say for
+我们把
 
 1843
 01:18:41,784 --> 01:18:45,352
 example make the scale IBInspectable.
+比如 scale 是 @IBInspectable 的
 
 1844
 01:18:46,922 --> 01:18:51,525
 Let's make eyesOpen IBInspectable.
+把 eyesOpen 标为 @IBInspectable
 
 1845
 01:18:51,593 --> 01:18:56,030
 Let's make the mouthCurvature IBInspectable.
+把 mouthCurvature 标为 @IBInspectable
 
 1846
 01:18:56,098 --> 01:18:57,831
 Let's add a few other things here.
+我们再在这里加几个
 
 1847
 01:18:57,900 --> 01:19:00,601
-Let's make the lineWidth IB inspectable.
+Let's make the lineWidth IBInspectable.
+比如让 lineWidth @IBInspectable
 
 1848
 01:19:00,669 --> 01:19:03,703
 So to do that, we can't have this 5.0 going on over here,
+也就是不用这里这个 5.0 了
 
 1849
 01:19:03,772 --> 01:19:05,572
 we're gonna have to add a var.
+我们添加一个 var 变量
 
 1850
 01:19:05,641 --> 01:19:10,677
 So we're just gonna add an IBInspectable var.
+标有 @IBInspectable 的 var
 
 1851
 01:19:10,746 --> 01:19:13,513
 Which is gonna be the line width, which is a CGFloat.
+是一个叫做 lineWidth 的 CGFloat
 
 1852
 01:19:13,582 --> 01:19:17,784
 We'll start it out at 5.0 but we'll be able to change it.
+初始值为 5.0，但我们之后可以改
 
 1853
 01:19:17,853 --> 01:19:20,420
 So now we can go everywhere where we have that 5.0.
+我们现在把所有用到那个 5.0 的地方
 
 1854
 01:19:20,489 --> 01:19:23,557
 We'll just change it to use this var.
+都替换为这个变量
 
 1855
 01:19:25,594 --> 01:19:27,728
 We can also do the color.
+我们还可以这么处理颜色
 
 1856
 01:19:27,796 --> 01:19:32,065
-IBInspectable var the color, it's a UI color.
+IBInspectable var the color, it's a UIColor.
+定义类型为 UIColor 的 @IBInspectable 变量 color
 
 1857
 01:19:32,134 --> 01:19:36,003
 Okay, we'll start it out as blue like it is now.
+初始值还是和现在一样是蓝色
 
 1858
 01:19:36,071 --> 01:19:37,771
-So where we have view UIColor.blue,
+So where we have UIColor.blue,
+现在所有用 UIColor.blue 的地方
 
 1859
 01:19:37,840 --> 01:19:39,539
 we'll use this var instead.
+都改为使用这个变量
 
 1860
 01:19:39,608 --> 01:19:40,741
-Alright, we'll give you a color blue.
+Alright, we have UIColor.blue
+这里有个 UIColor.blue
 
 1861
 01:19:40,809 --> 01:19:44,911
 I'm just gonna say color, to set the color.
+我直接用 color 代替为设定的颜色
 
 1862
 01:19:44,980 --> 01:19:47,847
 Okay, so basically it's taking all the things in my app and
+我们基本把所有程序里的东西都公开
 
 1863
 01:19:47,916 --> 01:19:50,383
 just making them not only configurable,
+不仅可以作为公开变量赋值
 
 1864
 01:19:50,452 --> 01:19:53,653
 as public variables, but also inspectable.
+还可以用检查器从 Interface Builder 观察
 
 1865
 01:19:53,722 --> 01:19:56,089
 So let's go back to our story board and see if this works.
+我们回到 Storyboard 看看能不能用了
 
 1866
 01:19:56,158 --> 01:19:58,191
 Sure enough, right away, you see up at the top there,
+是的，马上就出现在这上面了
 
 1867
 01:19:58,260 --> 01:20:02,696
 Face View, the scale, whether the eyes are open, line width,
+Face View 可以设置 scale，是否睁眼，线宽
 
 1868
 01:20:02,765 --> 01:20:05,132
 the color, mouth curvature, are now inspectable.
+颜色，嘴巴曲率，这些都可以观察
 
 1869
 01:20:05,201 --> 01:20:07,901
 So let's close the eyes.
+我们让他闭眼
 
 1870
 01:20:07,970 --> 01:20:12,606
 Let's have the mouth curvature be 0.5.
+mouthCurvature shew 0.5
 
 1871
 01:20:12,675 --> 01:20:16,176
 Let's make the color be orange.
+颜色改为橙色
 
 1872
 01:20:16,244 --> 01:20:18,712
 Let's make the line width be two.
+线条宽度设为二
 
 1873
 01:20:18,781 --> 01:20:22,115
 Let's make the scale be 0.5.
+把缩放设为 0.5
 
 1874
 01:20:22,184 --> 01:20:26,252
 Make the scale be 0.9 again, whatever.
+再试试缩放为 0.9
 
 1875
 01:20:26,321 --> 01:20:29,422
 Now another interesting thing about this is just like if you
+很有趣的一点是
 
 1876
 01:20:29,491 --> 01:20:31,458
 were inspecting a UIButton here.
+就像观察 UIButton 一样
 
 1877
 01:20:31,527 --> 01:20:34,194
 When you run it's going to use
+运行的时候会使用
 
 1878
 01:20:34,263 --> 01:20:36,664
 these settings as the initial settings.
+IB 里这些设置作为初始值
 
 1879
 01:20:37,667 --> 01:20:39,299
 You truly are editing this,
+所以这样设置
 
 1880
 01:20:39,368 --> 01:20:41,167
 just like you would edit anything else,
+和更改其他的控件是一样的
 
 1881
 01:20:41,236 --> 01:20:43,771
 any other custom view, see it comes up like this.
+和其他的自定义视图一样。看吧
 
 1882
 01:20:45,941 --> 01:20:46,673
 Got it?
+理解了吗？
 
 1883
 01:20:46,742 --> 01:20:49,242
 Now one thing that you have to do when you have
+你有一件必须要做的事情
 
 1884
 01:20:49,311 --> 01:20:54,414
 an IBInspectable is you have to explicitly type you cannot
+@IBInspectable 变量都是要明确声明类型的
 
 1885
 01:20:54,483 --> 01:20:55,816
 let Swift infer it.
+不能让 Swift 推测
 
 1886
 01:20:55,884 --> 01:20:59,386
 Because while Swift can infer, Interface builder cannot.
+因为虽然 Swift 可以推导出类型，但 IB 不行
 
 1887
 01:21:00,956 --> 01:21:03,023
 It doesn't have an inference engine there.
+它没有一个类型推导引擎
 
 1888
 01:21:03,091 --> 01:21:05,925
 So always make sure you put the actual type
+所以记住把实际的类型
 
 1889
 01:21:05,994 --> 01:21:10,029
 in all the IBInspectables.
+声明给 @IBInspectable 的变量
 
 1890
 01:21:10,098 --> 01:21:11,965
-Alright, that's it!
+Alright, that's it! Next time,
+这就是所有的内容了
 
 1891
 01:21:12,034 --> 01:21:13,367
-what we're gonna do is we're gonna add a model to our MVC.
+what we're gonna do is we're gonna 
+剩下的就是我们要
 
 1892
 01:21:13,368 --> 01:21:14,701
-Next time,
+add a model to our MVC.
+加一个模型（Model）到 MVC 里
 
 1893
 01:21:14,770 --> 01:21:16,770
 And we're gonna start putting some gestures in here.
+并且开始识别手势
 
 1894
 01:21:16,839 --> 01:21:20,707
 And then we'll start talking about multiple MVCs.
+再之后我们会讲多个 MVC
 
 1895
 01:21:20,776 --> 01:21:31,384

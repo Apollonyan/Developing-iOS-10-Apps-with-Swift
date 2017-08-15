@@ -2,6 +2,8 @@
 
 [中文版本](../README.md)
 
+***This document is outdated. Please refer to the above Chinese version for the latest information.***
+
 We have not yet finished translating. You may view our progress by
 
 - [Watching the repository](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/subscription)
