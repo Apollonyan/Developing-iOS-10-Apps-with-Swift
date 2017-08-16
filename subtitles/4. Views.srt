@@ -21,498 +21,622 @@ CS193P 课程，iOS 应用程序开发
 5
 00:00:15,782 --> 00:00:20,785
 So today, our topic is to talk about custom views, okay,
+今天我们要讲的是自定义视图
 
 6
 00:00:20,854 --> 00:00:25,123
 specifically the drawing side of having custom views.
+特别是在这些视图中绘制内容
 
 7
 00:00:25,192 --> 00:00:28,193
 And this is gonna be a more typical lecture than last
+以后上课的形式都和今天差不多
 
 8
 00:00:28,262 --> 00:00:30,762
 time because I'll be doing some slides and
+上次全是幻灯片是因为
 
 9
 00:00:30,831 --> 00:00:32,964
 explaining the concepts to you, and
+我全在讲理论知识
 
 10
 00:00:33,033 --> 00:00:36,301
 then I'll go into a demo that shows you how we do it all.
+现在我们是要实际运用
 
 11
 00:00:36,370 --> 00:00:39,104
 So what is a view?
+那什么是 view, 试图呢？
 
 12
 00:00:39,173 --> 00:00:42,540
 A view is a subclass of UIView,
+视图继承 UIView
 
 13
 00:00:42,609 --> 00:00:45,643
 which is in UIKit in iOS.
+UIView 属于 iOS UIKit 的一部分
 
 14
 00:00:45,712 --> 00:00:48,313
 And all it does is carve out or
+它的作用是“挖出”，也就是
 
 15
 00:00:48,382 --> 00:00:51,883
 represent a rectangular area on screen.
+代表屏幕上一个长方形的区域
 
 16
 00:00:51,952 --> 00:00:55,019
 And that rectangular area defines a coordinate space
+以这个长方形构成一个坐标系
 
 17
 00:00:55,088 --> 00:00:57,990
 that we're gonna draw in and that we're gonna get
+这就是我们可以绘制的区域
 
 18
 00:00:58,058 --> 00:01:00,124
 multi-touch events like pinches and
+这个区域也会接受多点触控
 
 19
 00:01:00,193 --> 00:01:01,660
 swipes and all that stuff.
+比如捏合，轻扫事件等
 
 20
 00:01:01,728 --> 00:01:03,095
 So today,
+于是今天
 
 21
 00:01:03,163 --> 00:01:06,131
 I'm just gonna focus on the drawing side of that all and
+我先只会专门讲如何绘制
 
 22
 00:01:06,199 --> 00:01:09,268
 then we'll start talking about the gestures on Wednesday.
+手势的处理我们留到星期三
 
 23
 00:01:10,537 --> 00:01:14,439
 So these views, these little rectangle areas
+这些视图，这些长方形的区域
 
 24
 00:01:14,508 --> 00:01:17,542
 are put on screen in this hierarchical way.
+是组织为层级之后显示在屏幕上的
 
 25
 00:01:17,611 --> 00:01:20,779
 And that just means that the views have subviews
+这意味着视图当中可以有
 
 26
 00:01:20,847 --> 00:01:21,913
 inside of them.
+多个子视图，subview
 
 27
 00:01:21,982 --> 00:01:25,450
 Now any given view can only have one superview,
+但只可能有一个父视图，superview
 
 28
 00:01:25,519 --> 00:01:27,185
 that's the view that it's contained in.
+也就是包含它的那个视图
 
 29
 00:01:27,254 --> 00:01:29,054
 But it can have any number of subviews,
+但是子视图可以有很多个
 
 30
 00:01:29,123 --> 00:01:30,689
 so views made out of it.
+所有它包含的视图都算
 
 31
 00:01:30,758 --> 00:01:33,324
 So for example, on the calculator, we had for
+拿计算器举例子
 
 32
 00:01:33,393 --> 00:01:35,493
 example, stack view, okay.
+我们有 StackView
 
 33
 00:01:35,562 --> 00:01:37,195
 It had a lot of subviews,
+其中有很多子视图
 
 34
 00:01:37,264 --> 00:01:38,897
 all the buttons that we stacked in it.
+也就是被我们叠起来的那些按钮
 
 35
 00:01:38,965 --> 00:01:41,400
 In fact, some of the stack views had other stack views as
+事实上，还有的 StackView 的子视图
 
 36
 00:01:41,468 --> 00:01:42,067
 their subviews.
+也是 StackView
 
 37
 00:01:42,135 --> 00:01:44,302
 And then those stack views had more subviews,
+每个子视图 StackView 又有更多的子视图
 
 38
 00:01:44,371 --> 00:01:45,771
 which were buttons or whatever, okay.
+也就是那些按钮一类的
 
 39
 00:01:45,839 --> 00:01:49,674
 So that's how we build our UI is this hierarchical
+所以 UI 是通过这种层级结构
 
 40
 00:01:49,743 --> 00:01:52,077
 collection of these rectangular areas.
+通过一层层的长方形视图构成的
 
 41
 00:01:52,145 --> 00:01:56,014
 Now, at the very, very, very top there's a special UIView
+在这个结构的最顶层，有一个特殊的 UIView
 
 42
 00:01:56,083 --> 00:01:59,751
 called UIWindow class, we don't deal with that in iOS.
+它是一个 UIWindow，虽然 iOS 里不常用
 
 43
 00:01:59,820 --> 00:02:03,021
 In fact, the only time you would ever do anything with
+事实上唯一需要用到 UIWindow 的情况
 
 44
 00:02:03,090 --> 00:02:06,491
 the UIWindow is if you were building an app that maybe
+是你需要编写一个能投影
 
 45
 00:02:06,560 --> 00:02:08,193
 projected to a projector.
+到投影仪的程序
 
 46
 00:02:08,261 --> 00:02:10,328
 So that you had two screens, your device and
+这种情况下你有两个屏幕——你的设备
 
 47
 00:02:10,397 --> 00:02:11,963
 then maybe some external projector or
+和那个投影仪
 
 48
 00:02:12,032 --> 00:02:14,199
 something, then you might care about UIWindow.
+这个时候你就需要考虑用 UIWindow
 
 49
 00:02:14,268 --> 00:02:17,069
 But otherwise, it's all about UIView, okay?
+但其他情况下 iOS 都只会用到 UIView
 
 50
 00:02:17,137 --> 00:02:19,871
 All of our arrangement of the screen is all about how we
+所有屏幕上的布局都是
 
 51
 00:02:19,940 --> 00:02:22,574
 arrange the UIViews.
+组织这些 UIView
 
 52
 00:02:22,642 --> 00:02:25,444
 Now this hierarchy, okay, these rectangular areas inside
+一般来说，设计这个层级结构
 
 53
 00:02:25,512 --> 00:02:28,680
 of rectangular areas, is almost always built
+这一层套一层的长方形区域
 
 54
 00:02:28,749 --> 00:02:31,316
 in Interface Builder, inside Xcode, okay?
+是通过 Xcode 的 Interface Builder
 
 55
 00:02:31,385 --> 00:02:32,817
 That's how we built the stack view stuff.
+还记得我们是怎么创建 StackView 的吗？
 
 56
 00:02:32,886 --> 00:02:34,752
 We dragged out a bunch of buttons and
+我们把一堆按钮拖到界面里
 
 57
 00:02:34,821 --> 00:02:35,920
 then we selected them and said,
+选中之后然后选择
 
 58
 00:02:35,989 --> 00:02:38,890
 "Embed in Stack View." Well, that wrapped it in there.
+"Embed in StackView"，封装到 StackView
 
 59
 00:02:38,959 --> 00:02:42,094
 But we can also build that hierarchy by dragging views
+同理，我们也能够把视图
 
 60
 00:02:42,162 --> 00:02:43,929
 out of the utilities,
+从右下角的工具区里拖出来
 
 61
 00:02:43,997 --> 00:02:47,132
 bottom of the utilities window there, inside other views.
+放到其他的视图中
 
 62
 00:02:47,200 --> 00:02:48,132
 So you can drag,
+所以你可以拖拽
 
 63
 00:02:48,201 --> 00:02:51,703
 do it by dragging-dropping inside of other views.
+拖拽然后放进其他视图里
 
 64
 00:02:51,772 --> 00:02:53,338
 It is possible to do it in code but
+虽然我们也可以写代码实现
 
 65
 00:02:53,407 --> 00:02:55,207
 usually we're doing it graphically.
+不过通常我们都是用 IB 完成
 
 66
 00:02:55,276 --> 00:02:56,375
 If you're doing it in code,
+如果你要通过代码实现
 
 67
 00:02:56,443 --> 00:03:00,912
 the two main methods involved in building and
+有两个函数是你肯定要用到的
 
 68
 00:03:00,981 --> 00:03:05,050
 destroying this hierarchy, are addSubview, okay,
+一个是 addSubview
 
 69
 00:03:05,119 --> 00:03:07,418
 addSubview, takes a view as an argument.
+接受一个 UIView 作为参数
 
 70
 00:03:07,487 --> 00:03:11,489
 You send it to the "soon-to-be" superview of that
+然后把它交给“准”父视图
 
 71
 00:03:11,558 --> 00:03:12,708
 In other words, you ask another view,
+也就是你告诉另一个视图
 
 72
 00:03:12,709 --> 00:03:13,859
 view.
+告诉它说
 
 73
 00:03:13,927 --> 00:03:16,928
 please add this other view as subview of yourself.
+请把这个视图收为你的子视图
 
 74
 00:03:16,996 --> 00:03:19,864
 Now when you're doing the opposite, taking some view out
+反之，如果你要从层级中踢出视图
 
 75
 00:03:19,933 --> 00:03:22,467
 of the hierarchy, you don't send it to the superview.
+你不用通知它的父视图
 
 76
 00:03:22,536 --> 00:03:24,436
 You send it to the actual view itself,
+你告诉你要移除的视图
 
 77
 00:03:24,505 --> 00:03:27,305
 basically remove yourself from this view hierarchy.
+你自己把自己踢出去吧
 
 78
 00:03:27,374 --> 00:03:29,507
 So you send removeFromSuperview
+让你想移除的视图
 
 79
 00:03:29,576 --> 00:03:31,977
 to the actual view you want removed.
+调用 removeFromSuperview 方法
 
 80
 00:03:33,280 --> 00:03:35,347
 Now where does this hierarchy start?
+这个层级结构从哪里开始的呢？
 
 81
 00:03:35,415 --> 00:03:37,048
 I guess you could say it starts in UIWindow.
+准确的说是那个 UIWindow
 
 82
 00:03:37,117 --> 00:03:39,517
 But for our purposes, we don't even pay attention to that.
+但是我们并不需要太在意它
 
 83
 00:03:39,586 --> 00:03:42,054
 It starts at the top level view
+所以我们把 Interface Builder 里
 
 84
 00:03:42,122 --> 00:03:44,956
 in that scene in Interface Builder.
+显示的最顶层视图当作结构的最顶层
 
 85
 00:03:45,025 --> 00:03:47,225
 The scene that's controlled by our view controller, right?
+也就是每个视图控制器控制的场景
 
 86
 00:03:47,294 --> 00:03:49,527
 That rectangular area that we work in.
+提供给我们布局的那个长方形区域
 
 87
 00:03:49,596 --> 00:03:50,261
 There's a top,
+就当它作为最顶层
 
 88
 00:03:50,330 --> 00:03:54,499
 top level view that covers the whole space up there.
+最顶层的视图覆盖了所有可用的区域
 
 89
 00:03:54,567 --> 00:03:56,701
 And there is an important instance variable,
+有个重要的属性
 
 90
 00:03:56,770 --> 00:03:59,771
 property, in UIViewController.
+UIViewController 和
 
 91
 00:03:59,840 --> 00:04:02,907
 Okay, so all subclasses of UIViewController get
+UIViewController 的子类
 
 92
 00:04:02,976 --> 00:04:03,842
 this property.
+都有这个属性
 
 93
 00:04:03,910 --> 00:04:07,946
 It's called view and it's a UIView and a top level view.
+叫做 view，也就是最顶层的这个 UIView
 
 94
 00:04:08,015 --> 00:04:12,084
 And it's very important to understand that in an MVC,
+这是很重要的一点，对于 MVC 而言
 
 95
 00:04:12,152 --> 00:04:15,520
 the controller has this, always has this var which
+控制器需要有通过这个变量
 
 96
 00:04:15,589 --> 00:04:20,459
 points to the very top of that view hierarchy in its scene.
+指向其控制场景的视图层级中的最顶层
 
 97
 00:04:22,429 --> 00:04:25,430
 This top level view is important because for example,
+这个最顶层的视图很重要，因为比如
 
 98
 00:04:25,499 --> 00:04:28,599
 when you rotate, it's the thing whose bounds changes,
+你旋转之后，最顶层的视图的边界
 
 99
 00:04:28,668 --> 00:04:29,801
 that top level view.
+整个都跟着变了
 
 100
 00:04:29,870 --> 00:04:32,336
 And you're gonna learn a little later that when
+之后你会学到
 
 101
 00:04:32,405 --> 00:04:35,606
 the bounds of a view changes, there's a mechanism for
+当一个视图的边界发生改变之后
 
 102
 00:04:35,675 --> 00:04:39,043
 offering all of its subviews an opportunity to change.
+会有一个给所有子视图更新的机制
 
 103
 00:04:39,112 --> 00:04:40,712
 So that's why when we rotate device,
+当我们旋转之后
 
 104
 00:04:40,781 --> 00:04:43,281
 that top level view changes from being tall and
+最顶层的视图从瘦长型
 
 105
 00:04:43,350 --> 00:04:47,085
 thin to being wide and less tall.
+变成了矮胖型
 
 106
 00:04:47,154 --> 00:04:49,654
 And that causes all those stack views and
+这就会导致所有那些 StackView
 
 107
 00:04:49,723 --> 00:04:52,123
 everything else to start getting resized as well,
+所有的子视图跟着改变形状
 
 108
 00:04:52,192 --> 00:04:56,361
 because they're all subviews of this top level view, okay?
+因为它们是最顶层视图的子视图
 
 109
 00:04:56,430 --> 00:04:59,497
 If you were going to add views to the view hierarchy
+如果你要添加一个视图
 
 110
 00:04:59,566 --> 00:05:01,866
 programmatically rather than dragging and
+通过代码而不是拖拽实现
 
 111
 00:05:01,935 --> 00:05:04,502
 dropping them, then you would need this view because it's
+你需要用到这个视图，因为它是
 
 112
 00:05:04,571 --> 00:05:06,204
 the top of the entire view hierarchy.
+整个视图层的顶层
 
 113
 00:05:06,273 --> 00:05:07,606
 And you would kinda work your way down
+你可能会想知道你需要
 
 114
 00:05:07,674 --> 00:05:09,907
 to find out where you want to put that view.
+把那个视图放在哪
 
 115
 00:05:09,976 --> 00:05:12,410
 But we don't otherwise actually look at this view
+但其实我们不需要知道把它放哪
 
 116
 00:05:12,479 --> 00:05:14,846
 much because we usually have outlets, rights?
+因为我们有输出口，对吧？    //???
 
 117
 00:05:14,915 --> 00:05:17,982
 IBOutlets--like the display that points to the label--that
+IBOutlets（输出口）-- 比如在标签栏上显示那个点  //???
 
 118
 00:05:18,051 --> 00:05:19,484
 gives us access to that label.
+这（指IBOutlets）能让我们去修改那个标签栏
 
 119
 00:05:19,552 --> 00:05:20,451
 That's all we want, so
+这就是我想实现的，那么
 
 120
 00:05:20,520 --> 00:05:22,988
 we don't have to go looking at the top level view and
+我们不再需要一个一个的去找顶级视图了
 
 121
 00:05:23,056 --> 00:05:26,290
 looking all down the views, okay?
+对吧？
 
 122
 00:05:26,359 --> 00:05:28,059
 So this is important to know about but
+那么这就是我们重点需要知道的
 
 123
 00:05:28,128 --> 00:05:31,896
 surprisingly you don't access it that much, okay.
+但好在我们不需要过多的去使用它，好吧
 
 124
 00:05:31,965 --> 00:05:33,764
 This view is automatically hooked up for you in
+当你拖出了一个视图控件时，这个视图会
 
 125
 00:05:33,833 --> 00:05:35,967
 Interface Builder when you drag out a View Controller.
+自动连接到你的图形开发界面上
 
 126
 00:05:36,035 --> 00:05:38,002
 It's just all magically hooked up,
+就这么神奇的连接上了
 
 127
 00:05:38,071 --> 00:05:40,071
 you don't have to worry about that.
+你完全不需要担心
 
 128
 00:05:40,140 --> 00:05:43,241
 Okay, let's talk about initialization of the UIView.
+好了，接下来我们将讨论初始化 UIView
 
 129
 00:05:43,309 --> 00:05:46,378
@@ -2005,34 +2129,42 @@ lines and arcs and things like that.
 501
 00:21:32,692 --> 00:21:35,359
 Then you set drawing attributes in the context,
+然后在环境中调整绘制属性
 
 502
 00:21:35,427 --> 00:21:37,962
 like the colors you wanna use, the fonts if you're doing
+比如你想要的颜色，字体
 
 503
 00:21:38,031 --> 00:21:41,432
 text, line widths, those kinds of things.
+线宽度，等等
 
 504
 00:21:41,501 --> 00:21:43,300
 You set those all up, and then you stroke and fill.
+当你设置好后，就写入 stroke 和 fill 代码
 
 505
 00:21:43,369 --> 00:21:44,801
 And that's it, stroking and
+然后就完成了，stroking 和 filling
 
 506
 00:21:44,870 --> 00:21:47,804
 filling are actually the only two directives that actually
+是仅有的两条命令，也是真正的
 
 507
 00:21:47,873 --> 00:21:49,740
 cause something to happen on screen.
+能让东西显示在屏幕上
 
 508
 00:21:49,809 --> 00:21:50,574
 But keep in mind that, like,
+但记住，                       //???
 
 509
 00:21:50,642 --> 00:21:55,279
@@ -2041,118 +2173,147 @@ a font is basically just a really exquisite path filled,
 510
 00:21:55,348 --> 00:21:57,614
 okay, or stroked and filled.
+好了，开始 stroked 和 filled
 
 511
 00:21:57,683 --> 00:22:00,884
 So you can do a lot with stroking and filling.
+所以在 stroking 和 filling 的帮助下，你可以做很多事情
 
 512
 00:22:00,953 --> 00:22:03,420
 So UIBezierPath kinda encapsulates all of those
+所以， UIBezierpath 会封装那些
 
 513
 00:22:03,489 --> 00:22:05,956
 Core Graphics concepts into an object.
+核心图形概念到对象中    //???
 
 514
 00:22:06,025 --> 00:22:08,525
 And so I have an example here to show you how I would use
+所以我这里有个例子向你们展示，
 
 515
 00:22:08,594 --> 00:22:12,929
 UIBezierPath to draw a triangle on screen.
+如何用 UIBezierPath 在屏幕上画一个三角形
 
 516
 00:22:12,998 --> 00:22:14,965
 First, I'm gonna create the path by just saying,
+像刚刚说的，我要先创建一个路径
 
 517
 00:22:15,033 --> 00:22:16,099
 path = UIBezierPath().
+（代码）
 
 518
 00:22:16,168 --> 00:22:17,768
 There are other initializers for it,
+这里有其它的东西会被初始化
 
 519
 00:22:17,837 --> 00:22:18,735
 which we'll see in the demo.
+这些东西我们将在 demo 中看到
 
 520
 00:22:18,804 --> 00:22:21,371
 But this one just creates a blank path to start.
+但这里我们只创建一个空路径作为起点
 
 521
 00:22:21,440 --> 00:22:23,206
 Then, you move around with the path.
+然后，你需要移动这个路径
 
 522
 00:22:23,275 --> 00:22:25,876
 So like I can say, move to, which (80,
+像我说的，移动它到（80，50）
 
 523
 00:22:25,945 --> 00:22:29,480
 50) is like halfway across this, this little screen.
+差不多到一半穿过这个小屏幕
 
 524
 00:22:29,548 --> 00:22:32,949
 This is small screen, let's say, 160 points wide.
+这个小屏幕我们设置160点宽
 
 525
 00:22:33,018 --> 00:22:34,751
 80 and then 50 down, okay?
+80下至50，怎样？   //???
 
 526
 00:22:34,820 --> 00:22:39,556
 Then I'm gonna add a line down to 140, 50, see that, okay?
+然后我要加一条线，大概140，也许50？ //???
 
 527
 00:22:39,625 --> 00:22:42,659
 Then I'm gonna add another line over to 10,
+然后我要再加另一条线超过10， //???
 
 528
 00:22:42,728 --> 00:22:45,929
 off to the left, I'm still 150 down.
+直至到左端，仍然下至150 //???
 
 529
 00:22:45,998 --> 00:22:48,832
 Then I'm gonna close the path, okay, using close, and
+然后我要闭合路径，使用闭合功能
 
 530
 00:22:48,901 --> 00:22:51,101
 that just closes it back to the start.
+让它与起始点闭合。
 
 531
 00:22:51,170 --> 00:22:53,436
 So look, I made a triangle, okay, really easy.
+看，我画了个三角形，非常简单
 
 532
 00:22:53,505 --> 00:22:56,940
 Now, the only thing is, all this code right here would
+现在，唯一的一件事是，这些代码
 
 533
 00:22:57,009 --> 00:23:00,410
 actually draw, instead of that triangle right there,
+真的会绘制出三角形吗
 
 534
 00:23:00,479 --> 00:23:03,113
 would draw this: nothing.
+会吗：不会
 
 535
 00:23:03,182 --> 00:23:06,083
 You would see no drawing with that code because we haven't
+你看不到用代码绘制的三角形因为我们还
 
 536
 00:23:06,151 --> 00:23:07,117
 stroked or filled it.
+没有 stroked 或者 filled 它
 
 537
 00:23:07,186 --> 00:23:09,386
 The stroking and filling is what draws.
+stroking 和 filling 是我们绘制的（最后一步）
 
 538
 00:23:09,455 --> 00:23:10,754
 So how do we do the stroking and fill?
+那么我们如何 stroking 和 fill？
 
 539
 00:23:10,823 --> 00:23:13,157

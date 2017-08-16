@@ -16,158 +16,197 @@ CS193P 课程，iOS 应用程序开发
 4
 00:00:16,183 --> 00:00:18,650
 This is lecture number five?
+这是第五节课？
 
 5
 00:00:18,719 --> 00:00:20,251
 Is that right? The lecture number five?
+对吧？这是第五节课？
 
 6
 00:00:20,320 --> 00:00:21,453
 Yeah, lecture number five.
+嗯看来是的，第五节课
 
 7
 00:00:22,790 --> 00:00:25,990
 Today we are going to start off with a little demo,
+今天我们将开始学习新的小 demo
 
 8
 00:00:26,059 --> 00:00:29,594
 where I'm gonna take the application we worked on last
+我将会使用上一次我们开发的程序
 
 9
 00:00:29,663 --> 00:00:31,763
 time, and add a model to it.
+并加入新的模块进去
 
 10
 00:00:31,831 --> 00:00:34,999
 Cuz we have only worked on the view part of that,
+因为之前我们只做了视图部分
 
 11
 00:00:35,068 --> 00:00:37,036
 building that nice cool FaceView,
+做出了那个漂亮的 FaceView(笑脸)
 
 12
 00:00:37,104 --> 00:00:40,305
 now we are going to add a model to that MVC.
+现在我们要加入一个模块到 MVC 中
 
 13
 00:00:40,374 --> 00:00:42,841
 Then we're going to come back to the slides and
+然后我们会回到幻灯片当中
 
 14
 00:00:42,910 --> 00:00:45,477
 I'm going to do some slides on gestures.
+然后会在幻灯片中讲关于手势操作
 
 15
 00:00:45,545 --> 00:00:49,013
 Obviously, you want to be able to have input to your app,
+很显然，你肯定想在你的 app 中有一个输入功能
 
 16
 00:00:49,082 --> 00:00:50,915
 you need to know how to do multi-touch gestures,
+那么你需要知道如何使用 multi-touch 手势功能
 
 17
 00:00:50,984 --> 00:00:52,518
 we'll talk all about that, and
+我们将会讨论这个
 
 18
 00:00:52,586 --> 00:00:55,220
 then I will go back to our FaceView application and
+然后我会回到我们的 FaceView 程序
 
 19
 00:00:55,289 --> 00:00:58,957
 we will add some gestures, pinching, panning, tapping.
+并在其中加入一些手势功能，比如 //?
 
 20
 00:00:59,026 --> 00:01:01,894
 And finally, I will go back to the slides again and
+最后，我会再次回到幻灯片
 
 21
 00:01:01,962 --> 00:01:04,062
 start talking about multiple MVCs.
+开始讲述关于 multiple MVCS 的知识
 
 22
 00:01:04,130 --> 00:01:06,364
 How to build bigger applications that are made out
+如何通过结合 MVCs 来开发出功能更加强大
 
 23
 00:01:06,433 --> 00:01:11,837
 of combining MVCs, so that's what's on tap for today.
+的软件，这是我们今天要讲的内容
 
 24
 00:01:11,906 --> 00:01:17,809
 So let's jump right back into this FaceIt Demo.
+那么让我们回到之前开发的 FaceIt Demo 中
 
 25
 00:01:17,878 --> 00:01:21,346
 And if you remember where we left off,
+如果你还记得上次我们讲到哪了
 
 26
 00:01:21,414 --> 00:01:24,048
 we had this nice view, it was really cool because,
+我们有一个很棒的视图，因为我们可以
 
 27
 00:01:24,117 --> 00:01:28,220
 in Interface Builder, we could do things like open the eyes.
+在设计界面中进行操控，比如让其睁开眼睛
 
 28
 00:01:28,289 --> 00:01:31,189
 We could make it really big,
+还可以让笑脸变得很大
 
 29
 00:01:31,258 --> 00:01:36,261
 we could make it really small, or anywhere in between.
+或者变得很小，总之大小随你定
 
 30
 00:01:36,330 --> 00:01:39,297
 And we could change the color, green,
+我们还可以改变颜色
 
 31
 00:01:39,366 --> 00:01:41,299
 something like that, so that's cool.
+比如绿色之类的，很酷是吧
 
 32
 00:01:41,368 --> 00:01:44,302
 And this is a nice reusable thing that's got a little
+这是个漂亮的可变样的脸，有着一个小型
 
 33
 00:01:44,371 --> 00:01:46,104
 public API to it.
+公共接口
 
 34
 00:01:46,173 --> 00:01:48,240
 These inspectable things are all public,
+这些审查元素都是可公开的，//?
 
 35
 00:01:48,308 --> 00:01:52,110
 so, we can set the mouth curvature, we can open and
+所以，我们可以设置嘴巴的曲度，我们可以
 
 36
 00:01:52,178 --> 00:01:53,878
 close the eyes, we can change those things, like scale.
+睁开或闭上眼睛，我们可以改变那些设定，比如比例
 
 37
 00:01:53,947 --> 00:01:56,882
 And so, it's nice, it's this nice reusable face.
+那么，这是个很棒的东西，一个可变样的脸
 
 38
 00:01:56,950 --> 00:02:01,086
 And what we're going to do is make our MVC have a model.
+那么接下来我们要做的，就是让我们的 MVC 有一个模块
 
 39
 00:02:01,155 --> 00:02:03,788
 That model is not gonna match up exactly to what our
+这个模块不会完全的符合我们
 
 40
 00:02:03,857 --> 00:02:06,324
 FaceView can do, because that's the way models work.
+在 FaceView 上想要的，因为这就是模块的工作方式
 
 41
 00:02:06,393 --> 00:02:09,961
 Models in the world are often databases or something, their
+在开发世界中，模块常被用作数据存储或者其他的
 
 42
 00:02:10,030 --> 00:02:13,031
 schema doesn't quite match what view you have around.
+它们的图表无法准确的描述你在图像中看到的
 
 43
 00:02:13,100 --> 00:02:15,600
