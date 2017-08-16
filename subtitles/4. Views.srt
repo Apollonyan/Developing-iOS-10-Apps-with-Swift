@@ -2574,123 +2574,123 @@ Okay, like a really thick line,
 603
 00:25:34,232 --> 00:25:36,099
 we'd actually be showing the details of a pattern,
-
+我们会得到图案的详细信息，
 604
 00:25:36,168 --> 00:25:38,067
 which is kind of fun, using UIImage,
-
+这会很有趣，通过使用UIImage,
 605
 00:25:38,136 --> 00:25:39,303
 which I'll talk about in a little bit.
-
+我要展开讲一小点
 606
 00:25:40,773 --> 00:25:43,640
 Of course, all UIViews have a background color.
-
+当然，所有的UIViews都有一个背景色
 607
 00:25:43,709 --> 00:25:46,743
 We saw this when we did our buttons in the calculator,
-
+我们之前看到过的，以前做的计算器的按键
 608
 00:25:46,812 --> 00:25:48,211
 we made the background color
-
+我们给计算器的按键做了个背景色
 609
 00:25:48,280 --> 00:25:50,848
 of a lot of our buttons be light gray, and I'm sure in
-
+按键的颜色是亮灰，并且我肯定
 610
 00:25:50,916 --> 00:25:52,649
 the homework assignments you made it other colors.
-
+（你们)在课后作业中给它换了其它颜色
 611
 00:25:52,717 --> 00:25:54,718
 Okay, that's just a var on UIView,
-
+好了，那只是UIView中的一个变量
 612
 00:25:54,786 --> 00:25:56,820
 that button inherited from UIView.
-
+那个按键从UIView中继承
 613
 00:25:56,888 --> 00:25:59,155
 And you can set it to any UIColor you want.
-
+你可以从UIColor中设置任何你想要的颜色
 614
 00:25:59,224 --> 00:26:02,359
 Now, an interesting thing about colors though is that
-
+现在，有个有趣的关于颜色的问题，
 615
 00:26:02,427 --> 00:26:06,163
 they can be transparent, or even semi-transparent, okay?
-
+颜色能变透明吗，或者是半透明，
 616
 00:26:06,232 --> 00:26:09,299
 And they are done, you specify that with alpha.
-
+当你完成后，你可以从alpha中指定，
 617
 00:26:09,368 --> 00:26:10,900
 How many people here know what alpha
-
+多少人知道
 618
 00:26:10,969 --> 00:26:11,936
 is when it comes to graphics?
-
+在图像中alpha代表什么意思？
 619
 00:26:13,038 --> 00:26:14,137
 Okay, so hardly anybody.
-
+好吧，看来几乎没有
 620
 00:26:14,206 --> 00:26:18,141
 So alpha is just a value between 0 and 1, where 0 means
-
+那么alpha就是一个0到1之间的数值，0意味着
 621
 00:26:18,210 --> 00:26:21,144
 fully transparent and 1 is fully opaque.
-
+全透明，1意味着不透明
 622
 00:26:21,213 --> 00:26:23,247
 So if you have a color like a triangle and
-
+比如你有一个三角形
 623
 00:26:23,315 --> 00:26:26,016
 you fill it with green, then if it's fully opaque,
-
+你为其填充了绿色，然后如果它是不透明，
 624
 00:26:26,084 --> 00:26:28,551
 you can't see anything behind that triangle.
-
+你就不能看到任何在三角形后面的东西
 625
 00:26:28,620 --> 00:26:30,787
 But if it were 50%, 0.5 alpha,
-
+但你设置50%，0.5alpha值，
 626
 00:26:30,856 --> 00:26:33,189
 then you'd be able to see the green but
-
+你依然可以看到绿色但
 627
 00:26:33,258 --> 00:26:36,927
 you'd also be able to see the things behind it a little bit.
-
+你还可以看到一小点绿色背后的东西
 628
 00:26:36,995 --> 00:26:38,728
 50% kinda, okay?
-
+50%这样，懂了吗？
 629
 00:26:38,797 --> 00:26:40,230
 If it was zero, you wouldn't see any
-
+如果是0，那么你就看不到任何
 630
 00:26:40,298 --> 00:26:42,165
 green because it would be fully transparent.
-
+绿色因为它是全透明
 631
 00:26:42,234 --> 00:26:43,267
 You'd be looking all the way through it, so
-
+你能通过看到其背后所有的东西，那么
 632
 00:26:43,335 --> 00:26:45,102
 you wouldn't see any green, okay?
-
+你无法看到任何绿色，懂了吗？
 633
 00:26:45,171 --> 00:26:47,304
 So, all that you can put anywhere in that range, and
