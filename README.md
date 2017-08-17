@@ -12,15 +12,15 @@
 
 如果您感兴趣，有能力，我们欢迎您参与翻译/校对本项目。详情见 [任务相关说明](./CONTRIBUTING.md)（[失效备份](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/blob/master/CONTRIBUTING.md)）。
 
-翻译进度: 翻译第四集中。关于如何获得更新，请查看 [常见问题与解答](./SUPPORT.md)。
+翻译进度: 翻译第四集中。关于如何获得更新，请查看 [常见问题与解答](./SUPPORT.md) 中的字幕更新章节。
 
-如果您想支持我们，请点击项目右上角的 <a class="github-button" href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift" data-icon="octicon-star" data-show-count="true" aria-label="Star ApolloZhu/Developing-iOS-10-Apps-with-Swift on GitHub">Star</a> 按钮来 Star 本项目。其他如分享和打赏等方式请查看 [常见问题与解答](./SUPPORT.md)。
+如果您想支持我们，请点击项目右上角的 <a class="github-button" href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift" data-icon="octicon-star" data-show-count="true" aria-label="Star ApolloZhu/Developing-iOS-10-Apps-with-Swift on GitHub">Star</a> 按钮来 Star 本项目。其他如分享和打赏等方式请查看 [常见问题与解答](./SUPPORT.md) 中的支持我们章节。
 
 ### 下载
 
 课程录像等可以查看[下载列表](./tools/download.md)（从 iTunes U 提取），其中点击 `中英字幕` 就可以下载已经翻译好了的字幕。另一个方案是 [下载整个项目](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/archive/master.zip)。`subtitles` 文件夹中是中英字幕（不一定都翻译了），`en/subtitles` 文件夹中是纯英文字幕。
 
-字幕的格式是 `.srt`，所以您可能需要用带外挂字幕功能的视频播放器，比如 [VLC](http://www.videolan.org/vlc/index.zh.html) 或 [IINA](https://lhc70000.github.io/iina/zh-cn/) 等才可使用。如果字幕有乱码，请点击 [中文乱码报错用 Issue](https://github.com/x140yu/Developing_iOS_8_Apps_With_Swift/issues/131) 进行乱码的报错和寻求解决方案。
+字幕的格式是 `.srt`，所以您可能需要用带外挂字幕功能的视频播放器，比如 [VLC](http://www.videolan.org/vlc/index.zh.html) 或 [IINA](https://lhc70000.github.io/iina/zh-cn/) 等才可使用。其他字幕使用问题的解答请查看 [常见问题与解答](./SUPPORT.md) 的字幕使用章节。
 
 如果您有任何建议或意见，或是在观看视频时发现了翻译有误的地方，请通过 [常见问题与解答](./SUPPORT.md) 中提供的联系方式反馈。
 
