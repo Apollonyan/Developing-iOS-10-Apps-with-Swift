@@ -4290,7 +4290,7 @@ And that's because for
 1038
 00:42:59,110 --> 00:43:03,145
 performance reasons, iOS doesn't want to ask views that
-性能的原因，IOS不会让
+性能的原因，IOS 不会让
 
 1039
 00:43:03,214 --> 00:43:05,214
@@ -4305,7 +4305,7 @@ Because it has to keep a backing store for
 1041
 00:43:06,884 --> 00:43:09,818
 them, and there's memory stores and all this stuff.
-
+那里会存储所有这些东西
 
 1042
 00:43:09,887 --> 00:43:11,921
@@ -4450,7 +4450,7 @@ Now, well, I also want to do the Ctrl-dragging to
 1070
 00:44:19,056 --> 00:44:21,590
 the edges that we did in calculator, remember that?
-就像我们做计算器时做过的一样，记住了吗？
+就像我们做计算器时做过的一样，记得吗？
 
 1071
 00:44:21,659 --> 00:44:23,992
@@ -4530,7 +4530,7 @@ Because that's what it looked I wanted.
 1086
 00:44:56,661 --> 00:45:00,128
 Now I can double-check what it gave me by clicking here on
-现在我要双击这里
+现在我要确认下，点这里
 
 1087
 00:45:00,197 --> 00:45:01,730
@@ -4590,7 +4590,7 @@ often it'll at least get close.
 1098
 00:45:21,686 --> 00:45:24,987
 And then you can kinda tweak the ones it didn't get right.
-如果还没达到预期，你可以拧这个
+如果还没达到预期，你可以调整这里
 
 1099
 00:45:25,056 --> 00:45:27,656
@@ -4785,8 +4785,8 @@ You know what I mean?
 1137
 00:46:59,317 --> 00:47:02,451
 Because I always want the face to fully fit in there.
-我总是想让脸去完整的填充这里
-skull Radius
+我想让脸去完整的填充这里
+
 1138
 00:47:02,519 --> 00:47:06,522
 So I'm going to let my skullRadius, so that's gonna
@@ -4800,12 +4800,12 @@ be the radius of my skull, okay, equal the minimum.
 1140
 00:47:10,628 --> 00:47:11,927
 And there's this nice min,
-这是漂亮的最小值
+这正好有个 min
 
 1141
 00:47:11,996 --> 00:47:14,129
 you see that min function right there?
-你看这里有一个最小值函数
+你看这是一个最小值函数，对吧？
 
 1142
 00:47:14,198 --> 00:47:16,799
@@ -4840,17 +4840,17 @@ So I'm going to get the minimum of my bound,
 1148
 00:47:25,876 --> 00:47:30,412
 bounds.size.width and my bounds.size.height.
-边界的尺寸，宽度，高度
+bounds.size.width 和 bounds.size.height（边界的宽和高）
 
 1149
 00:47:30,481 --> 00:47:32,814
 And then I'm going to divide it by 2, because it's radius,
-然后除以2，因为是圆角
+然后除以2，因为是半径
 
 1150
 00:47:32,883 --> 00:47:33,915
 not diameter.
-
+而不是直径
 
 1151
 00:47:33,984 --> 00:47:35,618
@@ -4860,7 +4860,7 @@ So now, see what I'm doing here?
 1152
 00:47:35,686 --> 00:47:38,954
 I'm just making it so that my radius of my skull will be
-我这么做，是为了我头的圆角会变得
+我这么做，是为了我头的半径会变得
 
 1153
 00:47:39,023 --> 00:47:41,424
@@ -4915,12 +4915,12 @@ Not quite.
 1163
 00:48:08,753 --> 00:48:10,419
 Anyone else wanna take a stab at this one?
-谁想说说吗？
+还有谁想说说吗？
 
 1164
 00:48:12,490 --> 00:48:16,558
 It's because center, while it is the center of this view,
-那种是因为中间，那是视图的中间
+那是因为中心，那是视图的中心
 
 1165
 00:48:16,627 --> 00:48:18,995
@@ -4930,7 +4930,7 @@ it's in the wrong coordinate system.
 1166
 00:48:19,063 --> 00:48:21,330
 This center is in my superview's coordinate system
-这个中间是我的父视图的坐标系统
+这个中心是我的父视图的坐标系统
 
 1167
 00:48:21,398 --> 00:48:22,464
@@ -4965,7 +4965,7 @@ from one coordinate system to another.
 1173
 00:48:33,577 --> 00:48:37,045
 So I can go down to this one okay,
-我要到这里
+我要用这个
 
 1174
 00:48:37,114 --> 00:48:39,481
@@ -4980,7 +4980,7 @@ I could convert this point center from my superview.
 1176
 00:48:46,290 --> 00:48:48,423
 Okay, so just using center I can convert it.
-好了，那就用我能转换的中心
+好了，这样就能用我转换的中心了
 
 1177
 00:48:48,492 --> 00:48:51,526
@@ -5015,12 +5015,12 @@ A simpler way to do it is probably just to create
 1183
 00:49:03,574 --> 00:49:08,944
 a point, a CGPoint, that is my bounds midX, that's my
-一个 CGPoint，我边界的 midX，那是
+一个 CGPoint，我 bounds.midX，那是
 
 1184
 00:49:09,013 --> 00:49:14,850
 middle X, see, that's a rect thing, and my bounds midY.
-中间的 X，看，那是一个矩形，我的 midY
+中间的 X，矩形的东西，bounds.midY
 
 1185
 00:49:14,919 --> 00:49:17,453
@@ -5045,7 +5045,7 @@ much more straightforwardly there.
 1189
 00:49:22,593 --> 00:49:24,860
 All right, so now I have my radius and the center.
-我现在有圆角和中心了
+我现在有半径和中心点了
 
 1190
 00:49:24,929 --> 00:49:26,494
@@ -5095,7 +5095,7 @@ except the argument is a rect, and
 1199
 00:49:44,414 --> 00:49:45,614
 I have the center and the radius.
-我有中心和圆角
+我有中心点和半径
 
 1200
 00:49:45,682 --> 00:49:47,983
@@ -5155,7 +5155,7 @@ So how does that work?
 1211
 00:50:06,904 --> 00:50:09,070
 Here, I'm gonna make some more space.
-我将制造更多的空间
+我们把这里调大点
 
 1212
 00:50:09,139 --> 00:50:11,807
@@ -5195,7 +5195,7 @@ I'm gonna choose 0,
 1219
 00:50:24,989 --> 00:50:30,526
 the angle 0 is straight out to your right.
-角度 0 直指你的右侧
+0 度直指你的右侧
 
 1220
 00:50:31,662 --> 00:50:32,861
@@ -5205,12 +5205,12 @@ Okay, so if you're looking at the screen,
 1221
 00:50:32,930 --> 00:50:35,830
 to the right straight across, that's 0.
-
+指向右边水平角，那是 0 度
 
 1222
 00:50:35,899 --> 00:50:37,099
 And it's in radians,
-
+那是弧度
 
 1223
 00:50:37,167 --> 00:50:40,235
@@ -5240,21 +5240,22 @@ Radians go from zero all the way around to two pi.
 1228
 00:50:49,313 --> 00:50:50,412
 Around the circle.
-围绕圆
+围成一个圆
 
 1229
 00:50:50,481 --> 00:50:53,949
 Start at zero and then it will go around, pi over two,
-从 0 开始，然后 π，2π，
+从 0 开始，然后 π，2π
 
 1230
 00:50:54,018 --> 00:50:56,852
 pi, you know, then pi is 180 degrees and
-你知道的，π 代表180度
+你知道的，π 代表 180 度
+
 1231
 00:50:56,921 --> 00:50:59,521
 then around to two pi is 360 degrees.
-2π 代表360度
+2π 代表 360 度
 
 1232
 00:50:59,590 --> 00:51:02,191
@@ -5269,7 +5270,7 @@ and I wanna go all the way around.
 1234
 00:51:03,661 --> 00:51:05,761
 So it's 2 times pi.
-所以是2倍的 π
+所以是 2 倍的 π
 
 1235
 00:51:05,830 --> 00:51:08,163
@@ -5324,7 +5325,7 @@ What does it say, it says the binary operator* (and is
 1245
 00:51:26,216 --> 00:51:29,485
 pointing to this little multiplier right here) cannot
-pointing to this little multiplier right here)不能
+pointing to this little multiplier right here) 不能
 
 1246
 00:51:29,553 --> 00:51:32,121
@@ -5405,6 +5406,7 @@ supposed to be because it knows this argument is
 00:52:07,191 --> 00:52:08,724
 supposed to be a CGFloat, but
 一个 CGFloat 类型参数，但是
+
 1262
 00:52:08,793 --> 00:52:10,425
 the thing you're multiplying it by is a Double.
@@ -5428,7 +5430,7 @@ CGFloat 类型
 1266
 00:52:16,333 --> 00:52:20,302
 So the fix here, luckily, CGFloat has a pi.
-修复，幸运的是，CGFloat 有 π
+如何修复呢，幸运的是，CGFloat 有 π
 
 1267
 00:52:22,105 --> 00:52:23,439
@@ -5488,7 +5490,7 @@ five points wide, that's what that means,
 1278
 00:52:48,398 --> 00:52:50,432
 five point zero, five points wide.
-
+五个点那么宽
 
 1279
 00:52:50,501 --> 00:52:52,334
@@ -5503,12 +5505,12 @@ So I'm gonna get UIColor, let's say, blue color and
 1281
 00:52:56,240 --> 00:53:00,743
 we'll say set, and by the way there's setFill and setStroke.
-我们说设置，顺便的设置填充和描边
+我们看到 set，顺便说下，这有 setFill 和 setStroke （填充和 描边)
 
 1282
 00:53:00,811 --> 00:53:02,110
 There's also just set.
-这些都仅仅是设置就行
+这些都仅仅是设置上就可以了
 
 1283
 00:53:02,179 --> 00:53:04,346
@@ -5563,17 +5565,17 @@ Whoo, first time, excellent.
 1293
 00:53:38,715 --> 00:53:42,083
 Okay, now I don't like the look of that very
-我非常不喜欢他的样子
+我非常不喜欢它的样子
 
 1294
 00:53:42,152 --> 00:53:44,419
 much because it goes all the way to the edges and
-因为它抵到所有的边框了
+因为它用一条粗线
 
 1295
 00:53:44,488 --> 00:53:46,555
 with a thick line that's actually cut off a little bit.
-
+抵到所有的边框了，线宽还被切掉了一点
 
 1296
 00:53:46,623 --> 00:53:49,057
@@ -5623,17 +5625,17 @@ bound size right there, so it's just scaling the bits.
 1305
 00:54:11,181 --> 00:54:12,547
 So let's fix both of those things,
-让我们把两边这些固定一下
+让我们把两边这些修复一下
 
 1306
 00:54:12,616 --> 00:54:15,784
 let's make it go in a little bit, and let's fix those bits.
-我们让它往里一点，然后固定这些
+我们让它往里一点，然后修复这些
 
 1307
 00:54:15,853 --> 00:54:18,887
 To fix the bits, we're just gonna go back to our
-为了固定这些，我们只需回到我们的
+为了修复这些，我们只需回到我们的
 
 1308
 00:54:18,956 --> 00:54:22,024
@@ -5688,7 +5690,7 @@ example, I'd wanna draw my face smaller.
 1318
 00:54:47,217 --> 00:54:49,951
 I wouldn't want to get cut off.
-我又不想它被分离开
+我又不想它被切掉一部分
 
 1319
 00:54:50,020 --> 00:54:51,052
@@ -5733,7 +5735,7 @@ All I'm going to do is take my radius and
 1327
 00:55:13,643 --> 00:55:15,777
 multiply it by that scale.
-乘以那个比例
+乘以 scale
 
 1328
 00:55:15,846 --> 00:55:17,780
@@ -5753,7 +5755,7 @@ Kind of in from the edges by 90%.
 1331
 00:55:23,653 --> 00:55:29,358
 So let's see if both those things got fixed.
-让我们再来看看那些固定的东西
+让我们再来看看修复的怎么样
 
 1332
 00:55:33,864 --> 00:55:34,929
@@ -5763,7 +5765,7 @@ So the 90% worked.
 1333
 00:55:34,998 --> 00:55:40,235
 Clearly, it's in 90% and the rotation works also.
-很清晰，它是 90% 并且旋转也同样应用了
+很清晰，它是 90% 并且旋转也同样好使了
 
 1334
 00:55:40,303 --> 00:55:42,204
@@ -5798,12 +5800,12 @@ a little bit about my internal architecture.
 1340
 00:55:52,883 --> 00:55:55,817
 And I'm kinda liking the idea of having some private funcs,
-我刚倾向于有一些内部私有方法的点子
+我刚倾向于有一些内部私有方法
 
 1341
 00:55:55,886 --> 00:55:58,454
 like give me the path for the skull.
-比如给我一个头轮廓的路径
+比如给我一个 pathForSkull (头的轮廓)
 
 1342
 00:56:00,257 --> 00:56:04,526
@@ -5873,7 +5875,7 @@ Now, another thing is the skullRadius and
 1355
 00:56:32,156 --> 00:56:34,756
 the skullCenter, I want all the other things like the eyes
-和 skullCenter，我想要全部的其他东西都想眼睛
+和 skullCenter，我想要全部的其他东西都像眼睛
 
 1356
 00:56:34,825 --> 00:56:38,059
