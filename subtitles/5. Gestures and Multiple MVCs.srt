@@ -4801,7 +4801,7 @@ So if you look at the API for navigation item,
 1179
 00:54:39,543 --> 00:54:42,110
 it has things in there like title, and I'm gonna show
-它有些东西例如标题，接下来我要
+它里面有些例如标题的东西，接下来我要
 
 1180
 00:54:42,179 --> 00:54:44,812
