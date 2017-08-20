@@ -2905,17 +2905,17 @@ you wouldn't see any green, okay?
 633
 00:26:45,171 --> 00:26:47,304
 So, all that you can put anywhere in that range, and
-那么，你可以在那个范围里取任何的值
+你可以在那个范围里取任何的值
 
 634
 00:26:47,372 --> 00:26:49,906
 the way you create a transparent color is by taking
-还有创建一个透明颜色的方法是选定一个
+接着，创建一个透明颜色的方法是选定一个
 
 635
 00:26:49,975 --> 00:26:53,710
 a opaque color and saying, withAlphaComponent,
-一个不透明的颜色然后调用他的 withAlphaComponent
+一个不透明的颜色，然后调用它的 withAlphaComponent
 
 636
 00:26:53,779 --> 00:26:55,946
@@ -2955,7 +2955,7 @@ you must set this var on your UIView.
 643
 00:27:10,996 --> 00:27:13,530
 This is just a var in UIView to false.
-把这个 UIView 里的变量设置为 false
+把这个 UIView 的 opaque 设置为 false
 
 644
 00:27:13,599 --> 00:27:15,265
@@ -3000,12 +3000,12 @@ So if you wanna draw with transparency,
 652
 00:27:30,549 --> 00:27:34,050
 don't forget to set opaque here to false.
-别忘记设置 opaque = false 
+别忘记设置 opaque = false
 
 653
 00:27:34,119 --> 00:27:37,921
 By the way, you can make your entire view semi-transparent
-顺带一提，你可以通过调用这个 alpha 
+顺带一提，你可以通过调用这个 alpha
 
 654
 00:27:37,989 --> 00:27:39,389
@@ -3015,7 +3015,7 @@ by setting its alpha.
 655
 00:27:39,458 --> 00:27:41,558
 So this is a var, not in color,
-那么这就是个变量，不是在 UIColor 对象里的
+这就是个变量，不是在 UIColor 对象里的
 
 656
 00:27:41,627 --> 00:27:43,226
@@ -3025,7 +3025,7 @@ this is a var in UIView.
 657
 00:27:43,295 --> 00:27:44,995
 You can say, alpha 0.5,
-比如说， alpha 0.5
+比如说，alpha = 0.5
 
 658
 00:27:45,063 --> 00:27:48,899
@@ -3040,7 +3040,7 @@ And that would work with a button or
 660
 00:27:50,336 --> 00:27:52,102
 anything because those are just UIViews.
-毕竟它们也都是 UIViews
+毕竟它们也都是 UIView
 
 661
 00:27:53,505 --> 00:27:54,071
@@ -3115,7 +3115,7 @@ You can also completely hide a view.
 675
 00:28:30,475 --> 00:28:33,043
 This is very similar--almost identical to--saying
-也就是几乎一样的方式
+类似于，但不完全是
 
 676
 00:28:33,112 --> 00:28:33,977
@@ -3125,7 +3125,7 @@ alpha equals zero.
 677
 00:28:34,045 --> 00:28:35,812
 Which will just make the view not even appear, but
-也就是会让这个视图几乎都不出现
+效果是让这个视图都不出现
 
 678
 00:28:35,881 --> 00:28:37,246
@@ -3175,12 +3175,12 @@ But you wanna make room for the button.
 687
 00:28:52,998 --> 00:28:54,931
 You want it to be ready to appear, so
-你仍旧想让他随时准备着出现
+你仍旧想让它随时准备着出现
 
 688
 00:28:55,000 --> 00:28:57,434
 you leave it in the view hierarchy, but hidden.
-那么你就可以让他依然存在于视图层次结构中，但是视觉效果上是隐藏的
+那么你就可以让它依然存在于视图层次结构中，但是视觉效果上是隐藏的
 
 689
 00:28:57,503 --> 00:29:00,437
@@ -3220,7 +3220,7 @@ And now, the only problem with that is,
 696
 00:29:13,151 --> 00:29:15,452
 you're drawing in your draw, your drawRect thing,
-你是画在那个创建的绘制矩形 UILabel 中
+你绘制的代码是在 draw(rect:) 里
 
 697
 00:29:15,521 --> 00:29:16,919
@@ -3230,37 +3230,37 @@ you're drawing in there.
 698
 00:29:16,988 --> 00:29:19,589
 And you have to make sure you drew, if you're drawing around
-并且你在绘制那个与你的子视图连接的文本时
+如果你是在文字周围画，就要保证
 
 699
 00:29:19,658 --> 00:29:21,725
 the text that it all lined up with your subviews.
-要保证你画了
+你绘制的与你的子视图能对齐
 
 700
 00:29:21,794 --> 00:29:24,328
 So sometimes you wanna draw in drawRect, right?
-有时候，你想在矩形绘制区绘制文本对吧
+有时候，你想在 draw(rect:) 中绘制文本
 
 701
 00:29:24,396 --> 00:29:25,495
 You want to actually draw in there.
-你想绘制在那
+你想通过它绘制文字
 
 702
 00:29:25,564 --> 00:29:28,464
 And the way you do that is with a class called
-那么就需要用到一个类叫做
+那么就需要用到一个类，叫做
 
 703
 00:29:28,533 --> 00:29:30,833
 NSAttributedString, okay?
-NSAttributedString ，懂不
+NSAttributedString
 
 704
 00:29:30,902 --> 00:29:34,504
 So NSAttributedString is not a string.
-那么 NSattributedString 不是一个 String
+NSAttributedString 不是一个 String
 
 705
 00:29:34,573 --> 00:29:37,607
@@ -3270,17 +3270,17 @@ It's not related in any way actually to string, and
 706
 00:29:37,676 --> 00:29:40,844
 it's not even an NSString which is the old Objective-C
-不幸的是它甚至都不是老 OC 里通过 ints 索引的 String
+不幸的是它甚至都不是老 OC 里
 
 707
 00:29:40,912 --> 00:29:43,813
 style string that was indexed by ints where
-的 NSString
+通过 int 索引的 NSString
 
 708
 00:29:43,882 --> 00:29:47,650
 the Swift's one is indexed by string.index, unfortunately.
-在 Swift 里是通过 String.index 索引的
+在 Swift 里是通过 String.Index 索引的
 
 709
 00:29:47,719 --> 00:29:49,486
@@ -3305,17 +3305,17 @@ not as closely aligned to the modern string.
 713
 00:29:55,794 --> 00:29:58,695
 But anyway, what an attributed string is it's a string,
-无论如何，AttributedString 是一个字符串
+无论如何，NSAttributedString 是一个字符串
 
 714
 00:29:58,764 --> 00:30:00,864
 you can make it out of a string or an NSString.
-你可以让它脱离 String 或者 NSString
+可以由 String 或者 NSString 构造
 
 715
 00:30:00,933 --> 00:30:04,267
 And those characters have attributes, colors and
-AttributedString 有一些属性，颜色啊
+NSAttributedString 有一些属性，颜色啊
 
 716
 00:30:04,335 --> 00:30:06,370
@@ -3335,26 +3335,26 @@ you create one of these strings and
 719
 00:30:08,841 --> 00:30:11,708
 you just send it to message draw at and it will draw
-然后把相关信息发送给它，它就
+然后让它 draw(at:某个点)
 
 720
 00:30:11,777 --> 00:30:15,045
 that string at that point at its upper left corner.
-把那个字符串画在了它的左上方角
+它就以那个点为左上角画那个字符串
 
 721
-00:30:16,948 --> 00:30:17,997
-Then you can even find out the size it's going to need to
-然后你能发现它还需要一个
+00:30:16,048 --> 00:30:16,997
+Okay?
 
 722
 00:30:17,998 --> 00:30:19,047
-Okay?
+Then you can even find out the size it's going to need to
+然后你能通过 size 属性
 
 723
 00:30:19,117 --> 00:30:22,352
 draw it by sending the message size to an attributed string.
-绘制时用的尺寸大小
+得到它绘制需要用的空间大小
 
 724
 00:30:23,455 --> 00:30:24,954
@@ -3364,7 +3364,7 @@ Okay? Now one thing that's
 725
 00:30:25,023 --> 00:30:26,422
 kind of bummer about attributed string,
-attributedString 是一个倒霉孩子
+NSAttributedString 令人讨厌的是
 
 726
 00:30:26,491 --> 00:30:31,928
@@ -3374,17 +3374,17 @@ it's really an old style API,
 727
 00:30:31,997 --> 00:30:36,065
 var and let don't even work to make it mutable or not.
-var 和 let 甚至都不能让他可变或不可变
+var 和 let 甚至都不能让它可变或不可变
 
 728
 00:30:36,134 --> 00:30:38,368
 So if you want a mutable attributed string, attributed
-所以如果你想要一个可变的 attributedString 
+所以如果你想要一个可变的 NSAttributedString
 
 729
 00:30:38,437 --> 00:30:40,236
 string where you're gonna change its attributes and
-可以改变属性和
+来改变属性和
 
 730
 00:30:40,305 --> 00:30:43,005
@@ -3404,37 +3404,37 @@ So things like set attributes, and things of that,
 733
 00:30:49,014 --> 00:30:50,380
 don't work on an attributed string.
-在 attributedString中不起作用
+在 NSAttributedString 中不起作用
 
 734
 00:30:50,449 --> 00:30:53,917
 You have a mutable attributed string.
-你需要一个 MutableAttributedString
+你需要一个 NSMutableAttributedString
 
 735
 00:30:53,986 --> 00:30:56,486
 Now, you can, if you have an attributed string, mutable or
-现在，你有了一个可变或不可变的 attributedString
+现在，你有了一个可变或不可变的富文本字符串
 
 736
 00:30:56,555 --> 00:30:59,422
 not, you can get back the string that's in it
-你可以用一个 string 对象包装得到
+你可以以 String 类型取回其中的内容
 
 737
 00:30:59,491 --> 00:31:03,493
 as a string object using the var string, or
-这里面的 string 内容或者
+不可变的是通过 string 属性
 
 738
 00:31:03,561 --> 00:31:05,128
 mutable string in a mutable case.
-一个 mutable string 在如果可变的情况下
+可变的就是 mutableString 属性
 
 739
 00:31:06,632 --> 00:31:07,763
 That's kinda confusing because,
-那会有点混淆因为
+这容易让人混淆，因为
 
 740
 00:31:07,832 --> 00:31:10,333
@@ -3444,7 +3444,7 @@ of course, you're used to var and let being how a string is
 741
 00:31:10,402 --> 00:31:13,970
 mutable or not, but that's how you can get the string back.
-可变还是不可变的，但是这就是你如何得到字符串的方法
+可变还是不可变的，但这就是你取回字符串的方法
 
 742
 00:31:14,039 --> 00:31:15,872
@@ -3459,7 +3459,7 @@ So you set the attributes just by passing in this dictionary,
 744
 00:31:19,211 --> 00:31:20,043
 called attributes there.
-在这里内部参数取名叫做 attributes 
+在这里实参名称叫做 attributes
 
 745
 00:31:20,112 --> 00:31:23,113
@@ -3469,7 +3469,7 @@ You can either set attributes or add attributes to what's
 746
 00:31:23,182 --> 00:31:26,282
 already there, and this dictionary, String:Any,
-还有这个字典， String:Any
+还有这个字典，[String:Any]
 
 747
 00:31:26,351 --> 00:31:28,985
@@ -3514,7 +3514,7 @@ You see that range?
 755
 00:31:43,568 --> 00:31:47,270
 It's not range that I talked to you on Wednesday,
-这不是我周三告诉你们的 range
+这不是我周三告诉你们的 Range
 
 756
 00:31:47,339 --> 00:31:48,938
@@ -3524,21 +3524,22 @@ it's NSRange.
 757
 00:31:49,007 --> 00:31:53,042
 NSRange is an integer indexed range into that string,
-NSRange 是那个 attributedString 的整数索引范围
+NSRange 是那个富文本字符串
 
 758
 00:31:53,111 --> 00:31:55,512
 that attributed string.
+的整数索引范围
 
 759
 00:31:55,581 --> 00:31:57,881
 Old style integer, not string.index.
-老样式的整数，不是 String.index
+索引是老样式的，通过整数，不是 String.Index
 
 760
 00:31:57,950 --> 00:32:01,117
 So this makes for a lot of trouble when you're using
-所以用在 Swfit 中用 attributedString
+所以在 Swfit 中用富文本字符串
 
 761
 00:32:01,186 --> 00:32:03,653
@@ -3548,12 +3549,12 @@ attributed string in the Swift world.
 762
 00:32:03,722 --> 00:32:07,156
 And my recommendation to you is that you use this method or
-我的建议是用这个叫做 utf16 的方法或者变量
+我的建议是用 String 类中
 
 763
 00:32:07,225 --> 00:32:09,792
 this var rather on String called utf16.
-而不是用 String 
+叫做 utf16 的变量
 
 764
 00:32:09,861 --> 00:32:12,462
@@ -3563,32 +3564,32 @@ utf16 会返回你一个叫做
 765
 00:32:12,531 --> 00:32:14,197
 a String.UTF16View.
-String.UTF16View的东西
+String.UTF16View 的东西
 
 766
 00:32:14,265 --> 00:32:17,634
 That is a collection of the characters, it's not really
-它是一个 characters 的集合
+它是一个字符的集合，但它不像
 
 767
 00:32:17,703 --> 00:32:21,304
 a collection like characters is, but it is a representation
-它不像是 characters 那样的集合
+是 characters 那样的集合，它是代表这个
 
 768
 00:32:21,373 --> 00:32:24,975
 of the string as distinct 16-bit Unicode characters.
-但它是一种有区别的 16-bit Unicode 字母 String
+字符串的每个十六位 Unicode 表示组成的集合
 
 769
 00:32:25,043 --> 00:32:27,510
 Which is much more aligned, in fact I think it's exactly
-它更加对齐，事实上我觉得它
+它更接近于，事实上我觉得它
 
 770
 00:32:27,579 --> 00:32:30,280
 aligned, to what NSString does.
-相比于 NSString 来说简直就是完全对齐
+和 NSString 是一样的
 
 771
 00:32:30,348 --> 00:32:32,616
@@ -3598,22 +3599,22 @@ The only problem is, that thing that it gets,
 772
 00:32:32,684 --> 00:32:35,351
 that comes back, is still indexed by String.Index.
-仍旧是由 String.index 来索引的
+仍旧是由 String.Index 来索引的
 
 773
 00:32:35,420 --> 00:32:38,588
 So you have to say what's the startIndex, offset by five,
-所以你必须说起始索引是什么，偏移5
+所以你必须说起始索引是什么，偏移 5
 
 774
 00:32:38,657 --> 00:32:41,124
 that kind of business to move around in there.
-之类的东西
+之类的东西来定位
 
 775
 00:32:41,193 --> 00:32:44,093
 And plus, you can't pass a range of String.Index into
-另外，你不可以传递一个 String.index 的范围到
+另外，你不可以传递一个 String.Index 的 Range 到
 
 776
 00:32:44,162 --> 00:32:45,228
@@ -3623,17 +3624,17 @@ this setAttribute.
 777
 00:32:45,297 --> 00:32:48,364
 So you have to kinda convert from String.Index,
-所以如果你想用这些 NSRanges 你必须类型转换，
+所以你必须从 String.Index
 
 778
 00:32:48,433 --> 00:32:50,466
 how much you've advanced over,
-从你想要的范围 String.Index
+把你想要的范围
 
 779
 00:32:50,535 --> 00:32:54,003
 to an integer when you make these NSRanges.
-到整形
+转化到整形构成的 NSRange
 
 780
 00:32:54,072 --> 00:32:55,571
@@ -3643,57 +3644,57 @@ So, I'm sorry to say it's difficult.
 781
 00:32:55,640 --> 00:32:57,240
 I'm not gonna actually ask you to do that,
-我不会要求你们做这个
+我不会要求你们
 
 782
 00:32:57,308 --> 00:32:58,374
 this in the homework.
-这在家庭作业里有
+这家庭作业里做这个
 
 783
 00:32:58,443 --> 00:33:00,176
 Partially because it, it's kind of a pain in the neck.
-由于他的存在，这会有点痛苦
+一部分是因为这会有点痛苦
 
 784
 00:33:00,245 --> 00:33:02,445
 And I don't want you to spend your valuable homework
-而且我不想让你们花费宝贵的家庭作业时间
+同时我不想让你们把宝贵的作业时间
 
 785
 00:33:02,514 --> 00:33:03,179
 time working on it.
-在这上面
+都花费在这上面
 
 786
 00:33:03,248 --> 00:33:05,315
 But just know, if you start using this,
-但仅是现在的话，如果你开始使用他们
+但你要知道，如果要使用的话
 
 787
 00:33:05,384 --> 00:33:08,919
 that you're gonna have this unfortunate disconnect.
-你会得到这个不幸的断开
+不幸地这两个 API 是不一致的
 
 788
 00:33:08,987 --> 00:33:11,087
 And I keep hoping every time iOS comes out,
-我每次希望当新的 iOS 版本发布的时候
+当新的 iOS 版本发布的时候，我每次都希望
 
 789
 00:33:11,156 --> 00:33:13,723
 they'll come out with an attributed string, not NS, but
-他们会发布一个与 String 配对的 attributedString 
+他们会发布一个 AttributedString
 
 790
 00:33:13,792 --> 00:33:16,225
 attributed string, that's matched up with string.
-而不是 NS
+与 String 配对，而不是 NS
 
 791
 00:33:16,294 --> 00:33:18,161
 But they haven't done it yet.
-但是他们现在还没做到
+但是他们现在（Swift 4 之前）还没做到
 
 792
 00:33:18,230 --> 00:33:21,230
@@ -3723,7 +3724,7 @@ There's also NSBackgroundColorAttributeName
 797
 00:33:31,309 --> 00:33:34,343
 which, fonts have foregrounds and backgrounds, but
-也就是字体有 foregrounds 和 backgrounds，但是
+也就是字体本身和底色
 
 798
 00:33:34,412 --> 00:33:35,612
@@ -3748,7 +3749,7 @@ NSFontAttributeName，可以设置字体
 802
 00:33:42,654 --> 00:33:44,187
 And there's about 15 others,
-大概还有15个别的一些属性
+大概还有 15 个别的一些属性
 
 803
 00:33:44,255 --> 00:33:46,957
@@ -3768,7 +3769,7 @@ if you wanna set the font you're gonna draw with,
 806
 00:33:50,328 --> 00:33:51,127
 how do you do that?
-你如何做呢
+你如何做呢？
 
 807
 00:33:51,196 --> 00:33:54,297
@@ -3788,7 +3789,7 @@ a cool UI.
 810
 00:33:58,069 --> 00:33:58,935
 Look at all these UIs.
-看看这些 UI 
+看看这些 UI
 
 811
 00:33:59,004 --> 00:34:01,971
@@ -3803,17 +3804,17 @@ position, all that stuff is.
 813
 00:34:04,843 --> 00:34:08,377
 So, how do we get a good font so that our UI will look good?
-那么我们如何通过选择号字体来让 UI　看起来好一些呢？
+那么如何通过选择好字体来让 UI 看起来好一些呢？
 
 814
 00:34:08,446 --> 00:34:10,914
 Well, we're gonna use this very important static
-这就要用到这个非常重要的静态方法叫做
+这就要用到这个非常重要的静态方法
 
 815
 00:34:10,983 --> 00:34:11,881
 method in UIFont.
-UIFont
+因为是属于 UIFont 类
 
 816
 00:34:11,950 --> 00:34:14,551
@@ -3823,12 +3824,12 @@ So you send this to UIFont, the class,
 817
 00:34:14,620 --> 00:34:17,720
 called preferredFont forTextStyle, okay?
-这个叫做 preferredFont的函数，参数名是 forTextStyle
+这个函数叫做 preferredFont(forTextStyle:)
 
 818
 00:34:17,789 --> 00:34:20,457
 And so you can specify the text style, which is kind of
-然后你就可以指定文本样式了，就像是
+你可以指定文本样式，就像是
 
 819
 00:34:20,525 --> 00:34:23,360
@@ -3848,7 +3849,7 @@ And so there's about eight or so of them.
 822
 00:34:28,600 --> 00:34:30,300
 But three of them are like a headline.
-其中三个像是 headline 样子的
+其中三个是 .headline 样式的
 
 823
 00:34:30,369 --> 00:34:31,334
@@ -3863,7 +3864,7 @@ So that's gonna be a bolder font, a little larger maybe.
 825
 00:34:34,473 --> 00:34:37,540
 Then body font, that's like, this is the user's data.
-然后是主字体，就像是，用户的数据
+然后是主字体（.body），就像是用户的数据
 
 826
 00:34:37,608 --> 00:34:38,575
@@ -3883,7 +3884,7 @@ maybe--although it's probably a multi-font.
 829
 00:34:43,414 --> 00:34:46,682
 But, and then footnote would just be a small little text,
-接下来是 footnote ，也就是小一点的文本
+接下来是 .footnote ，也就是小一点的文本
 
 830
 00:34:46,751 --> 00:34:48,151
@@ -3898,7 +3899,7 @@ So I really encourage you when you're using a font,
 832
 00:34:51,190 --> 00:34:53,756
 try to find a text style that will work, okay?
-找到一个适合的文本样式，好吗
+找到一个适合的文本样式，好吗？
 
 833
 00:34:53,825 --> 00:34:55,291
@@ -3913,7 +3914,7 @@ compatible with all the other apps,
 835
 00:34:57,128 --> 00:34:59,395
 because they're using these preferred fonts.
-因为他们都用这些首选字体
+因为它们都用这些首选字体
 
 836
 00:34:59,464 --> 00:35:02,132
@@ -3933,7 +3934,7 @@ these will automatically get larger, okay?
 839
 00:35:06,871 --> 00:35:10,207
 And, hopefully, if you have your Auto-Layout working,
-另外，幸运的是，如果你有自动排版的话
+另外，幸运的是，如果你有自动布局的话
 
 840
 00:35:10,275 --> 00:35:13,743
@@ -3947,12 +3948,13 @@ There's also system fonts.
 
 842
 00:35:15,446 --> 00:35:17,580
-Don't get confused between the preferred fonts and
+Don't get confused between the preferred fonts and system fonts.
 别被系统字体和首选字体弄混淆
 
 843
 00:35:17,649 --> 00:35:21,751
-system fonts.
+System fonts go on buttons and that.
+系统提供的控件，比如按钮用的是 systemFont
 
 844
 00:35:21,819 --> 00:35:24,020
@@ -3977,12 +3979,12 @@ you're not even gonna set in code.
 848
 00:35:31,229 --> 00:35:33,196
 You're gonna set it in Interface Builder in
-只要通过那个小小的 Inspector 窗口上的 
+只要通过 Interface Builder 那个
 
 849
 00:35:33,264 --> 00:35:34,997
 the little Inspector window, right?
-Interface Builder 设置就好了
+小小的 Inspector 窗口上设置就好了
 
 850
 00:35:35,066 --> 00:35:37,700
@@ -3997,7 +3999,7 @@ system fonts can be set there.
 852
 00:35:39,804 --> 00:35:44,474
 If you wanna use a specific font like Helvetica Bold 13
-如果你想用一个特殊的像是 Helvetica Bold 13 的字体的话
+如果你想用一个特殊的字体，像是 13 号粗体 Helvetica 的话
 
 853
 00:35:44,543 --> 00:35:46,843
@@ -4010,19 +4012,19 @@ I don't recommend it,
 虽然我不建议
 
 855
-00:35:48,079 --> 00:35:51,114
+00:35:48,079 --> 00:35:50,900
 but UIFontDescriptor is an important class to know
 但是 UIFontDescriptor 是一个重要的需要知道的类
 
 856
-00:35:51,183 --> 00:35:52,299
-It's how you describe that font that you want,
-它用来描述你想要的字体
+00:35:50,901 --> 00:35:51,114
+for that.
+它是用来
 
 857
-00:35:52,300 --> 00:35:53,416
-for that.
-为了那
+00:35:51,183 --> 00:35:53,416
+It's how you describe that font that you want,
+描述你想要的字体
 
 858
 00:35:53,485 --> 00:35:54,417
@@ -4032,7 +4034,7 @@ that special font.
 859
 00:35:54,486 --> 00:35:57,153
 So, you know, some apps, typography is what they do.
-那么就像你知道的，有一些 apps 是用活版印刷的
+就像你知道的，有一些程序是用来做版面设计的
 
 860
 00:35:57,222 --> 00:35:59,622
@@ -4067,27 +4069,27 @@ And you could just make an image be a subview of
 866
 00:36:10,101 --> 00:36:12,369
 your view if you wanted to have an image in there.
-只要把这张图片作为那个视图的子视图就可以了
+只要把 UIImageView 作为子视图就可以了
 
 867
 00:36:12,437 --> 00:36:15,171
 But, again, sometimes you wanna be able to control that
-但是，再一次的，有时候你想要控制
+但是，再一次的，有时候你想要
 
 868
 00:36:15,240 --> 00:36:17,373
 in your draw, your drawRect.
-你的绘制，你的绘制区域
+在 draw(rect:) 中绘制图片
 
 869
 00:36:17,442 --> 00:36:19,742
 And we do that with the UIImage object, okay?
-我们就需要用到 UIImage 对象 
+我们就需要用到 UIImage 对象
 
 870
 00:36:19,811 --> 00:36:21,578
 I already showed you actually when I was talking about
-当我谈到可用的初始化器时候
+当我谈到可失败构造器时候
 
 871
 00:36:21,647 --> 00:36:23,846
@@ -4102,12 +4104,12 @@ You just put it in your xcassets file
 873
 00:36:27,084 --> 00:36:28,884
 in Interface Builder.
-就在那个 Interface Builder 里有
+在 Interface Builder 里就可以用了
 
 874
 00:36:28,953 --> 00:36:32,622
 And then you say UIImage named, and it gets it by name.
-然后命名，之后就可以通过名字来取得它
+也可以通过 UIImage(named: 图片名字) 来取得
 
 875
 00:36:32,691 --> 00:36:34,457
@@ -4117,7 +4119,7 @@ And if it can't find it, it returns nil.
 876
 00:36:34,526 --> 00:36:37,193
 So that's the number one way you're gonna get an image into
-这就是第一种方法：
+这就是第一种方法
 
 877
 00:36:37,262 --> 00:36:38,661
@@ -4152,12 +4154,12 @@ But, you can do it that way.
 883
 00:36:48,540 --> 00:36:51,240
 And you can also get it just from raw data, raw jpg data or
-你也可以从原生数据，原生 jpg 数据或者别的从网上或者
+你也可以从原始数据，原始 jpg 或者别的数据
 
 884
 00:36:51,309 --> 00:36:53,977
 something that you got over the Internet or from a URL or
-一个 URL 或者别的什么中得到图片
+从网上一个 URL 或者别的什么中得到图片
 
 885
 00:36:54,046 --> 00:36:55,711
@@ -4167,7 +4169,7 @@ something, you can do that.
 886
 00:36:55,780 --> 00:36:58,548
 You can even do it by drawing with all those path things.
-你甚至可以通过用文件路径相关的东西来绘制
+你甚至可以通过 UIBezierpath 来绘制
 
 887
 00:36:58,616 --> 00:37:01,150
@@ -4212,7 +4214,7 @@ So once you have an image, okay, that you got from any of
 895
 00:37:18,236 --> 00:37:20,836
 these sources, you can just draw it inside your drawRect
-你只要在你的绘画区通过 draw(atPoint) 或者 draw(inRect)
+你只要在你的绘画区通过 draw(atPoint:) 或者 draw(inRect:)
 
 896
 00:37:20,905 --> 00:37:24,307
@@ -4222,22 +4224,22 @@ by saying draw atPoint or draw inRect.
 897
 00:37:24,375 --> 00:37:28,878
 Or actually, I think that's probably drawAt space point,
-事实上，我觉得这个可能是 draw(atSpacePoint)
+事实上，我觉得这个可能是 draw(at point:)
 
 898
 00:37:28,947 --> 00:37:30,546
 not atPoint:.
-而不是 draw(atPoint)
+而不是 draw(atPoint:)
 
 899
 00:37:30,615 --> 00:37:35,385
 And drawIn space rect and drawAsPatternIn space rect.
-还有 draw(inRect) 和 drawAsPattern(inRect)
+还有 draw(in rect:) 和 drawAsPattern(in rect:)
 
 900
 00:37:35,454 --> 00:37:37,820
 Those do kind of what you would think, right?
-他们会做到些你想要的东西
+它们的功能和你想象的一样
 
 901
 00:37:37,889 --> 00:37:40,023
@@ -6100,17 +6102,17 @@ I'm just gonna return them so that no matter what my
 1365
 00:57:01,585 --> 00:57:04,386
 bounds is, at any given time, skullRadius,
-边界怎么样，任何情况下，skullRadius，
+对于任何 bounds，skullRadius
 
 1366
 00:57:04,455 --> 00:57:07,989
 that var--which of course we have to type, so CGFloat--that
-那个变量，当然是 CGFloat 类型
+那个变量，（当然是 CGFloat 类型）
 
 1367
 00:57:08,058 --> 00:57:11,459
 skullRadius is always going to match by bounds, okay?
-那个 skullRadius 都会和边界配对，懂不？
+那个 skullRadius 都会和 bounds 配对，懂不？
 
 1368
 00:57:11,528 --> 00:57:12,794
@@ -6140,7 +6142,7 @@ which is also a CGFloat, no this one is a CG point, and
 1373
 00:57:23,106 --> 00:57:24,807
 it's going to be computed.
-然后也是计算变量
+然后也是计算型变量
 
 1374
 00:57:27,511 --> 00:57:29,010
@@ -6175,7 +6177,7 @@ the skull center.
 1380
 00:57:41,024 --> 00:57:43,458
 Skull center is always the center of my bounds so
-skullCenter 会一直是我边界的中心
+skullCenter 会一直是我 bounds 的中心
 
 1381
 00:57:43,526 --> 00:57:44,559
@@ -6220,7 +6222,7 @@ And so all our other paths, like path for eye and
 1389
 00:58:00,744 --> 00:58:02,443
 all that stuff can use them.
-其他的东西都可以用到他们
+其他的东西都可以用到它们
 
 1390
 00:58:02,512 --> 00:58:03,311
@@ -6235,7 +6237,7 @@ Let's do path for eye, how about that.
 1392
 00:58:05,782 --> 00:58:07,916
 So in a private func, pathForEye.
-写一个私有函数，pathForEye
+写一个私有方法，pathForEye
 
 1393
 00:58:07,984 --> 00:58:10,852
@@ -6250,7 +6252,7 @@ is almost the same for the left eye and the right eye.
 1395
 00:58:13,356 --> 00:58:17,125
 So I'm gonna create a little type here called Eye which
-那么我这里会创建一个小类型叫做 Eye 
+那么我这里会创建一个小类型叫做 Eye
 
 1396
 00:58:18,128 --> 00:58:19,428
@@ -6855,7 +6857,7 @@ Let's see if we got this right.
 1516
 01:03:39,282 --> 01:03:40,348
 Look at that.
-看啊 
+看啊
 
 1517
 01:03:40,417 --> 01:03:41,415
