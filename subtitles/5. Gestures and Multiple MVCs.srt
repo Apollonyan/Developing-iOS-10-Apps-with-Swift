@@ -5639,267 +5639,267 @@ So this is what that looks like.
 1400
 01:03:55,332 --> 01:03:57,432
 Here I've got split view controller on the left.
-
+我已经在左边有了分屏控制器
 1401
 01:03:57,501 --> 01:03:59,767
 I've got calculator view control on the top and
-
+在顶端有计算器视图控制然后
 1402
 01:03:59,836 --> 01:04:02,236
 I've got a graph and control view on the bottom.
-
+我在底部还有图像和控制视图
 1403
 01:04:02,305 --> 01:04:03,370
 So I'm just gonna control,
-
+所以我已经可以开始控制了，
 1404
 01:04:03,439 --> 01:04:04,972
 drag from the split view controllers,
-
+从分屏控制器中拖拽
 1405
 01:04:05,041 --> 01:04:06,174
 the calculator controller.
-
+计算器控制器
 1406
 01:04:06,243 --> 01:04:08,510
 This little black window is gonna come up.
-
+这个小的黑色窗口将会显示出来
 1407
 01:04:08,578 --> 01:04:12,914
 I'm gonna choose master view controller from the list and
-
+我将会从列表中选择主视图控制器然后
 1408
 01:04:12,983 --> 01:04:16,951
 that's gonna hook that one up top to my master.
-
+那样会将其连接到我的主视图上
 1409
 01:04:17,020 --> 01:04:20,155
 Then, I'm gonna Ctrl+drag to the bottom one, the black
-
+然后，我要按住ctrl并拖拽到底部，那个黑色的
 1410
 01:04:20,223 --> 01:04:22,924
 window comes up I'm gonna choose Detail View Controller
-
+窗口显示出来了，我要修改视图控制器的详细设置
 1411
 01:04:22,993 --> 01:04:24,659
 then it's gonna make that connection.
-
+然后会让其连接在一起
 1412
 01:04:25,829 --> 01:04:27,361
 Okay, as simple as that.
-
+完成了，就像之前那么简单
 1413
 01:04:27,430 --> 01:04:29,363
 Now you've got the split view with master that's
-
+现在你已经有了
 1414
 01:04:29,432 --> 01:04:31,566
 calculator of your controller and
-
+计算器控制器和
 1415
 01:04:31,635 --> 01:04:34,169
 detail that is going to be a graphic view controller.
-
+图像控制器详细设置的分屏显示
 1416
 01:04:35,405 --> 01:04:37,205
 Now, one interesting thing here though,
-
+这里有个有趣的事情，
 1417
 01:04:37,274 --> 01:04:39,774
 is this split view does not work on an iPhone.
-
+这个分屏显示无法在iPhone上运行
 1418
 01:04:39,843 --> 01:04:43,344
 Well it works on iPhone plus, iPhone six plus or
-
+但能在iPhone plus上运行，iPhone6plus或
 1419
 01:04:43,413 --> 01:04:46,013
 seven plus, the kind of big ones, but it does not work on
-
+7plus，类似这种大屏幕的，但无法运行在
 1420
 01:04:46,082 --> 01:04:48,783
 a normal iPhone, it's just not enough screen real estate to
-
+小尺寸iPhone上，因为屏幕不够大
 1421
 01:04:48,851 --> 01:04:52,053
 really do the split view thing, so we can't do it.
-
+所以无法做分屏显示，所以我们没法做
 1422
 01:04:52,122 --> 01:04:54,989
 So, what we really want to do is build a UI though that
-
+那么，我们要做的是开发一个UI界面
 1423
 01:04:55,058 --> 01:04:56,191
 works on all the devices.
-
+能在所有尺寸设备上运行的
 1424
 01:04:56,259 --> 01:04:59,827
 So to do that, what we do is we're gonna wrap
-
+那么要想开发出来，我们需要做的是在我们需要的时候，
 1425
 01:04:59,896 --> 01:05:02,763
 the master and the detail if we want.
-
+将详细设置从主视图中分离出来
 1426
 01:05:02,832 --> 01:05:05,466
 We're gonna wrap them in a navigation controller.
-
+我们需要将它们从导航控制器分离出来
 1427
 01:05:05,535 --> 01:05:06,901
 And then when they're on iPhone,
-
+当其运行在iPhone上的时候，
 1428
 01:05:06,969 --> 01:05:08,102
 they won't use the split view part,
-
+其程序无法使用分屏功能，
 1429
 01:05:08,171 --> 01:05:09,838
 they'll just use the navigation controller.
-
+那时程序需要用到导航控制器
 1430
 01:05:11,041 --> 01:05:13,808
 It's really cool, how it figures this out.
-
+这非常棒，我们解决了这个问题
 1431
 01:05:13,876 --> 01:05:17,178
 The way to wrap a view controller that's in there,
-
+分离视图控制器的方法在这，
 1432
 01:05:17,246 --> 01:05:19,047
 you wanna wrap it in a Navigation Controller,
-
+你需要分离到导航控制器
 1433
 01:05:19,116 --> 01:05:20,282
 you just go to the Editor menu,
-
+你只需要跳转到编辑器菜单，
 1434
 01:05:20,350 --> 01:05:22,116
 the same place we did embed and stack view,
-
+在之前我们做嵌入和堆栈视图的地方，
 1435
 01:05:22,185 --> 01:05:23,151
 and some of that.
-
+一样一样
 1436
 01:05:23,220 --> 01:05:26,887
 And you select the whole scene of your MVC, and
-
+当你选择了整个MVC的场景时，
 1437
 01:05:26,956 --> 01:05:29,623
 you go to the Editor Menu and
-
+你去到编辑器菜单
 1438
 01:05:29,692 --> 01:05:31,993
 you say embed in navigation controller.
-
+你会发现嵌入到了导航控制器中
 1439
 01:05:32,062 --> 01:05:34,295
 So I've selected that top, calculate and control and
-
+这时我选中顶端，计算并控制然后
 1440
 01:05:34,363 --> 01:05:35,563
 when I do that,
-
+当我选中时，
 1441
 01:05:35,632 --> 01:05:38,199
 it's going to put it inside a navigation controller.
-
+程序会在里面添加一个导航控制器
 1442
 01:05:38,268 --> 01:05:40,067
 Did you see that?
-
+你看到了吗？
 1443
 01:05:40,136 --> 01:05:42,236
 Now, I've got the flip view, it points to a navigation
-
+现在，我有翻转视图了，它指向导航
 1444
 01:05:42,305 --> 01:05:44,372
 controller, so the master of this flip view is actually
-
+控制器，所以主视图的翻转视图实际上
 1445
 01:05:44,441 --> 01:05:46,808
 that navigation controller, and then the navigation
-
+是个导航控制器，然后导航
 1446
 01:05:46,876 --> 01:05:50,311
 controller root view controller is the calculator.
-
+控制器的原形，视图控制器就是计算器
 1447
 01:05:50,379 --> 01:05:52,146
 So, if you're on a device that can do split view,
-
+所以，如果你在用一台能够分屏显示的设备，
 1448
 01:05:52,215 --> 01:05:53,114
 like an iPad or a plus,
-
+比如iPad或者plus，
 1449
 01:05:53,183 --> 01:05:55,316
 you're going to get the whole split view effect.
-
+你会获得完整的分屏显示效果
 1450
 01:05:55,385 --> 01:05:56,684
 But if you're on just an iPhone,
-
+但如果你在（小尺寸）iPhone上运行，
 1451
 01:05:56,753 --> 01:05:58,486
 it's not going to do the split view.
-
+其不能分屏显示，
 1452
 01:05:58,555 --> 01:06:00,721
 It's just going to do the navigation controller.
-
+这时候就要用到导航控制器，
 1453
 01:06:00,790 --> 01:06:01,989
 So, when you look at the detail,
-
+所以，当你在查看详细时，
 1454
 01:06:02,058 --> 01:06:04,192
 it's going to slide it in.
-
+需要滑动来实现，
 1455
 01:06:04,261 --> 01:06:06,761
 Whereas if you're on a iPad in landscape,
-
+然而当你在iPad上时，
 1456
 01:06:06,830 --> 01:06:09,764
 you're gonna see Master and Detail at the same time.
-
+你会同时看到主界面和详细信息
 1457
 01:06:09,833 --> 01:06:13,568
 Now, you can also do the same thing- yeah, and so
-
+现在，你也可以做同样的事情了，所以
 1458
 01:06:13,637 --> 01:06:15,703
 the UINavigationController is the Master,
-
+UI导航控制器是主视图，
 1459
 01:06:15,771 --> 01:06:17,639
 as, as I talked about.
-
+像我之前所说的
 1460
 01:06:17,707 --> 01:06:20,074
 So you can do the same thing with the Detail.
-
+你可以在详细信息中做同样的事
 1461
 01:06:20,143 --> 01:06:22,410
 Now why would you ever do that with the Detail?
-
+那么为何还不动手呢？
 1462
 01:06:22,479 --> 01:06:24,111
 Because yo've already done it with the master and
-
+因为你已经完成了主视图然后
 1463
 01:06:24,180 --> 01:06:26,513
 so you gotta click in the master to get to the detail,
-
+你只需要点一下主视图来获取详细信息，
 1464
 01:06:26,582 --> 01:06:28,516
 so yo're kinda already gonna be in a navigation controller,
-
+其实这就有点像导航控制器
 1465
 01:06:28,585 --> 01:06:29,584
 and tha's true.
-
+大实话
 1466
 01:06:29,653 --> 01:06:32,186
 But wha's kinda nice about putting the detail
