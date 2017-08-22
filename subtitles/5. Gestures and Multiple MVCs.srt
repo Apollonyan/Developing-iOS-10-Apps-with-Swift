@@ -5903,231 +5903,231 @@ and tha's true.
 1466
 01:06:29,653 --> 01:06:32,186
 But wha's kinda nice about putting the detail
-
+但我们可以把它变得更完美
 1467
 01:06:32,255 --> 01:06:35,223
 in a navigation controller is you get that little title bar,
-
+通过在导航控制器内加入些细节比如一个小的标题栏
 1468
 01:06:35,292 --> 01:06:36,524
 you know the little gray title bar?
-
+你知道灰色的小标题栏吗？
 1469
 01:06:36,593 --> 01:06:37,391
 So now, your master and
-
+所以现在，你的主视图和
 1470
 01:06:37,460 --> 01:06:39,561
 your detail both have a title bar on the top and
-
+你的详细信息在屏幕顶端都有了一个标题栏并且
 1471
 01:06:39,629 --> 01:06:40,961
 they match up nicely.
-
+他们看上去更加相匹配了
 1472
 01:06:41,030 --> 01:06:42,930
 So if you wanna title on your detail,
-
+如果你想在你的详细信息上有个标题，
 1473
 01:06:42,999 --> 01:06:43,598
 that's a good thing to do.
-
+这是个好方法
 1474
 01:06:43,666 --> 01:06:45,566
 The only thing to be careful there though is
-
+唯一需要注意的事情是
 1475
 01:06:45,635 --> 01:06:48,269
 now your detail in not a graph view controller.
-
+详细信息功能不是图形视图控制器
 1476
 01:06:48,338 --> 01:06:50,638
 Your detail is now a navigation controller.
-
+你的详细信息功能现在是一个导航控制器
 1477
 01:06:50,706 --> 01:06:52,540
 So if you wanna get the graph view controller and
-
+如果你想再改回图形视图控制器并且
 1478
 01:06:52,609 --> 01:06:54,342
 like talk to it, tell it what to graph or
-
+像之前说的那样，告诉它什么需要绘制或者
 1479
 01:06:54,410 --> 01:06:56,911
 something like that, you need to get the root view
-
+类似的，你需要一个存在于
 1480
 01:06:56,980 --> 01:06:58,580
 controller of the navigation controller.
-
+导航控制器中的根视图控制器
 1481
 01:06:59,982 --> 01:07:01,549
 So it's just subtle difference but
-
+这有一点微妙的变化但
 1482
 01:07:01,617 --> 01:07:03,685
 if you wrap your detail in a navigation controller,
-
+如果你在导航控制器中分解你的详细信息
 1483
 01:07:03,753 --> 01:07:05,853
 the detail has come become a navigation controller.
-
+那么详细信息就变成了一个导航控制器
 1484
 01:07:05,922 --> 01:07:07,588
 It's easy to get to the graph view controller,
-
+获取一个图形视图控制器非常简单
 1485
 01:07:07,657 --> 01:07:09,724
 cuz the root view controller of the navigation controller.
-
+因为有了在导航控制器里的根视图控制器
 1486
 01:07:12,095 --> 01:07:15,096
 That's how you wire up the split views so
-
+这就是为何你能转换分屏视图
 1487
 01:07:15,165 --> 01:07:17,298
 that it works cross platform, all devices.
-
+到所有操作平台，设备
 1488
 01:07:18,568 --> 01:07:21,302
 The last thing we're gonna talk about is segueing.
-
+今天最后一件我们要讨论的事情是关于转场功能
 1489
 01:07:21,370 --> 01:07:25,406
 So we know how to wire up the split view controller, and
-
+那么我们已经知道如何使用分屏控制器，并且
 1490
 01:07:25,475 --> 01:07:26,974
 we know how to do a navigation control,
-
+我们还知道如何使用导航控制，
 1491
 01:07:27,043 --> 01:07:29,376
 we just embed it in the navigation controller.
-
+我们把它嵌入到导航控制器中
 1492
 01:07:29,445 --> 01:07:31,346
 I didn't talk about the tab bar controller by the way,
-
+顺便说一句我之前并没有说过标签栏控制器，
 1493
 01:07:31,414 --> 01:07:32,446
 but that's easy.
-
+但那很简单
 1494
 01:07:32,515 --> 01:07:35,450
 You just drag a tab bar controller out and CTRL + drag
-
+你只需要拖拽一个标签栏控制器并按住CTRL然后拖拽
 1495
 01:07:35,518 --> 01:07:38,152
 to all of the MVC's that you want it to show,
-
+到所有你希望显示出的MVC中
 1496
 01:07:38,221 --> 01:07:42,223
 and you can actually even drag the little icons around
-
+而且实际上你还可以拖拽一个小图标并
 1497
 01:07:42,291 --> 01:07:43,724
 to put them in order.
-
+使他们有序的排列开来
 1498
 01:07:43,793 --> 01:07:46,227
 You can even set the icons in text in the interface builder
-
+甚至你可以在界面构建器中调整在文本中的图标
 1499
 01:07:46,296 --> 01:07:46,961
 with an inspector.
-
+通过检查工具
 1500
 01:07:47,029 --> 01:07:49,797
 So, tab bars, so simple I don't even want to waste time
-
+那么，标签栏，太简单我并不想花太多时间
 1501
 01:07:49,866 --> 01:07:52,633
 showing it, but so we know how to kind of hook up and control
-
+去展示，那么我们现在知道其如何去连接和控制了
 1502
 01:07:52,702 --> 01:07:56,971
 drags and wire up, or embed to do the navigation controllers.
-
+还知道如何拖拽和连接，或者嵌入到导航控制器中
 1503
 01:07:57,040 --> 01:07:59,540
 How do we go from one to the other, like in the navigation
-
+我们如何从这个跳转到另外一个呢，像在导航
 1504
 01:07:59,609 --> 01:08:02,109
 controller, how do we go from all settings to settings and
-
+控制器内一样，我们如何通过设置顶层页到设置子页和
 1505
 01:08:02,178 --> 01:08:03,244
 from settings to accessibility,
-
+从设置页到可访问位置，
 1506
 01:08:03,312 --> 01:08:07,081
 and accessibility to larger text?
-
+然后从可访问位置到更大的文本呢？
 1507
 01:08:07,149 --> 01:08:09,651
 How do we set up that transition or how do we make
-
+我们如何设置其转变或者说我们如何能做到
 1508
 01:08:09,719 --> 01:08:13,354
 it so that we press a button in our calculator split view
-
+当我们在分屏显示的计算器中按下一个按钮
 1509
 01:08:13,423 --> 01:08:16,557
 and it causes that graph to be replaced with a new graph?
-
+会使新画面替换掉旧画面呢？
 1510
 01:08:16,626 --> 01:08:17,157
 How do we do that?
-
+到底如何实现呢？
 1511
 01:08:17,226 --> 01:08:19,226
 We do that with what are called segues.
-
+我们要做的我们称之为转场
 1512
 01:08:19,295 --> 01:08:20,628
 I've alluded to this earlier.
-
+之前我有暗示过
 1513
 01:08:23,032 --> 01:08:24,832
 These are the kinds of segues that exist.
-
+有类似于这种转场的存在
 1514
 01:08:24,900 --> 01:08:26,066
 There's a show segue.
-
+那时有展示过一个转场
 1515
 01:08:26,135 --> 01:08:28,436
 That means, if you're in a Navigation Controller,
-
+那意味着，如果你在导航控制器中，
 1516
 01:08:28,504 --> 01:08:29,537
 slide a card on.
-
+滑动一个选项卡
 1517
 01:08:31,441 --> 01:08:32,740
 There's Show Detail,
-
+其会显示详细信息
 1518
 01:08:32,809 --> 01:08:34,208
 which if you're a Navigation Controller,
-
+但如果你是一个导航控制器，
 1519
 01:08:34,277 --> 01:08:36,044
 still means slide a card on.
-
+依然可以滑动选项卡
 1520
 01:08:36,112 --> 01:08:37,578
 But if you're inside a Split View,
-
+但如果你在分屏显示的情况下，
 1521
 01:08:37,647 --> 01:08:40,982
 it means put this new MVC where the detail goes.
-
+意味着需要将MVC放入到详细信息中
 1522
 01:08:41,051 --> 01:08:42,683
 That's why it's called Show Detail.
-
+这就为什么叫做显示详情
 1523
 01:08:42,752 --> 01:08:44,552
 So Show Detail behaves differently depending on
