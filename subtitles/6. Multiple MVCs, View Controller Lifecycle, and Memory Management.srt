@@ -21,702 +21,876 @@ CS193P 课程，iOS 应用程序开发
 5
 00:00:16,517 --> 00:00:20,886
 Today we are going to talk about a few things.
+今天我们将讨论几个东西
 
-6
+6  // start though ???
 00:00:20,954 --> 00:00:23,588
 We're gonna start though giving a demo about what I
+我们将通过展示一个上节课谈论过的
 
 7
 00:00:23,657 --> 00:00:27,225
 talked about last time which is multiple MVCs.
+关于多个 MVC 的 demo 来开始
 
 8
 00:00:27,294 --> 00:00:29,928
 After that I'm gonna do some slides on the view controller
+在那之后我将展示几个关于视图控制器生命周期的
 
 9
 00:00:29,997 --> 00:00:32,931
 lifecycle, really important mechanism for finding out
+幻灯片，一个非常重要的关于 MVC 随着
 
 10
 00:00:33,000 --> 00:00:37,002
 what's going on with your MVC as time goes flows by.
+时间的流逝都会发生些什么的机制
 
 11
 00:00:37,070 --> 00:00:39,671
 And if I have time left at the end, I'm gonna start
+如果最后有时间的话，我将讲一些
 
 12
 00:00:39,739 --> 00:00:41,740
 talking a little bit about memory management,
+关于内存管理的一点东西
 
 13
 00:00:41,809 --> 00:00:44,776
 which is basically managing the memory of reference types,
+也就是管理引用类型（储存在堆里的东西）
 
 14
 00:00:44,845 --> 00:00:45,777
 things that are in the heap.
+的内存的方法
 
 15
 00:00:45,846 --> 00:00:46,845
 How do they get managed?
+它们如何被管理？
 
 16
 00:00:46,914 --> 00:00:48,914
 How do they know when the stay in the heap, or
+它们如何知道什么时候该待在堆里，或者
 
 17
 00:00:48,982 --> 00:00:50,616
 leave the heap?
+离开堆？
 
 18
 00:00:50,684 --> 00:00:54,219
 But first, we're gonna start with this demo.
+但是首先，我们将从这个 demo 开始
 
 19
 00:00:54,288 --> 00:00:58,690
 I'm calling this demo emotions in FaceIt.
+我给这个 demo 取名叫 Emotions in FaceIt 
 
 20
 00:00:58,759 --> 00:00:59,758
 If you remember last time,
+如果你还记得的话
 
 21
 00:00:59,826 --> 00:01:03,094
 we built a nice MVC that knows how to draw a face.
+之前我们创建了一个不错的知道如何绘制一张脸的 MVC 
 
 22
 00:01:03,163 --> 00:01:05,130
 It was a pretty generic MVC and
+这个 MVC 非常典型并且
 
 23
 00:01:05,198 --> 00:01:07,833
 how to model, which is a facial expression.
+能够制作一个模样，也就是面部表情
 
 24
 00:01:07,901 --> 00:01:10,602
 So now we're gonna build a more complicated app that has
+那么现在我们要创建一个更复杂的
 
 25
 00:01:10,670 --> 00:01:12,204
 two MVCs.
+拥有两个 MVC 的 app 
 
 26
 00:01:12,273 --> 00:01:15,140
 One MVCs is going to let you choose an emotion.
+一个 MVC 是让你选择一个心情
 
 27
 00:01:15,209 --> 00:01:16,942
 Like happy or sad.
+像是开心或者伤心
 
 28
 00:01:17,010 --> 00:01:19,678
 And then the other MVC is just gonna be our generic face
+然后另一个 MVC 就是我们的脸的视图
 
 29
 00:01:19,747 --> 00:01:23,048
 view, and it's gonna show that emotion.
+用来表现那个心情
 
 30
 00:01:23,117 --> 00:01:24,183
 we're gonna learn how to use the split view controller and
+我们将学着如何使用视图分割控制器并且
 
 31
 00:01:24,184 --> 00:01:25,250
 By doing that,
+会通过使用那个
 
 32
 00:01:25,318 --> 00:01:29,020
 navigation controller, combine MVCs, to make a big graph.
+导航控制器，来包含所有的 MVC，以创建一个大的图
 
 33
 00:01:29,089 --> 00:01:32,857
 It's a simple example because of time constraints but
+由于时间的限制，这会是一个简单一点的例子，但是
 
 34
 00:01:32,926 --> 00:01:34,693
 you should get the idea.
+你应该要懂实现的方法
 
 35
 00:01:34,761 --> 00:01:38,697
 So here I'm back in FaceIt, this demo we had last time.
+那么现在我回到了那个 FaceIt，之前的那个 demo 
 
 36
 00:01:39,633 --> 00:01:40,531
 One thing before I start,
+在我开始前有一件事
 
 37
 00:01:40,600 --> 00:01:42,134
 I wanted to show you something you're going to need for
+我想展示给你们一些家庭作业中会需要的东西
 
 38
 00:01:42,202 --> 00:01:45,169
 your homework, which is how to rename a ViewController.
+也就是如何重命名一个 ViewController 
 
 39
 00:01:45,238 --> 00:01:46,338
 I have this ViewController here.
+我这里有个 ViewController
 
 40
 00:01:46,407 --> 00:01:48,674
 This is the ViewController that shows the face.
+这就是用来展现那个脸的 ViewController 
 
 41
 00:01:48,742 --> 00:01:51,443
 Remember, here's the faceView var and here's it's model.
+记住了，这个是变量 faceView 然后这是 ViewController 的模型
 
 42
 00:01:53,380 --> 00:01:55,880
 So I don't like this name ViewController.
+所以我不喜欢这个名字 ViewController 
 
 43
 00:01:55,949 --> 00:01:58,050
 It's really quite too generic.
+这太普通了
 
 44
 00:01:58,118 --> 00:01:59,684
 It's almost like it's super class,
+几乎都跟它的父类一样了
 
 45
 00:01:59,753 --> 00:02:01,486
 which is UIViewController.
+也就是 UIViewController 
 
 46
 00:02:01,555 --> 00:02:04,155
 Really this wants to be some specifically named
+这应该是一个特殊名字的 ViewController 
 
 47
 00:02:04,224 --> 00:02:07,025
 view controller, and in this case it shows a face so
+在这一个情况下它展示了一个脸
 
 48
 00:02:07,094 --> 00:02:10,429
 this probably best called it faceviewcontroller.
+所以大概最好的名字就是 FaceViewController 了
 
 49
 00:02:10,498 --> 00:02:13,231
 So I wanna just type face right here, and
+那么我就在这里输入 Face 然后
 
 50
 00:02:13,300 --> 00:02:15,199
 hope that's enough.
+希望这样就足够了
 
 51
 00:02:15,268 --> 00:02:17,769
 But of course as I mentioned in like lecture number one
+但是当然了就像我在第一节课中提到过的
 
 52
 00:02:17,838 --> 00:02:19,705
 that's not enough.
+这还不够
 
 53
 00:02:19,773 --> 00:02:22,740
 You can't just rename right there.
+你不能仅仅就在那里重命名
 
 54
 00:02:22,809 --> 00:02:25,310
 You actually have to rename a couple of other things.
+事实上你还需要重命名一些别的东西
 
 55
 00:02:25,379 --> 00:02:27,412
 One, the file that it's in, you see the file,
+第一个，它所在的文件，看这个文件
 
 56
 00:02:27,481 --> 00:02:29,747
 is still called viewcontroller.swift.
+仍然叫做 ViewController.swift 
 
 57
 00:02:29,816 --> 00:02:34,719
 We almost always want to have our name of
+我们通常希望文件的名字跟
 
 58
 00:02:34,788 --> 00:02:37,689
 our file be the same as the primary class that's in there.
+里面的主类的名字一样
 
 59
 00:02:37,758 --> 00:02:40,091
 Now, it's not required in swift, the name of the file
+但是在 Swift 中没有要求，文件名字可以
 
 60
 00:02:40,160 --> 00:02:43,694
 could be completely different than any class in there.
+跟内部的任何一个类名完全不一样
 
 61
 00:02:43,763 --> 00:02:45,113
-to kinda help people find the code that they're looking for,
+But generally,
+但是通常情况下
 
 62
 00:02:45,114 --> 00:02:46,464
-But generally,
+to kinda help people find the code that they're looking for,
+为了帮助人们找到他们需要的代码
 
 63
 00:02:46,533 --> 00:02:49,234
 we wanna have the name of the file pretty much match
+我们希望给文件取名为
 
 64
 00:02:49,303 --> 00:02:50,235
 the name of the main class.
+主类的名字
 
 65
 00:02:50,303 --> 00:02:52,404
-It could be multiple classes in a short file,
+It could be multiple classes in a Swift file,
+在一个小小的文件中可以有很多类
 
 66
 00:02:52,473 --> 00:02:54,372
 that's perfectly allowed as well, but
+这当然可以，但是
 
 67
 00:02:54,441 --> 00:02:55,974
-especially if it is the main one.
+if the main one.
+只需要主类名字就可以
 
 68
 00:02:56,043 --> 00:02:58,043
 You might think, well that's enough, but
+你可能会想，这就够了吧，但是
 
 69
 00:02:58,111 --> 00:02:59,244
 there's one more very,
+在 storyboard 中还有一个非常
 
 70
 00:02:59,312 --> 00:03:01,947
 very important piece of this which is in the story board.
+非常重要的一个东西
 
 71
 00:03:02,015 --> 00:03:05,350
 We haven't really talked too much about this- well
+我们还没谈过它很多
 
 72
 00:03:05,418 --> 00:03:08,186
 actually, we did see it, with the Face View.
+不过事实上我们看到过它，就在 faceView 里
 
 73
 00:03:08,255 --> 00:03:10,122
 We did this with Face View, but
-
+在 faceView 里我们实现过它，但是
 74
 00:03:10,190 --> 00:03:13,591
 we need to inspect this controller, and I'm
+我们需要检查这个控制器
 
 75
 00:03:13,660 --> 00:03:16,094
 gonna click on the controller by clicking this orange thing
+我将通过点击这个上面橘色的东西来选择这一整个控制器
 
 76
 00:03:16,163 --> 00:03:20,097
 up here, that represents the controller for this whole MVC.
+也就是整一个 MVC 的控制器
 
 77
 00:03:20,166 --> 00:03:23,001
-'m gonna go over to this same inspector we went on when we
+And I'm gonna go over to this same inspector we went on when we
+然后我来到这个跟之前把
 
 78
 00:03:23,070 --> 00:03:26,104
 changed the face view from being a generic UI view to
+faceView 从普通的 UI 视图变换到
 
 79
 00:03:26,173 --> 00:03:28,340
 being a specific face view.
+一个特殊的 faceView 一样的检查器中
 
 80
 00:03:28,409 --> 00:03:30,642
 'm gonna do the exact same thing here.
+我这里会做一模一样的事
 
 81
 00:03:30,711 --> 00:03:33,378
 So 'm picking this whole view controller and
+那么我全选了这个 viewController 然后
 
 82
 00:03:33,446 --> 00:03:36,147
 'm going to the identity inspector up here and
+来到这上面的这个 Identity Inspector，接下来
 
 83
 00:03:36,216 --> 00:03:39,150
 'm gonna change the class from ViewController,
+把这个 class 从 ViewController 
 
 84
 00:03:39,219 --> 00:03:43,021
 that's what it was the generic name to Face view controller.
+也就是通用名字到 FaceViewController
 
 85
 00:03:43,089 --> 00:03:45,057
 So if you forget to do this piece,
+所以如果你忘记做这个的话
 
 86
 00:03:45,125 --> 00:03:47,292
 than none of your outlets are gonna be hooked up.
+那么你的所有 outlet 都不会被连接
 
 87
 00:03:47,361 --> 00:03:49,360
 And iOS is gonna be very confused because you're
+然后 iOS 就会很疑惑因为
 
 88
 00:03:49,429 --> 00:03:52,097
 gonna be asking it to couple outlets to a different class.
+你要求它把这些 outlet 连接到另一个不同的类
 
 89
 00:03:52,165 --> 00:03:55,033
 SomeClasses doesn't exist anymore cuz I renamed it away.
+由于我重命名了，有些类也就不存在了
 
 90
 00:03:57,504 --> 00:03:58,603
 You'll need to do that for your homework.
+你们的家庭作业里将用到
 
 91
 00:03:58,672 --> 00:04:01,572
 You'll have to change your current calculator
+你要把你们目前的计算器
 
 92
 00:04:01,641 --> 00:04:03,541
 MVC from being called View Controller
+MVC 从 ViewController 改变到
 
 93
 00:04:03,610 --> 00:04:05,710
 to being called something like Calculator View Controller and
+叫做 CalculatorViewController 
 
 94
 00:04:05,778 --> 00:04:08,446
 that's because you're gonna have this new MVC- the graph
+这是因为你将有这个新的 MVC 也就是图像视图控制器
 
 95
 00:04:08,515 --> 00:04:12,651
 view controller- and you wanna make clear which one is which.
+并且你想明确哪一个是哪一个
 
 96
 00:04:12,719 --> 00:04:16,087
 Now I'm not gonna touch my Face View Controller or
+从现在开始，这个 demo 中，我一点都不会去碰 FaceViewController
 
 97
 00:04:16,156 --> 00:04:18,557
 MVC at all in this demo from here on.
+或者 MVC 
 
 98
 00:04:19,659 --> 00:04:22,861
 I'm gonna build this multi-MVC app, and
+我会创建这个多个 MVC 的 app，并且
 
 99
 00:04:22,929 --> 00:04:25,630
 I'm gonna use the face view controller that I just
+我将使用之前完成的 FaceViewController 
 
 100
 00:04:25,699 --> 00:04:28,199
 finished building last time as a reusable component.
+把它作为可重用的组件
 
 101
 00:04:28,268 --> 00:04:29,901
 Just like your graph view
+就像你们家庭作业中
 
 102
 00:04:29,970 --> 00:04:33,505
 controller is gonna be a reusable MVC in your homework.
+你们的图形视图控制器会是一个可重用的 MVC 一样
 
 103
 00:04:35,308 --> 00:04:37,475
 I said that I wanted to have two MVCs.
+我说过了我想要两个 MVC 
 
 104
 00:04:37,544 --> 00:04:40,512
 One is just a list of some emotions.
+一个是一系列的心情
 
 105
 00:04:40,580 --> 00:04:43,948
 And then I'm going to use this MVC to show that emotion.
+然后我将用这个 MVC 来展现那些心情
 
 106
 00:04:44,017 --> 00:04:46,751
 So let's just dive right into this and
+那么就让我们深入它并且
 
 107
 00:04:46,820 --> 00:04:49,254
 put another MVC into our storyboard.
+把另一个 MVC 放进我们的 storyboard 中吧
 
 108
 00:04:49,323 --> 00:04:53,524
 We have this one MVC, we get another one, in exactly
+我们现在有了这个 MVC，然后我们通过
 
 109
 00:04:53,593 --> 00:04:58,496
 the same way that we get a new button or something like that,
+跟新添加一个按钮或者之类的一样来得到另一个 MVC 
 
 110
 00:04:58,565 --> 00:05:02,367
 which is to go down here to the utilities window
+也就是在这下面的工具窗口
 
 111
 00:05:02,435 --> 00:05:05,036
 at the bottom here and just drag out a view controller.
+拖出一个视图控制器
 
 112
 00:05:05,105 --> 00:05:06,004
 You just pull it out and
+只要把它拉出来，然后
 
 113
 00:05:06,073 --> 00:05:09,007
 drag it right into your storyboard like that.
+像这样拖放到你的 storyboard 就可以了
 
 114
 00:05:09,076 --> 00:05:11,443
 Now this MVC right here,
+那么这里的这个 MVC 
 
 115
 00:05:11,512 --> 00:05:14,111
 what's gonna be its class of it's controller?
+它的 C 层（控制器）里会有什么类呢？
 
 116
 00:05:14,180 --> 00:05:16,814
 It's just going to be (if we select it by clicking on
+如果我们点击这个橘色的东西的话
 
 117
 00:05:16,883 --> 00:05:18,750
 the orange thing), UI view controller.
+就能看到，有一个 UIViewController 
 
 118
 00:05:18,819 --> 00:05:19,951
 In other words not a sub class.
+也就是不是一个子类
 
 119
 00:05:20,020 --> 00:05:22,120
 So we're gonna need to create a custom sub class for
+那么我们就需要为这个视图控制器创建一个
 
 120
 00:05:22,189 --> 00:05:24,288
 this view controller just like we have for
+自定义的子类
 
 121
 00:05:24,357 --> 00:05:25,990
 our face view controller.
+就像我们的 FaceViewController 一样
 
 122
 00:05:26,059 --> 00:05:28,693
 We'll do that in a second.
+我们马上就会这么做
 
 123
 00:05:28,762 --> 00:05:29,594
 Before we do that though,
+但在这之前
 
 124
 00:05:29,663 --> 00:05:31,095
 I wanna talk about this little arrow.
+我想谈一谈这个小箭头
 
 125
 00:05:31,164 --> 00:05:32,864
 You see this arrow right here?
+你们看到这里的这个小箭头了吗
 
 126
 00:05:32,932 --> 00:05:36,434
 This is the arrow that tells iOS when this app launches,
+这是一个告诉 iOS 当 app 启动时
 
 127
 00:05:36,503 --> 00:05:40,104
 use this MVC as the first thing that appears.
+用这个 MVC 作为第一个显示的东西的箭头
 
 128
 00:05:40,173 --> 00:05:43,875
 It's like the "entry" into the storyboard.
+就像是进入 storyboard 的入口
 
 129
 00:05:43,944 --> 00:05:45,610
 And so if I want it to be the other one,
+那么如果我想让它换一个的话
 
 130
 00:05:45,679 --> 00:05:47,345
 I can just pick it up with the mouse.
+我可以用鼠标选择它
 
 131
 00:05:47,414 --> 00:05:48,679
 And drop it on that one.
+然后把它放到另一个 MVC 上
 
 132
 00:05:48,748 --> 00:05:51,282
 And now this one is my entry MVC.
+那么现在这个就是我的初始 MVC 了
 
 133
 00:05:51,351 --> 00:05:54,419
 I also want you to notice that we have a warning here.
+我还想让你们注意到这里有一个警告
 
 134
 00:05:54,488 --> 00:05:55,987
 You see this yellow warning?
+你看到这个黄色的警告了吗
 
 135
 00:05:56,056 --> 00:05:56,888
 I'm gonna click on that,
+我将点击它
 
 136
 00:05:56,956 --> 00:05:59,624
 and we'll see here it says face view controller is
+然后我们就将看到它说 FaceViewController 是
 
 137
 00:05:59,692 --> 00:06:03,127
 unreachable, because it has no entry points.
+不可达的，因为它没有入口
 
 138
 00:06:03,196 --> 00:06:04,930
 It's saying this view controller right here with
+意思是这个有一张脸的视图控制器
 
 139
 00:06:04,998 --> 00:06:08,366
 the face, you're never gonna see that in your app.
+你在 app 中将永远看不到它
 
 140
 00:06:08,435 --> 00:06:11,235
 Which is true, because my app is gonna come in here to this
+这是对的，因为我的 app 会进入这个
 
 141
 00:06:11,304 --> 00:06:14,405
 blank one and I can't get to the FaceView from there.
+空白的 MVC，并且我不能进入那个 FaceView 
 
 142
 00:06:14,474 --> 00:06:17,075
 Now of course we're going to add SplitView controller,
+当然现在我们要添加视图分割控制器
 
 143
 00:06:17,144 --> 00:06:19,243
 and navigation controllers, and we're eventually gonna be
+和导航控制器，然后终究
 
 144
 00:06:19,312 --> 00:06:21,012
 able to get there, but I just want you to understand what
+能到达那里，但是我只是想让你们能苟理解
 
 145
 00:06:21,081 --> 00:06:23,114
 this unsupported configuration means.
+这个不支持的标记意味着什么
 
 146
 00:06:23,183 --> 00:06:24,749
 It just means that you can't get there.
+这意思就是你到达不了那里
 
 147
 00:06:24,818 --> 00:06:26,951
 If I move this back, this arrow off of this and
+如果我把它移回去，把这个箭头移回到这里
 
 148
 00:06:27,020 --> 00:06:29,287
 back over to here, now this one, you see,
+那么这个，看
 
 149
 00:06:29,356 --> 00:06:31,555
 view controller is unreachable.
+这个 ViewController 就不可达了
 
 150
 00:06:31,624 --> 00:06:32,758
 Which makes perfect sense.
+就是这个道理
 
 151
 00:06:34,694 --> 00:06:37,028
 If I run this app by the way, let's go ahead and run, you're
+如果我运行这个 app 的话，你就将看到
 
 152
 00:06:37,096 --> 00:06:39,697
 gonna see that my app's gonna come up completely blank.
+这个 app 会出现完全的一片空白
 
 153
 00:06:39,766 --> 00:06:42,667
 That face will not be there because that MVC is
+这个脸表情不会在那里，因为那个 MVC 
 
 154
 00:06:42,736 --> 00:06:43,801
 really not even being used.
+甚至都没被使用到
 
 155
 00:06:43,870 --> 00:06:45,604
 It's in the storyboard right now, but
+它存在于 storyboard，但是
 
 156
 00:06:45,672 --> 00:06:48,339
 since it's not accessible we can't navigate to it.
+由于它不可达，我们不能导航到它
 
 157
 00:06:48,408 --> 00:06:51,175
 We can't segue to it to use the terminology you
+我们不能 sugue 到它来使用上节课讲到的
 
 158
 00:06:51,244 --> 00:06:52,610
 learned last time.
+专业术语
 
 159
 00:06:52,679 --> 00:06:53,979
 We get this completely blank UI.
+我们只会得到这个完全空白的 UI 界面
 
 160
 00:06:57,351 --> 00:07:01,653
 If we want to have things like outlets and actions,
+如果我们想在这个 ViewControllet 上加些像是 outlet 和 action 
 
 161
 00:07:01,722 --> 00:07:04,956
 or anything like that, with this View Controller, it needs
+或者其他诸如此类的话，它就需要
 
 162
 00:07:05,025 --> 00:07:07,625
 to have a custom subclass of UI view controller,
+有一个基于 UIViewController 的自定义子类
 
 163
 00:07:07,694 --> 00:07:08,760
 it can't just be generic.
+它不能是普通型的
 
 164
 00:07:08,829 --> 00:07:09,594
 So we're gonna create that.
+那么我们将创建那个
 
 165
 00:07:09,662 --> 00:07:12,230
 We're gonna go to File, New File, remember that's always
+选择 File，然后 New，记住每次要创建一个新的 UIView 的子类的时候
 
 166
 00:07:12,298 --> 00:07:14,866
 where we go when we create a new UI View Subclass,
+一个新的 UIViewController，任意的像是 Calculator Brain那样的
 
 167
 00:07:14,935 --> 00:07:18,102
 a new UI View Controller, any Calculator brain.
+我们都是这么操作的
 
 168
 00:07:18,171 --> 00:07:19,370
 We did all those from new file.
+我们都是从 New File 开始的
 
 169
 00:07:19,439 --> 00:07:20,972
 So I'm gonna click new file.
+所以我要点 New File 了
 
 170
 00:07:21,041 --> 00:07:26,210
 This is gonna be a sub class of a UI view controller.
+这将是一个 UIViewController 的子类
 
 171
 00:07:26,279 --> 00:07:28,980
 I'm gonna pick this one here, cocoa touch class.
+我这里要选这个，Cocoa Touch Class 
 
 172
 00:07:29,048 --> 00:07:30,915
 We use swift file over here when it was just
+当时我们用这里的 Swift 文件来创建
 
 173
 00:07:30,984 --> 00:07:33,285
 calculator brain, not a sub class of anything.
+当时那个 CalculatorBrain，不是任何的子类，就只是 Swift 文件
 
 174
 00:07:33,353 --> 00:07:35,753
 But here, we're gonna do cocoa touch class.
+但是这里，我们只需要 Cocoa Touch Class
 
 175
 00:07:35,822 --> 00:07:37,589
 And it says subclass of what?
+然后它说这是谁的子类呢？
 
 176
 00:07:37,657 --> 00:07:39,658
 Okay, it's even defaulted here to UIVewController.
+默认的是 UIViewController 的子类
 
 177
 00:07:39,726 --> 00:07:41,359
 Remember earlier we picked UIView.
+记得先前我们选择 UIView 时
 
 178
 00:07:41,428 --> 00:07:43,494
 We're gonna leave this UIViewController and I'm gonna
+放着这个 UIViewController 然后
 
 179
 00:07:43,563 --> 00:07:46,498
 call this view controller my EmotionsViewController.
+我要给这个 ViewController 取名叫做 EmotionsViewController 
 
 180
 00:07:47,968 --> 00:07:50,802
