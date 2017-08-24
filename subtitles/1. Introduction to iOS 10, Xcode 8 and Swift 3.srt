@@ -1431,7 +1431,7 @@ things like that. That's where you do most of your work.
 287
 00:13:52,332 --> 00:13:55,600
 This section over here on the left, this blue section is
-左边这个淡蓝色的部分是 Navigator，导航面板
+左边这个淡蓝色的部分是 Navigator，导航器
 
 288
 00:13:55,669 --> 00:13:59,871
@@ -1511,7 +1511,7 @@ You can click this one over here to hide and
 303
 00:14:38,078 --> 00:14:41,280
 show. That utilities window. And same thing over here for
-这个对应的是实用工具区域，这个对应的是导航面板
+这个对应的实用工具区，这个对应的是导航器
 
 304
 00:14:41,348 --> 00:14:45,650
@@ -1556,7 +1556,7 @@ let's go look at these files, right?
 312
 00:15:04,704 --> 00:15:07,071
 We're in the file navigator here on the left. And
-在左边的文件导航面板中
+在左边的文件导航器中
 
 313
 00:15:07,140 --> 00:15:08,874
