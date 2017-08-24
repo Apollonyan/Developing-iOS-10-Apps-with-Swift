@@ -3605,7 +3605,7 @@ Those do kind of what you would think, right?
 901
 00:37:37,889 --> 00:37:40,023
 draw atPoint draws it where that's the upper left hand
-draw(atPoint) 会用 atPoint 作为图片的左上角
+draw(at point:) 会用 point 作为图片的左上角
 
 902
 00:37:40,092 --> 00:37:42,091
@@ -3615,7 +3615,7 @@ corner, it draws it in its natural size.
 903
 00:37:42,160 --> 00:37:45,694
 draw inRect is going to scale it to fit inside
-draw(inRect) 会缩放图片去适应
+draw(in rect:) 会缩放图片去适应
 
 904
 00:37:45,763 --> 00:37:48,164
@@ -3635,7 +3635,7 @@ So presumably that's a small image and
 907
 00:37:52,136 --> 00:37:53,869
 you're drawing a texture or something.
-你随便画一些东西在图片上
+作为材质使用
 
 908
 00:37:53,938 --> 00:37:56,306
@@ -3650,7 +3650,7 @@ over to fill the rectangle, okay?
 910
 00:37:59,410 --> 00:38:01,110
 I'll fix this slide and repost it.
-我会把这里修复，然后重新发布一下
+我会改正幻灯片里的错误，之后重新发布一下
 
 911
 00:38:01,179 --> 00:38:05,748
@@ -3665,7 +3665,7 @@ When UIView changes size,
 913
 00:38:07,986 --> 00:38:11,587
 you do not get asked to redraw by default.
-UIView 将会被默认重绘，并且你将不会得到任何提醒
+UIView 不会被默认重绘
 
 914
 00:38:11,656 --> 00:38:13,556
@@ -3675,7 +3675,7 @@ What it does is, believe it or
 915
 00:38:13,625 --> 00:38:17,293
 not, takes what you've drawn, grabs the pixels, and
-把你所绘制的，抓着像素
+只是抓着你所绘制的像素
 
 916
 00:38:17,362 --> 00:38:20,229
@@ -3690,17 +3690,17 @@ Okay, now, this is often not what you want.
 918
 00:38:22,533 --> 00:38:24,667
 Often, what you want is, okay, if my bounds change,
-什么才是你想到的呢，如果我的边界（尺寸）变了
+通常你想要的是，如果我的 bounds 变了
 
 919
 00:38:24,736 --> 00:38:28,170
 ask me to redraw again in my new bounds, okay?
-问一下我，在新的区域重绘怎么样？
+就通知我在新的区域重绘
 
 920
 00:38:28,239 --> 00:38:30,039
 So how is this controlled?
-怎么去控制重绘呢？
+怎么去控制，让它重绘呢？
 
 921
 00:38:30,108 --> 00:38:33,042
@@ -3720,7 +3720,7 @@ bottom, topRight, topLeft.
 924
 00:38:38,083 --> 00:38:40,150
 That's basically saying, take my bits and
-通常像是在说，拿着我这些东西
+意思就是，你拿着我这些像素点
 
 925
 00:38:40,218 --> 00:38:42,618
@@ -3730,7 +3730,7 @@ shove them up into the left corner you know,
 926
 00:38:42,687 --> 00:38:44,621
 one of these spots, center or right.
-中间或者右侧的那些
+或者放到中间或右边
 
 927
 00:38:44,690 --> 00:38:46,656
@@ -3745,12 +3745,12 @@ just move them in the new bounds.
 929
 00:38:48,192 --> 00:38:50,560
 Well, that's likely to cut off what you've drawn or something
-这就好像，把你所绘制的或其他的什么东西
+因此你所绘制的东西很有可能被截断
 
 930
 00:38:50,628 --> 00:38:52,928
 like that depending on how much the bounds have changed.
-根据边界的变化去分割开来
+具体取决于 bounds 变化了多少
 
 931
 00:38:52,997 --> 00:38:54,630
@@ -3760,12 +3760,12 @@ Like when you rotate, you know,
 932
 00:38:54,699 --> 00:38:56,699
 the bounds changes quite a bit.
-边界会改变一点
+边界的变化是很大的
 
 933
 00:38:56,768 --> 00:38:58,334
 There's also the scaling ones.
-这也算是缩放
+还有的会缩放视图
 
 934
 00:38:58,403 --> 00:39:00,703
@@ -3775,12 +3775,12 @@ scaleToFill 是默认的处理方式
 935
 00:39:00,772 --> 00:39:03,873
 And that says, take my bits and take my new bounds and
-拿着我的东西，拿着我的新边界
+拿着现在的视图，通过拉伸
 
 936
 00:39:03,942 --> 00:39:05,241
 scale it to fill.
-缩放然后去填充它
+去填充的新边界
 
 937
 00:39:05,310 --> 00:39:07,243
@@ -3795,12 +3795,12 @@ Although, again,
 939
 00:39:08,113 --> 00:39:10,079
 that's probably gonna cut something off.
-可能就要把一些东西分割了
+可能一部分内容会被截断，无法显示
 
 940
 00:39:10,148 --> 00:39:13,215
 But the real one that you want is redraw.
-但你真正想要的是重绘
+但我们真正想要的是，重绘
 
 941
 00:39:13,284 --> 00:39:15,518
@@ -3810,12 +3810,12 @@ If you set your contentMode to be .redraw,
 942
 00:39:15,587 --> 00:39:18,221
 then when your bounds change, your draw is gonna be
-当你的边界改变时，你所绘制的将会
+当你的边界改变时，就会调用 draw
 
 943
 00:39:18,289 --> 00:39:22,892
 called--your drawRect, draw with the rect argument.
-调用 drawRect ，用 rect 的参数重绘
+调用 draw(rect:) ，用 rect 参数重绘
 
 944
 00:39:22,960 --> 00:39:25,194
@@ -3825,7 +3825,7 @@ So in your assignment three, you're gonna wanna do this.
 945
 00:39:25,263 --> 00:39:26,429
 You can actually do this,
-实际上你可以这样做
+实际上你既可以
 
 946
 00:39:26,498 --> 00:39:28,264
@@ -3835,17 +3835,17 @@ you can do it in code by setting that var.
 947
 00:39:28,332 --> 00:39:30,433
 But you can also do it in Interface Builder, okay?
-当然你也可以在 Interface Builder 中去实现重绘
+也可以在 Interface Builder 中去启用重绘
 
 948
 00:39:30,501 --> 00:39:32,569
 In the Utilities window, in the Inspector preview.
-在 Utilities （工具）窗口中，在 Inspector preview （检查器）中
+在实用工具区域中的 Inspector （检查器）中
 
 949
 00:39:32,637 --> 00:39:35,905
 Just, I think it's the very top one, contentMode.
-就像上边那个 contentMode
+我记得是最上面， 有 contentMode
 
 950
 00:39:35,974 --> 00:39:39,776
@@ -3865,7 +3865,7 @@ I'm gonna do this demo right now where I'm gonna do
 953
 00:39:45,216 --> 00:39:48,084
 a custom view, a FaceView, a UIView that draws a face.
-一个 custom view, 一个 FaceView, 一个 UIView 来画一张脸
+一个自定义的视图, 一个 FaceView, 一个 UIView 来画一张脸
 
 954
 00:39:48,152 --> 00:39:50,920
@@ -3900,12 +3900,12 @@ I'm not going to make it due until a week from next Monday,
 960
 00:40:04,569 --> 00:40:06,802
 because you'll need next Monday's lecture.
-你们需要下周一的课程
+你们需要下周一课程的知识
 
 961
 00:40:06,871 --> 00:40:10,306
 However, I'll probably ship the assignment, the write-up,
-不过，我可能会在周三派发作业，写作
+不过，我可能会在周三发写作作业
 
 962
 00:40:10,375 --> 00:40:12,909
@@ -3915,12 +3915,12 @@ on Wednesday, because a big part of that assignment
 963
 00:40:12,977 --> 00:40:15,478
 is drawing your own custom view and you'll certainly know
-绘制自定义视图，你现在所需要知道的是
+绘制自定义视图，所以你马上就能知道
 
 964
 00:40:15,547 --> 00:40:18,080
 everything you need to know to do that right off the bat.
-你马上就要开始了
+所需要理解的内容，然后立刻开始了
 
 965
 00:40:18,149 --> 00:40:19,983
@@ -3950,7 +3950,7 @@ No Friday section this week.
 970
 00:40:30,061 --> 00:40:33,562
 Okay, so as with most demos in this course,
-这节课会包含几乎全部的演示
+这节课几乎全部是演示
 
 971
 00:40:33,631 --> 00:40:36,666
@@ -3980,12 +3980,12 @@ But instead, I'm gonna go back here to Create a new project.
 976
 00:40:45,576 --> 00:40:47,576
 Okay, it's gonna be Single View Application,
-Okay，就像我和你们说的，
+Okay，就像我和你们说的选单视图应用
 
 977
 00:40:47,645 --> 00:40:48,877
 as I told you they all would be.
-这都应该选 Single View Application （单视图应用）
+这都应该选 Single View Application
 
 978
 00:40:48,946 --> 00:40:51,747
@@ -4005,7 +4005,7 @@ it's gonna do much more eventually.
 981
 00:40:55,253 --> 00:40:58,654
 And, still no core data or testing stuff yet, so
-仍然没有核心数据或者测试的部分
+仍然没有 Core Data 或者测试的部分
 
 982
 00:40:58,723 --> 00:41:00,790
@@ -4015,7 +4015,7 @@ I'm just gonna do FaceIt here.
 983
 00:41:00,859 --> 00:41:02,191
 It's gonna say where do you want it?
-这好像在说，你想把它放在哪
+Xcode 会询问你想把它放在哪
 
 984
 00:41:02,260 --> 00:41:04,360
@@ -4025,12 +4025,12 @@ I'm gonna put it in the same place the calculator is,
 985
 00:41:04,428 --> 00:41:05,094
 in my Developer.
-在我得开发里
+在我的 Developer 文件夹里
 
 986
 00:41:05,163 --> 00:41:06,228
 I'm not gonna be using SCM.
-我不会用 SCM
+我不会用 SCM (Source Code Management)
 
 987
 00:41:06,297 --> 00:41:06,963
@@ -4060,17 +4060,17 @@ And I'm also going to do my standard thing,
 992
 00:41:15,607 --> 00:41:17,706
 where I'm gonna take these supporting files and
-我要把这些 supporting files （支持文件）
+我要把这些支持文件
 
 993
 00:41:17,775 --> 00:41:18,841
 move them out of our way.
-打包放起来
+打包放到 Supporting Files
 
 994
 00:41:18,910 --> 00:41:22,444
 So they don't distract us every time we look at
-这样每次我们看 Navigator （导航）的时候
+这样每次我们看导航器的时候
 
 995
 00:41:22,513 --> 00:41:24,513
@@ -4085,12 +4085,12 @@ Because we don't need those for this demo.
 997
 00:41:27,852 --> 00:41:32,154
 So just like every other thing we've done, we have a view.
-就像我们原来做的，我们现在有一个 view （视图）
+就像我们原来做的，我们现在有一个视图
 
 998
 00:41:32,223 --> 00:41:35,324
 Here's our story board with our view.
-这是我们视图的 story board （故事板）
+这是我们视图的 Storyboard （故事板）
 
 999
 00:41:35,392 --> 00:41:37,393
@@ -4105,7 +4105,7 @@ And of course, we have our controller.
 1001
 00:41:39,931 --> 00:41:41,530
 And I'm gonna delete this out of the controller,
-我要想往常一样
+我要像往常一样
 
 1002
 00:41:41,599 --> 00:41:43,800
@@ -4135,7 +4135,7 @@ the CalculatorBrain.
 1007
 00:41:53,245 --> 00:41:54,811
 We go here, new file, right.
-在这，new file （新建文件），好了
+通过菜单栏的 New > File 新建文件
 
 1008
 00:41:54,879 --> 00:41:58,714
@@ -4145,7 +4145,7 @@ That's how we add new files to our project.
 1009
 00:41:58,783 --> 00:41:59,716
 But this time, for
-创建 CalculatorBrain 时，
+创建 CalculatorBrain 时
 
 1010
 00:41:59,784 --> 00:42:02,985
@@ -4160,7 +4160,7 @@ it wasn't a UI thing.
 1012
 00:42:04,255 --> 00:42:06,288
 It didn't inherit from any iOS class.
-它不继承自任何 IOS 类
+它不继承自任何 iOS 类
 
 1013
 00:42:06,357 --> 00:42:09,391
@@ -4270,12 +4270,12 @@ Alright, so here's our FaceView.
 1034
 00:42:48,466 --> 00:42:51,567
 And you can see right off the bat in FaceView, we get this.
-现在在 FaceView 中，你立刻就能看到，我们有这些东西
+在 FaceView 中，你立刻就能看到
 
 1035
 00:42:51,636 --> 00:42:54,970
 Which is our draw, okay, the draw with the rect.
-在我们的绘制方法，绘制矩形的
+我们的绘制方法，draw(_ rect:)
 
 1036
 00:42:55,039 --> 00:42:57,340
@@ -4290,7 +4290,7 @@ And that's because for
 1038
 00:42:59,110 --> 00:43:03,145
 performance reasons, iOS doesn't want to ask views that
-性能的原因，IOS 不会让
+性能的原因，iOS 不会让
 
 1039
 00:43:03,214 --> 00:43:05,214
@@ -4300,12 +4300,12 @@ don't actually do any drawing, to draw.
 1040
 00:43:05,283 --> 00:43:06,816
 Because it has to keep a backing store for
-它会把他们留在后台
+否则 iOS 需要分配后端存储
 
 1041
 00:43:06,884 --> 00:43:09,818
 them, and there's memory stores and all this stuff.
-那里会存储所有这些东西
+以及内存来存储所有这些东西
 
 1042
 00:43:09,887 --> 00:43:11,921
@@ -4340,12 +4340,12 @@ it doesn't draw anything.
 1048
 00:43:23,501 --> 00:43:26,803
 But I actually wanna briefly go back to our storyboard, and
-让我们回到我们的故事板
+让我们回到我们的 Storyboard
 
 1049
 00:43:26,871 --> 00:43:28,938
 put a FaceView in the storyboard.
-把 FaceView 放到故事板里
+把 FaceView 放到 Storyboard 里
 
 1050
 00:43:29,007 --> 00:43:32,875
@@ -4355,7 +4355,7 @@ And it's really simple but I want to show it to you.
 1051
 00:43:32,943 --> 00:43:33,976
 if we go down to the Object Palette at the bottom here,
-现在看一下下方的 Object Palette （对象调色板）
+现在看一下下方的 Object Palette （对象库）
 
 1052
 00:43:33,977 --> 00:43:35,010
@@ -4365,17 +4365,17 @@ And again,
 1053
 00:43:35,080 --> 00:43:36,512
 where we got our buttons and
-这是我们的按钮和
+这里有我们的按钮和标签
 
 1054
 00:43:36,580 --> 00:43:38,481
 labels, you know I could search here forever.
-标签，就像你知道的，我们总可以在这里搜索
+但就算我们永远在这里找
 
 1055
 00:43:38,550 --> 00:43:40,316
 There's no FaceView in here.
-这里没有 FaceView 啊
+这里就是没有 FaceView 啊
 
 1056
 00:43:40,385 --> 00:43:43,252
@@ -4395,7 +4395,7 @@ It's actually almost at the very bottom, it's View.
 1059
 00:43:47,091 --> 00:43:49,291
 See, it represents a rectangular region which draws
-看，它代表一个矩形区域，
+看，它代表一个矩形区域
 
 1060
 00:43:49,360 --> 00:43:51,293
@@ -4440,12 +4440,12 @@ So I'm actually gonna use the blue dash lines to
 1068
 00:44:11,382 --> 00:44:15,518
 make this thing fit the entire space, you see that?
-让这些东西去填充所有的空白，看到了吗？
+让这个视图去填充所有的空白，看到了吗？
 
 1069
 00:44:15,586 --> 00:44:18,988
 Now, well, I also want to do the Ctrl-dragging to
-好了，我还要按住Ctrl键，然后拖拽到这个边缘
+好了，我还要按住 control 键，然后拖拽到这个边缘
 
 1070
 00:44:19,056 --> 00:44:21,590
@@ -4475,12 +4475,12 @@ feature which is down here, this button.
 1075
 00:44:31,135 --> 00:44:33,068
 You see this button in the lower right here?
-看到这个右下方的按钮了吗？
+看到这个右下方的“解决自动布局问题”按钮了吗？
 
 1076
 00:44:33,137 --> 00:44:34,603
 It says Resolve Auto Layout Issues.
-它说 Resolve Auto Layout Issues （解决自动布局问题）
+它说 Resolve Auto Layout Issues
 
 1077
 00:44:34,672 --> 00:44:35,705
@@ -4490,22 +4490,22 @@ If you click that,
 1078
 00:44:35,773 --> 00:44:39,942
 one of the choices is to Reset to Suggested Constraints.
-其中一个选项是 Reset to Suggested Constraints （重设至建议约束）
+其中一个选项是 Reset to Suggested Constraints
 
 1079
 00:44:40,011 --> 00:44:43,779
 So that is the system saying, I'll make your constraints for
-那就是说系统在说，我会根据你对蓝色虚线的做法
+那就是说系统在说，我会根据你对齐的蓝色虚线
 
 1080
 00:44:43,848 --> 00:44:45,914
 you based on what you did with the blue lines.
-为你建立约束
+为你重设至建议约束
 
 1081
 00:44:45,983 --> 00:44:47,483
 So I'm gonna look at your blue lines.
-我们来看看蓝色虚线
+系统会看看蓝色虚线
 
 1082
 00:44:47,552 --> 00:44:49,752
@@ -4540,22 +4540,22 @@ Size Inspector （尺寸检查器）
 1088
 00:45:01,799 --> 00:45:02,998
 And if you look down towards the bottom of
-如果你看下边这个
+如果你看尺寸检查器下边
 
 1089
 00:45:03,067 --> 00:45:05,400
 the Size Inspector, you can see all your constraints.
-尺寸检查器，你会看见你的所有约束
+你会看见你的所有约束
 
 1090
 00:45:05,469 --> 00:45:07,536
 And look at that, perfect Trailing Space to Superview,
-看看，完美，Trailing Space to Superview （扩展到父视图）
+看看，完美，尾部到父视图间距的约束
 
 1091
 00:45:07,605 --> 00:45:08,738
-leading space here.
-把空白引导到这里
+Leading Space to Superview.
+前部到父视图间距的约束
 
 1092
 00:45:08,806 --> 00:45:10,640
@@ -4600,17 +4600,17 @@ Now, the other crucial thing I have to do here
 1100
 00:45:27,725 --> 00:45:30,559
 is that this is currently a UIView.
-这是目前的 UIView
+这目前是 UIView
 
 1101
 00:45:30,628 --> 00:45:33,496
 If I go over here to this inspector here,
-看一下 inspector （检查器）这里
+看一下 Inspector（检查器）这里
 
 1102
 00:45:33,564 --> 00:45:37,299
 which is the Identity Inspector, you can see that
-这个 Identity Inspector （定义检查器）
+这个 Identity Inspector
 
 1103
 00:45:37,368 --> 00:45:41,637
@@ -4620,7 +4620,7 @@ the class of the selected thing is UIView.
 1104
 00:45:41,706 --> 00:45:43,372
 So no matter what I put in my draw,
-所以无论我放什么在我的绘制里
+所以无论我放什么在我的绘制方法里
 
 1105
 00:45:43,441 --> 00:45:44,406
@@ -4644,28 +4644,28 @@ And now I've made this a FaceView.
 
 1109
 00:45:55,586 --> 00:45:57,119
-all the code I put in my draw is going to draw in here.
-我放在绘制里的所有代码都将在这里绘制出来
+So now, all the code I put in my draw 
+现在，我放在绘制方法里的所有代码
 
 1110
 00:45:57,120 --> 00:45:58,653
-So now,
-现在，
+is going to draw in here.
+都将在这里绘制出来
 
 1111
 00:45:58,723 --> 00:45:59,488
 And that's it,
-搞定了，
+搞定了
 
 1112
 00:45:59,556 --> 00:46:02,158
 that's all I need to do to put a custom view into my UI.
-这就是我要在我的 UI 里定义自定义视图所要做的全部了
+这就是我要在我的 UI 里添加自定义视图所要做的全部了
 
 1113
 00:46:02,226 --> 00:46:03,825
 It's very common to want to put a custom view
-在 UI 定义自定义视图
+在 UI 中使用自定义视图
 
 1114
 00:46:03,894 --> 00:46:04,426
@@ -4695,12 +4695,12 @@ So what are we gonna do to draw a face?
 1119
 00:46:16,607 --> 00:46:20,243
 Well, I'm just gonna draw the kind of emoji face, this round
-我们将绘制一个像 emoji 类似的脸，这个圆作为
+我们将绘制一个类似表情符号（emoji）的脸
 
 1120
 00:46:20,311 --> 00:46:23,779
 circle for a head, two round eyes, a little smile.
-头，两个圆作为眼睛，再来点微笑
+圆作为头，两个圆作为眼睛，再来点微笑
 
 1121
 00:46:23,848 --> 00:46:25,614
@@ -4720,7 +4720,7 @@ kind of the head of this face.
 1124
 00:46:31,556 --> 00:46:33,456
 And I just start doing that in draw here.
-我在这开始画
+我在 draw 方法里开始画
 
 1125
 00:46:33,524 --> 00:46:36,758
@@ -4735,7 +4735,7 @@ So I don't actually even need to get the context.
 1127
 00:46:39,597 --> 00:46:41,864
 That UI get graphics, get context, don't even do that.
-图像啊，上线文啊，统统不需要
+不需要 UIGraphicsGetCurrentContext
 
 1128
 00:46:41,933 --> 00:46:43,499
@@ -4765,17 +4765,17 @@ I need to kind of think of how big my face is.
 1133
 00:46:51,942 --> 00:46:54,543
 I want my face, if I'm in portrait or landscape, I also
-我想要我的脸成为肖像或者是风景的一部分
+我想要我的脸适应竖屏和横屏
 
 1134
 00:46:54,611 --> 00:46:57,613
 want my face to kind of be the smaller of the two sides,
-我也想让两边，高度，宽度
+我想让脸取两边最小值
 
 1135
 00:46:57,682 --> 00:46:58,481
 the height or the width.
-变小一点
+高度和宽度的最小值
 
 1136
 00:46:58,549 --> 00:46:59,248
@@ -4790,12 +4790,12 @@ Because I always want the face to fully fit in there.
 1138
 00:47:02,519 --> 00:47:06,522
 So I'm going to let my skullRadius, so that's gonna
-我要让头的半径，这就是我
+我要让 skullRadius，这就是我
 
 1139
 00:47:06,590 --> 00:47:10,559
 be the radius of my skull, okay, equal the minimum.
-头的半径，可以等于最小值
+头的半径，等于两个中的最小值
 
 1140
 00:47:10,628 --> 00:47:11,927
@@ -4805,17 +4805,17 @@ And there's this nice min,
 1141
 00:47:11,996 --> 00:47:14,129
 you see that min function right there?
-你看这是一个最小值函数，对吧？
+这个求最小值的 min 函数，对吧？
 
 1142
 00:47:14,198 --> 00:47:16,799
 It's generic-typed like an array.
-像是一个 generic-typed 的数组
+像数组一样，使用了范型
 
 1143
 00:47:16,868 --> 00:47:18,200
-Array of T, so that's the T.
-T 类型数组，那就是说 T
+Array of T, so that's t he T.
+像数组的 T 一样，这里的 T
 
 1144
 00:47:18,268 --> 00:47:19,368
@@ -4825,7 +4825,7 @@ It will take any type.
 1145
 00:47:19,437 --> 00:47:20,836
 And it will compare two things, and
-他会比较两样东西，然后
+这个函数会比较两样东西，然后
 
 1146
 00:47:20,905 --> 00:47:22,572
@@ -4835,17 +4835,17 @@ return the one that's the lowest.
 1147
 00:47:22,640 --> 00:47:25,808
 So I'm going to get the minimum of my bound,
-我要获取边界的最小值
+我要获取边界宽和高的最小值
 
 1148
 00:47:25,876 --> 00:47:30,412
 bounds.size.width and my bounds.size.height.
-bounds.size.width 和 bounds.size.height（边界的宽和高）
+bounds.size.width 和 bounds.size.height
 
 1149
 00:47:30,481 --> 00:47:32,814
 And then I'm going to divide it by 2, because it's radius,
-然后除以2，因为是半径
+然后除以 2，因为是半径
 
 1150
 00:47:32,883 --> 00:47:33,915
@@ -4865,7 +4865,7 @@ I'm just making it so that my radius of my skull will be
 1153
 00:47:39,023 --> 00:47:41,424
 smaller of the width or height.
-和高度或宽度一样小
+和高度和宽度中最小的一样
 
 1154
 00:47:41,492 --> 00:47:43,392
@@ -4905,7 +4905,7 @@ Yeah?
 1161
 00:48:04,215 --> 00:48:07,483
 He says because it'll start from the top left.
-他说因为它会从左上方开始
+这位同学说因为坐标会从左上方开始
 
 1162
 00:48:07,551 --> 00:48:08,684
@@ -4920,12 +4920,12 @@ Anyone else wanna take a stab at this one?
 1164
 00:48:12,490 --> 00:48:16,558
 It's because center, while it is the center of this view,
-那是因为中心，那是视图的中心
+那是因为中心，虽然是视图的中心
 
 1165
 00:48:16,627 --> 00:48:18,995
 it's in the wrong coordinate system.
-那是错误的坐标系统
+但在错误的坐标系统
 
 1166
 00:48:19,063 --> 00:48:21,330
@@ -4935,7 +4935,7 @@ This center is in my superview's coordinate system
 1167
 00:48:21,398 --> 00:48:22,464
 and I'm in draw.
-我在绘画里
+我在 draw 方法里
 
 1168
 00:48:22,533 --> 00:48:24,099
@@ -4970,12 +4970,12 @@ So I can go down to this one okay,
 1174
 00:48:37,114 --> 00:48:39,481
 convert CGPoint from view, and
-把 CGPoint 从 view 转换到
+从 view 转换 CGPoint
 
 1175
 00:48:39,550 --> 00:48:44,353
 I could convert this point center from my superview.
-我能转换这个点到我父视图的中心
+我能转换父视图的中心
 
 1176
 00:48:46,290 --> 00:48:48,423
@@ -5010,7 +5010,7 @@ hm, why are they doing that?
 1182
 00:48:59,203 --> 00:49:03,505
 A simpler way to do it is probably just to create
-一个简单的解决方案可能是只创建一个点
+一个简单的解决方案可能是创建一个点
 
 1183
 00:49:03,574 --> 00:49:08,944
@@ -5020,22 +5020,22 @@ a point, a CGPoint, that is my bounds midX, that's my
 1184
 00:49:09,013 --> 00:49:14,850
 middle X, see, that's a rect thing, and my bounds midY.
-中间的 X，矩形的东西，bounds.midY
+横坐标的中点（这是 CGRect 的属性），bounds.midY
 
 1185
 00:49:14,919 --> 00:49:17,453
-Okay.
+Okay. That makes sense?
 好了
 
 1186
 00:49:17,521 --> 00:49:18,687
-So I'm just creating the point that is the center,
-我只是创建了一个在中心的点
+So I'm just creating the point
+我只是创建了
 
 1187
 00:49:18,688 --> 00:49:19,854
-That makes sense?
-这有什么意义吗？
+that is the center,
+一个在中心的点
 
 1188
 00:49:19,923 --> 00:49:22,525
@@ -5070,7 +5070,7 @@ So I'm gonna say let path equal a UIBezierPath.
 1194
 00:49:33,071 --> 00:49:34,836
 Now, when we look at the constructors for
-好了，我们来看看这个 UIBezierPath 容器
+好了，我们来看看 UIBezierPath 的构造器
 
 1195
 00:49:34,905 --> 00:49:38,807
@@ -5085,32 +5085,32 @@ Which is actually what I'm going to use.
 1197
 00:49:40,411 --> 00:49:42,611
 We could draw an oval, which would be cool,
-我要画一个椭圆，这会很酷
+我可以画一个椭圆，这会很酷
 
 1198
 00:49:42,679 --> 00:49:44,346
 except the argument is a rect, and
-除了这其实是一个矩形
+除了参数其实是一个矩形
 
 1199
 00:49:44,414 --> 00:49:45,614
 I have the center and the radius.
-我有中心点和半径
+但我只有中心点和半径
 
 1200
 00:49:45,682 --> 00:49:47,983
 So I can't, I don't really want to use oval.
-我不能，我不能真的用椭圆
+所以我不能画椭圆
 
 1201
 00:49:48,052 --> 00:49:48,984
 We could draw a rectangle.
-我们应该画一个矩形
+我们也能画一个矩形
 
 1202
 00:49:49,052 --> 00:49:51,186
 I want a circle, so that's no good.
-我想要一个圆，这可不好了
+我想要一个圆，所以不能用这个构造器
 
 1203
 00:49:51,255 --> 00:49:52,121
@@ -5125,7 +5125,7 @@ I actually want the circle,
 1205
 00:49:53,423 --> 00:49:55,090
 not a rectangle of any kind, okay?
-不是一个像这样的矩形啊？
+不是一个像这样的矩形
 
 1206
 00:49:55,158 --> 00:49:57,560
@@ -5164,8 +5164,8 @@ All right, so it wants to know the center of the arc.
 
 1213
 00:50:11,876 --> 00:50:14,309
-Well, that's my skull center, right?
-好了，我头的中心?
+Well, that's my skullCenter, right?
+那就是我头的中心, skullCenter
 
 1214
 00:50:14,378 --> 00:50:16,478
@@ -5175,7 +5175,7 @@ It wants to know the radius of the arc, well,
 1215
 00:50:16,547 --> 00:50:19,080
 that's my skullRadius, this easy.
-这就是我头的半径，这很简单
+这就是我头的半径 skullRadius，这很简单
 
 1216
 00:50:19,149 --> 00:50:20,749
@@ -5245,17 +5245,17 @@ Around the circle.
 1229
 00:50:50,481 --> 00:50:53,949
 Start at zero and then it will go around, pi over two,
-从 0 开始，然后 π，2π
+从 0 开始，然后 π/2
 
 1230
 00:50:54,018 --> 00:50:56,852
 pi, you know, then pi is 180 degrees and
-你知道的，π 代表 180 度
+π，你知道的，代表 180 度
 
 1231
 00:50:56,921 --> 00:50:59,521
 then around to two pi is 360 degrees.
-2π 代表 360 度
+最后到 2π，360 度
 
 1232
 00:50:59,590 --> 00:51:02,191
@@ -5285,7 +5285,7 @@ And then clockwise is whether I'm gonna draw the arc around
 1237
 00:51:10,835 --> 00:51:12,301
 clockwise or the other way.
-围绕 clockwise 或者其他路径
+顺时针还是逆时针
 
 1238
 00:51:12,370 --> 00:51:14,336
@@ -5305,12 +5305,12 @@ So I'll just say false.
 1241
 00:51:17,775 --> 00:51:19,841
 There you go, counter-clockwise.
-好了，counter-clockwise
+也就是逆时针
 
 1242
 00:51:19,910 --> 00:51:22,110
 Now, I got a warning here, an error.
-现在，我要警示这里，一个错误
+现在，我这里有一个错误
 
 1243
 00:51:22,179 --> 00:51:22,845
@@ -5320,17 +5320,17 @@ Let's look at that error.
 1244
 00:51:22,913 --> 00:51:26,147
 What does it say, it says the binary operator* (and is
-他说，二进制操作符 * (and is
+他说，二元运算符 *
 
 1245
 00:51:26,216 --> 00:51:29,485
 pointing to this little multiplier right here) cannot
-pointing to this little multiplier right here) 不能
+指的是这个乘号
 
 1246
 00:51:29,553 --> 00:51:32,121
 be applied to 'Int' and 'Double'.
-不能被转换为 Int 和 Double
+不能让 Int 和 Double 相乘
 
 1247
 00:51:32,189 --> 00:51:33,489
@@ -5345,7 +5345,7 @@ These arguments to UIBezierPath,
 1249
 00:51:36,827 --> 00:51:39,428
 the floating point arguments like a startAngle and
-浮点点参数像是开始角度
+这些浮点参数，像是开始角度
 
 1250
 00:51:39,497 --> 00:51:42,531
@@ -5369,18 +5369,18 @@ All drawing has to be CGFloat.
 
 1254
 00:51:52,610 --> 00:51:56,011
-So is Double.pi, is that a CG float?
-所有 Double.pi 是一个 CG 浮点类型吗
+So is Double.pi, is that a CGFloat?
+Double.pi 是 CGFloat 类型吗
 
 1255
 00:51:56,080 --> 00:51:57,045
 No, it's a double.
-当然不是，它是一个 double 类型
+当然不是，它是 Double 类型
 
 1256
 00:51:57,114 --> 00:51:59,214
 Is two a CGFloat?
-两个是一个 CGFloat 吗
+2 是一个 CGFloat 吗
 
 1257
 00:51:59,283 --> 00:52:00,382
@@ -5395,17 +5395,17 @@ But Swift would have to infer that it's a CGFloat.
 1259
 00:52:02,853 --> 00:52:05,187
 And right now Swift is confused about what that's
-现在 Swift 困惑了，这应该
+现在 Swift 困惑了，不知道是不是
 
 1260
 00:52:05,256 --> 00:52:07,122
 supposed to be because it knows this argument is
-是它知道的
+因为它知道的
 
 1261
 00:52:07,191 --> 00:52:08,724
 supposed to be a CGFloat, but
-一个 CGFloat 类型参数，但是
+参数是一个 CGFloat
 
 1262
 00:52:08,793 --> 00:52:10,425
@@ -5420,7 +5420,7 @@ So Swift doesn't know what to infer here.
 1264
 00:52:12,697 --> 00:52:15,264
 Doesn't know whether to refer that to as a Double or
-不知道应该指定为 Double 类型或者
+不知道应该推断为 Double 类型还是
 
 1265
 00:52:15,332 --> 00:52:16,265
@@ -5430,12 +5430,12 @@ CGFloat 类型
 1266
 00:52:16,333 --> 00:52:20,302
 So the fix here, luckily, CGFloat has a pi.
-如何修复呢，幸运的是，CGFloat 有 π
+如何修复呢？幸运的是，CGFloat 也有 pi 属性
 
 1267
 00:52:22,105 --> 00:52:23,439
-Just like double does.
-就像 double 那样
+Just like Double does.
+就像 Double 那样
 
 1268
 00:52:23,507 --> 00:52:26,308
@@ -5445,7 +5445,7 @@ Now, everybody's happy, because Swift knows how to
 1269
 00:52:26,377 --> 00:52:29,745
 interpret this literal as a CGFloat.
-如何把解释成一个 CGFloat 类型
+把 2 推断成一个 CGFloat 类型
 
 1270
 00:52:29,813 --> 00:52:32,247
@@ -5465,12 +5465,11 @@ It's only complained that we don't use path yet.
 1273
 00:52:36,220 --> 00:52:37,519
 Okay?
-Okay？
 
 1274
 00:52:37,587 --> 00:52:39,554
 Excellent, so now we got this arc going all around.
-太棒了，我们现在有一个弧形圆了
+太棒了，我们现在有一个圆弧了
 
 1275
 00:52:39,623 --> 00:52:42,558
@@ -5505,37 +5504,37 @@ So I'm gonna get UIColor, let's say, blue color and
 1281
 00:52:56,240 --> 00:53:00,743
 we'll say set, and by the way there's setFill and setStroke.
-我们看到 set，顺便说下，这有 setFill 和 setStroke （填充和 描边)
+然后 set。顺便说下，这有 setFill，setStroke
 
 1282
 00:53:00,811 --> 00:53:02,110
 There's also just set.
-这些都仅仅是设置上就可以了
+和 set
 
 1283
 00:53:02,179 --> 00:53:04,346
 Set sets both the fill and the stroke.
-设置填充和描边
+set 包含了另外两个，同时设置填充和描边
 
 1284
 00:53:04,415 --> 00:53:06,482
 Here we only need to set the stroke color, but
-这里我们需要设置的只有描边颜色，
+这里我们需要设置的只有描边颜色
 
 1285
 00:53:06,550 --> 00:53:09,351
 I'll just say set so that you learn about that one.
-但我设置目的是为了让你们学习一下
+但我用 set 是为了让你们学习一下
 
 1286
 00:53:09,420 --> 00:53:13,521
 And now I can just say path stroke okay and
-描边已经好了
+然后用 path.stroke()
 
 1287
 00:53:13,590 --> 00:53:15,924
 it's going to stroke that path.
-要开始描边了
+就开始描边了
 
 1288
 00:53:15,992 --> 00:53:17,025
@@ -5600,12 +5599,12 @@ Okay, why is that happening?
 1300
 00:53:58,802 --> 00:53:59,234
 That it's doing that.
-这就应该这样
+为什么你要这样对我
 
 1301
 00:53:59,303 --> 00:54:00,401
 Well, that's that content
-这是我们讨论
+这是 contentMode，我们讨论
 
 1302
 00:54:00,470 --> 00:54:01,904
@@ -5615,22 +5614,22 @@ mode thing I was talking about, right?
 1303
 00:54:01,972 --> 00:54:05,307
 It's not calling my draw when it goes to this other
-当他达到其他边界的时候，
+当他变换到其他边界的时候
 
 1304
 00:54:07,744 --> 00:54:11,113
 bound size right there, so it's just scaling the bits.
-他不会调用我的绘图，所以只是缩放它
+他不会调用我的 draw 方法，只是拉伸它
 
 1305
 00:54:11,181 --> 00:54:12,547
 So let's fix both of those things,
-让我们把两边这些修复一下
+让我们把这两个都修复一下
 
 1306
 00:54:12,616 --> 00:54:15,784
 let's make it go in a little bit, and let's fix those bits.
-我们让它往里一点，然后修复这些
+我们让它往里一点，然后修复拉伸的问题
 
 1307
 00:54:15,853 --> 00:54:18,887
@@ -5650,7 +5649,7 @@ Lets get rid of this.
 1310
 00:54:23,527 --> 00:54:28,029
 Okay, click on our View, and go over to Utilities.
-好了，点击我们的 View，转到 Utilities（工具）
+好了，点击我们的视图，转到 Utilities（实用工具）
 
 1311
 00:54:28,098 --> 00:54:30,866
@@ -5660,12 +5659,12 @@ Inspect this with the Attributes Inspector and look,
 1312
 00:54:30,934 --> 00:54:34,603
 the very first one, Content Mode, Scales to Fill.
-第一个，Content Mode （内容模式），Scales to Fill （自适应填充）
+第一个，内容模式是 Scales to Fill（自适应填充）
 
 1313
 00:54:34,671 --> 00:54:37,605
 Every time the bounds change it's scales to bits to fill
-每次边界改变，它就会缩放并且去填充
+每次边界改变，它就会拉伸并且去填充
 
 1314
 00:54:37,674 --> 00:54:40,375
@@ -5675,17 +5674,17 @@ and we want Redraw.
 1315
 00:54:40,444 --> 00:54:42,777
 We could also probably use Center, but
-我们也可以用中心点
+我们也可以用居中
 
 1316
 00:54:42,846 --> 00:54:45,280
 I actually want Redraw because if my bounds got smaller for
-但是，我们事实上我们是因为边界变小了，才要重新绘制
+但是，我们事实上我们边界变小了
 
 1317
 00:54:45,349 --> 00:54:47,148
 example, I'd wanna draw my face smaller.
-比如说我想把脸画的小一点
+所以我想把脸画的小一点
 
 1318
 00:54:47,217 --> 00:54:49,951
@@ -5700,7 +5699,7 @@ Okay, so there's Redraw.
 1320
 00:54:51,121 --> 00:54:53,588
 That fixed that one, that was easy to fix.
-那个修复了那个，这很很容易修复
+那个修复了拉伸，这很很容易修复
 
 1321
 00:54:53,657 --> 00:54:56,725
@@ -5715,17 +5714,17 @@ To do that, I'm actually gonna create a var called scale.
 1323
 00:55:02,699 --> 00:55:06,268
 And it's a drawing thing so it's a CGFloat.
-那是绘制出来的，所以它是一个 CGFloat
+这是和绘制相关的，所以它是一个 CGFloat
 
 1324
 00:55:06,336 --> 00:55:09,871
 And I'm going to set it to let's say 0.9 and
-我现在要配置它，我们说 0.9
+我现在把它设为 0.9
 
 1325
 00:55:09,940 --> 00:55:11,406
 that's going to mean 90%.
-那就是说 90% 的意思
+那就是 90% 的意思
 
 1326
 00:55:11,475 --> 00:55:13,574
@@ -5740,7 +5739,7 @@ multiply it by that scale.
 1328
 00:55:15,846 --> 00:55:17,780
 So by multiplying my radius by 0.9 or
-把半径乘以 0.9 或者 
+把半径乘以 0.9 或者
 
 1329
 00:55:17,848 --> 00:55:21,450
@@ -5750,7 +5749,7 @@ So by multiplying my radius by 0.9 or
 1330
 00:55:21,518 --> 00:55:23,585
 Kind of in from the edges by 90%.
-类似边界的 90%
+对于边界来说稍微缩进来了些
 
 1331
 00:55:23,653 --> 00:55:29,358
@@ -5765,7 +5764,7 @@ So the 90% worked.
 1333
 00:55:34,998 --> 00:55:40,235
 Clearly, it's in 90% and the rotation works also.
-很清晰，它是 90% 并且旋转也同样好使了
+很明显，它是 90%，并且旋转后也是
 
 1334
 00:55:40,303 --> 00:55:42,204
@@ -5785,12 +5784,12 @@ Alright, so, what's the next thing we wanna do?
 1337
 00:55:46,043 --> 00:55:47,943
 Well, we wanna draw eyes and
-我们要开始画眼睛、
+我们要开始画眼睛
 
 1338
 00:55:48,012 --> 00:55:50,579
 a mouth and things like that, I wanna start thinking
-嘴类似的东西，让我先思考一下
+和嘴这些东西，让我先思考一下
 
 1339
 00:55:50,647 --> 00:55:52,814
@@ -5800,17 +5799,17 @@ a little bit about my internal architecture.
 1340
 00:55:52,883 --> 00:55:55,817
 And I'm kinda liking the idea of having some private funcs,
-我刚倾向于有一些内部私有方法
+我倾向于有一些内部私有方法
 
 1341
 00:55:55,886 --> 00:55:58,454
 like give me the path for the skull.
-比如给我一个 pathForSkull (头的轮廓)
+比如 pathForSkull 给我头的轮廓
 
 1342
 00:56:00,257 --> 00:56:04,526
 And have that return a UIBezierPath that
-然后返回一个我可以
+然后返回一个可以
 
 1343
 00:56:04,595 --> 00:56:06,562
@@ -5820,12 +5819,12 @@ I can then stroke.
 1344
 00:56:06,630 --> 00:56:08,130
 And then I'll have the same thing, give me the path for
-我将要对眼睛做同样的事情，给我一个眼睛的路径
+我将要对眼睛做同样的事情，给我眼睛的路径
 
 1345
 00:56:08,199 --> 00:56:09,464
 the eye, give me a path for
-给我一个嘴的路径
+给我嘴的路径
 
 1346
 00:56:09,533 --> 00:56:10,398
@@ -5850,7 +5849,7 @@ that creates this path for the skull and
 1350
 00:56:16,573 --> 00:56:19,941
 I'll just put it up here and I'll just return this path.
-然后我把它放在这，然后我会返回这些路径
+然后我把它放在这，返回这个路径
 
 1351
 00:56:20,010 --> 00:56:24,412
@@ -5875,17 +5874,17 @@ Now, another thing is the skullRadius and
 1355
 00:56:32,156 --> 00:56:34,756
 the skullCenter, I want all the other things like the eyes
-和 skullCenter，我想要全部的其他东西都像眼睛
+和 skullCenter，我想要全部的其他东西都
 
 1356
 00:56:34,825 --> 00:56:38,059
 and the mouth to all be relative to that.
-和嘴一样都和那个关联
+像眼睛和嘴这些和它保持相对位置和大小
 
 1357
 00:56:38,128 --> 00:56:40,462
 So if I make my skull small I need the eyes to get smaller,
-我会使轮廓变小，我需要眼睛变小
+如果使轮廓变小，我需要眼睛变小
 
 1358
 00:56:40,531 --> 00:56:42,730
@@ -5895,27 +5894,26 @@ the mouth to get smaller, everything to move in.
 1359
 00:56:42,799 --> 00:56:44,232
 So I'm gonna use these two guys,
-我要用到这两个东西
+我要把这两个东西
 
 1360
 00:56:44,301 --> 00:56:46,801
 I'm gonna make them instead of being local variables in draw,
-我要用它们替代 draw 里的本地变量
+把本地变量从 draw 函数里移出来
 
 1361
 00:56:46,870 --> 00:56:51,707
 I'm gonna move them out and make them be private vars.
-我要把他们移出来然后让他们变成私有变量
+让他们变成私有变量
 
 1362
 00:56:51,775 --> 00:56:55,410
 And in specific they're gonna be private computed vars.
-具体点说他们是可计算的私有变量
+具体点说他们是计算型私有变量
 
 1363
 00:56:55,479 --> 00:56:58,346
 So I'm just gonna take what they were before and
-
 
 1364
 00:56:58,415 --> 00:57:01,516
