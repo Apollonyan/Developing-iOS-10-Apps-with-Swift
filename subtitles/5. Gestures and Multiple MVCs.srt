@@ -2395,1983 +2395,2478 @@ Let's talk a little bit about some of the other concrete
 
 599
 00:27:42,194 --> 00:27:46,163
-gestures.
+gestures. There is pinching, pinching is going to do with the scale.
+比如 Pinch（捏合），它是用来缩放的手势
 
 600
 00:27:46,232 --> 00:27:48,932
 So I put my fingers down, two fingers on the screen.
+我把两只手指放到屏幕上
 
 601
 00:27:49,000 --> 00:27:50,968
 Now, the scale is 1.0.
+假定现在缩放比为 1.0
 
 602
 00:27:51,037 --> 00:27:53,370
 If I put my fingers twice as far apart,
+如果我把手指分开到原来两倍的距离
 
 603
 00:27:53,438 --> 00:27:54,971
 now the scale is 2.0.
+缩放比就变成了 2.0
 
 604
 00:27:55,040 --> 00:27:58,108
 If I go down to half as small now, the scale is 0.5.
+如果我缩小距离到原来的一半，缩放比就是 0.5
 
 605
 00:27:58,177 --> 00:27:59,876
 So that's what pinch is doing.
+这就是 Pinch（捏合）的效果
 
 606
 00:27:59,945 --> 00:28:02,179
 It just constantly reporting what the scale is,
+连续不断地报告相对于初始状态
 
 607
 00:28:02,247 --> 00:28:04,147
 relative to what the pinch started.
+当前的缩放比是多少
 
 608
 00:28:04,216 --> 00:28:06,482
 Now, that scale is not read-only var, so
+注意，scale 并不是一个只读变量
 
 609
 00:28:06,551 --> 00:28:07,884
 you can reset it as well.
+你也可以重置它
 
 610
 00:28:07,953 --> 00:28:10,587
 And then, you'll get incremental scale.
+这样你就能获得缩放的增量部分
 
 611
 00:28:10,655 --> 00:28:12,923
 How much the scale has changed since the last time?
+scale 相对于上次变化了多少
 
 612
 00:28:12,991 --> 00:28:16,693
 There's almost like you keep resetting the initial finger
+如果你每次都重置 scale 为 1
 
 613
 00:28:16,762 --> 00:28:19,663
 down, to scale, if you set that scale to one.
+效果就好像你在不断重复放下手指并进行缩放
 
 614
 00:28:19,732 --> 00:28:22,199
 That's how you can get incremental scale.
+以上说的是如何获得缩放的增量
 
 615
 00:28:22,267 --> 00:28:23,433
 We'll do that in the demo as well.
+我们会在 Demo 中演示这一点
 
 616
 00:28:23,502 --> 00:28:25,602
 And then, you also get velocity.
+然后，你还能获得它的速度
 
 617
 00:28:25,671 --> 00:28:29,839
 How many points for a second or whatever this thing is, or
+每秒变化了多少个“点”或者别的叫法也可以
 
 618
 00:28:29,908 --> 00:28:31,074
 not really a point fact.
+实际上不是“点”
 
 619
 00:28:31,143 --> 00:28:33,042
 It's a scale factor.
+而是缩放的因子
 
 620
 00:28:33,111 --> 00:28:34,478
 The percent of scale is changing,
+缩放变化的百分比
 
 621
 00:28:34,546 --> 00:28:36,046
 how fast it's changing per second.
+表达它每秒变化的快慢
 
 622
 00:28:36,114 --> 00:28:39,482
 There's also a rotation gesture that's two fingers
+还有一个 Rotation（旋转）手势
 
 623
 00:28:39,551 --> 00:28:41,452
 down, like turning a knob.
+用两只手指像拧门把手那样转动
 
 624
 00:28:43,522 --> 00:28:44,254
 Keep the two fingers down.
+放下两只手指
 
 625
 00:28:44,323 --> 00:28:44,921
 You turn them.
+转动它们
 
 626
 00:28:44,990 --> 00:28:46,690
 You get the rotation there.
+这样就完成了旋转手势
 
 627
 00:28:46,759 --> 00:28:48,492
 The rotation is in radians.
+旋转是按弧度算的
 
 628
 00:28:48,560 --> 00:28:51,161
 Again, it's not read only so you could reset it and
+和之前一样，这个也不是只读的
 
 629
 00:28:51,230 --> 00:28:53,263
 get the incremental turning.
+你可以通过重置它来获得增量部分
 
 630
 00:28:53,332 --> 00:28:55,432
-And you also get the velocity and radians per second.
+And you also get the velocity in radians per second.
+你也可以取得以弧度每秒为单位的速度
 
 631
 00:28:55,501 --> 00:28:57,501
 How fast the person is turning their knob.
+表达拧门把手这个动作有多快
 
 632
 00:28:57,569 --> 00:29:01,471
 There's also SwipeGesture, and again this is discrete so
+还有一个 Swipe（轻扫）手势，它是非连续的
 
 633
 00:29:01,540 --> 00:29:05,108
 your handler's only gonna be called once.
+当手势被识别出来的时候
 
 634
 00:29:05,177 --> 00:29:06,677
 If it recognizes this gesture.
+你的处理方法只会被调用一次
 
 635
 00:29:06,745 --> 00:29:07,777
 Now, because of that,
+因为这点
 
 636
 00:29:07,846 --> 00:29:10,213
 you have to configure a SwipeGesture recognizer.
+你必须事先设置好轻扫手势的识别器
 
 637
 00:29:10,282 --> 00:29:11,014
 You create it and
+创建它
 
 638
 00:29:11,082 --> 00:29:13,484
-then you wanna set bars here like direction.
+then you wanna set vars here like direction.
+然后你可能想要设置一些变量，比如方向
 
 639
 00:29:13,552 --> 00:29:16,386
 You wanna left swipe, right swipe, up, down.
+上、下、左、右哪一个
 
 640
 00:29:16,454 --> 00:29:17,554
 And how many fingers?
+用多少手指？
 
 641
 00:29:17,623 --> 00:29:18,588
 Two finger swipe?
+两个手指扫
 
 642
 00:29:18,657 --> 00:29:20,324
 Three finger swipe?
+还是三个手指扫
 
 643
 00:29:20,392 --> 00:29:21,942
-You set all that up when you create it because then it's
+One finger swipe?
+还是一个手指扫？
 
 644
 00:29:21,943 --> 00:29:23,493
-One finger swipe?
+You set all that up when you create it because then it's
+在创建时就设置好所有这些
 
 645
 00:29:23,562 --> 00:29:24,728
 just gonna be looking for that.
+之后系统要做的只是查找符合设置的手势
 
 646
 00:29:24,796 --> 00:29:27,197
 And when it finds it, it's gonna call your handler once.
+一旦发现触发了这个手势，只会调用一次你的处理方法
 
 647
 00:29:27,266 --> 00:29:29,465
 Cuz it's discrete.
+因为它是非连续的
 
 648
 00:29:29,534 --> 00:29:32,001
 Then there's tap gesture, similar to the swipe gesture
+然后是 Tap（点击）手势，在你必须事先设置这点上
 
 649
 00:29:32,070 --> 00:29:33,137
 in that you have to configure it.
+它和轻扫手势类似
 
 650
 00:29:33,205 --> 00:29:35,639
 Number of taps, like is it a double tap and
+点击的次数，比如是不是双击
 
 651
 00:29:35,707 --> 00:29:38,275
 is it two finger tap, you do that.
+是不是要求两只手指点击
 
 652
 00:29:38,343 --> 00:29:41,711
 And then, it's gonna call, this is not purely a discrete
+然后它会被调用，它不是纯粹的非连续手势
 
 653
 00:29:41,780 --> 00:29:45,381
 gesture, like SwipeGesture, really you're looking for
+这点与轻扫手势不太一样
 
 654
 00:29:45,450 --> 00:29:48,685
 the state ended with a tap as well, but
+你也可以获知它结束的状态
 
 655
 00:29:48,753 --> 00:29:50,654
 still you have to preconfigure it like a swipe, so
+但是你还是要像轻扫手势那样事先设置
 
 656
 00:29:50,722 --> 00:29:53,490
 it behaves almost exactly like a discrete gesture.
+它表现上大体还是非连续的
 
 657
 00:29:55,260 --> 00:29:57,828
 So hopefully this will make a lot more sense when we show in
+希望这些解释可以在之后的 Demo 中变得更有意义 
 
 658
 00:29:57,896 --> 00:30:00,563
 the demo here, our demo we're gonna add three gestures,
+Demo 中会演示三种手势
 
 659
 00:30:00,632 --> 00:30:03,766
 one is a pinch, that's just gonna make the face bigger and
+其一是捏合，用来放大
 
 660
 00:30:03,835 --> 00:30:04,968
-Which has nothing to do with a model that view only so
+smaller.
+或者缩小脸
 
 661
 00:30:04,969 --> 00:30:06,102
-smaller.
+Which has nothing to do with a model that view only so
+这和模型无关
 
 662
 00:30:06,172 --> 00:30:08,672
 we're gonna put that handler in the view.
+所以我们会把处理方法放在视图中
 
 663
 00:30:08,741 --> 00:30:13,176
 And then, we gonna do pan, moving around.
+然后我们还会加入拖动，用来移动它
 
 664
 00:30:13,245 --> 00:30:14,878
 Actually no, we're gonna swipe instead of pan.
+不对，我们要用轻扫代替拖动
 
 665
 00:30:14,946 --> 00:30:15,779
 Let's use swipe.
+我们还是用轻扫
 
 666
 00:30:15,847 --> 00:30:18,915
 We do swipe and we swipe up to make our face happier or
+我们向上轻扫，让脸变得更高兴
 
 667
 00:30:18,984 --> 00:30:20,183
 swipe down to make it sadder.
+向下轻扫，让脸变得更悲伤
 
 668
 00:30:20,252 --> 00:30:21,985
 And we'll have tab to open and close your eyes.
+我们用点击控制睁眼或闭眼
 
 669
 00:30:22,053 --> 00:30:23,153
 How about that?
+如何？
 
 670
 00:30:23,221 --> 00:30:25,388
 And those last two are obviously gonna affect
+显然后两个会影响模型
 
 671
 00:30:25,457 --> 00:30:28,458
 the model, so the'll have to be handled by the controller.
+所以我们应该在控制器中处理它们
 
 672
 00:30:28,527 --> 00:30:31,994
 So le's go back to our code where we were here and
+我们回到之前的代码中
 
 673
 00:30:32,063 --> 00:30:33,396
 how we can do this.
+我们要怎么做呢
 
 674
 00:30:33,465 --> 00:30:36,633
 Le's do the pinch first.
+我们先实现捏合
 
 675
 00:30:36,701 --> 00:30:39,469
 Now, the pinch does't affect the model, so
+捏合不影响模型
 
 676
 00:30:39,538 --> 00:30:40,837
 it can be handled by the view.
+它可以由视图处理
 
 677
 00:30:40,906 --> 00:30:42,839
 So le's actually go over to our view and
+我们切换到视图 
 
 678
 00:30:42,908 --> 00:30:48,044
 start by writing a handler for a pinch.
+首先写一个捏合的处理方法
 
 679
 00:30:48,113 --> 00:30:50,880
 I'm gonna call this handler func changeScale because
+我将这个处理方法命名为 changeScale
 
 680
 00:30:50,949 --> 00:30:53,683
 that's what it's gonna do, it's gonna be a pinch.
+因为这就是它要做的事情，它是捏合
 
 681
 00:30:53,752 --> 00:30:59,589
 So it's gonna change the scale of our head.
+它会改变头的大小
 
 682
 00:30:59,658 --> 00:31:05,796
 And I'm gonna say byReactingTo a pinchRecognizer,
+我把参数命名为 byReactingTo pinchRecognizer
 
 683
 00:31:05,864 --> 00:31:09,932
 Which will be UI pinch recognizer,
+它的类型是 UIPinchGestureRecognizer
 
 684
 00:31:10,001 --> 00:31:14,904
 pinch gesture recognizer, there we go.
+UIPinchGestureRecognizer，好了 
 
 685
 00:31:14,973 --> 00:31:17,440
 So this is gonna be my handler.
+这会是我的处理方法
 
 686
 00:31:17,509 --> 00:31:20,777
 So it's gonna get this pinch sent back to me all the time.
+它会不断的把捏合的数据发给我
 
 687
 00:31:20,846 --> 00:31:22,712
-I'm not gonna look at that pinch of scale to know
+I'm gonna look at that pinch of scale to know
+我会查看捏合的缩放
 
 688
 00:31:22,781 --> 00:31:24,714
 how much to scale my own scale.
+来决定我自己的缩放
 
 689
 00:31:24,783 --> 00:31:32,321
 So I'm gonna switch on the pinch recognizer's state.
+我要 swich pinchRecognizer.state
 
 690
 00:31:32,390 --> 00:31:35,358
 Remember, it inherits that from UI gesture recognizer,
+记住，state 继承自 UIGestureRecognizer
 
 691
 00:31:35,427 --> 00:31:37,560
 which is the super class of this.
+也就是它的父类
 
 692
 00:31:37,629 --> 00:31:40,696
 And in the case that it is changed, so
+我们用 case .changed
 
 693
 00:31:40,765 --> 00:31:42,532
 the pinch has changed, or
+表示这个捏合改变了
 
 694
 00:31:42,601 --> 00:31:46,869
 if it's ended, which means the user lifted the fingers off.
+还有 .ended，意味着用户把手指抬起
 
 695
 00:31:46,938 --> 00:31:51,307
 Neither of those cases I'm gonna adjust my scale
+这两种情况下，我都让自己的 scale
 
 696
 00:31:51,376 --> 00:31:54,344
 by whatever the scale is of the pinchRecognizer.
+跟随着 pinchRecognizer.scale 改变
 
 697
 00:31:56,548 --> 00:31:57,247
 Simple as that.
+很简单吧
 
 698
 00:31:59,518 --> 00:32:04,320
 Now the thing about this though, what if
+但是假设我从 1.0 倍开始
 
 699
 00:32:04,389 --> 00:32:08,425
 I start my pinch here 1.0, and I move it just a little bit.
+然后只移动一小点
 
 700
 00:32:08,494 --> 00:32:09,058
 Okay, fine.
+一切还算正常
 
 701
 00:32:09,127 --> 00:32:10,961
 My scale gets moved just a little bit.
+我的缩放只改变了一小点
 
 702
 00:32:11,030 --> 00:32:12,896
 What if I moved all the way out to scale 2.0?
+如果我继续扩大直到 2.0 倍
 
 703
 00:32:12,964 --> 00:32:14,764
 Now my face gets 2.0.
+现在脸变成了 2.0 倍大小
 
 704
 00:32:14,833 --> 00:32:17,634
 Now what if I move it out to 2.1?
+如果我继续扩大到 2.1 倍呢？
 
 705
 00:32:17,703 --> 00:32:23,373
 This code's gonna make my face go from 2.1 to 4.2 you see.
+这段代码会把脸从 2.1 倍变为 4.2 倍
 
 706
 00:32:23,442 --> 00:32:26,543
 So I need to keep resetting this scale back to 1 all
+所以我要不断重置 scale 为 1
 
 707
 00:32:26,611 --> 00:32:29,713
 the time so I'm getting incremental scale changes.
+这样我才能取得 scale 的增量
 
 708
 00:32:29,781 --> 00:32:32,949
 So I'm gonna say pinch recognizer .scale = 1.
+所以我要写 pinchRecognizer.scale = 1
 
 709
 00:32:33,017 --> 00:32:35,718
 So I'm just constantly resetting.
+这样就会不断地重置它
 
 710
 00:32:35,787 --> 00:32:37,687
 Every time this gets called, and
+每次这段代码被调用
 
 711
 00:32:37,756 --> 00:32:40,490
 I move my scale up, I'm gonna reset the scale so
+每次我扩大缩放倍数，我都会重置 scale
 
 712
 00:32:40,558 --> 00:32:43,426
 that I'm starting at one again with my pinch.
+这样捏合的 scale 再次从 1 开始
 
 713
 00:32:43,495 --> 00:32:46,963
 That gives me incremental scaling there.
+这样我就获得了 scale 的增量
 
 714
 00:32:47,031 --> 00:32:50,500
 And of course we have to handle all the other cases
+当然我还要处理
 
 715
 00:32:50,569 --> 00:32:51,300
 of the state.
+state 的其他 case
 
 716
 00:32:51,369 --> 00:32:52,302
 But I'm not gonna do anything.
+但是我不会做任何操作
 
 717
 00:32:52,370 --> 00:32:54,270
 So I'm not gonna do anything when the pinch starts.
+捏合的开始，我不会做任何事
 
 718
 00:32:54,339 --> 00:32:55,906
 If it gets cancelled, I don't care.
+它被取消了，我也不关心
 
 719
 00:32:55,975 --> 00:32:57,640
 I'll just leave it whatever scale it was
+这时不论 scale 是多少
 
 720
 00:32:57,709 --> 00:32:58,475
 in at the time, etc.
+都不用管它
 
 721
 00:32:58,543 --> 00:33:02,512
 So I don't need to really handle any other cases.
+其实我完全没必要处理其他 case
 
 722
 00:33:02,581 --> 00:33:03,146
 So that's it.
+这样就完成了
 
 723
 00:33:03,215 --> 00:33:06,849
 The handlers are super easy to write.
+处理方法写起来真的非常容易
 
 724
 00:33:06,918 --> 00:33:07,750
 And this scale by the way,
+这就是如何操作缩放
 
 725
 00:33:07,819 --> 00:33:10,420
 everyone understands, is this scale right here, this bar.
+操作缩放的这部分内容都明白了吗？
 
 726
 00:33:10,489 --> 00:33:11,521
 This is our scale.
+这就是关于 scale
 
 727
 00:33:14,025 --> 00:33:14,758
 Questions about that?
+有什么问题吗？
 
 728
 00:33:15,760 --> 00:33:16,793
 So now we have a handler.
+我们有了一个处理方法
 
 729
 00:33:16,862 --> 00:33:20,030
 We have someone to handle when a pinch happens in the view.
+意味着当捏合在这个视图内触发的时候有人来处理
 
 730
 00:33:20,098 --> 00:33:24,768
 Now all we need to do is add a recognizer that recognizes
+我们还需要最后一道工序，添加一个手势识别器
 
 731
 00:33:24,837 --> 00:33:27,070
 a pinch, and calls the handler.
+识别捏合并调用处理方法
 
 732
 00:33:27,139 --> 00:33:29,639
-So we're gonna do that up here in our face views
+So we're gonna do that up here in our face view's
+我们会在 faceView 的 didSet 中做这件事
 
 733
 00:33:29,707 --> 00:33:32,175
 didSet, because this is the first time we got a hold of
+因为这是我们最早能够控制 faceView 的地方
 
 734
 00:33:32,244 --> 00:33:34,777
 that face view, and I want the face view to be the one
+我希望 faceView
 
 735
 00:33:34,846 --> 00:33:37,681
 that is recognizing this pinch.
+能识别这个捏合
 
 736
 00:33:37,749 --> 00:33:40,583
 So let's start by creating the handlers, so
+让我们开始写处理方法
 
 737
 00:33:40,652 --> 00:33:42,618
 I'm going to create a local variabilities to make it clear
+我将要创建一个局部变量
 
 738
 00:33:42,687 --> 00:33:43,753
 to my handler.
+作为我的处理方法
 
 739
 00:33:43,822 --> 00:33:48,958
-It's a hashtag selector and its the faceView method,
+It's a hashtag selector and it's the faceView method,
+它写作 #selector()，参数填入一个 FaceView 的方法
 
 740
 00:33:49,027 --> 00:33:52,429
 changeScalebyReactingTo, that's my handler.
+FaceView.changeScale(byReactingTo:)，这就是我的处理方法
 
 741
 00:33:54,266 --> 00:33:56,433
 And then I am going to create a recognizer here,
+然后我要在这创建一个识别器
 
 742
 00:33:56,501 --> 00:33:59,069
 a pinch recognizer and
+一个捏合识别器
 
 743
 00:33:59,138 --> 00:34:03,073
 it's going to be a UIPinchGestureRecognizer and
+它将会是一个 UIPinchGestureRecognizer
 
 744
 00:34:03,141 --> 00:34:05,641
 of course we need the target and the action.
+我们需要传入 target 和 acton
 
 745
 00:34:05,710 --> 00:34:07,744
 That's all we need to create a recognizer.
+这就是创建识别器的所有步骤
 
 746
 00:34:07,813 --> 00:34:10,714
 The target is going to be the faceView,
+target 传入 faceView
 
 747
 00:34:11,950 --> 00:34:14,083
 it's gonna handle this thing itself, and
+ faceView 它自己会处理这个手势
 
 748
 00:34:14,152 --> 00:34:15,786
 the action is gonna be this handler.
+action 传入刚刚创建的处理方法
 
 749
 00:34:18,890 --> 00:34:19,455
 That's it.
+这样就完成了
 
 750
 00:34:19,524 --> 00:34:21,991
 Now we just need to take the faceView and
+我们还需要调用 faceView 的方法
 
 751
 00:34:22,060 --> 00:34:25,628
 add GestureRecognizer, the pinchRecognizer.
+addGestureRecognizer(_:) 并传入 pinchRecognizer
 
 752
 00:34:25,697 --> 00:34:27,264
 And by doing that,
+做完这些之后
 
 753
 00:34:27,332 --> 00:34:29,899
 face view is gonna start recognizing pinches.
+faceView 就可以识别捏合了
 
 754
 00:34:29,967 --> 00:34:32,568
 And when it recognizes one, it's gonna send this handler
+当它识别到一个捏合时
 
 755
 00:34:32,637 --> 00:34:35,038
 message right here to the face view.
+它会调用 faceView 里的这个处理方法
 
 756
 00:34:35,107 --> 00:34:40,543
 Now, if you
+让我们试验下
 
 757
 00:34:40,611 --> 00:34:47,917
 hope this is gonna work, let's see.
+它能不能如预期的那样工作
 
 758
 00:34:47,986 --> 00:34:49,286
 When you might ask, by the way,
+对了，这时你们可能要问
 
 759
 00:34:49,354 --> 00:34:52,055
 if I have a mouse here, how do I do a pinch?
+我只有一个鼠标，怎么模拟捏合的动作？
 
 760
 00:34:52,124 --> 00:34:53,723
 In my thing, okay?
+这也正是我要说的
 
 761
 00:34:53,792 --> 00:34:55,858
 Well the magic there is option.
+要借助神奇的 option 键
 
 762
 00:34:55,927 --> 00:34:57,293
 If you press option, and look,
+如果按住 option，看
 
 763
 00:34:57,362 --> 00:34:58,662
 I haven't even touched anything,
+我还没碰任何其他东西
 
 764
 00:34:58,730 --> 00:35:00,763
 see I have two things right there.
+那里已经出现了两个圆圈
 
 765
 00:35:00,832 --> 00:35:02,065
 And they kinda stay the same apart.
+并且它们的中心点保持不变
 
 766
 00:35:02,134 --> 00:35:05,167
 You can also do option shift, and they'll offset them, so
+同时按住 option + shift，就能平移它们的中心点
 
 767
 00:35:05,236 --> 00:35:06,702
 you can pinch anywhere you want.
+所以你可以对任何区域模拟捏合
 
 768
 00:35:06,771 --> 00:35:09,539
-So anyway, do that.
+So anyway, do that. Now, I'm gonna hold the mouse down and pinch
+不多说了，我们赶快试一下。现在我要按住鼠标左键开始模拟捏合
 
 769
 00:35:10,908 --> 00:35:12,975
-No, it's not working.
+Oh! No, it's not working.
+怎么回事！完全没效果
 
 770
 00:35:13,044 --> 00:35:15,812
 See that? How could that possibly be?
+看到了吗，为什么会这样呢？
 
 771
 00:35:15,881 --> 00:35:17,914
 Well, let's take a moment here and debug this.
+好吧，我们花点时间来调试这个问题
 
 772
 00:35:17,983 --> 00:35:19,482
 Why would this not be working?
+为什么没效果呢？
 
 773
 00:35:19,551 --> 00:35:20,750
 I put that pinch gesture.
+我创建了捏合手势
 
 774
 00:35:20,819 --> 00:35:21,818
 I added it.
+添加到视图上
 
 775
 00:35:21,887 --> 00:35:23,420
 I have a handler.
+我也有处理方法
 
 776
 00:35:23,489 --> 00:35:26,322
 Let's start by going to our FaceView and
+我们跳到 FaceView 中
 
 777
 00:35:26,391 --> 00:35:28,691
-putting a break point right here in our handler Bar.
+putting a break point right here in our handler.
+在处理方法内部打一个断点
 
 778
 00:35:28,760 --> 00:35:31,394
 And let's see if it's actually handling it okay.
+让我们看看它是不是真的被调用了
 
 779
 00:35:31,463 --> 00:35:34,130
 So I'm going to go back to here,
+回到这里
 
 780
 00:35:34,199 --> 00:35:37,867
 I'm going to get my option ready, pinch.
+按住 option，然后模拟捏合
 
 781
 00:35:37,936 --> 00:35:38,835
 Alright!
+好
 
 782
 00:35:38,903 --> 00:35:40,169
 It broke.
+断住了
 
 783
 00:35:40,238 --> 00:35:43,339
 It's definitely calling my handler.
+确实调用了我的处理方法
 
 784
 00:35:43,407 --> 00:35:44,173
 So what's the problem?
+那么问题是什么？
 
 785
 00:35:44,242 --> 00:35:44,974
-Let's do nothing.
+Let's try another thing.
+我们试试另一个方法
 
 786
 00:35:45,043 --> 00:35:47,443
 Let's say let's print our scale and
+我们把 scale 的值 print 出来
 
 787
 00:35:47,512 --> 00:35:49,845
 see if our scale is being change.
+看看 scale 是不是不断变化
 
 788
 00:35:49,914 --> 00:35:51,447
 I'm just gonna put a little print line in here.
+我会在这里加一行 print
 
 789
 00:35:51,516 --> 00:35:53,717
 Use a combination of break points here and
+print 和断点结合使用
 
 790
 00:35:53,785 --> 00:35:55,952
 doing print debugging.
+来调试问题
 
 791
 00:35:56,020 --> 00:35:56,786
 And let's,
+接下来
 
 792
 00:35:56,854 --> 00:36:00,190
 let's see if the scale is actually being changed.
+我们看看 scale 到底是不是不断变化
 
 793
 00:36:03,662 --> 00:36:04,293
 Here we go.
+开始
 
 794
 00:36:04,362 --> 00:36:08,164
 Again option key, and, it looks like it is.
+再次按住 option 键，似乎是在改变
 
 795
 00:36:08,233 --> 00:36:09,666
 I see something in the background there.
+我看到了控制台输出了一些结果
 
 796
 00:36:10,602 --> 00:36:12,334
 Sure enough look at that.
+看到这些可以确定了
 
 797
 00:36:12,403 --> 00:36:15,739
 Half, double, it's working perfectly.
+一半，两倍，它完全能正确地工作
 
 798
 00:36:15,807 --> 00:36:17,373
 Why is it not redrawing that face.
+那么为什么脸没有重绘呢
 
 799
 00:36:17,442 --> 00:36:20,076
-Can anyone thing why it's not redrawing.
+Can anyone think why it's not redrawing.
+谁知道它为什么没重绘
 
 800
 00:36:21,279 --> 00:36:22,179
 Cuz we know it's working.
+我们知道刚刚那部分都没问题
 
 801
 00:36:24,049 --> 00:36:29,052
 It's because when you change a var, like scale, right
+这是因为当我们改变一个像 scale 这样的变量的值时
 
 802
 00:36:29,120 --> 00:36:34,391
 here it does not automatically know to redraw your view.
+系统不会自动帮你重绘视图
 
 803
 00:36:35,394 --> 00:36:36,993
 That scale is changing fine.
+scale 改变得很正常
 
 804
 00:36:37,062 --> 00:36:39,462
 But the last time draw was called was when this first
+但是上一次绘制实际上就是最初的那次绘制
 
 805
 00:36:39,530 --> 00:36:42,231
 thing was drawn, you know, this method we have down here
+你们知道的，就是下面这个方法
 
 806
 00:36:42,300 --> 00:36:44,901
 in the FaceView called draw CGRect.
+FaceView 中的 draw(_ rect: CGRect)
 
 807
 00:36:44,970 --> 00:36:45,668
 This thing?
+就是它
 
 808
 00:36:45,737 --> 00:36:47,503
 This was called when it was first drawn and
+它在第一次绘制时被调用
 
 809
 00:36:47,572 --> 00:36:49,406
 it's never been called again.
+之后就再也不会被调用了
 
 810
 00:36:49,474 --> 00:36:54,010
 So without this being called there's no other way to draw
+如果不调用这个方法，我们就没有其他的办法绘制了
 
 811
 00:36:54,079 --> 00:36:57,446
 my face I told you this is the only way to draw.
+我告诉过你们，这个方法是唯一可以完成绘制的
 
 812
 00:36:57,515 --> 00:37:00,783
 So we have to get this to get called.
+我们必须让这个方法被调用
 
 813
 00:37:00,852 --> 00:37:02,185
 And how are we gonna do that?
+应该怎么做呢？
 
 814
 00:37:02,253 --> 00:37:05,355
 Well we're just gonna slide right up here to scale, and
+我们回到上面 scale 的地方
 
 815
 00:37:05,423 --> 00:37:09,292
 any time scale get called, we're gonna do a didSet.
+每次 scale 被改变，我们应该加上一个 didSet
 
 816
 00:37:10,395 --> 00:37:12,795
 Okay, and inside here we're going to
+在这里
 
 817
 00:37:12,864 --> 00:37:14,631
 cause ourself to get drawn.
+我们要让视图绘制自身
 
 818
 00:37:14,699 --> 00:37:15,331
 Now how do I do that?
+现在应该怎么做？
 
 819
 00:37:15,400 --> 00:37:17,701
 Do I call draw like that?
+我可以直接调用 draw() 吗？
 
 820
 00:37:19,904 --> 00:37:22,204
 No, I see a lot of shaking heads no and absolutely not.
+我看到许多人摇头了，答案是绝对不能
 
 821
 00:37:22,273 --> 00:37:23,940
 Of course we never call draw.
+当然我们不能调用 draw()
 
 822
 00:37:24,008 --> 00:37:26,375
 We get huge trouble if we do that.
+那样做会产生巨大的问题
 
 823
 00:37:26,444 --> 00:37:27,376
 What do we call instead?
+有什么替代方案呢？
 
 824
 00:37:27,445 --> 00:37:28,645
 Anyone remember from the slides?
+之前的幻灯片提到过，有人还记得吗？
 
 825
 00:37:30,915 --> 00:37:32,048
 SetNeedsDisplay.
+是 setNeedsDisplay()
 
 826
 00:37:33,684 --> 00:37:36,152
 So we're telling the system something about us has
+这样做相当于告诉系统“我们这里有东西改变了”
 
 827
 00:37:36,221 --> 00:37:38,455
 changed, we need to be re-displayed.
+“我们要被重绘”
 
 828
 00:37:38,523 --> 00:37:41,924
 So please, at your earliest convenience, re-display us.
+“所以请你尽快重绘我们”
 
 829
 00:37:41,993 --> 00:37:42,658
 And that's what it's gonna do.
+以上就是它要做的
 
 830
 00:37:42,727 --> 00:37:46,830
 And in fact, we want this on all of our things here.
+实际上我们希望把这个行为加到这里所有的变量上
 
 831
 00:37:50,569 --> 00:37:54,204
 Any time any of these public things get changed by someone,
+不论何时，只要这些公开的变量被外界改变了
 
 832
 00:37:54,272 --> 00:37:55,805
 we want to re-display.
+我们都希望进行重绘
 
 833
 00:37:55,874 --> 00:37:58,074
 Let's put this comment up here.
+把这段注释上移一下放在这里
 
 834
 00:37:58,143 --> 00:38:00,910
 So this is very common to have this little snippet of code
+这段代码经常跟在这样的变量后面
 
 835
 00:38:00,979 --> 00:38:03,746
 after any var, that when you change it,
+当你改变它时
 
 836
 00:38:03,815 --> 00:38:05,315
 would change the way things look.
+会导致视图的外观也随之改变
 
 837
 00:38:06,684 --> 00:38:08,518
 Now when we run we can actually go back here and
+我们运行之前，回到这里
 
 838
 00:38:08,586 --> 00:38:09,652
 get rid of this print.
+不再需要这个 print 了
 
 839
 00:38:09,720 --> 00:38:15,525
 Pretty confident it's
+我有足够的把握
 
 840
 00:38:15,594 --> 00:38:20,629
 going to work now.
+现在可以正常工作了
 
 841
 00:38:20,698 --> 00:38:24,567
 Here I go on option again, and sure enough, look, our scale.
+我再次按住 option 键，非常确信，看
 
 842
 00:38:24,636 --> 00:38:27,703
 Since our scale changes here, that setNeedsDisplay is
+只要 scale 改变，setNeedsDisplay 就被调用
 
 843
 00:38:27,772 --> 00:38:30,740
 asking to draw and iOS is accommodating us by drawing.
+请求系统进行绘制，系统也很乐意地帮了我们
 
 844
 00:38:33,378 --> 00:38:34,143
 That's pretty cool,
+这真的很酷
 
 845
 00:38:34,211 --> 00:38:37,413
 that was quite simple to put in that gesture to do that.
+加入这样一个手势还是相当简单的
 
 846
 00:38:37,482 --> 00:38:40,082
 So let's go back now to our controller, and
+让我们回到控制器中
 
 847
 00:38:40,151 --> 00:38:45,021
 think about doing a gesture like a tap, to open the eyes.
+考虑如何添加一个点击手势，控制眼睛的睁闭
 
 848
 00:38:45,089 --> 00:38:48,391
 Now again, the view could be the handler for that.
+再次，虽然视图能够处理这个手势
 
 849
 00:38:48,460 --> 00:38:50,260
 It arguably knows how to open an close its eyes.
+视图本身最知道应该如何睁闭它自己的眼睛
 
 850
 00:38:50,328 --> 00:38:53,229
 But if we made the view be the handler for a tap, and it
+但是如果我们让视图处理点击
 
 851
 00:38:53,298 --> 00:38:56,866
 opened the eyes, it would get out of sync with the model.
+眼睛睁开了，但是模型和视图之间没有得到同步
 
 852
 00:38:56,935 --> 00:38:59,569
 Cuz the model is what says whether the eyes are open,
+因为模型中定义了眼睛是否是睁开的
 
 853
 00:38:59,638 --> 00:39:00,303
 not the face view.
+而 FaceView 中没有
 
 854
 00:39:00,371 --> 00:39:01,770
 Face view is a slave.
+FaceView 只是苦力
 
 855
 00:39:01,839 --> 00:39:03,205
 It's a minion of the controller,
+是控制器的下属
 
 856
 00:39:03,274 --> 00:39:04,907
 it's supposed to do what the controller wants, so
+控制器要它做什么，它就应该做什么
 
 857
 00:39:04,976 --> 00:39:05,642
 we can't do that.
+所以这件事不能让它做
 
 858
 00:39:05,710 --> 00:39:08,678
 So we're gonna have to have the controller handle a tap,
+所以我们不得不让控制器来处理点击
 
 859
 00:39:08,747 --> 00:39:09,712
 and change it in the model.
+同时改变模型中的数据
 
 860
 00:39:09,781 --> 00:39:12,248
 And then it'll automatically
+因为那行代码的存在
 
 861
 00:39:12,317 --> 00:39:15,384
 update in the UI because of this line of code right here.
+它会自动地更新界面
 
 862
 00:39:15,453 --> 00:39:19,055
 Any time we change our model it's gonna update our UI.
+任何时候我们改变了模型，界面就会跟着更新
 
 863
 00:39:19,124 --> 00:39:21,624
 So we're gonna just have to have a handler for
+所以我们必须实现一个点击的处理方法
 
 864
 00:39:21,693 --> 00:39:24,193
 tap that just changes our model.
+它的任务仅仅是改变模型
 
 865
 00:39:24,262 --> 00:39:26,296
 And that's all it needs to do.
+无需关心其他事情
 
 866
 00:39:27,832 --> 00:39:29,332
 Let's try that handler first.
+让我们先尝试实现处理方法
 
 867
 00:39:29,400 --> 00:39:32,702
 Let's call that handler, how about toggleEyes
+我们先为它命名，叫做 toggleEyes 怎么样
 
 868
 00:39:32,770 --> 00:39:34,671
 cuz we're gonna tap and it's gonna with the eyes.
+因为我们要进行点击，这个行为会作用于眼睛
 
 869
 00:39:34,739 --> 00:39:37,206
 If its opened it'll close, close it'll open.
+如果眼睛是闭着的，会睁开，反之亦然
 
 870
 00:39:37,275 --> 00:39:42,345
 And toggleEyes is a tapGestureRecognizer thing,
+并且 toggleEyes 要处理的是一个 UITapGestureRecognizer
 
 871
 00:39:42,414 --> 00:39:47,016
 so I'm gonna say byReacting to a tapRecognizer
+所以我跟一个参数叫做 byReactingTo tapRecognizer
 
 872
 00:39:47,085 --> 00:39:51,254
 which is a type UITapGestureRecognizer.
+它的类型是 UITapGestureRecognizer
 
 873
 00:39:51,323 --> 00:39:53,356
 And here I'm just gonna say,
+它的内部我要写
 
 874
 00:39:53,425 --> 00:39:56,625
 if the tapRecognizer.state is ended.
+if tapRecognizer.state == .ended
 
 875
 00:39:56,694 --> 00:39:58,194
 So the tap happened.
+说明点击发生了
 
 876
 00:39:58,262 --> 00:40:03,066
 Then I'm gonna let eyes, which is FacialExpression.Eyes,
+然后 let eyes: FacialExpression,Eyes
 
 877
 00:40:03,135 --> 00:40:06,135
 just so that you know what type that is,
+这样你就知道它的类型了
 
 878
 00:40:06,204 --> 00:40:10,206
 equal whatever my current expression's eyes are,
+不管当前的 expression.eyes 是什么
 
 879
 00:40:10,275 --> 00:40:14,810
 if the current expressions eyes are closed, then I'm
+如果当前的 eyes 是 closed 的
 
 880
 00:40:14,879 --> 00:40:19,448
 going to have them be open, otherwise they will be closed.
+就让它等于 open，反之则是 closed
 
 881
 00:40:19,517 --> 00:40:21,251
 So I'm just toggling them.
+我只是在切换它的状态
 
 882
 00:40:22,754 --> 00:40:27,323
 So eyes now which is of type FacialExpression.Eyes,
+所以类型为 FacialExpression.Eyes 的 eyes
 
 883
 00:40:27,391 --> 00:40:30,592
 it's got the opposite or whatever the old one had.
+不论之前是什么，取与之相反的那个
 
 884
 00:40:30,661 --> 00:40:35,365
 Now, I'm gonna set my model to equal a new facial expression.
+现在我要对这个模型赋予一个新的 FacialExpression
 
 885
 00:40:35,433 --> 00:40:36,766
 That new facial expression's eyes
+新的表情中的 eyes
 
 886
 00:40:36,835 --> 00:40:39,768
 are gonna be this new eyes I just calculated.
+将会是经过刚才计算得到的新的 eyes
 
 887
 00:40:39,837 --> 00:40:42,104
 And the mouth is gonna be whatever the old mouth was.
+而 mouth 还保持原来的状态
 
 888
 00:40:42,173 --> 00:40:44,874
 I'm not doing anything to the mouth, so I'm just gonna say
+我不会对 mouth 做任何改变
 
 889
 00:40:44,942 --> 00:40:47,376
 expression.mouth, for the old one.
+只需传入旧的 expression.mouth
 
 890
 00:40:47,445 --> 00:40:49,278
 So here I'm changing my model and
+以上就是我改变模型的过程
 
 891
 00:40:49,347 --> 00:40:51,380
 that's gonna cause this didSet to happen.
+这将会触发 didSet
 
 892
 00:40:51,449 --> 00:40:53,082
 It's gonna re-draw my view and
+它将会重绘我的视图
 
 893
 00:40:53,151 --> 00:40:55,318
 the eyes are gonna be the opposite of what they were.
+眼睛将会是和之前相反的状态
 
 894
 00:40:57,421 --> 00:40:58,821
 So that's the handler.
+以上就是这个处理方法
 
 895
 00:40:58,890 --> 00:40:59,489
 That's gonna handle that.
+它将会处理点击
 
 896
 00:40:59,558 --> 00:41:02,825
 So now we have to add a tap gesture recognizer
+我们还要向我们的 FaceView 中
 
 897
 00:41:02,894 --> 00:41:03,692
 to our face view.
+添加一个点击手势识别器
 
 898
 00:41:03,761 --> 00:41:08,064
 So this time let's just say let tapRecognizer =
+这次我们直接写
 
 899
 00:41:08,133 --> 00:41:10,600
 UITapGestureRecognizer.
+let tapRecognizer = UITapGestureRecognizer(target:action:)
 
 900
 00:41:10,668 --> 00:41:13,703
 And as always we just specify target and selector.
+和往常一样我们要指定 target 和 selector
 
 901
 00:41:13,772 --> 00:41:15,838
 So the target this time is not faceView,
+这次 target 不是 faceView
 
 902
 00:41:15,907 --> 00:41:17,139
 up here it was faceView.
+虽然上一个是 faceView
 
 903
 00:41:17,208 --> 00:41:19,542
 Now the target is myself.
+但是这次是控制器自身
 
 904
 00:41:19,611 --> 00:41:22,644
 And the action is going to be,
+action 将会是
 
 905
 00:41:22,713 --> 00:41:24,547
 again I can say faceView controller or
+当前这个 FaceViewController
 
 906
 00:41:24,616 --> 00:41:28,751
 I can indicate self dot, we'll do that, toggle eyes.
+我可以写 self.toggleEyes(byReactingTo:)
 
 907
 00:41:33,592 --> 00:41:36,825
 And we need to put around this #selector.
+而且需要用 #selector() 括起来
 
 908
 00:41:36,894 --> 00:41:41,397
 Cuz we need to turn it into that particular selector.
+因为我们需要将它转化为指定的 selector
 
 909
 00:41:41,466 --> 00:41:43,966
 Then again, I don't actually need that self in there,
+然后，这里实际上不需要写 self
 
 910
 00:41:44,034 --> 00:41:45,885
 Looks a little better cuz it defaults to my own methods.
+不写好看一点，因为默认就是它自身的方法
 
 911
 00:41:45,886 --> 00:41:47,737
 I can just do that.
+我可以把 self 去掉
 
 912
 00:41:49,173 --> 00:41:51,040
 So we got the tap recognizer created.
+这样 tapRecognizer 就创建好了
 
 913
 00:41:51,109 --> 00:41:53,610
 Now we have to configure the tap recognizer
+我们还要设置一下它
 
 914
 00:41:53,678 --> 00:41:56,011
 because we want it to happen on single taps.
+因为我们希望这是个单击
 
 915
 00:41:56,080 --> 00:41:59,148
 So we could say for example numberOfTapsRequired = 1,
+所以我们可以写 tapRecognizer.numberOfTapsRequired = 1
 
 916
 00:41:59,216 --> 00:42:01,618
 that happens to be the default, so probably I won't
+但是默认就是如此，所以实际上没必要写
 
 917
 00:42:01,686 --> 00:42:03,786
 need to actually say that, but we'll do it anyway.
+不过我们还是写上
 
 918
 00:42:03,855 --> 00:42:06,655
 And now we need to turn it on and we do that by adding
+然后我们需要通过 addGestureRecognizer(_:) 方法
 
 919
 00:42:06,724 --> 00:42:08,625
 a gestureRecognizer to the FaceView.
+把它加到 faceView 上才能使它生效
 
 920
 00:42:09,961 --> 00:42:12,662
 If you don't do this step of adding it to some view
+如果把它加到视图上这步你忘做了的话
 
 921
 00:42:12,731 --> 00:42:15,498
 then that view is not going to be recognizing this.
+那么视图就没法识别这个手势
 
 922
 00:42:15,567 --> 00:42:17,500
 So it's not gonna be doing anything.
+它不会做任何事情
 
 923
 00:42:17,569 --> 00:42:19,836
 Just an easy step to kind of forget.
+这是很容易忘记的一步
 
 924
 00:42:20,938 --> 00:42:26,008
 All right, so let's
+接下来，让我们看看
 
 925
 00:42:26,077 --> 00:42:30,612
 see if that works.
+它能不能正常工作
 
 926
 00:42:30,681 --> 00:42:34,683
 All right, so tap, it's working.
+点几下，一切正常
 
 927
 00:42:34,752 --> 00:42:38,554
 Every time I tap, it opens and closes the eyes.
+每次我点击，通过改变模型中的数据
 
 928
 00:42:38,622 --> 00:42:39,856
 And it's changing it in the model.
+使得眼睛睁开或者闭上
 
 929
 00:42:41,292 --> 00:42:42,158
 So it changes the model,
+它通过改变模型
 
 930
 00:42:42,226 --> 00:42:45,761
 that causes the update UI to happen, this update UI does
+使得 updateUI() 被调用
 
 931
 00:42:45,830 --> 00:42:48,464
 does this little thing to update the eyes.
+updateUI() 会更新眼睛的状态
 
 932
 00:42:48,532 --> 00:42:53,536
 When it calls eyes open over here okay, eyesOpen.
+当它调用 eyesOpen 属性的时候
 
 933
 00:42:53,605 --> 00:42:55,504
-When it gets set, it calls NeedsDisplay,
+When it gets set, it calls setNeedsDisplay,
+当这个属性被设置时，会调用 setNeedsDisplay()
 
 934
 00:42:55,573 --> 00:42:57,106
 which causes the thing to redraw.
+进而会使系统进行重绘
 
 935
 00:42:57,174 --> 00:42:59,909
 Everyone got that chain of events?
+所有人都弄清这个事件链了吗？
 
 936
 00:43:01,780 --> 00:43:04,146
 Let's do one other one here.
+让我们再做另外一个
 
 937
 00:43:04,215 --> 00:43:06,081
 Which is to do a swipe.
+做一个轻扫
 
 938
 00:43:06,150 --> 00:43:08,951
 So I'm gonna have a swipe, where swiping up makes
+我会添加一个轻扫
 
 939
 00:43:09,019 --> 00:43:12,388
 our face happier and swiping down makes it sadder.
+向上会让脸变得更高兴，向下则是更悲伤
 
 940
 00:43:12,456 --> 00:43:14,890
 So this has to be handled in the controller.
+这也要放在控制器内处理
 
 941
 00:43:14,959 --> 00:43:15,524
 Why?
+为什么？
 
 942
 00:43:15,593 --> 00:43:17,092
 Because this is affecting the model.
+因为这个也影响了模型
 
 943
 00:43:17,161 --> 00:43:18,761
 Happiness is in the model.
+高兴的程度存储在模型中
 
 944
 00:43:18,829 --> 00:43:21,831
 So I'm gonna have a func called increaseHappiness.
+我会加一个方法叫做 increaseHappiness
 
 945
 00:43:23,535 --> 00:43:26,135
 It's just going to set the expression equal to
+它会把 expression 设置为 
 
 946
 00:43:26,204 --> 00:43:28,071
 the existing expression but happier.
+expression.happier
 
 947
 00:43:30,608 --> 00:43:32,942
 I'll do a func decreaseHappiness,
+我还会加一个方法 decreaseHappiness
 
 948
 00:43:33,011 --> 00:43:35,077
 i's gonna be the opposite,
+它正好相反
 
 949
 00:43:35,146 --> 00:43:38,213
 expression = the current expression but sadder.
+expression = expression.sadder
 
 950
 00:43:38,282 --> 00:43:40,349
 And these vars here, happier and
+这两个变量 happier 和 sadder
 
 951
 00:43:40,418 --> 00:43:44,454
 sadder, those are in the FacialExpression, right here.
+它们是 FacialExpression 的属性，在这里
 
 952
 00:43:44,522 --> 00:43:46,355
 You can look at those later to see how they work.
+之后你们可以看看它们是如何工作的
 
 953
 00:43:46,424 --> 00:43:47,523
 But basically the're just creating a new
+基本上它们只是创建了一个新的 FacialExpression
 
 954
 00:43:47,592 --> 00:43:50,058
 FacialExpression where the mouth is happier or
+让嘴型变化，显得更高兴
 
 955
 00:43:50,127 --> 00:43:51,461
 the mouth is sadder.
+或者更悲伤
 
 956
 00:43:51,529 --> 00:43:53,428
 And then the mouth knows how to be happy or sad or
+Mouth 通过枚举中原始值的机制
 
 957
 00:43:53,497 --> 00:43:56,132
 it's using this raw value mechanism in enum, hopefully
+能够知道如何变得更高兴或者更悲伤
 
 958
 00:43:56,200 --> 00:43:58,567
 you've figured that out in your reading assignment.
+希望你们在之前的阅读作业中已经理解了这点
 
 959
 00:43:58,636 --> 00:44:01,503
 This is a great opportunity to go figure it out if you
+如果没有，现在是个很好的机会
 
 960
 00:44:01,572 --> 00:44:03,206
 didn't.
+来理解它
 
 961
 00:44:03,274 --> 00:44:08,744
 Back in our controller here, we now have these handlers.
+回到我们的控制器中，我们已经有了这些处理方法
 
 962
 00:44:08,813 --> 00:44:11,414
 Notice these handlers have no argument.
+注意到它们都没有参数
 
 963
 00:44:11,482 --> 00:44:13,182
 Why do these handlers not have an argument,
+为什么这些处理方法没有参数呢
 
 964
 00:44:13,251 --> 00:44:15,551
 like this ByReactingTo guy down here.
+像下面这个 byReactingTo 
 
 965
 00:44:15,620 --> 00:44:17,786
 Because a swipe gesture is discrete, so
+因为轻扫是非连续的
 
 966
 00:44:17,855 --> 00:44:20,456
 we never have to look at the swipe gesture when it happens,
+我们没必要查看它的状态
 
 967
 00:44:20,525 --> 00:44:22,258
 we know it happened and that's all we need to know.
+我们只需要知道它是不是发生了
 
 968
 00:44:22,327 --> 00:44:25,160
 So these handlers do not ever need to look at the state or
+所以在这些处理方法中，我们没必要查看手势的状态
 
 969
 00:44:25,229 --> 00:44:28,297
 anything like that, like a tap gesture or a swipe gesture or
+或者其他属性，我们不需要传入一个代表点击、轻扫
 
 970
 00:44:28,365 --> 00:44:30,032
-a hand gesture.
+a pan gesture.
+或拖动手势的参数
 
 971
 00:44:30,101 --> 00:44:34,403
 Let's add these guys to there, so
+让我们在这里加些代码
 
 972
 00:44:34,471 --> 00:44:39,074
 I'm gonna let swipeUpRecognizer =
+我会写 let swipeUpRecognizer = UISwipeGestureRecognizer(target:action:)
 
 973
 00:44:39,143 --> 00:44:46,849
 UISwipeGestureRecognizer, again, target and action.
+我们要设置 target 和 action
 
 974
 00:44:46,918 --> 00:44:49,318
 Again, the target is myself because it affects the model.
+然后，target 设置为 self，因为影响了模型
 
 975
 00:44:49,386 --> 00:44:53,522
 And I'm gonna have this be the selector increaseHappiness
+我要把 increaseHappiness 作为 selector 
 
 976
 00:44:53,591 --> 00:44:55,958
 because this is swipe up.
+因为这个是向上扫
 
 977
 00:44:56,027 --> 00:44:57,827
 Okay, now I have to configure it.
+好了，接下来要设置它的参数
 
 978
 00:44:57,896 --> 00:45:01,764
 SwipeUpRecognizer's direction is up, and
+swipeUpRecognizer.direction = .up
 
 979
 00:45:01,832 --> 00:45:03,733
 now I'm gonna add it,
+然后我要把它加到视图上
 
 980
 00:45:03,801 --> 00:45:09,272
 faceView.addGestureRecognizer- (swipeUpRecognizer).
+faceView.addGestureRecognizer(swipeUpRecognizer)
 
 981
 00:45:09,340 --> 00:45:10,772
 And since swipeDown is so similar,
+然后 swipeDown 也是类似的
 
 982
 00:45:10,841 --> 00:45:13,176
 I'm just going to copy and paste here.
+我只要复制粘贴一下
 
 983
 00:45:13,244 --> 00:45:15,011
 Copy and paste.
+复制，粘贴
 
 984
 00:45:15,079 --> 00:45:19,415
 And we will change swipe up to be swipe down.
+然后我们要把 swipeUp 改为 swipeDown
 
 985
 00:45:22,720 --> 00:45:24,854
 And of course, the direction here now is down.
+当然 direction 也要改为 .down
 
 986
 00:45:24,922 --> 00:45:29,192
 And it's decreaseHappiness and so I decrease.
+它的 selector 改为 decreaseHappiness
 
 987
 00:45:29,260 --> 00:45:31,994
 So I've added these two recognizers, up and
+这样我就加完了两个识别器
 
 988
 00:45:32,063 --> 00:45:32,929
 down swiping.
+向上轻扫和向下轻扫
 
 989
 00:45:32,997 --> 00:45:34,697
 And they're going to increase and
+它们要做是增加或降低
 
 990
 00:45:34,766 --> 00:45:37,065
 decrease our happiness in the model.
+模型中的高兴程度
 
 991
 00:45:37,134 --> 00:45:40,136
 And when the model changes, update UI is called.
+当模型改变时，updateUI() 会被调用
 
 992
 00:45:40,204 --> 00:45:42,505
 We're gonna look up mouth curvature in that dictionary.
+我们会查看那个字典中的嘴部曲线
 
 993
 00:45:42,573 --> 00:45:44,206
-We're gonnaset the mouth curvature,
+We're gonna set the mouth curvature,
+我们会设置嘴部曲线
 
 994
 00:45:44,275 --> 00:45:46,475
 that's gonna do the didSet, we're in good shape.
+进而这会导致 didSet 被调用
 
 995
 00:45:46,544 --> 00:45:49,778
 So here we have a pretty sad guy, we'll open his eyes,
+当前这个人看起来相当不高兴，我们让它睁开眼睛
 
 996
 00:45:49,847 --> 00:45:51,914
 then we'll close, no leave them open.
+然后闭上眼睛
 
 997
 00:45:51,983 --> 00:45:53,015
 Now we're gonna make him happier, and
+我们让他变得高兴点
 
 998
 00:45:53,083 --> 00:45:54,049
 happier, and happier.
+再高兴点，更高兴点
 
 999
 00:45:54,118 --> 00:45:55,551
 Woo, he's really happy!
+喔，他看起来相当高兴
 
 1000
 00:45:55,620 --> 00:45:59,055
 And swiping down, no, not so happy after all.
+然后向下轻扫，没那么高兴了
 
 1001
 00:46:02,193 --> 00:46:03,659
 So that's it for gestures.
+这就是手势部分
 
 1002
 00:46:03,728 --> 00:46:07,129
 Gestures are super-simple and super-powerful cuz all
+手势非常简单，同时非常强大
 
 1003
 00:46:07,198 --> 00:46:10,532
 the logic going into detecting was that a swipe, or was that
+因为所有检测是轻扫、点击、拖动还是其他手势的逻辑
 
 1004
 00:46:10,601 --> 00:46:12,969
 a pan, or what was that, was all done for you by iOS.
+iOS 都帮你做好了
 
 1005
 00:46:16,074 --> 00:46:21,243
 Back to our
+回到我们的
 
 1006
 00:46:21,312 --> 00:46:26,716
 slides.
+幻灯片中
 
 1007
 00:46:26,785 --> 00:46:29,618
 Time to talk about building bigger apps,
+是时候谈谈怎么创建更大型的应用了
 
 1008
 00:46:29,687 --> 00:46:33,622
 apps where we're gonna have multiple MVCs involved.
+将会牵扯到多个 MVC 的应用
 
 1009
 00:46:33,691 --> 00:46:36,391
 Not just our calculator MVC, but multiple MVCs.
+不仅仅只有一个计算器的 MVC，而是多个 MVC
 
 1010
 00:46:36,460 --> 00:46:39,528
 Not just our face view controller MVC, but
+ 不仅仅只有一个 FaceViewController 的 MVC
 
 1011
 00:46:39,597 --> 00:46:41,230
 multiple MVCs.
+而是更多 MVC
 
 1012
 00:46:41,298 --> 00:46:45,735
 So I showed you this picture from the MVC discussion and
+所以我给你们展示这张关于 MVC 讨论的图
 
 1013
 00:46:45,803 --> 00:46:48,937
 you can see that the MVCs relationship to each other is
+你们可以看到 MVC 之间的关系
 
 1014
 00:46:49,006 --> 00:46:54,209
 that one or more MVCs is part of the view of another MVC.
+一个或多个 MVC 可能是另外一个 MVC 的视图中的一部分
 
 1015
 00:46:54,278 --> 00:46:57,713
 So let's see how that happens.
+让我们看看这是如何产生的
 
 1016
 00:46:57,781 --> 00:47:03,085
 We combine these MVCs using, (I don't wanna say special,
+虽然我不想指定某个特例
 
 1017
 00:47:03,154 --> 00:47:06,188
 because you could write your own), but
+因为你们可以实现自己的 MVC
 
 1018
 00:47:06,257 --> 00:47:09,391
 built-in MVCs that come with iOS.
+但是这里我们使用 iOS 内建的 MVC 来组合其他 MVC
 
 1019
 00:47:09,460 --> 00:47:12,027
 And these MVCs are built
+这些 MVC 使用其他 MVC
 
 1020
 00:47:12,096 --> 00:47:14,796
 using other MVCs as part of their view.
+来构成自己视图的一部分
 
 1021
 00:47:14,865 --> 00:47:17,533
 So, yes you can build your own.
+这种 MVC 你也可以自己创建
 
 1022
 00:47:17,601 --> 00:47:20,535
 So, for example, here's the three that we do most of our
+举例来说，这三个是我们最常用来构建应用的
 
 1023
 00:47:20,604 --> 00:47:22,704
 building with here or pretty much all of our building,
+或者说相当多的多 MVC 应用
 
 1024
 00:47:22,773 --> 00:47:23,706
 multiple MVCs.
+都是用它们构建的
 
 1025
 00:47:23,774 --> 00:47:26,708
 There's the TabBarController, a SplitViewController and
+它们是 UITabBarController，UISplitViewController
 
 1026
 00:47:26,777 --> 00:47:27,977
 a NavigationController.
+和 UINavigationController
 
 1027
 00:47:28,045 --> 00:47:30,879
 So I'm gonna go into detail here about how each of these
+我会深入细节解释下
 
 1028
 00:47:30,948 --> 00:47:34,282
 controllers, are controllers of MVCs
+为什么这些控制器被称为控制 MVC 的控制器
 
 1029
 00:47:34,351 --> 00:47:36,886
 whose view is other MVCs.
+它们的视图是其他 MVC
 
 1030
 00:47:38,189 --> 00:47:41,089
 So here's a TabBarController for example.
+以标签栏控制器为例
 
 1031
 00:47:41,158 --> 00:47:43,158
 If you look at what you see up there,
+你们看屏幕上
 
 1032
 00:47:43,227 --> 00:47:47,195
 there are two MVCs on that screen, two.
+有两个 MVC
 
 1033
 00:47:47,264 --> 00:47:49,732
 One MVC is the TabBarController.
+其一是标签栏控制器
 
 1034
 00:47:49,800 --> 00:47:52,334
 It's what's drawing the little icons at the bottom.
+它负责绘制底部的小图标
 
 1035
 00:47:52,403 --> 00:47:55,103
 You see those icons at the bottom, those four icons?
+你们看到那四个小图标了吗
 
 1036
 00:47:55,172 --> 00:47:56,972
 That MVC is doing that.
+它做的就是这些
 
 1037
 00:47:57,041 --> 00:47:59,642
 The other MVC is the thing surrounded in yellow,
+另一个 MVC 也就是黄色边框的那个
 
 1038
 00:47:59,710 --> 00:48:02,011
 a dashboard MVC, whatever that is,
+一个 Dashboard MVC，它是什么无关紧要
 
 1039
 00:48:02,080 --> 00:48:04,213
 something in the health app here or something.
+它可能是健康应用或者其他某个应用的内容
 
 1040
 00:48:04,281 --> 00:48:07,249
 That is drawn by a completely different MVC,
+它是由另外一个非常复杂的 MVC 绘制的
 
 1041
 00:48:07,318 --> 00:48:08,684
 the dashboard MVC.
+也就是这个 Dashboard MVC
 
 1042
 00:48:08,752 --> 00:48:12,087
 But notice how it's drawing inside the view
+但是注意它是如何把自己的内容绘制在
 
 1043
 00:48:12,156 --> 00:48:13,889
 of the tab bar controller.
+标签栏控制器的内部的
 
 1044
 00:48:13,958 --> 00:48:17,526
 So, you're already seeing here how we're building an MVC out
+其实你们现在看到的正是如何把许多 MVC
 
 1045
 00:48:17,595 --> 00:48:19,461
 of other MVCs.
+嵌入到一个 MVC 中的例子
 
 1046
 00:48:19,530 --> 00:48:23,498
 The tab bar controller has an MVC built into its view.
+这个标签栏控制器把另一个 MVC 嵌入到自己的视图中
 
 1047
 00:48:23,567 --> 00:48:26,568
 Now, what's interesting is this is very object oriented
+非常有趣的一点是底部的那些按钮具有非常面向对象的一面
 
 1048
 00:48:26,637 --> 00:48:29,872
 in that those buttons along the bottom, both the icon and
+不仅是它们的图标和文字
 
 1049
 00:48:29,941 --> 00:48:31,807
 the text on and if they had a badge,
+它们还可能拥有一个标记
 
 1050
 00:48:31,876 --> 00:48:32,875
 that would be there too.
+也会出现在那里
 
 1051
 00:48:32,943 --> 00:48:37,179
 Those are actually not being set in the TabBarController,
+实际上全部这些都不是在标签栏控制器中设置的
 
 1052
 00:48:37,248 --> 00:48:40,082
 the TabBarController is grabbing them from
+标签栏控制器只是从
 
 1053
 00:48:40,151 --> 00:48:41,050
 the dashboard MVC.
+Dashboard MVC 那里抓过来
 
 1054
 00:48:43,754 --> 00:48:45,988
 Grabs them from a var in the dashboard MVC,
+通过 Dashboard MVC 的一个变量抓取过来
 
 1055
 00:48:46,057 --> 00:48:49,724
-it's a view UI controller bar called TabBarItem.
+it's a UIViewController var called TabBarItem.
+它是 UIViewController 的变量，叫做 tabBarItem
 
 1056
 00:48:49,793 --> 00:48:54,263
 And TabBarItem has things like Badges, and titles, and icons,
+并且 tabBarItem 还拥有标记、标题、图标
 
 1057
 00:48:54,332 --> 00:48:56,465
 things like that.
+和其他一些东西
 
 1058
 00:48:56,533 --> 00:49:00,001
 And of course, we can have more MVCs in the tab bar if I
+当然，当我们点击标签栏第二个标签时
 
 1059
 00:49:00,070 --> 00:49:02,271
 click on that second icon right there,
+会出现更多的 MVC
 
 1060
 00:49:02,339 --> 00:49:05,340
 I get a different MVC filling up this space at the top.
+我得到了一个新的 MVC，它填充了屏幕的上部区域
 
 1061
 00:49:05,409 --> 00:49:07,843
 So now, we've seen three MVCs so
+所以，目前我们已经看到了三个 MVC
 
 1062
 00:49:07,912 --> 00:49:11,646
 far, dashboard, health data, and the TabBarController.
+分别是 Dashboard，Health Data 和标签栏控制器
 
 1063
 00:49:11,715 --> 00:49:15,984
 Right, now by the way, if you get too many tabs, if you put
+顺带提一句，如果你有非常多的标签
 
 1064
 00:49:16,053 --> 00:49:19,187
 six MVCs, for example, into a tab bar controller,
+比如一个标签栏控制器中放入六个标签
 
 1065
 00:49:19,256 --> 00:49:22,924
 then you get a little more "..." icon on the right, and
+你会得到一个出现在最右边的代表“更多”的标签
 
 1066
 00:49:22,993 --> 00:49:24,593
 you can click that and the user can get at those.
+用户可以点击它，然后就能看到其余标签
 
 1067
 00:49:24,661 --> 00:49:29,164
 So a tab bar controller could have more than five MVCs.
+所以一个标签栏控制器可以拥有超过五个 MVC
 
 1068
 00:49:29,233 --> 00:49:30,966
 But if you start getting more than five,
+但是一旦真的超过五个
 
 1069
 00:49:31,034 --> 00:49:33,502
 the UI gets a little clunky because their user is having
+界面就会变得有点臃肿
 
 1070
 00:49:33,570 --> 00:49:35,571
 to go over and click that more to get to the other one.
+用户不得不点击“更多”才能访问其余的标签
 
 1071
 00:49:35,640 --> 00:49:37,640
 I kinda recommend if you have a tab bar,
+我建议如果你用了标签栏控制器
 
 1072
 00:49:37,709 --> 00:49:39,808
 don't put more than five MVCs in there.
+尽量不要放超过五个标签
 
 1073
 00:49:39,876 --> 00:49:43,812
 So the question is, when we have the icons at the bottom
+一个问题，当我们有了底部图标
 
 1074
 00:49:43,881 --> 00:49:46,381
 and like, the icons and the titles there.
+图标和它的标题
 
 1075
 00:49:46,450 --> 00:49:48,651
 And I said that it's getting that from the MVCs that
+我刚刚说过它们的来源是
 
 1076
 00:49:48,719 --> 00:49:49,951
 are being shown.
+当前标签页的 MVC
 
 1077
 00:49:50,020 --> 00:49:56,058
 The question is, is the embedded
+问题是当前嵌入的 MVC
 
 1078
 00:49:56,127 --> 00:49:59,027
 MVC, like the health data one, or the dashboard one, is it
+比如 Heath Data 或者 Dashboard
 
 1079
 00:49:59,096 --> 00:50:03,032
 getting the button and the title there from the model?
+它们是从模型中获取按钮的图标和标题的吗？
 
 1080
 00:50:03,101 --> 00:50:05,433
 And the answer is, that's up to that MVC.
+答案是一切取决于那个 MVC
 
 1081
 00:50:05,502 --> 00:50:09,304
 Some MVCs might well do that, probably most are not because
+一些 MVC 可能会这样做，但是绝大多数可能不会
 
 1082
 00:50:09,373 --> 00:50:12,808
 it's kinda more of a UI thing what the icon and the text is.
+图标和它的标题更像是一个界面元素的内容
 
 1083
 00:50:12,877 --> 00:50:15,744
 Probably not part of the model, especially the icon.
+可能不在模型中，尤其是图标
 
 1084
 00:50:15,813 --> 00:50:23,151
 Unlikely to be in the model.
+不太像是来自于模型的
 
 1085
 00:50:23,220 --> 00:50:28,356
 We have more MVCs for a total of five MVCs on the screen.
+现在屏幕上展示的是一个拥有五个 MVC 的多 MVC 应用
 
 1086
 00:50:28,425 --> 00:50:29,691
 The tab bar controller and
+一个标签栏控制器
 
 1087
 00:50:29,760 --> 00:50:32,828
 these four MVCs that are each of the tabs.
+四个标签页面 MVC
 
 1088
 00:50:32,896 --> 00:50:37,532
 So this is the simplest way to combine MVCs.
+这就是最简单的组合 MVC 的方式
 
 1089
 00:50:37,601 --> 00:50:40,335
 But do you see what I mean when I say that these other
+但是你们理解我说的
 
 1090
 00:50:40,404 --> 00:50:44,139
 MVCs are part of the view of the tab bar controller.
+“其他 MVC 是构成标签栏控制器的视图的一部分”这句话的意思吗
 
 1091
 00:50:44,208 --> 00:50:47,743
 They're actually even their views are embedded physically
+它们实际上把自己的视图在物理层面上嵌入到了
 
 1092
 00:50:47,812 --> 00:50:52,915
 embedded inside the tab bar controller's view.
+标签栏控制器的视图的内部
 
 1093
 00:50:52,984 --> 00:50:54,716
 So that's the simplest one.
+以上就是最简单的一个例子
 
 1094
 00:50:54,785 --> 00:50:56,552
