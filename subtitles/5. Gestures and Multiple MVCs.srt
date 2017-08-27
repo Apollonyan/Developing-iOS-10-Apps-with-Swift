@@ -4381,12 +4381,12 @@ Let's talk about the next simplest one,
 1095
 00:50:56,621 --> 00:50:58,153
 which is split view controller.
-也就是视图分割控制器 
+也就是分屏控制器（UISplitViewController）
 
 1096
 00:50:58,222 --> 00:51:03,025
 So split view controllers is two MVCs side by side.
-视图分割控制器就是说，有两个并列的 MVC 
+分屏控制器是两个并排的 MVC 
 
 1097
 00:51:03,094 --> 00:51:05,694
@@ -4421,7 +4421,7 @@ That MVC,
 1103
 00:51:15,906 --> 00:51:20,409
 we call the master MVC of the split view controller.
-在视图分割控制器中我们把它叫做主 MVC 
+在分屏控制器中我们把它叫做主 MVC 
 
 1104
 00:51:20,477 --> 00:51:23,044
@@ -4456,12 +4456,12 @@ to your homework assignment, because that is assignment 3.
 1110
 00:51:35,793 --> 00:51:37,493
 To build a graphing calculator,
-作业三的内容就是创建一个图形计算器
+作业三就是去做一个图形计算器
 
 1111
 00:51:37,561 --> 00:51:38,894
 you're gonna be putting in a split view and
-你将放入一个分割开的视图
+你将会用到分屏控制器
 
 1112
 00:51:38,962 --> 00:51:40,662
@@ -4516,12 +4516,12 @@ the calculator on the left.
 1122
 00:51:59,349 --> 00:52:01,216
 So if you change something in the calculator on the left and
-所以如果你在左边的计算器里改变了些什么并且
+所以如果你在左边的计算器里改变了些什么
 
 1123
 00:52:01,285 --> 00:52:03,719
 hit its graphing button, it changes the details.
-点击了它的图形按钮，就改变了右边的细节
+然后点击图形按钮，就改变了右边的细节
 
 1124
 00:52:03,788 --> 00:52:08,123
@@ -4536,7 +4536,7 @@ Now, and this is what it looks like when these things
 1126
 00:52:10,761 --> 00:52:12,461
 are side-by-side in landscape mode.
-它们并列在一起看起来的样子
+它们并排摆放的样子
 
 1127
 00:52:12,530 --> 00:52:14,630
@@ -4556,7 +4556,7 @@ you can swipe from the left and get the master to come
 1130
 00:52:22,273 --> 00:52:24,773
 out on top of it and then do whatever you want.
-就能让主 MVC 显示在顶层，接下来可以随便你做什么
+就能让主 MVC 显示出来，接下来你可以随意操作
 
 1131
 00:52:24,842 --> 00:52:26,074
@@ -4571,7 +4571,7 @@ you can swipe it out of the way.
 1133
 00:52:30,047 --> 00:52:31,212
 So that's split view controller.
-这就是视图分割控制器了
+这就是分屏控制器了
 
 1134
 00:52:31,281 --> 00:52:32,348
@@ -4581,17 +4581,16 @@ Super simple.
 1135
 00:52:32,416 --> 00:52:35,717
 Again, hopefully you're seeing that there are three MVCs
-再次提醒，希望你们能明白这里有
+再次提醒，希望你们能明白这里有三个 MVC
 
 1136
 00:52:35,735 --> 00:52:35,760
 up here.
-三个 MVC 
 
 1137
 00:52:35,786 --> 00:52:39,860
 The split view controller's MVC, and these master and
-视图分割控制器的 MVC，和这个主 MVC 还有
+分屏控制器的 MVC，和这个主 MVC 还有
 
 1138
 00:52:40,057 --> 00:52:41,089
@@ -4606,12 +4605,12 @@ The master details serve as the view of
 1140
 00:52:44,528 --> 00:52:45,427
 that split view controller.
-视图分割控制器 MVC 的 V 层（视图）
+分屏控制器 MVC 的 V 层（视图）
 
 1141
 00:52:45,496 --> 00:52:48,764
 Notice that the split view controller itself has no UI.
-注意视图分割控制器本身是没有 UI 界面的
+注意分屏控制器本身是没有 UI 界面的
 
 1142
 00:52:48,833 --> 00:52:50,432
@@ -4631,7 +4630,7 @@ I guess, it draws the vertical line between the two,
 1145
 00:52:57,942 --> 00:53:01,743
 that's probably drawn by the split view.
-这大概就是视图分割控制器绘制的
+这大概就是分屏控制器绘制的
 
 1146
 00:53:01,812 --> 00:53:03,479
@@ -4641,7 +4640,7 @@ The most complicated one and
 1147
 00:53:03,547 --> 00:53:07,616
 the most commonly used one, is a navigation controller.
-最常用的一个是导航控制器
+最常用的一个是导航控制器（UINavigationController）
 
 1148
 00:53:07,685 --> 00:53:12,354
@@ -4721,7 +4720,7 @@ that the navigation controller actually draws in its view.
 1163
 00:53:51,262 --> 00:53:55,029
 The rest of its view, it fills up with another MVC.
-其它视图上的东西都是被另一个 MVC 所填充的
+其余的视图都是被另一个 MVC 填充的
 
 1164
 00:53:55,098 --> 00:53:56,598
@@ -4736,7 +4735,7 @@ in this case the all settings MVC.
 1166
 00:54:02,906 --> 00:54:05,107
 The contents are all this "all settings MVC".
-里面的内容就是这个全设置 MVC 的东西
+里面的内容都是这个全设置 MVC
 
 1167
 00:54:06,544 --> 00:54:08,577
@@ -4746,7 +4745,7 @@ Just like with the tab bar controller where there was
 1168
 00:54:08,645 --> 00:54:11,213
 that tab bar item that had like the icon and
-也就是在标签栏上有例如图标和
+在标签栏上有图标和
 
 1169
 00:54:11,281 --> 00:54:11,846
@@ -4766,17 +4765,17 @@ That word settings at the top,
 1172
 00:54:16,553 --> 00:54:20,522
 the navigation controller MVC is getting that word by asking
-导航控制器 MVC 是通过询问 MVC
+导航控制器 MVC 是通过询问
 
 1173
 00:54:20,591 --> 00:54:23,626
 the MVC that it's currently showing what's your title.
-来显示你的标题
+当前显示的 MVC 来确定标题的
 
 1174
 00:54:25,696 --> 00:54:29,898
 It gets that from this var navigation item.
-它通过这个叫做 navigationItem 的变量来取得
+它通过 navigationItem 这个变量来获取它
 
 1175
 00:54:29,967 --> 00:54:31,065
@@ -4796,7 +4795,7 @@ has all the navigation, UI navigation things.
 1178
 00:54:37,375 --> 00:54:39,474
 So if you look at the API for navigation item,
-如果你查阅导航控制器相关的 API 的话
+如果你查阅 navigationItem 相关的 API 的话
 
 1179
 00:54:39,543 --> 00:54:42,110
@@ -4841,7 +4840,7 @@ it's still there.
 1187
 00:55:04,435 --> 00:55:05,767
 This is like a stack of cards,
-就像是一堆卡片
+就像是一叠卡片
 
 1188
 00:55:05,836 --> 00:55:07,736
@@ -4876,7 +4875,7 @@ Navigation Controller, the Navigation Controllers' MVC,
 1194
 00:55:23,253 --> 00:55:26,788
 the all setting ones that is now in the back of this one,
-一个是已经在显示在屏幕上的这个后面的全设置 MVC 
+一个是在这个正在显示的 MVC 的后面的全设置 MVC 
 
 1195
 00:55:26,857 --> 00:55:31,059
@@ -4886,7 +4885,7 @@ and this one, the General Settings MVC.
 1196
 00:55:31,128 --> 00:55:32,494
 Now, by the way, there,
-现在，顺带一提
+顺带一提
 
 1197
 00:55:32,562 --> 00:55:35,463
@@ -4906,7 +4905,7 @@ but they're a little different.
 1200
 00:55:39,002 --> 00:55:42,470
 That is set with the toolbar item, the var in
-这是用 toolbarItem 设置的，也就是
+这是用 toolbarItems 设置的，也就是
 
 1201
 00:55:42,539 --> 00:55:45,941
@@ -4926,12 +4925,12 @@ the bottom would change, because they're connected to
 1204
 00:55:51,782 --> 00:55:54,916
 whatever happens to be on top of the deck of cards.
-无论刚好哪一个在卡片堆的顶部连接的
+顶层的卡片相连接的
 
 1205
 00:55:54,985 --> 00:55:58,519
 Notice also that there's a back button.
-注意那里也有一个返回按钮
+注意那里有一个返回按钮
 
 1206
 00:55:58,588 --> 00:55:59,454
@@ -4946,12 +4945,12 @@ It's called settings.
 1208
 00:56:01,124 --> 00:56:03,658
 That button was automatically put there by navigation
-这个按钮是导航控制器
+这个按钮是导航控制器自动
 
 1209
 00:56:03,727 --> 00:56:04,826
 controller.
-自动放在那里的
+放在那里的
 
 1210
 00:56:04,894 --> 00:56:05,927
@@ -4961,7 +4960,7 @@ And if you click that,
 1211
 00:56:05,996 --> 00:56:07,563
 it's gonna go back to the other card.
-它就会返回到别的卡片中
+它就会返回到别的卡片
 
 1212
 00:56:07,631 --> 00:56:10,666
@@ -4976,7 +4975,7 @@ But if I click somewhere in here,
 1214
 00:56:14,070 --> 00:56:18,106
 like on Accessibility there, then it goes to another MVC.
-例如那里的 Accessibility，接下来它就到另一个 MVC 去
+例如那里的辅助功能，接下来它就到另一个 MVC 去
 
 1215
 00:56:18,175 --> 00:56:21,376
@@ -4986,7 +4985,7 @@ Now we've seen four MVCs so far in this thing.
 1216
 00:56:21,445 --> 00:56:24,179
 And if I click on Larger Text in here, I get yet
-然后如果我点击了这里的 Larger Text
+然后如果我点击了这里的更大字体
 
 1217
 00:56:24,248 --> 00:56:25,013
@@ -5001,7 +5000,7 @@ Now we have five MVCs.
 1219
 00:56:27,083 --> 00:56:29,418
 So these MVCs just keep stacking on top, and
-这些 MVC 只是单纯地一个个堆到顶部
+这些 MVC 只是单纯地一个个叠到顶部
 
 1220
 00:56:29,486 --> 00:56:32,320
@@ -5081,12 +5080,12 @@ Super common.
 1235
 00:57:04,721 --> 00:57:07,222
 So let's talk a little bit of how the navigation controller
-那么我们来谈谈景象后面
+那么我们来谈谈导航控制器
 
 1236
 00:57:07,291 --> 00:57:08,490
 works behind the scenes.
-导航控制器如何工作吧
+幕后是如何工作吧
 
 1237
 00:57:09,559 --> 00:57:10,959
@@ -5111,17 +5110,17 @@ you got another whole pile of UI down here in the corner
 1241
 00:57:19,770 --> 00:57:22,304
 that you wanna add, but just won't fit.
- UI 界面，但是不合适
+内容，但是不合适
 
 1242
 00:57:22,373 --> 00:57:24,305
 You wanna be able to do the accessibility stuff and
-你想要实现像之前幻灯片里看到的那样
+你想要实现在之前的幻灯片中看到的
 
 1243
 00:57:24,374 --> 00:57:27,175
 the larger texts and all that we saw on the previous slide.
-所有可达的东西，大一点的文本和别的什么
+辅助功能、更大字体和其他一些东西
 
 1244
 00:57:27,244 --> 00:57:27,976
@@ -5131,7 +5130,7 @@ But it obviously,
 1245
 00:57:28,044 --> 00:57:29,744
 it's not gonna all fit in one phone screen so
-它不可能在一个手机屏幕上
+手机屏幕装不下这么多东西
 
 1246
 00:57:29,813 --> 00:57:30,945
@@ -5141,12 +5140,12 @@ you need more space.
 1247
 00:57:31,014 --> 00:57:35,116
 So what you do is you create a new MVC that controls all that
-那么你做的事情就是创建一个新的用来控制 
+那么你要做的就是创建一个新的用来控制 
 
 1248
 00:57:35,185 --> 00:57:39,120
 UI that is completely independent of that.
-所有独立的 UI 界面的 MVC 
+所有独立的 UI 的 MVC 
 
 1249
 00:57:39,189 --> 00:57:40,722
@@ -5161,7 +5160,7 @@ Now they might share a model, because maybe they're
 1251
 00:57:42,693 --> 00:57:44,292
 all looking in the settings database.
-对应的设置数据库中
+查看设置数据库
 
 1252
 00:57:44,361 --> 00:57:45,127
@@ -5226,27 +5225,27 @@ It doesn't really have a model that's okay but it has a view.
 1264
 00:58:11,655 --> 00:58:14,989
 And inside that view there is a special var that's pointing
-而且在这个 V 层（视图）中有一个特殊的叫做
+而且在这个 V 层（视图）中有一个叫做
 
 1265
 00:58:15,058 --> 00:58:17,359
 to its view called RootViewController,
-RootViewController 的指向它的 V 层（视图）的变量
+rootViewController 的指向它的 V 层（视图）的特殊变量
 
 1266
 00:58:17,427 --> 00:58:20,729
 that's just points of the controller of the MVC that's
-它以根 MVC 中的 C 层（controller）
+它指向根 MVC 中的控制器
 
 1267
 00:58:20,798 --> 00:58:23,098
 at the root it's the base card.
-为起点
+也就是卡片中最底下的那张
 
 1268
 00:58:23,166 --> 00:58:25,167
 The all settings one we saw on the previous page.
-也就是之前幻灯片中出现的全设置
+也就是之前在幻灯片中出现的全设置
 
 1269
 00:58:26,303 --> 00:58:27,001
@@ -5256,7 +5255,7 @@ So it just has this bar.
 1270
 00:58:27,070 --> 00:58:28,670
 You just set that to something, and
-你只要把它设置成一些东西
+你只需要设置一些东西
 
 1271
 00:58:28,739 --> 00:58:29,471
@@ -5281,7 +5280,7 @@ put it in its view with that little gray bar.
 1275
 00:58:36,513 --> 00:58:38,780
 And it's gonna ask it navigation item for
-然后它就会问它的导航项询问
+然后它就会向它的 navigationItem 询问
 
 1276
 00:58:38,849 --> 00:58:40,382
@@ -5311,7 +5310,7 @@ like a line in the table view, like get me more settings or
 1281
 00:58:51,328 --> 00:58:52,627
 accessibility or whatever.
-之前幻灯片中的那个 Accessibility 或者别的什么
+之前幻灯片中的那个辅助功能或者别的什么
 
 1282
 00:58:52,696 --> 00:58:53,862
@@ -5376,12 +5375,12 @@ This activity of going to a new one is called segueing.
 1294
 00:59:18,755 --> 00:59:23,891
 This particular segue's called a show or a push segue.
-这个特殊 segue 会调用一个 show segue 或者一个 push segue 
+这个特殊 segue 被称为 show segue 或者 push segue 
 
 1295
 00:59:23,960 --> 00:59:26,561
 Which just means a segue in a navigation control with
-也就是一个有那堆卡片的
+也就是一个有那叠卡片的
 
 1296
 00:59:26,630 --> 00:59:28,463
@@ -5391,7 +5390,7 @@ the stack of cards.
 1297
 00:59:28,531 --> 00:59:31,199
 Now when you do that, you get the back button for
-当你那么做了后（进入新的 MVC），你就免费得到了一个
+当你那么做了之后（进入新的 MVC），你就得到了一个
 
 1298
 00:59:31,268 --> 00:59:33,134
@@ -5406,7 +5405,7 @@ that top bar like I say is
 1300
 00:59:35,105 --> 00:59:38,740
 drawn by the navigation controller's part of its view.
-是由导航器的一部分的视图画的
+是由导航控制器的一部分的视图画的
 
 1301
 00:59:38,809 --> 00:59:41,409
@@ -5456,7 +5455,7 @@ they're pretty ephemeral.
 1310
 01:00:03,533 --> 01:00:05,901
 MVCs don't really stick around for a long time.
-MVC 事实上不会长时间的存在
+MVC 事实上不会长时间存在
 
 1311
 01:00:05,969 --> 01:00:07,502
@@ -5466,7 +5465,7 @@ Now the root card on a Navigation Controller,
 1312
 01:00:07,571 --> 01:00:08,704
 it's gonna stick around pretty long,
-将会存在比较久的事件
+它存在的时间将会比较久
 
 1313
 01:00:08,772 --> 01:00:11,439
@@ -5476,7 +5475,7 @@ as long as that Navigation Controller is on screen.
 1314
 01:00:11,508 --> 01:00:14,108
 But mostly MVCs kind of come and go.
-但是大多数 MVC 来来去去
+但是大多数 MVC 来去匆匆
 
 1315
 01:00:14,177 --> 01:00:17,445
@@ -5516,7 +5515,7 @@ So that's how a navigation controller works.
 1322
 01:00:34,797 --> 01:00:36,397
 I'm gonna talk a little bit how we hook all of this up.
-我会就它们如何连接谈一下
+我打算谈一下它们是如何连接的
 
 1323
 01:00:36,466 --> 01:00:38,333
@@ -5546,12 +5545,12 @@ There's an important var that is in these viewControllers,
 1328
 01:00:48,379 --> 01:00:49,277
 like tab bar controller, and
-viewController 比如说标签栏控制器和
+比如说标签栏控制器和
 
 1329
 01:00:49,346 --> 01:00:50,912
 navigation controller, and split view controller.
-导航控制器还有视图分割控制器
+导航控制器还有 UISplitViewController
 
 1330
 01:00:50,981 --> 01:00:52,547
@@ -5576,7 +5575,7 @@ which one you're in.
 1334
 01:00:59,125 --> 01:01:03,194
 so for example, in the tab bar, this is all the MVCs for each tab, with 
-那么举例来说，在标签栏中，有一些 MVC 各自对应一个标签 
+那么举例来说，在标签栏中，所有的 MVC 各自对应一个标签 
 
 1335
 01:01:03,363 --> 01:01:09,032
@@ -5586,7 +5585,7 @@ the left most tab's MVC's at 0 and then 1, 2, 3, 4 is just the
 1336
 01:01:09,201 --> 01:01:14,001
 rest of the MVCs. For a split view 0 is always the master, 1 is always
-也就是剩下的 MVC。对于视图分割控制器来说，0 号位通常都是主控制器
+也就是剩下的 MVC。对于 UISplitViewController 来说，0 号位通常都是主控制器
 
 1337
 01:01:14,070 --> 01:01:16,905
@@ -5596,12 +5595,12 @@ the detail, and there's never any other ones in this array.
 1338
 01:01:16,974 --> 01:01:21,743
 For a navigation control, 0 is the base card, and 1, 2, 3,
-对于导航控制器来说，0 号位是根卡片，然后就是 1，2，3，4 号之类的
+对于导航控制器，0 号位是根卡片，然后就是 1，2，3，4 号
 
 1339
 01:01:21,812 --> 01:01:25,513
 4, etc., are the ones stacked on top, in order.
-依次堆在顶上的卡片
+之类的依次叠在顶上的卡片
 
 1340
 01:01:25,582 --> 01:01:27,315
@@ -5631,7 +5630,7 @@ you or even like in Navigation Controller, there's push and
 1345
 01:01:41,698 --> 01:01:45,934
 pop methods to push MVCs on and pop them off of the stack.
-push MVC 到堆里或者把它们从堆中 pop 出来
+push MVC 到栈里或者把它们从栈中 pop 出来
 
 1346
 01:01:47,537 --> 01:01:51,272
@@ -5641,12 +5640,12 @@ Now, it's great to have this var ViewControllers, but
 1347
 01:01:51,341 --> 01:01:53,642
 how do you get the Split View Controller or
-如果你在一个视图分割控制器或者一个标签栏控制器里的话
+如果你在一个 UISplitViewController 或者一个标签栏控制器里的话
 
 1348
 01:01:53,710 --> 01:01:56,477
 get the Tab Bar Controller if you're in one?
-你如何得到一个它们呢？
+你如何得到它们呢？
 
 1349
 01:01:56,546 --> 01:01:59,380
@@ -5666,7 +5665,7 @@ bar, how do I get the navigation controller I'm in,
 1352
 01:02:06,756 --> 01:02:08,823
 or the split view I'm in or the tab bar I'm in?
-或者那个视图分割控制器又或者那个标签栏控制器呢？
+或者那个 UISplitViewController 又或者那个标签栏控制器呢？
 
 1353
 01:02:08,892 --> 01:02:11,826
@@ -5701,41 +5700,41 @@ And if you're not in one, it will return nil.
 1359
 01:02:21,771 --> 01:02:22,604
 So that's how you find out
-这就是你如何发现你是在
+这就是如何获取你当前的
 
 1360
 01:02:22,673 --> 01:02:24,039
 the Split View Controller you're in.
-视图分割控制器里的方法了
+UISplitViewController 的方法了
 
 1361
 01:02:24,107 --> 01:02:25,581
 And you can use the combination of
-而且你可以用这两个的
+而且你可以组合使用这两个东西
+
 1362
 01:02:25,742 --> 01:02:25,999
 these two things.
-结合
 
 1363
 01:02:26,009 --> 01:02:28,141
 For example, if you're the Master in a Split View,
-例如，你是一个视图分割控制器里的主控制器
+例如，你是一个分屏控制器里的主控制器
 
 1364
 01:02:28,344 --> 01:02:31,513
 you can find your detail MVC by saying
-你可以找到你的细节控制器通过
+你可以找到你的细节 MVC 通过询问
 
 1365
 01:02:31,582 --> 01:02:33,415
 what's the split view controller I'm in?
-我在的视图分割控制器是什么？
+我在的 UISplitViewController 是什么？
 
 1366
 01:02:33,483 --> 01:02:36,017
 Get its View Controllers, look at View Controller sub 1
-拿到它里面的 viewController 变量，查询数组里的 1 号位
+拿到它里面的 viewControllers 变量，查询数组里的 1 号位
 
 1367
 01:02:36,086 --> 01:02:38,353
@@ -5755,22 +5754,22 @@ So I just clicked and went up and over and got it.
 1370
 01:02:40,390 --> 01:02:43,058
 And I use the question mark, the optional chaining there
-并且我在那里使用了 ？，也就是可选链接
+并且我在那里使用了问号，也就是可选链接
 
 1371
 01:02:43,126 --> 01:02:44,992
 because I might not be in a split view controller.
-因为我可能不在一个视图分割控制器里
+因为我可能不在一个分屏控制器里
 
 1372
 01:02:45,061 --> 01:02:46,694
 And then it obviously will return nil for
-然后显而易见的它会对我的细节控制器结果返回
+然后显而易见的它会对我的细节控制器结果返回 nil
 
 1373
 01:02:46,763 --> 01:02:49,864
 my detail, which is fine cuz it would be nil if I'm not in
-nil，这个也没事因为如果我不是在一个视图分割控制器里
+这个也没事因为如果我不是在一个分屏控制器里
 
 1374
 01:02:49,933 --> 01:02:51,666
@@ -5790,12 +5789,12 @@ Of course we're gonna do it all graphically.
 1377
 01:02:58,508 --> 01:03:00,775
 Let's start by at looking at the split view and
-让我们从视图分割控制器开始来
+让我们从分屏控制器开始来
 
 1378
 01:03:00,843 --> 01:03:02,510
 how we do this.
-知道如何做
+看看怎么做
 
 1379
 01:03:02,579 --> 01:03:05,279
@@ -5820,17 +5819,17 @@ You go down to the object pallet and you drag it out
 1383
 01:03:12,255 --> 01:03:15,456
 into your storyboard just like a button, except you're just
-把它拖到你的 storyboard 中，就像一个按钮那样，除非
+把它拖到你的 storyboard 中，就像一个按钮那样，只是
 
 1384
 01:03:15,525 --> 01:03:17,825
 dragging to open space and it's created there.
-你把它拖到了 storyboard 中除界面外的别的地方
+你把它拖到了 storyboard 中空白的地方然后在那里创建它
 
 1385
 01:03:17,894 --> 01:03:20,562
 Now when you drag a split view controller out, it's
-当你拖出一个视图分割控制器时
+当你拖出一个分屏控制器时
 
 1386
 01:03:20,630 --> 01:03:24,666
@@ -5861,10 +5860,11 @@ You're obviously gonna have your MVC's like your
 01:03:31,908 --> 01:03:34,208
 calculator and your graphing view controller sitting in
 calculator 和 图像视图控制器这样的 MVC 在你的
+
 1392
 01:03:34,277 --> 01:03:36,410
 your storyboard and you're gonna drag the split view
-storyboard 中，然后你就把视图分割控制器
+storyboard 中，然后你就把分屏控制器
 
 1393
 01:03:36,479 --> 01:03:38,779
@@ -5874,7 +5874,7 @@ controller and you're gonna wire it up to those.
 1394
 01:03:38,848 --> 01:03:42,083
 So you're gonna delete any of the extra junk that comes out.
-你只要把多出来的额外的垃圾都删删掉就好了
+你只要把多出来的垃圾都删掉就好了
 
 1395
 01:03:42,152 --> 01:03:45,319
@@ -5884,12 +5884,12 @@ Then you just Ctrl+drag like we do,
 1396
 01:03:45,388 --> 01:03:48,422
 our favorite gesture in a face builder, is Ctrl+drag.
-我们在 face builder 里最喜欢的手势也就是 control + drag 
+我们在 face builder 里最喜欢的手势也就是 control + 拖拽 
 
 1397
 01:03:48,491 --> 01:03:50,992
 We just Ctrl+drag from the split view controller
-我们只要按住 control 然后从视图分割控制器
+我们只要按住 control 然后从分屏控制器
 
 1398
 01:03:51,061 --> 01:03:53,194
