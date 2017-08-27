@@ -895,730 +895,915 @@ call this view controller my EmotionsViewController.
 180
 00:07:47,968 --> 00:07:50,802
 So this gonna show the emotions like happy,
+所以这个就是用来显示心情的，例如开心
 
 181
 00:07:50,871 --> 00:07:51,402
 sad, whatever, and
+伤心，之类的
 
 182
 00:07:51,471 --> 00:07:53,604
 then I'm gonna click on it to go show the face.
+然后我只要点击后就能展现对应的脸的图像
 
 183
 00:07:53,673 --> 00:07:55,473
-So I just do that.
+So I just do that. 
+接着点击 next 
 
 184
 00:07:55,542 --> 00:07:56,908
 Go over here, it says where do you wanna put it.
+来到了这里，Xcode 询问你想要把这个文件放在哪里
 
 185
 00:07:56,976 --> 00:07:58,676
 Again, I do not wanna put it here.
+再一次的，我不想把它放在这里
 
 186
 00:07:58,745 --> 00:08:00,145
 You see where it says Group FaceIt, and
+你们看这个叫做 FaceIt 的包，然后
 
 187
 00:08:00,213 --> 00:08:01,612
 it has that blue icon.
+它有一个蓝色的图标
 
 188
 00:08:01,681 --> 00:08:03,548
 We wanna put it down in here.
+我们要把它放在这下面的文件夹里
 
 189
 00:08:03,616 --> 00:08:04,549
 So if you put it here,
+如果你放在这里的话
 
 190
 00:08:04,618 --> 00:08:06,584
 it's gonna be at the very top level.
+文件就会在最顶级
 
 191
 00:08:06,653 --> 00:08:10,054
 Down here, it's with all your other classes space
+放在下面一个文件夹里的话，它就会和你别的一些类在一起
 
 192
 00:08:10,123 --> 00:08:11,856
 faceview.swift, etc.
+FaceView.swift 之类的
 
 193
 00:08:11,925 --> 00:08:13,391
 So make sure you remember to do that.
+所以要保证你们记得做这个
 
 194
 00:08:14,828 --> 00:08:16,094
 So here I popped it in there.
+那么现在我把它放在了那里
 
 195
 00:08:16,163 --> 00:08:18,329
 There's my view controller selected in the navigator.
+在导航器中选定的是我的视图控制器
 
 196
 00:08:18,398 --> 00:08:20,198
 Let's make the navigator a little bit wider, so
+让我们把导航器拉宽一点，那么
 
 197
 00:08:20,267 --> 00:08:21,332
 you can read it, there we go.
+你就能看得到名字了
 
 198
 00:08:21,401 --> 00:08:23,234
 EmotionsViewController and
+也就是 EmotionViewController 并且
 
 199
 00:08:23,303 --> 00:08:26,237
 you can see it's giving me a little bit of code.
+你能看到它提供了一些代码
 
 200
 00:08:26,306 --> 00:08:28,973
 These right here are part of the ViewController life cycle,
+选定的这些是视图控制器的生命周期的一部分
 
 201
 00:08:29,042 --> 00:08:31,343
 which I promise I'm gonna talk about right after this
+也就是我承诺过这之后会讲的东西
 
 202
 00:08:32,279 --> 00:08:33,445
 but not now.
+但不是现在
 
 203
 00:08:33,513 --> 00:08:36,080
 There's this other thing that's commented out down
+还有一些被注释掉的其他东西在这里
 
 204
 00:08:36,149 --> 00:08:39,583
 here, which is actually really important to today's lecture.
+也就是今天课程中很重要的东西
 
 205
 00:08:39,652 --> 00:08:42,220
 This is Navigation method,
+这是导航方法
 
 206
 00:08:42,289 --> 00:08:45,957
 which you know all too well from last lecture.
+也就是你们上节课学到很多的那个
 
 207
 00:08:46,026 --> 00:08:48,059
 It's called prepare for segue.
+它叫做 prepare(for segue:) 
 
 208
 00:08:49,428 --> 00:08:53,465
 This is the method that's gonna be used when we segue or
+这就是当我们从一个 MVC 转换或者 segue 到另一个 MVC 时
 
 209
 00:08:53,534 --> 00:08:56,468
 transition from this MVC to another one.
+用到的方法
 
 210
 00:08:56,536 --> 00:08:58,736
 And we have to prepare that other one to do its job and
+然后我们必须让另一个 MVC 准备做它的工作
 
 211
 00:08:58,805 --> 00:09:00,805
 here's why we do it, prepare for segue.
+这就是我们为什么需要这个 prepare(for segue:) 了
 
 212
 00:09:00,874 --> 00:09:03,040
 We'll be coming back and implementing prepare for
+我们马上会回到这里并且
 
 213
 00:09:03,109 --> 00:09:05,944
 segue, in just a minute.
+实现这个 prepare(for segue:)，但是要等下
 
 214
 00:09:06,012 --> 00:09:09,480
 Now that we have this new class, EmotionsViewController,
+现在我们有了这个新的类叫做 EmotionsViewController 
 
 215
 00:09:09,549 --> 00:09:11,682
 we have to do the exact same thing we just did.
+我们必须做跟之前做过的完全一样的事情
 
 216
 00:09:11,751 --> 00:09:13,618
 Which is to go back to our storyboard,
+也就是回到我们的 storyboard 中
 
 217
 00:09:13,687 --> 00:09:17,421
 click on this View controller, go to the Utilities window,
+点击这个视图控制器，来到工具栏窗口
 
 218
 00:09:17,490 --> 00:09:19,657
 get that identity inspector up.
+选择上面的这个 Identity Inspector 
 
 219
 00:09:19,726 --> 00:09:22,560
-And then pick the class in EmotionsViewController, so
+And then pick the class EmotionsViewController, so
+然后在 Class 中选择 EmotionsViewController ，那么
 
 220
 00:09:22,629 --> 00:09:25,129
 that this is now an EmotionsViewController,
+这个现在就是一个 EmotionsViewController 的类了
 
 221
 00:09:25,198 --> 00:09:28,533
 not a generic UIView controller.
+不是一个普通的 UIViewController
 
 222
 00:09:28,601 --> 00:09:29,801
 So now that we've hooked that up,
+那么现在我们已经连接好了
 
 223
 00:09:29,869 --> 00:09:31,869
 we can start building our UI here.
+可以开始创建我们的 UI 界面了
 
 224
 00:09:31,938 --> 00:09:32,937
 What is our UI here?
+这里的 UI 界面会是怎样的呢？
 
 225
 00:09:33,006 --> 00:09:34,372
 It's gonna be super simple,
+它将非常简单
 
 226
 00:09:34,441 --> 00:09:35,973
 I'm just gonna grab some buttons, so
+我只要拉取一些按钮
 
 227
 00:09:36,042 --> 00:09:37,609
 let's get one here,
+那么让我们拿一个吧
 
 228
 00:09:37,677 --> 00:09:39,544
 let's change some attributes of that button.
+然后改变些那个按钮的属性
 
 229
 00:09:39,613 --> 00:09:42,813
 How about let's make the font really big,
+不如让我们把它的字体变得非常大吧，
 
 230
 00:09:42,882 --> 00:09:45,784
 something like 40 point is probably good.
+例如 40 可能会不错
 
 231
 00:09:47,454 --> 00:09:49,753
 Let's go ahead and make some more of them,
+然后继续，制作些更多的按钮
 
 232
 00:09:49,822 --> 00:09:51,255
 I'm gonna copy and paste.
+我就复制粘贴吧
 
 233
 00:09:51,324 --> 00:09:54,092
 I think three of them is enough for this demo.
+我认为三个按钮对这个 demo 来说就足够了
 
 234
 00:09:54,160 --> 00:09:57,828
 We'll have one of our emotions be sad, another emotion be
+我们将其中一个心情设置为 Sad ，另一个
 
 235
 00:09:57,897 --> 00:10:00,798
 happy and I don't know if this is an emotion but
+设置为 Happy ，然后说实话我也不知道这算不算心情但是
 
 236
 00:10:00,867 --> 00:10:04,102
 we'll have this one be worried.
+还是把剩下的这个设置为 Worried 
 
 237
 00:10:04,171 --> 00:10:06,337
 Those are gonna be our three things we're gonna show
+那就是三个我们将用我们的 FaceView 
 
 238
-00:10:06,406 --> 00:10:09,941
+00:10:06,406 --> 00:10:07,941
 with our face.
+来展现的东西了
+
+00:10:08,000 --> 00:10:09,900
+So I'm gonna select them all and stack them up in a stack
+然后我全选它们，然后用一个 Stack View 来
 
 239
 00:10:10,010 --> 00:10:12,910
 view, let's put a little space in between them there.
+把它们堆起来，让我们给它们之间腾点空间
 
 240
 00:10:12,979 --> 00:10:15,079
 We'll fill equally even though they're all buttons, so
+即使它们都是按钮，仍然选择 Fill Equally 那么 
 
 241
 00:10:15,148 --> 00:10:18,750
 they're all gonna be filled equally anyway.
+它们无论何种情况都会被平均地填充
 
 242
 00:10:18,818 --> 00:10:20,918
 So we've got this nice stack view right here.
+那么现在我们得到了一个不错的 Stack View 了
 
 243
 00:10:20,987 --> 00:10:24,522
 Now, one thing about this stack view is, if I put it
-
+现在，有一个关于这个 Stack View 的问题是，如果我我把它
 244
 00:10:24,591 --> 00:10:28,560
 here and I go down to look at my various orientations and
+放在这里然后看我的多设备选项里
 
 245
 00:10:28,629 --> 00:10:31,796
 devices, if I go landscape here, "Ugh!".
+如果选择这里的横屏模式的话，噢天呐
 
 246
 00:10:31,865 --> 00:10:33,298
 It gets cut off, right?
+它被截断了，对不？
 
 247
 00:10:33,366 --> 00:10:37,001
 So I really want these, this stack to stay in the middle.
+所以我很需要这个堆保持在屏幕中间
 
 248
 00:10:37,070 --> 00:10:38,303
 I don't wanna do the same thing I did with
+我不想做之前在 Calculator demo 中把
 
 249
 00:10:38,371 --> 00:10:40,171
 the calculator where I'm sticking it to the edges.
+它们连接到边线上那样的事
 
 250
 00:10:40,240 --> 00:10:41,539
 I just want it to stay in the middle cuz I don't want
+我只是想让它待在中间因为我不想
 
 251
 00:10:41,608 --> 00:10:42,974
 the buttons to be kinda really spread out.
+让这些按钮拉伸之类的
 
 252
 00:10:43,043 --> 00:10:45,743
 I want them to stay kind of collected but
+我想让它们保持不变但是
 
 253
 00:10:45,812 --> 00:10:47,011
 I want them in the middle.
+想让它们在中间
 
 254
 00:10:47,080 --> 00:10:49,146
 I can still do that with the autolayout,
+我仍然可以用自动排版来完成
 
 255
 00:10:49,215 --> 00:10:51,249
 the same way we did in the last demo.
+也就是上一个 demo 中一样的方法
 
 256
 00:10:51,318 --> 00:10:53,585
 I'm just gonna pick up the thing and
+我只要选定它然后
 
 257
 00:10:53,653 --> 00:10:56,487
 use the blue lines to indicate what I want.
+用蓝线来指示我想要的
 
 258
 00:10:56,556 --> 00:10:58,023
 Which is I want this in the center.
+也就是把它放在正中间
 
 259
 00:10:59,192 --> 00:11:00,057
 I'm holding this, so
+我拿着它，
 
 260
 00:11:00,126 --> 00:11:01,759
 that the blue lines come on in the center.
+这些蓝线标识了中间
 
 261
 00:11:01,828 --> 00:11:06,731
 And when I let go, iOS interface builder here knows "
+然后当我放开它，iOS 的 Interface Builder 就知道了
 
 262
 00:11:06,800 --> 00:11:07,832
 he wants that in the center".
+“噢，他想让那个处于中心位置”
 
 263
 00:11:07,900 --> 00:11:11,102
 So that when I go down here to this little guy again and
+那么当我再次来到下面这个小按钮并且
 
 264
 00:11:11,171 --> 00:11:13,371
 I say reset to suggested constraints,
+选择了这个 Reset to Suggested Constraints
 
 265
 00:11:13,440 --> 00:11:16,073
 just like I did in the last lecture,
+就像我上节课做的那样
 
 266
 00:11:16,142 --> 00:11:18,175
 it creates constraints that put it in the middle.
+它创建了对应的约束然后把它放到中间
 
 267
 00:11:18,244 --> 00:11:20,945
 And we can verify that by going up to this inspector,
+并且我们可以通过核对这个检查器
 
 268
 00:11:21,014 --> 00:11:23,281
 this is the size inspector.
+这是尺寸检查器
 
 269
 00:11:23,349 --> 00:11:24,548
 It shows the size of the thing but
+它展示了事物的尺寸但是
 
 270
 00:11:24,617 --> 00:11:27,919
 it also shows the constraints, the autolayout constraints.
+它也能展示约束，那些自动排版约束
 
 271
 00:11:27,987 --> 00:11:31,255
 And this is constrained to align its center horizontally
+它被约束使它的中心水平居中于
 
 272
 00:11:31,324 --> 00:11:32,857
 to the superview center and
+父视图的中心并且
 
 273
 00:11:32,926 --> 00:11:36,126
 it's centered vertically to the superview center.
+竖直居中于它的父视图的中心
 
 274
 00:11:36,195 --> 00:11:37,629
 Now if we do the rotation,
+那么现在如果我们旋转的话
 
 275
 00:11:37,697 --> 00:11:39,564
 we see that it stays in the center.
+我们能看到它仍旧保持在中心
 
 276
 00:11:41,601 --> 00:11:43,234
 I'm giving you a little taste of autolayout,
+目前我让你们尝了一点点自动排版的味道
 
 277
 00:11:43,302 --> 00:11:45,336
 I'm gonna give a whole lecture on autolayout
+在几个星期里
 
 278
 00:11:46,573 --> 00:11:47,439
 in a couple weeks.
+我会给你们上一个专门关于自动排版的课
 
 279
 00:11:47,507 --> 00:11:48,973
 But I'm just trying to give you a little hint
+但现在我只是试着给你们一些
 
 280
 00:11:49,042 --> 00:11:50,508
 about how it works for now.
+它如何工作的暗示
 
 281
 00:11:51,745 --> 00:11:53,845
 Alright, so we have this, this is our UI,
+好的，那么我们现在有了这个 UI 界面
 
 282
 00:11:53,914 --> 00:11:55,980
 that's the entire UI that we're gonna do.
+这就是我们要完成的全部 UI 了
 
 283
 00:11:56,049 --> 00:11:59,116
 Now let's go ahead and run this,
+那么继续，我们运行一下
 
 284
 00:11:59,185 --> 00:12:01,920
 run it on iPhone briefly here
+简要地在 iPhone 模拟器上运行下
 
 285
 00:12:05,324 --> 00:12:08,025
 Just to make sure that we've actually put this in our UI.
+指示为了确认我们已经把这些放到我们的 UI 界面上了
 
 286
 00:12:08,094 --> 00:12:10,027
 There it is. Sure enough if I click on it,
+这就是了。能够点击
 
 287
 00:12:10,096 --> 00:12:12,597
 rotation, seems to work fine.
+旋转的话，看起来也可以
 
 288
 00:12:12,665 --> 00:12:14,866
 We can even check to see, does this work on iPad?
+我们甚至可以确认下如果在 iPad 上的话能否成功？
 
 289
 00:12:14,934 --> 00:12:17,769
 Let's try this one now right there.
+试试看那个选项
 
 290
 00:12:22,775 --> 00:12:24,008
 Here it is, here's our UI.
+这就是了，这个就是我们的 UI 界面
 
 291
 00:12:24,076 --> 00:12:28,346
 It's working fine here and we can rotate here as well and
+看起来不错，然后我们也可以旋转屏幕
 
 292
 00:12:28,414 --> 00:12:31,215
 get this gigantic landscape iPad.
+然后得到了这个巨大的横屏模式地 iPad 
 
 293
 00:12:31,284 --> 00:12:32,717
 Is there any way to go smaller?
+有什么方法能变小吗？
 
 294
 00:12:32,786 --> 00:12:35,019
 What's the smallest we can go scale?
+我们最小能缩放到多少？
 
 295
 00:12:35,088 --> 00:12:36,654
 25%?
+25%？
 
 296
 00:12:36,723 --> 00:12:39,157
 There we go, that's small enough.
+不错，足够小了
 
 297
 00:12:39,225 --> 00:12:41,326
 So we've got all this screen real estate here on an iPad.
+那么我们现在在一个 iPad 上得到了这个屏幕
 
 298
 00:12:41,394 --> 00:12:44,128
 It's be really great to use the split view to have these
+如果用分屏的话效果会很好
 
 299
 00:12:44,197 --> 00:12:47,131
 words on the left and the face that matches it on the right.
+也就是在左边有这些字，然后右边是对应的脸的效果
 
 300
 00:12:47,200 --> 00:12:48,299
 So that's exactly what we're gonna do,
+所以这就是我们要做的事情
 
 301
 00:12:48,368 --> 00:12:50,935
 we're gonna go back to our storyboard right here and
+我们将回到我们的 storyboard 
 
 302
 00:12:51,004 --> 00:12:52,503
 make that happen.
+然后实现它
 
 303
 00:12:52,572 --> 00:12:55,273
 And to do that, again, is just a matter of dragging something
+为了完成这个功能，再一次的，就只是拖拉一些东西的事情
 
 304
 00:12:55,341 --> 00:12:57,642
 out, I'm gonna make my scale really small here, so
+我会缩放得小一些
 
 305
 00:12:57,710 --> 00:12:59,510
 you can see this as we drag it out.
+在这里拉动就可以
 
 306
 00:12:59,578 --> 00:13:01,879
 But here we're gonna drag out the split view controller
+但是这里我们将拖出一个分屏控制器
 
 307
 00:13:01,948 --> 00:13:04,916
 cuz we wanna put these two MVCs in an MVC
+因为我们想把这两个 MVC 放到一个 MVC 里
 
 308
 00:13:04,984 --> 00:13:06,851
 that has them as part of its view.
+也就是把这两个 MVC 作为它自身视图的 MVC 
 
 309
 00:13:06,920 --> 00:13:08,553
 So when I drag this out, you're actually
+所以当我把这个拖拉出来的时候，事实上你能看到
 
 310
 00:13:08,621 --> 00:13:11,022
 gonna see I get more than just a split view,
+我得到了不止一个分屏
 
 311
 00:13:11,091 --> 00:13:15,760
 I get some other little MVCs that come along with it here.
+我还得到了一些随之而来的小的 MVC 
 
 312
 00:13:15,829 --> 00:13:18,429
 And I don't really need any of these other
+并且我并不是真的需要这些
 
 313
 00:13:18,498 --> 00:13:19,830
 MVCs that come along with it.
+伴随而来的 MVC 
 
 314
 00:13:19,899 --> 00:13:21,232
 Trying to make your life easier, but
+试着让它变简单些，但是我也
 
 315
 00:13:21,301 --> 00:13:23,267
 I find that 99% of the time,
+发现99%的概率上
 
 316
 00:13:23,336 --> 00:13:26,270
 you don't need these other things that come with it.
+你不需要这些伴随而来的东西
 
 317
 00:13:26,338 --> 00:13:28,372
 So I'm just going here and select those and delete them.
+那么我就来到这里，选择它们，然后删除它们
 
 318
 00:13:28,441 --> 00:13:29,674
 So let's get rid of this one.
+让我们摆脱这一个 MVC 
 
 319
 00:13:29,742 --> 00:13:31,642
 Whoops! Not the whole thing.
+噢糟糕！不是所有的事物
 
 320
 00:13:31,711 --> 00:13:34,946
 Let's just get rid of this one,
+只要摆脱这一个
 
 321
 00:13:35,015 --> 00:13:39,517
 sorry, there and we're gonna get rid of this one and
+然后再摆脱这个和
 
 322
 00:13:39,586 --> 00:13:40,718
 we get rid of that one.
+那一个
 
 323
 00:13:40,787 --> 00:13:43,454
 I'm just left with my split view controller and,
+我只要留下我的分屏控制器然后
 
 324
 00:13:43,523 --> 00:13:45,556
 of course, my two MVCs are here.
+当然了，我的两个 MVC 在这里
 
 325
 00:13:45,624 --> 00:13:48,926
 Let's move this little more over to the side here,
+让我们把这个往边上移一些
 
 326
 00:13:48,995 --> 00:13:51,095
 scroll down a bit.
+然后往下放一点
 
 327
 00:13:51,164 --> 00:13:54,799
 And now I just wanna make this be the master of my split view
+然后现在我要这一个 MVC 成为分屏控制器里的主视图
 
 328
 00:13:54,868 --> 00:13:57,267
 controller and I want this to be my detail.
+然后这一个是细节视图
 
 329
 00:13:57,336 --> 00:13:58,002
 Whoops, other way around,
+噢，换一下
 
 330
 00:13:58,071 --> 00:14:00,038
 this is the master, this is the detail.
+这是主视图，这是细节视图
 
 331
 00:14:01,340 --> 00:14:03,941
 When the app starts, I don't want it to start here,
+当运行 app 时，我不想让它从这开始
 
 332
 00:14:04,010 --> 00:14:06,444
 I want it to start here, don't forget this step.
+我想让它从这里开始，不要忘记这一步
 
 333
 00:14:06,513 --> 00:14:07,945
 If you want the app to come here and
+如果你想要这个 app 能运行并且
 
 334
 00:14:08,014 --> 00:14:11,248
 then show the split view controller with both things.
+展示包含两个 MVC 的分屏控制器的话
 
 335
 00:14:11,317 --> 00:14:14,318
 So how do I make this the master and this the detail?
+那么我如何让这个变成主视图并且让这一个变成细节视图呢
 
 336
 00:14:14,387 --> 00:14:16,287
 I'm just gonna hold down control and
+我只要按住 control 键并且
 
 337
 00:14:16,355 --> 00:14:20,024
 drag from the split view controller to the master.
+从分屏控制器拖拉到主视图
 
 338
 00:14:20,093 --> 00:14:22,360
 And then in here,
+然后在这里
 
 339
 00:14:22,428 --> 00:14:24,561
 Only these two, master and detail.
+只要选这两个，主视图和细节视图
 
 340
 00:14:24,630 --> 00:14:26,664
 So I'm gonna make that one the master,
+那么我要让那个成为主视图
 
 341
 00:14:26,732 --> 00:14:29,233
 it makes this little master connection there,
+它就在那里创建了一个小小的主视图连接
 
 342
 00:14:29,302 --> 00:14:32,136
 that's not a segue by the way, that's a kind of like,
+顺带一提，这不是 segue ，这是一种
 
 343
 00:14:32,205 --> 00:14:34,238
 somewhat like an outlet connection but
+像是 outlet 连接但是
 
 344
 00:14:34,307 --> 00:14:37,675
 it's a specific connection to that master var there.
+是一种特殊的连接到那个 master 变量的连接
 
 345
 00:14:37,744 --> 00:14:39,244
 This one is the detail.
+这一个是细节视图
 
 346
 00:14:40,613 --> 00:14:42,713
 So I've made my master and my detail here.
+那么我已经完成了主视图和细节视图了
 
 347
 00:14:42,781 --> 00:14:43,581
 Zoom in a little bit.
+稍微放大一点
 
 348
 00:14:45,318 --> 00:14:47,585
 That's really all I need to do to get these both on screen.
+这就是想要让这两个都出现在屏幕上需要做的事情
 
 349
 00:14:47,654 --> 00:14:50,021
 So let's go ahead and run and see what happens here.
+那么继续，我们运行一下来看看如何
 
 350
 00:14:55,028 --> 00:14:55,860
 Alright, so here we go.
+好吧，那么开始
 
 351
 00:14:55,929 --> 00:14:58,262
 Sure enough, there's the face on the right.
+当然，右边有这个脸图
 
 352
 00:14:58,331 --> 00:14:59,463
 Here's this stuff on the left.
+左边有这些东西
 
 353
 00:14:59,532 --> 00:15:01,866
 And if I click this, nothing happens.
+并且如果我点击，不会发生什么
 
 354
 00:15:01,934 --> 00:15:02,934
 The face doesn't show.
+对应的脸不会展现出来
 
 355
 00:15:03,002 --> 00:15:04,702
 Now why does nothing happen there?
+那么为什么什么都不会发生呢？
 
 356
 00:15:04,770 --> 00:15:07,838
 Because we have to do the step of having a segue.
+因为我们必须完成创建一个 segue 的步骤
 
 357
 00:15:07,907 --> 00:15:10,307
 If we want to move to a different MVC,
+如果我们想转到另一个不同的 MVC 
 
 358
 00:15:10,376 --> 00:15:12,977
 we have to segue to it.
+我们必须 segue 到它
 
 359
 00:15:13,046 --> 00:15:16,847
 Each of these is gonna have to have the segue to this MVC.
+这三个选项中每一个都需要连到这个 MVC 的 segue 
 
 360
 00:15:16,916 --> 00:15:19,683
 And when it segues, it's gonna replace that MVC with a new
+并且当它 segue 的时候，它将用一个
 
 361
 00:15:19,752 --> 00:15:23,421
 one that's properly prepared to show that motion.
+准备展现对应表情的 MVC 来替换那一个 MVC 
 
 362
 00:15:24,824 --> 00:15:26,524
