@@ -1808,558 +1808,697 @@ one that's properly prepared to show that motion.
 362
 00:15:24,824 --> 00:15:26,524
 Let's go do our segues.
+让我们开始完成我们的 segue 吧
 
 363
 00:15:26,592 --> 00:15:28,092
 Segues also of course,
+当然了，segue 也是通过
 
 364
 00:15:28,160 --> 00:15:30,628
 we use our favorite gesture which is Ctrl + drag.
+使用我们最喜欢的快捷键也就是 control + 拖拉
 
 365
 00:15:30,696 --> 00:15:33,764
 So if I wanna make a sad segue, I'm just gonna hold
+那么如果我想要创建一个 sad segue 的话，我只要按住
 
 366
 00:15:33,832 --> 00:15:38,436
 down Ctrl and drag it to the MVC that I want to segue to,
+control 键然后把它连到想要 segue 到的 MVC 
 
 367
 00:15:38,505 --> 00:15:41,038
 the MVC I want to show when I press Sad.
+当我按 sad 键时想要显示的 MVC 
 
 368
 00:15:41,107 --> 00:15:41,705
 So I do that.
+那么我这么做好了
 
 369
 00:15:41,774 --> 00:15:44,241
 Now, you notice that I have some choices of what
+现在，你注意到有一些选项
 
 370
 00:15:44,310 --> 00:15:47,311
 kind of presentation, what kind of segue I want.
+我想要什么种类的陈述，什么种类的 segue 
 
 371
 00:15:47,380 --> 00:15:49,913
 For example, Present As Popover would present
+例如，Present As Popover 选项将会
 
 372
 00:15:49,982 --> 00:15:52,683
 the thing I'm segueing to in a little popover window on
+把正在 segue 的东西展示在一个小的在最顶级的
 
 373
 00:15:52,752 --> 00:15:54,819
 top of everything else.
+弹窗中
 
 374
 00:15:54,888 --> 00:15:57,087
 Present Modally would take over the whole screen and
+Present Modally 将拿到完整的屏幕然后
 
 375
 00:15:57,156 --> 00:15:59,023
 show the new MVC.
+展示这个新的 MVC 
 
 376
 00:15:59,091 --> 00:16:00,791
 Then there's show and show detail.
+然后就是 Show 和 Show Detail 
 
 377
 00:16:00,860 --> 00:16:04,261
 Show is only used when you're in a navigation controller,
+Show 选项只会在一个导航控制器中用到
 
 378
 00:16:04,330 --> 00:16:06,831
 the thing where they've got the cards sliding on top,
+也就是会把卡片排到顶部的那一个控制器
 
 379
 00:16:06,900 --> 00:16:09,466
 like the settings example I showed you.
+就像之前展示给你们看过的那个设置
 
 380
 00:16:09,535 --> 00:16:13,104
 Show detail is used in a split view setting or in a hybrid
+Show detail 是用于一个分屏控制器或者一个
 
 381
 00:16:13,173 --> 00:16:15,973
 setting, where sometimes you're in a split view, and
+混合设置的，也就是有时你在分屏视图，有时
 
 382
 00:16:16,042 --> 00:16:17,174
 sometimes you're in navigation view,
+你在导航视图
 
 383
 00:16:17,243 --> 00:16:19,109
 which is gonna be the case that we're gonna be in here.
+也就是我们这里会碰到的情况
 
 384
 00:16:19,178 --> 00:16:21,879
 Show detail means show this in the detail side of
+Show detail 意味着会把这个展示在分屏视图
 
 385
 00:16:21,947 --> 00:16:23,147
 the split view.
+里的细节控制器那一边
 
 386
 00:16:23,216 --> 00:16:24,882
 I'm gonna show detail there.
+我将在那里展示细节控制器
 
 387
 00:16:24,951 --> 00:16:27,051
 I've made this segue, you see it appeared right here.
+我已经创建了这个 segue，看到出现在这里的东西了没
 
 388
 00:16:27,119 --> 00:16:28,185
 This is a segue,
+这是一个 segue 
 
 389
 00:16:28,254 --> 00:16:29,620
 looks a little different from this thing,
+看起来跟这个有点不大一样
 
 390
 00:16:29,689 --> 00:16:31,356
 a little different icon right there.
+图标有些不同
 
 391
 00:16:31,424 --> 00:16:33,323
 This is a segue and you can click on it, and
+这是一个 segue 并且你可以点击它，而且
 
 392
 00:16:33,392 --> 00:16:35,392
 in fact you can even inspect it.
+事实上你甚至可以检查它
 
 393
 00:16:35,461 --> 00:16:37,194
 And you must inspect it, in fact,
+事实上你必须检查它
 
 394
 00:16:37,263 --> 00:16:40,565
 go to the attributes inspector and inspect it, because you're
+来到 Attribute Inspector 并且检查它，因为
 
 395
 00:16:40,633 --> 00:16:43,367
 always gonna wanna give every segue an identifier.
+通常来说你都要给每一个 segue 一个标识符
 
 396
 00:16:43,436 --> 00:16:45,970
 This is just a unique string, that in your code you'll
+就是一个特别的字符串，在代码中
 
 397
 00:16:46,039 --> 00:16:47,738
 be able to reference in order to say,
+调用的的话就能引用名字
 
 398
 00:16:47,807 --> 00:16:50,241
 "I'm talking about this segue right here".
+“我在谈这个 segue”
 
 399
 00:16:50,310 --> 00:16:52,944
 So, I'm gonna call this my sad segue.
+那么我要给这个 segue 取名为 sad 
 
 400
 00:16:54,380 --> 00:16:57,982
 Then I'm gonna do the exact same thing here for happy.
+然后我将对 Happy 做同样的事
 
 401
 00:16:58,051 --> 00:17:00,350
 I'm gonna just show detail on that one.
+连接细节控制器
 
 402
 00:17:00,419 --> 00:17:02,419
 I'm gonna inspect that segue.
+检查那个 segue 
 
 403
 00:17:02,488 --> 00:17:03,421
 See, there's our sad one.
+看到没，那个是我们的 sad segue 
 
 404
 00:17:03,489 --> 00:17:04,688
 Notice that when you pick a segue,
+注意当你选择一个 segue 时
 
 405
 00:17:04,757 --> 00:17:06,724
 it shows you what it's segueing from.
+它会展示给你它从哪一个 segue 来的
 
 406
 00:17:06,793 --> 00:17:09,093
 If I pick this one, it shows it seguing from the other one,
+如果我选择这个，它就展示它是从另一个 segue 来的
 
 407
 00:17:09,162 --> 00:17:10,160
 so we know which one it is.
+那么我们就能知道这是哪一个的 segue 了
 
 408
 00:17:10,229 --> 00:17:12,429
 So this is the happy one, and
+那么这是 happy，然后
 
 409
 00:17:12,498 --> 00:17:15,933
 then we'll have our little worried segue.
+我们将创建我们的 worried segue 
 
 410
 00:17:16,002 --> 00:17:17,034
 Where's that one?
+那个在哪呢？
 
 411
 00:17:17,103 --> 00:17:19,704
 It's right there, worried.
+在那呢，然后取名 worried 
 
 412
 00:17:20,706 --> 00:17:21,538
 Okay, so that's it.
+这就是全部了
 
 413
 00:17:21,607 --> 00:17:24,242
 So we've created these segues, put them in the, we'll put it
+我们已经创建了这些 segue，首先把它们放在 
 
 414
 00:17:24,310 --> 00:17:26,577
 into split view first, then we created the segues.
+分屏控制器里，然后创建 segue 
 
 415
 00:17:26,646 --> 00:17:28,479
 And now when you click on those buttons,
+那么现在当你点击这些按钮时
 
 416
 00:17:28,548 --> 00:17:32,783
 it's going to segue to this detail and in fact in a split
+它就会 segue 到这个细节控制器里然后事实上
 
 417
 00:17:32,852 --> 00:17:35,219
 view it replaces the one that's there with a new one.
+在分屏控制器里会用一个新的 MVC 替换掉之前的 MVC 
 
 418
 00:17:35,287 --> 00:17:37,554
 Remember that segues always create a new one,
+记住，segue 通常都会创建一个新的 MVC 
 
 419
 00:17:37,623 --> 00:17:39,923
 Don't forget that, that segues always create a new one.
+不要忘记
 
 420
 00:17:39,992 --> 00:17:40,792
 Something easy to forget.
+这很容易被忽略
 
 421
 00:17:40,860 --> 00:17:42,660
 Especially in the split view, it looks like,
+特别是在分屏控制器里，它看起来就像
 
 422
 00:17:42,728 --> 00:17:44,661
 " it just changed the one that was already there".
+“它仅仅只是改变了原本存在于那里的 MVC”
 
 423
 00:17:44,730 --> 00:17:48,099
 But no, it actually just completely replaced that
+但是不是的，事实上它是通过 segue 完完全全地替换了
 
 424
 00:17:48,168 --> 00:17:50,134
 detail segue by doing that.
+原本的细节控制器 MVC 
 
 425
 00:17:51,437 --> 00:17:54,271
 If we run this it it's gonna look like
+如果现在我们运行的话它会看起来像是
 
 426
 00:17:54,340 --> 00:17:55,540
 it doesn't didn't even work.
+没有效果
 
 427
 00:17:57,209 --> 00:17:58,409
 Even though we hooked these segues up,
+即使我们已经把这些连接了起来
 
 428
 00:17:58,477 --> 00:18:00,545
 it looks like it's just not doing anything, watch.
+但是它看起来仍然像是什么都没做
 
 429
 00:18:02,247 --> 00:18:04,681
 Okay, so is he sad, happy, worried, nothing is happening.
+好，Sad，Happy，Worried，什么都没改变
 
 430
 00:18:04,750 --> 00:18:06,417
 Absolutely nothing is changing over here.
+显而易见，这里什么都没变
 
 431
 00:18:06,486 --> 00:18:09,553
 Now, what's interesting is it is in fact seguing, and
+现在，有趣的是事实上它已经 segue 了，并且
 
 432
 00:18:09,621 --> 00:18:11,455
 it is replacing that.
+替换了 MVC 
 
 433
 00:18:11,524 --> 00:18:14,291
 The only problem is, we didn't prepare that thing
+唯一的问题是，我们还没为对应的操作设置
 
 434
 00:18:14,360 --> 00:18:17,127
 to show the right emotion before it showed, so
+准备展示对应的心情，所以
 
 435
 00:18:17,196 --> 00:18:19,030
 it is just showing the neutral emotion.
+它仅仅只是展示了初始的心情
 
 436
 00:18:20,533 --> 00:18:22,432
 It's creating a new MVC, but it's just showing neutral,
+它创建了一个新的 MVC，但是仅仅只是展示了初始的心情
 
 437
 00:18:22,501 --> 00:18:25,303
 because it has not been prepared to be onscreen.
+因为它还没设置准备些什么来显示在屏幕上
 
 438
 00:18:25,371 --> 00:18:28,038
 We have to go back to the emotions view controller here,
+我们要回到这个 EmotionsViewController 里
 
 439
 00:18:28,107 --> 00:18:31,976
 and do this prepare for segue, and prepare that destination
+然后完成这个 prepare(for segue:) 函数，并且
 
 440
 00:18:32,045 --> 00:18:36,681
 detail view controller to do what we want it to do.
+让目标细节控制器来准备完成我们想要它做的事情
 
 441
 00:18:36,749 --> 00:18:38,549
 Let's get rid of some of the comments here,
+让我们忽略一些这里的注释
 
 442
 00:18:38,618 --> 00:18:40,217
 just to make our code a little cleaner.
+为了让我们的代码干净一些
 
 443
 00:18:40,286 --> 00:18:41,551
 And get rid of that, as well.
+把这个也忽略
 
 444
 00:18:41,620 --> 00:18:43,053
 Actually, we can even get rid of that.
+事实上，我们甚至可以忽略那个
 
 445
 00:18:43,122 --> 00:18:44,588
 Okay, so here's our prepare for
+好啦，这就是我们的 prepare(for segue:)
 
 446
 00:18:44,657 --> 00:18:46,690
 segue with this extra argument sender,
+并带一个额外的叫做 sender 的参数了
 
 447
 00:18:46,759 --> 00:18:49,494
 which I'll also talk about in a little bit.
+也就是我待会儿会讲的东西
 
 448
 00:18:49,562 --> 00:18:51,195
 So what do we do when we prepare for segue?
+那么我们准备 segue 时做些什么呢？
 
 449
 00:18:51,263 --> 00:18:54,164
 There's usually two really important piece of information
+通常在准备 segue 到一个 MVC 的时候
 
 450
 00:18:54,233 --> 00:18:56,533
 we need when we're preparing to segue to an MVC.
+有两个非常重要的信息
 
 451
 00:18:56,602 --> 00:19:00,170
 One is we need to know which segue, tha's the identifier.
+一个是我们要知道是哪一个 segue，也就是需要标识符
 
 452
 00:19:00,239 --> 00:19:02,739
 The other one we need to know is what is the new MVC
+另一个需要知道的是 segue 到的新的 MVC 是什么类型
 
 453
 00:19:02,808 --> 00:19:04,542
 that this system just created for
+也就是那个由这个系统刚创建的
 
 454
 00:19:04,610 --> 00:19:06,810
 us that we're supposed to prepare.
+准备用来 prepare 的那个 MVC 
 
 455
 00:19:06,879 --> 00:19:09,380
 Both of these things are found inside this
+这两个东西都能在这个参数里找到
 
 456
 00:19:09,448 --> 00:19:12,349
 argument right here, this segue, this UIStoryboardSegue,
+这个叫做 segue 的参数，这个属于 UIStoryboardSegue 类的
 
 457
 00:19:12,417 --> 00:19:13,484
 if we ALT click on it.
+如果我按住 alt 然后点击它的话
 
 458
 00:19:14,587 --> 00:19:15,319
 Can't get it.
+啊噢，没有东西
 
 459
 00:19:15,388 --> 00:19:16,654
 Sorry about that, here we go, on this guy.
+不好意思点错了，是这一个
 
 460
 00:19:16,722 --> 00:19:18,956
 We have the storyboard segue, and
+我们有一个 UIStoryboardSegue 的类，并且
 
 461
 00:19:19,024 --> 00:19:20,457
 if you'll look in the documentation for it,
+如果你在文档里查的话
 
 462
 00:19:20,526 --> 00:19:22,659
 you'll see that it doesn't have a lot in there.
+你能看到它内部其实没有多少东西
 
 463
 00:19:22,728 --> 00:19:26,163
 But one important thing is the destination view controller,
+但是一个重要的事是这个 var destination: UIViewController 
 
 464
 00:19:26,232 --> 00:19:28,398
 and one is the identifier of the segue.
+另一个是这个 var identifier: String? 
 
 465
 00:19:28,467 --> 00:19:29,300
 This is also the source,
+还有这一个 var source: UIViewController 
 
 466
 00:19:29,368 --> 00:19:31,135
 which would be the emotions view controller.
+也就是那个 EmotionsViewController 
 
 467
 00:19:32,738 --> 00:19:35,472
 That's really just got the information
+这些就是得到了那些
 
 468
 00:19:35,541 --> 00:19:38,075
 that we need to prepare this thing.
+我们需要用来 prepare 的东西
 
 469
 00:19:38,144 --> 00:19:41,212
 Let's go and first get the destination view controller.
+首先我们先得到那个 destination: UIViewController 
 
 470
 00:19:41,280 --> 00:19:45,382
 I'm gonna say let destinationViewController
+let destinationViewController
 
 471
 00:19:45,451 --> 00:19:47,685
 equal the segue's destination.
+= segue.destination
 
 472
 00:19:50,890 --> 00:19:51,956
 So I've got that view controller.
+那么我得到了那个视图控制器
 
 473
 00:19:52,024 --> 00:19:54,625
 Now that is a type UI view controller, if I alt-click on
+那么它现在是一个 UIViewController 类的，如果我按住 alt 再点击
 
 474
 00:19:54,694 --> 00:19:57,061
 that, you'll see it's type UI view controller.
+它德胡啊，你能看到它是 UIViewController 类的
 
 475
 00:19:57,129 --> 00:19:59,797
 That's because segue is this generic UI stroyboard thing,
+那是因为这个参数 segue 是一个普通的 UIStoryboardSegue 类
 
 476
 00:19:59,866 --> 00:20:02,199
 it doesn't know anything about face view controllers,
+它不知道任何关于 FaceViewController 的东西
 
 477
 00:20:02,268 --> 00:20:04,268
 EmotionViewController, anything like that.
+或者 EmotionsViewController，之类的
 
 478
 00:20:04,336 --> 00:20:06,670
 So, we're gonna have to actually use that casting
+所以我将使用 as 
 
 479
 00:20:06,739 --> 00:20:08,305
 mechanism with as.
+来实现转换机制
 
 480
 00:20:08,374 --> 00:20:11,375
 Remember that as casting that we did with Any, in AnyObject?
+还记得那个用 Any 或者 AnyObject 转换的吗？
 
 481
 00:20:11,444 --> 00:20:12,209
 We're gonna have to do it here,
+这里我们也要这么做
 
 482
 00:20:12,278 --> 00:20:15,045
 because this destinationViewController
+因为这个 destinationViewController 
 
 483
 00:20:15,114 --> 00:20:17,214
 better darn well be a face view controller, or
+最好是一个 FaceViewController，否则
 
 484
 00:20:17,283 --> 00:20:19,383
 I don't know how to prepare it.
+我就不知道该怎么 prepare 它了
 
 485
 00:20:19,451 --> 00:20:21,018
 That's the only thing I know how to prepare,
+这是唯一我知道如何 prepare 的东西
 
 486
 00:20:21,086 --> 00:20:23,487
 this emotion for us, so it'd better be that.
+也就是那个心情图，所以它最好是那个
 
 487
 00:20:23,555 --> 00:20:30,760
 So I'm gonna say, if I can let a FaceViewController equal
+所以这里我会写， if let faceViewController = 
 
 488
 00:20:30,829 --> 00:20:34,932
 the destinationViewController as, and
+destinationViewController as? 并且
 
 489
 00:20:35,001 --> 00:20:39,870
 I'm gonna do it conditionally here, a FaceViewController.
+我这里会添加条件，FaceViewController 
 
 490
 00:20:39,938 --> 00:20:42,272
 Then, I'm good to go.
+接下来，就可以开始了
 
 491
 00:20:42,341 --> 00:20:45,676
 So now remember, this as kinda conditionally checks to see if
+记住了，这个 as 是一个条件像是用来检查
 
 492
 00:20:45,744 --> 00:20:48,912
 it's possible for this to be a FaceViewController.
+这个是否是一个 FaceViewController 的
 
 493
 00:20:48,981 --> 00:20:52,015
 And if it's not, my preparer's gonna do nothing.
+并且如果不是的话，我的 prepare 就不会做任何事
 
 494
 00:20:52,084 --> 00:20:53,784
 And it's gonna let that destination view controller
+然后它就会让那个目标视图控制器
 
 495
 00:20:53,853 --> 00:20:54,484
 appear unprepared,
+展现出没有 prepare 过的样子
 
 496
 00:20:54,553 --> 00:20:55,953
 because it doesn't know how to prepare it.
+因为它不知道如何 prepare 它自己
 
 497
 00:20:56,022 --> 00:20:58,989
 Cuz we only know how to prepare, (at least so far in
+因为目前来说
 
 498
 00:20:59,058 --> 00:21:02,025
 our app), we only know how to prepare a FaceViewController.
+在这个 app 上，我们只知道如何 prepare 一个 FaceViewController 
 
 499
 00:21:02,094 --> 00:21:05,562
 Okay, in fact some would say don't use, as, with,
+好，事实上有些人会说这里不要使用 as 和
 
 500
 00:21:05,631 --> 00:21:06,596
 if let, here.
+if-let
 
 501
 00:21:06,665 --> 00:21:09,666
