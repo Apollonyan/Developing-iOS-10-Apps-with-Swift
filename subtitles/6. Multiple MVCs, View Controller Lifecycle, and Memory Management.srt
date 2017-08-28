@@ -1215,6 +1215,7 @@ So we've got this nice stack view right here.
 00:10:20,987 --> 00:10:24,522
 Now, one thing about this stack view is, if I put it
 现在，有一个关于这个 Stack View 的问题是，如果我我把它
+
 244
 00:10:24,591 --> 00:10:28,560
 here and I go down to look at my various orientations and
