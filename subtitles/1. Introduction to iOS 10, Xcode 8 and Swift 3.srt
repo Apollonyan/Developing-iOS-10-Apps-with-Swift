@@ -1481,7 +1481,7 @@ On the right hand side here you see this little area,
 297
 00:14:22,196 --> 00:14:23,729
 this is called the utilities window.
-Utilities, 工具区
+Utilities, 实用工具区域
 
 298
 00:14:23,797 --> 00:14:26,398
@@ -1511,7 +1511,7 @@ You can click this one over here to hide and
 303
 00:14:38,078 --> 00:14:41,280
 show. That utilities window. And same thing over here for
-这个对应的是工具区，这个对应的是导航器
+这个对应的实用工具区，这个对应的是导航器
 
 304
 00:14:41,348 --> 00:14:45,650
@@ -2001,12 +2001,12 @@ Let's start with the buttons. Where do we get these buttons?
 401
 00:19:36,710 --> 00:19:39,711
 Well, as promised. I'm gonna talk about this utilities area
-乘此机会讲讲这里的工具区吧
+乘此机会讲讲这里的实用工具区域吧
 
 402
 00:19:39,779 --> 00:19:42,414
 right here. Now, this utilities area has a top and
-现在看到工具区分为了上下两个部分
+现在看到实用工具区域分为了上下两个部分
 
 403
 00:19:42,483 --> 00:19:45,316
@@ -2281,7 +2281,7 @@ I'm just gonna get rid of this bottom half by scrolling it
 457
 00:22:22,943 --> 00:22:26,711
 down here. We're gonna the top half of this utilities pane.
-我们现在右边这个工具区
+我们现在右边这个实用工具区域
 
 458
 00:22:26,780 --> 00:22:28,647
