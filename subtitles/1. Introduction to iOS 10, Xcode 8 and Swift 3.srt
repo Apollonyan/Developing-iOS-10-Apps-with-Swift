@@ -956,7 +956,7 @@ Now Xcode is an app that you just go to the Mac App Store,
 192
 00:09:12,186 --> 00:09:13,952
 and you download it. It's free.
-请勿从百度云等第三方渠道下载
+（请勿从百度云等第三方渠道下载）
 
 193
 00:09:14,020 --> 00:09:16,688
@@ -1050,228 +1050,228 @@ see what we can do that way. So I'm gonna click on this,
 
 211
 00:10:06,340 --> 00:10:09,107
-to start a new app. It's asking, what kind
-好，我们点了这个选项之后，Xcode 会问
+<font color=#000000>to start a new app. It's asking, what kind
+<font color=#000000>好，我们点了这个选项之后，Xcode 会问
 
 212
 00:10:09,175 --> 00:10:11,176
-of app do we want to build, or what kind of project, and
-你想编一个什么样的程序
+<font color=#000000>of app do we want to build, or what kind of project, and
+<font color=#000000>你想编一个什么样的程序
 
 213
 00:10:11,245 --> 00:10:13,979
-here you can see, we can do Watch apps, Apple TV apps,
-你可以选开发 手表，电视，电脑上的程序
+<font color=#000000>here you can see, we can do Watch apps, Apple TV apps,
+<font color=#000000>你可以选开发 手表，电视，电脑上的程序
 
 214
 00:10:14,048 --> 00:10:17,616
-even Mac OS apps, but we're doing iOS, and in fact,
-不过我们这门课讲的是开发 iOS 程序
+<font color=#000000>even Mac OS apps, but we're doing iOS, and in fact,
+<font color=#000000>不过我们这门课讲的是开发 iOS 程序
 
 215
 00:10:17,684 --> 00:10:21,453
-we're always going to choose this Single View Application
-所以我们一直会选这个 Single View Application 模版
+<font color=#000000>we're always going to choose this Single View Application
+<font color=#000000>所以我们一直会选这个 Single View Application 模版
 
 216
 00:10:21,522 --> 00:10:23,322
-template. It's the simplest template, and
-这是最简单的一个
+<font color=#000000>template. It's the simplest template, and
+<font color=#000000>这是最简单的一个
 
 217
 00:10:23,390 --> 00:10:25,290
-some of t hese other templates have code in there that I
-其它的模版里面都已经帮你把重要的代码写好了
+<font color=#000000>some of t hese other templates have code in there that I
+<font color=#000000>其它的模版里面都已经帮你把重要的代码写好了
 
 218
 00:10:25,359 --> 00:10:27,525
-actually want to show you how to write yourself instead of
-我们这堂课就是教你们如何
+<font color=#000000>actually want to show you how to write yourself instead of
+<font color=#000000>我们这堂课就是教你们如何
 
 219
 00:10:27,594 --> 00:10:30,195
-having the template just make that code appear, all right?
-不依赖模版就能写出那些代码
+<font color=#000000>having the template just make that code appear, all right?
+<font color=#000000>不依赖模版就能写出那些代码
 
 220
 00:10:30,264 --> 00:10:32,464
-So we're gonna do Single View Application.
-好，点击 Single View Application
+<font color=#000000>So we're gonna do Single View Application.
+<font color=#000000>好，点击 Single View Application
 
 221
 00:10:32,532 --> 00:10:35,000
-Now it wants some particulars on our application,
-然后 Xcode 会让你填些详细信息
+<font color=#000000>Now it wants some particulars on our application,
+<font color=#000000>然后 Xcode 会让你填些详细信息
 
 222
 00:10:35,068 --> 00:10:37,302
-most importantly at the top its name. Well,
-这里最重要的是 Product Name，项目名称
+<font color=#000000>most importantly at the top its name. Well,
+<font color=#000000>这里最重要的是 Product Name，项目名称
 
 223
 00:10:37,371 --> 00:10:39,470
-we're building a calculator so we're gonna call this
-既然我们编的是计算器，所以取名叫 Calculator
+<font color=#000000>we're building a calculator so we're gonna call this
+<font color=#000000>既然我们编的是计算器，所以取名叫 Calculator
 
 224
 00:10:39,539 --> 00:10:42,341
-Calculator, okay, that's gonna be the name of our app.
-因为各种原因请使用英文命名
+<font color=#000000>Calculator, okay, that's gonna be the name of our app.
+<font color=#000000>因为各种原因请使用英文命名
 
 225
 00:10:42,409 --> 00:10:45,343
-Now this second line here, team, that's the team of
-下面这个 Team 是开发团队
+<font color=#000000>Now this second line here, team, that's the team of
+<font color=#000000>下面这个 Team 是开发团队
 
 226
 00:10:45,412 --> 00:10:48,547
-developers who are gonna work on this project, that's gonna
-指定哪些人会开发这个程序
+<font color=#000000>developers who are gonna work on this project, that's gonna
+<font color=#000000>指定哪些人会开发这个程序
 
 227
 00:10:48,616 --> 00:10:52,050
-be a team of one, which is you. Okay, when you launch
-当然这里是你自己一个人组成的个人团队
+<font color=#000000>be a team of one, which is you. Okay, when you launch
+<font color=#000000>当然这里是你自己一个人组成的个人团队
 
 228
 00:10:52,119 --> 00:10:54,486
-Xcode, this is probably not going to be a pull down list.
-当你打开 Xcode 的时候，这里多半不是这样一个下拉列表
+<font color=#000000>Xcode, this is probably not going to be a pull down list.
+<font color=#000000>当你打开 Xcode 的时候，这里多半不是这样一个下拉列表
 
 229
 00:10:54,555 --> 00:10:57,021
-It's gonna be a button that says Add Account or
-你会看到一个写着 Add Account 
+<font color=#000000>It's gonna be a button that says Add Account or
+<font color=#000000>你会看到一个写着 Add Account 
 
 230
 00:10:57,090 --> 00:11:00,925
-something like that, Add Team. You click on that, all you'll
-或是 Add Team 一类的按钮。点了那个按钮之后
+<font color=#000000>something like that, Add Team. You click on that, all you'll
+<font color=#000000>或是 Add Team 一类的按钮。点了那个按钮之后
 
 231
 00:11:00,994 --> 00:11:04,696
-need is an Apple ID, any Apple ID will do, won't cost you any
-你需要登录 Apple ID。如果你没有的话可以去免费注册一个
+<font color=#000000>need is an Apple ID, any Apple ID will do, won't cost you any
+<font color=#000000>你需要登录 Apple ID。如果你没有的话可以去免费注册一个
 
 232
 00:11:04,765 --> 00:11:07,866
-money. And go through the dialog there and
-登录之后
+<font color=#000000>money. And go through the dialog there and
+<font color=#000000>登录之后
 
 233
 00:11:07,935 --> 00:11:11,636
-it'll add a team for you, and you use that here. Alright?
-你就能在这里看到你的个人团队了
+<font color=#000000>it'll add a team for you, and you use that here. Alright?
+<font color=#000000>你就能在这里看到你的个人团队了
 
 234
 00:11:11,705 --> 00:11:13,838
-This organization name can be anything you want.
-这里的 Organization Name, 组织名称可以随便填
+<font color=#000000>This organization name can be anything you want.
+<font color=#000000>这里的 Organization Name, 组织名称可以随便填
 
 235
 00:11:13,907 --> 00:11:16,408
-It's just gonna appear on the copyright symbol at the top of
-Xcode 会在你每个文件的开头
+<font color=#000000>It's just gonna appear on the copyright symbol at the top of
+<font color=#000000>Xcode 会在你每个文件的开头
 
 236
 00:11:16,477 --> 00:11:19,510
-your source code files, that's it. But this one,
-用这个组织名声明版权，仅此而已。但请保证下面这个
+<font color=#000000>your source code files, that's it. But this one,
+<font color=#000000>用这个组织名声明版权，仅此而已。但请保证下面这个
 
 237
 00:11:19,579 --> 00:11:24,316
-it's super important that this be a unique identifier of you.
-Organization Identifier，组织标识符是独一无二的
+<font color=#000000>it's super important that this be a unique identifier of you.
+<font color=#000000>Organization Identifier，组织标识符是独一无二的
 
 238
 00:11:24,384 --> 00:11:30,021
-Okay? So I strongly recommend doing edu.stanford.cs193p.
-对于斯坦福的学生，我强烈建议使用
+<font color=#000000>Okay? So I strongly recommend doing edu.stanford.cs193p.
+<font color=#000000>对于斯坦福的学生，我强烈建议使用
 
 239
 00:11:30,090 --> 00:11:35,160
-You're SUNet ID here, okay? If you put that in there,
-edu.stanford.cs193p.你的SUNetID
+<font color=#000000>You're SUNet ID here, okay? If you put that in there,
+<font color=#000000>edu.stanford.cs193p.你的SUNetID
 
 240
 00:11:35,228 --> 00:11:36,895
-you're almost guaranteed, if you're a Stanford student,
-那至少对于每一个斯坦福学生来说，你不会和别人的重复
+<font color=#000000>you're almost guaranteed, if you're a Stanford student,
+<font color=#000000>那至少对于每一个斯坦福学生来说，你不会和别人的重复
 
 241
 00:11:36,963 --> 00:11:38,830
-for that to be unique. If you're not a Stanford student,
-如果你不是斯坦福的学生
+<font color=#000000>for that to be unique. If you're not a Stanford student,
+<font color=#000000>如果你不是斯坦福的学生
 
 242
 00:11:38,899 --> 00:11:41,733
-you're watching this on iTunes U, pick something else that
-也就是在 iTunes U 上观看的
+<font color=#000000>you're watching this on iTunes U, pick something else that
+<font color=#000000>也就是在 iTunes U 上观看的
 
 243
 00:11:41,801 --> 00:11:43,768
-uniquely identifies you. Hopefully,
-请自行挑选一个独特的标识符
+<font color=#000000>uniquely identifies you. Hopefully,
+<font color=#000000>请自行挑选一个独特的标识符
 
 244
 00:11:43,837 --> 00:11:46,638
-reverse DNS notation will work in your circumstance as well.
-惯例是使用公司／个人网站域名的反写
+<font color=#000000>reverse DNS notation will work in your circumstance as well.
+<font color=#000000>惯例是使用公司／个人网站域名的反写
 
 245
 00:11:48,575 --> 00:11:51,009
-The language we're gonna use like I said is Swift.
-Language，编程语言选 Swift
+<font color=#000000>The language we're gonna use like I said is Swift.
+<font color=#000000>Language，编程语言选 Swift
 
 246
 00:11:51,078 --> 00:11:53,812
-iOS was originally written in a different language called
-在发明 Swift 之前开发 iOS 程序都是使用 Objective-C
+<font color=#000000>iOS was originally written in a different language called
+<font color=#000000>在发明 Swift 之前开发 iOS 程序都是使用 Objective-C
 
 247
 00:11:53,880 --> 00:11:56,681
-Objective-C. Turns out you can use Objective-C and
-当然现在也能够在同一个程序中
+<font color=#000000>Objective-C. Turns out you can use Objective-C and
+<font color=#000000>当然现在也能够在同一个程序中
 
 248
 00:11:56,750 --> 00:11:59,384
-Swift in the same application.
-使用 Swift 和 Objective-C 混编
+<font color=#000000>Swift in the same application.
+<font color=#000000>使用 Swift 和 Objective-C 混编
 
 249
 00:11:59,453 --> 00:12:04,222
-They use the exact same underlying iOS API. So
-这两个语言都使用的是同一个 iOS API
+<font color=#000000>They use the exact same underlying iOS API. So
+<font color=#000000>这两个语言都使用的是同一个 iOS API
 
 250
 00:12:04,291 --> 00:12:06,257
-everything you're gonna learn in this class in Swift,
-你在这节课中学到的所有有关 Swift 的知识
+<font color=#000000>everything you're gonna learn in this class in Swift,
+<font color=#000000>你在这节课中学到的所有有关 Swift 的知识
 
 251
 00:12:06,326 --> 00:12:09,495
-if you later went and learned Objective-C, all that learning
-都能帮助你以后学 Objective-C（如果你想学 OC）
+<font color=#000000>if you later went and learned Objective-C, all that learning
+<font color=#000000>都能帮助你以后学 Objective-C（如果你想学 OC）
 
 252
 00:12:09,563 --> 00:12:11,863
-would be valid, okay? Cuz it's the exact, in fact,
-因为 Swift 有一部分正是
+<font color=#000000><font color=#000000>would be valid, okay? Cuz it's the exact, in fact,
+<font color=#000000>因为 Swift 有一部分正是
 
 253
 00:12:11,932 --> 00:12:15,367
-it's the exact same code base, it's not just same API.
-基于 Objective-C 的
+<font color=#000000>it's the exact same code base, it's not just same API.
+<font color=#000000>基于 Objective-C 的
 
 254
 00:12:15,435 --> 00:12:18,437
-Swift was designed in a way to be quite compatible with
-Swift 也在设计上尽量兼容 Objective-C
+<font color=#000000>Swift was designed in a way to be quite compatible with
+<font color=#000000>Swift 也在设计上尽量兼容 Objective-C
 
 255
 00:12:18,505 --> 00:12:20,639
-Objective-C's APIs. And in the last couple years,
-过去几年中苹果也在
+<font color=#000000>Objective-C's APIs. And in the last couple years,
+<font color=#000000>过去几年中苹果也在
 
 256
 00:12:20,707 --> 00:12:23,742
