@@ -4021,1782 +4021,2227 @@ So that's a big thing that happens its lifecycle.
 1005
 00:41:47,238 --> 00:41:48,237
 Another thing that happens
+发生了一些其他的事情
 
 1006
 00:41:48,306 --> 00:41:51,407
 during the life time of it is it's changing its orientation.
 
+
 1007
 00:41:51,476 --> 00:41:53,342
 We're rotating the landscape.
+如果我们把设备旋转至横向
 
 1008
 00:41:53,411 --> 00:41:54,210
 We're on a iPad and
+如果我们是在iPad上
 
 1009
 00:41:54,279 --> 00:41:58,013
 we're sliding it out as a tray in portrait mode and
+然后我们把屏幕旋转至纵向模式，那么我们的选项托盘就不在了
 
 1010
 00:41:58,082 --> 00:42:00,082
 then we rotate to landscape and it's sitting on the side.
+然后我们又把它旋转至横向模式，它就又出现在那里了
 
 1011
 00:42:00,151 --> 00:42:02,785
 So it's changing its shape.
+所以它改变了他自己的形状
 
 1012
 00:42:02,854 --> 00:42:05,187
 Even the face view of the iPad when we're in portrait,
+就像在iPad上的face view，当它在纵向模式时
 
 1013
 00:42:05,256 --> 00:42:06,623
 it's big, tall and big.
+它又高又大
 
 1014
 00:42:06,691 --> 00:42:08,391
 But then we switch to landscape it's kind of more
+但是当我们把它旋转至横向模式时，它就变的有点
 
 1015
 00:42:08,460 --> 00:42:10,592
 like a square, and a little smaller.
+像个小方块，然后还有点小
 
 1016
 00:42:10,661 --> 00:42:12,628
 So it's always changing geometry.
+所以它总是会改变自己的几何形状
 
 1017
 00:42:12,697 --> 00:42:15,831
 And then it could be in a low memory situation as well where
+与此同时它也可能处在一种内存紧张的情况下
 
 1018
 00:42:15,900 --> 00:42:16,899
 we need to recovery some memory,
+这样我们就需要回收一部分内存
 
 1019
 00:42:16,968 --> 00:42:19,368
 this almost never happens, but I have to mention it.
+这种情况几乎从不发生，但是我也得提一下
 
 1020
 00:42:19,437 --> 00:42:21,404
 It's really maybe not even part of the view controller
+它甚至可能不存在于view controller
 
 1021
 00:42:21,472 --> 00:42:24,273
 lifecycle but it's a good place to talk about it,
+的生命周期中，但是这是个讨论它的好地方
 
 1022
 00:42:24,342 --> 00:42:25,608
 cuz it's not really that important.
+因为它其实没那么重要
 
 1023
 00:42:26,844 --> 00:42:31,714
 Let's talk about the messages that
+我们来聊聊当view controller
 
 1024
 00:42:31,782 --> 00:42:34,383
 are sent to invoke methods in your view controller
+中的方法被调用时所发送信息
 
 1025
 00:42:34,452 --> 00:42:37,086
 when these various things happen.
+就在这一些列的事情发生时
 
 1026
 00:42:37,154 --> 00:42:40,623
 So you already know about your outlets being set.
+所以你已经知道你的布局已经被布好了
 
 1027
 00:42:40,692 --> 00:42:42,625
 And you can watch that with your did sets,
+而且你可以通过你的did set来观察
 
 1028
 00:42:42,694 --> 00:42:43,959
 the property observer, did set.
+那个属性观察器，didset
 
 1029
 00:42:44,028 --> 00:42:45,594
 And you already know about preparing,
+你也已经了解了prepare
 
 1030
 00:42:45,663 --> 00:42:46,996
 I just showed you about that.
+就是我刚刚展示给你的那个
 
 1031
 00:42:47,064 --> 00:42:49,164
 So after those two steps are done,
+所以当这两步都做完了之后
 
 1032
 00:42:49,233 --> 00:42:51,834
 you're gonna get this message, viewDidLoad.
+你就应该会获得来自viewDidLoad的信息
 
 1033
 00:42:51,903 --> 00:42:53,936
 Super important method.
+这是个非常重要的方法
 
 1034
 00:42:54,005 --> 00:42:57,106
 You're only gonna ever receive it once in the lifetime
+在你的viewController的整个生命周期中你只会收到一次
 
 1035
 00:42:57,175 --> 00:42:58,007
 of a viewController.
+来自它的信息
 
 1036
 00:42:59,277 --> 00:43:01,878
 And it's really where you're gonna put
+所以这个方法几乎是你设置所有
 
 1037
 00:43:01,946 --> 00:43:04,780
 almost all of your initialization.
+初始化构造器的地方
 
 1038
 00:43:04,849 --> 00:43:07,950
 For example, a lot of times here's where you'll call your
+举个例子，这里将是你调用update UI方法最多
 
 1039
 00:43:08,019 --> 00:43:11,554
 update UI method, the thing that updates your UI from your
+的地方，那个model中的，你用来更新UI的方法
 
 1040
 00:43:11,622 --> 00:43:16,025
 model, very often you're gonna call that in viewDidLoad.
+你将从viewDidLoad中非常频繁的调用它
 
 1041
 00:43:16,093 --> 00:43:18,728
 Cuz now your model is set because it got prepared
+因为现在你的model已经设置好了因为它应该已经准备好了
 
 1042
 00:43:18,796 --> 00:43:21,330
 probably, and your outlets are set because this is how it
+然后你的布局也都设置好了，因为设置布局
 
 1043
 00:43:21,399 --> 00:43:23,299
 always happens after outlet setting.
+总是在outlet设置好时就一起做好了
 
 1044
 00:43:23,368 --> 00:43:25,534
 Now, one thing not to do in here though.
+但是还有一件并不在这里进行的事
 
 1045
 00:43:25,603 --> 00:43:27,136
 Very careful, listen carefully.
+非常重要，认真听
 
 1046
 00:43:27,205 --> 00:43:29,805
 Do not do geometry-based things in viewDidLoad.
+不要在viewDidLoad里设置任何和几何形状相关的东西
 
 1047
 00:43:29,874 --> 00:43:31,173
 Because when viewDidLoad happens,
+因为当viewDidLoad被执行时
 
 1048
 00:43:31,242 --> 00:43:34,711
 you have not yet had your final geometry established.
+你其实还没能完全确定你最后要呈现的几何形状
 
 1049
 00:43:36,681 --> 00:43:38,814
 You don't quite know if you're portrait, landscape,
+你并不是十分确定你的设备是纵向还是横向
 
 1050
 00:43:38,883 --> 00:43:40,649
 what device you're on, you don't know yet.
+你将要在什么设备上运行，这些你都还不知道
 
 1051
 00:43:40,718 --> 00:43:44,353
 So do not do things with your bounds in viewDidLoad.
+所以不要在viewDidLoad中做任何关于边界的设置
 
 1052
 00:43:44,421 --> 00:43:47,890
 Many of you will make this mistake so perk up those ears.
+你们当中的一些人会犯这个错误，所以竖起耳朵认真听
 
 1053
 00:43:47,958 --> 00:43:48,924
 Do not do that.
+不要这么做
 
 1054
 00:43:48,993 --> 00:43:50,759
 I'm gonna show you other methods in the new controller
+我会教你们其他的controller生命周期的方法
 
 1055
 00:43:50,828 --> 00:43:54,663
 lifecycle for doing that but do not it in viewDidLoad.
+来做关于几何形状的工作，但是不要在viewDidLoad里做这件事
 
 1056
 00:43:54,732 --> 00:43:57,199
 The next thing I said to you, appear and disappearing.
+下一个我要说的是，“出现”和”消失“
 
 1057
 00:43:57,268 --> 00:43:59,902
 You're always appearing and disappearing on screen.
+你总会在屏幕上进行”出现“和”消失“的动作
 
 1058
 00:43:59,971 --> 00:44:02,071
 When you appear, you're gonna get two messages.
+当你”出现“时，你会得到两条信息
 
 1059
 00:44:02,140 --> 00:44:04,306
 The first is viewWillAppear.
+第一个是viewWillAppear
 
 1060
 00:44:04,375 --> 00:44:08,410
 And that's sent to you before you're actually on screen, but
+它在你真正要出现在屏幕上之前发送给你
 
 1061
 00:44:08,479 --> 00:44:10,613
 just very very soon going to be,
+但是在之前非常短的时间里（发送给你）
 
 1062
 00:44:10,682 --> 00:44:13,315
 guaranteed you're going to be on screen soon.
+确保你马上就要出现在屏幕上了
 
 1063
 00:44:13,384 --> 00:44:15,951
 So, what is viewWillAppear for?
+所以，这个viewWillAppear是干什么的呢？
 
 1064
 00:44:16,020 --> 00:44:17,653
 What are you going to do in a view will appear?
+你在这个viewWillAppear中要做些什么呢？
 
 1065
 00:44:17,722 --> 00:44:21,023
 Well one thing is if there's anything that changes in your
+第一，当你不在屏幕上时
 
 1066
 00:44:21,092 --> 00:44:22,891
 model when you're not on screen,
+你model里有什么东西改变了
 
 1067
 00:44:22,960 --> 00:44:25,060
 maybe your model is a network database or
+你的model可能是一个网络数据库或者
 
 1068
 00:44:25,129 --> 00:44:27,496
 something and it's changing on the screen.
+是一个可能在屏幕上变化的什么东西
 
 1069
 00:44:27,565 --> 00:44:30,332
 Then when view appear happens you're going to usually update
+当viewWillAppear发生时，你需要频繁的从你的
 
 1070
 00:44:30,401 --> 00:44:31,901
 your UI from your model.
+model中（获取信息）来更新你的UI
 
 1071
 00:44:31,969 --> 00:44:34,537
 So maybe you wouldn't do update UI in viewDidLoad,
+所以你可能不能在viewDidLoad中更新你的UI
 
 1072
 00:44:34,605 --> 00:44:36,539
 you might do it here.
+但是你可以在这里更新
 
 1073
 00:44:36,607 --> 00:44:38,540
 That's if it could change when it's not onscreen.
+这是不在屏幕上时的对变化的处理方法
 
 1074
 00:44:38,609 --> 00:44:39,475
 A lot of MVCs,
+有很多MVC
 
 1075
 00:44:39,543 --> 00:44:41,743
 their model only changes when they're onscreen, so
+它们的model只在它们出现在屏幕上时才会改变
 
 1076
 00:44:41,812 --> 00:44:43,312
 you wouldn't have to do anything here.
+这样的话你在这就什么也不需要做了
 
 1077
 00:44:43,380 --> 00:44:45,181
 But if your model can be changed out from under you
+但是如果你的model可以在你不在屏幕上时被改变的话
 
 1078
 00:44:45,250 --> 00:44:47,316
 while you're off screen, then you, when you reappear,
+那你，在你重新”出现“（reappear）的时候
 
 1079
 00:44:47,384 --> 00:44:49,685
 obviously you wanna show the current state of your model.
+你显然要展现你model的确切状态
 
 1080
 00:44:49,753 --> 00:44:50,920
 So that's a good one.
+这是个好方法
 
 1081
 00:44:50,988 --> 00:44:52,821
 Another thing you might do in viewWillAppear
+还有一件你可能会在viewWillAppear中做的事
 
 1082
 00:44:52,890 --> 00:44:54,557
 is start something expensive.
+就是开启一些非常耗费资源功能
 
 1083
 00:44:54,625 --> 00:44:58,060
 Because in viewDidLoad you're not guaranteed that you're
+因为在viewDidLoad中，你不确定你到底会不会
 
 1084
 00:44:58,129 --> 00:44:59,628
 ever gonna come on screen.
+出现在屏幕上
 
 1085
 00:44:59,697 --> 00:45:02,264
 There are MVCs that occasionally get loaded up,
+有一些被随机加载的MVC
 
 1086
 00:45:02,333 --> 00:45:04,500
 but then the user clicks away somewhere else and
+但是一旦用户点了一些其他的地方
 
 1087
 00:45:04,569 --> 00:45:05,868
 you never get shown on screen.
+你的MVC可能就永远不会出现在屏幕上了
 
 1088
 00:45:05,937 --> 00:45:07,102
 But if viewWillAppear happens,
+但是如果viewWillAppear发生了
 
 1089
 00:45:07,171 --> 00:45:08,404
 you know you're going on screen.
+你确切的知道你会出现在屏幕上
 
 1090
 00:45:08,473 --> 00:45:11,073
 So here you could kick off something expensive.
+这时候你就可以开启一些非常耗费资源的功能了
 
 1091
 00:45:11,142 --> 00:45:12,608
 Especially kick off a thread that goes and
+比如开启一个
 
 1092
 00:45:12,677 --> 00:45:14,309
 does something expensive in the background.
+非常耗费资源的后台进程
 
 1093
 00:45:14,378 --> 00:45:16,745
 Cuz we're gonna talk about multithreading next week and
+我们会在下周讲多进程
 
 1094
 00:45:16,814 --> 00:45:19,314
 you're gonna see that anything that takes any amount of time
+到时候你就会看到在任何时间耗费任何处理器资源
 
 1095
 00:45:19,383 --> 00:45:21,584
 or energy on the part of the processor or the network,
+或者占用网络带宽的所有东西了
 
 1096
 00:45:21,652 --> 00:45:23,619
 you're gonna wind up doing a separate thread.
+你可以结束一个进程
 
 1097
 00:45:23,688 --> 00:45:26,455
 So you might kick off such a thread here in viewWillAppear.
+你也可以在 viewWillAppear中开启一个线程
 
 1098
 00:45:26,524 --> 00:45:28,323
 There's also an another method,
+还有另外一个方法
 
 1099
 00:45:28,392 --> 00:45:31,727
 viewDidAppear which gets into after you're fully on screen.
+viewDidAppear 这个方法在你完全出现在屏幕上之后发送给你
 
 1100
 00:45:31,795 --> 00:45:34,596
 The animation to get you on screen is on screen so
+把你带到屏幕上的动画效果已经出现在屏幕上了
 
 1101
 00:45:34,665 --> 00:45:35,598
 you're there.
+你也在屏幕上
 
 1102
 00:45:35,667 --> 00:45:37,899
 And what would you do here?
+那么在这里你能做些什么呢
 
 1103
 00:45:37,968 --> 00:45:39,668
 There's usually not a lot to do here.
+这里通常没那么多事要做
 
 1104
 00:45:39,737 --> 00:45:42,438
 You might start an animation though.
+你可能在这开启一个动画效果
 
 1105
 00:45:42,506 --> 00:45:45,374
 You've got some MVC that has some animation going.
+你的一些有一些伴随动画效果的MCV
 
 1106
 00:45:45,443 --> 00:45:47,677
 And it doesn't make any sense to start it before it
+但是这些动画效果没必要在MVC出现之前运行
 
 1107
 00:45:47,745 --> 00:45:48,578
 So once it gets on screen then you start it going.
+所以当他们出现在屏幕上时
 
 1108
 00:45:48,579 --> 00:45:49,412
 gets on screen.
+才会开启
 
 1109
 00:45:50,782 --> 00:45:52,214
 ViewWillAppear and viewDidAppear happen so
+ViewWillAppear和viewDidAppear发生的时间
 
 1110
 00:45:52,283 --> 00:45:55,117
 close together, it's probably not gonna save much to wait
+十分接近，所以在viewDidAppear开始播放动画效果之前
 
 1111
 00:45:55,186 --> 00:45:56,752
 until viewDidAppear to start the animation,
+可能不会有很多等待的时间
 
 1112
 00:45:56,821 --> 00:45:58,354
 but eh, a lot of people will do that,
+但是却有很多人会做这件事
 
 1113
 00:45:58,422 --> 00:46:01,356
 just to kind of for clarity of programming.
+就是为了让编程更加明晰
 
 1114
 00:46:01,425 --> 00:46:01,924
 And then, of course,
+然后，当然啦
 
 1115
 00:46:01,993 --> 00:46:04,060
 you can disappear, and get the same thing there,
+你也可以“消失”，然后也会得到一样的东西
 
 1116
 00:46:04,128 --> 00:46:06,495
 a viewWillDisappear and a viewDidDisappear.
+一个viewWillDisappear 和一个viewDidDisappear
 
 1117
 00:46:06,564 --> 00:46:09,999
 One thing you notice in all of these view controller
+在这你会注意到一件事，就是在这些所有view controller
 
 1118
 00:46:10,068 --> 00:46:12,701
 lifecycle is that I'm calling super.
+生命周期中，我都会调用super
 
 1119
 00:46:12,770 --> 00:46:13,402
 You see that?
+你看见了吧
 
 1120
 00:46:13,471 --> 00:46:16,405
 super.viewWillDisappear, and I did it for
+super.viewWillDisappear我在
 
 1121
 00:46:16,474 --> 00:46:20,509
 superViewDidLoad, and superViewWillAppear.
+superViewDidLoad和superViewWillAppear都这么做了
 
 1122
 00:46:20,578 --> 00:46:23,312
 All of them, all of the view controller lifecycle methods,
+所有这些，所有view controller生命周期的方法
 
 1123
 00:46:23,381 --> 00:46:25,681
 always call super.
+总是要调用super
 
 1124
 00:46:25,750 --> 00:46:28,083
 You always wanna give your super class chance to do it.
+你总是要给你的父类一个这么做的机会
 
 1125
 00:46:28,152 --> 00:46:30,253
 You'll see actually in the demo why you do that.
+你将会在demo中更加了解你为什么要这么做
 
 1126
 00:46:31,655 --> 00:46:32,254
 Always do that.
+总是要这么做
 
 1127
 00:46:32,322 --> 00:46:33,589
 Always do super there.
+总要调用这个super
 
 1128
 00:46:35,025 --> 00:46:38,060
 So in viewWillDisappear, a lot of times here you're
+所以在viewWillDisappear里，很多时候你都是在
 
 1129
 00:46:38,128 --> 00:46:40,663
 undoing the things you did in viewDidAppear.
+撤销你在viewDidAppear所做过的事情
 
 1130
 00:46:40,732 --> 00:46:42,030
 Like if you had an animation going,
+比如说如果你在那有个动画效果
 
 1131
 00:46:42,099 --> 00:46:43,065
 you're gonna stop it here,
+那么你就要在这把它停下
 
 1132
 00:46:43,133 --> 00:46:44,400
 because you're about to disappear.
+因为你就要“消失”了
 
 1133
 00:46:46,070 --> 00:46:48,870
 Here you might also start some cleanup.
+你还可能在这进行一些清理工作
 
 1134
 00:46:48,939 --> 00:46:50,138
 Your MVC disappeared, and
+你的MVC“消失“了
 
 1135
 00:46:50,207 --> 00:46:52,641
 so, if you allocated some resources or something that
+然后如果你分配了一些资源或者什么别的东西给它了
 
 1136
 00:46:52,710 --> 00:46:55,344
 you don't need, network connection open or something.
+但是现在它已经不需要了，比如开启的网络链接或者什么其他的东西
 
 1137
 00:46:55,413 --> 00:46:58,080
 That only makes sense to be open while your MVC is on,
+它只需要在你的MVC在运行的时候开启才有用
 
 1138
 00:46:58,149 --> 00:47:00,749
 then here is a good place where you can shut it down,
+那么这里就是一个你关闭它的好地方
 
 1139
 00:47:00,818 --> 00:47:03,052
 and there is a did version of this as well.
+它也有一个”did”版本
 
 1140
 00:47:04,388 --> 00:47:06,555
 A lot of times people look at viewDidAppear and
+很多时候我们将viewDidAppear
 
 1141
 00:47:06,623 --> 00:47:09,691
 viewWillDisappear as matched, you know, one undoes
+和viewWillDisappear视为一对儿，你懂的，一个撤销
 
 1142
 00:47:09,760 --> 00:47:12,295
 the other, and then the same thing with viewWillAppear and
+另外一个做过的事情，viewWillAppear和viewDidDisappear也是一样
 
 1143
 00:47:12,363 --> 00:47:15,498
 viewDidDisappear, those are gonna undo each other.
+一个撤销另外一个做过的事情
 
 1144
 00:47:17,134 --> 00:47:20,736
 I still haven't talked about geometry until now.
+直到现在我们还没有讨论几何形状的事
 
 1145
 00:47:20,805 --> 00:47:22,904
 You don't want to be doing geometry in viewWillAppear.
+你不会想在viewWillAppear中进行任何几何形状的操作
 
 1146
 00:47:22,973 --> 00:47:25,007
 Your geometry actually probably is set
+你的几何形状可能已经在
 
 1147
 00:47:25,075 --> 00:47:27,042
 in viewWillAppear, but you shouldn't count on that.
+viewWillAppear中设置好了，但是你不应该指望那个东西
 
 1148
 00:47:27,111 --> 00:47:29,311
 You shouldn't do geometry in the view wills and
+你也不应该在各种view will，did appear和各种disappear
 
 1149
 00:47:29,379 --> 00:47:31,313
 did appears and disappears either.
+中设置你的几何形状
 
 1150
 00:47:31,382 --> 00:47:35,050
 Geometry changes: there's methods especially for it.
+几何形状改变：有专门设置它们的方法
 
 1151
 00:47:35,119 --> 00:47:37,686
 One thing to consider is, you almost never need to write any
+有一件需要注意的事就是，在你的几何形状改变时
 
 1152
 00:47:37,755 --> 00:47:40,122
 code when your geometry changes.
+你几乎完全不用写任何代码
 
 1153
 00:47:40,191 --> 00:47:42,023
 That's cuz you have auto layout.
+那是因为你有自动布局（auto layout）功能
 
 1154
 00:47:42,092 --> 00:47:43,792
 I mean, look at the app I just wrote.
+我的意思是，你看我刚刚写的这个app
 
 1155
 00:47:43,861 --> 00:47:47,129
 I've got that sad, happy, worried block of text, and
+我有一些上面写着“sad” “happy” “worried”文本的方块
 
 1156
 00:47:47,198 --> 00:47:48,497
 when I rotate it it stays in the middle.
+然后在我旋转设备的时候它们始终在中间
 
 1157
 00:47:48,566 --> 00:47:50,632
 I didn't have to write any code for that.
+我不需要为此写任何代码
 
 1158
 00:47:50,701 --> 00:47:52,568
 And even more complicated UI's.
+即使在更加复杂的UI中
 
 1159
 00:47:52,637 --> 00:47:54,336
 You're usually using auto layout and
+你也会经常食用自动布局
 
 1160
 00:47:54,404 --> 00:47:55,804
 it's doing it for you.
+来帮你做这些工作
 
 1161
 00:47:55,873 --> 00:47:57,206
 So most time you don't need any code.
+所以大部分时间你不需要任何代码
 
 1162
 00:47:57,274 --> 00:48:00,242
 But if you did feel like you needed to do some code
+但是如果你觉得你还是想写一些代码的话
 
 1163
 00:48:00,311 --> 00:48:02,411
 Let's talk a little bit about how you do that.
+我也可以教你一点怎么写
 
 1164
 00:48:04,082 --> 00:48:06,982
 There's two methods, viewWillLayoutSubviews and
+这有两个方法，viewWillLayoutSubviews和
 
 1165
 00:48:07,050 --> 00:48:08,550
 viewDidLayoutSubviews.
+viewDidLayoutSubviews
 
 1166
 00:48:08,619 --> 00:48:10,019
 And these are sent to you.
+这两个方法的信息会在
 
 1167
 00:48:10,087 --> 00:48:13,656
 In between these being sent to you, Autolayout happens.
+autolayout发生期间发送给你
 
 1168
 00:48:15,193 --> 00:48:18,994
 So if you wanna get involved in the geometry change of your
+所以如果你想在Autolayout发生之前插手你的几何形状改变的话
 
 1169
 00:48:19,063 --> 00:48:21,898
 view, before Autolayout starts,
+你的几何形状改变的话
 
 1170
 00:48:21,966 --> 00:48:23,399
 you can do it in view will layout subviews.
+你可以使用viewWillLayoutSubviews方法
 
 1171
 00:48:23,468 --> 00:48:25,534
 If you wanna wait until Autolayout does what it does
+如果你想等Autolayout做完它的工作之后
 
 1172
 00:48:25,603 --> 00:48:26,568
 and then you wanna get involved,
+在插手控制的话
 
 1173
 00:48:26,637 --> 00:48:29,037
 you can do it in viewDidLayoutSubviews.
+你可以用viewDidLayoutSubviews方法
 
 1174
 00:48:29,106 --> 00:48:31,474
 So when did these get called?
+所以它们在上面时候会被调用呢
 
 1175
 00:48:32,576 --> 00:48:35,378
 When a bounds of a view changes,
+在view的边界改变时
 
 1176
 00:48:35,446 --> 00:48:38,714
 all of its subviews might have to be moved around.
+所有view的子视图们都会改变他们的位置
 
 1177
 00:48:38,783 --> 00:48:40,582
 Maybe the view is know tall and
+视图可能会从又高又细
 
 1178
 00:48:40,651 --> 00:48:43,052
 thin, instead of short and wide.
+变成又矮又短
 
 1179
 00:48:43,120 --> 00:48:45,521
 It's views are gonna have to be moved to be in the right
+这时它的子视图必须被移动到正确的位置上去
 
 1180
 00:48:45,589 --> 00:48:48,490
 place, just like again we rotated the emotions thing and
+还是像我们的表情那个东西（faceit），当我们旋转设备时
 
 1181
 00:48:48,559 --> 00:48:50,559
 we need to move that stack view up or
+我们需要把那个栈视图（stackview）拉长一点
 
 1182
 00:48:50,628 --> 00:48:53,762
 all over a little bit sustained in the middle.
+才能使它保持在中间
 
 1183
 00:48:53,831 --> 00:48:55,197
 That's primarily what's going on here,
+差不多就是这样
 
 1184
 00:48:55,265 --> 00:48:58,334
 that's why this method is called viewWillLayoutSubviews.
+所以这就是为什么这个方法叫做“视图将要布局子视图”
 
 1185
 00:48:58,402 --> 00:48:59,668
 Its bounds changed and
+它的边界改变了
 
 1186
 00:48:59,737 --> 00:49:01,837
 now all its subviews need to be laid out.
+然后它的所有子视图都要重新被布局
 
 1187
 00:49:01,905 --> 00:49:04,307
 What about the things the view actually draws itself like
+但是那些自己进行绘图的视图要怎么办呢？
 
 1188
 00:49:04,375 --> 00:49:05,207
 the face?
+比如face
 
 1189
 00:49:05,276 --> 00:49:06,842
 That has nothing to do with this.
+它们什么都不用在这里做
 
 1190
 00:49:06,911 --> 00:49:08,743
 That's a view thing.
+这是个视图
 
 1191
 00:49:08,812 --> 00:49:11,647
 That face view, when the bounds change, if it's content
+那个faceview，当它的边界改变时，它的约束模式
 
 1192
 00:49:11,716 --> 00:49:14,950
 mode is redraw like we set it for the face view, it's draw
+将会像我们给face view设置的那样来重绘
 
 1193
 00:49:15,019 --> 00:49:18,720
 method's automatically gonna get called at the new bounds.
+它的绘图方法将以新的边界为参数会自动被调用（来重新绘图）
 
 1194
 00:49:18,789 --> 00:49:20,455
 So you don't have to do anything there.
+所以你不需要在这里做任何事
 
 1195
 00:49:20,524 --> 00:49:22,224
 So viewWillLayoutSubviews,
+所以 viewWillLayoutSubviews
 
 1196
 00:49:22,293 --> 00:49:24,659
 is what happens, when you have subviews.
+当你有子视图的时候它才会发生的，
 
 1197
 00:49:24,728 --> 00:49:27,596
 This happens at the view level, so views have a method
+它会发生在有view level的时候，所以view有一个
 
 1198
 00:49:27,665 --> 00:49:30,199
 for laying out their subviews, called layoutSubviews.
+布局它们自己的子视图的方法，叫做layoutSubviews
 
 1199
 00:49:30,268 --> 00:49:33,102
 Subviews, and the ViewController also gets to
+子视图，然后 ViewController也会确认
 
 1200
 00:49:33,170 --> 00:49:36,905
 find out when its view, and by this I mean the var
+它什么时候是个view，我这里说的view是一个变量
 
 1201
 00:49:36,974 --> 00:49:39,241
 view in ViewController, you remember what that var is?
+ViewController里面的view变量，你记得那个吧？
 
 1202
 00:49:39,310 --> 00:49:41,410
 That's that top level view.
+那个是view的最高级别
 
 1203
 00:49:41,479 --> 00:49:43,212
 There's a var for that in your ViewController,
+你的ViewController的这个变量就是为了
 
 1204
 00:49:43,281 --> 00:49:46,615
 it's saying that view is going to layout its subviews, and
+告诉它，这个view将要布局它的子视图了
 
 1205
 00:49:46,684 --> 00:49:49,718
 that happens when that top level view changes, usually
+而这个动作发生在顶级view改变时 这种情况
 
 1206
 00:49:49,786 --> 00:49:52,488
 due to rotation but other things can change it as well.
+一般都是发生在设备旋转时，但是也有一些其他东西会触发（这种变化）
 
 1207
 00:49:55,793 --> 00:49:59,728
 One thing about these methods is you should expect that they
+关于这些方法，有一点需要注意，那就是你应该做好它们
 
 1208
 00:49:59,797 --> 00:50:02,198
 may be called all the time.
+会被随时调用的准备
 
 1209
 00:50:02,266 --> 00:50:04,299
 Don't try to anticipate when they're going to be called.
+不要尝试去预期它们什么时候会被调用
 
 1210
 00:50:04,368 --> 00:50:06,735
 Just, whenever they're called, you do what you're supposed,
+不管什么时候它们被调用，你就做好你该做的工作
 
 1211
 00:50:06,803 --> 00:50:07,702
 you're supposed to do,
+做好你该做的
 
 1212
 00:50:07,771 --> 00:50:10,372
 and they might be called repeatedly with the same
+而且它们可能在相同的边界下被频繁的
 
 1213
 00:50:10,441 --> 00:50:11,373
 bounds.
+调用
 
 1214
 00:50:11,442 --> 00:50:13,375
 So the bounds might not actually have changed,
+所以可能边界并没有被改变
 
 1215
 00:50:13,444 --> 00:50:15,578
 because this is not called view bounds changed this is
+因为这个方法并不叫做“视图边界被改变”
 
 1216
 00:50:15,646 --> 00:50:18,280
 called viewWillLayoutSubviews and viewDidLayoutSubviews.
+它叫做“视图将要布局子视图”和“视图已经布局好了子视图”
 
 1217
 00:50:18,349 --> 00:50:20,682
 And there are other things besides bounds changes that
+所以也有一些除了视图边界被改变的情况
 
 1218
 00:50:20,751 --> 00:50:23,152
 might cause that top-level view to have to layout it's
+也可能导致顶级视图不得不布局它的
 
 1219
 00:50:23,220 --> 00:50:24,020
 sub views.
+子视图们
 
 1220
 00:50:24,088 --> 00:50:26,488
 So expect this to be called fairly often and
+所以做好它们被相当频繁调用的准备
 
 1221
 00:50:26,557 --> 00:50:29,458
 you should always react to it correctly.
+你总是应该做出正确的反应
 
 1222
 00:50:29,526 --> 00:50:31,026
 Even if it's called repeatedly with the same
+即使它们在同一边界下或其他各种情况下
 
 1223
 00:50:31,095 --> 00:50:31,927
 bounds or whatever.
+被频繁调用
 
 1224
 00:50:33,430 --> 00:50:35,297
 Now, auto rotation,
+现在我们来讲自动旋转
 
 1225
 00:50:35,366 --> 00:50:38,466
 the bounds changing by rotating the device, actually
+边界会因为设备的旋转而改变，实际上
 
 1226
 00:50:38,535 --> 00:50:41,603
 has a couple of little extra pieces of interest to it.
+还有两个额外的小东西我们要注意下
 
 1227
 00:50:41,672 --> 00:50:44,473
 The most notable is animation.
+最值得注意的就是动画效果
 
 1228
 00:50:44,541 --> 00:50:46,942
 So normally when you rotate it's just going to be
+所以一般情况下，当你旋转屏幕时
 
 1229
 00:50:47,011 --> 00:50:50,011
 ViewWillLayoutSubviews and everything's just going to,
+ViewWillLayoutSubviews会发生，然后所有事都跟着发生
 
 1230
 00:50:50,080 --> 00:50:53,949
 auto layout's going to happen, everything is happening fine.
+auto layout会发生，所有的事都进行的很好
 
 1231
 00:50:54,018 --> 00:50:57,519
 However that changes, all those changes are animated.
+不管它怎么变，所有这些变化都伴随着动画效果
 
 1232
 00:50:57,588 --> 00:51:00,289
 If you look closely when you rotate your device, all
+如果你在旋转屏幕时仔细观察你会发现
 
 1233
 00:51:00,358 --> 00:51:03,892
 the views are kind of flying across to their new location.
+所有的view都像是飞到它们的新位置一样
 
 1234
 00:51:03,961 --> 00:51:05,394
 It's really kinda cool actually.
+这样看起来可以说非常酷了
 
 1235
 00:51:06,931 --> 00:51:07,630
 They're being animated.
+它们都伴随有动画效果
 
 1236
 00:51:07,698 --> 00:51:09,698
 They don't just pop appear in the new place,
+它们并不是突然出现在新位置上
 
 1237
 00:51:09,766 --> 00:51:11,100
 they slide over.
+它们滑过去
 
 1238
 00:51:11,168 --> 00:51:13,068
 Well, you can participate in that animation,
+当然你也可以插手设置这些动画效果
 
 1239
 00:51:13,137 --> 00:51:14,336
 now we haven't talked about animation.
+到现在我们还没有讨论过动画效果
 
 1240
 00:51:14,405 --> 00:51:16,905
 We will in about three weeks.
+我们大概三周之内会讨论它
 
 1241
 00:51:16,974 --> 00:51:18,407
 But you can participate with this method,
+但是你可以用这个方法参与它的设置
 
 1242
 00:51:18,475 --> 00:51:20,576
 ViewwillTransition to size with coordinator.
+用ViewwillTransition方法通过坐标器来设置尺寸
 
 1243
 00:51:20,644 --> 00:51:24,246
 And that coordinator has a little closure you can set on
+这个坐标器（coordinator）是个小闭包 你可以通过设置它
 
 1244
 00:51:24,315 --> 00:51:27,016
 it that will cause some animation you want to do
+来做一些你想要的动画效果
 
 1245
 00:51:27,084 --> 00:51:31,052
 to happen alongside the rotations animation.
+一些你想在设备旋转时发生的动画效果
 
 1246
 00:51:31,121 --> 00:51:33,822
 So if you want to animate moving some user doing
+所以如果你想对一些用户的移动操作加上动画效果
 
 1247
 00:51:33,891 --> 00:51:36,224
 something else that doesn't happen automatically for you,
+加上一些并没有被自动设置出现的动画效果
 
 1248
 00:51:36,293 --> 00:51:37,959
 which most stuff does with autolayout,
+就是那些没有被autolayout做出来的东西
 
 1249
 00:51:38,028 --> 00:51:39,728
 you can do that here with this method.
+你可以在这里用这个方法实现
 
 1250
 00:51:43,567 --> 00:51:48,337
 Low-memory: didReceiveMemoryWarning
+低内存：didReceiveMemoryWarning
 
 1251
 00:51:48,406 --> 00:51:49,671
 will be sent to your view controller when
+将在你的系统内存不足时
 
 1252
 00:51:49,740 --> 00:51:51,840
 the system's low on memory, it's trying to get some back.
+发送给你的 view controller，它想搞一些回来
 
 1253
 00:51:51,909 --> 00:51:53,409
 This almost never happens.
+这种情况基本从不发生
 
 1254
 00:51:53,477 --> 00:51:55,311
 I just can't remember the last time this happened because
+我都不记得上次遇到这种情况是什么时候了
 
 1255
 00:51:55,379 --> 00:51:57,379
 the devices have so much memory these days.
+因为现在的设备内存都很大
 
 1256
 00:51:58,649 --> 00:52:01,116
 Usually if this happens though, you wanna pay
+但是通常如果发生了这样的事情，你需要
 
 1257
 00:52:01,185 --> 00:52:03,419
 attention because you're using a lot of memory.
+注意了，因为你正在使用大量的内存
 
 1258
 00:52:03,487 --> 00:52:06,055
 If the system is sending this to you, either you are or
+如果系统发送这个信息给你了，要么事你要么是其他app
 
 1259
 00:52:06,124 --> 00:52:07,922
 some other app is using a lot of memory.
+正在使用大量的内存
 
 1260
 00:52:07,991 --> 00:52:10,926
 By the way, if you are an app that uses a lot of memory, and
+如果你的app正在使用大量的内存
 
 1261
 00:52:10,995 --> 00:52:12,094
 you don't keep it under control,
+而你又不加以控制
 
 1262
 00:52:12,163 --> 00:52:14,263
 the system has the right to just kill you.
+那么系统就有权利杀掉你（的程序）
 
 1263
 00:52:15,332 --> 00:52:16,531
 Just kill your app.
+杀掉你的app
 
 1264
 00:52:16,600 --> 00:52:18,400
 And it will do it, absolutely.
+它是一定会这么做的
 
 1265
 00:52:18,468 --> 00:52:19,901
 Even if you're in the background,
+即使你在后台运行
 
 1266
 00:52:19,970 --> 00:52:23,805
 if you've allocated a ton of memory and you're being a bad
+如果你被分配了一大吨内存，而你又不控制
 
 1267
 00:52:23,874 --> 00:52:27,909
 citizen they just kill you off to get your memory back what
+那么它们就会杀掉你（的进程）然后把你的内存拿回来
 
 1268
 00:52:27,978 --> 00:52:30,679
 kinda memory would you free up if you got this method.
+如果你遇到了这个方法，什么样的内存你可以释放呢？
 
 1269
 00:52:30,747 --> 00:52:33,082
 Let's say you had an image that's not currently on
+我们说如果你有个图片，这个图片现在还不会出现在屏幕上
 
 1270
 00:52:33,150 --> 00:52:36,284
 screen, and you can create it from a file on disk.
+然后你可以通过磁盘上的文件来创建它
 
 1271
 00:52:36,353 --> 00:52:39,321
 We haven't really talked about this, but your phone has
+我们还没确切的讨论过这些，但是你的手机是有
 
 1272
 00:52:39,390 --> 00:52:42,625
 permanent storage, flash memory, and you have,
+永久存储和闪存的
 
 1273
 00:52:42,693 --> 00:52:44,627
 let's say a JPEG image, you can just recreate it.
+比如一个JPEG格式的图片，你完全可以重建它
 
 1274
 00:52:44,695 --> 00:52:46,461
 Well, you would definitely release that here.
+那么这样的话，你就完全可以把它释放掉
 
 1275
 00:52:46,530 --> 00:52:47,529
 Cuz it's not on-screen, and
+因为它现在不在屏幕上
 
 1276
 00:52:47,598 --> 00:52:48,997
 you can create it real fast from the disk,
+而且你可以非常迅速的通过磁盘上的文件来创建它
 
 1277
 00:52:49,066 --> 00:52:50,165
 so there's no reason to keep it around.
+这样的话，把它留在那里就完全没有必要了
 
 1278
 00:52:50,234 --> 00:52:51,967
 So that's something you could release.
+这就是一些你可以释放的东西
 
 1279
 00:52:52,036 --> 00:52:55,003
 Basically any memory that you can quickly recreate.
+基本上任何你可以快速重建的
 
 1280
 00:52:55,072 --> 00:52:57,205
 Or that is not currently on-screen, and
+或者它现在不在屏幕上的
 
 1281
 00:52:57,274 --> 00:52:59,808
 you can create it when that comes back on-screen.
+你可以在它会到屏幕上之前创建的的
 
 1282
 00:52:59,877 --> 00:53:02,177
 That's a good thing to release.
+都是可以释放的内存
 
 1283
 00:53:02,246 --> 00:53:03,678
 But only big things.
+但是只释放大的东西
 
 1284
 00:53:03,747 --> 00:53:05,947
 Don't release little tiny 100 byte things.
+不要释放那些小的只有100byte的东西
 
 1285
 00:53:06,016 --> 00:53:08,984
 No, we're talking images, sounds, videos,
+不要，我们说的都是一些图片啊音频啊视频之类的东西
 
 1286
 00:53:09,052 --> 00:53:13,355
 big ol' things.
+大～东西
 
 1287
 00:53:13,424 --> 00:53:14,556
 There's one other little thing:
+这还有个小事情要说
 
 1288
 00:53:14,625 --> 00:53:16,992
 it's not part of the UIcontroller life cycle, but
+它并不是UIcontroller生命周期的一部分
 
 1289
 00:53:17,061 --> 00:53:20,662
 every single object that comes out of a storyboard: views,
+但是每一个storyboard中的对象：view
 
 1290
 00:53:20,731 --> 00:53:24,165
 view controllers, everything gets sent awakeFromNib and
+view controllers，所有这些东西都会得到一个来自awakeFromNib的信息
 
 1291
 00:53:24,234 --> 00:53:25,634
 they can send it pretty early.
+它们可以非常早的接收到它
 
 1292
 00:53:26,904 --> 00:53:27,936
 Like right as soon as they come
+就像它们一出现
 
 1293
 00:53:28,004 --> 00:53:29,938
 out they get sent awake from nib.
+就收到了这个awakeFromNib
 
 1294
 00:53:30,006 --> 00:53:32,974
 Now you can't use it to like satisfy the requirement that
+你不可以把它看作一个所有的变量都已经被初始化了的
 
 1295
 00:53:33,043 --> 00:53:35,811
 all vars are initialized.
+确认指示
 
 1296
 00:53:35,879 --> 00:53:38,947
 But you can use it do early, really early initialization.
+但是你可以更早的使用它，在非常早的初始化工作中
 
 1297
 00:53:39,016 --> 00:53:41,350
 For example remember I mentioned about you want your
+举个例子，我记得我提过关于你如果想要你的
 
 1298
 00:53:41,419 --> 00:53:43,819
 split view controller to come up showing the face or
+split view controller先出现表情选择列表
 
 1299
 00:53:43,887 --> 00:53:46,855
 come up showing the emotions instead of showing the face?
+而不是先出现一张脸
 
 1300
 00:53:47,825 --> 00:53:48,257
 In your calculator,
+在你的calculator里
 
 1301
 00:53:48,326 --> 00:53:49,524
 it would come up showing the calculator,
+它应该先出现计算器界面
 
 1302
 00:53:49,593 --> 00:53:52,828
 instead of the calculator's graph, and
+而不是出现计算器的图像
 
 1303
 00:53:52,897 --> 00:53:54,863
 I said you needed to do that by setting the delegate.
+然后我说如果想设置这个的话需要设置代理
 
 1304
 00:53:54,932 --> 00:53:56,932
 This delegate of the SplitViewController,
+SplitViewController的代理
 
 1305
 00:53:57,001 --> 00:53:58,500
 that's something you might wanna do to make
+这个就是一个你可以使你的
 
 1306
 00:53:59,503 --> 00:54:00,702
 get that delegate involved early.
+代理更早的在这里起作用的方法
 
 1307
 00:54:00,771 --> 00:54:03,738
 We'll talk about delegates on Wednesday.
+我们饿将在周三讨论代理
 
 1308
 00:54:03,807 --> 00:54:07,108
 So awake from nib, rarely used and sometimes overused.
+所以这个awakeFromNib，要么基本不用要么过渡使用
 
 1309
 00:54:07,177 --> 00:54:09,878
 I would say if you could put it in another method like view
+我会这么告诉你们，如果你能把它放在其他方法里，比如
 
 1310
 00:54:09,947 --> 00:54:11,713
 did load or view will appear or view.
+viewDidLoad或者viewWillAppear或者
 
 1311
 00:54:11,782 --> 00:54:13,181
 Did layout put it there first.
+viewDidLayout，那么就优先把它放在那里
 
 1312
 00:54:13,250 --> 00:54:14,717
 Don't put it in away fromNib,
+不要把它放在awakeFromNib里
 
 1313
 00:54:14,785 --> 00:54:17,185
 that's kind of a last resort place to put things.
+它就是一个你可以放它的最差的一个地方
 
 1314
 00:54:17,254 --> 00:54:19,722
 It's probably better than overriding in it.
+可能比放在overriding里好些
 
 1315
 00:54:19,790 --> 00:54:21,824
 But that's the only thing it's better than.
+但是也就能比放在overriding里好些了
 
 1316
 00:54:23,693 --> 00:54:25,661
 So here's the summary of the entire view controller
+这是整个view controller
 
 1317
 00:54:25,729 --> 00:54:26,561
 lifecycle.
+生命周期的总结
 
 1318
 00:54:26,630 --> 00:54:30,232
 You can instantiated, created out of the storyboard.
+你可以实例化，在stroyboard中创建
 
 1319
 00:54:30,300 --> 00:54:32,734
 You get awake from nib sent to you.
+你会收到一个awakeFromNib
 
 1320
 00:54:32,803 --> 00:54:33,969
 Segue prep happens.
+Segue prep发生
 
 1321
 00:54:34,038 --> 00:54:36,471
 Somebody prepares you if you're being segued to
+如果你即将被segue那么有人会为你perpare
 
 1322
 00:54:36,539 --> 00:54:38,407
 which most MVC's are.
+大部分MVC都会这么做
 
 1323
 00:54:38,475 --> 00:54:39,508
 Outlets get set.
+outlet也都设置好了
 
 1324
 00:54:39,577 --> 00:54:41,176
 Your face view, and your calculator.
+想你的faceview还有你的calculator
 
 1325
 00:54:41,244 --> 00:54:44,412
 It's your display and things like that get set up.
+就是一些你要显示出来的东西都设置好了
 
 1326
 00:54:44,481 --> 00:54:47,015
 ViewDidLoad gets called.
+ViewDidLoad被调用
 
 1327
 00:54:47,084 --> 00:54:49,551
 Again, with viewDidLoad, look at all the things that
+再一次，通过viewDidLoad 看所有的东西
 
 1328
 00:54:49,619 --> 00:54:51,453
 happened by the time viewDidLoad gets called.
+都在viewDidLoad被调用的时候发生
 
 1329
 00:54:51,522 --> 00:54:53,255
 It's a great place to put initialization.
+这是个非常好进行初始化的地方
 
 1330
 00:54:54,659 --> 00:54:57,058
 You enter kind of the normal life cycle
+当你进入到一个常规的生命周期
 
 1331
 00:54:57,127 --> 00:54:59,460
 where you're getting appearing and disappearing.
+在这里你进行“出现”和“消失”操作
 
 1332
 00:54:59,529 --> 00:55:01,413
 disappearing with the the will and did appear and disappears.
+disappear和Appear都有will和did的
 
 1333
 00:55:01,414 --> 00:55:03,298
 Appearing and
+版本
 
 1334
 00:55:03,367 --> 00:55:05,501
 Along the way, and at any time actually,
+在整个过程中的任何时间
 
 1335
 00:55:05,569 --> 00:55:08,070
 even before viewDidLoad, you can get these sent to.
+甚至在viewDidLoad之前，你都可能收到它们
 
 1336
 00:55:08,139 --> 00:55:09,571
 Although that would be rare.
+虽然这种情况很罕见
 
 1337
 00:55:09,640 --> 00:55:10,472
 But anytime you can be,
+但是也是可能发生的
 
 1338
 00:55:10,540 --> 00:55:13,308
 actually I'm not sure you can get it before viewDidLoad.
+事实上我不是特别确定你会不会在viewDidLoad之前收到它
 
 1339
 00:55:13,377 --> 00:55:16,144
 Take that back But any time when view will appear and
+但是任何时间 viewWillAppear和Disappear发生了
 
 1340
 00:55:16,213 --> 00:55:19,314
 disappear is happening, whether you're on-screen or
+不管你是否出现在屏幕上
 
 1341
 00:55:19,383 --> 00:55:22,050
 not, you could get viewWillLayout subviews and
+你都会得到viewWillLayoutSubviews和
 
 1342
 00:55:22,119 --> 00:55:25,854
 viewDidLayout subviews sent to you, auto-layout happening.
+viewDidLayoutSubviews的信息 auto-layou发生
 
 1343
 00:55:25,923 --> 00:55:28,389
 By the way, why would you ever be sent these methods
+那么你为什么会在不在屏幕上的情况下
 
 1344
 00:55:28,458 --> 00:55:29,591
 when you're not on-screen?
+接收到这些方法呢？
 
 1345
 00:55:29,659 --> 00:55:32,327
 Well, the system might be preparing to animate you
+可能是因为系统正在准备你即将出现在屏幕上的动画效果
 
 1346
 00:55:32,396 --> 00:55:33,429
 coming on-screen.
+屏幕上的动画效果
 
 1347
 00:55:34,631 --> 00:55:36,364
 When the system animates things,
+当系统在进行一些动画效果的时候
 
 1348
 00:55:36,433 --> 00:55:40,135
 one of the ways it can do it is having you draw one
+一种它实现的方法是，获取一个你画的方向
 
 1349
 00:55:40,203 --> 00:55:42,537
 orientation, have you draw in the other, and
+在获取你画的另一个
 
 1350
 00:55:42,606 --> 00:55:45,307
 then it kind of moves the bits from one to the other.
+然后它就像是从一个一点点的移动到另外一个
 
 1351
 00:55:45,376 --> 00:55:47,142
 That's one kind of animation can do.
+这是生成动画效果的一种方式
 
 1352
 00:55:47,211 --> 00:55:48,977
 So you might be off screen, and it's asking you for
+所以这样的话，你可能不在屏幕上，但是它依然会从你这里获取
 
 1353
 00:55:49,046 --> 00:55:49,544
 both of those.
+这两个东西
 
 1354
 00:55:49,613 --> 00:55:50,712
 So it sends you this twice,
+所以它会发送给你两次
 
 1355
 00:55:50,781 --> 00:55:52,547
 once to get this orientation and draw, and
+第一次获得方向和第一个绘点
 
 1356
 00:55:52,616 --> 00:55:54,950
 then once to get this into orientation and draw.
+然后第二次获得第二个绘点，然后按照这个方向进行绘制
 
 1357
 00:55:55,018 --> 00:55:56,017
 And then when you come on screen,
+然后等你在屏幕上时
 
 1358
 00:55:56,086 --> 00:55:57,786
 it animate you from one to the other.
+它就会动态的把你从一个点移到另一个点
 
 1359
 00:55:58,956 --> 00:56:01,022
 So, that's why you can get this at any time
+所以这就是为什么你随时都可能得到这个方法
 
 1360
 00:56:01,091 --> 00:56:01,757
 on screen or off.
+无论在不在屏幕上
 
 1361
 00:56:03,727 --> 00:56:06,995
 Also at any time you could get a low memory warning.
+同时你也会在任何时间得到低内存警告
 
 1362
 00:56:07,063 --> 00:56:08,197
 And then you're done.
+到这就完事了
 
 1363
 00:56:09,500 --> 00:56:12,033
 It leaves the heap when it goes off screen if it was
+只要它不是把自己segue到什么里面，那么如果它被segue了
 
 1364
 00:56:12,102 --> 00:56:18,706
 segued to, as long as it's not itself segued into something.
+那它就会在离开屏幕的同时离开堆
 
 1365
 00:56:18,775 --> 00:56:21,709
 But when it's done it gets thrown out.
+在它结束时就会被抛出
 
 1366
 00:56:21,778 --> 00:56:23,278
 Okay, so I'm gonna show you a demo that
+现在我要向大家展示一个demo
 
 1367
 00:56:23,347 --> 00:56:25,247
 will make all of this a lot more concrete.
+这样可以使我们讲的所有的东西都更具体
 
 1368
 00:56:26,850 --> 00:56:28,417
 Let me go through the rest of this in case I don't get
+我们过一下剩下的这些，万一我不能
 
 1369
 00:56:28,485 --> 00:56:29,984
 back to the slides, I think we will, because
+回来讲幻灯片的话，我觉得我们还是会回来的
 
 1370
 00:56:30,053 --> 00:56:32,588
 I think we're gonna have time to do this other, topic.
+因为我觉得我们在做完demo之后还会有些时间来讲另一个主题
 
 1371
 00:56:34,124 --> 00:56:35,123
 After the demo, I'll come back and
+我会回到这里然后
 
 1372
 00:56:35,192 --> 00:56:37,025
 start to talk about memory management, hopefully.
+开始讨论一些内存管理，希望如此吧
 
 1373
 00:56:37,094 --> 00:56:39,995
 On Wednesday, extensions, protocols, delegation,
+周三，我们会讲扩展（extensions）协议（protocols）和代理（delegation）
 
 1374
 00:56:40,064 --> 00:56:41,463
 that thing I was telling you you'll need to know for
+那个我跟你们说过如果你想获得更高的分数
 
 1375
 00:56:41,532 --> 00:56:43,932
 your split view thing, if you wanna do that extra credit.
+你就要知道的关于你split view的东西
 
 1376
 00:56:44,001 --> 00:56:46,034
 And we'll start talking about scroll view,
+然后我们会开始讨论滚动视图
 
 1377
 00:56:46,103 --> 00:56:47,302
 more complicated object.
+更复杂的对象
 
 1378
 00:56:47,370 --> 00:56:49,137
 On Friday, important one on Friday,
+周五，周五很重要
 
 1379
 00:56:49,206 --> 00:56:50,805
 if you want to do the extra credit,
+如果你想在你的图形计算器的性能上
 
 1380
 00:56:50,874 --> 00:56:53,241
 about performance in the calculator graph.
+获得额外的分数
 
 1381
 00:56:53,310 --> 00:56:55,377
 So you definitely wanna show up for that one.
+那你一定要去那天的课
 
 1382
 00:56:55,446 --> 00:56:57,813
 And then next week we'll start into multi threading,
+然后下周我们会开始讨论多线程
 
 1383
 00:56:57,882 --> 00:56:59,615
 table view, a whole bunch of cool stuff.
+table view一连串酷酷的东西
 
 1384
 00:57:00,918 --> 00:57:03,084
 Alright, so let's do this demo here.
+那么现在我们来做这个demo吧
 
 1385
 00:57:03,153 --> 00:57:06,788
 I'm gonna go to our face view, same thing we were just in,
+我要用我们的faceView来做，我们刚刚用过的这个东西
 
 1386
 00:57:06,857 --> 00:57:08,156
 this face it app.
+这是face it app
 
 1387
 00:57:08,225 --> 00:57:10,959
 And I'm gonna drag in a little piece of code I wrote,
+然后我要拖进来一小块我写的代码
 
 1388
 00:57:11,028 --> 00:57:13,428
 which I'm gonna show you here.
+我要在这里展示给你
 
 1389
 00:57:13,497 --> 00:57:17,299
 Let's get out navigator back here, put this in here.
+我们把导航器拉出来，把它放这
 
 1390
 00:57:17,368 --> 00:57:18,600
 So I'm just gonna drop this in here.
+我就把它丢在这里
 
 1391
 00:57:18,668 --> 00:57:20,202
 By the way when you drag in code,
+顺便一提，当你拖拽代码时
 
 1392
 00:57:20,271 --> 00:57:22,537
 you probably want to do copy items, if needed.
+你可能会想用这个copy items if needed
 
 1393
 00:57:22,606 --> 00:57:24,639
 Otherwise, it's gonna be kind of linked to the other one,
+要不然，它就会变成一种另外一个的链接
 
 1394
 00:57:24,708 --> 00:57:25,874
 if you change it in the other place,
+如果你在其他地方对它做了些改动
 
 1395
 00:57:25,943 --> 00:57:27,242
 it's gonna be changing here.
+那么这里的也会相应变化
 
 1396
 00:57:27,311 --> 00:57:30,712
 Can be kinda causing unexpected results often.
+这样的话可能经常会导致很多预期之外的后果
 
 1397
 00:57:32,015 --> 00:57:32,781
 I put this in here.
+我把这个放这
 
 1398
 00:57:32,849 --> 00:57:34,782
 Let's look at this little class I just dropped in here,
+我们来看看我刚刚丢在这里的这个小类
 
 1399
 00:57:34,851 --> 00:57:36,951
 it's called VCLLoggingViewController.
+它叫做VCLLoggingViewController
 
 1400
 00:57:37,020 --> 00:57:39,054
 It's a subclass of UIViewController.
+他是UIViewController的一个子类
 
 1401
 00:57:40,424 --> 00:57:44,292
 Logging view controller and it logs the VCL methods.
+LoggingViewController，它用来记录VCL方法
 
 1402
 00:57:44,361 --> 00:57:46,661
 View controller life cycle methods.
+View controller 生命周期方法
 
 1403
 00:57:46,730 --> 00:57:50,431
 So it basically just overrides every single one.
+所以它基本上就是重写了每一个方法
 
 1404
 00:57:50,500 --> 00:57:53,435
 View will appear, view layout subviews away from nib.
+View will appear, view layout subviews away from nib
 
 1405
 00:57:53,504 --> 00:57:55,436
 It even tells you when it left the heap.
+它甚至可以告诉你它什么时候离开堆
 
 1406
 00:57:55,505 --> 00:57:57,372
 It's overriding init here, and
+它在这重写了一个init
 
 1407
 00:57:57,441 --> 00:58:00,942
 it just prints out where it, what happened.
+然后它就是把它在哪发生了什么打印出来
 
 1408
 00:58:01,011 --> 00:58:02,210
 So it just sits there on the console,
+它就在控制台那里
 
 1409
 00:58:02,279 --> 00:58:04,179
 printing out everything that happened.
+打印所有发生的事情
 
 1410
 00:58:04,248 --> 00:58:05,147
 It's a little bit cool,
+还是挺酷的
 
 1411
 00:58:05,215 --> 00:58:07,048
 because it shows you the instance of each of them.
+因为它会告诉你它们的每个实例都发生了什么
 
 1412
 00:58:07,117 --> 00:58:09,351
 So you can see instances coming and going,
+所以你可以看到实例们出现然后进行
 
 1413
 00:58:09,420 --> 00:58:12,054
 as they get segued to, and then come off.
+然后当他们被segue它们又离去
 
 1414
 00:58:12,122 --> 00:58:15,390
 It also kinda indents it over time, so you can, when you
+它每次都会换行，所以你可以在你
 
 1415
 00:58:15,459 --> 00:58:18,259
 click some, you can see a bunch that happen together.
+进行什么操作的时候，你可以看到一连串一起发生的事情
 
 1416
 00:58:18,328 --> 00:58:21,196
 Now the way we're gonna use this is we're just gonna make
+我们使用它的方式就是把它变成我们
 
 1417
 00:58:21,265 --> 00:58:26,868
 this class be the super class of both of our controllers.
+两个controller的父类
 
 1418
 00:58:26,937 --> 00:58:29,304
 So we're gonna make that into a VCL login view controller.
+这样我们就可以把变化记录到我们的VCL login view controller中了
 
 1419
 00:58:29,373 --> 00:58:32,674
 And we're gonna make this into a VCL login view controller.
+我们会把它变成一个VCL login view controller
 
 1420
 00:58:32,743 --> 00:58:36,411
 And right there, you can see why we always wanna call super
+然后这里，你就明白为什么在所有我们的view control方法中
 
 1421
 00:58:36,479 --> 00:58:38,713
 in all of our view control methods.
+我们总是要调用super了
 
 1422
 00:58:38,782 --> 00:58:40,648
 Cuz if we did any of these view controller
+因为如果我们在这里的每个view controller
 
 1423
 00:58:40,717 --> 00:58:41,850
 life cycle methods, and
+生命周期方法中都调用的话
 
 1424
 00:58:41,918 --> 00:58:44,385
 we were subclassing from VCL login view controller,
+我们就是VCL login view controller的子类
 
 1425
 00:58:44,454 --> 00:58:46,788
 if we don't call super, it not gonna get logged.
+如果我们不调用super，那么变化就不会被记录
 
 1426
 00:58:46,856 --> 00:58:48,890
 And it's not unusual to come along later and
+那么它们就不会在后面特别的出现
 
 1427
 00:58:48,959 --> 00:58:51,759
 pop the different kind of view controller in between you and
+还能分清你的 view controller和
 
 1428
 00:58:51,828 --> 00:58:52,894
 UI view controller.
+UI view controller
 
 1429
 00:58:52,962 --> 00:58:56,264
 Some view controller that does something like logging or
+有一些view controller还有一些其他的功能
 
 1430
 00:58:56,332 --> 00:58:57,732
 something else.
+比如记录或者其他的什么
 
 1431
 00:58:57,801 --> 00:58:58,867
 All right, so that's it.
+好啦 就是这样
 
 1432
 00:58:58,935 --> 00:59:00,501
 That's all we need to do to make this work.
+这就是我们为了让它工作所做的所有的事情
 
 1433
 00:59:00,570 --> 00:59:01,369
 So I'm gonna go ahead and
+所以我要继续了
 
 1434
 00:59:01,438 --> 00:59:03,137
 run, we'll stick with iPhone 7 plus.
+我们在iPhone 7 plus上运行
 
 1435
 00:59:03,206 --> 00:59:07,009
 Let's go ahead and get the console up here.
+我们来看看，把这个控制台往上拉
 
 1436
 00:59:10,748 --> 00:59:11,546
 Here we go.
+来吧
 
 1437
 00:59:11,615 --> 00:59:13,414
 This came up, and we're already seeing a lot of
+它们出现了，我们已经看到了很多
 
 1438
 00:59:13,483 --> 00:59:15,783
 view controller lifecycle stuff happening here.
+view controller lifecycle 的东西出现了
 
 1439
 00:59:15,852 --> 00:59:17,852
 All right, we have our EmotionsViewController and
+我们这里有我们的EmotionsViewController和
 
 1440
 00:59:17,921 --> 00:59:18,920
 our FaceViewController,
+我们的FaceViewController
 
 1441
 00:59:18,989 --> 00:59:21,623
 these two view controllers get emitted.
+这两个view controller正在被记录（？）
 
 1442
 00:59:21,692 --> 00:59:23,458
 They come out of the storyboard, and
+它们从storyboard出来（？）
 
 1443
 00:59:23,527 --> 00:59:25,426
 they initialize with this init with coder.
+它们通过这个coder init来初始化
 
 1444
 00:59:25,495 --> 00:59:26,594
 And that's the one that things
+然后这个是其中一个从
 
 1445
 00:59:26,663 --> 00:59:27,862
 come out the interface builder.
+interface builder中出现的东西
 
 1446
 00:59:27,931 --> 00:59:31,033
 They both get awakeFromNib, you see that?
+它们都有awakeFromNib，你看见了么？
 
 1447
 00:59:31,101 --> 00:59:34,435
 And then the emotions one, first, gets viewDidLoad.
+然后这个emotion，首先获得viewDidLoad
 
 1448
 00:59:34,504 --> 00:59:37,371
-Then it gets viewwillAppear(animated =
+Then it gets viewwillAppear(animated = false)
+然后它有个 viewwillAppear(animated = false）
 
 1449
 00:59:37,440 --> 00:59:38,990
 That's because we're just starting up our app, so it's
+因为我们才开始运行我们的app 所以它是false
 
 1450
 00:59:38,991 --> 00:59:40,541
@@ -5805,190 +6250,237 @@ false).
 1451
 00:59:40,610 --> 00:59:43,678
 not sliding in on a navigation controller or something.
+还没滑入一个navigation controller或者别的什么东西
 
 1452
 00:59:43,747 --> 00:59:46,848
 It's just appearing, so it's not animated.
+它就简单的出现了，所以并没有动画效果
 
 1453
 00:59:46,917 --> 00:59:50,919
 Then notice, it gets laid out twice, both at the same size,
+这里注意，它出现了两次，都在相同的尺寸下
 
 1454
 00:59:50,988 --> 00:59:54,622
 295 x 414, which is this size right here.
+295 x 414，就是现在这个尺寸
 
 1455
 00:59:54,691 --> 00:59:56,624
 It gets look, done twice.
+它做了两次
 
 1456
 00:59:56,693 --> 00:59:57,642
 Some animation, I don't know wha's going on,
+一些动画效果，我并不知道发生了什么
 
 1457
 00:59:57,643 --> 00:59:58,592
 Again, Why?
+所以到底是为什么呢
 
 1458
 00:59:58,661 --> 00:59:59,494
 why i's doing that.
+它为什么这么做呢
 
 1459
 00:59:59,563 --> 01:00:00,662
 But you don't care,
+但是你不必在意
 
 1460
 01:00:00,730 --> 01:00:04,466
 just be careful that those layouts can happen repeatedly.
+只要注意，这些布局可能频繁的发生
 
 1461
 01:00:04,534 --> 01:00:06,902
 Now here is face view controller, it gets loaded.
+现在这是个face view controller，他已经被加载好了
 
 1462
 01:00:08,505 --> 01:00:10,838
 It's told it's going to appear, it will appear.
+它被告知将要出现了，它要出现了
 
 1463
 01:00:10,907 --> 01:00:12,274
 And it gets laid out once.
+而且它是第一次被布局
 
 1464
 01:00:13,877 --> 01:00:17,479
 Then they both get DidAppear, and now they're on screen.
+然后它们现在都有了DidAppear，然后它们现在都在屏幕上了
 
 1465
 01:00:17,547 --> 01:00:19,181
 So this is kind of exactly what you'd expect.
+这完全就是你想要的效果嘛
 
 1466
 01:00:20,517 --> 01:00:24,252
 Now let's rotate this thing, so
+现在我们来旋转一下设备
 
 1467
 01:00:24,321 --> 01:00:26,821
 that we go to portrait mode.
+这样我们就来到了纵向模式
 
 1468
 01:00:26,890 --> 01:00:29,090
 And we're not gonna see the master.
+然后我们就看不见master了
 
 1469
 01:00:29,159 --> 01:00:33,428
 We're only gonna see the details here.
+我们只能看见这里的detail
 
 1470
 01:00:35,866 --> 01:00:37,765
 So here, the master disappears.
+所以这里，master消失了
 
 1471
 01:00:37,834 --> 01:00:39,334
 So this is, see the dash?
+所以就是这样，看见这些下划线了么？
 
 1472
 01:00:39,403 --> 01:00:42,570
 That's what happened when I did that rotation.
+这就是在我旋转设备的时候发生了什么
 
 1473
 01:00:42,639 --> 01:00:44,839
 So this is all the new stuff.
+所以这些都是新的东西
 
 1474
 01:00:44,908 --> 01:00:46,374
 Now notice that the EmotionViewController
+现在注意力放在EmotionViewController上
 
 1475
 01:00:46,443 --> 01:00:47,142
 immediately is
+它立即被
 
 1476
 01:00:47,210 --> 01:00:50,678
 told that there's going to be a rotation animation.
+告知，这里即将出现一个旋转设备相关的动画效果
 
 1477
 01:00:50,747 --> 01:00:54,049
 And it gets a chance to participate in the animation.
+然后它就有了参与这个动画效果的机会
 
 1478
 01:00:54,118 --> 01:00:58,719
 The FaceView gets re-laid out in its new size.
+这个FaceView在它的新尺寸下被重新布局了
 
 1479
 01:00:58,788 --> 01:01:01,322
 It's tall now, so it gets laid out, so
+它现在高了，所以它被布局好了
 
 1480
 01:01:01,391 --> 01:01:03,124
 it gets viewWillLayoutSubviews.
+它获得了viewWillLayoutSubviews
 
 1481
 01:01:03,193 --> 01:01:05,927
 The Emotions Controller is told that it will disappear.
+Emotions Controlle被告知它要消失了
 
 1482
 01:01:07,331 --> 01:01:09,164
 So it's going to disappear.
+所以它就要消失了
 
 1483
 01:01:09,232 --> 01:01:11,766
 Notice the animated faults, that's cuz the animation in
+注意这个animated faults，这是因为旋转动画效果
 
 1484
 01:01:11,834 --> 01:01:15,403
 that rotation case is handled by the rotation animation.
+是交给rotation animation来处理的
 
 1485
 01:01:15,471 --> 01:01:18,373
 So it's not sliding in or out but it is getting animated
+所以它并不是滑入滑出，但是却有动画效果
 
 1486
 01:01:18,442 --> 01:01:21,109
 out of there but by the rotation animation.
+那只能是因为rotation animation
 
 1487
 01:01:21,178 --> 01:01:21,943
 Then we have
+然后我们的
 
 1488
 01:01:22,012 --> 01:01:24,212
 the face view controller being laid out again.
+faceviewController已经被重新布局了
 
 1489
 01:01:28,619 --> 01:01:30,952
 Now we're getting the EmotionsViewControllers
+现在我们获得了EmotionsViewController
 
 1490
 01:01:31,021 --> 01:01:32,487
 being getting it's chance to
+它现在有机会参与设置
 
 1491
 01:01:32,555 --> 01:01:35,389
 animate alongside the rotation, right here.
+旋转动画效果了，就这里
 
 1492
 01:01:35,458 --> 01:01:37,693
 We've got a couple of spurious things here from
+这里我们获得了两个来自iOS new UIKit的伪指令
 
 1493
 01:01:39,129 --> 01:01:41,829
 the iOS new UIKit, we can get rid of those.
+我们完全不用管它们
 
 1494
 01:01:41,898 --> 01:01:46,134
 And then the animation ends for both of those controllers.
+然后结束两个controller的动画效果
 
 1495
 01:01:46,203 --> 01:01:47,069
 Make sense?
+说得通吧？
 
 1496
 01:01:47,137 --> 01:01:49,604
 Now I'm gonna click this emotions thing, and
+现在我要来点击一下这个emotion
 
 1497
 01:01:49,673 --> 01:01:52,941
 go back to the master and watch what happens.
+然后回到master看看会发生什么
 
 1498
 01:01:53,009 --> 01:01:54,743
