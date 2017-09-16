@@ -172,2230 +172,2788 @@ schema doesn't quite match what view you have around.
 43
 00:02:13,100 --> 00:02:15,600
 So you, the job of the controller is to interpret
+所以控制器的任务就是去理解
 
 44
 00:02:15,669 --> 00:02:18,870
 that model for the view as best it can.
+尽可能的把模型的内容转换给视图
 
 45
 00:02:18,939 --> 00:02:23,075
 And interpret input from the view also to affect the model.
+同时用视图的输入更新模型
 
 46
 00:02:23,143 --> 00:02:25,877
 So let's go back to our controller,
+我们先回到控制器
 
 47
 00:02:25,946 --> 00:02:29,647
 you can see that we have no model, we also have no outlets
+我们会发现既没有模型，也没有出口
 
 48
 00:02:29,716 --> 00:02:32,751
 to our view here, so, let's add both of those things.
+即保存视图的变量。所以我们把这两个东西加上
 
 49
 00:02:32,819 --> 00:02:37,021
 I'm gonna start by adding an outlet to our FaceView, so
+我们先创建到 FaceView 的出口
 
 50
 00:02:37,090 --> 00:02:40,758
 remember how we do that, we got our storyboard on screen.
+还记得怎么做吗？我们打开 Storyboard
 
 51
 00:02:40,827 --> 00:02:43,929
 I'm gonna get them both on screen at the same time and
+然后把两个界面同时显示出来
 
 52
 00:02:43,998 --> 00:02:45,664
 then I'm gonna control drag.
+然后按 control 再拖动
 
 53
 00:02:45,732 --> 00:02:48,333
 And I'm control dragging from my FaceView to create
+我从 FaceView 按 control 拖动
 
 54
 00:02:48,401 --> 00:02:49,134
 an outlet to it,
+来创建存储它的出口
 
 55
 00:02:49,202 --> 00:02:51,903
 in exactly the same way I would control drag to a label,
+和我按 control 拖动标签
 
 56
 00:02:51,972 --> 00:02:52,871
 or button, or anything else, so
+按钮等其他控件一样
 
 57
 00:02:52,940 --> 00:02:54,872
 nothing special about the FaceView.
+所以 FaceView 并没有什么特别的
 
 58
 00:02:54,941 --> 00:02:57,342
 So I'm just gonna hold down control and drag in here,
+所以我就按住 control 再拖过来
 
 59
 00:02:57,411 --> 00:02:59,778
 and I'm gonna create an outlet,
+创建的是 Outlet（出口）
 
 60
 00:02:59,846 --> 00:03:02,614
-I'll call this outlet my FaceView.
+I'll call this outlet my faceView.
+把它叫做 faceView
 
 61
 00:03:02,683 --> 00:03:06,184
 That's a perfectly good name for it.
+很适合它的名字
 
 62
 00:03:06,252 --> 00:03:10,689
 Hit connect and there we go, we get this code that you're
+点击 Connect 就得到了这样的代码
 
 63
 00:03:10,758 --> 00:03:16,961
 quite used to here, which is this IBOutlet weak var.
+我们已经见过几次 @IBOutlet weak var 这种形式了
 
 64
 00:03:17,030 --> 00:03:20,098
 Now we have a connection to our view, and remember, in MVC
+我们关联了视图，但你想想，MVC
 
 65
 00:03:20,167 --> 00:03:23,101
 picture, the controller can have green arrows to its view,
+在之前展示的图片里，控制器有到视图的绿色通道
 
 66
 00:03:23,170 --> 00:03:26,070
 that's this, and it can have green arrows to its model.
+指的就是这个代码。同时还有到模型的绿色通道
 
 67
 00:03:26,139 --> 00:03:28,273
 So let's create a connection to the model.
+所以我们接着把控制器和模型关联起来
 
 68
 00:03:28,342 --> 00:03:30,642
 So what is gonna be our model of our MVC?
+所以我们 MVC 的模型是什么？
 
 69
 00:03:30,711 --> 00:03:33,978
 I'm actually going to drag that in, right here,
+我已经写好了，所以直接拖进来
 
 70
 00:03:34,047 --> 00:03:35,647
 it's called facial expression.
+叫做 FacialExpression.swift
 
 71
 00:03:37,417 --> 00:03:39,851
 When you drag things in I strongly recommend
+当你通过拖拽向工程里添加文件时，我建议
 
 72
 00:03:39,920 --> 00:03:42,587
 you have this Destination, Copy items if needed,
+Destination 勾选 Copy items if needed
 
 73
 00:03:42,656 --> 00:03:45,757
 otherwise, when you drag in a class, or structure, or
+否则当你拖进来一个类、结构体什么的
 
 74
 00:03:45,826 --> 00:03:47,225
 something, you'll be pointing to it.
+Xcode 不会创建副本，只会引用原文件
 
 75
 00:03:47,293 --> 00:03:49,294
 So if you change it in, wherever you got it from,
+如果你如果你修改原文件
 
 76
 00:03:49,363 --> 00:03:50,729
 it will be changing it in your project,
+也就意味着修改了你工程的源代码
 
 77
 00:03:50,797 --> 00:03:52,631
 so, it's usually what we wanna do.
+所以通常都勾选这个选项创建副本
 
 78
 00:03:52,699 --> 00:03:53,732
 Maybe that might be what you want,
+可能你只想引用原文件
 
 79
 00:03:53,800 --> 00:03:56,835
 in certain circumstances, but usually wanna copy it in.
+某些情况是这样的，但通常要复制一份
 
 80
 00:03:56,904 --> 00:04:00,071
 So let's take a look at this thing that I brought in,
+所以我们来看看这个拖进来的文件
 
 81
 00:04:00,140 --> 00:04:03,641
 it's a struct and it's gonna be the model of our FaceView.
+它是个结构体，将会作为 FaceView 的模型
 
 82
 00:04:03,710 --> 00:04:06,044
 And it's a really simple FacialExpression,
+FacialExpression 就是面部表情
 
 83
 00:04:06,113 --> 00:04:09,380
 that's what this represents, this struct.
+这个结构体就代表的是这个
 
 84
 00:04:09,449 --> 00:04:11,015
 And it has positions of the eyes,
+它描述了眼睛的状态
 
 85
 00:04:11,084 --> 00:04:14,052
 open eyes, closed eyes, squinting eyes, unfortunately,
+睁眼，闭眼，眯着眼。虽然很不幸的
 
 86
 00:04:14,121 --> 00:04:16,955
 we can't represent that in our view but it's in the model,
+我们还不能在视图里展示，但模型里有这个选项
 
 87
 00:04:17,023 --> 00:04:19,123
 we'll have to figure out the best we can do.
+我们要考虑下最佳解决方案
 
 88
 00:04:19,192 --> 00:04:22,360
 It's also got a mouth, and the mouth can frown or smirk, or
+嘴巴可以是撅嘴（frown），讥笑（smirk）
 
 89
 00:04:22,428 --> 00:04:23,628
 it can grin, or smile,
+还可以咧嘴笑（grin），大笑（smile）
 
 90
 00:04:23,697 --> 00:04:27,732
 notice there's nothing in this model about mouth curvature.
+注意模型里并没有嘴巴曲率
 
 91
 00:04:27,801 --> 00:04:29,233
 It doesn't know anything about mouth curvature,
+甚至可以说是一无所知
 
 92
 00:04:29,302 --> 00:04:30,301
 it just knows about grins and
+模型只知道是咧嘴笑
 
 93
 00:04:30,370 --> 00:04:32,971
 frowns, things like that, that's what the model is.
+或是像撅嘴这类的表情
 
 94
 00:04:33,039 --> 00:04:37,209
 It's also kinda cool, it knows how to give you a happier
+模型还很酷的一点是能提供开心一点
 
 95
 00:04:37,277 --> 00:04:40,211
 version of itself, or a sadder version of itself.
+的面部表情或伤心一些的表情
 
 96
 00:04:40,280 --> 00:04:41,813
-That's what these bars do,
+That's what these vars do,
+也就是这两个变量的作用
 
 97
 00:04:41,882 --> 00:04:44,616
 they just wanna return a happier or sadder.
+它们返回一个开心或伤心些的版本
 
 98
 00:04:44,684 --> 00:04:48,620
 But primarily, this struct is just an expression to keep
+总的来说，这个结构体就负责
 
 99
 00:04:48,689 --> 00:04:53,291
 track of the state of the eyes and the mouth.
+保存眼睛和嘴巴的状态
 
 100
 00:04:53,359 --> 00:04:55,027
 So I'm going to, in my controller,
+我回到控制器
 
 101
 00:04:55,095 --> 00:04:58,329
 create a green arrow to it, or a var for it.
+创建一条绿色通道，也就是存储模型的变量
 
 102
 00:04:58,398 --> 00:05:00,365
-We're gonna call it Expression,
+We're gonna call it expression,
+叫做 expression（表情）
 
 103
 00:05:00,434 --> 00:05:02,266
 cuz it's a facial expression.
+因为保存的是面部表情
 
 104
 00:05:02,335 --> 00:05:05,570
 And it's type FacialExpression,
+类型是 FacialExpression
 
 105
 00:05:05,639 --> 00:05:09,441
 and actually,
+事实上
 
 106
 00:05:09,509 --> 00:05:12,577
 let's have a starting facial expression have eyes,
+让我们定义一个初始的面部表情
 
 107
 00:05:12,646 --> 00:05:18,516
 which are, let's say, open, and a mouth, which is a grin.
+眼睛是睁开（.open）的，嘴巴是在咧嘴笑（.grin）
 
 108
 00:05:18,585 --> 00:05:20,419
 That sound like a happy place to start.
+看样子是很开心的
 
 109
 00:05:22,322 --> 00:05:22,954
 So that's great,
+这个就完成了
 
 110
 00:05:23,022 --> 00:05:27,725
 now, remember that the primary job of a controller
+接着我们看，控制器的主要任务是
 
 111
 00:05:27,794 --> 00:05:31,062
 is to interpret the model for the view and vice versa.
+把模型转换给视图，从视图更新模型
 
 112
 00:05:31,131 --> 00:05:34,165
 So I'm gonna add a private function here-
+所以我要在这里写一个私有函数
 
 113
 00:05:34,234 --> 00:05:36,367
 you'll all often have a method or
+你经常会有一个或几个
 
 114
 00:05:36,436 --> 00:05:38,769
 a number of methods in your controller like this.
+这样的方法在控制器中
 
 115
 00:05:38,838 --> 00:05:40,672
 This one I'm gonna call updateUI.
+这个我把它叫做 updateUI
 
 116
 00:05:41,841 --> 00:05:44,275
 And the job of this method is just to
+这个方法的任务就是
 
 117
 00:05:44,344 --> 00:05:47,812
 make the model match the UI, tha's i's job.
+让界面和模型保持一致
 
 118
 00:05:47,881 --> 00:05:49,915
 Tha's what this method is gonna do.
+这个方法就是更新界面
 
 119
 00:05:49,983 --> 00:05:52,817
 So, what do we have to do to make our model,
+那我们要怎么才能让模型
 
 120
 00:05:52,886 --> 00:05:54,586
 this facial expression, match our UI?
+这个 FacialExpression 和界面同步呢？
 
 121
 00:05:54,655 --> 00:05:56,487
 Well, we have to deal with the eyes and
+我们要展示眼睛
 
 122
 00:05:56,556 --> 00:05:58,389
 we have to deal with the mouth.
+还有嘴巴的状态
 
 123
 00:05:58,458 --> 00:06:02,960
 So, let's deal with the eyes first, that's pretty easy, so,
+所以我们先来处理眼睛，简单的部分
 
 124
 00:06:03,029 --> 00:06:06,664
-I'm just going to switch on my expressions.eyes.
+I'm just going to switch on my expression's eyes.
+我只需要用 switch 判断 expression.eyes
 
 125
 00:06:06,733 --> 00:06:10,701
 And in the case that the eyes are open in the model,
+如果眼睛是睁开（.open）的情况（case）
 
 126
 00:06:10,770 --> 00:06:14,539
 then it's easy, I can just take my faceView and
+那很简单，我就让 faceView
 
 127
 00:06:14,607 --> 00:06:19,444
 set it's eyesOpen to true, that's obvious how we do that.
+的 eyesOpen 为 true，这是理所当然的
 
 128
 00:06:19,512 --> 00:06:23,048
 And this face, you remember, is this outlet,
+faceView 就是上面这个出口
 
 129
 00:06:23,116 --> 00:06:27,552
 that I just created there, and so, that's obvious.
+我刚才创建的那个
 
 130
 00:06:27,621 --> 00:06:30,922
 How about the case where the eyes are closed in the model?
+如果眼睛是闭着（.closed）的情况呢？
 
 131
 00:06:30,990 --> 00:06:33,457
 Well, that's the faceView.eyesOpen,
+那 faceView.eyesOpen
 
 132
 00:06:33,526 --> 00:06:35,493
 are gonna be false.
+就设为 false
 
 133
 00:06:35,562 --> 00:06:38,729
 And finally, there's this case in the model
+最后如果模型里的眼睛
 
 134
 00:06:38,798 --> 00:06:41,900
 where we're squinting, and here,
+是眯着眼的（.squinting）
 
 135
 00:06:41,968 --> 00:06:44,236
 I don't really have a way to represent that.
+我们现在并没有方法展示它
 
 136
 00:06:44,304 --> 00:06:47,038
 So I'm just going to say that in that case our eyes
+所以这种情况下
 
 137
 00:06:47,107 --> 00:06:50,642
 are gonna be closed because, squinting is more like having
+我就让眼睛闭着，因为眯着眼
 
 138
 00:06:50,711 --> 00:06:52,944
 your eyes closed than having them open.
+更接近于闭眼而不是睁眼
 
 139
 00:06:53,013 --> 00:06:56,481
 But we don't always have exactly the view we want to
+因为我们的视图不一定完全满足
 
 140
 00:06:56,550 --> 00:06:58,517
 represent our model, so we're doing the best we can here.
+我们要展示的模型，所以尽力而为就行了
 
 141
 00:07:00,119 --> 00:07:02,888
 So that is the eyes, pretty straightforward.
+眼睛这部分就处理完了，很简单
 
 142
 00:07:02,956 --> 00:07:05,756
 Now the mouth, I could do the same thing for
+现在是嘴。虽然我可以用同样的方法
 
 143
 00:07:05,825 --> 00:07:08,125
 the mouth here, case expression.mouth,
+switch-case 判断 expression.mouth
 
 144
 00:07:08,194 --> 00:07:10,394
 if it's a grin, set the mouth curvature to this.
+如果是 .grin，就让 mouthCurvature 为某个值
 
 145
 00:07:10,463 --> 00:07:12,130
 If it's normal, set the mouth curvature to that,
+如果是 .normal，就设为另外某个值
 
 146
 00:07:12,199 --> 00:07:14,198
 but that code is kind of messy,
+但那样的代码会很混乱
 
 147
 00:07:14,267 --> 00:07:19,704
 (make some space here so it's up higher), what if
+（稍微留点空出来，代码在上面方便你们看）
 
 148
 00:07:19,773 --> 00:07:24,976
 I created a little private var here, actually make it a let.
+为什么我不创建一个私有变量，更准确说是常量
 
 149
 00:07:25,045 --> 00:07:28,513
 And I'm gonna call it mouthCurvatures, and
+然后叫做 mouthCurvatures
 
 150
 00:07:28,581 --> 00:07:31,015
 it's gonna be a dictionary, and in the dictionary,
+类型是字典
 
 151
 00:07:31,084 --> 00:07:37,822
 the values are gonna be FacialExpression.MouthPositi-
+键的类型是 FacialExpression.Mouth
 
 152
 00:07:37,891 --> 00:07:40,625
 ons, maybe a grin.
+比如其中的 .grin
 
 153
 00:07:40,694 --> 00:07:43,594
 And the value is gonna be a mouth curvature, so
+值就是嘴的曲率
 
 154
 00:07:43,663 --> 00:07:44,929
 what's a good thing for a grin?
+适合咧嘴笑的值是多少？
 
 155
 00:07:44,997 --> 00:07:46,964
 I think I decided 0.5.
+我认为 0.5 不错
 
 156
 00:07:47,033 --> 00:07:49,634
 So this is just gonna be a dictionary with
+所以这就是个字典，格式是
 
 157
 00:07:49,703 --> 00:07:53,705
-mouth position in the model, mouthCurvatures for the view.
+mouth position in the model, colon, mouthCurvatures for the view.
+模型里嘴的状态，冒号，然后嘴的曲率
 
 158
 00:07:53,773 --> 00:07:56,374
 So I'm just creating this little mapping data structure.
+这个字典存储了两种值之间的映射关系
 
 159
 00:07:56,443 --> 00:07:58,409
 So let's do this for all, let's map this.
+所以我们把所有的都列出来
 
 160
 00:07:58,478 --> 00:08:00,811
 For all of our facial expressions right here.
+枚举 FacialExpression 里所有的情况
 
 161
 00:08:00,880 --> 00:08:02,313
 Notice, by the way,
+顺便一提
 
 162
 00:08:02,381 --> 00:08:06,818
 that Swift was able to infer the type of this dictionary.
+Swift 能够推测出字典的类型
 
 163
 00:08:06,887 --> 00:08:10,254
 Cuz it only has one item in it, and the types of those two
+因为里面已经有一个键值对了，其类型
 
 164
 00:08:10,323 --> 00:08:13,724
 things are obvious from what they are.
+键和值两个的类型都是显然的
 
 165
 00:08:13,793 --> 00:08:17,028
 So now that it knows that, by the way,
+所以 Swift 能够推导出来
 
 166
 00:08:17,097 --> 00:08:21,365
 we can be a little more succinct and just say like,
+现在还能更简明——省略前面类型的部分
 
 167
 00:08:21,434 --> 00:08:24,736
 frown is -1.0 and smile is 1.0.
+比如撅嘴是 .frown:-1.0, 大笑是 .smile:1.0
 
 168
 00:08:24,805 --> 00:08:30,841
 And obviously neutral would be 0.0.
+当然，自然状态（.neutral）是 0.0
 
 169
 00:08:30,910 --> 00:08:31,709
 Did I get them all?
+我都列出来了吗？
 
 170
 00:08:31,778 --> 00:08:32,844
 Smirk, how about smirk?
+好像忘了 .smirk，讥笑
 
 171
 00:08:32,912 --> 00:08:38,717
 Nope, that smirk we'll say is -0.5.
+就设为 -0.5 吧
 
 172
 00:08:40,220 --> 00:08:42,119
 So I've just put those mouth curvatures in this nice
+我把嘴巴曲率都放到了
 
 173
 00:08:42,188 --> 00:08:43,087
 little table.
+这个对照表里
 
 174
 00:08:43,156 --> 00:08:44,889
 And so now in my update UI,
+现在在 updateUI 里
 
 175
 00:08:44,958 --> 00:08:48,392
 I'm just gonna set my faceView's mouthCurvature
+我只需要吧 faceView.mouthCurvature
 
 176
 00:08:48,461 --> 00:08:51,496
 equal to looking up in the mouthCurvatures,
+赋值为从 mouthCurvatures 里找到的
 
 177
 00:08:51,565 --> 00:08:58,669
 the model's mouth.
+模型里嘴的状态对应的值
 
 178
 00:08:58,738 --> 00:09:01,639
 I just kinda wanna do it this way to kinda show you that you
+我这样做的原因是告诉你们
 
 179
 00:09:01,708 --> 00:09:04,475
 don't always have to forcefully case every single
+你们不总是需要用 switch-case
 
 180
 00:09:04,544 --> 00:09:05,844
 thing when you have an enum.
+处理枚举类型并不总是要这样
 
 181
 00:09:05,913 --> 00:09:07,545
 Sometimes you can use things like this.
+有些时候可以借助这样的东西简化
 
 182
 00:09:07,614 --> 00:09:08,946
 Now, I have an error there,
+但现在 Xcod 提示有个错误
 
 183
 00:09:09,015 --> 00:09:10,314
 anybody know why I have an error?
+有人知道为什么吗？
 
 184
 00:09:10,383 --> 00:09:11,149
 Can anyone guess?
+有人能猜一下吗？
 
 185
 00:09:16,322 --> 00:09:16,988
 Optional, yeah.
+是的，可选类型
 
 186
 00:09:17,057 --> 00:09:18,689
 Alright, people are getting the optional thing.
+好了，大家明白可选类型这个东西了
 
 187
 00:09:18,758 --> 00:09:20,425
-Good. MouthCurvature,
+Good. mouthCurvature,
+很好，mouthCurvature
 
 188
 00:09:20,494 --> 00:09:21,593
 what type is that?
+嘴巴曲率的类型是什么？
 
 189
 00:09:21,662 --> 00:09:24,762
 That is a double, and mouthCurvature sub
+是一个 Double，但是这个的类型呢？
 
 190
 00:09:24,831 --> 00:09:27,632
 expression.mouth, what type is that?
+mouthCurvatures[expression.mouth]
 
 191
 00:09:27,701 --> 00:09:29,533
 It's an optional double.
+它是 Double? 类型的
 
 192
 00:09:29,602 --> 00:09:33,337
 And that's because this expression might not be
+因为可能这个表情/表达式的结果
 
 193
 00:09:33,406 --> 00:09:34,506
 in that dictionary.
+可能不在字典里
 
 194
 00:09:34,574 --> 00:09:37,508
 So I'm gonna use that defaulting thing we learned
+所以我要用提供可选默认值的方法
 
 195
 00:09:37,577 --> 00:09:40,044
 and say, if I can't find the expression mouth,
+如果不能找到 expression.mouth
 
 196
 00:09:40,113 --> 00:09:43,047
 we are gonna have neutral mouth, not smiling or
+那就用最自然的 .neutral
 
 197
 00:09:43,116 --> 00:09:45,383
 frowning as our curvature.
+既不开心也不伤心
 
 198
 00:09:48,688 --> 00:09:52,156
 Now, we have this great update UI.
+现在我们 updateUI 就写好了
 
 199
 00:09:52,225 --> 00:09:55,192
 When should we call this thing?
+我们什么时候调用这个方法呢？
 
 200
 00:09:55,261 --> 00:09:58,963
 Well, we certainly need to call this thing anytime our
+我们必须要在每次
 
 201
 00:09:59,032 --> 00:10:00,364
 model changes.
+模型变更的时候调用
 
 202
 00:10:00,433 --> 00:10:02,934
 If our model changes to have a different expression,
+如果我们的模型代表了另一个表情
 
 203
 00:10:03,003 --> 00:10:04,068
 we gotta update our UI.
+我们就需要更新界面
 
 204
 00:10:04,137 --> 00:10:05,836
 So how are we gonna do that?
+要怎么实现？
 
 205
 00:10:05,905 --> 00:10:08,439
 We're gonna use this cool feature that I talked about
+要用到之前讲的 Swift 很厉害的功能
 
 206
 00:10:08,507 --> 00:10:13,478
 last time called property observers, this didSet thing.
+就是上次讲的属性观察器中的 didSet
 
 207
 00:10:13,547 --> 00:10:16,648
 So didSet allows you on any of your vars,
+didSet 可以用在（几乎）所有的变量上
 
 208
 00:10:16,717 --> 00:10:19,417
 if it changes, you can execute some code.
+如果值发生了改变，就运行里面的代码 
 
 209
 00:10:19,486 --> 00:10:22,019
 So anytime someone sets this expression,
+所以如果有人设置了 expression
 
 210
 00:10:22,088 --> 00:10:24,122
 I'm just going to update my UI.
+我们就调用 updateUI() 更新界面
 
 211
 00:10:28,161 --> 00:10:29,827
 Now, there's one other place that I wanna
+现在还有种情况我想
 
 212
 00:10:29,896 --> 00:10:33,564
 update my UI though, it's a little less obvious, and
+更新界面，虽然不那么容易想到
 
 213
 00:10:33,633 --> 00:10:36,568
 that is with this property observer.
+那就是在 faceView 的 didSet 里
 
 214
 00:10:39,171 --> 00:10:40,905
 What am I doing here?
+我这是为了什么？
 
 215
 00:10:40,974 --> 00:10:42,607
 This property is the outlet,
+这个属性是个出口
 
 216
 00:10:42,676 --> 00:10:45,743
 that thing I Ctrl+dragged to my faceView.
+按 control 拖拽过来的 FaceView
 
 217
 00:10:45,812 --> 00:10:49,681
 And when we first start up, it's not set.
+程序刚开始运行的时候是空的
 
 218
 00:10:49,749 --> 00:10:53,318
 iOS takes a few microseconds to actually connect this up.
+iOS 系统需要几微秒的时间建立关联
 
 219
 00:10:53,387 --> 00:10:56,487
 That's why this is an optional, remember?
+还记得，这就是它类型为可选的原因吗？
 
 220
 00:10:56,556 --> 00:11:01,492
 In that short amount of time, what if the model gets set.
+如果在这段时间里，模型被赋了值
 
 221
 00:11:01,561 --> 00:11:03,927
 Then update UI is not gonna work because the faceView
+updateUI 并没什么用
 
 222
 00:11:03,996 --> 00:11:05,830
 hasn't been connected yet.
+因为 faceView 还没关联上
 
 223
 00:11:05,899 --> 00:11:07,632
 So that's no good.
+这是不好的
 
 224
 00:11:07,701 --> 00:11:11,836
 Also we initialized our FacialExpression to be this.
+再说一下，我们用这个 FacialExpression 初始化
 
 225
 00:11:11,905 --> 00:11:16,741
 When you initialize something, didSet does not get called.
+但赋初值的时候 didSet 是不会被调用的
 
 226
 00:11:16,810 --> 00:11:19,144
 didSet is only called if someone externally sets
+didSet 只会在其他情况下赋值
 
 227
 00:11:19,212 --> 00:11:20,445
 the expression.
+才会被调用
 
 228
 00:11:20,514 --> 00:11:24,648
 The initial thing does not cause it to be set.
+初始化的时候是不会调用
 
 229
 00:11:24,717 --> 00:11:27,451
-So when is didSet gonna happen?
+So when is this didSet gonna happen?
+那这个 didSet 什么时候被调用呢？
 
 230
 00:11:27,520 --> 00:11:32,123
 It's gonna happen only once when iOS hooks up this outlet
+只会发生一次：当 iOS 关联出口
 
 231
 00:11:32,191 --> 00:11:35,526
 to that faceView, then this didSet is gonna get called.
+到 FaceView 的时候会调用 didSet
 
 232
 00:11:35,595 --> 00:11:37,362
 That's the only time it's ever gonna get called.
+这是唯一一次会调用的时候
 
 233
 00:11:37,430 --> 00:11:39,764
 But at that time, we're gonna update our UI.
+那个时候我们需要更新界面
 
 234
 00:11:39,833 --> 00:11:43,401
 Now, there's one other minor thing here.
+这里有个细节
 
 235
 00:11:43,469 --> 00:11:51,009
 What if this gets called before this happens?
+如果 expression 在 faceView 初始化前被赋了值
 
 236
 00:11:52,211 --> 00:11:55,412
 This is gonna crash our program
+使用 faceView 就会导致程序崩溃
 
 237
 00:11:55,481 --> 00:11:59,517
 because until this gets hooked up to iOS, this is nil.
+直到 iOS 完成关联前，faceView 都是 nil
 
 238
 00:12:01,320 --> 00:12:04,055
 The only reason we don't have to say exclamation point here
+这里不需要用 ! 强制解包的原因是
 
 239
 00:12:04,124 --> 00:12:06,824
 is cuz we have this implicitly unwrapped optional here, but
+faceView 是个隐式解析的可选类型
 
 240
 00:12:06,893 --> 00:12:08,092
 it is an optional.
+但终究还是可选类型
 
 241
 00:12:08,161 --> 00:12:09,794
 So how can we deal with that?
+总之，这种情况怎么处理呢？
 
 242
 00:12:09,862 --> 00:12:12,263
 We don't want update UI to crash our program
+我们不希望 updateUI 导致程序崩溃
 
 243
 00:12:12,332 --> 00:12:14,832
 if the expression should happen to be set before that
+也就是 expression 被赋了值
 
 244
 00:12:14,901 --> 00:12:16,434
 thing gets wired up.
+faceView 却还没关联上
 
 245
 00:12:16,502 --> 00:12:19,337
 Now that thing gets wired up pretty soon, so
+虽然马上就会关联上
 
 246
 00:12:19,405 --> 00:12:21,639
 probably not likely to happen, but it could.
+因此几乎不会发生，但可能性是有的
 
 247
 00:12:21,708 --> 00:12:24,775
 So, we're gonna do that by using this chaining,
+方法是在 faceView 后加 ? 解决
 
 248
 00:12:24,844 --> 00:12:26,544
 this optional chaining.
+使用可选链
 
 249
 00:12:26,613 --> 00:12:28,146
 Remember the optional chaining,
+还记得可选链
 
 250
 00:12:28,215 --> 00:12:29,880
 where you can put a question mark there.
+就是放个 ? 在那里
 
 251
 00:12:29,949 --> 00:12:33,384
 And if the thing that you put the question mark on evaluates
+如果那个的值是 nil
 
 252
 00:12:33,453 --> 00:12:36,654
 to nil, the rest of that line of code is just ignored.
+这行剩下的代码都会被忽略
 
 253
 00:12:36,722 --> 00:12:40,358
 Perfect, faceView?.eyesOpen, if faceView's not set,
+很好，如果 faceView 是 nil，faceView?.eyesOpen
 
 254
 00:12:40,427 --> 00:12:41,726
 we'll just ignore that.
+这行代码就会被忽略
 
 255
 00:12:41,795 --> 00:12:43,561
 We're not gonna set the eyes open to anything,
+不会给 eyesOpen 赋值
 
 256
 00:12:43,630 --> 00:12:45,630
 that line is just gonna be aborted immediately.
+那行代码会立刻停止运行
 
 257
 00:12:47,534 --> 00:12:50,768
 This is something you often wanna do in your update
+所以经常使用可选链，是更新界面
 
 258
 00:12:50,837 --> 00:12:54,572
 UI things is protect against your outlets not being set
+出口却没关联上时，保护程序的做法
 
 259
 00:12:58,144 --> 00:13:01,880
 And it's all gonna be fine, because if this got sent, and
+这样就万事大吉了，即使 didSet 被调用了
 
 260
 00:13:01,948 --> 00:13:04,882
 this has not been, and then this happens, and
+faceView 没有关联，此时调用 updateUI
 
 261
 00:13:04,951 --> 00:13:08,152
 none of these lines of code execute, no problem.
+这些问题代码不会执行，不会造成问题
 
 262
 00:13:08,221 --> 00:13:10,054
 Because when this does get hooked up,
+因为当 faceView 关联上之后
 
 263
 00:13:10,123 --> 00:13:11,655
 this is gonna get called again.
+updateUI 会再次被调用
 
 264
 00:13:11,724 --> 00:13:13,258
 And this time, it'll be able to do it.
+这个时候就能更新了
 
 265
 00:13:16,896 --> 00:13:17,829
 So that it.
+好了
 
 266
 00:13:17,897 --> 00:13:19,797
 Let's run our little app here and
+让我们运行下程序
 
 267
 00:13:19,866 --> 00:13:23,635
 see if we get an open eyes grin.
+看看是不是睁着眼睛咧嘴笑
 
 268
 00:13:23,703 --> 00:13:24,768
 In other words,
+换句话说
 
 269
 00:13:24,837 --> 00:13:28,206
 let's see if our UI reflects what's in our model.
+UI 是否反映了模型的内容
 
 270
 00:13:28,274 --> 00:13:32,277
 And sure enough, open eyes and a little grin.
+是的，确实是这样的
 
 271
 00:13:32,345 --> 00:13:38,349
 Let's try closed
+我们试下闭着眼睛
 
 272
 00:13:38,417 --> 00:13:44,389
 eyes, closed and
+eyes: .closed
 
 273
 00:13:44,457 --> 00:13:50,061
 a little frown.
+撅着嘴
 
 274
 00:13:50,130 --> 00:13:51,862
 Bingo!
+很好！
 
 275
 00:13:51,931 --> 00:13:54,966
 So now we have done what we need to do in our controller,
+现在控制器就写好了
 
 276
 00:13:55,035 --> 00:13:57,502
 which is we're interpreting our model for our view.
+也就是把模型转换给视图的部分
 
 277
 00:13:57,571 --> 00:13:59,303
 And anytime we set the model from now on,
+现在每次更改模型
 
 278
 00:13:59,372 --> 00:14:00,938
 it's gonna update our view automatically.
+视图都会自动更新
 
 279
 00:14:01,006 --> 00:14:03,874
 So the question is, what if I forgot to put this little
+有人问，如果我忘了可选链
 
 280
 00:14:03,943 --> 00:14:06,143
 question mark right here?
+忘了加 ? 会怎样
 
 281
 00:14:06,212 --> 00:14:09,814
 Probably everything would be fine because you don't set
+很可能什么事也没有，因为你不会
 
 282
 00:14:09,883 --> 00:14:13,584
-your model before that Outlook gets wired up by iOS cuz it
+your model before that outlet gets wired up by iOS cuz it
+在出口被 iOS 关联前去更改模型
 
 283
 00:14:13,653 --> 00:14:15,253
 wires it up really soon.
+而且关联一般要不了多少时间
 
 284
 00:14:15,321 --> 00:14:19,189
 But if you did,
+但如果真的发生了
 
 285
 00:14:19,258 --> 00:14:20,291
 And so that's how you would know,
+（当然这也是你知道发生了的方法）
 
 286
 00:14:20,360 --> 00:14:22,159
-"oops", you messed that up.
+"oops," you messed that up.
+“糟糕”，搞砸了
 
 287
 00:14:22,228 --> 00:14:24,628
 And sometimes you'll forget to put that question mark there,
+有些时候你忘了加问号
 
 288
 00:14:24,697 --> 00:14:26,180
 You do all your coding and you never call that model earlier.
+你写了很多代码，从来没有过早地设置模型
 
 289
 00:14:26,181 --> 00:14:27,664
 it's fine.
+什么问题都没有
 
 290
 00:14:27,733 --> 00:14:29,701
 But then later, you change your code in a way that
+但如果之后你把代码改成了
 
 291
 00:14:29,769 --> 00:14:31,869
 does accept the model before that thing, and boom.
+在关联好 UI 前就更新模型，那就炸了
 
 292
 00:14:31,938 --> 00:14:33,304
 It crashes, and you find it right away.
+程序崩溃，你马上就会知道
 
 293
 00:14:33,372 --> 00:14:34,372
 That's why crashing is
+所以程序崩溃
 
 294
 00:14:34,441 --> 00:14:36,340
 not always the worst thing in the world.
+并不总是世界上最糟糕的事情
 
 295
 00:14:36,409 --> 00:14:38,076
 Crashing helps you find bugs like that.
+崩溃能帮你找到这样的 bug
 
 296
 00:14:39,479 --> 00:14:40,778
 You just hope you don't ship it out, and
+当然希望你还没有发布这个程序
 
 297
 00:14:40,847 --> 00:14:44,081
 the customers find that bug for you that way.
+让用户通过程序崩溃帮你发现问题
 
 298
 00:14:44,150 --> 00:14:45,949
 So that's it, that's all I wanted to do is show
+好了，这就是我想向你们展示的
 
 299
 00:14:46,018 --> 00:14:47,351
 you now we have a complete MVC.
+有一个完整 MVC 的程序
 
 300
 00:14:47,419 --> 00:14:49,053
 It's got a model, it's got a view,
+有模型，有视图
 
 301
 00:14:49,122 --> 00:14:52,389
 it's got a controller that is interpreting for each other.
+还有一个控制器负责相互转换
 
 302
 00:14:52,458 --> 00:14:53,624
 So we can go back to our slides and
+我们可以回到幻灯片
 
 303
 00:14:53,693 --> 00:14:54,692
 learn about gestures, and
+学习手势的相关知识
 
 304
 00:14:54,760 --> 00:14:56,561
 then we'll add some gestures to this thing.
+然后再来给程序添加手势识别
 
 305
 00:15:01,634 --> 00:15:04,735
 So, how do we get those touches?
+我们要如何获得那些触摸事件？
 
 306
 00:15:04,804 --> 00:15:07,872
 Now, it is possible to get notified
+当然，我们能够得到通知
 
 307
 00:15:07,940 --> 00:15:11,575
 of raw touch events like a touch, meaning a finger,
+接受那些未经处理的事件，也就是一根手指
 
 308
 00:15:11,644 --> 00:15:15,646
 went down on the screen, it moved, it went up.
+按在了屏幕上，移动了，最后抬起来了
 
 309
 00:15:15,714 --> 00:15:16,981
 Two fingers went down,
+两根手指按下来了
 
 310
 00:15:17,050 --> 00:15:20,351
 you can find out all about that, but we never do.
+你可以得知这些信息，但是我们不会这么做
 
 311
 00:15:20,419 --> 00:15:23,787
 Too complicated, trying to figure out whether this, down,
+对你们来说太复杂了，要判断这个按下
 
 312
 00:15:23,856 --> 00:15:27,691
 swipe, up is a swipe versus just moving, that's too hard.
+扫过再抬起，到底是轻扫还是移动，太复杂了
 
 313
 00:15:27,760 --> 00:15:30,094
 So we're gonna let iOS do that for us.
+所以我们让 iOS 帮我们处理
 
 314
 00:15:30,163 --> 00:15:33,464
 And we call that interacting with multi touch,
+我们把这个叫做多点触控
 
 315
 00:15:33,533 --> 00:15:35,400
 touch via gestures.
+作为手势处理
 
 316
 00:15:35,468 --> 00:15:37,167
 So we're not even gonna learn about about the raw
+所以我不会讲解未经处理的
 
 317
 00:15:37,236 --> 00:15:39,871
 touch input in this course, just gestures.
+触控输入，这门课我只讲手势
 
 318
 00:15:40,940 --> 00:15:43,341
 So gestures are recognized
+所以手势识别
 
 319
 00:15:43,409 --> 00:15:46,678
 by this class called the UIGestureRecognizer.
+是由 UIGestureRecognizer 完成的
 
 320
 00:15:46,746 --> 00:15:49,413
 Actually, not by UIGestureRecognizer itself,
+更准确地说不是 UIGestureRecognizer 这个类本身
 
 321
 00:15:49,482 --> 00:15:51,015
 that's an abstract class.
+那是个 "abstract" class
 
 322
 00:15:51,084 --> 00:15:53,017
 How many people know what an abstract class is?
+抽象类。有多少人知道这是什么？
 
 323
 00:15:53,086 --> 00:15:54,651
 Raise your hand if you know what that is.
+知道的举下手
 
 324
 00:15:54,720 --> 00:15:56,253
 Okay, so I'll take a second to tell ya.
+好吧，那我花点时间解释一下
 
 325
 00:15:56,322 --> 00:15:59,089
 So an abstract class is a class that, it's only
+抽象类
 
 326
 00:15:59,158 --> 00:16:02,659
 purpose in life is to be the super class of other classes.
+它的目的就是作为其他类的父类
 
 327
 00:16:02,728 --> 00:16:06,097
 And you never actually create an abstract class, okay?
+你从来不会直接构造一个抽象类
 
 328
 00:16:06,165 --> 00:16:08,198
 You only create subclasses of it,
+你只会构造这个类的子类
 
 329
 00:16:08,267 --> 00:16:10,468
 instances of subclasses of it.
+构造出子类的实例
 
 330
 00:16:10,537 --> 00:16:13,304
-So UI gesture recognizer's abstract, you would never
+So UIGestureRecognizer is abstract, you would never
+所以 UIGestureRecognizer 是抽象的
 
 331
 00:16:13,373 --> 00:16:16,307
 create a UI, you'd never call an initializer on UI gesture
+你不会调用它的构造器
 
 332
 00:16:16,376 --> 00:16:17,074
 recognizer.
+来构造手势识别器
 
 333
 00:16:17,143 --> 00:16:19,009
 Instead there's a bunch of subclasses which I'm gonna
+取而代之的是我要讲的一些子类
 
 334
 00:16:19,078 --> 00:16:21,379
 talk about and you would call the initializer on them.
+你要调用的是这些子类的构造器
 
 335
 00:16:23,082 --> 00:16:27,785
 Now there's two parts to using a gesture recognizer here.
+使用手势识别器由两个步骤
 
 336
 00:16:27,853 --> 00:16:30,554
 One is you have to ask a UIView, please start
+第一步是告诉 UIView
 
 337
 00:16:30,623 --> 00:16:34,491
 recognizing this gesture, like a swipe or a pan or whatever.
+开始识别这个手势，比如轻扫或拖动什么的
 
 338
 00:16:34,560 --> 00:16:37,695
 And then number two is, when the recognizer does recognize
+接着第二步，当识别器识别到了手势
 
 339
 00:16:37,763 --> 00:16:40,097
 it, it wants to call you back with a handler,
+它会通知负责处理的对象
 
 340
 00:16:40,166 --> 00:16:42,500
 what we call a handler, a gesture handler.
+gesture handler，处理手势的对象
 
 341
 00:16:42,569 --> 00:16:45,035
 So there's the recognizer that you add to a view and
+所以第一步是把识别器添加到视图上
 
 342
 00:16:45,104 --> 00:16:47,838
 then there's the handler, anybody can be the handler,
+第二步是通知处理事件的对象，谁都可以负责
 
 343
 00:16:47,907 --> 00:16:48,672
 as you'll see.
+你等会儿会看到的
 
 344
 00:16:48,741 --> 00:16:52,343
 Almost always it's either the view itself or a controller,
+大部分情况下不是视图本身就是控制器
 
 345
 00:16:52,412 --> 00:16:54,278
 but anybody could be it.
+但理论上谁都可以
 
 346
 00:16:54,347 --> 00:16:57,715
 Now the adding of the gesture recognizer is done with
+添加手势识别器是通过
 
 347
 00:16:57,783 --> 00:17:01,518
-a method called add gesture recognizer in UIView.
+a method called addGestureRecognizer in UIView.
+UIView 的 addGestureRecognizer 方法
 
 348
 00:17:01,587 --> 00:17:04,922
 And that method is usually called by controllers,
+通常由控制器添加
 
 349
 00:17:04,991 --> 00:17:06,857
 why do controllers call that?
+为什么是控制器呢？
 
 350
 00:17:06,926 --> 00:17:10,428
 That's because a controller wants to control whether
+因为控制器想控制
 
 351
 00:17:10,496 --> 00:17:14,198
 the things in its view recognize certain gestures.
+当识别到手势时发生的事情
 
 352
 00:17:14,267 --> 00:17:16,767
 They might wanna turn off certain gestures or or
+说不定是要停止识别某种手势
 
 353
 00:17:16,836 --> 00:17:18,569
 not turn on certain gestures, so
+或者是不启用某些手势
 
 354
 00:17:18,638 --> 00:17:21,072
 the controller is often controlling that.
+控制器通常会这样做
 
 355
 00:17:21,140 --> 00:17:25,208
 But occasionally you do get a UIView that will add
+但有的时候 UIView 会
 
 356
 00:17:25,277 --> 00:17:28,379
 a gesture to itself, like scroll view.
+给自己添加一个识别器，比如 UIScrollView
 
 357
 00:17:28,447 --> 00:17:31,182
 Because a scroll view without the pan gesture, or
+滚动视图不能识别拖动
 
 358
 00:17:31,250 --> 00:17:33,718
 without the pinching gesture if it can zoom,
+如果能缩放的不能识别缩放手势
 
 359
 00:17:33,787 --> 00:17:35,386
 it's not even a scroll view.
+那就不能被叫做滚动视图了
 
 360
 00:17:35,454 --> 00:17:36,920
 In other words, that gesture is so
+也就是说，手势识别
 
 361
 00:17:36,989 --> 00:17:40,124
 fundamental to what a scroll view is that scroll view adds
+是滚动视图的基础，以至于它自己给添加上了
 
 362
 00:17:40,193 --> 00:17:41,910
 It'd, you'd have some API to turn it off, but it adds it to
+你可以调用某些 API 停止识别
 
 363
 00:17:41,911 --> 00:17:43,628
 it to itself.
+但它已经自动添加上了
 
 364
 00:17:43,696 --> 00:17:47,297
 itself, it doesn't make some controller add this gesture,
+不需要让控制器去添加
 
 365
 00:17:47,366 --> 00:17:49,333
 it just recognizes pan and pinch.
+它自己就能识别拖动和缩放手势了
 
 366
 00:17:49,402 --> 00:17:51,135
 So mostly it's done by controllers,
+总之大部分时候是控制器
 
 367
 00:17:51,204 --> 00:17:52,369
 though you'll see that.
+我们等会儿会看到
 
 368
 00:17:52,438 --> 00:17:53,971
 The second thing, the handler,
+第二个部分，负责处理事件的对象
 
 369
 00:17:54,040 --> 00:17:56,506
 okay that could either be the controller or the view.
+可以是控制器，也可以是视图
 
 370
 00:17:56,575 --> 00:18:00,477
 And what it really depends on is whether the gesture affects
+取决于这个手势到底影响了谁
 
 371
 00:18:00,546 --> 00:18:01,445
 the model, or
+是模型
 
 372
 00:18:01,514 --> 00:18:05,148
 whether the gesture affects just the view, okay.
+还是仅仅视图本身
 
 373
 00:18:05,217 --> 00:18:06,883
 If the gesture only affects the view,
+如果只影响视图的话
 
 374
 00:18:06,952 --> 00:18:08,586
 then the view will probably handle it.
+通常视图就自行处理了
 
 375
 00:18:08,655 --> 00:18:11,088
 But if the gesture affects the model directly,
+但如果会直接影响到模型
 
 376
 00:18:11,157 --> 00:18:12,123
 now the controller has to
+那控制器就需要
 
 377
 00:18:12,191 --> 00:18:13,958
 handle it because a view can't see the model.
+负责了，因为视图“看”不到模型
 
 378
 00:18:17,297 --> 00:18:18,896
-So the handler is either controller view and not, and
+So the handler is either controller or view, and
+所以负责的不是控制器就是视图
 
 379
 00:18:18,965 --> 00:18:19,830
 you'll see that in the demo.
+等会演示的时候你会看到的
 
 380
 00:18:19,898 --> 00:18:22,166
 I'm gonna have one handler that's a model, one and
+其中一个由模型负责
 
 381
 00:18:22,234 --> 00:18:25,869
 one that controls view and you'll see where we put them.
+其中一个控制视图的负责，你会看到我放在哪里的
 
 382
 00:18:25,938 --> 00:18:28,839
 Alright, so what's the code look like to add a gesture
+所以用代码添加一个识别器
 
 383
 00:18:28,907 --> 00:18:30,140
 recognizer to a view?
+到视图是怎么做的？
 
 384
 00:18:30,209 --> 00:18:31,308
 So for my example here,
+我这里的这个例子
 
 385
 00:18:31,377 --> 00:18:33,977
 let's say you had a view, and in this code I'm gonna
+假如你有个视图，我这里的代码
 
 386
 00:18:34,046 --> 00:18:36,246
 put here by the way is gonna be in a controller.
+是在控制器里的
 
 387
 00:18:36,315 --> 00:18:39,549
 Let's say it has one of its views that it wants to add
+比如说其中一个视图想要
 
 388
 00:18:39,618 --> 00:18:42,987
 a pan gesture, a pan gesture is put your finger down on
+添加一个拖动（pan）手势识别器，就是手指按下
 
 389
 00:18:43,056 --> 00:18:45,255
 the screen and move around.
+在屏幕上到处移动
 
 390
 00:18:45,324 --> 00:18:48,625
 That's called panning around in the view.
+这就叫做在视图里 pan，拖动
 
 391
 00:18:48,694 --> 00:18:54,365
 So this is what it looks like, a good place to add a gesture
+这就是代码的样子。添加手势识别器的好地方
 
 392
 00:18:54,433 --> 00:18:59,470
 recognizer is in the didSet of an outlet for that view.
+是在到该视图的 didSet 里
 
 393
 00:18:59,539 --> 00:19:02,740
 Because that's, as soon as you can get a hold of it anyway,
+最终都要添加，不如当你一得到视图
 
 394
 00:19:02,808 --> 00:19:05,476
 your iOS just sets, set that outlet up for you, so
+iOS 刚把出口关联好
 
 395
 00:19:05,544 --> 00:19:07,545
 now you've got a hold of that view.
+现在你有了视图
 
 396
 00:19:07,614 --> 00:19:09,413
 Now you can send a message to that view,
+就给视图发个消息
 
 397
 00:19:09,481 --> 00:19:11,048
 addGestureRecognizer.
+调用 addGestureRecognizer
 
 398
 00:19:11,117 --> 00:19:14,318
 Here I have this var, this outlet called pannableView,
+这个出口叫做 pannableView，能被拖动的视图
 
 399
 00:19:14,387 --> 00:19:18,055
 this is the view that I wanna add the pan gesture to.
+因为这是我想要给它添加拖动手势
 
 400
 00:19:18,124 --> 00:19:20,457
 And you can see that in its didSet,
+在它的 didSet 里
 
 401
 00:19:20,526 --> 00:19:22,826
 in other words when iOS wires this up,
+也就是当 iOS 关联好了之后
 
 402
 00:19:22,895 --> 00:19:25,829
 I'm going to do this addGestureRecognizer.
+我就调用 addGestureRecognizer
 
 403
 00:19:25,898 --> 00:19:28,799
 First I'm gonna create the gesture recognizer,
+首先创建一个手势识别器
 
 404
 00:19:28,868 --> 00:19:32,269
 notice I'm saying UIPanGestureRecognizer, in it,
+注意我用的是 UIPanGestureRecognizer
 
 405
 00:19:32,338 --> 00:19:33,904
 in the initializer for that.
+的构造器
 
 406
 00:19:33,973 --> 00:19:37,074
 Not UIGestureRecognizer, I'm creating a concrete
+而不是 UIGestureRecognizer
 
 407
 00:19:37,143 --> 00:19:39,309
 gesture recognizer which is for panning.
+我创建的是具体负责拖动的手势识别器
 
 408
 00:19:39,378 --> 00:19:42,312
 And that it has two arguments, the both of these arguments
+它由两个参数
 
 409
 00:19:42,381 --> 00:19:44,682
 are the handler, how this thing is handled.
+两个都是负责决定如何处理事件的
 
 410
 00:19:44,751 --> 00:19:47,117
 The target is who's gonna handle it, and
+target，处理事件的目标对象
 
 411
 00:19:47,186 --> 00:19:50,354
 the action is what method is going to handle it.
+action，是传入具体负责处理方法的存根
 
 412
 00:19:50,423 --> 00:19:51,989
 So now in the case here, the target,
+我们这里举的例子
 
 413
 00:19:52,058 --> 00:19:54,758
 I'm having the target will be myself, the view controller.
+目标对象就是 self，也就是视图控制器本身
 
 414
 00:19:54,827 --> 00:19:57,127
 This is obviously in the view controller because this is in
+很显然这段代码在视图控制器里
 
 415
 00:19:57,196 --> 00:19:58,395
 an outlet property observer,
+因为这是出口的属性观察器
 
 416
 00:19:58,464 --> 00:20:00,364
 that would only make sense in a view controller.
+只有在视图控制器里才说得过去
 
 417
 00:20:00,433 --> 00:20:03,634
 And so the target is myself, I'm going to set,
+所以目标对象就是控制器
 
 418
 00:20:03,702 --> 00:20:07,037
 ask when this pan gestures starts to be recognized
+我会要求当拖动控制器识别到手势后
 
 419
 00:20:07,106 --> 00:20:11,108
 it's gonna be sending me the action here to handle it.
+要发送给我这个函数来处理事件
 
 420
 00:20:11,177 --> 00:20:15,278
 And the action, you notice you have to say #selector to
+这个函数，注意用了 #selector
 
 421
 00:20:15,347 --> 00:20:16,914
 specify the method.
+来指定是哪个方法的存根
 
 422
 00:20:16,983 --> 00:20:19,750
 Don't get confused the difference between a function
+注意区别函数类型
 
 423
 00:20:19,819 --> 00:20:22,152
 type, a type that is a function and
+（描述函数的类型）
 
 424
 00:20:22,221 --> 00:20:24,755
 an actual method in a class.
+和类里的一个实际的方法
 
 425
 00:20:24,824 --> 00:20:28,292
 We use #selector to say this is a method,
+我们用 #selector 表示这是个方法
 
 426
 00:20:28,361 --> 00:20:32,229
 I wanna call this specific method in my class.
+我想要调用类里的这个方法
 
 427
 00:20:32,298 --> 00:20:34,898
 And notice I've said ViewController.pan(
+我用的是 ViewController.pan(recognizer:)
 
 428
 00:20:34,967 --> 00:20:38,569
 recognizer:), well that means that the method that's gonna
+意思是这个方法
 
 429
 00:20:38,638 --> 00:20:40,003
 be called is called pan.
+叫做 pan
 
 430
 00:20:40,072 --> 00:20:44,041
 And it has one argument, whose external name is recognizer:
+有一个参数，实参标签是 recognizer
 
 431
 00:20:44,110 --> 00:20:45,876
 that's what that means.
+这就是这段代码的意思
 
 432
 00:20:45,945 --> 00:20:49,980
 The ViewController., means that method is in myself.
+ViewController. 表示这个方法是这个类里的
 
 433
 00:20:50,049 --> 00:20:52,650
 If it was in my view it would probably be like
+如果是视图类的某个方法，那就因该是
 
 434
 00:20:52,718 --> 00:20:54,752
 PannableView.whatever.
+PannableView.方法名
 
 435
 00:20:54,820 --> 00:20:58,055
 This could also be self.pan, that's allowed,
+这里写 self.pan 也是可以的
 
 436
 00:20:58,124 --> 00:21:01,658
 saying pan.panGesture, pan recognizer in myself.
+使用 self 的 pan(recognizer:)
 
 437
 00:21:01,727 --> 00:21:04,562
 Also you could omit it, that part in totally and
+你也可以完全忽略这一部分
 
 438
 00:21:04,630 --> 00:21:07,764
 just say panRecognizer: because the default is for
+就说 pan(recognizer:)，因为默认
 
 439
 00:21:07,833 --> 00:21:08,933
 it to be in myself.
+就是自己这个类里的
 
 440
 00:21:09,001 --> 00:21:11,668
 So there's three ways I could have specified that,
+所以有三种方法来指定
 
 441
 00:21:11,737 --> 00:21:15,239
-viewController.pan, self.pan, or just pan.
+ViewController.pan, self.pan, or just pan.
+ViewController.pan, self.pan 或只是 pan
 
 442
 00:21:15,307 --> 00:21:17,674
 But notice it does have that argument by the way,
+但要注意它是有参数的
 
 443
 00:21:17,743 --> 00:21:20,678
 that argument is gonna be the recognizer passed back to me.
+那个参数就是手势识别器
 
 444
 00:21:20,746 --> 00:21:23,347
 So when the pan starts to be recognized, it's gonna call
+每当识别到拖动手势，就会调用这个方法
 
 445
 00:21:23,416 --> 00:21:26,150
 this method, and that recognizer is gonna be passed.
+然后手势识别器会被传给我
 
 446
 00:21:26,218 --> 00:21:29,220
 This pan gesture recognizer called panGestureRecognizer
+这个拖动手势识别器 panGestureRecognizer
 
 447
 00:21:29,288 --> 00:21:32,289
 right there, that's gonna be passed back to me each time.
+就是这个每次都会被传回来
 
 448
 00:21:32,358 --> 00:21:35,325
 Now I've got a gesture recognizer for
+我现在有了识别拖动的手势识别器
 
 449
 00:21:35,394 --> 00:21:38,162
 panning, I just add it to the view,
+我就把它添加给视图
 
 450
 00:21:38,231 --> 00:21:42,599
 only views are capable of recognizing gestures.
+只有视图能够识别手势
 
 451
 00:21:42,668 --> 00:21:44,768
 So if you have a gesture recognizer,
+如果你有一个手势识别器
 
 452
 00:21:44,837 --> 00:21:48,339
-the only addGestureRecognizer method in the entire UI kit is
+the only addGestureRecognizer method in the entire UIKit is
+UIKit 里 addGestureRecognizer 这个方法
 
 453
 00:21:48,408 --> 00:21:51,108
 in UIView, so you have to send it to UIView, or
+只有 UIView 有。所以只能发送给 UIView
 
 454
 00:21:51,176 --> 00:21:52,576
 a subclass of UIView.
+或是 UIView 的子类
 
 455
 00:21:53,946 --> 00:21:56,880
 Let's talk about the handling, so now this is code,
+接着我们讲实际的处理。我们这里的代码
 
 456
 00:21:56,949 --> 00:21:57,948
 adds the handler so
+是添加负责处理事件的对象
 
 457
 00:21:58,017 --> 00:22:01,685
 that the view is gonna start looking for pan gestures.
+然后视图就开始识别拖动手势
 
 458
 00:22:01,754 --> 00:22:03,053
 And then when it finds them,
+每当识别到的时候
 
 459
 00:22:03,122 --> 00:22:06,189
 it's going to start calling this pan recognizer.
+就会调用 pan(recognizer:)
 
 460
 00:22:06,258 --> 00:22:08,025
 Now before we can look at the code for
+在讲代码之前
 
 461
 00:22:08,094 --> 00:22:10,861
 that we gotta understand a few things about it.
+我们需要先理解一些内容
 
 462
 00:22:10,930 --> 00:22:13,830
 One is that when you get a gesture like a pan or
+一个是当你得到一个手势识别器
 
 463
 00:22:13,899 --> 00:22:18,034
 a pinch you need some concrete subclass specific information
+比如拖动或缩放，你需要某些子类提供的属性
 
 464
 00:22:18,103 --> 00:22:19,403
 about it like a pan.
+比如对于拖动
 
 465
 00:22:19,472 --> 00:22:21,638
 You gotta know where it is, or a pinch,
+你需要知道拖到了哪里；对于缩放
 
 466
 00:22:21,707 --> 00:22:23,974
 you gotta know much you pinched.
+你需要知道缩放了多少
 
 467
 00:22:24,043 --> 00:22:26,944
 So we have to understand what that means,
+我展开讲讲这是什么意思
 
 468
 00:22:27,012 --> 00:22:30,681
 now for a pan gesture recognizer, there are three.
+对于 UIPanGestureRecognizer，有三个方法
 
 469
 00:22:30,749 --> 00:22:33,383
 It's actually a little more, but there's this three very
+实际上有更多的方法，但这三个
 
 470
 00:22:33,452 --> 00:22:36,086
 important pieces of concrete information about the pan.
+是有关拖动最重要的信息
 
 471
 00:22:36,155 --> 00:22:40,524
 So, translation(in: UIView) is a function in the pan gesture
+一个是 translation(in: UIView) 是它的一个方法
 
 472
 00:22:40,593 --> 00:22:42,793
 recognizer where you can ask it,
+你可以问 UIPanGestureRecognizer 的实例
 
 473
 00:22:42,861 --> 00:22:46,296
 how far has this pan moved since it started.
+从一开始共移动了多远
 
 474
 00:22:46,365 --> 00:22:49,466
 How far has it moved from the start as I'm moving around,
+从我开始到处拖动，一共移动了多远
 
 475
 00:22:49,535 --> 00:22:52,369
-x and y, it's a CG point, so it's giving me the x and
+x and y, it's a CGPoint, so it's giving me the x and
+返回 CGPoint，包含 x 和 y 两个方向
 
 476
 00:22:52,438 --> 00:22:55,172
 y where it's moved to since it started.
+从一开始算的总位移
 
 477
 00:22:55,240 --> 00:22:58,408
 Velocity says how fast is the finger moving.
+velocity 告诉我移动的速度
 
 478
 00:22:58,477 --> 00:23:00,077
 Is it kind of whipping it around or
+是很快速地在屏幕上划
 
 479
 00:23:00,146 --> 00:23:01,312
 is it going really slow?
+还是只是慢慢地移动？
 
 480
 00:23:01,380 --> 00:23:02,913
 Because if it's going really slow,
+因为如果移动地很慢
 
 481
 00:23:02,981 --> 00:23:05,348
 maybe you wanna do a very you know, small drawing.
+你需要绘制的内容就很少
 
 482
 00:23:05,417 --> 00:23:06,683
 And if he's whipping it really fast and
+如果划地很快
 
 483
 00:23:06,752 --> 00:23:08,818
 you just wanna you know, moves something around, who knows?
+你可能需要很快地更新
 
 484
 00:23:08,887 --> 00:23:11,221
 And then there's setTranslation,
+最后是 setTranslation
 
 485
 00:23:11,290 --> 00:23:13,724
 now this last one is kinda cool because
+这最后一个很实用
 
 486
 00:23:13,792 --> 00:23:17,027
 if you just know the start point and where it's moved to.
+因为如果你只知道它的起始位置和移动到的位置
 
 487
 00:23:17,096 --> 00:23:20,397
 You're not really getting the incremental move with
+你每次得到的都不是增量
 
 488
 00:23:20,465 --> 00:23:21,832
 each time you update,
+每次更新都是从一开始算的
 
 489
 00:23:21,900 --> 00:23:24,968
 so you can actually set that translation to zero.
+如果你能够把位移重置为零
 
 490
 00:23:25,037 --> 00:23:27,404
 And then instead of getting the distance from the origin,
+而不是从一开始的位移
 
 491
 00:23:27,473 --> 00:23:29,606
 you're getting from the distance from the last time
+你到的是相对于上一次更新的位移
 
 492
 00:23:29,674 --> 00:23:30,508
 this was sent to you.
+发送给你的是这个信息
 
 493
 00:23:30,576 --> 00:23:33,043
 Cuz this handler's going to be sent to you over and
+因为每次发给你的都是同一个识别器
 
 494
 00:23:33,112 --> 00:23:35,513
 over as the pan moves around repeatedly.
+到处拖动的时候都在重复这个操作
 
 495
 00:23:35,581 --> 00:23:38,248
-Hundreds of times as you move move around, so
+Hundreds of times as you move around, so
+一般都会有上百次
 
 496
 00:23:38,317 --> 00:23:41,651
 often you'll wanna set that translation back to zero,
+所以一般你都想把它重置为零
 
 497
 00:23:41,720 --> 00:23:44,421
 it gives you incremental panning.
+以此得到拖动的增量
 
 498
 00:23:44,490 --> 00:23:46,890
 You'll see that with some of the other concrete
+这个方法在其他的一些子类里也有
 
 499
 00:23:46,959 --> 00:23:48,408
 Now, the abstract superclass, the UIGestureRecognizer,
+抽象的 UIGestureRecognizer
 
 500
 00:23:48,409 --> 00:23:49,858
 ones as well.
+这个类
 
 501
 00:23:49,928 --> 00:23:52,729
 even though you don't make one it still is the superclass of
+虽然你不会去构造它，但作为父类
 
 502
 00:23:52,798 --> 00:23:53,463
 these things.
+这些子类
 
 503
 00:23:53,532 --> 00:23:54,631
 And you do inherit,
+都会继承
 
 504
 00:23:54,700 --> 00:23:58,969
 especially this one very important var, Called state.
+特别是这个重要的变量：state
 
 505
 00:23:59,037 --> 00:24:01,504
 And a state tells you the state of the gesture's,
+state 会告诉你手势的状态
 
 506
 00:24:01,573 --> 00:24:03,273
 how it's being recognized.
+它被识别为什么状态
 
 507
 00:24:03,342 --> 00:24:05,875
 So all of these gesture recognizers start out in
+所有的识别器都从
 
 508
 00:24:05,944 --> 00:24:07,845
 the state possible.
+.possible 这个状态开始
 
 509
 00:24:07,914 --> 00:24:10,614
 It's possible this gesture could happen.
+意味着这个手势可能会发生
 
 510
 00:24:10,683 --> 00:24:13,917
 And then, once it starts if it's a continuous gesture
+接着，如果是连续的手势
 
 511
 00:24:13,986 --> 00:24:16,687
 like a pan or a pinch you go to the state began.
+比如拖动或是缩放，你会进入 .began 的状态
 
 512
 00:24:16,756 --> 00:24:19,789
 So this isn't like, " a pan!, I think it's started".
+意味着拖动开始了
 
 513
 00:24:19,858 --> 00:24:22,392
 So you'll get your handlers called and you can look at
+识别器会调用负责处理的函数，你可以看到
 
 514
 00:24:22,461 --> 00:24:25,195
 the state of the recognizer and say, it began.
+识别器的状态变为了 .began
 
 515
 00:24:25,264 --> 00:24:28,031
 And then, every time the finger moves,
+之后每次手指移动了
 
 516
 00:24:28,100 --> 00:24:28,832
 it's gonna get changed.
+状态就会变为 .changed
 
 517
 00:24:28,901 --> 00:24:31,001
 It gets change, change, change, change, change,
+状态会一直是 .changed
 
 518
 00:24:31,069 --> 00:24:31,769
 change, change.
+如此持续一段时间
 
 519
 00:24:31,837 --> 00:24:34,071
 You're getting your handler called repeatedly and
+处理的函数会被重复调用
 
 520
 00:24:34,140 --> 00:24:36,473
-no anything that's changing is those methods above,
+you know anything that's changing is those methods above,
+上面几个方法都发生改变了
 
 521
 00:24:36,542 --> 00:24:38,609
-translation and also the state.
+translation. And also the state.
+位移
 
 522
 00:24:38,677 --> 00:24:39,343
 Moves to change.
+状态是 .changed
 
 523
 00:24:39,411 --> 00:24:42,045
 And then, when the finger goes up, you get ended.
+最后，手指抬起来了，状态变为终止了
 
 524
 00:24:42,114 --> 00:24:45,348
 You'll get your handler called and the state will be ended.
+负责处理的函数被调用，state 是 .ended
 
 525
 00:24:45,417 --> 00:24:50,254
 Now, for a discrete gesture like a swipe,
+对于相对独立的手势，比如轻扫
 
 526
 00:24:50,323 --> 00:24:52,189
 a swipe either happened or not.
+只会是发生或没有发生
 
 527
 00:24:52,257 --> 00:24:54,157
 When you're looking at a swipe you don't get
+当你处理轻扫的时候
 
 528
 00:24:54,226 --> 00:24:56,893
 the swipe started and it's moving across the screen and
+你不会得到说 .start 然后移动
 
 529
 00:24:56,962 --> 00:24:58,094
 it comes off, no.
+最后抬起来了。是不会这样的
 
 530
 00:24:58,163 --> 00:24:59,396
 Either the swipe happened or not.
+只会是发生了或没有发生
 
 531
 00:24:59,465 --> 00:25:01,297
 So you would just get called once and
+所以你只需要处理一次
 
 532
 00:25:01,366 --> 00:25:04,501
 the stage is gonna go straight to being ended or recognized.
+状态会直接是 recognized，代表识别到了
 
 533
 00:25:04,570 --> 00:25:09,273
 But you have to be a little bit careful of the states
+但对于状态你需要注意的是
 
 534
 00:25:09,341 --> 00:25:12,643
 failed and cancelled.
+.failed 和 .cancelled 两个状态
 
 535
 00:25:12,711 --> 00:25:15,212
 Failed might be because you started a gesture and
+.failed，失败了，可能是开始了某个手势
 
 536
 00:25:15,280 --> 00:25:16,647
 then the system realized, my gosh,
+突然系统意识到了，糟糕
 
 537
 00:25:16,715 --> 00:25:19,749
 that wasn't a pan gesture, that was the start of a swipe.
+其实那不是拖动，那是刚开始轻扫
 
 538
 00:25:19,818 --> 00:25:20,984
 Or something like that.
+或这一类的
 
 539
 00:25:21,053 --> 00:25:23,286
 And so, it switches to a swipe.
+所以最终识别为了轻扫
 
 540
 00:25:23,355 --> 00:25:26,623
 So you could have canceled, and then the other one,
+另外一个 .cancelled，取消了
 
 541
 00:25:26,692 --> 00:25:29,526
 or the failed, and then you also didn't have canceled.
+不同于失败，这个是取消了
+
 
 542
 00:25:29,595 --> 00:25:32,429
 You're in the middle of panning, phone call comes in,
+你可能还在拖动，但是突然有人打电话
 
 543
 00:25:32,498 --> 00:25:35,666
 takes over your screen, person says, hello, how you doing?
+切换到打电话的界面，问你过得怎么样
 
 544
 00:25:35,734 --> 00:25:39,102
 Well, clearly, that pan gesture was canceled.
+很显然地，拖动手势就取消了
 
 545
 00:25:39,171 --> 00:25:40,437
 So you could get that, as well.
+这也是可能发生的
 
 546
 00:25:40,505 --> 00:25:42,973
 So if you ever do anything, when you gesture ends,
+所以如果你需要在手势结束后进行处理
 
 547
 00:25:43,042 --> 00:25:45,709
 then you have to be careful to clean up when it fails, or
+那你需要处理好失败
 
 548
 00:25:45,778 --> 00:25:47,010
 gets canceled, as well.
+或是取消的情况
 
 549
 00:25:47,079 --> 00:25:48,946
 So that's the state.
+这就是 state
 
 550
 00:25:49,014 --> 00:25:52,549
 So let's take a look then, knowing what we know about pan
+在了解了拖动手势之后
 
 551
 00:25:52,618 --> 00:25:54,684
 gestures, what the handler would look like.
+我们来看看处理的函数是什么样的
 
 552
 00:25:54,753 --> 00:25:57,521
 So remember that the handler is called pan,
+还记得它叫做 pan
 
 553
 00:25:57,590 --> 00:25:59,990
 recognizer is the argument there, and that is the pan
+有个叫做 recognizer 的参数
 
 554
 00:26:00,058 --> 00:26:02,425
 gesture recognizer itself coming back to us.
+就是传回我们添加的 panGestureRecognizer
 
 555
 00:26:02,494 --> 00:26:04,194
 And its state will be different,
+状态取决于具体的情况
 
 556
 00:26:04,263 --> 00:26:06,329
 and we can ask it about translation and view and
+我们能从它得到视图里的位移
 
 557
 00:26:06,398 --> 00:26:07,497
 all those things.
+和其他的信息
 
 558
 00:26:07,566 --> 00:26:10,668
 So the first thing we're gonna do is look at that state and
+我们先判断 recognizer 的状态
 
 559
 00:26:10,736 --> 00:26:13,436
 I'm going to do the same thing whether the pan is,
+对于拖动的状态是
 
 560
 00:26:13,505 --> 00:26:15,839
 has changed or whether the finger went up.
+.changed 和 .ended
 
 561
 00:26:15,908 --> 00:26:17,407
 That's kinda the last position of the pan,
+也就是手指抬起来的最后时刻
 
 562
 00:26:17,476 --> 00:26:19,242
 we're gonna do the exact same thing.
+我要做的是同一件事情
 
 563
 00:26:19,311 --> 00:26:22,179
 Notice by the way I'm using this switch thing fallthrough,
+注意我 switch 里用了 fallthrough
 
 564
 00:26:22,247 --> 00:26:24,214
 hopefully you got that in your reading assignment.
+希望你们在做阅读作业的时候已经理解了
 
 565
 00:26:24,282 --> 00:26:27,584
 That basically just means that you wanna fall through to
+意思就是你想要落到下面那个分支
 
 566
 00:26:27,653 --> 00:26:30,587
 the next case cuz in a lot of languages that's the default,
+很多语言贯穿是默认的
 
 567
 00:26:30,655 --> 00:26:32,022
 but in Swift it's not the default,
+但是 Swift 里默认不会
 
 568
 00:26:32,091 --> 00:26:33,223
 you don't fall through.
+不会贯穿到下一分支
 
 569
 00:26:33,292 --> 00:26:34,791
 So fallthrough makes you fall through,
+所以用 fallthrough 来实现贯穿
 
 570
 00:26:34,860 --> 00:26:36,359
 it's a special key word.
+fallthrough 个关键字
 
 571
 00:26:36,428 --> 00:26:39,863
-You could also say case.changed.ended: that
+You could also say case.changed, .ended: that
+当然你可以用 case .changed, .ended:
 
 572
 00:26:39,931 --> 00:26:41,397
 would probably be actually better.
+其实这样更好
 
 573
 00:26:41,466 --> 00:26:42,299
 We'll do that in the demo.
+我们在演示里也会这么做
 
 574
 00:26:44,069 --> 00:26:48,072
 So if the pan moves a little or it ends, then I'm going to
+如果移动了一段距离或是结束了
 
 575
 00:26:48,140 --> 00:26:52,676
 get the translation from where we started at first
+我都去获得从起点算的位移
 
 576
 00:26:52,745 --> 00:26:55,479
 by asking for the translation in the pannable view.
+通过 translation(in: pannableView) 实现
 
 577
 00:26:55,548 --> 00:26:57,815
 That's the view the pan is having there.
+也就是被拖动的视图
 
 578
 00:26:57,883 --> 00:26:58,949
 You're almost always gonna ask for
+你一般都是询问
 
 579
 00:26:59,018 --> 00:27:00,718
 the translation in the pannable view.
+在被拖动视图里的位移
 
 580
 00:27:00,786 --> 00:27:02,185
 But you could ask for it in other views and
+但你也可以得到在其他视图里的位移
 
 581
 00:27:02,254 --> 00:27:05,388
 it will convert to that view's coordinate system if you want.
+它会帮你转换到那个视图的坐标系统计算
 
 582
 00:27:05,457 --> 00:27:07,190
 But almost always you're asking for
+但我们几乎还是计算
 
 583
 00:27:07,259 --> 00:27:09,259
 the one in the pannable view.
+在被拖动视图里的位移
 
 584
 00:27:09,328 --> 00:27:11,695
 Then, I'm gonna take that translation that I'm gonna
+接着，我拿到了位移
 
 585
 00:27:11,764 --> 00:27:14,164
 move and I'm gonna go do something with my app.
+就可以用它来完成些操作
 
 586
 00:27:14,232 --> 00:27:14,965
 Draw a line to,
+画一条线到那里
 
 587
 00:27:15,033 --> 00:27:17,267
 if I'm tracking the finger with the line, or
+如果我是在跟踪手指的轨迹
 
 588
 00:27:17,336 --> 00:27:18,702
 if I'm moving something,
+或者如果我在移动某个东西
 
 589
 00:27:18,770 --> 00:27:21,104
 I'm gonna move the thing to the new position.
+我就需要移动到新的位置
 
 590
 00:27:21,173 --> 00:27:23,974
 Then, if I want, I can set translation to zero so
+如果我想的话，就把位移重置为零
 
 591
 00:27:24,043 --> 00:27:26,243
 the next time this handler is called,
+这样下一次调用的时候
 
 592
 00:27:26,311 --> 00:27:29,179
 the translation is gonna be just the distance from
+位移就会是相对于
 
 593
 00:27:29,248 --> 00:27:31,782
 the last time it was called.
+上一次时候的距离了
 
 594
 00:27:31,851 --> 00:27:33,717
 As opposed to the distance from where it all started.
+而不是从最开始计算的距离
 
 595
 00:27:35,053 --> 00:27:36,352
 Where the pan started.
+不是从拖动最开始的地方
 
 596
 00:27:36,421 --> 00:27:38,454
 So that's it.
+好，就是这样
 
 597
 00:27:38,523 --> 00:27:40,090
 That's how a handler works, it's easy.
+很简单，就是这么处理的
 
 598
 00:27:40,158 --> 00:27:42,126
 Let's talk a little bit about some of the other concrete
+让我们看看其他具体的
 
 599
 00:27:42,194 --> 00:27:46,163
 gestures.
+手势识别器
 
 600
 00:27:46,232 --> 00:27:48,932
