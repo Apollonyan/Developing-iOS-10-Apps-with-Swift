@@ -857,7 +857,7 @@ don't always have to forcefully case every single
 180
 00:09:04,544 --> 00:09:05,844
 thing when you have an enum.
-处理美剧类型并不总是要这样
+处理枚举类型并不总是要这样
 
 181
 00:09:05,913 --> 00:09:07,545
@@ -917,7 +917,7 @@ It's an optional double.
 192
 00:09:29,602 --> 00:09:33,337
 And that's because this expression might not be
-因为可能这个表情/表达式的结果（双关）
+因为可能这个表情/表达式的结果
 
 193
 00:09:33,406 --> 00:09:34,506
@@ -1327,7 +1327,7 @@ a little frown.
 274
 00:13:50,130 --> 00:13:51,862
 Bingo!
-赢了呢！（千岁梗）<##>
+很好！
 
 275
 00:13:51,931 --> 00:13:54,966
@@ -1637,7 +1637,7 @@ Now there's two parts to using a gesture recognizer here.
 336
 00:16:27,853 --> 00:16:30,554
 One is you have to ask a UIView, please start
-第一步是告诉 UIView 请开始你的表演<##>
+第一步是告诉 UIView
 
 337
 00:16:30,623 --> 00:16:34,491
