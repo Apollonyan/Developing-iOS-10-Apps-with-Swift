@@ -6746,7 +6746,7 @@ window comes up I'm gonna choose Detail View Controller
 1411
 01:04:22,993 --> 01:04:24,659
 then it's gonna make that connection.
-然后会让其连接为详细信息视图控制器
+然后会让其连接为细节视图控制器
 
 1412
 01:04:25,829 --> 01:04:27,361
@@ -6766,7 +6766,7 @@ calculator of your controller and
 1415
 01:04:31,635 --> 01:04:34,169
 detail that is going to be a graphic view controller.
-分屏显示的详细信息会是图像控制器
+分屏显示的细节视图会是图像控制器
 
 1416
 01:04:35,405 --> 01:04:37,205
@@ -6816,7 +6816,7 @@ So to do that, what we do is we're gonna wrap
 1425
 01:04:59,896 --> 01:05:02,763
 the master and the detail if we want.
-把主视图和详细视图分别
+把主视图和细节视图分别
 
 1426
 01:05:02,832 --> 01:05:05,466
@@ -6861,7 +6861,7 @@ you just go to the Editor menu,
 1434
 01:05:20,350 --> 01:05:22,116
 the same place we did embed and stack view,
-在之前我们嵌入到堆栈视图的地方
+在之前我们嵌入到 StackView 的地方
 
 1435
 01:05:22,185 --> 01:05:23,151
@@ -6956,12 +6956,12 @@ It's just going to do the navigation controller.
 1453
 01:06:00,790 --> 01:06:01,989
 So, when you look at the detail,
-所以，你要查看详细视图
+所以，你要查看细节视图
 
 1454
 01:06:02,058 --> 01:06:04,192
 it's going to slide it in.
-详细视图会滑进来覆盖主视图
+细节视图会滑进来覆盖主视图
 
 1455
 01:06:04,261 --> 01:06:06,761
@@ -6971,7 +6971,7 @@ Whereas if you're on a iPad in landscape,
 1456
 01:06:06,830 --> 01:06:09,764
 you're gonna see Master and Detail at the same time.
-你会同时看到主界面和详细信息
+你会同时看到主界面和细节视图
 
 1457
 01:06:09,833 --> 01:06:13,568
@@ -6991,7 +6991,7 @@ as, as I talked about.
 1460
 01:06:17,707 --> 01:06:20,074
 So you can do the same thing with the Detail.
-你可以在详细信息中做同样的事
+你可以对细节视图中做同样的事
 
 1461
 01:06:20,143 --> 01:06:22,410
@@ -7006,7 +7006,7 @@ Because yo've already done it with the master and
 1463
 01:06:24,180 --> 01:06:26,513
 so you gotta click in the master to get to the detail,
-你只需要点一下主视图来获取详细信息
+你只需要点一下主视图来展示细节视图
 
 1464
 01:06:26,582 --> 01:06:28,516
@@ -7026,7 +7026,7 @@ But wha's kinda nice about putting the detail
 1467
 01:06:32,255 --> 01:06:35,223
 in a navigation controller is you get that little title bar,
-把详细视图嵌入导航控制器后会有标题栏
+把细节视图嵌入导航控制器后会有标题栏
 
 1468
 01:06:35,292 --> 01:06:36,524
@@ -7041,7 +7041,7 @@ So now, your master and
 1470
 01:06:37,460 --> 01:06:39,561
 your detail both have a title bar on the top and
-详细信息在屏幕顶端都有标题栏
+细节视图在屏幕顶端都有标题栏
 
 1471
 01:06:39,629 --> 01:06:40,961
@@ -7051,7 +7051,7 @@ they match up nicely.
 1472
 01:06:41,030 --> 01:06:42,930
 So if you wanna title on your detail,
-如果你想在你的详细信息上有个标题
+如果你想在你的细节视图上有个标题
 
 1473
 01:06:42,999 --> 01:06:43,598
@@ -7066,12 +7066,12 @@ The only thing to be careful there though is
 1475
 01:06:45,635 --> 01:06:48,269
 now your detail in not a graph view controller.
-详细信息视图控制器不是图形视图控制器
+细节视图控制器不是图形视图控制器
 
 1476
 01:06:48,338 --> 01:06:50,638
 Your detail is now a navigation controller.
-你的详细信息现在是一个导航控制器
+你的细节视图现在是一个导航控制器
 
 1477
 01:06:50,706 --> 01:06:52,540
@@ -7101,12 +7101,12 @@ So it's just subtle difference but
 1482
 01:07:01,617 --> 01:07:03,685
 if you wrap your detail in a navigation controller,
-如果你用导航控制器嵌套详细信息控制器
+如果你用导航控制器嵌套细节视图控制器
 
 1483
 01:07:03,753 --> 01:07:05,853
 the detail has come become a navigation controller.
-那么详细信息就变成了一个导航控制器
+那么细节视图就变成了一个导航控制器
 
 1484
 01:07:05,922 --> 01:07:07,588
@@ -7276,7 +7276,7 @@ slide a card on.
 1517
 01:08:31,441 --> 01:08:32,740
 There's Show Detail,
-有 Show Detail, 显示详细信息
+有 Show Detail, 显示细节视图
 
 1518
 01:08:32,809 --> 01:08:34,208
@@ -7296,7 +7296,7 @@ But if you're inside a Split View,
 1521
 01:08:37,647 --> 01:08:40,982
 it means put this new MVC where the detail goes.
-意味着需要将 MVC 作为详细信息显示
+意味着需要将 MVC 作为细节视图显示
 
 1522
 01:08:41,051 --> 01:08:42,683
@@ -7306,7 +7306,7 @@ That's why it's called Show Detail.
 1523
 01:08:42,752 --> 01:08:44,552
 So Show Detail behaves differently depending on
-那么显示详细信息不同的行为取决于
+那么显示细节视图不同的行为取决于
 
 1524
 01:08:44,621 --> 01:08:45,653
@@ -7596,7 +7596,7 @@ So I just go into interface builder here, control drag
 1581
 01:11:07,730 --> 01:11:10,564
 from that button down to the detail right there.
-拖拽按钮到右边详细信息那
+拖拽按钮到右边细节视图那
 
 1582
 01:11:10,633 --> 01:11:11,532
