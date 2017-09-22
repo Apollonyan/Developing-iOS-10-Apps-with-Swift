@@ -6643,28 +6643,28 @@ that thing and inspect it.
 
 1601
 01:11:49,239 --> 01:11:52,173
-Cuz you don't wanna set this thing right here which
-因为你不想要将这东西放置在此因为
+Cuz you gonna wanna set this thing right here which
+因为你会想要设置这里的
 
 1602
 01:11:52,242 --> 01:11:53,841
 is the identifier.
-是验证程序
+identifier，标识符
 
 1603
 01:11:53,910 --> 01:11:56,677
 Every segue has an identifier, it's just the string and
-每一个转场都有一个验证程序，这只是一个字符串且
+每一个转场都有一个标识符，这只是一个字符串
 
 1604
 01:11:56,745 --> 01:12:00,013
 that identifier is what's you're gonna use in your code
-这个验证程序是你在代码中要用到的
+这个标识符是你在代码中
 
 1605
 01:12:00,082 --> 01:12:02,649
 to talk about this segue.
-与转场进行互动
+用来与转场进行互动的
 
 1606
 01:12:02,718 --> 01:12:04,252
@@ -6684,32 +6684,32 @@ So always set that.
 1609
 01:12:08,457 --> 01:12:09,223
 And you wanna set it,
-且你会想要放置它的，
+且你会想要放置一个
 
 1610
 01:12:09,291 --> 01:12:12,059
 the identifier to be something that kind of says what is
-这个验证程序就好比像是在告诉你
+不言而喻的标识符
 
 1611
 01:12:12,128 --> 01:12:12,660
 segue does.
-转场的作用是什么
+说明转场的作用是什么
 
 1612
 01:12:12,729 --> 01:12:14,995
 So in this case it shows a graph, so
-所以在这里展示了一个图像，那么
+这种情况它是展示了一个图像
 
 1613
 01:12:15,064 --> 01:12:16,764
 I call this show graph.
-我称之为图像显示
+那么我称之为 Show Graph
 
 1614
 01:12:19,802 --> 01:12:22,236
 That's how you set up your segue.
-这就是你如何放置转场效果
+这就是你如何设置转场效果
 
 1615
 01:12:22,304 --> 01:12:24,204
@@ -6724,42 +6724,42 @@ If you have a navigation controller and
 1617
 01:12:25,742 --> 01:12:28,209
 you have a button that causes another card to slide on you
-你有一个按钮能让另一个页面被滑动
+你有一个按钮让另一个页面滑进来
 
 1618
 01:12:28,278 --> 01:12:30,445
 just control drag from that button to the other MVC.
-只需按住control然后从按钮中拖拽到其它的MVC
+只需按住 control 后从按钮拖拽到其它 MVC
 
 1619
 01:12:30,513 --> 01:12:33,915
 And then you use a show segue, and it'll just work.
-然后你用到了转场展示，然后就完成了
+接着选择用 Show 转场展示，这样就完成了
 
 1620
 01:12:33,983 --> 01:12:35,049
 Has to be all inside,
-所有的都应该在这了，
+不过必须要在导航控制器里面
 
 1621
 01:12:35,117 --> 01:12:37,751
 embedded in navigation controller, of course.
- 导航控制器，当然
+当然嵌套到导航控制器才行
 
 1622
 01:12:37,820 --> 01:12:39,720
 So what can you do with these identifiers?
-所以你可以用这些验证程序来做什么呢？
+所以你可以用这些标识符来做什么呢？
 
 1623
 01:12:39,789 --> 01:12:42,457
 It is actually possible to cause a segue to happen from
-这个（验证程序）能真正的实现转场效果通过
+其实代码能用这个标识符实现转场
 
 1624
 01:12:42,525 --> 01:12:45,425
 code, with performSegue withIdentifier, but
-代码的方式，with performSegue withIdentifier，但
+使用的是 performSegue(withIdentifier:) 方法
 
 1625
 01:12:45,494 --> 01:12:47,961
@@ -6769,17 +6769,17 @@ I'm not gonna talk about that, cuz we're never gonna do that.
 1626
 01:12:48,030 --> 01:12:49,329
 We always gonna have buttons,
-我们总是会有多个按钮，
+我们总是会通过按钮实现
 
 1627
 01:12:49,398 --> 01:12:50,764
 well I'm not gonna say we're never gonna do that,
-好吧我不应该说我们永远也不会用到，
+好吧我不应该说我们永远也不会用到
 
 1628
 01:12:50,833 --> 01:12:52,767
 but we won't be doing that in your assignment three,
-但我们在第三节课程中还暂时不会用到，
+但我们在作业三中还暂时不会用到
 
 1629
 01:12:52,835 --> 01:12:53,267
@@ -6789,22 +6789,22 @@ that's for sure.
 1630
 01:12:53,336 --> 01:12:54,301
 It's pretty rare.
-这非常重要
+很少会这样做
 
 1631
 01:12:54,370 --> 01:12:56,303
 But you can do it with performSegue.
-但你可以通过performSegue来做
+但你可以通过 performSegue 实现
 
 1632
 01:12:56,372 --> 01:12:59,006
 But the more important use of the identifier is not causing
-在使用验证程序中更重要的用法不是仅仅实现
+标识符最重要的用法不是实现转场
 
 1633
 01:12:59,075 --> 01:13:00,774
 segues to happen cuz segues kinda happen
-转场因为转场效果的实现是
+因为转场效果的实现是
 
 1634
 01:13:00,843 --> 01:13:02,643
@@ -6814,32 +6814,32 @@ automatically when the buttons are pressed.
 1635
 01:13:02,712 --> 01:13:04,645
 It's to prepare for a segue.
-这是为转场准备的
+它的目的是为转场做准备
 
 1636
 01:13:04,714 --> 01:13:08,148
 This is the most important method in all of
-这是最重要的方法在所有的
+prepare(for segue:) 是所有方法中
 
 1637
 01:13:08,217 --> 01:13:11,552
 multiple MVC programming is this preparing for segue
-多点MVC编程中，这是为转场准备的
+实现多个 MVC 编程的最重要的方法
 
 1638
 01:13:11,620 --> 01:13:15,489
 method which I'm gonna show you in a moment here, okay.
-方法接下来我将要向你们在这展示下，
+之后我将要在这向你们展示下
 
 1639
 01:13:15,558 --> 01:13:18,058
 And remember, we're all segueing to a new MVC
-别忘了，我们都通过转场到新的MVC
+别忘了，我们总是转场到新的 MVC
 
 1640
 01:13:18,127 --> 01:13:20,227
 freshly created, so it's always raw.
-新建，那么它总是
+全新的，未加处理的
 
 1641
 01:13:20,296 --> 01:13:22,830
@@ -6854,22 +6854,22 @@ Here is the method.
 1643
 01:13:25,534 --> 01:13:27,334
 It's called prepare for segue, and
-这称作为准备转场，且
+prepare(for segue:), 准备转场
 
 1644
 01:13:27,403 --> 01:13:30,972
 it also has a sender argument right there.
-这里还有一个传送协议
+同时还有 sender 参数，表示发起转场的实例
 
 1645
 01:13:31,040 --> 01:13:34,375
 The segue that's passed along that first argument
-转场效果要通过的第一个协议
+作为第一个参数的转场 segue
 
 1646
 01:13:34,444 --> 01:13:37,611
 is just a little container that contains interesting
-只是一个小的容器其包含了有趣的
+只是一个容器，其中包含了
 
 1647
 01:13:37,680 --> 01:13:39,613
@@ -6879,22 +6879,22 @@ information about the segue.
 1648
 01:13:39,682 --> 01:13:42,049
 For example, the identifier, Show Graph.
-例如，验证程序，图像显示
+例如标识符（这里是 "Show Graph"）
 
 1649
 01:13:43,585 --> 01:13:47,187
 And very importantly, the controller that you're seguing
-然后很重要的一个地方，你用于转场的控制器
+然后很重要的，转场到的目标控制器
 
 1650
 01:13:47,256 --> 01:13:48,455
 too, because the whole point is here,
-也是重点，因为整个知识点就在这，
+你为这个方法的作用
 
 1651
 01:13:48,524 --> 01:13:51,292
 you're suppose to be preparing this MVC that's going to
-你最好准备好这个MVC让它能
+就是让目标 MVC 准备好
 
 1652
 01:13:51,360 --> 01:13:52,593
@@ -6904,22 +6904,22 @@ come on screen.
 1653
 01:13:52,661 --> 01:13:53,794
 To do its job so
-为了能让其运作那么
+完成它的工作
 
 1654
 01:13:53,862 --> 01:13:57,431
 you get that thing from this little segue object.
-你要从这个小转场对象中得到那个东西（ ）
+所以我们要从 segue 中得到目标控制器
 
 1655
 01:13:57,499 --> 01:14:00,301
 The sender is kinda like buttons,
-传感器有点像按钮，
+sender 就是像按钮一类的
 
 1656
 01:14:00,370 --> 01:14:02,636
 the button sender when we had the action there.
-当我们有动作行为时按钮传感器
+我们按下去来转场的按钮
 
 1657
 01:14:02,705 --> 01:14:05,505

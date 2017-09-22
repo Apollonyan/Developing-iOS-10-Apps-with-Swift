@@ -2503,7 +2503,7 @@ Because after that,
 
 576
 00:24:37,909 --> 00:24:42,012
-all drawing is only gonna show up inside that triangle
+all drawing is only gonna show up inside that triangle,
 绘制的东西只显示在三角形内的部分
 
 577
