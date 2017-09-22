@@ -2987,12 +2987,11 @@ That's how a handler works, it's easy.
 598
 00:27:40,158 --> 00:27:42,126
 Let's talk a little bit about some of the other concrete
-让我们看看其他具体的
+让我们看看其他具体的手势识别器
 
 599
 00:27:42,194 --> 00:27:46,163
 gestures.
-手势识别器
 
 600
 00:27:46,232 --> 00:27:48,932
