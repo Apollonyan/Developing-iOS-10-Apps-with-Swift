@@ -4605,7 +4605,7 @@ The master details serve as the view of
 1140
 00:52:44,528 --> 00:52:45,427
 that split view controller.
-分屏控制器 MVC 的 V 层（视图）
+分屏控制器 MVC 的视图
 
 1141
 00:52:45,496 --> 00:52:48,764
@@ -4620,7 +4620,7 @@ It doesn't actually draw anything in the view,
 1143
 00:52:50,501 --> 00:52:55,103
 it just uses the UI or the view of these MVCs to draw.
-它只是单纯的调用了 UI 界面或者这些 MVC 的 V 层（视图）来绘制
+它只是单纯的调用了 UI 界面或者这些 MVC 的视图来绘制
 
 1144
 00:52:55,172 --> 00:52:57,873
@@ -4645,7 +4645,7 @@ the most commonly used one, is a navigation controller.
 1148
 00:53:07,685 --> 00:53:12,354
 Another MVC that uses other MVCs in its view.
-另一个把别的 MVC 作为它 V 层（视图）的 MVC
+另一个把别的 MVC 作为它视图的 MVC
 
 1149
 00:53:12,423 --> 00:53:16,358
@@ -4725,7 +4725,7 @@ The rest of its view, it fills up with another MVC.
 1164
 00:53:55,098 --> 00:53:56,598
 The view from another MVC,
-也就是另一个 MVC 中的 V 层（视图）
+也就是另一个 MVC 中的视图
 
 1165
 00:53:56,666 --> 00:53:58,734
@@ -5155,7 +5155,7 @@ And it just knows how to manage that.
 1250
 00:57:40,791 --> 00:57:42,624
 Now they might share a model, because maybe they're
-它们可能共享同一个 M 层（模型），因为它们都在
+它们可能共享同一个模型，因为它们都在
 
 1251
 00:57:42,693 --> 00:57:44,292
@@ -5220,17 +5220,17 @@ it's just a MVC.
 1263
 00:58:07,350 --> 00:58:11,586
 It doesn't really have a model that's okay but it has a view.
-事实上它没有一个 M 层（模型），这没事，但它有一个 V 层（视图）
+事实上它没有一个模型，这没事，但它有一个视图
 
 1264
 00:58:11,655 --> 00:58:14,989
 And inside that view there is a special var that's pointing
-而且在这个 V 层（视图）中有一个叫做
+而且在这个视图中有一个叫做
 
 1265
 00:58:15,058 --> 00:58:17,359
 to its view called RootViewController,
-rootViewController 的指向它的 V 层（视图）的特殊变量
+rootViewController 的指向它的视图的特殊变量
 
 1266
 00:58:17,427 --> 00:58:20,729
@@ -5270,12 +5270,12 @@ And as soon as you do that, as soon as you set that,
 1273
 00:58:31,908 --> 00:58:33,909
 it's going to take that MVC's view and
-它就会把指向的 MVC 中的 V 层（视图）
+它就会把指向的 MVC 中的视图
 
 1274
 00:58:33,978 --> 00:58:36,444
 put it in its view with that little gray bar.
-用那个小小的灰色栏中包装然后放到它自己的 V 层（视图）中
+用那个小小的灰色栏中包装然后放到它自己的视图中
 
 1275
 00:58:36,513 --> 00:58:38,780
@@ -5480,7 +5480,7 @@ But mostly MVCs kind of come and go.
 1315
 01:00:14,177 --> 01:00:17,445
 And it's their models that tend to be persistent.
-只有它们的 M 层（Model）是不变的
+只有它们的模型是不变的
 
 1316
 01:00:17,514 --> 01:00:18,379
