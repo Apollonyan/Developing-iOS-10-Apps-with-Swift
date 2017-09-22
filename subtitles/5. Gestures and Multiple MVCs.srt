@@ -4401,22 +4401,22 @@ at least in landscape you do.
 1099
 00:51:07,331 --> 00:51:10,866
 This one on the left here is a calculator MVC.
-这里左边的这个是一个 calculator 的 MVC 
+这里左边的这个是一个计算器的 MVC 
 
 1100
 00:51:10,935 --> 00:51:12,735
 It doesn't look much like yours but
-它跟你们的 calculator 不大像但是
+它跟你们的计算器不大像但是
 
 1101
 00:51:12,804 --> 00:51:15,037
 you can imagine that's a calculator MVC.
-你可以把它当作一个 calculator 的 MVC 
+你可以把它当作一个计算器的 MVC 
 
 1102
 00:51:15,105 --> 00:51:15,837
 That MVC,
-这个 MVC 
+这个 MVC
 
 1103
 00:51:15,906 --> 00:51:20,409
@@ -4441,7 +4441,7 @@ This one happens to be a graph of
 1107
 00:51:29,320 --> 00:51:31,486
 what's in the calculator MVC.
-calculator MVC 里内容对应的图形
+计算器 MVC 里内容对应的图形
 
 1108
 00:51:31,555 --> 00:51:32,888
@@ -4665,7 +4665,7 @@ And in it, it's showing another MVC,
 1152
 00:53:22,300 --> 00:53:24,700
 which I'm calling the all settings MVC.
-这个 MVC 我会叫它全设置 MVC
+这个 MVC 我会叫它所有设置 MVC
 
 1153
 00:53:26,470 --> 00:53:29,004
@@ -4690,7 +4690,7 @@ The gray bar, which is actually transparent and
 1157
 00:53:35,913 --> 00:53:38,214
 showing the all settings MVC behind it.
-并且它显示了在它后面的全设置 MVC 
+并且它显示了在它后面的所有设置 MVC 
 
 1158
 00:53:39,216 --> 00:53:41,450
@@ -4730,12 +4730,12 @@ The view from another MVC,
 1165
 00:53:56,666 --> 00:53:58,734
 in this case the all settings MVC.
-在这个情况下，也就是这个全设置 MVC 
+在这个情况下，也就是这个所有设置 MVC 
 
 1166
 00:54:02,906 --> 00:54:05,107
 The contents are all this "all settings MVC".
-里面的内容都是这个全设置 MVC
+里面的内容都是这个所有设置 MVC
 
 1167
 00:54:06,544 --> 00:54:08,577
@@ -4875,7 +4875,7 @@ Navigation Controller, the Navigation Controllers' MVC,
 1194
 00:55:23,253 --> 00:55:26,788
 the all setting ones that is now in the back of this one,
-一个是在这个正在显示的 MVC 的后面的全设置 MVC 
+一个是在这个正在显示的 MVC 的后面的所有设置 MVC 
 
 1195
 00:55:26,857 --> 00:55:31,059
@@ -4960,12 +4960,12 @@ And if you click that,
 1211
 00:56:05,996 --> 00:56:07,563
 it's gonna go back to the other card.
-它就会返回到别的卡片
+它就会返回到之前的卡片
 
 1212
 00:56:07,631 --> 00:56:10,666
 The all settings, so that's all done for you.
-也就是全设置，这就是它为你们做的事
+也就是所有设置，这就是它为你们做的事
 
 1213
 00:56:12,336 --> 00:56:14,002
@@ -5045,7 +5045,7 @@ And we can go all the way back to the all settings at
 1228
 00:56:51,575 --> 00:56:52,207
 the very top.
-全设置 MVC 
+所有设置 MVC 
 
 1229
 00:56:52,275 --> 00:56:53,675
@@ -5110,7 +5110,7 @@ you got another whole pile of UI down here in the corner
 1241
 00:57:19,770 --> 00:57:22,304
 that you wanna add, but just won't fit.
-内容，但是不合适
+内容，但是放不下
 
 1242
 00:57:22,373 --> 00:57:24,305
@@ -5140,17 +5140,17 @@ you need more space.
 1247
 00:57:31,014 --> 00:57:35,116
 So what you do is you create a new MVC that controls all that
-那么你要做的就是创建一个新的用来控制 
+那么你要做的就是创建一个新的
 
 1248
 00:57:35,185 --> 00:57:39,120
 UI that is completely independent of that.
-所有独立的 UI 的 MVC 
+独立的 MVC 来控制那些 UI
 
 1249
 00:57:39,189 --> 00:57:40,722
 And it just knows how to manage that.
-然后就能知道如何管理
+那个独立的 MVC 知道如何管理它们
 
 1250
 00:57:40,791 --> 00:57:42,624
@@ -5245,12 +5245,12 @@ at the root it's the base card.
 1268
 00:58:23,166 --> 00:58:25,167
 The all settings one we saw on the previous page.
-也就是之前在幻灯片中出现的全设置
+也就是之前在幻灯片中出现的所有设置
 
 1269
 00:58:26,303 --> 00:58:27,001
-So it just has this bar.
-它有一个栏
+So it just has this var.
+它有这么一个变量
 
 1270
 00:58:27,070 --> 00:58:28,670
@@ -5300,7 +5300,7 @@ This is super simple.
 1279
 00:58:43,853 --> 00:58:48,323
 And then let's say you have a button inside this UI, or
-然后我们我们假设在新的 UI 界面中有一个按钮，或者
+然后我们假设在新的 UI 界面中有一个按钮，或者
 
 1280
 00:58:48,392 --> 00:58:51,259
@@ -5390,7 +5390,7 @@ the stack of cards.
 1297
 00:59:28,531 --> 00:59:31,199
 Now when you do that, you get the back button for
-当你那么做了之后（进入新的 MVC），你就得到了一个
+当你进入新的 MVC之后，你就得到了一个
 
 1298
 00:59:31,268 --> 00:59:33,134
@@ -5550,7 +5550,7 @@ like tab bar controller, and
 1329
 01:00:49,346 --> 01:00:50,912
 navigation controller, and split view controller.
-导航控制器还有 UISplitViewController
+导航控制器还有分屏控制器
 
 1330
 01:00:50,981 --> 01:00:52,547
@@ -5560,7 +5560,7 @@ It's called viewControllers, and
 1331
 01:00:52,615 --> 01:00:56,017
 it's an optional array of UIViewControllers.
-它是一个 UIViewController 类型的可选数组
+它是一个可选类型的 UIViewController 数组
 
 1332
 01:00:56,086 --> 01:00:57,318
@@ -5640,7 +5640,7 @@ Now, it's great to have this var ViewControllers, but
 1347
 01:01:51,341 --> 01:01:53,642
 how do you get the Split View Controller or
-如果你在一个 UISplitViewController 或者一个标签栏控制器里的话
+如果你在一个分屏控制器或者一个标签栏控制器里的话
 
 1348
 01:01:53,710 --> 01:01:56,477
@@ -5650,7 +5650,7 @@ get the Tab Bar Controller if you're in one?
 1349
 01:01:56,546 --> 01:01:59,380
 Okay if I'm the all settings MVC or
-假设我是一个之前幻灯片里的那个全设置 MVC 或者
+假设我是一个之前幻灯片里的那个所有设置 MVC 或者
 
 1350
 01:01:59,449 --> 01:02:04,052
@@ -5665,7 +5665,7 @@ bar, how do I get the navigation controller I'm in,
 1352
 01:02:06,756 --> 01:02:08,823
 or the split view I'm in or the tab bar I'm in?
-或者那个 UISplitViewController 又或者那个标签栏控制器呢？
+或者那个分屏控制器又或者那个标签栏控制器呢？
 
 1353
 01:02:08,892 --> 01:02:11,826
@@ -5700,21 +5700,22 @@ And if you're not in one, it will return nil.
 1359
 01:02:21,771 --> 01:02:22,604
 So that's how you find out
-这就是如何获取你当前的
+这就是如何获取
 
 1360
 01:02:22,673 --> 01:02:24,039
 the Split View Controller you're in.
-UISplitViewController 的方法了
+丹铅你所在的分屏控制器的方法了
 
 1361
 01:02:24,107 --> 01:02:25,581
 And you can use the combination of
-而且你可以组合使用这两个东西
+而且你可以组合使用
 
 1362
 01:02:25,742 --> 01:02:25,999
 these two things.
+这两个东西
 
 1363
 01:02:26,009 --> 01:02:28,141
@@ -5814,7 +5815,7 @@ were talking about or just a regular view controller.
 1382
 01:03:09,586 --> 01:03:12,186
 You go down to the object pallet and you drag it out
-你在 object pallet 里往下滑，然后
+你在对象库里往下滑，然后
 
 1383
 01:03:12,255 --> 01:03:15,456
@@ -5859,7 +5860,7 @@ You're obviously gonna have your MVC's like your
 1391
 01:03:31,908 --> 01:03:34,208
 calculator and your graphing view controller sitting in
-calculator 和 图像视图控制器这样的 MVC 在你的
+计算器和图像视图控制器这样的 MVC 在你的
 
 1392
 01:03:34,277 --> 01:03:36,410
@@ -5883,8 +5884,8 @@ Then you just Ctrl+drag like we do,
 
 1396
 01:03:45,388 --> 01:03:48,422
-our favorite gesture in a face builder, is Ctrl+drag.
-我们在 face builder 里最喜欢的手势也就是 control + 拖拽 
+our favorite gesture in Interface Builder, is Ctrl+drag.
+我们在 Interface Builder 里最喜欢的手势就是 control + 拖拽
 
 1397
 01:03:48,491 --> 01:03:50,992
