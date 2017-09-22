@@ -7226,23 +7226,23 @@ to talk about this segue.
 
 1606
 01:12:02,718 --> 01:12:04,252
-And I'll talk about what you've
-接下来我要谈到的是你们之前
+And I'll talk about what you
+等会儿我要谈到的是
 
 1607
 01:12:04,320 --> 01:12:07,120
-been talk about regarding segues, any moment here.
-已经谈论过的  转场，任何时候
+can talk about regarding segues in a moment here.
+你们需要用转场 segue 做什么
 
 1608
 01:12:07,189 --> 01:12:08,389
 So always set that.
-所以总是需要放置它
+总之你总是需要设置它
 
 1609
 01:12:08,457 --> 01:12:09,223
 And you wanna set it,
-且你会想要放置一个
+而且你会想要设置一个
 
 1610
 01:12:09,291 --> 01:12:12,059
