@@ -3781,7 +3781,7 @@ So the tap happened.
 876
 00:39:58,262 --> 00:40:03,066
 Then I'm gonna let eyes, which is FacialExpression.Eyes,
-然后 let eyes: FacialExpression,Eyes
+然后 let eyes: FacialExpression.Eyes
 
 877
 00:40:03,135 --> 00:40:06,135
@@ -4646,7 +4646,7 @@ in that those buttons along the bottom, both the icon and
 1049
 00:48:29,941 --> 00:48:31,807
 the text on and if they had a badge,
-它们还可能拥有一个标记
+它们还可能拥有一个角标
 
 1050
 00:48:31,876 --> 00:48:32,875
@@ -4681,7 +4681,7 @@ it's a UIViewController var called TabBarItem.
 1056
 00:48:49,793 --> 00:48:54,263
 And TabBarItem has things like Badges, and titles, and icons,
-并且 tabBarItem 还拥有标记、标题、图标
+并且 tabBarItem 还拥有角标、标题、图标
 
 1057
 00:48:54,332 --> 00:48:56,465
