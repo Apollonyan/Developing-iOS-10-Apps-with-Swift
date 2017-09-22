@@ -4021,12 +4021,12 @@ So that's a big thing that happens its lifecycle.
 1005
 00:41:47,238 --> 00:41:48,237
 Another thing that happens
-发生了一些其他的事情
+另外一个会发生的事情
 
 1006
 00:41:48,306 --> 00:41:51,407
 during the life time of it is it's changing its orientation.
-
+是屏幕发生发生了旋转
 
 1007
 00:41:51,476 --> 00:41:53,342
@@ -4036,12 +4036,12 @@ We're rotating the landscape.
 1008
 00:41:53,411 --> 00:41:54,210
 We're on a iPad and
-如果我们是在iPad上
+如果我们是在 iPad 上
 
 1009
 00:41:54,279 --> 00:41:58,013
 we're sliding it out as a tray in portrait mode and
-然后我们把屏幕旋转至纵向模式，那么我们的选项托盘就不在了
+纵向模式我们需要把主视图像个托盘一样滑出来
 
 1010
 00:41:58,082 --> 00:42:00,082
@@ -4051,12 +4051,12 @@ then we rotate to landscape and it's sitting on the side.
 1011
 00:42:00,151 --> 00:42:02,785
 So it's changing its shape.
-所以它改变了他自己的形状
+所以它改变了它自己的形状
 
 1012
 00:42:02,854 --> 00:42:05,187
 Even the face view of the iPad when we're in portrait,
-就像在iPad上的face view，当它在纵向模式时
+就像在 iPad 上的 FaceView，当它在纵向模式时
 
 1013
 00:42:05,256 --> 00:42:06,623
@@ -4096,12 +4096,12 @@ this almost never happens, but I have to mention it.
 1020
 00:42:19,437 --> 00:42:21,404
 It's really maybe not even part of the view controller
-它甚至可能不存在于view controller
+它甚至可能不存在于控制器的
 
 1021
 00:42:21,472 --> 00:42:24,273
 lifecycle but it's a good place to talk about it,
-的生命周期中，但是这是个讨论它的好地方
+生命周期中，但是这是个讨论它的好地方
 
 1022
 00:42:24,342 --> 00:42:25,608
@@ -4111,37 +4111,37 @@ cuz it's not really that important.
 1023
 00:42:26,844 --> 00:42:31,714
 Let's talk about the messages that
-我们来聊聊当view controller
+我们来聊聊哪些消息被发送
 
 1024
 00:42:31,782 --> 00:42:34,383
 are sent to invoke methods in your view controller
-中的方法被调用时所发送信息
+来调用视图控制器的方法
 
 1025
 00:42:34,452 --> 00:42:37,086
 when these various things happen.
-就在这一些列的事情发生时
+以表明这一些列的事情发生了
 
 1026
 00:42:37,154 --> 00:42:40,623
 So you already know about your outlets being set.
-所以你已经知道你的布局已经被布好了
+所以你已经知道你的出口变量已经被关联好了
 
 1027
 00:42:40,692 --> 00:42:42,625
 And you can watch that with your did sets,
-而且你可以通过你的did set来观察
+而且你可以通过你的 didSet 来观察
 
 1028
 00:42:42,694 --> 00:42:43,959
 the property observer, did set.
-那个属性观察器，didset
+那个属性观察器，didSet
 
 1029
 00:42:44,028 --> 00:42:45,594
 And you already know about preparing,
-你也已经了解了prepare
+你也已经了解了如何准备
 
 1030
 00:42:45,663 --> 00:42:46,996
@@ -4156,7 +4156,7 @@ So after those two steps are done,
 1032
 00:42:49,233 --> 00:42:51,834
 you're gonna get this message, viewDidLoad.
-你就应该会获得来自viewDidLoad的信息
+你就应该会获得信息 viewDidLoad
 
 1033
 00:42:51,903 --> 00:42:53,936
@@ -4166,7 +4166,7 @@ Super important method.
 1034
 00:42:54,005 --> 00:42:57,106
 You're only gonna ever receive it once in the lifetime
-在你的viewController的整个生命周期中你只会收到一次
+在你的控制器的整个生命周期中你只会收到一次
 
 1035
 00:42:57,175 --> 00:42:58,007
@@ -4176,42 +4176,42 @@ of a viewController.
 1036
 00:42:59,277 --> 00:43:01,878
 And it's really where you're gonna put
-所以这个方法几乎是你设置所有
+所以这个方法几乎是你
 
 1037
 00:43:01,946 --> 00:43:04,780
 almost all of your initialization.
-初始化构造器的地方
+完成所有初始化地方
 
 1038
 00:43:04,849 --> 00:43:07,950
 For example, a lot of times here's where you'll call your
-举个例子，这里将是你调用update UI方法最多
+举个例子，通常这里是你调用 updateUI
 
 1039
 00:43:08,019 --> 00:43:11,554
 update UI method, the thing that updates your UI from your
-的地方，那个model中的，你用来更新UI的方法
+那个用模型来更新 UI 的方法的地方
 
 1040
 00:43:11,622 --> 00:43:16,025
 model, very often you're gonna call that in viewDidLoad.
-你将从viewDidLoad中非常频繁的调用它
+经常你将从 viewDidLoad 中调用它
 
 1041
 00:43:16,093 --> 00:43:18,728
 Cuz now your model is set because it got prepared
-因为现在你的model已经设置好了因为它应该已经准备好了
+因为现在你的模型应该已经被设置，准备好了
 
 1042
 00:43:18,796 --> 00:43:21,330
 probably, and your outlets are set because this is how it
-然后你的布局也都设置好了，因为设置布局
+你的出口变量也关联上了
 
 1043
 00:43:21,399 --> 00:43:23,299
 always happens after outlet setting.
-总是在outlet设置好时就一起做好了
+因为 viewDidLoad 总是在那之后被调用
 
 1044
 00:43:23,368 --> 00:43:25,534
@@ -4226,12 +4226,12 @@ Very careful, listen carefully.
 1046
 00:43:27,205 --> 00:43:29,805
 Do not do geometry-based things in viewDidLoad.
-不要在viewDidLoad里设置任何和几何形状相关的东西
+不要在 viewDidLoad 里设置任何和几何形状相关的东西
 
 1047
 00:43:29,874 --> 00:43:31,173
 Because when viewDidLoad happens,
-因为当viewDidLoad被执行时
+因为当 viewDidLoad 被执行时
 
 1048
 00:43:31,242 --> 00:43:34,711
@@ -4251,7 +4251,7 @@ what device you're on, you don't know yet.
 1051
 00:43:40,718 --> 00:43:44,353
 So do not do things with your bounds in viewDidLoad.
-所以不要在viewDidLoad中做任何关于边界的设置
+所以不要在 viewDidLoad 中做任何关于边界的设置
 
 1052
 00:43:44,421 --> 00:43:47,890
@@ -4266,32 +4266,32 @@ Do not do that.
 1054
 00:43:48,993 --> 00:43:50,759
 I'm gonna show you other methods in the new controller
-我会教你们其他的controller生命周期的方法
+我会教你们其他的控制器生命周期的方法
 
 1055
 00:43:50,828 --> 00:43:54,663
 lifecycle for doing that but do not it in viewDidLoad.
-来做关于几何形状的工作，但是不要在viewDidLoad里做这件事
+来做关于几何形状的工作，但是不要在 viewDidLoad 里做这件事
 
 1056
 00:43:54,732 --> 00:43:57,199
 The next thing I said to you, appear and disappearing.
-下一个我要说的是，“出现”和”消失“
+下一个我要说的是，“出现”和“消失”
 
 1057
 00:43:57,268 --> 00:43:59,902
 You're always appearing and disappearing on screen.
-你总会在屏幕上进行”出现“和”消失“的动作
+你总会在屏幕上进行“出现”和“消失”的动作
 
 1058
 00:43:59,971 --> 00:44:02,071
 When you appear, you're gonna get two messages.
-当你”出现“时，你会得到两条信息
+当你“出现”时，你会得到两条信息
 
 1059
 00:44:02,140 --> 00:44:04,306
 The first is viewWillAppear.
-第一个是viewWillAppear
+第一个是 viewWillAppear
 
 1060
 00:44:04,375 --> 00:44:08,410
@@ -4311,12 +4311,12 @@ guaranteed you're going to be on screen soon.
 1063
 00:44:13,384 --> 00:44:15,951
 So, what is viewWillAppear for?
-所以，这个viewWillAppear是干什么的呢？
+所以，这个 viewWillAppear 是干什么的呢？
 
 1064
 00:44:16,020 --> 00:44:17,653
 What are you going to do in a view will appear?
-你在这个viewWillAppear中要做些什么呢？
+你在这个 viewWillAppear 中要做些什么呢？
 
 1065
 00:44:17,722 --> 00:44:21,023
@@ -4326,12 +4326,12 @@ Well one thing is if there's anything that changes in your
 1066
 00:44:21,092 --> 00:44:22,891
 model when you're not on screen,
-你model里有什么东西改变了
+你模型里有什么东西改变了
 
 1067
 00:44:22,960 --> 00:44:25,060
 maybe your model is a network database or
-你的model可能是一个网络数据库或者
+你的模型可能是一个网络数据库或者
 
 1068
 00:44:25,129 --> 00:44:27,496
@@ -4341,37 +4341,37 @@ something and it's changing on the screen.
 1069
 00:44:27,565 --> 00:44:30,332
 Then when view appear happens you're going to usually update
-当viewWillAppear发生时，你需要频繁的从你的
+当 viewWillAppear 发生时，你通常需要从你的
 
 1070
 00:44:30,401 --> 00:44:31,901
 your UI from your model.
-model中（获取信息）来更新你的UI
+模型中获取信息来更新你的 UI
 
 1071
 00:44:31,969 --> 00:44:34,537
 So maybe you wouldn't do update UI in viewDidLoad,
-所以你可能不能在viewDidLoad中更新你的UI
+所以你可能不在 viewDidLoad 中更新你的 UI
 
 1072
 00:44:34,605 --> 00:44:36,539
 you might do it here.
-但是你可以在这里更新
+可能你会选择在这里更新
 
 1073
 00:44:36,607 --> 00:44:38,540
 That's if it could change when it's not onscreen.
-这是不在屏幕上时的对变化的处理方法
+这是对不在屏幕上时的变化的处理方法
 
 1074
 00:44:38,609 --> 00:44:39,475
 A lot of MVCs,
-有很多MVC
+有很多 MVC
 
 1075
 00:44:39,543 --> 00:44:41,743
 their model only changes when they're onscreen, so
-它们的model只在它们出现在屏幕上时才会改变
+它们的模型只在它们出现在屏幕上时才会改变
 
 1076
 00:44:41,812 --> 00:44:43,312
@@ -4381,17 +4381,17 @@ you wouldn't have to do anything here.
 1077
 00:44:43,380 --> 00:44:45,181
 But if your model can be changed out from under you
-但是如果你的model可以在你不在屏幕上时被改变的话
+但是如果你的模型可以在你不在屏幕上时被改变的话
 
 1078
 00:44:45,250 --> 00:44:47,316
 while you're off screen, then you, when you reappear,
-那你，在你重新”出现“（reappear）的时候
+那你，在你重新出现的时候
 
 1079
 00:44:47,384 --> 00:44:49,685
 obviously you wanna show the current state of your model.
-你显然要展现你model的确切状态
+你显然要展现你模型的确切状态
 
 1080
 00:44:49,753 --> 00:44:50,920
@@ -4401,7 +4401,7 @@ So that's a good one.
 1081
 00:44:50,988 --> 00:44:52,821
 Another thing you might do in viewWillAppear
-还有一件你可能会在viewWillAppear中做的事
+还有一件你可能会在 viewWillAppear 中做的事
 
 1082
 00:44:52,890 --> 00:44:54,557
@@ -4411,7 +4411,7 @@ is start something expensive.
 1083
 00:44:54,625 --> 00:44:58,060
 Because in viewDidLoad you're not guaranteed that you're
-因为在viewDidLoad中，你不确定你到底会不会
+因为在 viewDidLoad 中，你不确定你到底会不会
 
 1084
 00:44:58,129 --> 00:44:59,628
@@ -4421,22 +4421,22 @@ ever gonna come on screen.
 1085
 00:44:59,697 --> 00:45:02,264
 There are MVCs that occasionally get loaded up,
-有一些被随机加载的MVC
+有一些 MVC 无意间被加载了
 
 1086
 00:45:02,333 --> 00:45:04,500
 but then the user clicks away somewhere else and
-但是一旦用户点了一些其他的地方
+但是用户点了一些其他的地方，因此
 
 1087
 00:45:04,569 --> 00:45:05,868
 you never get shown on screen.
-你的MVC可能就永远不会出现在屏幕上了
+你的 MVC 从来就没有出现在屏幕上
 
 1088
 00:45:05,937 --> 00:45:07,102
 But if viewWillAppear happens,
-但是如果viewWillAppear发生了
+但是如果 viewWillAppear 发生了
 
 1089
 00:45:07,171 --> 00:45:08,404
@@ -4461,7 +4461,7 @@ does something expensive in the background.
 1093
 00:45:14,378 --> 00:45:16,745
 Cuz we're gonna talk about multithreading next week and
-我们会在下周讲多进程
+我们会在下周讲多线程
 
 1094
 00:45:16,814 --> 00:45:19,314
@@ -4481,7 +4481,7 @@ you're gonna wind up doing a separate thread.
 1097
 00:45:23,688 --> 00:45:26,455
 So you might kick off such a thread here in viewWillAppear.
-你也可以在 viewWillAppear中开启一个线程
+你也可以在 viewWillAppear 中开启一个线程
 
 1098
 00:45:26,524 --> 00:45:28,323
