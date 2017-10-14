@@ -4691,6 +4691,7 @@ then here is a good place where you can shut it down,
 1139
 00:47:00,818 --> 00:47:03,052
 and there is a did version of this as well.
+它也有一个 did 的版本
 
 1140
 00:47:04,388 --> 00:47:06,555
