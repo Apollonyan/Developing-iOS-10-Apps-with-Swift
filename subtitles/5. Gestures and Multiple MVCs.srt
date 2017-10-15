@@ -906,7 +906,7 @@ Sometimes you can use things like this.
 182
 00:09:07,614 --> 00:09:08,946
 Now, I have an error there,
-但现在 Xcod 提示有个错误
+但现在 Xcode 提示有个错误
 
 183
 00:09:09,015 --> 00:09:10,314
@@ -6746,7 +6746,7 @@ Okay if I'm the all settings MVC or
 1350
 01:01:59,449 --> 01:02:04,052
 I'm one of the health data ones that we saw on the tab
-标签栏中看到的其中一个健康数据
+标签栏中看到的其中一个 Health Data
 
 1351
 01:02:04,121 --> 01:02:06,687
@@ -6846,7 +6846,7 @@ So I just clicked and went up and over and got it.
 1370
 01:02:40,390 --> 01:02:43,058
 And I use the question mark, the optional chaining there
-并且我在那里使用了问号，也就是可选链接
+并且我在那里使用了问号，也就是可选链
 
 1371
 01:02:43,126 --> 01:02:44,992
@@ -8281,722 +8281,902 @@ the button sender when we had the action there.
 1657
 01:14:02,705 --> 01:14:05,505
 It's just what object is instigating this.
+总之就是开始这个转场的对象
 
 1658
 01:14:05,574 --> 01:14:08,108
 So in the calculator example you're gonna have a button
+在计算器中，我们有个按钮
 
 1659
 01:14:08,177 --> 01:14:11,044
 clicking causing this segue, it's gonna be that button.
+按下之后就开始转场，所以 sender 是那个按钮
 
 1660
 01:14:11,113 --> 01:14:12,646
 Okay, the button that's causing the segue.
+那个造成转场的按钮
 
 1661
 01:14:12,715 --> 01:14:16,884
 But it's Any because anything, when we saw the example
+但它的类型是 Any，我们看到的例子
 
 1662
 01:14:16,952 --> 01:14:20,220
 of the all settings, we were clicking on table view cells
+所有设置中，我们点击的是 UITableViewCell
 
 1663
 01:14:20,289 --> 01:14:23,257
-there not buttons but cells in what's called a table view,
+they are not buttons but cells in what's called a table view,
+表格视图里没有按钮，只有一行行的 cell
 
 1664
 01:14:23,325 --> 01:14:25,692
 which we're gonna talk about week after next.
+我们再下下周讲
 
 1665
 01:14:25,761 --> 01:14:27,561
 And so that could be the sender.
+所以 UITableViewCell 能是 sender
 
 1666
 01:14:27,630 --> 01:14:30,364
 Or you might have done perform segue on the previous slide,
+又比如之前看到的 performSegue
 
 1667
 01:14:30,433 --> 01:14:32,066
 that actually let you set the sender so
+那个你是可以设置 sender 的
 
 1668
 01:14:32,134 --> 01:14:35,769
 you've tell it anything you want, it could be nil also.
+sender 可以是任何的实例 或 nil
 
 1669
 01:14:35,838 --> 01:14:36,971
 We don't use it that much.
+这个我们不是很常用
 
 1670
 01:14:38,307 --> 01:14:40,774
 The first thing I'm
+我做的第一件事
 
 1671
 01:14:40,843 --> 01:14:42,242
 do is going to be get the identifier.
+是通过 identifier 得到标识符
 
 1672
 01:14:42,311 --> 01:14:43,477
 Note that it can be nil so
+注意因为可能是 nil
 
 1673
 01:14:43,546 --> 01:14:47,447
 I'm gonna say if let to get it out of that segue right there.
+所以用的是 if-let 来从 segue 获得标识符
 
 1674
 01:14:47,516 --> 01:14:49,950
 And I need that identifier cuz I need to know which segue I'm
+我需要用这个 identifier 来判断
 
 1675
 01:14:50,019 --> 01:14:52,486
 doing because I might have three buttons
+究竟是哪个转场，因为我可能有三个按钮
 
 1676
 01:14:52,555 --> 01:14:55,355
 on my calculator that segued to three different things.
+我的计算器会转场到不同的地方
 
 1677
 01:14:55,424 --> 01:14:57,424
 Now you're not gonna have in assignment three but you could
+虽然在作业三里不会有这个
 
 1678
 01:14:57,493 --> 01:14:59,192
 have multiple buttons segueing to different things.
+但是你可以让不同的按钮转场到不同的控制器
 
 1679
 01:14:59,261 --> 01:15:02,062
 So you need to know which segue you're talking about.
+所以我们要知道这个 segue 究竟是哪一个
 
 1680
 01:15:02,131 --> 01:15:05,032
 So you switch on it and then you check the case.
+我们用 switch 判断究竟是哪个 case
 
 1681
 01:15:05,101 --> 01:15:07,301
 And in the case of Show Graph,
+如果是 "Show Graph" 的情况
 
 1682
 01:15:07,370 --> 01:15:10,204
 which is the one we're gonna do right here,
+也就是我们要处理的这个
 
 1683
 01:15:10,272 --> 01:15:16,010
 we're going to prepare that graphing MVC to do its job.
+我们就把绘图的控制器准备好
 
 1684
 01:15:16,078 --> 01:15:20,314
 Now, in order to talk to that graphing MVC,
+为了能够调用它对应的方法
 
 1685
 01:15:20,383 --> 01:15:22,983
 we have to get it as a graph controller.
+我们需要把它转换为 GraphController
 
 1686
 01:15:23,052 --> 01:15:25,653
 Now the type of that destination view controller
+因为 destinationViewController
 
 1687
 01:15:25,722 --> 01:15:29,623
 that's in the segue object is just UIViewController,
+在 segue 里只是 UIViewController 类型的
 
 1688
 01:15:29,692 --> 01:15:32,626
 it doesn't know that it's a graph view controller or
+并不知道是 Graph 视图控制器
 
 1689
 01:15:32,695 --> 01:15:35,262
 something like that it's just UIViewController.
+其他的，或只是 UIViewController
 
 1690
 01:15:35,330 --> 01:15:37,064
 So we have to use as,
+所以为我们用 as 关键字
 
 1691
 01:15:37,133 --> 01:15:40,734
 remember the "as?" I told you you could cast anything.
+记得我说 as? 能够用来转换类型
 
 1692
 01:15:40,803 --> 01:15:44,438
 Not just any object, you can cast a UIViewController to try
+不只是转换 AnyObject，你可以尝试
 
 1693
 01:15:44,507 --> 01:15:47,007
 and down cast it to a specific view controller.
+把 UIViewController 向下转化为某个子类
 
 1694
 01:15:47,076 --> 01:15:49,910
 So here I'm going to try and cast the destination view
+这里我尝试把 destinationViewController
 
 1695
 01:15:49,979 --> 01:15:51,445
 controller to be a graph controller.
+转换为 GraphController
 
 1696
 01:15:51,514 --> 01:15:54,014
 I'm gonna assume the graph controller is the type of
+我们这里假设 GraphController
 
 1697
 01:15:54,083 --> 01:15:56,884
 the controller of my graph MVC.
+是我用来画图的控制器的类型
 
 1698
 01:15:56,953 --> 01:15:58,819
 And if I'm able to do that, which I should be,
+如果我能这么做的话，我确实也可以
 
 1699
 01:15:58,888 --> 01:16:01,555
 because I know this is the show graph segue, so
+因为我知道这是 "Show Graph" 转场
 
 1700
 01:16:01,623 --> 01:16:03,224
 I better be, if,
+我最好是能这样做的
 
 1701
 01:16:03,292 --> 01:16:05,959
 if I'm not then probably I wanna raise an exception here.
+如果不行的话，我或许应该抛出个异常
 
 1702
 01:16:06,028 --> 01:16:07,961
 Because I'm really expecting to be able to do it.
+因为我期待向下转换是可以完成的
 
 1703
 01:16:08,030 --> 01:16:10,364
 Maybe I use as exclamation point right there instead of
+我应该在这里用 as!（感叹号）
 
 1704
 01:16:10,432 --> 01:16:14,101
 as question mark as it'd be bad if I was doing this and
+而不是 as?（问号）的，因为如果我这么做
 
 1705
 01:16:14,169 --> 01:16:15,836
 it wasn't actually graphcontroller.
+而得不到 GraphController 是很不好的
 
 1706
 01:16:15,905 --> 01:16:17,505
-But anyway, I get the graphcontroller so
+But anyway, I get the GraphController so
+无论怎么说，我得到了 GraphController
 
 1707
 01:16:17,573 --> 01:16:22,409
-now VC, this variable VC is of type graphcontroller, so
+now vc, this variable vc is of type graphcontroller, so
+现在这个 vc 变量是 GraphController 类型的
 
 1708
 01:16:22,478 --> 01:16:24,511
 I can start setting vars in it,
+我可以给它的变量赋值
 
 1709
 01:16:24,580 --> 01:16:27,948
 calling methods, whatever I need to do to prepare that
+调用它的方法，完成我需要做的来准备
 
 1710
 01:16:28,017 --> 01:16:30,417
 graph controller to do its job.
+让 GraphController 能完成它的工作
 
 1711
 01:16:30,486 --> 01:16:30,918
 Now in the Calculator case,
+我们这个控制器的例子
 
 1712
 01:16:30,987 --> 01:16:33,954
 what I'm doing is I'm going to somehow have to
+我将要做的是通过某种方法
 
 1713
 01:16:34,023 --> 01:16:36,390
-set the model of the graph you control or
+set the model of the graph view control or
+设置好 Graph 视图控制器的模型
 
 1714
 01:16:36,459 --> 01:16:39,260
 something to show the graph I want.
+或之类的来现实我想要的图形
 
 1715
 01:16:39,328 --> 01:16:41,095
 Based on what 's in my calculator.
+来反映我计算器里的内容
 
 1716
 01:16:41,164 --> 01:16:43,130
 So, I'm preparing it to do what it does.
+所以我们做好让它完成工作的准备
 
 1717
 01:16:43,198 --> 01:16:46,033
 I'm pretty much never going to talk to this thing again.
+之后我是没有机会访问这个控制器的了
 
 1718
 01:16:46,102 --> 01:16:49,803
 So I'm gonna give it all the information it needs to do to
+所以我把它所有需要的信息都给他
 
 1719
 01:16:49,872 --> 01:16:51,572
 go to a job.
+来完成他的工作
 
 1720
 01:16:51,641 --> 01:16:55,242
 This is kind of one time set up and
+所以需要一步到位
 
 1721
 01:16:55,311 --> 01:16:57,411
 that's the way MVCs need to work through, object oriented.
+这就是 MVC 的做法，面向对象
 
 1722
 01:16:57,480 --> 01:16:59,580
 They get set up once and then they just live on their own,
+设置好一次就需要自力更生了
 
 1723
 01:16:59,648 --> 01:17:00,414
 they do their own job.
+完成好自己的工作
 
 1724
 01:17:00,483 --> 01:17:03,384
 They don't talk back to the person who brought them up or
+不会再去和让它显示出来的控制器交谈
 
 1725
 01:17:03,452 --> 01:17:04,585
 to anyone else.
+也不会去问别的什么
 
 1726
 01:17:04,654 --> 01:17:05,453
 They live on their own.
+它们就靠自己活下去
 
 1727
 01:17:06,989 --> 01:17:09,923
 So you can do anything you want to here, to try to do it.
+你这里可以做任何想做的来完成准备
 
 1728
 01:17:09,992 --> 01:17:12,292
 One thing to warn you here though and
+不过这里你需要注意的是
 
 1729
 01:17:12,361 --> 01:17:14,295
 half of you will trip over this.
+你们之中的一半都会遇到
 
 1730
 01:17:14,363 --> 01:17:16,062
 When you're doing this preparation
+当你在准备
 
 1731
 01:17:16,131 --> 01:17:17,832
 of that graph controller,
+GraphController 的时候
 
 1732
 01:17:17,900 --> 01:17:22,269
 that graph controller's outlets have not been set.
+它的出口都还没有关连上
 
 1733
 01:17:24,140 --> 01:17:26,840
-I told you that IOS hooks up those outlets to really really
+I told you that iOS hooks up those outlets to really really
+虽然我说过 iOS 关连这些出口都很快
 
 1734
 01:17:26,909 --> 01:17:29,442
 quickly, but this is one case where it doesn't quite hook
+但这里是个例外
 
 1735
 01:17:29,511 --> 01:17:30,744
 them up fast enough.
+在这里就显得不够快了
 
 1736
 01:17:30,813 --> 01:17:34,414
 When you're doing vc.property1 = whatever,
+比如你设置 vc.某个属性 = 某个值
 
 1737
 01:17:34,483 --> 01:17:37,651
 vc.callMethodToSetItUp, at that time,
+或者这会儿调用 vc.某个方法()
 
 1738
 01:17:37,720 --> 01:17:39,953
 none of vc's outlets are set.
+vc 的出口都是 nil，没有关连上的
 
 1739
 01:17:40,022 --> 01:17:41,588
 So you can't do anything in the UI.
+所以你并不能做和 UI 相关的事
 
 1740
 01:17:41,657 --> 01:17:44,058
 So if you're collecting information for what to,
+所以如果你需要信息
 
 1741
 01:17:44,126 --> 01:17:44,859
 to do in the UI,
+来决定 UI
 
 1742
 01:17:44,927 --> 01:17:47,360
 you're gonna have to store it in some vars or something.
+你需要把它们存储到变量里
 
 1743
 01:17:47,429 --> 01:17:49,496
 And then later, either in the did set
+晚些时候，可以在
 
 1744
 01:17:49,565 --> 01:17:52,165
-of those outlet centers, or I'm gonna teach you about view
+of those outlet setters, or I'm gonna teach you about view
+在那些出口的 didSet 里，或者是…
 
 1745
 01:17:52,234 --> 01:17:53,701
 controller life cycle next week.
+我下周会讲视图控制器生命周期
 
 1746
 01:17:53,770 --> 01:17:55,669
 There's other methods that happen later,
+其他有些方法会在晚些时候被调用
 
 1747
 01:17:55,738 --> 01:17:58,438
 that you can be sure that the outlets are set.
+那是你可以确保所有的出口都关连好了
 
 1748
 01:17:58,507 --> 01:18:01,008
 So this is in red, any time I put something with red inside,
+所以这个我是用红色的字。任何时候我用红色
 
 1749
 01:18:01,077 --> 01:18:02,342
 you really wanna pay attention.
+你就需要多注意下了
 
 1750
 01:18:02,411 --> 01:18:04,778
-So the outlets are not set in graph control or
+So the outlets are not set in graph controller
+所以 GraphController 里的出口是没有设置的
 
 1751
 01:18:04,847 --> 01:18:07,715
 when you're preparing, the process of preparing.
+在准备的时候要特别注意
 
 1752
 01:18:09,418 --> 01:18:11,652
 You can also prevent a segue from happening,
+你还能中止转场
 
 1753
 01:18:11,720 --> 01:18:14,454
 let's say if the calculator and you try to hit graph and
+比如说你按下了“画函数图像”
 
 1754
 01:18:14,523 --> 01:18:16,289
 you're on the middle of a binary operation,
+但你有个二元运算符还没输入完
 
 1755
 01:18:16,358 --> 01:18:17,624
 pending binary operation.
+有 pendingBinaryOperation
 
 1756
 01:18:17,693 --> 01:18:19,827
 Well you can't graph that.
+这个时候你是画不出来的
 
 1757
 01:18:19,896 --> 01:18:21,895
 There's no way to graph a pending binary operation.
+你不可能画不完整的二元运算
 
 1758
 01:18:21,964 --> 01:18:24,631
 Three times, what's the graph of three times?
+比如“三乘”，“三乘”这个怎么画？
 
 1759
 01:18:24,700 --> 01:18:25,532
 It's nothing.
+画不出来
 
 1760
 01:18:25,601 --> 01:18:27,001
 So, you wanna prevent it.
+所以你应该避免这种情况
 
 1761
 01:18:27,069 --> 01:18:29,202
 So, in your assignment three you're gonna wanna use this
+所以在作业三中你应该用这个方法
 
 1762
 01:18:29,271 --> 01:18:31,071
-method and be able to control a shared perform segue,
+method in view controller should perform segue,
+用控制器的 shouldPerformSegue
 
 1763
 01:18:31,140 --> 01:18:32,639
 you're gonna return false.
+让他返回 false
 
 1764
 01:18:32,708 --> 01:18:36,277
 When you're in the middle of a pending operation, okay?
+如果计算才到一半，那就这么做
 
 1765
 01:18:37,480 --> 01:18:39,780
 And so that's it for today.
+好，今天就讲到这里
 
 1766
 01:18:39,849 --> 01:18:41,381
 There's no Friday section this week.
+这周星期五没课
 
 1767
 01:18:41,450 --> 01:18:44,785
 Next Friday section is going to be on performance analysis
+下周五的会讲性能分析
 
 1768
 01:18:44,853 --> 01:18:46,453
 cuz there's going to be an extra credit item
+因为那可以帮你完成
 
 1769
 01:18:46,522 --> 01:18:48,255
 in assignment three that does that.
+我作业三里布置的加分题
 
 1770
 01:18:48,323 --> 01:18:49,923
 You'll see that when it goes out.
+之后布置作业的时候你们就知道了
 
 1771
 01:18:49,991 --> 01:18:50,824
 Next week I'm gonna do
+下周我会演示
 
 1772
 01:18:50,893 --> 01:18:52,892
 a demo about all this multiple MVC stuff.
+关于多个 MVC 的例子
 
 1773
 01:18:52,961 --> 01:18:55,195
 I'm gonna start talking about the View Controller Lifecycle.
+我会开始讲视图控制器生命周期
 
 1774
 01:18:55,264 --> 01:18:57,564
 And then the super important topic, Protocols and
+然后是非常重要的 protocol（协议）
 
 1775
 01:18:57,633 --> 01:19:02,436
 Delegation.
+和代理（delegate）
 
 1776
 01:19:02,504 --> 01:19:04,504
-UI things like scroll views and table views.
+Strating doing more complicated UI things like scroll views and table views.
+会讲更复杂的 UI，比如滚动视图和列表视图
 
 1777
 01:19:04,573 --> 01:19:07,341
 We'll start that next week cuz all you're learning up till
+我们下周开始讲这些，因为到现在为止
 
 1778
 01:19:07,410 --> 01:19:08,275
 now is kinda the basics.
+你们学的都只是基础
 
 1779
 01:19:08,343 --> 01:19:10,811
 Swift and views and multiple MVCs.
+Swift，视图 和多个 MVC
 
 1780
 01:19:10,879 --> 01:19:12,946
-One you got that basics in now you can start doing these
+Once you got that basics in now you can start doing these
+你学到了这些基础之后，就可以开始
 
 1781
 01:19:13,014 --> 01:19:14,715
 more powerful objects.
+使用这些更强大的对象
 
 1782
 01:19:14,784 --> 01:19:18,685
 Now, assignment three is already on the class forums.
+作业三已经放到课堂论坛 Piazza 上了
 
 1783
 01:19:18,754 --> 01:19:20,154
 You can start it right now.
+你现在已经可以开始做了
 
 1784
 01:19:20,223 --> 01:19:22,189
 It's got really two major points to it.
+其中最主要的两个重点
 
 1785
 01:19:22,257 --> 01:19:25,759
 One is a custom UI view that does graphing.
+一个是自定义的视图来画函数图像
 
 1786
 01:19:25,828 --> 01:19:28,461
 A truly a custom MVC that does graphing.
+一个自定义的 MVC 来画图
 
 1787
 01:19:28,530 --> 01:19:30,264
 And that thing is completely independent of your
+而且它是完全独立于
 
 1788
 01:19:30,333 --> 01:19:31,732
 calculator.
+你这个计算器的
 
 1789
 01:19:31,801 --> 01:19:33,867
 In fact I would recommend you create a new app
+其实我建议你新建一个工程
 
 1790
 01:19:33,936 --> 01:19:35,736
 to create that MVC.
+来完成那个 MVC
 
 1791
 01:19:35,805 --> 01:19:37,671
 Because if you don't wanna be polluted by you calculator,
+因为你是不希望被计算器影响
 
 1792
 01:19:37,739 --> 01:19:40,341
 it's just a generic graphing MVC.
+那应该是一个可以通用的绘图 MVC
 
 1793
 01:19:40,409 --> 01:19:41,275
 Once you've got that,
+当你完成之后
 
 1794
 01:19:41,343 --> 01:19:43,710
 you're gonna combine it with your calculator
+你再把它结合到计算器里
 
 1795
 01:19:43,779 --> 01:19:44,444
 like I'm talking about here,
+让后就像我说的那样
 
 1796
 01:19:44,513 --> 01:19:46,013
 where you're going to click a button, and
+按一个按钮
 
 1797
 01:19:46,082 --> 01:19:48,449
 it's going to graph what's in your calculator.
+然后显示计算器里的内容
 
 1798
 01:19:48,517 --> 01:19:50,517
 So you can get started on that today because you already
+你今天就可以开始这部分了
 
 1799
 01:19:50,585 --> 01:19:52,319
 know everything you need to know about UI view and
+因为你已经知道有关 UIView
 
 1800
 01:19:52,388 --> 01:19:53,654
 doing a custom draw method.
+和自定义 draw 方法了
 
 1801
 01:19:53,723 --> 01:19:55,422
 So you could start drawing your graph and
+所以你可以开始绘制你的图像
 
 1802
 01:19:55,490 --> 01:19:57,458
 building that custom graphing view.
+编写自定义的函数图像视图了
 
 1803
 01:19:57,526 --> 01:20:00,360
 You could even build the custom MVC because you're
+你还可以编程一个自定义 MVC
 
 1804
 01:20:00,429 --> 01:20:03,230
 building it as a single MVC to start.
+从一个单独的 MVC 开始写
 
 1805
 01:20:03,299 --> 01:20:05,533
 But you're gonna wanna wait til Monday to try and
+但我建议你等到下周一
 
 1806
 01:20:05,601 --> 01:20:07,334
 hook it up to your calculator because you're
+再尝试整合到计算器里，因为你
 
 1807
 01:20:07,402 --> 01:20:10,036
 gonna wanna see me do the demo of a split view and
+可以看到我演示使用分屏视图控制器
 
 1808
 01:20:10,105 --> 01:20:11,572
 all that stuff and see that happening.
+和其他的。实际看了这些
 
 1809
 01:20:11,641 --> 01:20:13,573
 It'll help you when you start hooking your two
+能帮助你整合
 
 1810
 01:20:13,642 --> 01:20:16,509
 MVC's the graphing one and the calculator one together.
+绘图的和计算器 MVC 到一起
 
 1811
 01:20:16,578 --> 01:20:18,278
 And because you need next Monday
+因为你需要下周一上课讲的内容
 
 1812
 01:20:18,347 --> 01:20:21,514
 this assignment's not gonna be due until the next Monday.
+所以下下周一再交
 
 1813
 01:20:21,583 --> 01:20:24,385
 Okay, so you got a nice 10 or 11 days to get it done.
+所以你们大概有个十天十一天来完成作业
 
 1814
 01:20:24,453 --> 01:20:27,054
 But I strongly recommend you use the next few days to go
+但我推荐你接着这几天的时间
 
 1815
 01:20:27,123 --> 01:20:29,056
 ahead and get started on the view part of it.
+先开始绘制视图的这部分
 
 1816
 01:20:29,124 --> 01:20:32,158
 Because that's more than half of the assignment and
+毕竟那占了这个作业的一半多
 
 1817
 01:20:32,227 --> 01:20:34,628
 you can make a big head start into it.
+因此你可以先完成很大的一部分
 
 1818
 01:20:34,696 --> 01:20:36,563
 The last thing is the last reading assignment
+最后是最后的阅读作业
 
 1819
 01:20:36,632 --> 01:20:37,631
 also went out today.
+昨天也布置了
 
 1820
 01:20:37,700 --> 01:20:40,334
 The due date is pretty much next Wednesday.
+下周三要完成
 
 1821
 01:20:41,470 --> 01:20:43,403
 But that is going to make it so
+但那也就意味着
 
 1822
 01:20:43,472 --> 01:20:45,338
 you've read the entire Swift document.
+你们已经阅读了整个 Swift 文档
 
 1823
 01:20:45,407 --> 01:20:47,107
 So by the end of this assignment,
+所以做完这个作业之后
 
 1824
 01:20:47,176 --> 01:20:49,443
 you should feel like you know everything that's in there.
+你应该掌握了里面所有的内容
 
 1825
 01:20:49,512 --> 01:20:51,145
 Now of course, I don't expect you to know every
+当然了，我并不会期望你知道
 
 1826
 01:20:51,214 --> 01:20:53,280
 single detail about every single thing.
+每一个知识点的每一个细节
 
 1827
 01:20:53,348 --> 01:20:54,681
 But I expect you
+但我希望你
 
 1828
 01:20:54,750 --> 01:20:57,317
 if you like want to do a nested function I expect you
+如果你想要写一个嵌套函数，我希望你
 
 1829
 01:20:57,386 --> 01:20:59,152
 to be able to know where to go look to find that out.
+至少知道在哪里能找到如何做
 
 1830
 01:20:59,221 --> 01:21:02,890
 Or you wanna do optional chaining and
+或者是你想要用可选链
 
 1831
 01:21:02,958 --> 01:21:05,592
-you can't quite remember you know where to go look it up.
+you can't quite remember, you know where to go look it up.
+但却记不清了，你应该知道在哪里找
 
 1832
 01:21:05,661 --> 01:21:06,660
 That's a reference document.
+The Swift Programming Language 是本手册
 
 1833
 01:21:06,728 --> 01:21:08,362
 So you wanna know what's in there.
+你应该要知道那里面都有些什么
 
 1834
 01:21:08,430 --> 01:21:11,632
 Even if you don't memorize at all.
+我就不强求你把所有的内容都记下来
 
 1835
 01:21:11,700 --> 01:21:12,699
 That's it.
+好，下课
 
 1836
 01:21:12,768 --> 01:21:14,201
 See you next time.
+下次课见
 
 1837
 01:21:14,270 --> 01:21:24,878
