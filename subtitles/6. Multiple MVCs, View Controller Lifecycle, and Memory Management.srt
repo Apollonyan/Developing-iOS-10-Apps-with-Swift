@@ -6604,7 +6604,7 @@ Segue prep happens.
 1321
 00:54:34,038 --> 00:54:36,471
 Somebody prepares you if you're being segued to
-过渡到你之前，其他人会把你准备好
+转场到你之前，其他人会把你准备好
 
 1322
 00:54:36,539 --> 00:54:38,407
