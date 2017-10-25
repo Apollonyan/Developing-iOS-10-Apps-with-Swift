@@ -1,0 +1,2 @@
+- [ ] 请先查看 [常见问题与解答](../SUPPORT.md)
+- [ ] 催更请前往 [Issue #27](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/issues/27)。

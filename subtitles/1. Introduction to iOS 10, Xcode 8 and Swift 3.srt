@@ -1,6 +1,7 @@
 1
 00:00:00,401 --> 00:00:04,402
-[MUSIC]
+本字幕由志愿者义务贡献，采用许可协议
+知识共享 署名-非商业性使用-相同方式共享 3.0 美国
 
 2
 00:00:04,471 --> 00:00:07,239
@@ -10,12 +11,12 @@ Stanford University.
 3
 00:00:07,308 --> 00:00:11,877
 Okay, well, welcome to CS193P, Stanford CS193P.
-欢迎参加 2017 年冬季学期斯坦福 CS193P 课程
+欢迎参加 2017 年冬季学期斯坦福
 
 4
 00:00:13,481 --> 00:00:17,515
 This is Developing Applications for iOS, winter
-iOS 应用程序开发
+CS193P 课程，iOS 应用程序开发
 
 5
 00:00:17,584 --> 00:00:21,553
@@ -1430,7 +1431,7 @@ things like that. That's where you do most of your work.
 287
 00:13:52,332 --> 00:13:55,600
 This section over here on the left, this blue section is
-左边这个淡蓝色的部分是 Navigator，导航面板
+左边这个淡蓝色的部分是 Navigator，导航器
 
 288
 00:13:55,669 --> 00:13:59,871
@@ -1480,7 +1481,7 @@ On the right hand side here you see this little area,
 297
 00:14:22,196 --> 00:14:23,729
 this is called the utilities window.
-Utilities, 工具区
+Utilities, 实用工具区域
 
 298
 00:14:23,797 --> 00:14:26,398
@@ -1510,7 +1511,7 @@ You can click this one over here to hide and
 303
 00:14:38,078 --> 00:14:41,280
 show. That utilities window. And same thing over here for
-这个对应的是工具区，这个对应的是导航面板
+这个对应的实用工具区，这个对应的是导航器
 
 304
 00:14:41,348 --> 00:14:45,650
@@ -1555,7 +1556,7 @@ let's go look at these files, right?
 312
 00:15:04,704 --> 00:15:07,071
 We're in the file navigator here on the left. And
-在左边的文件导航面板中
+在左边的文件导航器中
 
 313
 00:15:07,140 --> 00:15:08,874
@@ -2000,12 +2001,12 @@ Let's start with the buttons. Where do we get these buttons?
 401
 00:19:36,710 --> 00:19:39,711
 Well, as promised. I'm gonna talk about this utilities area
-乘此机会讲讲这里的工具区吧
+乘此机会讲讲这里的实用工具区域吧
 
 402
 00:19:39,779 --> 00:19:42,414
 right here. Now, this utilities area has a top and
-现在看到工具区分为了上下两个部分
+现在看到实用工具区域分为了上下两个部分
 
 403
 00:19:42,483 --> 00:19:45,316
@@ -2280,7 +2281,7 @@ I'm just gonna get rid of this bottom half by scrolling it
 457
 00:22:22,943 --> 00:22:26,711
 down here. We're gonna the top half of this utilities pane.
-我们现在右边这个工具区
+我们现在右边这个实用工具区域
 
 458
 00:22:26,780 --> 00:22:28,647

@@ -143,7 +143,12 @@ class ParsingDelegate: NSObject, XMLParserDelegate {
         let url = URL(fileURLWithPath: cwd).deletingLastPathComponent().appendingPathComponent("download.md")
         do {
             try out.write(to: url, atomically: true, encoding: .utf8)
-            NSWorkspace.shared().activateFileViewerSelecting([url])
+            #if swift(>=4)
+                let workspace = NSWorkspace.shared
+            #else
+                let workspace = NSWorkspace.shared()
+            #endif
+            workspace.activateFileViewerSelecting([url])
         } catch {
             print(out)
         }

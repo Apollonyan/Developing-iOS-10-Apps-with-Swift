@@ -1,18 +1,22 @@
 1
 00:00:00,401 --> 00:00:04,435
-[MUSIC]
+本字幕由志愿者义务贡献，采用许可协议
+知识共享 署名-非商业性使用-相同方式共享 3.0 美国
 
 2
 00:00:04,504 --> 00:00:07,605
 Stanford University.
+斯坦福大学
 
 3
 00:00:07,674 --> 00:00:11,109
 >> All right, well, welcome to Stanford CS193P,
+欢迎参加 2017 年冬季学期斯坦福
 
 4
 00:00:11,178 --> 00:00:14,946
 Developing Applications for iOS, winter of 2017.
+CS193P 课程，iOS 应用程序开发
 
 5
 00:00:15,015 --> 00:00:18,183
@@ -8601,3 +8605,4 @@ Good luck with it.
 2151
 01:30:06,101 --> 01:30:16,709
 >> For more, please visit us at Stanford.edu.
+>> 更多课程详见 stanford.edu

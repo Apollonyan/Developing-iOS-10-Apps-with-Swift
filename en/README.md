@@ -2,7 +2,7 @@
 
 [中文版本](../README.md)
 
-Using, modifying, publishing, distributing, or performing any act relating to this repository, means you read, agree with, and follow the [CC-BY-NC-SA 3.0 US License](#copyright-information) terms.
+***This document is outdated. Please refer to the above Chinese version for the latest information.***
 
 We have not yet finished translating. You may view our progress by
 
@@ -23,7 +23,7 @@ The subtitles are provided as `.srt` files, therefore, you need video players th
 
 [Download List](../tools/download.md), which is automatically generated from iTunes U, contains resources available for download from iTunes U.
 
-### Related Resources
+### Other Course Related Resources
 
 - iTunes U：[Developing iOS 10 Apps with Swift - Free Course by Stanford](https://itunes.apple.com/us/course/developing-ios-10-apps-with-swift/id1198467120)
 	- [RSS Feed](https://p1-u.itunes.apple.com/WebObjects/LZStudent.woa/ra/feed/COETAIHAJLZIQXJI)
@@ -31,7 +31,7 @@ The subtitles are provided as `.srt` files, therefore, you need video players th
 	- [Showcase Image](http://a2.mzstatic.com/us/r30/Features122/v4/79/cb/ce/79cbce27-b961-9dfb-f044-21686543edf8/flowcase_1360_520_2x.jpeg)
 - CS 193P on Stanford website：[CS 193P iPhone Application Development](http://web.stanford.edu/class/cs193p/cgi-bin/drupal/)
 
-### Other Resources
+### Translation Related Resources
 
 - [Developing iOS 9 Apps with Swift Translation](https://github.com/SwiftGGTeam/Developing-iOS-9-Apps-with-Swift)
 - [Developing iOS 8 Apps with Swift Translation](https://github.com/X140Yu/Developing_iOS_8_Apps_With_Swift)
@@ -42,9 +42,9 @@ The subtitles are provided as `.srt` files, therefore, you need video players th
 
 ### Copyright Information
 
-The original work by Stanford University is licensed under a Creative Commons Attribution-Noncommercial-Share Alike 3.0 United States License.
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/us/88x31.png" /></a>
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/us/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 United States License</a>.
+This work and the original work by Stanford University are both licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 United States License</a>.
 
 ----
 

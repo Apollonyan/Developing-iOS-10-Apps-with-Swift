@@ -1,5990 +1,7490 @@
 1
 00:00:00,401 --> 00:00:04,736
-[MUSIC]
+本字幕由志愿者义务贡献，采用许可协议
+知识共享 署名-非商业性使用-相同方式共享 3.0 美国
 
 2
 00:00:04,805 --> 00:00:07,806
 Stanford University.
+斯坦福大学
 
 3
 00:00:07,875 --> 00:00:12,978
 >> Welcome to Stanford CS193p, Developing Applications for
+欢迎参加 2017 年冬季学期斯坦福
 
 4
 00:00:13,046 --> 00:00:16,448
-IOS, this is Winter quarter 2017.
+iOS, this is Winter quarter 2017.
+CS193P 课程，iOS 应用程序开发
 
 5
 00:00:16,517 --> 00:00:20,886
 Today we are going to talk about a few things.
+今天我们将讨论几个东西
 
 6
 00:00:20,954 --> 00:00:23,588
 We're gonna start though giving a demo about what I
+我们将通过展示一个上节课谈论过的
 
 7
 00:00:23,657 --> 00:00:27,225
 talked about last time which is multiple MVCs.
+关于多个 MVC 的 demo 来开始
 
 8
 00:00:27,294 --> 00:00:29,928
 After that I'm gonna do some slides on the view controller
+在那之后我将展示几个关于视图控制器生命周期的
 
 9
 00:00:29,997 --> 00:00:32,931
 lifecycle, really important mechanism for finding out
+幻灯片，一个非常重要的关于 MVC 随着
 
 10
 00:00:33,000 --> 00:00:37,002
 what's going on with your MVC as time goes flows by.
+时间的流逝都会发生些什么的机制
 
 11
 00:00:37,070 --> 00:00:39,671
 And if I have time left at the end, I'm gonna start
+如果最后有时间的话，我将讲一些
 
 12
 00:00:39,739 --> 00:00:41,740
 talking a little bit about memory management,
+关于内存管理的一点东西
 
 13
 00:00:41,809 --> 00:00:44,776
 which is basically managing the memory of reference types,
+也就是管理引用类型（储存在堆里的东西）
 
 14
 00:00:44,845 --> 00:00:45,777
 things that are in the heap.
+的内存的方法
 
 15
 00:00:45,846 --> 00:00:46,845
 How do they get managed?
+它们如何被管理？
 
 16
 00:00:46,914 --> 00:00:48,914
 How do they know when the stay in the heap, or
+它们如何知道什么时候该待在堆里，或者
 
 17
 00:00:48,982 --> 00:00:50,616
 leave the heap?
+离开堆？
 
 18
 00:00:50,684 --> 00:00:54,219
 But first, we're gonna start with this demo.
+但是首先，我们将从这个 demo 开始
 
 19
 00:00:54,288 --> 00:00:58,690
 I'm calling this demo emotions in FaceIt.
+我给这个 demo 取名叫 Emotions in FaceIt
 
 20
 00:00:58,759 --> 00:00:59,758
 If you remember last time,
+如果你还记得的话
 
 21
 00:00:59,826 --> 00:01:03,094
 we built a nice MVC that knows how to draw a face.
+之前我们创建了一个不错的知道如何绘制一张脸的 MVC
 
 22
 00:01:03,163 --> 00:01:05,130
 It was a pretty generic MVC and
+这个 MVC 非常典型并且
 
 23
 00:01:05,198 --> 00:01:07,833
-how to model, which is a facial expression.
+had a model, which is a facial expression.
+还有一个模型，也就是面部表情
 
 24
 00:01:07,901 --> 00:01:10,602
 So now we're gonna build a more complicated app that has
+那么现在我们要创建一个更复杂的
 
 25
 00:01:10,670 --> 00:01:12,204
 two MVCs.
+拥有两个 MVC 的 app
 
 26
 00:01:12,273 --> 00:01:15,140
 One MVCs is going to let you choose an emotion.
+一个 MVC 是让你选择一个心情
 
 27
 00:01:15,209 --> 00:01:16,942
 Like happy or sad.
+像是开心或者伤心
 
 28
 00:01:17,010 --> 00:01:19,678
 And then the other MVC is just gonna be our generic face
+然后另一个 MVC 就是我们的脸的视图
 
 29
 00:01:19,747 --> 00:01:23,048
 view, and it's gonna show that emotion.
+用来表现那个心情
 
 30
 00:01:23,117 --> 00:01:24,183
-we're gonna learn how to use the split view controller and
+By doing that, we're gonna learn
+我们会通过使用那个学着
 
 31
 00:01:24,184 --> 00:01:25,250
-By doing that,
+how to use the split view controller and
+如何使用分屏控制器
 
 32
 00:01:25,318 --> 00:01:29,020
-navigation controller, combine MVCs, to make a big graph.
+navigation controller, combine MVCs, to make a bigger app
+导航控制器，来包含所有的 MVC，以创建更复杂的程序
 
 33
 00:01:29,089 --> 00:01:32,857
 It's a simple example because of time constraints but
+由于时间的限制，这会是一个简单一点的例子，但是
 
 34
 00:01:32,926 --> 00:01:34,693
 you should get the idea.
+你应该要懂实现的方法
 
 35
 00:01:34,761 --> 00:01:38,697
 So here I'm back in FaceIt, this demo we had last time.
+那么现在我回到了那个 FaceIt，之前的那个 demo
 
 36
 00:01:39,633 --> 00:01:40,531
 One thing before I start,
+在我开始前有一件事
 
 37
 00:01:40,600 --> 00:01:42,134
 I wanted to show you something you're going to need for
+我想展示给你们一些家庭作业中会需要的东西
 
 38
 00:01:42,202 --> 00:01:45,169
 your homework, which is how to rename a ViewController.
+也就是如何重命名一个 ViewController
 
 39
 00:01:45,238 --> 00:01:46,338
 I have this ViewController here.
+我这里有个 ViewController
 
 40
 00:01:46,407 --> 00:01:48,674
 This is the ViewController that shows the face.
+这就是用来展现那个脸的 ViewController
 
 41
 00:01:48,742 --> 00:01:51,443
 Remember, here's the faceView var and here's it's model.
+记住了，这个是变量 faceView 然后这是 ViewController 的模型
 
 42
 00:01:53,380 --> 00:01:55,880
 So I don't like this name ViewController.
+所以我不喜欢这个名字 ViewController
 
 43
 00:01:55,949 --> 00:01:58,050
 It's really quite too generic.
+这太普通了
 
 44
 00:01:58,118 --> 00:01:59,684
 It's almost like it's super class,
+几乎都跟它的父类一样了
 
 45
 00:01:59,753 --> 00:02:01,486
 which is UIViewController.
+也就是 UIViewController
 
 46
 00:02:01,555 --> 00:02:04,155
 Really this wants to be some specifically named
+这应该是一个特殊名字的 ViewController
 
 47
 00:02:04,224 --> 00:02:07,025
 view controller, and in this case it shows a face so
+在这一个情况下它展示了一个脸
 
 48
 00:02:07,094 --> 00:02:10,429
 this probably best called it faceviewcontroller.
+所以大概最好的名字就是 FaceViewController 了
 
 49
 00:02:10,498 --> 00:02:13,231
 So I wanna just type face right here, and
+那么我就在这里输入 Face 然后
 
 50
 00:02:13,300 --> 00:02:15,199
 hope that's enough.
+希望这样就足够了
 
 51
 00:02:15,268 --> 00:02:17,769
 But of course as I mentioned in like lecture number one
+但是当然了就像我在第一节课中提到过的
 
 52
 00:02:17,838 --> 00:02:19,705
 that's not enough.
+这还不够
 
 53
 00:02:19,773 --> 00:02:22,740
 You can't just rename right there.
+你不能仅仅就在那里重命名
 
 54
 00:02:22,809 --> 00:02:25,310
 You actually have to rename a couple of other things.
+事实上你还需要重命名一些别的东西
 
 55
 00:02:25,379 --> 00:02:27,412
 One, the file that it's in, you see the file,
+第一个，它所在的文件，看这个文件
 
 56
 00:02:27,481 --> 00:02:29,747
 is still called viewcontroller.swift.
+仍然叫做 ViewController.swift
 
 57
 00:02:29,816 --> 00:02:34,719
 We almost always want to have our name of
+我们通常希望文件的名字跟
 
 58
 00:02:34,788 --> 00:02:37,689
 our file be the same as the primary class that's in there.
+里面的主类的名字一样
 
 59
 00:02:37,758 --> 00:02:40,091
 Now, it's not required in swift, the name of the file
+但是在 Swift 中没有要求，文件名字可以
 
 60
 00:02:40,160 --> 00:02:43,694
 could be completely different than any class in there.
+跟内部的任何一个类名完全不一样
 
 61
 00:02:43,763 --> 00:02:45,113
-to kinda help people find the code that they're looking for,
+But generally,
+但是通常情况下
 
 62
 00:02:45,114 --> 00:02:46,464
-But generally,
+to kinda help people find the code that they're looking for,
+为了帮助人们找到他们需要的代码
 
 63
 00:02:46,533 --> 00:02:49,234
 we wanna have the name of the file pretty much match
+我们希望给文件取名为
 
 64
 00:02:49,303 --> 00:02:50,235
 the name of the main class.
+主类的名字
 
 65
 00:02:50,303 --> 00:02:52,404
-It could be multiple classes in a short file,
+It could be multiple classes in a Swift file,
+在一个小小的文件中可以有很多类
 
 66
 00:02:52,473 --> 00:02:54,372
 that's perfectly allowed as well, but
+这当然可以，但是
 
 67
 00:02:54,441 --> 00:02:55,974
-especially if it is the main one.
+if the main one.
+只需要主类名字就可以
 
 68
 00:02:56,043 --> 00:02:58,043
 You might think, well that's enough, but
+你可能会想，这就够了吧，但是
 
 69
 00:02:58,111 --> 00:02:59,244
 there's one more very,
+在 storyboard 中还有一个非常
 
 70
 00:02:59,312 --> 00:03:01,947
 very important piece of this which is in the story board.
+非常重要的一个东西
 
 71
 00:03:02,015 --> 00:03:05,350
 We haven't really talked too much about this- well
+我们还没谈过它很多
 
 72
 00:03:05,418 --> 00:03:08,186
 actually, we did see it, with the Face View.
+不过事实上我们看到过它，就在 faceView 里
 
 73
 00:03:08,255 --> 00:03:10,122
 We did this with Face View, but
-
+在 faceView 里我们实现过它，但是
 74
 00:03:10,190 --> 00:03:13,591
 we need to inspect this controller, and I'm
+我们需要检查这个控制器
 
 75
 00:03:13,660 --> 00:03:16,094
 gonna click on the controller by clicking this orange thing
+我将通过点击这个上面橘色的东西来选择这一整个控制器
 
 76
 00:03:16,163 --> 00:03:20,097
 up here, that represents the controller for this whole MVC.
+也就是整一个 MVC 的控制器
 
 77
 00:03:20,166 --> 00:03:23,001
-'m gonna go over to this same inspector we went on when we
+And I'm gonna go over to this same inspector we went on when we
+然后我来到这个跟之前把
 
 78
 00:03:23,070 --> 00:03:26,104
 changed the face view from being a generic UI view to
+faceView 从普通的 UIView 变换到
 
 79
 00:03:26,173 --> 00:03:28,340
 being a specific face view.
+一个特殊的 FaceView 一样的检查器中
 
 80
 00:03:28,409 --> 00:03:30,642
 'm gonna do the exact same thing here.
+我这里会做一模一样的事
 
 81
 00:03:30,711 --> 00:03:33,378
 So 'm picking this whole view controller and
+那么我全选了这个控制器然后
 
 82
 00:03:33,446 --> 00:03:36,147
 'm going to the identity inspector up here and
+来到这上面的这个 Identity Inspector，接下来
 
 83
 00:03:36,216 --> 00:03:39,150
 'm gonna change the class from ViewController,
+把这个 class 从 ViewController
 
 84
 00:03:39,219 --> 00:03:43,021
 that's what it was the generic name to Face view controller.
+也就是通用名字到 FaceViewController
 
 85
 00:03:43,089 --> 00:03:45,057
 So if you forget to do this piece,
+所以如果你忘记做这个的话
 
 86
 00:03:45,125 --> 00:03:47,292
 than none of your outlets are gonna be hooked up.
+那么你的所有出口（@IBOutlet）都不会被连接
 
 87
 00:03:47,361 --> 00:03:49,360
 And iOS is gonna be very confused because you're
+然后 iOS 就会很疑惑因为
 
 88
 00:03:49,429 --> 00:03:52,097
 gonna be asking it to couple outlets to a different class.
+你要求它把这些出口连接到另一个不同的类
 
 89
 00:03:52,165 --> 00:03:55,033
 SomeClasses doesn't exist anymore cuz I renamed it away.
+由于我重命名了，有些类也就不存在了
 
 90
 00:03:57,504 --> 00:03:58,603
 You'll need to do that for your homework.
+你们的家庭作业里将用到
 
 91
 00:03:58,672 --> 00:04:01,572
 You'll have to change your current calculator
+你要把你们目前的计算器
 
 92
 00:04:01,641 --> 00:04:03,541
 MVC from being called View Controller
+MVC 从 ViewController 改变到
 
 93
 00:04:03,610 --> 00:04:05,710
 to being called something like Calculator View Controller and
+叫做 CalculatorViewController
 
 94
 00:04:05,778 --> 00:04:08,446
 that's because you're gonna have this new MVC- the graph
+这是因为你将有这个新的 MVC 也就是图像视图控制器
 
 95
 00:04:08,515 --> 00:04:12,651
 view controller- and you wanna make clear which one is which.
+并且你想明确哪一个是哪一个
 
 96
 00:04:12,719 --> 00:04:16,087
 Now I'm not gonna touch my Face View Controller or
+从现在开始，这个 demo 中，我一点都不会去碰 FaceViewController
 
 97
 00:04:16,156 --> 00:04:18,557
 MVC at all in this demo from here on.
+或者 MVC
 
 98
 00:04:19,659 --> 00:04:22,861
 I'm gonna build this multi-MVC app, and
+我会创建这个多个 MVC 的 app，并且
 
 99
 00:04:22,929 --> 00:04:25,630
 I'm gonna use the face view controller that I just
+我将使用之前完成的 FaceViewController
 
 100
 00:04:25,699 --> 00:04:28,199
 finished building last time as a reusable component.
+把它作为可重用的组件
 
 101
 00:04:28,268 --> 00:04:29,901
 Just like your graph view
+就像你们家庭作业中
 
 102
 00:04:29,970 --> 00:04:33,505
 controller is gonna be a reusable MVC in your homework.
+你们的图形视图控制器会是一个可重用的 MVC 一样
 
 103
 00:04:35,308 --> 00:04:37,475
 I said that I wanted to have two MVCs.
+我说过了我想要两个 MVC
 
 104
 00:04:37,544 --> 00:04:40,512
 One is just a list of some emotions.
+一个是一系列的心情
 
 105
 00:04:40,580 --> 00:04:43,948
 And then I'm going to use this MVC to show that emotion.
+然后我将用这个 MVC 来展现那些心情
 
 106
 00:04:44,017 --> 00:04:46,751
 So let's just dive right into this and
+那么就让我们深入它并且
 
 107
 00:04:46,820 --> 00:04:49,254
 put another MVC into our storyboard.
+把另一个 MVC 放进我们的 storyboard 中吧
 
 108
 00:04:49,323 --> 00:04:53,524
 We have this one MVC, we get another one, in exactly
+我们现在有了这个 MVC，然后我们通过
 
 109
 00:04:53,593 --> 00:04:58,496
 the same way that we get a new button or something like that,
+跟新添加一个按钮或者之类的一样来得到另一个 MVC
 
 110
 00:04:58,565 --> 00:05:02,367
 which is to go down here to the utilities window
+也就是在这下面的辅助工具窗口
 
 111
 00:05:02,435 --> 00:05:05,036
 at the bottom here and just drag out a view controller.
+拖出一个视图控制器
 
 112
 00:05:05,105 --> 00:05:06,004
 You just pull it out and
+只要把它拉出来，然后
 
 113
 00:05:06,073 --> 00:05:09,007
 drag it right into your storyboard like that.
+像这样拖放到你的 storyboard 就可以了
 
 114
 00:05:09,076 --> 00:05:11,443
 Now this MVC right here,
+那么这里的这个 MVC
 
 115
 00:05:11,512 --> 00:05:14,111
 what's gonna be its class of it's controller?
+它的控制器会是哪个类呢？
 
 116
 00:05:14,180 --> 00:05:16,814
 It's just going to be (if we select it by clicking on
+如果我们点击这个橘色的东西的话
 
 117
 00:05:16,883 --> 00:05:18,750
 the orange thing), UI view controller.
+就能看到，是一个 UIViewController
 
 118
 00:05:18,819 --> 00:05:19,951
 In other words not a sub class.
+也就是不是一个子类
 
 119
 00:05:20,020 --> 00:05:22,120
 So we're gonna need to create a custom sub class for
+那么我们就需要为这个视图控制器创建一个
 
 120
 00:05:22,189 --> 00:05:24,288
 this view controller just like we have for
+自定义的子类
 
 121
 00:05:24,357 --> 00:05:25,990
 our face view controller.
+就像我们的 FaceViewController 一样
 
 122
 00:05:26,059 --> 00:05:28,693
 We'll do that in a second.
+我们马上就会这么做
 
 123
 00:05:28,762 --> 00:05:29,594
 Before we do that though,
+但在这之前
 
 124
 00:05:29,663 --> 00:05:31,095
 I wanna talk about this little arrow.
+我想谈一谈这个小箭头
 
 125
 00:05:31,164 --> 00:05:32,864
 You see this arrow right here?
+你们看到这里的这个小箭头了吗
 
 126
 00:05:32,932 --> 00:05:36,434
 This is the arrow that tells iOS when this app launches,
+这是一个告诉 iOS 当 app 启动时
 
 127
 00:05:36,503 --> 00:05:40,104
 use this MVC as the first thing that appears.
+用这个 MVC 作为第一个显示的东西的箭头
 
 128
 00:05:40,173 --> 00:05:43,875
 It's like the "entry" into the storyboard.
+就像是进入 storyboard 的入口
 
 129
 00:05:43,944 --> 00:05:45,610
 And so if I want it to be the other one,
+那么如果我想让它换一个的话
 
 130
 00:05:45,679 --> 00:05:47,345
 I can just pick it up with the mouse.
+我可以用鼠标选择它
 
 131
 00:05:47,414 --> 00:05:48,679
 And drop it on that one.
+然后把它放到另一个 MVC 上
 
 132
 00:05:48,748 --> 00:05:51,282
 And now this one is my entry MVC.
+那么现在这个就是我的初始 MVC 了
 
 133
 00:05:51,351 --> 00:05:54,419
 I also want you to notice that we have a warning here.
+我还想让你们注意到这里有一个警告
 
 134
 00:05:54,488 --> 00:05:55,987
 You see this yellow warning?
+你看到这个黄色的警告了吗
 
 135
 00:05:56,056 --> 00:05:56,888
 I'm gonna click on that,
+我将点击它
 
 136
 00:05:56,956 --> 00:05:59,624
 and we'll see here it says face view controller is
+然后我们就将看到它说 FaceViewController 是
 
 137
 00:05:59,692 --> 00:06:03,127
 unreachable, because it has no entry points.
+不可达的，因为它没有入口
 
 138
 00:06:03,196 --> 00:06:04,930
 It's saying this view controller right here with
+意思是这个有一张脸的视图控制器
 
 139
 00:06:04,998 --> 00:06:08,366
 the face, you're never gonna see that in your app.
+你在 app 中将永远看不到它
 
 140
 00:06:08,435 --> 00:06:11,235
 Which is true, because my app is gonna come in here to this
+这是对的，因为我的 app 会进入这个
 
 141
 00:06:11,304 --> 00:06:14,405
 blank one and I can't get to the FaceView from there.
+空白的 MVC，并且我不能进入那个 FaceView
 
 142
 00:06:14,474 --> 00:06:17,075
 Now of course we're going to add SplitView controller,
+当然现在我们要添加分屏控制器
 
 143
 00:06:17,144 --> 00:06:19,243
 and navigation controllers, and we're eventually gonna be
+和导航控制器，然后终究
 
 144
 00:06:19,312 --> 00:06:21,012
 able to get there, but I just want you to understand what
+能到达那里，但是我只是想让你们能苟理解
 
 145
 00:06:21,081 --> 00:06:23,114
 this unsupported configuration means.
+这个不支持的标记意味着什么
 
 146
 00:06:23,183 --> 00:06:24,749
 It just means that you can't get there.
+这意思就是你到达不了那里
 
 147
 00:06:24,818 --> 00:06:26,951
 If I move this back, this arrow off of this and
+如果我把它移回去，把这个箭头移回到这里
 
 148
 00:06:27,020 --> 00:06:29,287
 back over to here, now this one, you see,
+那么这个，看
 
 149
 00:06:29,356 --> 00:06:31,555
 view controller is unreachable.
+这个 ViewController 就不可达了
 
 150
 00:06:31,624 --> 00:06:32,758
 Which makes perfect sense.
+就是这个道理
 
 151
 00:06:34,694 --> 00:06:37,028
 If I run this app by the way, let's go ahead and run, you're
+如果我运行这个 app 的话，你就将看到
 
 152
 00:06:37,096 --> 00:06:39,697
 gonna see that my app's gonna come up completely blank.
+这个 app 会出现完全的一片空白
 
 153
 00:06:39,766 --> 00:06:42,667
 That face will not be there because that MVC is
+这个脸表情不会在那里，因为那个 MVC
 
 154
 00:06:42,736 --> 00:06:43,801
 really not even being used.
+甚至都没被使用到
 
 155
 00:06:43,870 --> 00:06:45,604
 It's in the storyboard right now, but
+它存在于 storyboard，但是
 
 156
 00:06:45,672 --> 00:06:48,339
 since it's not accessible we can't navigate to it.
+由于它不可达，我们不能导航到它
 
 157
 00:06:48,408 --> 00:06:51,175
-We can't segue to it to use the terminology you
+We can't segue to it (to use the terminology you
+我们不能 segue 到它
 
 158
 00:06:51,244 --> 00:06:52,610
-learned last time.
+learned last time).
+segue，上节课讲的转场的专业术语
 
 159
 00:06:52,679 --> 00:06:53,979
 We get this completely blank UI.
+我们只会得到这个完全空白的 UI 界面
 
 160
 00:06:57,351 --> 00:07:01,653
 If we want to have things like outlets and actions,
+如果我们想在这个控制器上加些出口和方法（@IBAction）
 
 161
 00:07:01,722 --> 00:07:04,956
 or anything like that, with this View Controller, it needs
+或者其他诸如此类的话，它就需要
 
 162
 00:07:05,025 --> 00:07:07,625
 to have a custom subclass of UI view controller,
+有一个继承 UIViewController 的自定义子类
 
 163
 00:07:07,694 --> 00:07:08,760
 it can't just be generic.
+它不能是普通型的
 
 164
 00:07:08,829 --> 00:07:09,594
 So we're gonna create that.
+那么我们将创建那个
 
 165
 00:07:09,662 --> 00:07:12,230
 We're gonna go to File, New File, remember that's always
+选择 File，然后 New，记住每次要创建一个新的 UIView 的子类的时候
 
 166
 00:07:12,298 --> 00:07:14,866
 where we go when we create a new UI View Subclass,
+一个新的 UIViewController，任意的像是 Calculator Brain那样的
 
 167
 00:07:14,935 --> 00:07:18,102
 a new UI View Controller, any Calculator brain.
+我们都是这么操作的
 
 168
 00:07:18,171 --> 00:07:19,370
 We did all those from new file.
+我们都是从 New File 开始的
 
 169
 00:07:19,439 --> 00:07:20,972
 So I'm gonna click new file.
+所以我要点 New File 了
 
 170
 00:07:21,041 --> 00:07:26,210
-This is gonna be a sub class of a UI view controller.
+This is gonna be a sub class of an iOS class, UIViewController.
+这将是 iOS 系统类，UIViewController 的子类
 
 171
 00:07:26,279 --> 00:07:28,980
 I'm gonna pick this one here, cocoa touch class.
+我这里要选这个，Cocoa Touch Class
 
 172
 00:07:29,048 --> 00:07:30,915
 We use swift file over here when it was just
+当时我们用这里的 Swift 文件来创建
 
 173
 00:07:30,984 --> 00:07:33,285
 calculator brain, not a sub class of anything.
+当时那个 CalculatorBrain，不是任何的子类，就只是 Swift 文件
 
 174
 00:07:33,353 --> 00:07:35,753
 But here, we're gonna do cocoa touch class.
+但是这里，我们只需要 Cocoa Touch Class
 
 175
 00:07:35,822 --> 00:07:37,589
 And it says subclass of what?
+然后它说这是谁的子类呢？
 
 176
 00:07:37,657 --> 00:07:39,658
 Okay, it's even defaulted here to UIVewController.
+默认的是 UIViewController 的子类
 
 177
 00:07:39,726 --> 00:07:41,359
 Remember earlier we picked UIView.
+记得先前我们选择 UIView 时
 
 178
 00:07:41,428 --> 00:07:43,494
 We're gonna leave this UIViewController and I'm gonna
+放着这个 UIViewController 然后
 
 179
 00:07:43,563 --> 00:07:46,498
 call this view controller my EmotionsViewController.
+我要给这个 ViewController 取名叫做 EmotionsViewController
 
 180
 00:07:47,968 --> 00:07:50,802
 So this gonna show the emotions like happy,
+所以这个就是用来显示心情的，例如开心
 
 181
 00:07:50,871 --> 00:07:51,402
 sad, whatever, and
+伤心，之类的
 
 182
 00:07:51,471 --> 00:07:53,604
 then I'm gonna click on it to go show the face.
+然后我只要点击后就能展现对应的脸的图像
 
 183
 00:07:53,673 --> 00:07:55,473
 So I just do that.
+接着点击 Next
 
 184
 00:07:55,542 --> 00:07:56,908
 Go over here, it says where do you wanna put it.
+来到了这里，Xcode 询问你想要把这个文件放在哪里
 
 185
 00:07:56,976 --> 00:07:58,676
 Again, I do not wanna put it here.
+再一次的，我不想把它放在这里
 
 186
 00:07:58,745 --> 00:08:00,145
 You see where it says Group FaceIt, and
+你们看这个叫做 FaceIt 的包，然后
 
 187
 00:08:00,213 --> 00:08:01,612
 it has that blue icon.
+它有一个蓝色的图标
 
 188
 00:08:01,681 --> 00:08:03,548
 We wanna put it down in here.
+我们要把它放在这下面的文件夹里
 
 189
 00:08:03,616 --> 00:08:04,549
 So if you put it here,
+如果你放在这里的话
 
 190
 00:08:04,618 --> 00:08:06,584
 it's gonna be at the very top level.
+文件就会在最顶级
 
 191
 00:08:06,653 --> 00:08:10,054
 Down here, it's with all your other classes space
+放在下面一个文件夹里的话，它就会和你别的一些类在一起
 
 192
 00:08:10,123 --> 00:08:11,856
 faceview.swift, etc.
+FaceView.swift 之类的
 
 193
 00:08:11,925 --> 00:08:13,391
 So make sure you remember to do that.
+所以要保证你们记得做这个
 
 194
 00:08:14,828 --> 00:08:16,094
 So here I popped it in there.
+那么现在我把它放在了那里
 
 195
 00:08:16,163 --> 00:08:18,329
 There's my view controller selected in the navigator.
+在导航器中选定的是我的视图控制器
 
 196
 00:08:18,398 --> 00:08:20,198
 Let's make the navigator a little bit wider, so
+让我们把导航器拉宽一点，那么
 
 197
 00:08:20,267 --> 00:08:21,332
 you can read it, there we go.
+你就能看得到名字了
 
 198
 00:08:21,401 --> 00:08:23,234
 EmotionsViewController and
+也就是 EmotionViewController 并且
 
 199
 00:08:23,303 --> 00:08:26,237
 you can see it's giving me a little bit of code.
+你能看到它提供了一些代码
 
 200
 00:08:26,306 --> 00:08:28,973
 These right here are part of the ViewController life cycle,
+选定的这些是视图控制器的生命周期的一部分
 
 201
 00:08:29,042 --> 00:08:31,343
 which I promise I'm gonna talk about right after this
+也就是我承诺过这之后会讲的东西
 
 202
 00:08:32,279 --> 00:08:33,445
 but not now.
+但不是现在
 
 203
 00:08:33,513 --> 00:08:36,080
 There's this other thing that's commented out down
+还有一些被注释掉的其他东西在这里
 
 204
 00:08:36,149 --> 00:08:39,583
 here, which is actually really important to today's lecture.
+也就是今天课程中很重要的东西
 
 205
 00:08:39,652 --> 00:08:42,220
 This is Navigation method,
+这是导航方法
 
 206
 00:08:42,289 --> 00:08:45,957
 which you know all too well from last lecture.
+也就是你们上节课学到很多的那个
 
 207
 00:08:46,026 --> 00:08:48,059
 It's called prepare for segue.
+它叫做 prepare(for segue:)
 
 208
 00:08:49,428 --> 00:08:53,465
 This is the method that's gonna be used when we segue or
+这就是当我们从一个 MVC 转换
 
 209
 00:08:53,534 --> 00:08:56,468
 transition from this MVC to another one.
+或 segue 到另一个 MVC 时用到的方法
 
 210
 00:08:56,536 --> 00:08:58,736
 And we have to prepare that other one to do its job and
+然后我们必须让另一个 MVC 准备做它的工作
 
 211
 00:08:58,805 --> 00:09:00,805
 here's why we do it, prepare for segue.
+这就是我们为什么需要这个 prepare(for segue:) 了
 
 212
 00:09:00,874 --> 00:09:03,040
 We'll be coming back and implementing prepare for
+我们马上会回到这里并且
 
 213
 00:09:03,109 --> 00:09:05,944
 segue, in just a minute.
+实现这个 prepare(for segue:)，但是要等下
 
 214
 00:09:06,012 --> 00:09:09,480
 Now that we have this new class, EmotionsViewController,
+现在我们有了这个新的类叫做 EmotionsViewController
 
 215
 00:09:09,549 --> 00:09:11,682
 we have to do the exact same thing we just did.
+我们必须做跟之前做过的完全一样的事情
 
 216
 00:09:11,751 --> 00:09:13,618
 Which is to go back to our storyboard,
+也就是回到我们的 storyboard 中
 
 217
 00:09:13,687 --> 00:09:17,421
 click on this View controller, go to the Utilities window,
+点击这个视图控制器，来到工具栏窗口
 
 218
 00:09:17,490 --> 00:09:19,657
 get that identity inspector up.
+选择上面的这个 Identity Inspector
 
 219
 00:09:19,726 --> 00:09:22,560
-And then pick the class in EmotionsViewController, so
+And then pick the class EmotionsViewController, so
+然后在 Class 中选择 EmotionsViewController ，那么
 
 220
 00:09:22,629 --> 00:09:25,129
 that this is now an EmotionsViewController,
+这个现在就是一个 EmotionsViewController 的类了
 
 221
 00:09:25,198 --> 00:09:28,533
 not a generic UIView controller.
+不是一个普通的 UIViewController
 
 222
 00:09:28,601 --> 00:09:29,801
 So now that we've hooked that up,
+那么现在我们已经连接好了
 
 223
 00:09:29,869 --> 00:09:31,869
 we can start building our UI here.
+可以开始创建我们的 UI 界面了
 
 224
 00:09:31,938 --> 00:09:32,937
 What is our UI here?
+这里的 UI 界面会是怎样的呢？
 
 225
 00:09:33,006 --> 00:09:34,372
 It's gonna be super simple,
+它将非常简单
 
 226
 00:09:34,441 --> 00:09:35,973
 I'm just gonna grab some buttons, so
+我只要拉取一些按钮
 
 227
 00:09:36,042 --> 00:09:37,609
 let's get one here,
+那么让我们拿一个吧
 
 228
 00:09:37,677 --> 00:09:39,544
 let's change some attributes of that button.
+然后改变些那个按钮的属性
 
 229
 00:09:39,613 --> 00:09:42,813
 How about let's make the font really big,
+不如让我们把它的字体变得非常大吧
 
 230
 00:09:42,882 --> 00:09:45,784
 something like 40 point is probably good.
+例如 40 可能会不错
 
 231
 00:09:47,454 --> 00:09:49,753
 Let's go ahead and make some more of them,
+然后继续，制作些更多的按钮
 
 232
 00:09:49,822 --> 00:09:51,255
 I'm gonna copy and paste.
+我就复制粘贴吧
 
 233
 00:09:51,324 --> 00:09:54,092
 I think three of them is enough for this demo.
+我认为三个按钮对这个 demo 来说就足够了
 
 234
 00:09:54,160 --> 00:09:57,828
 We'll have one of our emotions be sad, another emotion be
+我们将其中一个心情设置为 Sad ，另一个
 
 235
 00:09:57,897 --> 00:10:00,798
 happy and I don't know if this is an emotion but
+设置为 Happy ，然后说实话我也不知道这算不算心情但是
 
 236
 00:10:00,867 --> 00:10:04,102
 we'll have this one be worried.
+还是把剩下的这个设置为 Worried
 
 237
 00:10:04,171 --> 00:10:06,337
 Those are gonna be our three things we're gonna show
+那就是三个我们将用我们的 FaceView
 
 238
-00:10:06,406 --> 00:10:09,941
+00:10:06,406 --> 00:10:07,941
 with our face.
+来展现的东西了
+
+00:10:08,000 --> 00:10:09,900
+So I'm gonna select them all and stack them up in a stack
+然后我全选它们，然后用一个 Stack View 来
 
 239
 00:10:10,010 --> 00:10:12,910
 view, let's put a little space in between them there.
+把它们堆起来，让我们给它们之间腾点空间
 
 240
 00:10:12,979 --> 00:10:15,079
 We'll fill equally even though they're all buttons, so
+即使它们都是按钮，仍然选择 Fill Equally 那么
 
 241
 00:10:15,148 --> 00:10:18,750
 they're all gonna be filled equally anyway.
+它们无论何种情况都会被平均地填充
 
 242
 00:10:18,818 --> 00:10:20,918
 So we've got this nice stack view right here.
+那么现在我们得到了一个不错的 Stack View 了
 
 243
 00:10:20,987 --> 00:10:24,522
 Now, one thing about this stack view is, if I put it
+现在，有一个关于这个 Stack View 的问题是，如果我把它
 
 244
 00:10:24,591 --> 00:10:28,560
 here and I go down to look at my various orientations and
+放在这里然后看我的多设备选项里
 
 245
 00:10:28,629 --> 00:10:31,796
 devices, if I go landscape here, "Ugh!".
+如果选择这里的横屏模式的话，噢天呐
 
 246
 00:10:31,865 --> 00:10:33,298
 It gets cut off, right?
+它被截断了，对不？
 
 247
 00:10:33,366 --> 00:10:37,001
 So I really want these, this stack to stay in the middle.
+所以我很需要这个堆保持在屏幕中间
 
 248
 00:10:37,070 --> 00:10:38,303
 I don't wanna do the same thing I did with
+我不想做之前在 Calculator demo 中把
 
 249
 00:10:38,371 --> 00:10:40,171
 the calculator where I'm sticking it to the edges.
+它们连接到边线上那样的事
 
 250
 00:10:40,240 --> 00:10:41,539
 I just want it to stay in the middle cuz I don't want
+我只是想让它待在中间因为我不想
 
 251
 00:10:41,608 --> 00:10:42,974
 the buttons to be kinda really spread out.
+让这些按钮拉伸之类的
 
 252
 00:10:43,043 --> 00:10:45,743
 I want them to stay kind of collected but
+我想让它们保持不变但是
 
 253
 00:10:45,812 --> 00:10:47,011
 I want them in the middle.
+想让它们在中间
 
 254
 00:10:47,080 --> 00:10:49,146
 I can still do that with the autolayout,
+我仍然可以用自动布局来完成
 
 255
 00:10:49,215 --> 00:10:51,249
 the same way we did in the last demo.
+也就是上一个 demo 中一样的方法
 
 256
 00:10:51,318 --> 00:10:53,585
 I'm just gonna pick up the thing and
+我只要选定它然后
 
 257
 00:10:53,653 --> 00:10:56,487
 use the blue lines to indicate what I want.
+用蓝线来指示我想要的
 
 258
 00:10:56,556 --> 00:10:58,023
 Which is I want this in the center.
+也就是把它放在正中间
 
 259
 00:10:59,192 --> 00:11:00,057
 I'm holding this, so
+我拿着它
 
 260
 00:11:00,126 --> 00:11:01,759
 that the blue lines come on in the center.
+这些蓝线标识了中间
 
 261
 00:11:01,828 --> 00:11:06,731
 And when I let go, iOS interface builder here knows "
+然后当我放开它，Interface Builder 就知道了
 
 262
 00:11:06,800 --> 00:11:07,832
 he wants that in the center".
+“噢，他想让那个处于中心位置”
 
 263
 00:11:07,900 --> 00:11:11,102
 So that when I go down here to this little guy again and
+那么当我再次来到下面这个小按钮并且
 
 264
 00:11:11,171 --> 00:11:13,371
 I say reset to suggested constraints,
+选择了这个 Reset to Suggested Constraints
 
 265
 00:11:13,440 --> 00:11:16,073
 just like I did in the last lecture,
+就像我上节课做的那样
 
 266
 00:11:16,142 --> 00:11:18,175
 it creates constraints that put it in the middle.
+它创建了对应的约束然后把它放到中间
 
 267
 00:11:18,244 --> 00:11:20,945
 And we can verify that by going up to this inspector,
+并且我们可以通过核对这个检查器
 
 268
 00:11:21,014 --> 00:11:23,281
 this is the size inspector.
+这是尺寸检查器
 
 269
 00:11:23,349 --> 00:11:24,548
 It shows the size of the thing but
+它展示了事物的尺寸但是
 
 270
 00:11:24,617 --> 00:11:27,919
 it also shows the constraints, the autolayout constraints.
+它也能展示约束，那些自动布局的约束
 
 271
 00:11:27,987 --> 00:11:31,255
 And this is constrained to align its center horizontally
+约束使它的中心
 
 272
 00:11:31,324 --> 00:11:32,857
 to the superview center and
+水平居中于父视图的中心
 
 273
 00:11:32,926 --> 00:11:36,126
 it's centered vertically to the superview center.
+并且竖直居中于它的父视图的中心
 
 274
 00:11:36,195 --> 00:11:37,629
 Now if we do the rotation,
+那么现在如果我们旋转的话
 
 275
 00:11:37,697 --> 00:11:39,564
 we see that it stays in the center.
+我们能看到它仍旧保持在中心
 
 276
 00:11:41,601 --> 00:11:43,234
 I'm giving you a little taste of autolayout,
+目前我让你们尝了一点点自动布局的味道
 
 277
 00:11:43,302 --> 00:11:45,336
 I'm gonna give a whole lecture on autolayout
+在几个星期里
 
 278
 00:11:46,573 --> 00:11:47,439
 in a couple weeks.
+我会给你们上一个专门关于自动布局的课
 
 279
 00:11:47,507 --> 00:11:48,973
 But I'm just trying to give you a little hint
+但现在我只是试着给你们一些
 
 280
 00:11:49,042 --> 00:11:50,508
 about how it works for now.
+它如何工作的提示
 
 281
 00:11:51,745 --> 00:11:53,845
 Alright, so we have this, this is our UI,
+好的，那么我们现在有了这个 UI 界面
 
 282
 00:11:53,914 --> 00:11:55,980
 that's the entire UI that we're gonna do.
+这就是我们要完成的全部 UI 了
 
 283
 00:11:56,049 --> 00:11:59,116
 Now let's go ahead and run this,
+那么继续，我们运行一下
 
 284
 00:11:59,185 --> 00:12:01,920
 run it on iPhone briefly here
+简要地在 iPhone 模拟器上运行下
 
 285
 00:12:05,324 --> 00:12:08,025
 Just to make sure that we've actually put this in our UI.
+只是为了确认我们已经把这些放到我们的 UI 界面上了
 
 286
 00:12:08,094 --> 00:12:10,027
 There it is. Sure enough if I click on it,
+这就是了。能够点击
 
 287
 00:12:10,096 --> 00:12:12,597
 rotation, seems to work fine.
+旋转的话，看起来也可以
 
 288
 00:12:12,665 --> 00:12:14,866
 We can even check to see, does this work on iPad?
+我们甚至可以确认下如果在 iPad 上的话能否成功？
 
 289
 00:12:14,934 --> 00:12:17,769
 Let's try this one now right there.
+试试看那个选项
 
 290
 00:12:22,775 --> 00:12:24,008
 Here it is, here's our UI.
+这就是了，这个就是我们的 UI 界面
 
 291
 00:12:24,076 --> 00:12:28,346
 It's working fine here and we can rotate here as well and
+看起来不错，然后我们也可以旋转屏幕
 
 292
 00:12:28,414 --> 00:12:31,215
 get this gigantic landscape iPad.
+然后得到了这个巨大的横屏模式的 iPad
 
 293
 00:12:31,284 --> 00:12:32,717
 Is there any way to go smaller?
+有什么方法能变小吗？
 
 294
 00:12:32,786 --> 00:12:35,019
 What's the smallest we can go scale?
+我们最小能缩放到多少？
 
 295
 00:12:35,088 --> 00:12:36,654
 25%?
+25%？
 
 296
 00:12:36,723 --> 00:12:39,157
 There we go, that's small enough.
+不错，足够小了
 
 297
 00:12:39,225 --> 00:12:41,326
 So we've got all this screen real estate here on an iPad.
+那么我们现在在一个 iPad 上得到了这个屏幕
 
 298
 00:12:41,394 --> 00:12:44,128
 It's be really great to use the split view to have these
+如果用分屏的话效果会很好
 
 299
 00:12:44,197 --> 00:12:47,131
 words on the left and the face that matches it on the right.
+也就是在左边有这些字，然后右边是对应的脸的效果
 
 300
 00:12:47,200 --> 00:12:48,299
 So that's exactly what we're gonna do,
+所以这就是我们要做的事情
 
 301
 00:12:48,368 --> 00:12:50,935
 we're gonna go back to our storyboard right here and
+我们将回到我们的 storyboard
 
 302
 00:12:51,004 --> 00:12:52,503
 make that happen.
+然后实现它
 
 303
 00:12:52,572 --> 00:12:55,273
 And to do that, again, is just a matter of dragging something
+为了完成这个功能，再一次的，就只是拖拉一些东西的事情
 
 304
 00:12:55,341 --> 00:12:57,642
 out, I'm gonna make my scale really small here, so
+我会缩放得小一些
 
 305
 00:12:57,710 --> 00:12:59,510
 you can see this as we drag it out.
+在这里拉动就可以
 
 306
 00:12:59,578 --> 00:13:01,879
 But here we're gonna drag out the split view controller
+但是这里我们将拖出一个分屏控制器
 
 307
 00:13:01,948 --> 00:13:04,916
 cuz we wanna put these two MVCs in an MVC
+因为我们想把这两个 MVC 放到一个 MVC 里
 
 308
 00:13:04,984 --> 00:13:06,851
 that has them as part of its view.
+也就是把这两个 MVC 作为它自身视图的 MVC
 
 309
 00:13:06,920 --> 00:13:08,553
 So when I drag this out, you're actually
+所以当我把这个拖拉出来的时候，事实上你能看到
 
 310
 00:13:08,621 --> 00:13:11,022
 gonna see I get more than just a split view,
+我得到了不止一个分屏
 
 311
 00:13:11,091 --> 00:13:15,760
 I get some other little MVCs that come along with it here.
+我还得到了一些随之而来的小的 MVC
 
 312
 00:13:15,829 --> 00:13:18,429
 And I don't really need any of these other
+并且我并不是真的需要这些
 
 313
 00:13:18,498 --> 00:13:19,830
 MVCs that come along with it.
+伴随而来的 MVC
 
 314
 00:13:19,899 --> 00:13:21,232
 Trying to make your life easier, but
+试着让它变简单些，但是我也
 
 315
 00:13:21,301 --> 00:13:23,267
 I find that 99% of the time,
+发现99%的概率上
 
 316
 00:13:23,336 --> 00:13:26,270
 you don't need these other things that come with it.
+你不需要这些伴随而来的东西
 
 317
 00:13:26,338 --> 00:13:28,372
 So I'm just going here and select those and delete them.
+那么我就来到这里，选择它们，然后删除它们
 
 318
 00:13:28,441 --> 00:13:29,674
 So let's get rid of this one.
+让我们摆脱这一个 MVC
 
 319
 00:13:29,742 --> 00:13:31,642
 Whoops! Not the whole thing.
+噢糟糕！不是所有的事物
 
 320
 00:13:31,711 --> 00:13:34,946
 Let's just get rid of this one,
+只要摆脱这一个
 
 321
 00:13:35,015 --> 00:13:39,517
 sorry, there and we're gonna get rid of this one and
+然后再摆脱这个和
 
 322
 00:13:39,586 --> 00:13:40,718
 we get rid of that one.
+那一个
 
 323
 00:13:40,787 --> 00:13:43,454
 I'm just left with my split view controller and,
+我只要留下我的分屏控制器然后
 
 324
 00:13:43,523 --> 00:13:45,556
 of course, my two MVCs are here.
+当然了，我的两个 MVC 在这里
 
 325
 00:13:45,624 --> 00:13:48,926
 Let's move this little more over to the side here,
+让我们把这个往边上移一些
 
 326
 00:13:48,995 --> 00:13:51,095
 scroll down a bit.
+然后往下放一点
 
 327
 00:13:51,164 --> 00:13:54,799
 And now I just wanna make this be the master of my split view
+然后现在我要这一个 MVC 成为分屏控制器里的主视图
 
 328
 00:13:54,868 --> 00:13:57,267
 controller and I want this to be my detail.
+然后这一个是细节视图
 
 329
 00:13:57,336 --> 00:13:58,002
 Whoops, other way around,
+噢，换一下
 
 330
 00:13:58,071 --> 00:14:00,038
 this is the master, this is the detail.
+这是主视图，这是细节视图
 
 331
 00:14:01,340 --> 00:14:03,941
 When the app starts, I don't want it to start here,
+当运行 app 时，我不想让它从这开始
 
 332
 00:14:04,010 --> 00:14:06,444
 I want it to start here, don't forget this step.
+我想让它从这里开始，不要忘记这一步
 
 333
 00:14:06,513 --> 00:14:07,945
 If you want the app to come here and
+如果你想要这个 app 能运行并且
 
 334
 00:14:08,014 --> 00:14:11,248
 then show the split view controller with both things.
+展示包含两个 MVC 的分屏控制器的话
 
 335
 00:14:11,317 --> 00:14:14,318
 So how do I make this the master and this the detail?
+那么我如何让这个变成主视图并且让这一个变成细节视图呢
 
 336
 00:14:14,387 --> 00:14:16,287
 I'm just gonna hold down control and
+我只要按住 control 键并且
 
 337
 00:14:16,355 --> 00:14:20,024
 drag from the split view controller to the master.
+从分屏控制器拖拉到主视图
 
 338
 00:14:20,093 --> 00:14:22,360
 And then in here,
+然后在这里
 
 339
 00:14:22,428 --> 00:14:24,561
 Only these two, master and detail.
+只要选这两个，主视图和细节视图
 
 340
 00:14:24,630 --> 00:14:26,664
 So I'm gonna make that one the master,
+那么我要让那个成为主视图
 
 341
 00:14:26,732 --> 00:14:29,233
 it makes this little master connection there,
+它就在那里创建了一个小小的主视图连接
 
 342
 00:14:29,302 --> 00:14:32,136
 that's not a segue by the way, that's a kind of like,
+顺带一提，这不是 segue，这是一种
 
 343
 00:14:32,205 --> 00:14:34,238
 somewhat like an outlet connection but
+像是出口连接，但是
 
 344
 00:14:34,307 --> 00:14:37,675
 it's a specific connection to that master var there.
+是一种到那个 master 变量的特殊连接
 
 345
 00:14:37,744 --> 00:14:39,244
 This one is the detail.
+这一个是细节视图
 
 346
 00:14:40,613 --> 00:14:42,713
 So I've made my master and my detail here.
+那么我已经完成了主视图和细节视图了
 
 347
 00:14:42,781 --> 00:14:43,581
 Zoom in a little bit.
+稍微放大一点
 
 348
 00:14:45,318 --> 00:14:47,585
 That's really all I need to do to get these both on screen.
+这就是想要让这两个都出现在屏幕上需要做的事情
 
 349
 00:14:47,654 --> 00:14:50,021
 So let's go ahead and run and see what happens here.
+那么继续，我们运行一下来看看如何
 
 350
 00:14:55,028 --> 00:14:55,860
 Alright, so here we go.
+好吧，那么开始
 
 351
 00:14:55,929 --> 00:14:58,262
 Sure enough, there's the face on the right.
+当然，右边有这个脸图
 
 352
 00:14:58,331 --> 00:14:59,463
 Here's this stuff on the left.
+左边有这些东西
 
 353
 00:14:59,532 --> 00:15:01,866
 And if I click this, nothing happens.
+并且如果我点击，不会发生什么
 
 354
 00:15:01,934 --> 00:15:02,934
 The face doesn't show.
+对应的脸不会展现出来
 
 355
 00:15:03,002 --> 00:15:04,702
 Now why does nothing happen there?
+那么为什么什么都不会发生呢？
 
 356
 00:15:04,770 --> 00:15:07,838
 Because we have to do the step of having a segue.
+因为我们必须完成创建一个 segue 的步骤
 
 357
 00:15:07,907 --> 00:15:10,307
 If we want to move to a different MVC,
+如果我们想转到另一个不同的 MVC
 
 358
 00:15:10,376 --> 00:15:12,977
 we have to segue to it.
+我们必须 segue 到它
 
 359
 00:15:13,046 --> 00:15:16,847
 Each of these is gonna have to have the segue to this MVC.
+这三个选项中每一个都需要连到这个 MVC 的 segue
 
 360
 00:15:16,916 --> 00:15:19,683
 And when it segues, it's gonna replace that MVC with a new
+并且当它 segue 的时候，它将用一个
 
 361
 00:15:19,752 --> 00:15:23,421
 one that's properly prepared to show that motion.
+显示准备好新表情的 MVC 来替换原来的 MVC
 
 362
 00:15:24,824 --> 00:15:26,524
 Let's go do our segues.
+让我们开始完成我们的 segue 吧
 
 363
 00:15:26,592 --> 00:15:28,092
 Segues also of course,
+当然了，segue 也是通过
 
 364
 00:15:28,160 --> 00:15:30,628
 we use our favorite gesture which is Ctrl + drag.
+使用我们最喜欢的快捷键也就是 control + 拖拉
 
 365
 00:15:30,696 --> 00:15:33,764
 So if I wanna make a sad segue, I'm just gonna hold
+那么如果我想要创建一个 sad segue 的话，我只要按住
 
 366
 00:15:33,832 --> 00:15:38,436
 down Ctrl and drag it to the MVC that I want to segue to,
+control 键然后把它连到想要 segue 到的 MVC
 
 367
 00:15:38,505 --> 00:15:41,038
 the MVC I want to show when I press Sad.
+当我按 sad 键时想要显示的 MVC
 
 368
 00:15:41,107 --> 00:15:41,705
 So I do that.
+那么我这么做好了
 
 369
 00:15:41,774 --> 00:15:44,241
 Now, you notice that I have some choices of what
+现在，你注意到有一些选项
 
 370
 00:15:44,310 --> 00:15:47,311
 kind of presentation, what kind of segue I want.
+我想要什么种类的转场，什么种类的 segue
 
 371
 00:15:47,380 --> 00:15:49,913
 For example, Present As Popover would present
+例如，Present As Popover 选项将会
 
 372
 00:15:49,982 --> 00:15:52,683
 the thing I'm segueing to in a little popover window on
+把正在 segue 的东西展示在一个小的在最顶级的
 
 373
 00:15:52,752 --> 00:15:54,819
 top of everything else.
+弹窗中
 
 374
 00:15:54,888 --> 00:15:57,087
 Present Modally would take over the whole screen and
+Present Modally 将占满整个屏幕然后
 
 375
 00:15:57,156 --> 00:15:59,023
 show the new MVC.
+展示这个新的 MVC
 
 376
 00:15:59,091 --> 00:16:00,791
 Then there's show and show detail.
+然后就是 Show 和 Show Detail
 
 377
 00:16:00,860 --> 00:16:04,261
 Show is only used when you're in a navigation controller,
+Show 选项只会在一个导航控制器中用到
 
 378
 00:16:04,330 --> 00:16:06,831
 the thing where they've got the cards sliding on top,
+也就是会把卡片排到顶部的那一个控制器
 
 379
 00:16:06,900 --> 00:16:09,466
 like the settings example I showed you.
+就像之前展示给你们看过的那个设置
 
 380
 00:16:09,535 --> 00:16:13,104
 Show detail is used in a split view setting or in a hybrid
+Show detail 是用于一个分屏控制器或者一个
 
 381
 00:16:13,173 --> 00:16:15,973
 setting, where sometimes you're in a split view, and
+混合设置的，也就是有时你在分屏视图，有时
 
 382
 00:16:16,042 --> 00:16:17,174
 sometimes you're in navigation view,
+你在导航视图
 
 383
 00:16:17,243 --> 00:16:19,109
 which is gonna be the case that we're gonna be in here.
+也就是我们这里会碰到的情况
 
 384
 00:16:19,178 --> 00:16:21,879
 Show detail means show this in the detail side of
+Show detail 意味着会把这个展示在分屏视图
 
 385
 00:16:21,947 --> 00:16:23,147
 the split view.
+里的细节控制器那一边
 
 386
 00:16:23,216 --> 00:16:24,882
 I'm gonna show detail there.
+我将在那里展示细节控制器
 
 387
 00:16:24,951 --> 00:16:27,051
 I've made this segue, you see it appeared right here.
+我已经创建了这个 segue，看到出现在这里的东西了没
 
 388
 00:16:27,119 --> 00:16:28,185
 This is a segue,
+这是一个 segue
 
 389
 00:16:28,254 --> 00:16:29,620
 looks a little different from this thing,
+看起来跟这个有点不大一样
 
 390
 00:16:29,689 --> 00:16:31,356
 a little different icon right there.
+图标有些不同
 
 391
 00:16:31,424 --> 00:16:33,323
 This is a segue and you can click on it, and
+这是一个 segue 并且你可以点击它，而且
 
 392
 00:16:33,392 --> 00:16:35,392
 in fact you can even inspect it.
+事实上你甚至可以检查它
 
 393
 00:16:35,461 --> 00:16:37,194
 And you must inspect it, in fact,
+事实上你必须检查它
 
 394
 00:16:37,263 --> 00:16:40,565
 go to the attributes inspector and inspect it, because you're
+来到 Attribute Inspector 并且检查它，因为
 
 395
 00:16:40,633 --> 00:16:43,367
 always gonna wanna give every segue an identifier.
+通常来说你都要给每一个 segue 一个标识符
 
 396
 00:16:43,436 --> 00:16:45,970
 This is just a unique string, that in your code you'll
+就是一个独一无二的字符串，在代码中
 
 397
 00:16:46,039 --> 00:16:47,738
 be able to reference in order to say,
+通过引用名字来实现
 
 398
 00:16:47,807 --> 00:16:50,241
 "I'm talking about this segue right here".
+“我说的是这个 segue”
 
 399
 00:16:50,310 --> 00:16:52,944
 So, I'm gonna call this my sad segue.
+那么我要给这个 segue 取名为 sad
 
 400
 00:16:54,380 --> 00:16:57,982
 Then I'm gonna do the exact same thing here for happy.
+然后我将对 Happy 做同样的事
 
 401
 00:16:58,051 --> 00:17:00,350
 I'm gonna just show detail on that one.
+连接细节控制器
 
 402
 00:17:00,419 --> 00:17:02,419
 I'm gonna inspect that segue.
+检查那个 segue
 
 403
 00:17:02,488 --> 00:17:03,421
 See, there's our sad one.
+看到没，那个是我们的 sad segue
 
 404
 00:17:03,489 --> 00:17:04,688
 Notice that when you pick a segue,
+注意当你选择一个 segue 时
 
 405
 00:17:04,757 --> 00:17:06,724
 it shows you what it's segueing from.
+它会展示给你它从哪里 segue 来的
 
 406
 00:17:06,793 --> 00:17:09,093
 If I pick this one, it shows it seguing from the other one,
+如果我选择这个，它就展示它是从另一个按钮 segue 来的
 
 407
 00:17:09,162 --> 00:17:10,160
 so we know which one it is.
+那么我们就能知道这是哪一个的 segue 了
 
 408
 00:17:10,229 --> 00:17:12,429
 So this is the happy one, and
+那么这是 happy，然后
 
 409
 00:17:12,498 --> 00:17:15,933
 then we'll have our little worried segue.
+我们将创建我们的 worried segue
 
 410
 00:17:16,002 --> 00:17:17,034
 Where's that one?
+那个在哪呢？
 
 411
 00:17:17,103 --> 00:17:19,704
 It's right there, worried.
+在那呢，然后取名 worried
 
 412
 00:17:20,706 --> 00:17:21,538
 Okay, so that's it.
+这就是全部了
 
 413
 00:17:21,607 --> 00:17:24,242
 So we've created these segues, put them in the, we'll put it
+我们已经创建了这些 segue，首先把它们放在
 
 414
 00:17:24,310 --> 00:17:26,577
 into split view first, then we created the segues.
+分屏控制器里，然后创建 segue
 
 415
 00:17:26,646 --> 00:17:28,479
 And now when you click on those buttons,
+那么现在当你点击这些按钮时
 
 416
 00:17:28,548 --> 00:17:32,783
 it's going to segue to this detail and in fact in a split
+它就会 segue 到这个细节控制器里。事实上
 
 417
 00:17:32,852 --> 00:17:35,219
 view it replaces the one that's there with a new one.
+在分屏控制器里会用一个新的 MVC 替换掉之前的 MVC
 
 418
 00:17:35,287 --> 00:17:37,554
 Remember that segues always create a new one,
+记住，segue 总是都会创建一个新的 MVC
 
 419
 00:17:37,623 --> 00:17:39,923
 Don't forget that, that segues always create a new one.
+不要忘记
 
 420
 00:17:39,992 --> 00:17:40,792
 Something easy to forget.
+这很容易被忽略
 
 421
 00:17:40,860 --> 00:17:42,660
 Especially in the split view, it looks like,
+特别是在分屏控制器里，它看起来就像
 
 422
 00:17:42,728 --> 00:17:44,661
 " it just changed the one that was already there".
+“它仅仅只是改变了原本存在于那里的 MVC”
 
 423
 00:17:44,730 --> 00:17:48,099
 But no, it actually just completely replaced that
+但是不是的，事实上它是通过 segue 完完全全地替换了
 
 424
 00:17:48,168 --> 00:17:50,134
 detail segue by doing that.
+原本的细节控制器 MVC
 
 425
 00:17:51,437 --> 00:17:54,271
 If we run this it it's gonna look like
+如果现在我们运行的话它会看起来像是
 
 426
 00:17:54,340 --> 00:17:55,540
 it doesn't didn't even work.
+没有效果
 
 427
 00:17:57,209 --> 00:17:58,409
 Even though we hooked these segues up,
+即使我们已经把这些连接了起来
 
 428
 00:17:58,477 --> 00:18:00,545
 it looks like it's just not doing anything, watch.
+但是它看起来仍然像是什么都没做
 
 429
 00:18:02,247 --> 00:18:04,681
 Okay, so is he sad, happy, worried, nothing is happening.
+好，Sad，Happy，Worried，什么都没改变
 
 430
 00:18:04,750 --> 00:18:06,417
 Absolutely nothing is changing over here.
+显而易见，这里什么都没变
 
 431
 00:18:06,486 --> 00:18:09,553
 Now, what's interesting is it is in fact seguing, and
+现在，有趣的是事实上它已经 segue 了，并且
 
 432
 00:18:09,621 --> 00:18:11,455
 it is replacing that.
+替换了 MVC
 
 433
 00:18:11,524 --> 00:18:14,291
 The only problem is, we didn't prepare that thing
+唯一的问题是，我们还没为对应的操作设置
 
 434
 00:18:14,360 --> 00:18:17,127
 to show the right emotion before it showed, so
+准备展示对应的心情，所以
 
 435
 00:18:17,196 --> 00:18:19,030
 it is just showing the neutral emotion.
+它仅仅只是展示了初始的心情
 
 436
 00:18:20,533 --> 00:18:22,432
 It's creating a new MVC, but it's just showing neutral,
+它创建了一个新的 MVC，但是仅仅只是展示了初始的心情
 
 437
 00:18:22,501 --> 00:18:25,303
 because it has not been prepared to be onscreen.
+因为它还没设置准备些什么来显示在屏幕上
 
 438
 00:18:25,371 --> 00:18:28,038
 We have to go back to the emotions view controller here,
+我们要回到这个 EmotionsViewController 里
 
 439
 00:18:28,107 --> 00:18:31,976
 and do this prepare for segue, and prepare that destination
+然后完成这个 prepare(for segue:) 函数，并且
 
 440
 00:18:32,045 --> 00:18:36,681
 detail view controller to do what we want it to do.
+让目标细节控制器来准备完成我们想要它做的事情
 
 441
 00:18:36,749 --> 00:18:38,549
 Let's get rid of some of the comments here,
+让我们忽略一些这里的注释
 
 442
 00:18:38,618 --> 00:18:40,217
 just to make our code a little cleaner.
+为了让我们的代码干净一些
 
 443
 00:18:40,286 --> 00:18:41,551
 And get rid of that, as well.
+把这个也忽略
 
 444
 00:18:41,620 --> 00:18:43,053
 Actually, we can even get rid of that.
+事实上，我们甚至可以忽略那个
 
 445
 00:18:43,122 --> 00:18:44,588
 Okay, so here's our prepare for
+好啦，这就是我们的 prepare(for segue:)
 
 446
 00:18:44,657 --> 00:18:46,690
 segue with this extra argument sender,
+并带一个额外的叫做 sender 的参数了
 
 447
 00:18:46,759 --> 00:18:49,494
 which I'll also talk about in a little bit.
+也就是我待会儿会讲的东西
 
 448
 00:18:49,562 --> 00:18:51,195
 So what do we do when we prepare for segue?
+那么我们准备 segue 时做些什么呢？
 
 449
 00:18:51,263 --> 00:18:54,164
 There's usually two really important piece of information
+通常在准备 segue 到一个 MVC 的时候
 
 450
 00:18:54,233 --> 00:18:56,533
 we need when we're preparing to segue to an MVC.
+有两个非常重要的信息
 
 451
 00:18:56,602 --> 00:19:00,170
 One is we need to know which segue, tha's the identifier.
+一个是我们要知道是哪一个 segue，也就是需要标识符
 
 452
 00:19:00,239 --> 00:19:02,739
 The other one we need to know is what is the new MVC
+另一个需要知道的是 segue 到的新的 MVC
 
 453
 00:19:02,808 --> 00:19:04,542
 that this system just created for
+也就是那个由这个系统刚创建的
 
 454
 00:19:04,610 --> 00:19:06,810
 us that we're supposed to prepare.
+我们需要让它做好准备的那个 MVC
 
 455
 00:19:06,879 --> 00:19:09,380
 Both of these things are found inside this
+这两个东西都能在这个参数里找到
 
 456
 00:19:09,448 --> 00:19:12,349
 argument right here, this segue, this UIStoryboardSegue,
+这个叫做 segue 的参数，这个属于 UIStoryboardSegue 类的
 
 457
 00:19:12,417 --> 00:19:13,484
 if we ALT click on it.
+如果我按住 alt 然后点击它的话
 
 458
 00:19:14,587 --> 00:19:15,319
 Can't get it.
+啊噢，没有东西
 
 459
 00:19:15,388 --> 00:19:16,654
 Sorry about that, here we go, on this guy.
+不好意思点错了，是这一个
 
 460
 00:19:16,722 --> 00:19:18,956
 We have the storyboard segue, and
+我们有一个 UIStoryboardSegue 的类，并且
 
 461
 00:19:19,024 --> 00:19:20,457
 if you'll look in the documentation for it,
+如果你在文档里查的话
 
 462
 00:19:20,526 --> 00:19:22,659
 you'll see that it doesn't have a lot in there.
+你能看到它内部其实没有多少东西
 
 463
 00:19:22,728 --> 00:19:26,163
 But one important thing is the destination view controller,
+但是一个重要的事是这个 var destination: UIViewController
 
 464
 00:19:26,232 --> 00:19:28,398
 and one is the identifier of the segue.
+另一个是这个 var identifier: String?
 
 465
 00:19:28,467 --> 00:19:29,300
 This is also the source,
+还有这一个 var source: UIViewController
 
 466
 00:19:29,368 --> 00:19:31,135
 which would be the emotions view controller.
+也就是那个 EmotionsViewController
 
 467
 00:19:32,738 --> 00:19:35,472
 That's really just got the information
+这些就是得到了那些
 
 468
 00:19:35,541 --> 00:19:38,075
 that we need to prepare this thing.
+我们需要用来 prepare 的东西
 
 469
 00:19:38,144 --> 00:19:41,212
 Let's go and first get the destination view controller.
+首先我们先得到那个目标控制器
 
 470
 00:19:41,280 --> 00:19:45,382
 I'm gonna say let destinationViewController
+let destinationViewController
 
 471
 00:19:45,451 --> 00:19:47,685
 equal the segue's destination.
+= segue.destination
 
 472
 00:19:50,890 --> 00:19:51,956
 So I've got that view controller.
+那么我得到了那个视图控制器
 
 473
 00:19:52,024 --> 00:19:54,625
 Now that is a type UI view controller, if I alt-click on
+那么它现在是一个 UIViewController 类的，如果我按住 alt 再点击
 
 474
 00:19:54,694 --> 00:19:57,061
 that, you'll see it's type UI view controller.
+你能看到它是 UIViewController 类的
 
 475
 00:19:57,129 --> 00:19:59,797
 That's because segue is this generic UI stroyboard thing,
+那是因为这个参数 segue 是一个普通的 UIStoryboardSegue 类
 
 476
 00:19:59,866 --> 00:20:02,199
 it doesn't know anything about face view controllers,
+它不知道任何关于 FaceViewController 的东西
 
 477
 00:20:02,268 --> 00:20:04,268
 EmotionViewController, anything like that.
+或者 EmotionsViewController，之类的
 
 478
 00:20:04,336 --> 00:20:06,670
 So, we're gonna have to actually use that casting
+所以我将使用 as
 
 479
 00:20:06,739 --> 00:20:08,305
 mechanism with as.
+来实现转换机制
 
 480
 00:20:08,374 --> 00:20:11,375
 Remember that as casting that we did with Any, in AnyObject?
+还记得用 as 对 Any 或者 AnyObject 进行类型转换吗？
 
 481
 00:20:11,444 --> 00:20:12,209
 We're gonna have to do it here,
+这里我们也要这么做
 
 482
 00:20:12,278 --> 00:20:15,045
 because this destinationViewController
+因为这个 destinationViewController
 
 483
 00:20:15,114 --> 00:20:17,214
 better darn well be a face view controller, or
+最好是一个 FaceViewController，否则
 
 484
 00:20:17,283 --> 00:20:19,383
 I don't know how to prepare it.
+我就不知道该怎么 prepare 它了
 
 485
 00:20:19,451 --> 00:20:21,018
 That's the only thing I know how to prepare,
+这是我唯一知道如何准备
 
 486
 00:20:21,086 --> 00:20:23,487
 this emotion for us, so it'd better be that.
+展示我们心情图的东西，所以它最好是那个
 
 487
 00:20:23,555 --> 00:20:30,760
 So I'm gonna say, if I can let a FaceViewController equal
+所以这里我会写，if let faceViewController =
 
 488
 00:20:30,829 --> 00:20:34,932
 the destinationViewController as, and
+destinationViewController as?
 
 489
 00:20:35,001 --> 00:20:39,870
 I'm gonna do it conditionally here, a FaceViewController.
+我这里会添加条件，FaceViewController
 
 490
 00:20:39,938 --> 00:20:42,272
 Then, I'm good to go.
+接下来，就可以开始了
 
 491
 00:20:42,341 --> 00:20:45,676
 So now remember, this as kinda conditionally checks to see if
+记住了，这个 as 是一个条件像是用来检查
 
 492
 00:20:45,744 --> 00:20:48,912
 it's possible for this to be a FaceViewController.
+这个是否是一个 FaceViewController 的
 
 493
 00:20:48,981 --> 00:20:52,015
 And if it's not, my preparer's gonna do nothing.
+并且如果不是的话，我的 prepare 就不会做任何事
 
 494
 00:20:52,084 --> 00:20:53,784
 And it's gonna let that destination view controller
+然后它就会让那个目标视图控制器
 
 495
 00:20:53,853 --> 00:20:54,484
 appear unprepared,
+展现出没有处理过的样子
 
 496
 00:20:54,553 --> 00:20:55,953
 because it doesn't know how to prepare it.
+因为我不知道如何准备它
 
 497
 00:20:56,022 --> 00:20:58,989
 Cuz we only know how to prepare, (at least so far in
+因为目前来说
 
 498
 00:20:59,058 --> 00:21:02,025
 our app), we only know how to prepare a FaceViewController.
+在这个 app 上，我们只知道如何准备一个 FaceViewController
 
 499
 00:21:02,094 --> 00:21:05,562
 Okay, in fact some would say don't use, as, with,
+好，事实上有些人会说这里不要使用 as 和
 
 500
 00:21:05,631 --> 00:21:06,596
 if let, here.
+if-let
 
 501
 00:21:06,665 --> 00:21:09,666
 Just use as exclamation point, and make your program crash if
+只要使用 as! 就可以，然后就会当你 segue
 
 502
 00:21:09,735 --> 00:21:12,336
 you try to segue to something you're not expecting.
+到一个你不想要的东西的时候造成程序崩溃
 
 503
 00:21:12,405 --> 00:21:15,172
 Cuz again, you'll find it when you're debugging
+因为再一次的，在上线程序之前的 debug 调试环节
 
 504
 00:21:15,241 --> 00:21:16,974
 before you ship your product.
+你就会发现有错误
 
 505
 00:21:17,043 --> 00:21:18,642
 So I can see the argument for that.
+我能理解这种观点
 
 506
 00:21:18,711 --> 00:21:22,313
 But we'll make it so we'll just ignore it, if we can't
+但是这里我们如果我们不能把目标 MVC
 
 507
 00:21:22,381 --> 00:21:25,816
 convert that destination to a face view controller.
+转换为一个 FaceViewController 的话就暂时忽略它
 
 508
 00:21:25,884 --> 00:21:29,353
 Alright, so now let's check the identifier.
+好的，现在我们来检查 identifier
 
 509
 00:21:29,422 --> 00:21:31,655
 One thing about the identifier is someone might have
+关于 identifier 的一点是有时候可能
 
 510
 00:21:31,724 --> 00:21:33,323
 forgotten to set it in the storyboard.
+会忘记在 storyboard 中设置它
 
 511
 00:21:33,392 --> 00:21:35,592
 So I'm gonna do an if let on it.
+所以我这里会用 if-let
 
 512
 00:21:35,661 --> 00:21:39,696
 if let identifier = segue.identifier.
+if let identifier = segue.identifier
 
 513
 00:21:39,765 --> 00:21:41,699
 Cuz this segue.identifier right here,
+因为这个这里的 segue.identifier
 
 514
 00:21:41,767 --> 00:21:43,967
 you can see is an optional string.
+你能看到它是一个可选字符串
 
 515
 00:21:44,036 --> 00:21:46,336
 So it might be not set, in the storyboard.
+所以它可能在 storyboard 中没有设置
 
 516
 00:21:46,405 --> 00:21:49,540
 So I'm checking to make sure that it is in fact set.
+所以我在检查以核对它是否被设置
 
 517
 00:21:49,609 --> 00:21:52,309
 And now I need the expression, the facial expression,
+现在我需要那个 Expression，那个 FacialExpression
 
 518
 00:21:52,378 --> 00:21:54,211
 that I'm gonna set in this space for,
+也就是我在这个括号里要设置的东西
 
 519
 00:21:54,280 --> 00:21:57,114
 this is where I'm gonna do the actual preparing.
+这就是我会做准备工作的地方
 
 520
 00:21:57,183 --> 00:22:00,617
 And I could do a little switch, or an if then, else,
+我可以用 switch 或 if-else 语句
 
 521
 00:22:00,686 --> 00:22:03,254
 if then, else here on all the different segues: sad,
+来对应不同的 segue: sad
 
 522
 00:22:03,322 --> 00:22:04,621
 happy, worried.
+Happy，Worried
 
 523
 00:22:04,690 --> 00:22:07,825
 But I'm imagining that " my app might have 20 or
+但是我觉得：“我的 app 可能有一天会有
 
 524
 00:22:07,893 --> 00:22:09,259
 30 emotions someday".
+20 或 30 个表情”
 
 525
 00:22:09,328 --> 00:22:11,328
 As such, I wanted to do something a little more
+这样的话，我想要让它有一些可扩展性
 
 526
 00:22:11,397 --> 00:22:14,498
 extensible, similar to what we did with the calculator brains
+跟我们在 CalculatorBrain 中的操作很像
 
 527
 00:22:14,566 --> 00:22:17,034
 operation, which is I'm going to create a private
+也就是我将创建一个私有的
 
 528
 00:22:17,103 --> 00:22:19,569
 little dictionary here called Emotional Faces.
+叫做 emotionalFaces 的字典
 
 529
 00:22:19,638 --> 00:22:23,139
 And it's going to a dictionary that has Strings as the keys,
+这将是一个以 String 为键，以
 
 530
 00:22:23,208 --> 00:22:27,177
 and Facial Expressions Facial expressions, FacialExpression.
+FacialExpression
 
 531
 00:22:27,246 --> 00:22:28,846
 Oops, sorry this was supposed to be colon
+不好意思这里应该是冒号
 
 532
 00:22:29,982 --> 00:22:32,750
 FacialExpression as the values.
+FacialExpression 为值的字典
 
 533
 00:22:34,887 --> 00:22:39,656
 I'm even gonna just put the values in right here.
+我将把值放在这里
 
 534
 00:22:39,725 --> 00:22:41,191
 So this is just a little dictionary.
+那么这就是一个小字典
 
 535
 00:22:41,260 --> 00:22:45,695
 This string is gonna be the identifier here
+这里的 String 就是 identifier
 
 536
 00:22:45,764 --> 00:22:50,133
 that comes back, the name of our segue.
+也就是 segue 的名字
 
 537
 00:22:50,202 --> 00:22:53,436
 And the FacialExpression is gonna be the facial expression
+然后这个 FacialExpression 就将是我想要
 
 538
 00:22:53,505 --> 00:22:55,306
 that I want to use there.
+使用的对应的面部表情
 
 539
 00:22:55,374 --> 00:22:56,507
 What's it complaining about here?
+这个报错是什么？
 
 540
 00:22:57,876 --> 00:22:59,577
 Cuz I didn't have any in there.
+噢是我还没放进东西
 
 541
 00:22:59,645 --> 00:23:00,678
 Yeah, cuz we have nothing in here.
+对的，这个报错就是因为字典里还没有东西
 
 542
 00:23:00,746 --> 00:23:02,145
 So let's put some things in here.
+那么让我们放些进去吧
 
 543
 00:23:02,214 --> 00:23:04,214
 Let's do sad.
+创建 sad
 
 544
 00:23:04,283 --> 00:23:06,083
 What's a good facial expression for sad?
+悲伤的面部表情什么才好？
 
 545
 00:23:06,151 --> 00:23:07,050
 Well let's create one,
+让我们来创建一个吧
 
 546
 00:23:07,119 --> 00:23:12,423
 a facial expression where the eyes are probably
+一个有着可能是闭上眼睛
 
 547
 00:23:12,492 --> 00:23:15,626
 closed eyes, and the mouth is in a frown.
+然后嘴巴撅起的面部表情
 
 548
 00:23:15,694 --> 00:23:18,628
 That sounds pretty sad all around.
+听起来真的很悲伤
 
 549
 00:23:18,697 --> 00:23:19,830
 And then for happy,
+接下来是开心
 
 550
 00:23:19,899 --> 00:23:23,000
 it'd probably be the facial expression with the eyes open
+应该是一个眼睛睁开
 
 551
 00:23:23,068 --> 00:23:27,504
 and we'll let the mouth in a big smile, of course.
+嘴上有着一个大的微笑的面部表情，当然了
 
 552
 00:23:27,573 --> 00:23:28,705
 And I think that worried,
+然后我觉得那个担心的话
 
 553
 00:23:28,774 --> 00:23:30,440
 I looked at a few facial expressions.
+我面部表情看得少
 
 554
 00:23:30,509 --> 00:23:34,177
 I thought, worried, the best thing that looks like that was
+我觉得吧，担心的话，最好的应该是
 
 555
 00:23:34,246 --> 00:23:40,984
 eyes open, and the mouth kind of in a, a little smirk.
+眼睛睁开，然后嘴巴的话撅起
 
 556
 00:23:41,053 --> 00:23:43,521
 That face, for some reason to me, looks a little worried.
+那个表情，某种意义上对我来说，看起来就是有点担心
 
 557
 00:23:45,091 --> 00:23:45,889
 Now I've got this table,
+现在我有了这个表
 
 558
 00:23:45,958 --> 00:23:48,825
 which I can add more things to over time.
+之后可以再添加东西
 
 559
 00:23:48,894 --> 00:23:50,827
 And all I have to do is make a new segue for it, and
+我要做的就是创建一个新的 segue 然后
 
 560
 00:23:50,896 --> 00:23:54,298
 have the identifier match the string here.
+让它的 identifier 匹配这里的字符串
 
 561
 00:23:54,366 --> 00:23:57,734
 Now, I might have an identifier that's not in here,
+现在，我可能有一个不在这个表内的 identifier
 
 562
 00:23:57,803 --> 00:24:02,139
 so I'm gonna say if I can let the expression I want equal
+所以我就会写 if let expression =
 
 563
 00:24:02,208 --> 00:24:06,143
 My emotionalFace is here, sub the identifier.
+emotionalFaces[identifier]
 
 564
 00:24:06,212 --> 00:24:07,511
 So I'm looking it up there.
+然后它就会去那个字典里查找
 
 565
 00:24:07,580 --> 00:24:09,246
 But it might come back nil cuz we know that if we
+但是它也有可能返回 nil 因为我们知道的
 
 566
 00:24:09,315 --> 00:24:11,181
 look something up in dictionary it's not there,
+如果我们在字典里找一些不存在的东西的话
 
 567
 00:24:11,249 --> 00:24:12,082
 it will come back nil.
+它就会返回 nil
 
 568
 00:24:12,151 --> 00:24:13,150
 So that time we're doing if let.
+所以那样的话我们就需要使用 if-let
 
 569
 00:24:13,218 --> 00:24:15,952
 By the way, look at this I have, if let this,
+顺带一提，看看这些 if-let
 
 570
 00:24:16,021 --> 00:24:17,588
 if let that, if let this.
+非常多
 
 571
 00:24:17,656 --> 00:24:19,623
 And you can imagine to having four or five of these, and
+你可以想象假如有四五个的话，并且
 
 572
 00:24:19,691 --> 00:24:20,924
 you start getting really deep, and
+你开始想要深入代码结构的话
 
 573
 00:24:20,993 --> 00:24:22,560
 the code is really kinda messy.
+这些代码看起来就会很乱
 
 574
 00:24:22,628 --> 00:24:24,028
 You can actually just do these with commas.
+其实你可以只用逗号来完成这些
 
 575
 00:24:24,096 --> 00:24:28,398
 You can just put right here, this one, and then a comma,
+你可以仅仅只是把这一个放在这里，然后接下来是一个逗号
 
 576
 00:24:28,467 --> 00:24:31,768
 and then this one, and then a comma.
+然后再这个，接一个逗号
 
 577
 00:24:31,837 --> 00:24:33,737
 So you can put as many of these things as you want.
+这样你就可以想要几个放几个
 
 578
 00:24:33,805 --> 00:24:36,907
 And not just lets, you know, if let comma, let comma, but
+不仅仅是 let，你知道的，if-let 加逗号， let 加逗号
 
 579
 00:24:36,976 --> 00:24:39,276
 also other expressions too, other things.
+其他的表达式也可以
 
 580
 00:24:39,344 --> 00:24:43,013
 Like, it's almost like an ampersand kind of expression.
+相当于是 && 表达式
 
 581
 00:24:43,082 --> 00:24:43,647
 And then makes it so
+然后这样的话
 
 582
 00:24:43,716 --> 00:24:45,716
 that I don't need all these curly braces.
+我就不需要这些大括号了
 
 583
 00:24:45,785 --> 00:24:49,520
 I can just use this one top level curly brace.
+我只要用到这一个最顶层的大括号就行
 
 584
 00:24:50,589 --> 00:24:51,622
 Now I have the expression.
+现在我有这个表达式了
 
 585
-00:24:51,691 --> 00:24:53,023
+00:24:51,691 --> 00:24:52,823
 Here is where I'm gonna do the prepare.
+然后就要在这里完成准备
 
 586
 00:24:53,091 --> 00:24:57,494
 I'm gonna say FaceViewController,
+我将输入 faceViewController
 
 587
-00:24:57,563 --> 00:25:02,232
+00:24:57,563 --> 00:24:59,532
 prepare yourself by making your model,
+准备好它自己，也就是
 
 588
-00:25:02,301 --> 00:25:06,703
+00:24:59,999 --> 00:25:01,703
 the expression equal this expression
+让它的模型 faceViewController.expression = expression
 
 589
-00:25:06,772 --> 00:25:10,874
+00:25:01,772 --> 00:25:02,874
 that I just looked up in that table.
+也就是在表格里找到的那个 expression
 
 590
 00:25:10,943 --> 00:25:12,576
 So that's the actual prepare.
+所以这就是真正的准备了
 
 591
 00:25:12,645 --> 00:25:15,245
 That is where I am preparing this new MVC that it
+这就是我准备这个刚创建的 MVC 的地方了
 
 592
 00:25:15,313 --> 00:25:17,781
 created, this brand new FaceViewController I just
+这个我刚刚用 segue 创建的
 
 593
 00:25:17,850 --> 00:25:18,882
 created with the segue.
+崭新的 FaceViewController
 
 594
 00:25:18,951 --> 00:25:20,317
 I'm preparing it to do what it does.
+我把它准备好后来完成它的任务
 
 595
 00:25:20,386 --> 00:25:21,251
 So let's see if that works.
+那么我们来看看是否生效吧
 
 596
 00:25:21,320 --> 00:25:22,953
 The face should be prepared now.
+那个脸表情应该已经被准备好了
 
 597
 00:25:23,021 --> 00:25:26,357
 When it gets created, we should see a face.
+当新的 MVC 创建时，我们能看到一个脸
 
 598
 00:25:26,425 --> 00:25:27,191
 The right face.
+和脸对应的表情
 
 599
 00:25:30,295 --> 00:25:30,995
 Okay, so here it is.
+好，这就是了
 
 600
 00:25:31,063 --> 00:25:32,162
 Let's try.
+我们来试试看
 
 601
 00:25:32,230 --> 00:25:34,030
 Woo-hoo, happy.
+哇哦，开心
 
 602
 00:25:34,099 --> 00:25:37,967
 Well, it looks a little worried, and sad.
+它看起来有点担心，然后是伤心
 
 603
 00:25:38,036 --> 00:25:41,605
 Now, let's see how happy we are, though, on an iPhone.
+现在我们来看看在一台 iPhone 上有多开心
 
 604
 00:25:43,175 --> 00:25:45,876
 Because we know that on an iPhone, it's kinda small.
+因为我们知道在一台 iPhone 上的话，它会有一点小
 
 605
 00:25:45,945 --> 00:25:48,445
 Split View, not really enough room for a Split View.
+不会有足够的空间给一个分屏控制器的
 
 606
 00:25:48,514 --> 00:25:50,781
 So what's gonna happen with this storyboard on an iPhone?
+那么这个 storyboard 在 iPhone 上会发生什么呢？
 
 607
 00:25:50,849 --> 00:25:51,815
 Let's find out.
+我们来看看
 
 608
 00:25:55,587 --> 00:25:57,854
 Okay, well, here we go, Sad, Happy, Worried.
+开始吧，Sad，Happy，Worried 三个按钮都在
 
 609
 00:25:57,923 --> 00:25:59,890
 Excellent, let's see Happy.
+完美，那么我们点击 Happy
 
 610
 00:25:59,959 --> 00:26:01,892
 All right, we're happy.
+不错，我们有 Happy 的脸了
 
 611
 00:26:01,960 --> 00:26:03,460
 Well, now we're not so
+但是现在我们有点不开心了
 
 612
 00:26:03,529 --> 00:26:06,496
 happy because we can't get out of here.
+因为我们离不开这个界面
 
 613
 00:26:06,565 --> 00:26:08,131
 We got this happy face but I can't get it back.
+我们虽然得到了这个 Happy 的脸但我们离不开了
 
 614
 00:26:08,200 --> 00:26:11,968
 Let's try going, well, even in landscape, no Split View, so
+我们试试，好吧，即使是横屏模式，也没有分屏
 
 615
 00:26:12,037 --> 00:26:14,738
 now there's no way to get back to pick any other expression.
+那么现在没有任何方法能回到选择脸部表情的界面了
 
 616
 00:26:14,807 --> 00:26:16,706
 So in the iPhone, you get to pick one expression and
+所以在 iPhone 里，你只能选择一种表情然后
 
 617
 00:26:16,775 --> 00:26:18,308
 you're done, and that's the end of the app.
+就结束了，也就是这个 app 的终点了
 
 618
 00:26:18,377 --> 00:26:20,210
 You have to quit the app now because, or
+你现在必须退出这个 app
 
 619
 00:26:20,279 --> 00:26:21,544
 turn your phone off, I guess.
+或者关掉你的手机，我猜
 
 620
 00:26:21,613 --> 00:26:22,446
 There's absolutely nothing you can do.
+因为很明显你已经没有什么能做的了
 
 621
 00:26:22,514 --> 00:26:23,647
 You're stuck. I guess you can make
+你卡在了那里，我猜你能让
 
 622
 00:26:23,715 --> 00:26:24,381
 the eyes blink.
+眼睛眨一眨
 
 623
-00:26:26,518 --> 00:26:27,851
-So this is not a very good app on the iPhone, obviously.
+00:26:26,852 --> 00:26:27,185
+That's about it.
+大概就这样了
 
 624
-00:26:27,852 --> 00:26:29,185
-That's about it.
+00:26:27,518 --> 00:26:29,351
+So this is not a very good app on the iPhone, obviously.
+所以很显然这不是一个 iPhone 上的好 app
 
 625
-00:26:29,255 --> 00:26:30,620
+00:26:29,855 --> 00:26:30,620
 So what are we gonna do?
+那么我们要怎么做呢？
 
 626
 00:26:30,689 --> 00:26:32,755
 Since we have no Split View on the iPhone,
+既然我们在 iPhone 上没有分屏控制器
 
 627
 00:26:32,824 --> 00:26:35,892
 (you actually can have a Split View on the iPhone by the way,
+顺带一提，事实上你可以在 iPhone 上加一个分屏控制器
 
 628
 00:26:35,961 --> 00:26:38,628
 but you have to do a special stuff to kinda enable it.
+但是你需要做一些特殊的事情来启用它
 
 629
 00:26:38,697 --> 00:26:41,064
 But by default the Split View doesn't work.
+但是默认情况下分屏控制器是没有作用的
 
 630
 00:26:41,133 --> 00:26:43,400
 Well, of course, Apple understands that.
+当然了，Apple 公司明白这一点
 
 631
 00:26:43,468 --> 00:26:46,470
 That Split View is not very good for iPhones.
+也就是分屏控制器对 iPhone 来说不是很好
 
 632
 00:26:46,538 --> 00:26:48,205
 iPhone Plus is by the way, it does work, and
+iPhone Plus 的话，是可以有效果的
 
 633
 00:26:48,274 --> 00:26:49,739
 I'm gonna show you that in a moment.
+我之后演示给你们看
 
 634
 00:26:49,808 --> 00:26:51,207
 They know it's not that good.
+Apple 公司知道效果不好
 
 635
 00:26:51,276 --> 00:26:53,943
 So if you go back to your storyboard here.
+所以如果你回到这个 storyboard 的话
 
 636
 00:26:54,012 --> 00:26:55,211
 We're gonna go back to our storyboard,
+我们回到我们的 storyboard
 
 637
 00:26:55,280 --> 00:26:58,415
 and we're gonna look at this.
+然后我们看看这个
 
 638
 00:26:58,484 --> 00:27:00,750
 And we're gonna say, hmm, well, on iPhone,
+然后会想，好吧，在 iPhone 上
 
 639
 00:27:00,819 --> 00:27:04,688
 I'd really like this UI to be navigation controller instead,
+我会想要让这个 UI 界面变成导航控制器好了
 
 640
 00:27:04,757 --> 00:27:05,722
 not a Split View.
+不用分屏控制器
 
 641
 00:27:05,790 --> 00:27:08,558
 Navigation Controller where when I click on this emotion
+用导航控制器也就是当我点击选择的表情的话
 
 642
 00:27:08,627 --> 00:27:10,593
 it chose the face by sliding it on top, but
+控制器就会把对应的脸滑动到顶层，但是
 
 643
 00:27:10,662 --> 00:27:11,895
 I'll have a back button so
+我能得到一个返回按钮那么
 
 644
 00:27:11,964 --> 00:27:13,430
 I can go back, pick a different one.
+我就可以返回了，然后再选择一个不同的表情
 
 645
 00:27:13,499 --> 00:27:15,031
 It'll slide it on top and I can hit back,
+它就会再把对应的表情滑动到顶层并且我还可以点击返回
 
 646
 00:27:15,100 --> 00:27:17,233
 you see what I mean, so I can go back and forth.
+你们懂我意思了吗，这样的话我就可以返回也可以继续了
 
 647
 00:27:17,302 --> 00:27:18,768
 And you can do that incredibly simply.
+并且实现的方法非常简单
 
 648
 00:27:18,837 --> 00:27:20,937
 You just pick this view control right here, and
+你只要选择这个视图控制器，然后
 
 649
 00:27:21,006 --> 00:27:22,139
 go to editor.
+点击 Editor
 
 650
 00:27:22,208 --> 00:27:24,241
 Embed in Navigation Controller.
+选择 Embed In 再选择 Navigation Controller
 
 651
 00:27:24,310 --> 00:27:26,743
 And it's gonna insert a Navigation Controller
+然后它就会插入一个导航控制器
 
 652
 00:27:26,812 --> 00:27:29,012
 in the middle there, see that,
+在它们中间，看
 
 653
 00:27:29,081 --> 00:27:31,281
 how I put that Navigation Controller in there.
+我是如何在那里加入一个导航控制器的
 
 654
 00:27:31,350 --> 00:27:34,351
 And what's really cool is with the Navigation Controller you
+导航控制器真正酷的是
 
 655
 00:27:34,419 --> 00:27:37,087
 actually get a little title bar, and you can go straight
+你能得到一个小的标题栏，然后在
 
 656
 00:27:37,156 --> 00:27:39,089
 here in interface builder if you want and
+这里的 Interface Builder 中，如果你想要的话
 
 657
 00:27:39,158 --> 00:27:41,191
 put a title in there like maybe emotions.
+你可以直接在上面放一个例如叫做 Emotions 的标题
 
 658
 00:27:41,260 --> 00:27:43,027
 We could call it, it's the name of our app or
+我们可以这么取名，可以叫做我们 app 的名字或者
 
 659
 00:27:43,095 --> 00:27:44,928
-that's what these are in this NVC rather, so
+that's what these are in this MVC rather, so
+就这个 MVC 的内容
 
 660
 00:27:44,996 --> 00:27:47,497
 I'll put a little title in there, and that's really cool.
+那么我会在那里放一个小标题，这会很酷
 
 661
 00:27:47,566 --> 00:27:54,737
 And so now when we run, I get my face coming up in neutral
+现在当我运行的时候，就会得到面无表情的脸
 
 662
 00:27:54,806 --> 00:27:58,975
 mode, and if I go back, now I can pick something like happy.
+并且如果我返回的话，我可以选择例如 Happy 这样的选项
 
 663
 00:27:59,044 --> 00:28:00,844
 Now one thing you might be interested in there is like,
+现在那里可能有一个东西让你感兴趣
 
 664
 00:28:00,913 --> 00:28:02,913
 whoa, it came up in neutral mode.
+哇哦，它是以面无表情出现的
 
 665
 00:28:02,982 --> 00:28:06,483
 Instead of coming up on this page, you kinda would expected
+而不是以这个页面出现，你可能期待
 
 666
 00:28:06,552 --> 00:28:08,518
 it to come up on this page., wouldn't you?
+是用这个页面来出现，是吗？
 
 667
 00:28:08,587 --> 00:28:10,019
 And we actually made it extra credit for
+事实上我们有一些额外奖励来让你们
 
 668
 00:28:10,088 --> 00:28:11,188
 you to go to figure out how to do it.
+自己去探究如何先展示这个页面
 
 669
 00:28:12,357 --> 00:28:13,156
 And what you need to
+然后你要做的是一些
 
 670
 00:28:13,225 --> 00:28:15,258
 do is something with Split View Controller.
+跟分屏控制器有关的东西
 
 671
 00:28:15,327 --> 00:28:17,928
 It's delegate, which I'm not gonna talk about the delegates
+其实是周三我会讲的代理
 
 672
 00:28:17,997 --> 00:28:20,297
 until Wednesday, that's why we made it extra credit.
+星期三之前我不会讲，所以作为加分题
 
 673
 00:28:20,366 --> 00:28:22,299
 But you're gonna use Split View's delegate and
+但是你将使用分屏视图的代理
 
 674
 00:28:22,368 --> 00:28:24,201
 read the documentation, and you can make it so
+阅读文档，这样你就能实现代理
 
 675
 00:28:24,269 --> 00:28:25,669
 that it'll come up on either page.
+让 app 能以任意的页面出现
 
 676
 00:28:25,738 --> 00:28:28,872
 Either on this detailed page or on this master page.
+无论是这个细节页面或者是这个主页面
 
 677
 00:28:28,940 --> 00:28:31,909
 But you can see that this is working great, in fact we've
+但是你能看到它还是有效果的，事实上
 
 678
 00:28:31,977 --> 00:28:34,745
 even got this nice little title bar up here, and we can
+我们甚至得到了这个不错的小标题栏在上面，然后我们可以
 
 679
 00:28:34,813 --> 00:28:38,315
 switch back and forth between any emotions that we want.
+在我们想要的任意表情之间切换
 
 680
 00:28:38,383 --> 00:28:41,184
 And let's go see what happened when we did that to iPad.
+然后我们来看看在 iPad 上的话会发生什么吧
 
 681
 00:28:41,252 --> 00:28:43,187
 Did we break the iPad?
+iPad 上会出错吗？
 
 682
 00:28:43,255 --> 00:28:52,462
 Let's hope we didn't break the iPad by doing that.
+希望不会出错
 
 683
 00:28:52,531 --> 00:28:53,497
 Here we go.
+来吧
 
 684
 00:28:53,566 --> 00:28:54,431
 It comes up.
+它出现了
 
 685
 00:28:54,500 --> 00:28:55,532
 There's the face.
+那就是脸表情
 
 686
 00:28:55,601 --> 00:28:58,568
 By the way, you can do Split Views in Portrait.
+顺带一提，竖屏模式下也可以有分屏效果
 
 687
 00:28:58,637 --> 00:28:59,602
 You just slide out.
+只要滑出来
 
 688
 00:28:59,671 --> 00:29:02,539
 You see, it slides out like a little shelf like that.
+看到没，它就像个小柜子一样滑出来
 
 689
 00:29:02,607 --> 00:29:05,875
 Or you can rotate and see them side by side.
+或者你也可以旋转后看他们紧贴在一起
 
 690
 00:29:05,944 --> 00:29:08,044
 And it's still working.
+并且仍然有效果
 
 691
 00:29:08,113 --> 00:29:10,747
 So the iPad is working just fine.
+所以在 iPad 上工作很顺畅
 
 692
 00:29:10,816 --> 00:29:11,715
 Well, unfortunately,
+啊倒霉
 
 693
 00:29:11,783 --> 00:29:14,551
 there's no zoom level that's a better zoom level.
+这个尺寸不好，这个尺寸好一些了
 
 694
 00:29:15,754 --> 00:29:17,887
 But the iPad has a title here.
+但是 iPad 的这里有一个标题
 
 695
 00:29:17,956 --> 00:29:19,689
 But it'd be really cool if there was
+如果这里也有一个标题的话
 
 696
 00:29:19,758 --> 00:29:20,958
 a title over here, too.
+就会很棒
 
 697
 00:29:21,026 --> 00:29:22,359
 Like maybe this would say, sad and
+例如这里会显示 Sad 然后
 
 698
 00:29:22,427 --> 00:29:24,194
 if I hit happy it would say, happy over here.
+如果我点击 Happy 的话就会显示 Happy 在这里
 
 699
 00:29:24,262 --> 00:29:25,228
 Wouldn't that be cool?
+不是很酷吗？
 
 700
 00:29:25,297 --> 00:29:27,497
 To have a title on both sides of that, that's
+为了在两边都有标题
 
 701
 00:29:27,566 --> 00:29:29,966
 often in a Split View that we want, because you want kind of
+通常在分屏情况下我们都想要这样，因为
 
 702
 00:29:30,035 --> 00:29:32,903
 the balance between the two to have tittle on both sides.
+两边都有标题均衡一些
 
 703
 00:29:32,971 --> 00:29:37,374
 So no problem, let's just go back to our storyboard here,
+那么没问题，让我们回到我们的 storyboard
 
 704
 00:29:37,443 --> 00:29:40,043
 and select this View Controller and
+然后选择这个视图控制器并且
 
 705
 00:29:40,112 --> 00:29:43,446
 embed it in a Navigation Controller.
+把它嵌入一个导航控制器
 
 706
 00:29:43,515 --> 00:29:46,983
 And in fact, if we go here and look at an iPad.
+事实上，如果我们点击这里然后选择 iPad
 
 707
 00:29:47,052 --> 00:29:49,953
 What it's gonna look like on iPad, especially in landscape?
+在 iPad 上看起来会怎么样，尤其是横屏模式？
 
 708
 00:29:50,021 --> 00:29:50,754
 We'll see that,
+我们能看到
 
 709
 00:29:50,823 --> 00:29:54,090
 ooh, this is looking what like exactly what we want.
+噢，看起来跟我们想要的一模一样
 
 710
 00:29:54,159 --> 00:29:55,525
-when it's in detail, its got a title bar, a title bar here,
+Look. See,
+看
 
 711
-00:29:55,526 --> 00:29:56,892
-Look. See,
+00:29:55,526 --> 00:29:57,092
+when it's in detail, its got a title bar, a title bar here,
+在细节视图里，它有一个标题栏，这里
 
 712
-00:29:56,961 --> 00:29:58,061
-title bars everywhere.
+00:29:57,261 --> 00:29:58,061
+title bars there.
+那里也有
 
 713
 00:29:58,130 --> 00:29:59,596
 It's fantastic, this is gonna be great.
+很完美，肯定会成功
 
 714
 00:29:59,665 --> 00:30:05,602
 Let's do it.
+我们试试
 
 715
 00:30:05,671 --> 00:30:08,338
 All right, look at that, title bar on the top.
+看那里，顶部有标题栏
 
 716
 00:30:08,407 --> 00:30:13,777
 And, uh-oh, we broke it.
+然后，啊哦，app 失效了
 
 717
 00:30:14,813 --> 00:30:15,545
 What happened there?
+那里发生了什么？
 
 718
 00:30:15,613 --> 00:30:17,447
 Why did we break that?
+我们为什么让它出问题了
 
 719
 00:30:17,516 --> 00:30:19,816
 Well, this has to do with the preparation piece.
+这些跟准备那部分有关
 
 720
 00:30:19,884 --> 00:30:21,951
 And I talked about this in the lecture last time.
+并且我上一次课中讲到过
 
 721
 00:30:22,020 --> 00:30:23,553
 Because what prepare is doing is,
+因为我们的准备工作做的是
 
 722
 00:30:23,622 --> 00:30:27,290
 it's creating a new MVC here, and then we're preparing it.
+它在这里创建了一个新的 MVC，然后再准备它
 
 723
 00:30:27,359 --> 00:30:30,494
 The problem is that now when it creates a new MVC here,
+现在的问题是当它创建一个新的 MVC 的时候
 
 724
 00:30:30,562 --> 00:30:31,494
 what is the MVC?
+那个 MVC 是什么类型的？
 
 725
 00:30:31,563 --> 00:30:32,695
 What kind of MVC is it?
+什么种类的？
 
 726
 00:30:32,764 --> 00:30:34,364
 Anyone want to hazard a guess?
+有没有人想试着猜一猜？
 
 727
 00:30:34,433 --> 00:30:35,732
 Cuz it's not a face view controller
+因为它不是一个 FaceViewController
 
 728
 00:30:35,801 --> 00:30:36,733
 anymore, what is it?
+有人想回答吗？它是什么？
 
 729
 00:30:38,170 --> 00:30:40,837
 Yeah, it's a UI navigation controller.
+对的，它是一个 UINavigationController
 
 730
 00:30:40,905 --> 00:30:42,305
 That's the new MVC we're creating,
+这就是我们正在创建的新的 MVC
 
 731
 00:30:42,374 --> 00:30:43,806
 it has a faceView in it, but
+它里面有一个 FaceViewController 但是
 
 732
 00:30:43,875 --> 00:30:45,942
 it's still a UI navigation controller.
+它本身仍然是一个 UINavigationController
 
 733
 00:30:46,010 --> 00:30:48,578
 So our code that we have back here.
+所以回到这里我们的这些代码
 
 734
 00:30:48,647 --> 00:30:49,980
 That's doing this prepare.
+这个 prepare 方法
 
 735
 00:30:50,048 --> 00:30:52,916
 It says, if I can let the faceView
+这里写着，如果能把 faceViewController 赋值为
 
 736
 00:30:52,985 --> 00:30:55,552
 equal the destination as a FaceViewController.
+转换成 FaceViewController 类型的 destinationViewController
 
 737
 00:30:55,621 --> 00:30:57,354
 Well, I can't do that because it's not.
+所以，这个不会执行，因为它不是
 
 738
 00:30:57,423 --> 00:30:59,656
 It's a UI navigation controller instead.
+它是一个 UINavigationController
 
 739
 00:30:59,725 --> 00:31:01,624
 And I'll show you that in debugging here.
+我调试给你们看
 
 740
 00:31:01,693 --> 00:31:04,528
 Let's go ahead and set a break point right here, and
+让我们在这里设置一个断点，然后
 
 741
 00:31:04,596 --> 00:31:07,431
 go back over here and pick one, like happy.
+回到这里并选择一个，例如 Happy
 
 742
 00:31:07,499 --> 00:31:08,498
 Here it breaks.
+然后这里程序就暂停了
 
 743
 00:31:08,567 --> 00:31:10,833
 And if we look at this DestinationViewController,
+如果我们看这个 destinationViewController 的话
 
 744
 00:31:10,902 --> 00:31:13,270
 those of you who came to the debugging Friday section.
+那些周五来调试课的同学
 
 745
 00:31:13,339 --> 00:31:15,272
 We didn't really go over this cool feature, but
+我们没讲到这个很棒的特点，但是
 
 746
 00:31:15,340 --> 00:31:16,706
 if you just mouse over a variable.
+如果你把鼠标放到这个变量上的话
 
 747
 00:31:16,775 --> 00:31:17,540
 You see how I just,
+你看到我如何做的吗
 
 748
 00:31:17,609 --> 00:31:20,043
 I'm holding my mouse over DestinationViewController?
+我把鼠标放在 destinationViewController 变量上，看到吗？
 
 749
 00:31:20,112 --> 00:31:21,378
 You see it's showing that there?
+你看到它展示的东西了吗？
 
 750
 00:31:21,447 --> 00:31:23,479
 There's two really cool buttons in there.
+那里有两个很棒的按钮
 
 751
 00:31:23,548 --> 00:31:25,382
-You see this one looks like an i?
+You see this one looks like an eye?
+你们看到这个像是眼睛的按钮了吗？
 
 752
 00:31:25,451 --> 00:31:28,385
 And this one looks like the letter i for info.
+还有这个像是获得更多信息时候用的 i 的按钮
 
 753
 00:31:28,453 --> 00:31:31,287
-If you click the one that looks like a i, it'll actually
+If you click the one that looks like a eye, it'll actually
+如果你点击这个像是眼睛的按钮的话，事实上
 
 754
 00:31:31,356 --> 00:31:34,191
 show you that View Controller right there in the debugger.
+它会在调试器中展现给你那个 destinationViewController
 
 755
 00:31:35,260 --> 00:31:36,893
 Which is kinda cool.
+很酷
 
 756
 00:31:36,962 --> 00:31:39,062
 And if you go over here and click the other little i,
+如果你点击另一个小 i 按钮的话
 
 757
 00:31:39,131 --> 00:31:42,265
 it'll show you the class that it is.
+它就会展示它是什么类
 
 758
 00:31:42,334 --> 00:31:45,434
 In this case, it's a UI navigation controller.
+在现在这种情况下，它是一个 UINavigationController
 
 759
 00:31:45,503 --> 00:31:47,103
 And this works for all kinds of types,
+这种方法适用于所有类型
 
 760
 00:31:47,172 --> 00:31:48,871
 colors, even a map location.
+颜色，甚至是表的位置
 
 761
 00:31:48,940 --> 00:31:51,140
 It'll show you a map with the location on there.
+它会展示带地址的表
 
 762
 00:31:51,209 --> 00:31:53,910
 So this little mouseover debugging thing is
+所以这个小小的鼠标移动调试
 
 763
-00:31:53,978 --> 00:31:55,094
-But anyway, we see that DestinationViewController
+00:31:53,978 --> 00:31:54,911
+really cool.
+很酷
 
 764
-00:31:55,095 --> 00:31:56,211
-really cool.
+00:31:55,178 --> 00:31:56,094
+But anyway, we see that DestinationViewController
+但是无论如何，我们看到那个 destinationViewController
 
 765
 00:31:56,281 --> 00:31:58,114
 right there is a UI navigation controller.
+是一个 UINavigationController
 
 766
 00:31:58,183 --> 00:31:59,349
 We know that's no good.
+我们知道这不好
 
 767
 00:31:59,417 --> 00:32:00,950
 So what are we gonna do about this?
+那么这里我们该怎么办呢？
 
 768
 00:32:01,019 --> 00:32:03,352
 Well, I'm gonna check for this case, okay?
+我要为这种情况检查一下，对吗？
 
 769
 00:32:03,421 --> 00:32:07,390
 I'm gonna say, if I can let navigationController equal
+我这里写 if let navigationController = destinationViewController
 
 770
 00:32:07,459 --> 00:32:11,995
 the destinationViewController as a UINavigationController,
+as? UINavigationController
 
 771
 00:32:12,063 --> 00:32:13,163
 in other words,
+也就是说
 
 772
 00:32:13,231 --> 00:32:17,200
 if that destination is a UI Navigation Controller, then
+如果目标 MVC 是一个 UINavigationController 的话，那么
 
 773
 00:32:17,269 --> 00:32:21,137
 I'm gonna grab the visible ViewController out of it and
+我将把它的可见的视图控制器抓取出来然后
 
 774
 00:32:21,206 --> 00:32:24,607
 use that as the FaceViewController hopefully.
+把它作为 FaceViewController
 
 775
 00:32:24,676 --> 00:32:27,911
 So, I'm gonna say in this case I want
+那么如果是这一种 if 的情况的话
 
 776
 00:32:27,980 --> 00:32:31,347
 the destinationViewController, which is this thing up here,
+我想要这个 destinationViewController，也就是这里的这个常量
 
 777
 00:32:31,416 --> 00:32:33,149
 which now it needs to be a var and so
+现在需要它成为一个变量因为
 
 778
 00:32:33,218 --> 00:32:34,951
 I'm gonna change its value here.
+在这里我要改变它的值
 
 779
 00:32:35,020 --> 00:32:37,053
 I'm gonna let that equal,
+然后 destinationViewController 赋值为
 
 780
 00:32:37,122 --> 00:32:41,591
 the navigationController's visibleViewController.
+navigationController 的可见视图控制器
 
 781
 00:32:41,660 --> 00:32:43,359
 Okay, now this is great,
+好的，现在这样就可以了
 
 782
 00:32:43,428 --> 00:32:46,062
 visibleViewController is a really nice method and
+.visibleViewController 是一个很好的方法（属性）
 
 783
 00:32:46,131 --> 00:32:48,631
 navigation control, it shows you whichever
+和导航控制，它能展示给你
 
 784
 00:32:48,700 --> 00:32:51,234
 card stack is currently visible, exactly what I want.
+究竟哪个视图是可见的，也就是我需要的那个
 
 785
 00:32:51,303 --> 00:32:53,703
 The only problem with it, however, is it returns
+现在唯一的问题是它会返回一个
 
 786
 00:32:53,772 --> 00:32:56,439
 an optional, because nothing might be visible in
+可选值，因为在导航控制器中
 
 787
 00:32:56,507 --> 00:32:58,074
 the navigationController right now.
+当前可能没有东西是可见的
 
 788
 00:32:58,143 --> 00:32:59,876
 Okay, you might have never put anything
+也就是说可能没有放任何东西
 
 789
 00:32:59,945 --> 00:33:01,645
 in the navigationController.
+在导航控制器里
 
 790
 00:33:01,713 --> 00:33:04,547
 So since that is an optional, I'm gonna have to give it
+那么既然它是一个可选值，我将必须给它
 
 791
 00:33:04,616 --> 00:33:08,551
 some default value, and the default value,
+一个默认值
 
 792
 00:33:08,620 --> 00:33:11,655
 I'm just gonna say, just use the destinationViewController
+就直接使用 destinationViewController 吧
 
 793
 00:33:11,723 --> 00:33:14,056
 as is if I can't get the visible ViewController or
+用作如果我得不到可见的视图控制器或者
 
 794
 00:33:14,125 --> 00:33:14,925
 the navigationController.
+导航控制器的时候的默认值
 
 795
 00:33:14,993 --> 00:33:18,862
 So it's kinda a default to use what it already was.
+所以默认情况下就是它自身
 
 796
 00:33:18,931 --> 00:33:20,663
 Basically, don't change it.
+不会改变它自己
 
 797
 00:33:20,732 --> 00:33:24,234
 So this little if is nice, because now my code works if
+所以这一个 if 语句很有用，因为现在我的代码
 
 798
 00:33:24,302 --> 00:33:27,170
 it's in a navigationController or even if it's not.
+在处于导航控制器中或者不是都能正常工作
 
 799
 00:33:27,239 --> 00:33:29,438
 Because if it's not in a navigationController,
+因为如果它不在导航控制器中的话
 
 800
 00:33:29,507 --> 00:33:30,574
 this is gonna do nothing.
+这个 if 语句就什么都不会做
 
 801
 00:33:30,642 --> 00:33:31,540
 That's going to fail.
+这个 if 判断会失败
 
 802
 00:33:31,609 --> 00:33:33,476
 Alright, this as is not going to work.
+这个 as 就不会生效
 
 803
 00:33:33,545 --> 00:33:35,078
 And we'll go straight down to checking
+然后代码就会跳过然后执行下面的 if
 
 804
 00:33:35,147 --> 00:33:36,079
 if it's a FaceViewControllor.
+来判断它是不是一个 FaceViewController
 
 805
 00:33:36,147 --> 00:33:40,817
 So if I later came along back to my storyboard here and
+那么如果回到 storyboard 并且
 
 806
-00:33:40,885 --> 00:33:42,385
-eh, you know what, I don't really want the title on here.
-
-807
-00:33:42,386 --> 00:33:43,886
+00:33:40,886 --> 00:33:41,986
 I decided,
+决定
+
+806
+00:33:42,385 --> 00:33:43,885
+eh, you know what, I don't really want the title on here.
+事实上我不想要那个标题栏了
 
 808
 00:33:43,956 --> 00:33:46,055
 And I took this navigationController out
+然后我拿走了这个导航控制器
 
 809
 00:33:46,124 --> 00:33:48,891
 of the picture, my code would still work, cuz my code works
+我的代码也可以工作，因为我的代码
 
 810
 00:33:48,960 --> 00:33:51,093
 whether I'm going straight to a FaceController or
+已经写成无论是连接到一个 FaceViewController 或者
 
 811
 00:33:51,162 --> 00:33:55,598
 through a navigationController.
+一个 UINavigationController 都能工作
 
 812
 00:33:55,667 --> 00:33:57,734
 Let's see if that indeed fixed our problem.
+让我们来看看它是否真的解决了我们的问题吧
 
 813
 00:34:02,140 --> 00:34:03,305
 Here we go, let's try it.
+开始，我们试一下
 
 814
 00:34:03,374 --> 00:34:06,509
 Happy, yeah, worried, sad.
+三个都行耶
 
 815
 00:34:06,578 --> 00:34:08,611
 Happy, we're happy that it's working.
+Happy 也有，能正常运行真令人开心
 
 816
 00:34:08,680 --> 00:34:10,947
 Okay, now we have this nice title bar at the top and
+好，现在顶部有一个标题栏
 
 817
 00:34:11,015 --> 00:34:12,515
 we said, wouldn't it be cool if we could put a title, so
+我们曾经说过，如果这里放一个标题会很酷
 
 818
 00:34:12,584 --> 00:34:13,382
 let's do that.
+那么开始做吧
 
 819
 00:34:13,451 --> 00:34:14,184
 Let's put a little title here,
+让我们在这里放一个小标题
 
 820
 00:34:14,252 --> 00:34:18,187
 in fact the title I'm gonna put here is whichever button
+事实上这里我要放的标题是调用对应 MVC 按钮的
 
 821
 00:34:18,256 --> 00:34:19,856
 brought this MVC up.
+标题
 
 822
 00:34:19,924 --> 00:34:21,224
 So if the sad button brought it up,
+所以如果 Sad 按钮调用了对应的 MVC
 
 823
 00:34:21,293 --> 00:34:23,259
 I'm gonna get its current title and put it up here,
+我就会得到它现在的标题然后把它放在这里
 
 824
 00:34:23,328 --> 00:34:25,094
 kinda like we did in the calculator.
+像是 Calculator demo 中做的那样
 
 825
 00:34:25,163 --> 00:34:29,733
 Look back to the sender and luckily prepare for segue,
+查看 sender 里的东西，幸运的是 prepare(for segue:)
 
 826
 00:34:29,801 --> 00:34:31,701
 has the sender.
+方法里有 sender 参数
 
 827
 00:34:31,770 --> 00:34:34,771
 This is the thing that cause the segue to happen.
+这就是导致 segue 发生的东西
 
 828
 00:34:34,840 --> 00:34:37,239
 Which is going to be one of those buttons.
+也就是那些按钮中的一个
 
 829
 00:34:37,308 --> 00:34:41,043
 So right down here, I can just get the current title of this
+那么在这里，我能得到这个 sender 的标题
 
 830
 00:34:41,112 --> 00:34:43,379
 sender right here and set that to be the title.
+并且把它设置到标题栏里
 
 831
 00:34:43,448 --> 00:34:46,248
 Now if you remember from the lecture about
+现在如果你记得关于导航控制器那节课的话
 
 832
 00:34:46,317 --> 00:34:48,818
 navigationController, the way that you
+在导航控制器中
 
 833
 00:34:48,887 --> 00:34:52,055
 set things that appear when it's in a navigationController
+设置那些能显示的东西的方法
 
 834
 00:34:52,124 --> 00:34:53,823
 like the title, you can also set the buttons,
+例如标题，也可以设置按钮
 
 835
 00:34:53,891 --> 00:34:55,492
 the back button title you can set,
+返回按钮可以设置
 
 836
 00:34:55,561 --> 00:34:58,094
 or you can even put write buttons in the top.
+甚至可以在顶部设置读写按钮
 
 837
 00:34:58,163 --> 00:35:00,597
 You do that with this thing called NavigationItem on
+那个方法就是调用 UIViewController 里的
 
 838
 00:35:00,666 --> 00:35:01,297
 UIViewController.
+navigationItem
 
 839
 00:35:01,366 --> 00:35:03,266
 So I'm gonna take the faceViewController's
+那么我这里要用到 faceViewController.navigationItem
 
 840
 00:35:03,335 --> 00:35:06,836
 navigationItem, which, by the way the navigationItem,
+顺带一提，navigationItem
 
 841
 00:35:06,905 --> 00:35:08,471
 you can just kind of think of it as
+你可以把它当作是
 
 842
 00:35:08,540 --> 00:35:12,142
 a bag of goodies that only UINavigationController uses.
+一些只有 UINavigationCOntroller 使用的东西
 
 843
 00:35:12,211 --> 00:35:13,777
 And it only looks in that bag of goodies
+而且仅当
 
 844
 00:35:13,845 --> 00:35:16,079
 when this ViewController, the faceViewController,
+这个 faceViewController 是
 
 845
 00:35:16,148 --> 00:35:18,548
 is the visible ViewController in the NavigationController.
+这个 UINavigationController 里可见的视图控制器时
 
 846
 00:35:18,616 --> 00:35:20,683
 Then it looks in this bag of goodies and you can see that
+它才会看这个包里的东西
 
 847
 00:35:20,752 --> 00:35:22,084
 there's a lot of things in the bag of goodies,
+你能看到，这个包里有很多东西
 
 848
 00:35:22,153 --> 00:35:25,554
 like leftBarButtonItem, rightBarButtonItems, and
+像是 leftBarButtonItem，rightBarButtonItems，当然还有
 
 849
 00:35:25,623 --> 00:35:27,190
 of course the title.
+title
 
 850
 00:35:27,258 --> 00:35:28,091
 Which is what I want to set here.
+也就是我现在要设置的东西
 
 851
 00:35:28,159 --> 00:35:31,127
 I want to set the title of the navigationController
+我想要设置这个导航控制器的标题为
 
 852
 00:35:31,196 --> 00:35:32,762
 when this thing is visible.
+当这个东西是可见的时候
 
 853
 00:35:32,830 --> 00:35:33,496
 And I'm gonna send it,
+我就把它设置为
 
 854
 00:35:33,565 --> 00:35:36,733
 I want to send it to the sender's current title, but
+我想要把它设置为 sender 的当前标题，但是
 
 855
 00:35:36,801 --> 00:35:38,135
 I can't quite do that.
+这样是没用的
 
 856
 00:35:39,204 --> 00:35:40,069
 Why can't I do that?
+为什么呢？
 
 857
 00:35:40,138 --> 00:35:41,138
 Why is that not gonna work?
+为什么这么写不会生效？
 
 858
 00:35:44,676 --> 00:35:45,242
 This.
+这个
 
 859
 00:35:46,344 --> 00:35:46,943
 See any problem?
+看出什么问题了吗？
 
 860
 00:35:47,012 --> 00:35:50,680
 Yeah, this is Any.
+对的，这是一个 Any 类型的
 
 861
 00:35:50,749 --> 00:35:53,650
 And Any does not understand any messages.
+并且 Any 类型的东西不懂任何消息
 
 862
 00:35:53,718 --> 00:35:55,485
 Because it doesn't know what it is.
+因为它不知道自己是什么
 
 863
 00:35:55,554 --> 00:35:59,388
 So we have to take this any and turn it into a UI button.
+所以我们必须把这个 Any 转换为 UIButton
 
 864
 00:35:59,457 --> 00:36:06,296
 And we do that by saying this, sender as the UIButton.
+我们是通过这么写，sender as? UIButton
 
 865
 00:36:06,365 --> 00:36:08,164
 Now we could almost send current title.
+现在我们可以发送当前标题了
 
 866
 00:36:08,233 --> 00:36:09,799
 The only problem is this.
+唯一的问题是
 
 867
 00:36:09,867 --> 00:36:11,100
 What is this type of,
+这是什么类型的
 
 868
 00:36:11,169 --> 00:36:15,372
 what is the type of, if I can select it, this expression?
+这个表达式，会是什么类型的结果？
 
 869
 00:36:15,440 --> 00:36:16,239
 What's its type?
+它是什么类型的呢？
 
 870
 00:36:21,146 --> 00:36:22,512
 No one wanna guess on this one?
+没人想猜一猜吗？
 
 871
 00:36:24,583 --> 00:36:25,982
 No one?
+没有吗？
 
 872
 00:36:26,051 --> 00:36:27,917
 It's an optional, right?
+它是一个可选值，对吗？
 
 873
 00:36:27,986 --> 00:36:31,821
 Because "as?" returns an optional, so this is
+因为 as? 返回一个可选值，所以
 
 874
 00:36:31,889 --> 00:36:34,557
 an optional, so we can't send an optional current title.
+它是一个可选值，所以我们不能发送一个是可选值的当前标题
 
 875
 00:36:34,626 --> 00:36:37,394
 We need to either exclamation point it, or
+我们需要要么用 ！ 来拆包，或者
 
 876
 00:36:37,462 --> 00:36:40,663
 a little safer, we could optional chain it.
+用更安全的，可选链
 
 877
 00:36:40,731 --> 00:36:43,532
 Because we know that optional chaining is just going to
+因为我们知道可选链能在
 
 878
 00:36:43,601 --> 00:36:46,336
 ignore the rest of this expression if that happened to
+它不是一个 UIButton 的时候忽略整一个
 
 879
 00:36:46,404 --> 00:36:47,236
 not be a button.
+表达式
 
 880
 00:36:47,305 --> 00:36:48,638
 And this as returned nil,
+并且返回 nil
 
 881
 00:36:48,707 --> 00:36:51,775
 because this couldn't be turned into a button.
+因为这个不能转换为 UIButton
 
 882
 00:36:51,843 --> 00:36:54,944
 So we'll just optional chain in which case the title here
+所以在这个标题可能为 nil 的情况下我们只要使用可选链就好
 
 883
 00:36:55,012 --> 00:36:57,981
 will be set to nil, because this whole thing will be nil
+因为这里如果这里可选链的条件没被触发的话
 
 884
 00:36:58,050 --> 00:37:00,483
 if this optional chaining doesn't happen.
+整一个表达式都会是 nil
 
 885
 00:37:00,551 --> 00:37:01,284
 And that's okay,
+这种情况是可以的
 
 886
 00:37:01,352 --> 00:37:03,920
 because we look at the title of a navigation item.
+因为我们看这个 navigationItem 的 tile 变量
 
 887
 00:37:03,989 --> 00:37:04,988
 It's an optional.
+可以看到它是可选的
 
 888
 00:37:05,057 --> 00:37:06,322
 So we can send it to a nil.
+所以我们可以发送给它 nil 值
 
 889
 00:37:06,391 --> 00:37:09,859
 And then this will, it will have no title up there.
+然后标题栏上也就不会有标题了
 
 890
 00:37:09,928 --> 00:37:11,394
 I intentionally put this thing in here for
+我故意把这个放在这里
 
 891
 00:37:11,463 --> 00:37:13,229
 lot of things going on here.
+因为这里发生了很多事情
 
 892
 00:37:13,298 --> 00:37:15,431
 We have the any cast going on.
+我们有 Any?
 
 893
 00:37:15,500 --> 00:37:17,533
 We have optional chaining going on here.
+然后这里是它的可选链
 
 894
 00:37:17,602 --> 00:37:19,068
 We use the navigation item.
+我们使用到了 navigationItem
 
 895
 00:37:19,137 --> 00:37:20,570
 So there is a lot in this line of code.
+所以这一行代码里有很多信息
 
 896
 00:37:20,639 --> 00:37:22,138
 So make sure you kind of understand what's
+确保你们能明白
 
 897
 00:37:22,207 --> 00:37:23,406
 all the pieces going on there.
+那里都发生了些什么
 
 898
 00:37:25,577 --> 00:37:28,177
 Now we should be getting hopefully the title of
+那么现在希望在右边部分的 MVC
 
 899
 00:37:28,246 --> 00:37:31,647
 the button appearing as the title on the right-hand side.
+能有按钮的标题出现吧
 
 900
 00:37:31,716 --> 00:37:33,782
 So happy, sure enough, there's happy.
+那么点击 Happy，Happy 标题出现了
 
 901
 00:37:33,851 --> 00:37:35,051
 Worried, there's worried.
+Worried，标题也出现了
 
 902
 00:37:35,120 --> 00:37:36,819
 Sad, happy.
+点 Sad，点 Happy
 
 903
 00:37:36,888 --> 00:37:38,855
 And of course if we rotate,
+当然了如果我们旋转的话
 
 904
 00:37:38,924 --> 00:37:40,156
 we're still getting the title up there.
+也能得到那些标题
 
 905
 00:37:40,225 --> 00:37:42,191
 We can slide this thing out and pick sad,
+我们可以划拉出这个东西然后选择 Sad
 
 906
 00:37:42,260 --> 00:37:44,594
 and it happens back there.
+然后那里就发生变化了
 
 907
 00:37:44,663 --> 00:37:46,496
 Slide that thing out of the way if we want.
+如果需要的话还可以划回去
 
 908
 00:37:46,565 --> 00:37:47,496
 Rotate back.
+旋转回去
 
 909
 00:37:47,565 --> 00:37:49,165
 How about iPhone 7?
+那么 iPhone7 上效果如何呢？
 
 910
 00:37:49,234 --> 00:37:54,971
 Let's see if we've
+让我们来看看
 
 911
 00:37:55,040 --> 00:37:59,408
 broken that.
+我们是否毁了它
 
 912
 00:37:59,477 --> 00:38:02,378
 It appears with this split views detail coming up first
+它一开始细节视图显示的
 
 913
 00:38:02,446 --> 00:38:03,812
 in this neutral mode.
+是面无表情的脸
 
 914
 00:38:03,881 --> 00:38:05,214
 We'll go back to emotions.
+回到 Emotions
 
 915
 00:38:05,283 --> 00:38:06,216
 Pick Happy.
+选择 Happy
 
 916
 00:38:06,284 --> 00:38:09,151
 Sure enough, it's setting that title fine there as well.
+设置标题成功
 
 917
 00:38:09,220 --> 00:38:10,386
 If we go here.
+如果我们切到横屏模式
 
 918
 00:38:10,455 --> 00:38:12,155
 Since it's an iPhone, can't do split view,
+由于它是一台 iPhone，不能分屏
 
 919
 00:38:12,224 --> 00:38:16,659
 it's still working fine in navigationController mode.
+它仍然可以在导航控制器模式下正常工作
 
 920
 00:38:16,728 --> 00:38:19,929
 Let's go look at a 7 Plus.
+我们看看 iPhone7 Plus 效果如何
 
 921
 00:38:19,998 --> 00:38:22,765
 There is a 7 plus which is kind of a high breed
+iPhone7 Plus 是 iPhone7 跟 iPad
 
 922
 00:38:22,834 --> 00:38:25,568
 between iPhone 7 and an iPad.
+之间的过渡
 
 923
 00:38:25,636 --> 00:38:27,003
 And in portrait mode,
+在竖屏模式下
 
 924
 00:38:27,072 --> 00:38:29,839
 an iPhone 7 plus works just like an iPhone.
+iPhone7 Plus 就像一台 iPhone 一样工作
 
 925
 00:38:29,908 --> 00:38:30,406
 So it's gonna be the
+所以就是导航控制器
 
 926
 00:38:30,475 --> 00:38:31,707
 navigationController back and forth.
+来回调度
 
 927
 00:38:31,776 --> 00:38:35,111
 But in landscape, it'll work like an iPad.
+但是在横屏模式下，它就像 iPad 一样工作
 
 928
 00:38:35,180 --> 00:38:38,614
 Okay, so obviously an iPhone 7 plus in portrait mode,
+所以很明显，竖屏模式下的 iPhone7 Plus
 
 929
 00:38:38,683 --> 00:38:42,184
 it is not big enough to do the slide-out thing like an iPad
+没有足够的空间来像 iPad 的横屏模式下那样滑动东西
 
 930
 00:38:42,253 --> 00:38:45,621
 does in portrait mode, but in landscape mode it is, so
+但是在横屏模式它就有空间了
 
 931
 00:38:45,690 --> 00:38:48,758
 let's make it so this thing fits.
+现在我们来把尺寸调整对
 
 932
 00:38:48,827 --> 00:38:50,527
 That's close enough to fitting.
+差不多适合了
 
 933
 00:38:52,497 --> 00:38:53,662
 I'll go small here.
+我再调小一点吧
 
 934
 00:38:53,731 --> 00:38:55,398
 All right, so this is a plus.
+好了，那么这就是一台 iPhone7 Plus
 
 935
 00:38:55,466 --> 00:38:57,266
 And you can see it comes up in portrait mode.
+然后你可以看到它以竖屏模式展示
 
 936
 00:38:57,335 --> 00:38:59,536
 It's acting like it's an iPhone.
+表现地就像一台 iPhone
 
 937
 00:39:00,471 --> 00:39:01,471
 See that, okay?
+看到没？
 
 938
 00:39:01,539 --> 00:39:02,371
 It's just doing that.
+就是这样
 
 939
 00:39:02,440 --> 00:39:05,341
 But look what happens if I go to landscape mode,
+但是如果切到横屏模式看看会发生什么
 
 940
 00:39:05,410 --> 00:39:06,209
 I get a split view.
+我得到了一个分屏视图
 
 941
 00:39:07,445 --> 00:39:08,078
 Tha's working fine.
+也能正常工作
 
 942
 00:39:10,014 --> 00:39:15,518
 So see how we built in the storyboard this hybrid UI and
+那么你们看到我之前在 storyboard 中如何创建这个混合 UI 界面并且
 
 943
 00:39:15,587 --> 00:39:18,154
 it works on all the different kinds of devices.
+能在不同设备上运行的方法了吧
 
 944
 00:39:18,223 --> 00:39:19,856
-No matter whether they control with you or
+No matter what they control with you or
+无论你用什么操作
 
 945
 00:39:19,924 --> 00:39:21,290
 not it'll default go back to using
+默认情况下它都会使用
 
 946
 00:39:21,359 --> 00:39:22,859
 navigationController, whatever.
+导航控制器
 
 947
 00:39:22,927 --> 00:39:24,594
 And the only thing we had to do in our code
+唯一我们需要在代码中做的
 
 948
 00:39:24,663 --> 00:39:27,029
 as a concession to the cross-platform is checking for
+跨平台的事情就是
 
 949
 00:39:27,098 --> 00:39:28,864
 that navigationController and only for
+检查那个导航控制器还有那个
 
 950
 00:39:28,933 --> 00:39:30,367
 the thing we were segueing to.
+我们 sugue 的东西
 
 951
 00:39:35,139 --> 00:39:36,239
 Back to the slides.
+回到幻灯片
 
 952
 00:39:42,280 --> 00:39:45,915
 Our next topic here is the View Controller Lifecycle.
+我们下一个主题是视图控制器的生命周期
 
 953
 00:39:45,983 --> 00:39:48,351
 Now, everything has a life cycle,
+每一样东西都有生命周期
 
 954
 00:39:48,419 --> 00:39:51,987
 even we have a life cycle: we're born, we live our lives,
+即使我们也有：我们出生，生活
 
 955
 00:39:52,056 --> 00:39:53,289
 things happen, and we die.
+各种事情发生，然后我们死亡
 
 956
 00:39:53,358 --> 00:39:55,224
 Well, that happens to a View Controller as well.
+视图控制器也是这样
 
 957
 00:39:55,293 --> 00:39:58,093
 It's just born, things happen to it, and then it dies,
+就是出生，然后发生了些事情，接着它死亡了
 
 958
 00:39:58,162 --> 00:39:58,995
 it leaves the heap.
+并且离开了堆
 
 959
 00:39:59,063 --> 00:40:01,230
 That's what happens on its death.
+它死亡的时候会发生的事情
 
 960
 00:40:01,299 --> 00:40:03,533
 Why do we care about the view controller lifecycle?
+为什么我们要在意视图控制器的生命周期呢？
 
 961
 00:40:03,602 --> 00:40:07,637
 Because we often wanna do things at various key
+因为通常我们想要在它生命周期中的关键转折点
 
 962
 00:40:07,705 --> 00:40:10,373
 inflection points in its lifetime.
+做一些事情
 
 963
 00:40:10,442 --> 00:40:12,175
 The start of a lifecycle is really simple.
+生命周期的开始很简单
 
 964
 00:40:12,243 --> 00:40:15,678
 It gets initialized, and 99.99% of
+它被初始化，并且 99.99% 的情况下
 
 965
 00:40:15,747 --> 00:40:19,815
 the time a view controller is coming out of a storyboard.
+一个视图控制器会出现在 storyboard 中
 
 966
 00:40:19,884 --> 00:40:23,086
 Its initializer is this special initializer coming out
+它的构造器就是这个 storyboard 中出现的
 
 967
 00:40:23,154 --> 00:40:24,387
 of a storyboard.
+这个特殊的构造器
 
 968
 00:40:24,456 --> 00:40:25,621
 In your reading assignments,
+在你们的作业中
 
 969
 00:40:25,690 --> 00:40:27,156
 I actually explained how this works.
+我已经解释过它如何工作了
 
 970
 00:40:27,224 --> 00:40:31,226
 But we don't usually override the initializer of a view
+但是我们通常不会重写一个视图控制器
 
 971
-00:40:31,295 --> 00:40:32,695
-We're going to use the other ways we know to initialize
+00:40:31,296 --> 00:40:31,596
+controller.
+的构造器
 
 972
-00:40:32,696 --> 00:40:34,096
-controller.
+00:40:31,695 --> 00:40:32,695
+We're going to use the other ways we know to initialize
+我们将使用另一个方法来初始化
 
 973
 00:40:34,165 --> 00:40:35,198
 each variables.
+每一个变量
 
 974
 00:40:36,734 --> 00:40:38,401
 I'm not even gonna talk about how to make one in code.
+我甚至不会讲用代码如何实现一个
 
 975
 00:40:38,470 --> 00:40:40,236
 Because we just, just don't do that.
+因为我们通常，不那么做
 
 976
 00:40:40,305 --> 00:40:41,471
 You can see why, right?
+你们知道为什么的，对吧？
 
 977
 00:40:41,540 --> 00:40:43,773
 Because view controller is complicated.
+因为视图控制器很复杂
 
 978
 00:40:43,842 --> 00:40:45,441
 It's got all the UI, the buttons, and all the stuff.
+它得到了所有的 UI 界面，按钮，还有别的东西
 
 979
 00:40:45,509 --> 00:40:49,912
 You're generally not gonna be making that in code.
+一般来说都不会用代码来做到
 
 980
 00:40:49,981 --> 00:40:51,648
 What happens then after it's created?
+那么它创建后发生了什么呢？
 
 981
 00:40:51,716 --> 00:40:54,750
 The next thing that happens is if it's being segued to,
+下一件会发生的事情是如果它被 segue 的话
 
 982
 00:40:54,819 --> 00:40:55,819
 it gets prepared.
+它就会被 prepare
 
 983
 00:40:57,488 --> 00:40:59,188
 Like when we prepared the FaceView Controller there by
+就像我们通过设置它的模型
 
 984
 00:40:59,257 --> 00:40:59,956
 setting it to model.
+来准备那个 FaceViewController
 
 985
 00:41:00,025 --> 00:41:01,490
 That's the next thing that happens after it's
+这就是它被初始化后接下来的
 
 986
 00:41:01,559 --> 00:41:03,426
 initialized.
+事情
 
 987
 00:41:03,495 --> 00:41:06,329
-The next thing that happens is its outlets get set.
+Then the next thing that happens is its outlets get set.
+接下来下一件事是它的出口（outlet）被设置
 
 988
 00:41:06,397 --> 00:41:07,196
 So, for the FaceView,
+举个例子 FaceView
 
 989
 00:41:07,264 --> 00:41:10,366
 its FaceView outlet got set after it got prepared.
+FaceView 的出口是在它准备好后设置的
 
 990
 00:41:11,636 --> 00:41:13,670
 Then, it appears and disappears on screen.
+接着，这个视图控制器在屏幕上就会出现还有消失
 
 991
 00:41:15,373 --> 00:41:18,541
 In our example right there, the master
+我们的那个例子中，主视图控制器
 
 992
 00:41:18,610 --> 00:41:21,343
 was constantly appearing and disappearing on screen.
+就重复着在屏幕上出现和消失
 
 993
 00:41:21,412 --> 00:41:23,979
 Every time, on the iPhone, for example, that we hit happy or
+举个例子，在 iPhone 上，每一次当我们点击 Happy 或者
 
 994
 00:41:24,048 --> 00:41:25,481
 sad, it would disappear.
+Sad 的时候，它就消失
 
 995
 00:41:25,550 --> 00:41:27,149
 And the face one would come on.
+然后那个脸图就会出现
 
 996
 00:41:27,218 --> 00:41:30,252
 And then, we'd hit back and it would reappear.
+接着，我们点击返回，那个主视图就会再次出现
 
 997
 00:41:30,321 --> 00:41:32,922
 By the way, when that happens, the face one didn't disappear.
+顺带一提，当那个发生的时候，脸图没有消失
 
 998
 00:41:32,991 --> 00:41:33,723
 Well, it disappeared and
+好吧，视觉上它是消失了
 
 999
 00:41:33,791 --> 00:41:35,425
 it also got thrown out of the heap.
+并且它也从堆中扔了出来
 
 1000
 00:41:35,494 --> 00:41:37,526
 Because we reuse the things we segue to.
+因为我们重用了我们 segue 到的东西
 
 1001
 00:41:37,595 --> 00:41:39,662
 But that master, we don't segue to it.
+但是那个主视图，我们没有 segue 到它
 
 1002
 00:41:39,731 --> 00:41:42,632
 It sits there as the master in the split view all the time.
+它就作为分屏视图中的主视图一直在那
 
 1003
 00:41:42,701 --> 00:41:44,533
 But it's appearing and disappearing on screen.
+但是它在屏幕上会出现和消失
 
 1004
 00:41:44,602 --> 00:41:47,169
 So that's a big thing that happens its lifecycle.
+所以这就是在它生命周期内的一件大事
 
 1005
 00:41:47,238 --> 00:41:48,237
 Another thing that happens
+另外一个会发生的事情
 
 1006
 00:41:48,306 --> 00:41:51,407
 during the life time of it is it's changing its orientation.
+是屏幕发生发生了旋转
 
 1007
 00:41:51,476 --> 00:41:53,342
 We're rotating the landscape.
+如果我们把设备旋转至横向
 
 1008
 00:41:53,411 --> 00:41:54,210
 We're on a iPad and
+如果我们是在 iPad 上
 
 1009
 00:41:54,279 --> 00:41:58,013
 we're sliding it out as a tray in portrait mode and
+纵向模式我们需要把主视图像个托盘一样滑出来
 
 1010
 00:41:58,082 --> 00:42:00,082
 then we rotate to landscape and it's sitting on the side.
+然后我们又把它旋转至横向模式，它就又出现在那里了
 
 1011
 00:42:00,151 --> 00:42:02,785
 So it's changing its shape.
+所以它改变了它自己的形状
 
 1012
 00:42:02,854 --> 00:42:05,187
 Even the face view of the iPad when we're in portrait,
+就像在 iPad 上的 FaceView，当它在纵向模式时
 
 1013
 00:42:05,256 --> 00:42:06,623
 it's big, tall and big.
+它又高又大
 
 1014
 00:42:06,691 --> 00:42:08,391
 But then we switch to landscape it's kind of more
+但是当我们把它旋转至横向模式时，它就变的有点
 
 1015
 00:42:08,460 --> 00:42:10,592
 like a square, and a little smaller.
+像个小方块，然后还有点小
 
 1016
 00:42:10,661 --> 00:42:12,628
 So it's always changing geometry.
+所以它总是会改变自己的几何形状
 
 1017
 00:42:12,697 --> 00:42:15,831
 And then it could be in a low memory situation as well where
+与此同时它也可能处在一种内存紧张的情况下
 
 1018
 00:42:15,900 --> 00:42:16,899
 we need to recovery some memory,
+这样我们就需要回收一部分内存
 
 1019
 00:42:16,968 --> 00:42:19,368
 this almost never happens, but I have to mention it.
+这种情况几乎从不发生，但是我也得提一下
 
 1020
 00:42:19,437 --> 00:42:21,404
 It's really maybe not even part of the view controller
+它甚至可能不存在于控制器的
 
 1021
 00:42:21,472 --> 00:42:24,273
 lifecycle but it's a good place to talk about it,
+生命周期中，但是这是个讨论它的好地方
 
 1022
 00:42:24,342 --> 00:42:25,608
 cuz it's not really that important.
+因为它其实没那么重要
 
 1023
 00:42:26,844 --> 00:42:31,714
 Let's talk about the messages that
+我们来聊聊哪些消息被发送
 
 1024
 00:42:31,782 --> 00:42:34,383
 are sent to invoke methods in your view controller
+来调用视图控制器的方法
 
 1025
 00:42:34,452 --> 00:42:37,086
 when these various things happen.
+以表明这一些列的事情发生了
 
 1026
 00:42:37,154 --> 00:42:40,623
 So you already know about your outlets being set.
+所以你已经知道你的出口变量已经被关联好了
 
 1027
 00:42:40,692 --> 00:42:42,625
 And you can watch that with your did sets,
+而且你可以通过你的 didSet 来观察
 
 1028
 00:42:42,694 --> 00:42:43,959
 the property observer, did set.
+那个属性观察器，didSet
 
 1029
 00:42:44,028 --> 00:42:45,594
 And you already know about preparing,
+你也已经了解了如何准备
 
 1030
 00:42:45,663 --> 00:42:46,996
 I just showed you about that.
+就是我刚刚展示给你的那个
 
 1031
 00:42:47,064 --> 00:42:49,164
 So after those two steps are done,
+所以当这两步都做完了之后
 
 1032
 00:42:49,233 --> 00:42:51,834
 you're gonna get this message, viewDidLoad.
+你就应该会获得信息 viewDidLoad
 
 1033
 00:42:51,903 --> 00:42:53,936
 Super important method.
+这是个非常重要的方法
 
 1034
 00:42:54,005 --> 00:42:57,106
 You're only gonna ever receive it once in the lifetime
+在你的控制器的整个生命周期中你只会收到一次
 
 1035
 00:42:57,175 --> 00:42:58,007
 of a viewController.
+来自它的信息
 
 1036
 00:42:59,277 --> 00:43:01,878
 And it's really where you're gonna put
+所以这个方法几乎是你
 
 1037
 00:43:01,946 --> 00:43:04,780
 almost all of your initialization.
+完成所有初始化地方
 
 1038
 00:43:04,849 --> 00:43:07,950
 For example, a lot of times here's where you'll call your
+举个例子，通常这里是你调用 updateUI
 
 1039
 00:43:08,019 --> 00:43:11,554
 update UI method, the thing that updates your UI from your
+那个用模型来更新 UI 的方法的地方
 
 1040
 00:43:11,622 --> 00:43:16,025
 model, very often you're gonna call that in viewDidLoad.
+经常你将从 viewDidLoad 中调用它
 
 1041
 00:43:16,093 --> 00:43:18,728
 Cuz now your model is set because it got prepared
+因为现在你的模型应该已经被设置，准备好了
 
 1042
 00:43:18,796 --> 00:43:21,330
 probably, and your outlets are set because this is how it
+你的出口变量也关联上了
 
 1043
 00:43:21,399 --> 00:43:23,299
 always happens after outlet setting.
+因为 viewDidLoad 总是在那之后被调用
 
 1044
 00:43:23,368 --> 00:43:25,534
 Now, one thing not to do in here though.
+但是还有一件并不在这里进行的事
 
 1045
 00:43:25,603 --> 00:43:27,136
 Very careful, listen carefully.
+非常重要，认真听
 
 1046
 00:43:27,205 --> 00:43:29,805
 Do not do geometry-based things in viewDidLoad.
+不要在 viewDidLoad 里设置任何和几何形状相关的东西
 
 1047
 00:43:29,874 --> 00:43:31,173
 Because when viewDidLoad happens,
+因为当 viewDidLoad 被执行时
 
 1048
 00:43:31,242 --> 00:43:34,711
 you have not yet had your final geometry established.
+你其实还没能完全确定你最后要呈现的几何形状
 
 1049
 00:43:36,681 --> 00:43:38,814
 You don't quite know if you're portrait, landscape,
+你并不是十分确定你的设备是纵向还是横向
 
 1050
 00:43:38,883 --> 00:43:40,649
 what device you're on, you don't know yet.
+你将要在什么设备上运行，这些你都还不知道
 
 1051
 00:43:40,718 --> 00:43:44,353
 So do not do things with your bounds in viewDidLoad.
+所以不要在 viewDidLoad 中做任何关于边界的设置
 
 1052
 00:43:44,421 --> 00:43:47,890
 Many of you will make this mistake so perk up those ears.
+你们当中的一些人会犯这个错误，所以竖起耳朵认真听
 
 1053
 00:43:47,958 --> 00:43:48,924
 Do not do that.
+不要这么做
 
 1054
 00:43:48,993 --> 00:43:50,759
 I'm gonna show you other methods in the new controller
+我会教你们其他的控制器生命周期的方法
 
 1055
 00:43:50,828 --> 00:43:54,663
 lifecycle for doing that but do not it in viewDidLoad.
+来做关于几何形状的工作，但是不要在 viewDidLoad 里做这件事
 
 1056
 00:43:54,732 --> 00:43:57,199
 The next thing I said to you, appear and disappearing.
+下一个我要说的是，“出现”和“消失”
 
 1057
 00:43:57,268 --> 00:43:59,902
 You're always appearing and disappearing on screen.
+你总会在屏幕上进行“出现”和“消失”的动作
 
 1058
 00:43:59,971 --> 00:44:02,071
 When you appear, you're gonna get two messages.
+当你“出现”时，你会得到两条信息
 
 1059
 00:44:02,140 --> 00:44:04,306
 The first is viewWillAppear.
+第一个是 viewWillAppear
 
 1060
 00:44:04,375 --> 00:44:08,410
 And that's sent to you before you're actually on screen, but
+它在你真正要出现在屏幕上之前发送给你
 
 1061
 00:44:08,479 --> 00:44:10,613
 just very very soon going to be,
+但是在之前非常短的时间里（发送给你）
 
 1062
 00:44:10,682 --> 00:44:13,315
 guaranteed you're going to be on screen soon.
+确保你马上就要出现在屏幕上了
 
 1063
 00:44:13,384 --> 00:44:15,951
 So, what is viewWillAppear for?
+所以，这个 viewWillAppear 是干什么的呢？
 
 1064
 00:44:16,020 --> 00:44:17,653
 What are you going to do in a view will appear?
+你在这个 viewWillAppear 中要做些什么呢？
 
 1065
 00:44:17,722 --> 00:44:21,023
 Well one thing is if there's anything that changes in your
+第一，当你不在屏幕上时
 
 1066
 00:44:21,092 --> 00:44:22,891
 model when you're not on screen,
+你模型里有什么东西改变了
 
 1067
 00:44:22,960 --> 00:44:25,060
 maybe your model is a network database or
+你的模型可能是一个网络数据库或者
 
 1068
 00:44:25,129 --> 00:44:27,496
 something and it's changing on the screen.
+是一个可能在屏幕上变化的什么东西
 
 1069
 00:44:27,565 --> 00:44:30,332
 Then when view appear happens you're going to usually update
+当 viewWillAppear 发生时，你通常需要从你的
 
 1070
 00:44:30,401 --> 00:44:31,901
 your UI from your model.
+模型中获取信息来更新你的 UI
 
 1071
 00:44:31,969 --> 00:44:34,537
 So maybe you wouldn't do update UI in viewDidLoad,
+所以你可能不在 viewDidLoad 中更新你的 UI
 
 1072
 00:44:34,605 --> 00:44:36,539
 you might do it here.
+可能你会选择在这里更新
 
 1073
 00:44:36,607 --> 00:44:38,540
 That's if it could change when it's not onscreen.
+这是对不在屏幕上时的变化的处理方法
 
 1074
 00:44:38,609 --> 00:44:39,475
 A lot of MVCs,
+有很多 MVC
 
 1075
 00:44:39,543 --> 00:44:41,743
 their model only changes when they're onscreen, so
+它们的模型只在它们出现在屏幕上时才会改变
 
 1076
 00:44:41,812 --> 00:44:43,312
 you wouldn't have to do anything here.
+这样的话你在这就什么也不需要做了
 
 1077
 00:44:43,380 --> 00:44:45,181
 But if your model can be changed out from under you
+但是如果你的模型可以在你不在屏幕上时被改变的话
 
 1078
 00:44:45,250 --> 00:44:47,316
 while you're off screen, then you, when you reappear,
+那你，在你重新出现的时候
 
 1079
 00:44:47,384 --> 00:44:49,685
 obviously you wanna show the current state of your model.
+你显然要展现你模型的确切状态
 
 1080
 00:44:49,753 --> 00:44:50,920
 So that's a good one.
+这是个好方法
 
 1081
 00:44:50,988 --> 00:44:52,821
 Another thing you might do in viewWillAppear
+还有一件你可能会在 viewWillAppear 中做的事
 
 1082
 00:44:52,890 --> 00:44:54,557
 is start something expensive.
+就是开启一些非常耗费资源功能
 
 1083
 00:44:54,625 --> 00:44:58,060
 Because in viewDidLoad you're not guaranteed that you're
+因为在 viewDidLoad 中，你不确定你到底会不会
 
 1084
 00:44:58,129 --> 00:44:59,628
 ever gonna come on screen.
+出现在屏幕上
 
 1085
 00:44:59,697 --> 00:45:02,264
 There are MVCs that occasionally get loaded up,
+有一些 MVC 无意间被加载了
 
 1086
 00:45:02,333 --> 00:45:04,500
 but then the user clicks away somewhere else and
+但是用户点了一些其他的地方，因此
 
 1087
 00:45:04,569 --> 00:45:05,868
 you never get shown on screen.
+你的 MVC 从来就没有出现在屏幕上
 
 1088
 00:45:05,937 --> 00:45:07,102
 But if viewWillAppear happens,
+但是如果 viewWillAppear 发生了
 
 1089
 00:45:07,171 --> 00:45:08,404
 you know you're going on screen.
+你确切的知道你会出现在屏幕上
 
 1090
 00:45:08,473 --> 00:45:11,073
 So here you could kick off something expensive.
+这时候你就可以开启一些非常耗费资源的功能了
 
 1091
 00:45:11,142 --> 00:45:12,608
 Especially kick off a thread that goes and
+比如开启一个
 
 1092
 00:45:12,677 --> 00:45:14,309
 does something expensive in the background.
+非常耗费资源的后台进程
 
 1093
 00:45:14,378 --> 00:45:16,745
 Cuz we're gonna talk about multithreading next week and
+我们会在下周讲多线程
 
 1094
 00:45:16,814 --> 00:45:19,314
 you're gonna see that anything that takes any amount of time
+到时候你就会看到，对于任何花时间和经历
 
 1095
 00:45:19,383 --> 00:45:21,584
 or energy on the part of the processor or the network,
+需要耗费处理器资源或者占用网络带宽的东西
 
 1096
 00:45:21,652 --> 00:45:23,619
-you're gonna wind up doing a separate thread.
+you're gonna want to do it in a separate thread.
+这些你应该在另一个进程里完成
 
 1097
 00:45:23,688 --> 00:45:26,455
 So you might kick off such a thread here in viewWillAppear.
+viewWillAppear 就是创建这种线程的地方
 
 1098
 00:45:26,524 --> 00:45:28,323
 There's also an another method,
+还有另外一个方法
 
 1099
 00:45:28,392 --> 00:45:31,727
 viewDidAppear which gets into after you're fully on screen.
+viewDidAppear 这个方法在你完全出现在屏幕上之后发送给你
 
 1100
 00:45:31,795 --> 00:45:34,596
 The animation to get you on screen is on screen so
+把你带到屏幕上的动画效果已经出现在屏幕上了
 
 1101
 00:45:34,665 --> 00:45:35,598
 you're there.
+你也在屏幕上
 
 1102
 00:45:35,667 --> 00:45:37,899
 And what would you do here?
+那么在这里你能做些什么呢
 
 1103
 00:45:37,968 --> 00:45:39,668
 There's usually not a lot to do here.
+这里通常没那么多事要做
 
 1104
 00:45:39,737 --> 00:45:42,438
 You might start an animation though.
+你可能在这开始一个动画效果
 
 1105
 00:45:42,506 --> 00:45:45,374
 You've got some MVC that has some animation going.
+你有一些有动画效果的 MVC
 
 1106
 00:45:45,443 --> 00:45:47,677
 And it doesn't make any sense to start it before it
+但是这些动画效果没必要在 MVC 出现之前运行
 
 1107
 00:45:47,745 --> 00:45:48,578
 So once it gets on screen then you start it going.
+所以当他们出现在屏幕上时
 
 1108
 00:45:48,579 --> 00:45:49,412
 gets on screen.
+再开启动画效果
 
 1109
 00:45:50,782 --> 00:45:52,214
 ViewWillAppear and viewDidAppear happen so
+viewWillAppear 和 viewDidAppear 发生的时间
 
 1110
 00:45:52,283 --> 00:45:55,117
 close together, it's probably not gonna save much to wait
+十分接近，所以在 viewDidAppear 再开始播放动画效果
 
 1111
 00:45:55,186 --> 00:45:56,752
 until viewDidAppear to start the animation,
+和在 viewWillAppear 中开始没多大差别
 
 1112
 00:45:56,821 --> 00:45:58,354
 but eh, a lot of people will do that,
+但是为了让程序更加明晰
 
 1113
 00:45:58,422 --> 00:46:01,356
 just to kind of for clarity of programming.
+很多人选择这样做
 
 1114
 00:46:01,425 --> 00:46:01,924
 And then, of course,
+然后，当然啦
 
 1115
 00:46:01,993 --> 00:46:04,060
 you can disappear, and get the same thing there,
+你也可以消失。类似的，消失时会调用
 
 1116
 00:46:04,128 --> 00:46:06,495
 a viewWillDisappear and a viewDidDisappear.
+viewWillDisappear 和 viewDidDisappear 方法
 
 1117
 00:46:06,564 --> 00:46:09,999
 One thing you notice in all of these view controller
+在这你会注意到，所有这些视图控制器
 
 1118
 00:46:10,068 --> 00:46:12,701
 lifecycle is that I'm calling super.
+生命周期（方法）中，我都会调用 super
 
 1119
 00:46:12,770 --> 00:46:13,402
 You see that?
+你看见了吧
 
 1120
 00:46:13,471 --> 00:46:16,405
 super.viewWillDisappear, and I did it for
+super.viewWillDisappear，我还用了
 
 1121
 00:46:16,474 --> 00:46:20,509
-superViewDidLoad, and superViewWillAppear.
+super.viewDidLoad, and super.viewWillAppear.
+super.viewDidLoad 和 super.viewWillAppear
 
 1122
 00:46:20,578 --> 00:46:23,312
 All of them, all of the view controller lifecycle methods,
+所有这些，所有视图控制器生命周期的方法
 
 1123
 00:46:23,381 --> 00:46:25,681
 always call super.
+总是要调用 super
 
 1124
 00:46:25,750 --> 00:46:28,083
 You always wanna give your super class chance to do it.
+你总是要给你的父类一个完成它工作的机会
 
 1125
 00:46:28,152 --> 00:46:30,253
 You'll see actually in the demo why you do that.
+你将会在我的示范中了解为什么要这么做
 
 1126
 00:46:31,655 --> 00:46:32,254
 Always do that.
+但记住总是要这么做
 
 1127
 00:46:32,322 --> 00:46:33,589
 Always do super there.
+总要调用这个 super
 
 1128
 00:46:35,025 --> 00:46:38,060
 So in viewWillDisappear, a lot of times here you're
+在 viewWillDisappear 里，很多时候你都是在
 
 1129
 00:46:38,128 --> 00:46:40,663
 undoing the things you did in viewDidAppear.
+撤销你在 viewDidAppear 所做过的事情
 
 1130
 00:46:40,732 --> 00:46:42,030
 Like if you had an animation going,
+比如说如果你在那有个动画效果
 
 1131
 00:46:42,099 --> 00:46:43,065
 you're gonna stop it here,
+那么你就要在这把它停下
 
 1132
 00:46:43,133 --> 00:46:44,400
 because you're about to disappear.
+因为你就要消失了
 
 1133
 00:46:46,070 --> 00:46:48,870
 Here you might also start some cleanup.
+你还可能在这进行一些清理工作
 
 1134
 00:46:48,939 --> 00:46:50,138
 Your MVC disappeared, and
+你的 MVC 消失了
 
 1135
 00:46:50,207 --> 00:46:52,641
 so, if you allocated some resources or something that
+如果你分配了一些已经不需要的资源或者什么别的东西
 
 1136
 00:46:52,710 --> 00:46:55,344
 you don't need, network connection open or something.
+又或是开启的网络链接或者什么其他的东西
 
 1137
 00:46:55,413 --> 00:46:58,080
 That only makes sense to be open while your MVC is on,
+总之只有在你的 MVC 运行的时候开启才有用的
 
 1138
 00:46:58,149 --> 00:47:00,749
 then here is a good place where you can shut it down,
+那么这里就是一个你关闭它的好地方
 
 1139
 00:47:00,818 --> 00:47:03,052
 and there is a did version of this as well.
+它也有一个 did 的版本
 
 1140
 00:47:04,388 --> 00:47:06,555
 A lot of times people look at viewDidAppear and
+很多时候我们将 viewDidAppear
 
 1141
 00:47:06,623 --> 00:47:09,691
 viewWillDisappear as matched, you know, one undoes
+和 viewWillDisappear 视为一对儿，你懂的，一个撤销
 
 1142
 00:47:09,760 --> 00:47:12,295
 the other, and then the same thing with viewWillAppear and
+另外一个做过的事情；viewWillAppear 
 
 1143
 00:47:12,363 --> 00:47:15,498
 viewDidDisappear, those are gonna undo each other.
+和 viewDidDisappear 也一样，一个撤销另一个做的事
 
 1144
 00:47:17,134 --> 00:47:20,736
 I still haven't talked about geometry until now.
+直到现在我们还没有讨论布局相关的事
 
 1145
 00:47:20,805 --> 00:47:22,904
 You don't want to be doing geometry in viewWillAppear.
+你不会想在 viewWillAppear 中布局
 
 1146
 00:47:22,973 --> 00:47:25,007
 Your geometry actually probably is set
+虽然在 viewWillAppear 被调用时
 
 1147
 00:47:25,075 --> 00:47:27,042
 in viewWillAppear, but you shouldn't count on that.
+布局相关的已经不会变了，但是你不应该指望它
 
 1148
 00:47:27,111 --> 00:47:29,311
 You shouldn't do geometry in the view wills and
+你也不应该在各种 viewWill
 
 1149
 00:47:29,379 --> 00:47:31,313
 did appears and disappears either.
+didAppear 或 disappear 中布局
 
 1150
 00:47:31,382 --> 00:47:35,050
 Geometry changes: there's methods especially for it.
+布局，有专门设置它们的方法
 
 1151
 00:47:35,119 --> 00:47:37,686
 One thing to consider is, you almost never need to write any
+有一件需要注意的事就是，你几乎不用写任何代码
 
 1152
 00:47:37,755 --> 00:47:40,122
 code when your geometry changes.
+来完成需要的重新布局
 
 1153
 00:47:40,191 --> 00:47:42,023
 That's cuz you have auto layout.
+那是因为你使用了自动布局（Auto Layout）
 
 1154
 00:47:42,092 --> 00:47:43,792
 I mean, look at the app I just wrote.
+我的意思是，你看我刚刚写的这个 app
 
 1155
 00:47:43,861 --> 00:47:47,129
 I've got that sad, happy, worried block of text, and
+Sad，Happy 和 Worried 那一块内容
 
 1156
 00:47:47,198 --> 00:47:48,497
 when I rotate it it stays in the middle.
+即使在我旋转设备的时候，它们始终在中间
 
 1157
 00:47:48,566 --> 00:47:50,632
 I didn't have to write any code for that.
+我不需要为此写任何代码
 
 1158
 00:47:50,701 --> 00:47:52,568
 And even more complicated UI's.
+即使在更加复杂的 UI 中
 
 1159
 00:47:52,637 --> 00:47:54,336
 You're usually using auto layout and
+你也会经常用自动布局
 
 1160
 00:47:54,404 --> 00:47:55,804
 it's doing it for you.
+来帮你做这些工作
 
 1161
 00:47:55,873 --> 00:47:57,206
 So most time you don't need any code.
+所以大部分时间你不需要任何代码
 
 1162
 00:47:57,274 --> 00:48:00,242
 But if you did feel like you needed to do some code
+但是如果你觉得你还是想写一些代码的话
 
 1163
 00:48:00,311 --> 00:48:02,411
 Let's talk a little bit about how you do that.
+我也可以教你一点怎么写
 
 1164
 00:48:04,082 --> 00:48:06,982
 There's two methods, viewWillLayoutSubviews and
+这有两个方法，viewWillLayoutSubviews
 
 1165
 00:48:07,050 --> 00:48:08,550
 viewDidLayoutSubviews.
+和 viewDidLayoutSubviews
 
 1166
 00:48:08,619 --> 00:48:10,019
 And these are sent to you.
+你的这两个方法会被调用
 
 1167
 00:48:10,087 --> 00:48:13,656
 In between these being sent to you, Autolayout happens.
+而自动布局是在它们之间发生的
 
 1168
 00:48:15,193 --> 00:48:18,994
 So if you wanna get involved in the geometry change of your
+所以如果你想在自动布局发生前
 
 1169
 00:48:19,063 --> 00:48:21,898
 view, before Autolayout starts,
+插手改变你的形状和/或位置的话
 
 1170
 00:48:21,966 --> 00:48:23,399
 you can do it in view will layout subviews.
+你可以使用 viewWillLayoutSubviews 方法
 
 1171
 00:48:23,468 --> 00:48:25,534
 If you wanna wait until Autolayout does what it does
+如果你想等自动布局做完它的工作之后
 
 1172
 00:48:25,603 --> 00:48:26,568
 and then you wanna get involved,
+再插手控制的话
 
 1173
 00:48:26,637 --> 00:48:29,037
 you can do it in viewDidLayoutSubviews.
+你可以用 viewDidLayoutSubviews 方法
 
 1174
 00:48:29,106 --> 00:48:31,474
 So when did these get called?
+所以它们在什么时候会被调用呢？
 
 1175
 00:48:32,576 --> 00:48:35,378
 When a bounds of a view changes,
+在视图的边界改变时
 
 1176
 00:48:35,446 --> 00:48:38,714
 all of its subviews might have to be moved around.
+可能所有的子视图都会改变他们的位置
 
 1177
 00:48:38,783 --> 00:48:40,582
 Maybe the view is know tall and
+视图可能会从又长又细
 
 1178
 00:48:40,651 --> 00:48:43,052
 thin, instead of short and wide.
+变成又短又宽
 
 1179
 00:48:43,120 --> 00:48:45,521
 It's views are gonna have to be moved to be in the right
+这时它的子视图必须被移动到正确的位置上去
 
 1180
 00:48:45,589 --> 00:48:48,490
 place, just like again we rotated the emotions thing and
+就像我们的 Face It，当我们旋转设备时
 
 1181
 00:48:48,559 --> 00:48:50,559
 we need to move that stack view up or
+我们需要把那个 UIStackView
 
 1182
 00:48:50,628 --> 00:48:53,762
 all over a little bit sustained in the middle.
+整体向上移才能使它保持在中间
 
 1183
 00:48:53,831 --> 00:48:55,197
 That's primarily what's going on here,
+差不多就是这样
 
 1184
 00:48:55,265 --> 00:48:58,334
 that's why this method is called viewWillLayoutSubviews.
+所以这个方法叫做“视图将要布局子视图”
 
 1185
 00:48:58,402 --> 00:48:59,668
 Its bounds changed and
+它的边界改变了
 
 1186
 00:48:59,737 --> 00:49:01,837
 now all its subviews need to be laid out.
+然后它的所有子视图都要重新被布局
 
 1187
 00:49:01,905 --> 00:49:04,307
 What about the things the view actually draws itself like
+但是那些自己进行绘图的视图要怎么办呢？
 
 1188
 00:49:04,375 --> 00:49:05,207
 the face?
+比如 FaceView
 
 1189
 00:49:05,276 --> 00:49:06,842
 That has nothing to do with this.
+它们什么都不用在这里做
 
 1190
 00:49:06,911 --> 00:49:08,743
 That's a view thing.
+那是视图负责的
 
 1191
 00:49:08,812 --> 00:49:11,647
 That face view, when the bounds change, if it's content
+当 FaceView 边界改变时，如果 contentMode
 
 1192
 00:49:11,716 --> 00:49:14,950
 mode is redraw like we set it for the face view, it's draw
+内容模式是我们设置的重绘，也就是 .redraw
 
 1193
 00:49:15,019 --> 00:49:18,720
 method's automatically gonna get called at the new bounds.
+draw(新的边界) 就会被调用（来重新绘图）
 
 1194
 00:49:18,789 --> 00:49:20,455
 So you don't have to do anything there.
+所以你不需要在这里做任何事
 
 1195
 00:49:20,524 --> 00:49:22,224
 So viewWillLayoutSubviews,
+所以 viewWillLayoutSubviews
 
 1196
 00:49:22,293 --> 00:49:24,659
 is what happens, when you have subviews.
+只有当你有子视图的时候才会发生
 
 1197
 00:49:24,728 --> 00:49:27,596
 This happens at the view level, so views have a method
+这是在视图层面发生的；视图有方法
 
 1198
 00:49:27,665 --> 00:49:30,199
 for laying out their subviews, called layoutSubviews.
+用 layoutSubviews 布局子视图
 
 1199
 00:49:30,268 --> 00:49:33,102
-Subviews, and the ViewController also gets to
+And the ViewController also gets to
+然后视图控制器也能了解到
 
 1200
 00:49:33,170 --> 00:49:36,905
 find out when its view, and by this I mean the var
+它的 view，也就是那个变量
 
 1201
 00:49:36,974 --> 00:49:39,241
 view in ViewController, you remember what that var is?
+UIViewController 的 view 变量，你记得那个吧？
 
 1202
 00:49:39,310 --> 00:49:41,410
 That's that top level view.
+那个是最顶层的视图
 
 1203
 00:49:41,479 --> 00:49:43,212
 There's a var for that in your ViewController,
+UIViewController 里有这么个变量
 
 1204
 00:49:43,281 --> 00:49:46,615
 it's saying that view is going to layout its subviews, and
+总之控制器会知道这个 view 将布局子视图了
 
 1205
 00:49:46,684 --> 00:49:49,718
 that happens when that top level view changes, usually
+在最顶层的视图改变时就会被通知
 
 1206
 00:49:49,786 --> 00:49:52,488
-due to rotation but other things can change it as well.
+due to rotation, but other things can change it as well.
+一般都是发生在设备旋转时，但是也有一些其他东西会触发（这种变化）
 
 1207
 00:49:55,793 --> 00:49:59,728
 One thing about these methods is you should expect that they
+关于这些方法，有一点需要注意，那就是你应该
 
 1208
 00:49:59,797 --> 00:50:02,198
 may be called all the time.
+做好它们会被随时调用的准备
 
 1209
 00:50:02,266 --> 00:50:04,299
 Don't try to anticipate when they're going to be called.
+不要尝试去预期它们什么时候会被调用
 
 1210
 00:50:04,368 --> 00:50:06,735
-Just, whenever they're called, you do what you're supposed,
+Just, whenever they're called, you do
+不管什么时候它们被调用 
 
 1211
 00:50:06,803 --> 00:50:07,702
-you're supposed to do,
+what you're supposed to do,
+你就做好你该做的工作
 
 1212
 00:50:07,771 --> 00:50:10,372
 and they might be called repeatedly with the same
+而且它们可能在相同的边界下被重复的
 
 1213
 00:50:10,441 --> 00:50:11,373
 bounds.
+调用
 
 1214
 00:50:11,442 --> 00:50:13,375
 So the bounds might not actually have changed,
+所以可能边界并没有被改变
 
 1215
 00:50:13,444 --> 00:50:15,578
 because this is not called view bounds changed this is
+因为这个方法并不叫做“视图边界被改变”
 
 1216
 00:50:15,646 --> 00:50:18,280
 called viewWillLayoutSubviews and viewDidLayoutSubviews.
+它叫做“视图将要布局子视图”和“视图已经布局好了子视图”
 
 1217
 00:50:18,349 --> 00:50:20,682
 And there are other things besides bounds changes that
+所以也有一些除了视图边界被改变的情况
 
 1218
 00:50:20,751 --> 00:50:23,152
 might cause that top-level view to have to layout it's
+也可能导致顶级视图不得不布局它的
 
 1219
 00:50:23,220 --> 00:50:24,020
 sub views.
+子视图们
 
 1220
 00:50:24,088 --> 00:50:26,488
 So expect this to be called fairly often and
+所以做好它们被相当频繁调用的准备
 
 1221
 00:50:26,557 --> 00:50:29,458
 you should always react to it correctly.
+你总是应该做出正确的反应
 
 1222
 00:50:29,526 --> 00:50:31,026
 Even if it's called repeatedly with the same
+即使它们在同一边界下或其他各种情况下
 
 1223
 00:50:31,095 --> 00:50:31,927
 bounds or whatever.
+被频繁调用
 
 1224
 00:50:33,430 --> 00:50:35,297
 Now, auto rotation,
+现在我们来讲自动旋转
 
 1225
 00:50:35,366 --> 00:50:38,466
 the bounds changing by rotating the device, actually
+边界会因为设备的旋转而改变，实际上
 
 1226
 00:50:38,535 --> 00:50:41,603
 has a couple of little extra pieces of interest to it.
+还有两个额外的小东西我们要注意下
 
 1227
 00:50:41,672 --> 00:50:44,473
 The most notable is animation.
+最值得注意的就是动画效果
 
 1228
 00:50:44,541 --> 00:50:46,942
 So normally when you rotate it's just going to be
+所以一般情况下，当你旋转屏幕时
 
 1229
 00:50:47,011 --> 00:50:50,011
 ViewWillLayoutSubviews and everything's just going to,
+viewWillLayoutSubviews 会发生
 
 1230
 00:50:50,080 --> 00:50:53,949
 auto layout's going to happen, everything is happening fine.
+自动布局会发生，所有的事都进行的很好
 
 1231
 00:50:54,018 --> 00:50:57,519
 However that changes, all those changes are animated.
+不管它怎么变，所有这些变化都伴随着动画效果
 
 1232
 00:50:57,588 --> 00:51:00,289
 If you look closely when you rotate your device, all
+如果你在旋转屏幕时仔细观察你会发现
 
 1233
 00:51:00,358 --> 00:51:03,892
 the views are kind of flying across to their new location.
+所有的视图都像是飞到它们的新位置一样
 
 1234
 00:51:03,961 --> 00:51:05,394
 It's really kinda cool actually.
+这样看起来可以说非常酷了
 
 1235
 00:51:06,931 --> 00:51:07,630
 They're being animated.
+它们都伴随有动画效果
 
 1236
 00:51:07,698 --> 00:51:09,698
 They don't just pop appear in the new place,
+它们并不是突然出现在新位置上
 
 1237
 00:51:09,766 --> 00:51:11,100
 they slide over.
+它们滑过去
 
 1238
 00:51:11,168 --> 00:51:13,068
 Well, you can participate in that animation,
+当然你也可以插手设置这些动画效果
 
 1239
 00:51:13,137 --> 00:51:14,336
 now we haven't talked about animation.
+到现在我们还没有讨论过动画效果
 
 1240
 00:51:14,405 --> 00:51:16,905
 We will in about three weeks.
+我们大概三周之内会讨论它
 
 1241
 00:51:16,974 --> 00:51:18,407
 But you can participate with this method,
+但是你可以用这个方法参与这个过程
 
 1242
 00:51:18,475 --> 00:51:20,576
 ViewwillTransition to size with coordinator.
+用 viewwillTransition(to size:with coordinator:)
 
 1243
 00:51:20,644 --> 00:51:24,246
 And that coordinator has a little closure you can set on
+负责协调的 coordinator 有个闭包可以设置
 
 1244
 00:51:24,315 --> 00:51:27,016
 it that will cause some animation you want to do
+来做一些你想要的动画效果
 
 1245
 00:51:27,084 --> 00:51:31,052
 to happen alongside the rotations animation.
+一些你想在设备旋转时发生的动画效果
 
 1246
 00:51:31,121 --> 00:51:33,822
 So if you want to animate moving some user doing
+所以如果你想对一些用户的移动操作加上动画效果
 
 1247
 00:51:33,891 --> 00:51:36,224
 something else that doesn't happen automatically for you,
+加上一些并没有被自动设置出现的动画效果
 
 1248
 00:51:36,293 --> 00:51:37,959
 which most stuff does with autolayout,
+就是那些没有使用自动布局的东西
 
 1249
 00:51:38,028 --> 00:51:39,728
 you can do that here with this method.
+你可以在这里用这个方法实现
 
 1250
 00:51:43,567 --> 00:51:48,337
 Low-memory: didReceiveMemoryWarning
+低内存：didReceiveMemoryWarning
 
 1251
 00:51:48,406 --> 00:51:49,671
 will be sent to your view controller when
+将在你的系统内存不足时
 
 1252
 00:51:49,740 --> 00:51:51,840
 the system's low on memory, it's trying to get some back.
+发送给你的视图控制器，它想搞一些回来
 
 1253
 00:51:51,909 --> 00:51:53,409
 This almost never happens.
+这种情况基本从不发生
 
 1254
 00:51:53,477 --> 00:51:55,311
 I just can't remember the last time this happened because
+我都不记得上次遇到这种情况是什么时候了
 
 1255
 00:51:55,379 --> 00:51:57,379
 the devices have so much memory these days.
+因为现在的设备内存都很大
 
 1256
 00:51:58,649 --> 00:52:01,116
 Usually if this happens though, you wanna pay
+但是通常如果发生了这样的事情，你需要
 
 1257
 00:52:01,185 --> 00:52:03,419
 attention because you're using a lot of memory.
+注意了，因为你正在使用大量的内存
 
 1258
 00:52:03,487 --> 00:52:06,055
 If the system is sending this to you, either you are or
+如果系统发送这个信息给你了，要么是你
 
 1259
 00:52:06,124 --> 00:52:07,922
 some other app is using a lot of memory.
+要么是其他 app 正在使用大量的内存
 
 1260
 00:52:07,991 --> 00:52:10,926
 By the way, if you are an app that uses a lot of memory, and
+如果你的 app 正在使用大量的内存
 
 1261
 00:52:10,995 --> 00:52:12,094
 you don't keep it under control,
+而你又不加以控制
 
 1262
 00:52:12,163 --> 00:52:14,263
 the system has the right to just kill you.
+那么系统就有权利杀掉你的程序
 
 1263
 00:52:15,332 --> 00:52:16,531
 Just kill your app.
+杀掉你的 app
 
 1264
 00:52:16,600 --> 00:52:18,400
 And it will do it, absolutely.
+它是一定会这么做的
 
 1265
 00:52:18,468 --> 00:52:19,901
 Even if you're in the background,
+即使你在后台运行
 
 1266
 00:52:19,970 --> 00:52:23,805
 if you've allocated a ton of memory and you're being a bad
+如果你分配了一大吨内存，而你又不控制
 
 1267
 00:52:23,874 --> 00:52:27,909
 citizen they just kill you off to get your memory back what
+那么系统就会杀掉你的进程，然后把内存拿回来
 
 1268
 00:52:27,978 --> 00:52:30,679
 kinda memory would you free up if you got this method.
+如果你遇到了这个方法，什么样的内存你可以释放呢？
 
 1269
 00:52:30,747 --> 00:52:33,082
 Let's say you had an image that's not currently on
+我们说如果你有个图片，这个图片现在还不会出现在屏幕上
 
 1270
 00:52:33,150 --> 00:52:36,284
 screen, and you can create it from a file on disk.
+然后你可以通过磁盘上的文件来创建它
 
 1271
 00:52:36,353 --> 00:52:39,321
 We haven't really talked about this, but your phone has
+我们还没确切的讨论过这些，但是你的手机是有
 
 1272
 00:52:39,390 --> 00:52:42,625
 permanent storage, flash memory, and you have,
+永久存储和闪存的
 
 1273
 00:52:42,693 --> 00:52:44,627
 let's say a JPEG image, you can just recreate it.
+比如一个 JPEG 格式的图片，你完全可以重建它
 
 1274
 00:52:44,695 --> 00:52:46,461
 Well, you would definitely release that here.
+那么这样的话，你就完全可以把它释放掉
 
 1275
 00:52:46,530 --> 00:52:47,529
 Cuz it's not on-screen, and
+因为它现在不在屏幕上
 
 1276
 00:52:47,598 --> 00:52:48,997
 you can create it real fast from the disk,
+而且你可以非常迅速地通过磁盘上的文件来创建它
 
 1277
 00:52:49,066 --> 00:52:50,165
 so there's no reason to keep it around.
+这样的话，把它留在那里就完全没有必要了
 
 1278
 00:52:50,234 --> 00:52:51,967
 So that's something you could release.
+这就是一些你可以释放的东西
 
 1279
 00:52:52,036 --> 00:52:55,003
 Basically any memory that you can quickly recreate.
+基本上任何你可以快速重建的
 
 1280
 00:52:55,072 --> 00:52:57,205
 Or that is not currently on-screen, and
+或者它现在不在屏幕上的
 
 1281
 00:52:57,274 --> 00:52:59,808
 you can create it when that comes back on-screen.
+你可以在它会到屏幕上之前再创建
 
 1282
 00:52:59,877 --> 00:53:02,177
 That's a good thing to release.
+都是可以释放的内存
 
 1283
 00:53:02,246 --> 00:53:03,678
 But only big things.
+但是只释放大的东西
 
 1284
 00:53:03,747 --> 00:53:05,947
 Don't release little tiny 100 byte things.
+不要释放那些小的只有几百字节的东西
 
 1285
 00:53:06,016 --> 00:53:08,984
 No, we're talking images, sounds, videos,
+我们说的都是一些图片啊音频啊视频之类的东西
 
 1286
 00:53:09,052 --> 00:53:13,355
 big ol' things.
+大～东西
 
 1287
 00:53:13,424 --> 00:53:14,556
 There's one other little thing:
+这还有个小事情要说
 
 1288
 00:53:14,625 --> 00:53:16,992
-it's not part of the UIcontroller life cycle, but
+it's not part of the view controller life cycle, but
+它并不是视图控制器生命周期的一部分
 
 1289
 00:53:17,061 --> 00:53:20,662
 every single object that comes out of a storyboard: views,
+但是每一个 Storyboard 创建的对象
 
 1290
 00:53:20,731 --> 00:53:24,165
 view controllers, everything gets sent awakeFromNib and
+比如视图和视图控制器，所有的都会被调用 awakeFromNib
 
 1291
 00:53:24,234 --> 00:53:25,634
 they can send it pretty early.
+它们可以非常早的接收到它
 
 1292
 00:53:26,904 --> 00:53:27,936
 Like right as soon as they come
+就像它们一出现
 
 1293
 00:53:28,004 --> 00:53:29,938
 out they get sent awake from nib.
+就收到了这个 awakeFromNib
 
 1294
 00:53:30,006 --> 00:53:32,974
 Now you can't use it to like satisfy the requirement that
+虽然说你不能在这里满足
 
 1295
 00:53:33,043 --> 00:53:35,811
 all vars are initialized.
+所有的变量都初始化的要求
 
 1296
 00:53:35,879 --> 00:53:38,947
 But you can use it do early, really early initialization.
+但是你可以使用它完成非常早的初始化工作
 
 1297
 00:53:39,016 --> 00:53:41,350
 For example remember I mentioned about you want your
+举个例子，我记得我提过关于你如果想要你的
 
 1298
 00:53:41,419 --> 00:53:43,819
 split view controller to come up showing the face or
+分屏视图控制器先出现表情选择列表
 
 1299
 00:53:43,887 --> 00:53:46,855
 come up showing the emotions instead of showing the face?
+而不是先出现一张脸
 
 1300
 00:53:47,825 --> 00:53:48,257
 In your calculator,
+在你的计算器里
 
 1301
 00:53:48,326 --> 00:53:49,524
 it would come up showing the calculator,
+它应该先出现计算器界面
 
 1302
 00:53:49,593 --> 00:53:52,828
 instead of the calculator's graph, and
+而不是出现计算的图像
 
 1303
 00:53:52,897 --> 00:53:54,863
 I said you needed to do that by setting the delegate.
+然后我说如果想设置这个的话需要设置代理
 
 1304
 00:53:54,932 --> 00:53:56,932
 This delegate of the SplitViewController,
+UISplitViewController 的代理
 
 1305
 00:53:57,001 --> 00:53:58,500
-that's something you might wanna do to make
+that's something you might wanna do to make awakeFromNib
+这个可以在 awakeFromNib 中设置
 
 1306
 00:53:59,503 --> 00:54:00,702
-get that delegate involved early.
+Just really early, get that delegate involved early.
+来让代理更早地起作用
 
 1307
 00:54:00,771 --> 00:54:03,738
 We'll talk about delegates on Wednesday.
+我们将在周三讲代理
 
 1308
 00:54:03,807 --> 00:54:07,108
 So awake from nib, rarely used and sometimes overused.
+所以这个 awakeFromNib，要么基本不用要么过度使用
 
 1309
 00:54:07,177 --> 00:54:09,878
 I would say if you could put it in another method like view
+我会这么告诉你们，如果你能把它放在其他方法里，比如
 
 1310
 00:54:09,947 --> 00:54:11,713
 did load or view will appear or view.
+viewDidLoad 或者 viewWillAppear 或者
 
 1311
 00:54:11,782 --> 00:54:13,181
 Did layout put it there first.
+viewDidLayout，那么就优先把它放在那里
 
 1312
 00:54:13,250 --> 00:54:14,717
 Don't put it in away fromNib,
+不要把它放在 awakeFromNib 里
 
 1313
 00:54:14,785 --> 00:54:17,185
 that's kind of a last resort place to put things.
+它就是一个你可以放它的最差的一个地方
 
 1314
 00:54:17,254 --> 00:54:19,722
-It's probably better than overriding in it.
+It's probably better than overriding init.
+可能比重写构造器好
 
 1315
 00:54:19,790 --> 00:54:21,824
 But that's the only thing it's better than.
+但是也就能比重写构造器好些了
 
 1316
 00:54:23,693 --> 00:54:25,661
 So here's the summary of the entire view controller
+这是整个视图控制器
 
 1317
 00:54:25,729 --> 00:54:26,561
 lifecycle.
+生命周期的总结
 
 1318
 00:54:26,630 --> 00:54:30,232
 You can instantiated, created out of the storyboard.
+你被实例化，从 Stroyboard 中创建
 
 1319
 00:54:30,300 --> 00:54:32,734
 You get awake from nib sent to you.
+你会收到一个 awakeFromNib
 
 1320
 00:54:32,803 --> 00:54:33,969
 Segue prep happens.
+完成 Segue 前的准备
 
 1321
 00:54:34,038 --> 00:54:36,471
 Somebody prepares you if you're being segued to
+转场到你之前，其他人会把你准备好
 
 1322
 00:54:36,539 --> 00:54:38,407
 which most MVC's are.
+大部分 MVC 都会这么做
 
 1323
 00:54:38,475 --> 00:54:39,508
 Outlets get set.
+出口也都设置好了
 
 1324
 00:54:39,577 --> 00:54:41,176
 Your face view, and your calculator.
+想你的 FaceView 还有你的 Calculator
 
 1325
 00:54:41,244 --> 00:54:44,412
 It's your display and things like that get set up.
+你的 display 和其他要关连都设置好了
 
 1326
 00:54:44,481 --> 00:54:47,015
 ViewDidLoad gets called.
+viewDidLoad 被调用
 
 1327
 00:54:47,084 --> 00:54:49,551
 Again, with viewDidLoad, look at all the things that
+再一次，看看 viewDidLoad 被调用时
 
 1328
 00:54:49,619 --> 00:54:51,453
 happened by the time viewDidLoad gets called.
+这些事都发生了
 
 1329
 00:54:51,522 --> 00:54:53,255
 It's a great place to put initialization.
+这是个非常好进行初始化的地方
 
 1330
 00:54:54,659 --> 00:54:57,058
 You enter kind of the normal life cycle
+当你进入到一个常规的生命周期
 
 1331
 00:54:57,127 --> 00:54:59,460
 where you're getting appearing and disappearing.
+在这里你进行“出现”和“消失”操作
 
 1332
 00:54:59,529 --> 00:55:01,413
-disappearing with the the will and did appear and disappears.
+Appearing and disappearing with the the will and did,
+disappear 和 appear 都有 will 和 did 的
 
 1333
 00:55:01,414 --> 00:55:03,298
-Appearing and
+appears and disappears.
+不断出现消失
 
 1334
 00:55:03,367 --> 00:55:05,501
 Along the way, and at any time actually,
+在整个过程中的任何时间
 
 1335
 00:55:05,569 --> 00:55:08,070
 even before viewDidLoad, you can get these sent to.
+甚至在 viewDidLoad 之前，你都可能收到它们
 
 1336
 00:55:08,139 --> 00:55:09,571
 Although that would be rare.
+虽然这种情况很罕见
 
 1337
 00:55:09,640 --> 00:55:10,472
 But anytime you can be,
+但是也是可能发生的
 
 1338
 00:55:10,540 --> 00:55:13,308
 actually I'm not sure you can get it before viewDidLoad.
+事实上我不是特别确定你会不会在 viewDidLoad 之前收到它，先收回那句话
 
 1339
 00:55:13,377 --> 00:55:16,144
 Take that back But any time when view will appear and
+但是任何时间 viewWillAppear 和 Disappear发生了
 
 1340
 00:55:16,213 --> 00:55:19,314
 disappear is happening, whether you're on-screen or
+不管你是否出现在屏幕上
 
 1341
 00:55:19,383 --> 00:55:22,050
 not, you could get viewWillLayout subviews and
+你都会得到 viewWillLayoutSubviews 和
 
 1342
 00:55:22,119 --> 00:55:25,854
 viewDidLayout subviews sent to you, auto-layout happening.
+viewDidLayoutSubviews 的信息，自动布局会发生
 
 1343
 00:55:25,923 --> 00:55:28,389
 By the way, why would you ever be sent these methods
+那么你为什么会在不在屏幕上的情况下
 
 1344
 00:55:28,458 --> 00:55:29,591
 when you're not on-screen?
+接收到这些方法呢？
 
 1345
 00:55:29,659 --> 00:55:32,327
 Well, the system might be preparing to animate you
+可能是因为系统正在准备
 
 1346
 00:55:32,396 --> 00:55:33,429
 coming on-screen.
+你即将出现在屏幕上的动画效果
 
 1347
 00:55:34,631 --> 00:55:36,364
 When the system animates things,
+当系统在进行一些动画效果的时候
 
 1348
 00:55:36,433 --> 00:55:40,135
 one of the ways it can do it is having you draw one
+一种它实现的方法是，获取你在一个方向的画面
 
 1349
 00:55:40,203 --> 00:55:42,537
 orientation, have you draw in the other, and
+再获取你在另一个方向画的
 
 1350
 00:55:42,606 --> 00:55:45,307
 then it kind of moves the bits from one to the other.
+然后它就把对应的点移动到另外一个
 
 1351
 00:55:45,376 --> 00:55:47,142
 That's one kind of animation can do.
+这是生成动画效果的一种方式
 
 1352
 00:55:47,211 --> 00:55:48,977
 So you might be off screen, and it's asking you for
+所以这样的话，你可能不在屏幕上，但是它依然会从你这里获取
 
 1353
 00:55:49,046 --> 00:55:49,544
 both of those.
+这两个东西
 
 1354
 00:55:49,613 --> 00:55:50,712
 So it sends you this twice,
+所以它会发送给你两次
 
 1355
 00:55:50,781 --> 00:55:52,547
 once to get this orientation and draw, and
+第一次获得一个方向下绘制的内容
 
 1356
 00:55:52,616 --> 00:55:54,950
 then once to get this into orientation and draw.
+然后第二次获得另一个方向的内容
 
 1357
 00:55:55,018 --> 00:55:56,017
 And then when you come on screen,
+然后等你在屏幕上时
 
 1358
 00:55:56,086 --> 00:55:57,786
 it animate you from one to the other.
+它就会动态地把你从一个移到另一个
 
 1359
 00:55:58,956 --> 00:56:01,022
 So, that's why you can get this at any time
+所以这就是为什么你随时都可能得到这个方法
 
 1360
 00:56:01,091 --> 00:56:01,757
 on screen or off.
+无论在不在屏幕上
 
 1361
 00:56:03,727 --> 00:56:06,995
 Also at any time you could get a low memory warning.
+同时你也可能在任何时间得到低内存警告
 
 1362
 00:56:07,063 --> 00:56:08,197
 And then you're done.
+到这就完事了
 
 1363
 00:56:09,500 --> 00:56:12,033
 It leaves the heap when it goes off screen if it was
+被 segue 到的控制器就会在离开屏幕的同时离开堆
 
 1364
 00:56:12,102 --> 00:56:18,706
 segued to, as long as it's not itself segued into something.
+注意不是它 segue 到了另一个控制器
 
 1365
 00:56:18,775 --> 00:56:21,709
 But when it's done it gets thrown out.
+如果是被 segue 到的，那就被扔出去了
 
 1366
 00:56:21,778 --> 00:56:23,278
 Okay, so I'm gonna show you a demo that
+现在我要向大家展示一个示例程序
 
 1367
 00:56:23,347 --> 00:56:25,247
 will make all of this a lot more concrete.
+这样可以使我们讲的所有的东西都更具体
 
 1368
 00:56:26,850 --> 00:56:28,417
 Let me go through the rest of this in case I don't get
+我们过一下剩下的这些，万一我不能
 
 1369
 00:56:28,485 --> 00:56:29,984
 back to the slides, I think we will, because
+回来讲幻灯片的话，我觉得我们还是会回来的
 
 1370
 00:56:30,053 --> 00:56:32,588
 I think we're gonna have time to do this other, topic.
+因为我觉得我演示完之后还会有些时间来讲另一个主题
 
 1371
 00:56:34,124 --> 00:56:35,123
 After the demo, I'll come back and
+我会回到这里然后
 
 1372
 00:56:35,192 --> 00:56:37,025
 start to talk about memory management, hopefully.
+开始讨论一些内存管理，希望如此吧
 
 1373
 00:56:37,094 --> 00:56:39,995
 On Wednesday, extensions, protocols, delegation,
+周三，我们会讲扩展（extension）、协议（protocol）和代理（delegation）
 
 1374
 00:56:40,064 --> 00:56:41,463
 that thing I was telling you you'll need to know for
+代理可以用来完成
 
 1375
 00:56:41,532 --> 00:56:43,932
 your split view thing, if you wanna do that extra credit.
+分屏视图控制器的加分题
 
 1376
 00:56:44,001 --> 00:56:46,034
 And we'll start talking about scroll view,
+然后我们会开始讨论滚动视图
 
 1377
 00:56:46,103 --> 00:56:47,302
 more complicated object.
+更复杂的对象
 
 1378
 00:56:47,370 --> 00:56:49,137
 On Friday, important one on Friday,
+周五，周五很重要
 
 1379
 00:56:49,206 --> 00:56:50,805
 if you want to do the extra credit,
+如果你想在你的图形计算器的性能上
 
 1380
 00:56:50,874 --> 00:56:53,241
 about performance in the calculator graph.
+获得额外的分数
 
 1381
 00:56:53,310 --> 00:56:55,377
 So you definitely wanna show up for that one.
+那你一定要去那天的课
 
 1382
 00:56:55,446 --> 00:56:57,813
 And then next week we'll start into multi threading,
+然后下周我们会开始讨论多线程
 
 1383
 00:56:57,882 --> 00:56:59,615
 table view, a whole bunch of cool stuff.
+UITableView，一连串酷酷的东西
 
 1384
 00:57:00,918 --> 00:57:03,084
 Alright, so let's do this demo here.
+那么现在我们来做这个 demo 吧
 
 1385
 00:57:03,153 --> 00:57:06,788
 I'm gonna go to our face view, same thing we were just in,
+我要用我们的 FaceView 来做，我们刚刚用过的这个东西
 
 1386
 00:57:06,857 --> 00:57:08,156
 this face it app.
+就是这个 FaceIt app
 
 1387
 00:57:08,225 --> 00:57:10,959
 And I'm gonna drag in a little piece of code I wrote,
+然后我要拖进来一小块我写的代码
 
 1388
 00:57:11,028 --> 00:57:13,428
 which I'm gonna show you here.
+我要在这里展示给你
 
 1389
 00:57:13,497 --> 00:57:17,299
 Let's get out navigator back here, put this in here.
+我们把导航器拉出来，把它放这
 
 1390
 00:57:17,368 --> 00:57:18,600
 So I'm just gonna drop this in here.
+我就把它丢在这里
 
 1391
 00:57:18,668 --> 00:57:20,202
 By the way when you drag in code,
+顺便一提，当你拖拽代码时
 
 1392
 00:57:20,271 --> 00:57:22,537
 you probably want to do copy items, if needed.
+你可能会想用这个 Copy items if needed
 
 1393
 00:57:22,606 --> 00:57:24,639
 Otherwise, it's gonna be kind of linked to the other one,
+要不然它只会是快捷方式
 
 1394
 00:57:24,708 --> 00:57:25,874
 if you change it in the other place,
+如果你在其他地方对它做了些改动
 
 1395
 00:57:25,943 --> 00:57:27,242
 it's gonna be changing here.
+那么这里的也会相应变化
 
 1396
 00:57:27,311 --> 00:57:30,712
 Can be kinda causing unexpected results often.
+这样的话可能经常会导致很多预期之外的后果
 
 1397
 00:57:32,015 --> 00:57:32,781
 I put this in here.
+我把这个放这
 
 1398
 00:57:32,849 --> 00:57:34,782
 Let's look at this little class I just dropped in here,
+我们来看看我刚刚丢在这里的这个小类
 
 1399
 00:57:34,851 --> 00:57:36,951
 it's called VCLLoggingViewController.
+它叫做 VCLLoggingViewController
 
 1400
 00:57:37,020 --> 00:57:39,054
 It's a subclass of UIViewController.
+他是 UIViewController 的一个子类
 
 1401
 00:57:40,424 --> 00:57:44,292
-Logging view controller and it logs the VCL methods.
+VCLLoggingViewController. And it logs the VCL methods. 
+它会记录 VCL 的方法
 
 1402
 00:57:44,361 --> 00:57:46,661
 View controller life cycle methods.
+视图控制器（VC）生命周期(L)方法
 
 1403
 00:57:46,730 --> 00:57:50,431
 So it basically just overrides every single one.
+所以它基本上就是重写了每一个方法
 
 1404
 00:57:50,500 --> 00:57:53,435
-View will appear, view layout subviews away from nib.
+View will appear, view layout subviews, awake from nib.
+viewWillAppear, viewWillLayoutSubviews, awakeFromNib
 
 1405
 00:57:53,504 --> 00:57:55,436
 It even tells you when it left the heap.
+它甚至可以告诉你它什么时候离开堆
 
 1406
 00:57:55,505 --> 00:57:57,372
 It's overriding init here, and
+它在这重写了一个构造器
 
 1407
 00:57:57,441 --> 00:58:00,942
-it just prints out where it, what happened.
+it just prints out what happened.
+它就是把发生了什么打印出来
 
 1408
 00:58:01,011 --> 00:58:02,210
 So it just sits there on the console,
+它就在控制台那里
 
 1409
 00:58:02,279 --> 00:58:04,179
 printing out everything that happened.
+打印所有发生的事情
 
 1410
 00:58:04,248 --> 00:58:05,147
 It's a little bit cool,
+还是挺酷的
 
 1411
 00:58:05,215 --> 00:58:07,048
 because it shows you the instance of each of them.
+因为它会告诉你它们的每个实例都发生了什么
 
 1412
 00:58:07,117 --> 00:58:09,351
 So you can see instances coming and going,
+所以你可以看到实例们出现然后消失
 
 1413
 00:58:09,420 --> 00:58:12,054
 as they get segued to, and then come off.
+被 segue 到，然后又离去
 
 1414
 00:58:12,122 --> 00:58:15,390
 It also kinda indents it over time, so you can, when you
+每当过去一段时间，它会增加缩进
 
 1415
 00:58:15,459 --> 00:58:18,259
 click some, you can see a bunch that happen together.
+你进行操作的时候，可以看到一连串发生的事情
 
 1416
 00:58:18,328 --> 00:58:21,196
 Now the way we're gonna use this is we're just gonna make
+我们使用它的方式就是
 
 1417
 00:58:21,265 --> 00:58:26,868
 this class be the super class of both of our controllers.
+把它变成我们两个控制器的父类
 
 1418
 00:58:26,937 --> 00:58:29,304
 So we're gonna make that into a VCL login view controller.
+也就是把它们变成 VCLLoggingViewController
 
 1419
 00:58:29,373 --> 00:58:32,674
 And we're gonna make this into a VCL login view controller.
+把这个 UIViewController 改成 VCLLoggingViewController
 
 1420
 00:58:32,743 --> 00:58:36,411
 And right there, you can see why we always wanna call super
+然后这里，你就明白为什么在所有视图控制器方法中
 
 1421
 00:58:36,479 --> 00:58:38,713
 in all of our view control methods.
+我们总是要调用 super 了
 
 1422
 00:58:38,782 --> 00:58:40,648
 Cuz if we did any of these view controller
+如果任何一个控制器生命周期
 
 1423
 00:58:40,717 --> 00:58:41,850
 life cycle methods, and
+的方法被调用了
 
 1424
 00:58:41,918 --> 00:58:44,385
 we were subclassing from VCL login view controller,
+同时我们继承了 VCLLoggingViewController
 
 1425
 00:58:44,454 --> 00:58:46,788
 if we don't call super, it not gonna get logged.
+但我们不调用 super，那么就不会被记录
 
 1426
 00:58:46,856 --> 00:58:48,890
 And it's not unusual to come along later and
+这并不罕见，随时可能
 
 1427
 00:58:48,959 --> 00:58:51,759
 pop the different kind of view controller in between you and
+在你和 UIViewController 之间
 
 1428
 00:58:51,828 --> 00:58:52,894
 UI view controller.
+插入一个其他的类
 
 1429
 00:58:52,962 --> 00:58:56,264
 Some view controller that does something like logging or
+比如用来记录的视图控制器
 
 1430
 00:58:56,332 --> 00:58:57,732
 something else.
+或者其他的什么
 
 1431
 00:58:57,801 --> 00:58:58,867
 All right, so that's it.
+好啦 就是这样
 
 1432
 00:58:58,935 --> 00:59:00,501
 That's all we need to do to make this work.
+这就是我们为了让它工作所做的所有的事情
 
 1433
 00:59:00,570 --> 00:59:01,369
 So I'm gonna go ahead and
+所以我要继续了
 
 1434
 00:59:01,438 --> 00:59:03,137
 run, we'll stick with iPhone 7 plus.
+我们在 iPhone 7 Plus 上运行
 
 1435
 00:59:03,206 --> 00:59:07,009
 Let's go ahead and get the console up here.
+我们来看看，把这个控制台往上拉
 
 1436
 00:59:10,748 --> 00:59:11,546
 Here we go.
+来吧
 
 1437
 00:59:11,615 --> 00:59:13,414
 This came up, and we're already seeing a lot of
+它们出现了，我们已经看到了很多
 
 1438
 00:59:13,483 --> 00:59:15,783
 view controller lifecycle stuff happening here.
+视图控制器生命周期的东西出现了
 
 1439
 00:59:15,852 --> 00:59:17,852
 All right, we have our EmotionsViewController and
+我们这里有我们的 EmotionsViewController 和
 
 1440
 00:59:17,921 --> 00:59:18,920
 our FaceViewController,
+我们的 FaceViewController
 
 1441
 00:59:18,989 --> 00:59:21,623
 these two view controllers get emitted.
+这两个视图控制器出现了
 
 1442
 00:59:21,692 --> 00:59:23,458
 They come out of the storyboard, and
+它们从 Storyboard 中被初始化
 
 1443
 00:59:23,527 --> 00:59:25,426
 they initialize with this init with coder.
+它们通过这个 init(coder:) 来初始化
 
 1444
 00:59:25,495 --> 00:59:26,594
-And that's the one that things
+And that's the one that is for things
+这个构造器是给
 
 1445
 00:59:26,663 --> 00:59:27,862
 come out the interface builder.
+Interface Builder 中的东西用的
 
 1446
 00:59:27,931 --> 00:59:31,033
 They both get awakeFromNib, you see that?
+它们都被调用了 awakeFromNib，你看见了么？
 
 1447
 00:59:31,101 --> 00:59:34,435
 And then the emotions one, first, gets viewDidLoad.
+EmotionViewController 先获得 viewDidLoad
 
 1448
 00:59:34,504 --> 00:59:37,371
-Then it gets viewwillAppear(animated =
+Then it gets viewwillAppear(animated = false)
+然后它有个 viewwillAppear(animated = false）
 
 1449
 00:59:37,440 --> 00:59:38,990
-That's because we're just starting up our app, so it's
+That's because we're 
+这是因为
 
 1450
 00:59:38,991 --> 00:59:40,541
-false).
+just starting up our app,
+我们才开始运行我们的 app
 
 1451
 00:59:40,610 --> 00:59:43,678
-not sliding in on a navigation controller or something.
+so it's not sliding in on a navigation controller or something.
+并不是滑入一个导航控制器或者别的什么东西
 
 1452
 00:59:43,747 --> 00:59:46,848
 It's just appearing, so it's not animated.
+它就简单的出现了，所以并没有动画效果
 
 1453
 00:59:46,917 --> 00:59:50,919
 Then notice, it gets laid out twice, both at the same size,
+这里注意，它布局了两次，都在相同的尺寸下
 
 1454
 00:59:50,988 --> 00:59:54,622
 295 x 414, which is this size right here.
+295 x 414，就是现在这个尺寸
 
 1455
 00:59:54,691 --> 00:59:56,624
 It gets look, done twice.
+它做了两次
 
 1456
 00:59:56,693 --> 00:59:57,642
-Some animation, I don't know wha's going on,
+Again, Why?
+所以到底是为什么呢？
 
 1457
 00:59:57,643 --> 00:59:58,592
-Again, Why?
+Some animation, I don't know wha's going on,
+可能是一些动画效果？我并不知道
 
 1458
 00:59:58,661 --> 00:59:59,494
 why i's doing that.
+它为什么这么做
 
 1459
 00:59:59,563 --> 01:00:00,662
 But you don't care,
+但是你不必在意
 
 1460
 01:00:00,730 --> 01:00:04,466
 just be careful that those layouts can happen repeatedly.
+只要注意，这些布局可能频繁的发生
 
 1461
 01:00:04,534 --> 01:00:06,902
 Now here is face view controller, it gets loaded.
+现在这是个 FaceViewController，他已经被加载好了
 
 1462
 01:00:08,505 --> 01:00:10,838
 It's told it's going to appear, it will appear.
+它被告知将要出现了，willAppear
 
 1463
 01:00:10,907 --> 01:00:12,274
 And it gets laid out once.
+而且它被布局了一次
 
 1464
 01:00:13,877 --> 01:00:17,479
 Then they both get DidAppear, and now they're on screen.
+然后它们现在都有了 didAppear，然后它们现在都在屏幕上了
 
 1465
 01:00:17,547 --> 01:00:19,181
 So this is kind of exactly what you'd expect.
+这完全就是如我们所预想的
 
 1466
 01:00:20,517 --> 01:00:24,252
 Now let's rotate this thing, so
+现在我们来旋转一下设备
 
 1467
 01:00:24,321 --> 01:00:26,821
 that we go to portrait mode.
+这样我们就来到了纵向模式
 
 1468
 01:00:26,890 --> 01:00:29,090
 And we're not gonna see the master.
+然后我们就看不见主视图了
 
 1469
 01:00:29,159 --> 01:00:33,428
 We're only gonna see the details here.
+我们只能看见这里的细节
 
 1470
 01:00:35,866 --> 01:00:37,765
 So here, the master disappears.
+所以这里，主视图消失了
 
 1471
 01:00:37,834 --> 01:00:39,334
 So this is, see the dash?
+看见这些下划线了么？
 
 1472
 01:00:39,403 --> 01:00:42,570
 That's what happened when I did that rotation.
+这就是在我旋转设备的时候发生了什么
 
 1473
 01:00:42,639 --> 01:00:44,839
 So this is all the new stuff.
+所以这些都是新的东西
 
 1474
 01:00:44,908 --> 01:00:46,374
 Now notice that the EmotionViewController
+现在注意力放在 EmotionViewController 上
 
 1475
 01:00:46,443 --> 01:00:47,142
 immediately is
+它立即被
 
 1476
 01:00:47,210 --> 01:00:50,678
 told that there's going to be a rotation animation.
+告知，这里即将出现一个旋转设备相关的动画效果
 
 1477
 01:00:50,747 --> 01:00:54,049
 And it gets a chance to participate in the animation.
+然后它就有了参与这个动画效果的机会
 
 1478
 01:00:54,118 --> 01:00:58,719
 The FaceView gets re-laid out in its new size.
+这个 FaceView 在它的新尺寸下被重新布局了
 
 1479
 01:00:58,788 --> 01:01:01,322
 It's tall now, so it gets laid out, so
+它现在高了，所以它被布局好了
 
 1480
 01:01:01,391 --> 01:01:03,124
 it gets viewWillLayoutSubviews.
+它获得了 viewWillLayoutSubviews
 
 1481
 01:01:03,193 --> 01:01:05,927
 The Emotions Controller is told that it will disappear.
+EmotionsViewController 被告知它要消失了
 
 1482
 01:01:07,331 --> 01:01:09,164
 So it's going to disappear.
+所以它就要消失了
 
 1483
 01:01:09,232 --> 01:01:11,766
-Notice the animated faults, that's cuz the animation in
+Notice the animated = false, that's cuz the animation in
+注意这个 animated = false，这是因为旋转时的动画
 
 1484
 01:01:11,834 --> 01:01:15,403
 that rotation case is handled by the rotation animation.
+是交给旋转动画效果处理的
 
 1485
 01:01:15,471 --> 01:01:18,373
 So it's not sliding in or out but it is getting animated
+所以它并不是滑入滑出，他的动画效果
 
 1486
 01:01:18,442 --> 01:01:21,109
 out of there but by the rotation animation.
+是由旋转动画效果来呈现的
 
 1487
 01:01:21,178 --> 01:01:21,943
 Then we have
+然后我们的
 
 1488
 01:01:22,012 --> 01:01:24,212
 the face view controller being laid out again.
+FaceViewController 又被重新布局了
 
 1489
 01:01:28,619 --> 01:01:30,952
 Now we're getting the EmotionsViewControllers
+现在 EmotionsViewController
 
 1490
 01:01:31,021 --> 01:01:32,487
 being getting it's chance to
+获得了机会参与设置
 
 1491
 01:01:32,555 --> 01:01:35,389
 animate alongside the rotation, right here.
+旋转时的动画效果了，就这里
 
 1492
 01:01:35,458 --> 01:01:37,693
 We've got a couple of spurious things here from
+这里是 iOS UIKit 的胡言乱语
 
 1493
 01:01:39,129 --> 01:01:41,829
 the iOS new UIKit, we can get rid of those.
+我们完全不用管它们
 
 1494
 01:01:41,898 --> 01:01:46,134
 And then the animation ends for both of those controllers.
+然后两个控制器的动画效果结束了
 
 1495
 01:01:46,203 --> 01:01:47,069
 Make sense?
+说得通吧？
 
 1496
 01:01:47,137 --> 01:01:49,604
 Now I'm gonna click this emotions thing, and
+现在我要来点击一下这个 Emotions
 
 1497
 01:01:49,673 --> 01:01:52,941
 go back to the master and watch what happens.
+然后回到主视图看看会发生什么
 
 1498
 01:01:53,009 --> 01:01:54,743
@@ -8013,3 +9513,4 @@ If you guys have any questions, I'm here as always.
 2004
 01:23:46,021 --> 01:23:56,629
 >> For more, please visit us at stanford.edu.
+>> 更多课程详见 stanford.edu
