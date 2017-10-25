@@ -5,246 +5,307 @@
 2
 00:00:04,404 --> 00:00:10,575
 Stanford University. >> Welcome to Stanford CS193P,
+斯坦福大学。>> 欢迎参加 2017 年冬季学期
 
 3
 00:00:10,644 --> 00:00:15,414
 Developing Applications for iOS, winter of 2017.
+斯坦福 CS193P 课程，iOS 应用程序开发
 
 4
 00:00:15,482 --> 00:00:19,318
 This is Lecture number 7, and today we're going to talk
+这是第 7 节课，今天我们将会谈论
 
 5
 00:00:19,386 --> 00:00:23,688
 a little bit more about Swift. And once we do that,
+更多关于 Swift 的内容。一旦我们讲完了这些东西
 
 6
 00:00:23,757 --> 00:00:27,159
 we can introduce some technology that we need
+我们就能介绍一些技术可以让我们
 
 7
 00:00:27,227 --> 00:00:31,129
 to do more sophisticated UIKit objects like,
+去掌握更多复杂的 UIKit 对象
 
 8
 00:00:31,198 --> 00:00:34,899
 scroll views can be our first examples of that today's web
+例如滚动视图，它会作为我们今天要做的第一个 Demo 的例子
 
 9
 00:00:34,968 --> 00:00:38,603
 demo at the end where we show you how to use scroll view.
+我将用它想你展示如何使用滚动视图
 
 10
 00:00:38,672 --> 00:00:42,708
 First thing I wanna talk about in Swift is error handling. So
+我要谈的第一个东西是错误处理
 
 11
 00:00:42,777 --> 00:00:46,778
 far, we have not called any methods that
+到目前为止，我们还没有调用过可以
 
 12
 00:00:46,847 --> 00:00:51,749
 can generate an error, or what we call throwing an error. And
+产生错误的方法，或者我们称之为抛出一个错误
 
 13
 00:00:51,818 --> 00:00:55,020
 we can always tell these methods though really clearly
+我们总是可以很轻易地分辨出这些方法
 
 14
 00:00:55,089 --> 00:00:58,323
 in any API. Because when they're declared,
+因为当它们被声明的时候
 
 15
 00:00:58,392 --> 00:01:01,059
 they'll have the word throws after it. And
+它们的后面将会跟一个词 throws
 
 16
 00:01:01,128 --> 00:01:04,329
 throws means that somewhere in the processing of this method,
+throws 意味着这个方法在运行过程中的某处
 
 17
 00:01:04,398 --> 00:01:07,866
 it's possible, but not guaranteed, that it will throw
+可能，但不是一定，会抛出一个错误
 
 18
 00:01:07,934 --> 00:01:11,803
 an error. So when it throws that error at us,
+所以当它丢给我们一个错误时
 
 19
 00:01:11,871 --> 00:01:16,040
 we have to catch the error. And the way we catch it is,
+我们需要接住它。我们接住错误的方法是……
 
 20
 00:01:16,109 --> 00:01:18,677
 well, first of all, every time we call a method
+额，首先，每当我们调用一个可以
 
 21
 00:01:18,745 --> 00:01:21,813
 that can throw an error, we have to use the word try. So
+抛出错误的方法时，我们都需要用 try 这个词
 
 22
 00:01:21,882 --> 00:01:24,949
 we have to try that method because it might fail.
+我们必须尝试（try）调用这个方法因为它可能出错
 
 23
 00:01:25,018 --> 00:01:27,152
 So that's why we use the word try. But
+这就是我们用 try 的原因
 
 24
 00:01:27,220 --> 00:01:29,020
 if we wanna catch the error that comes back,
+但是如果我们想接住返回的错误
 
 25
 00:01:29,089 --> 00:01:32,390
 we actually have to do that little try inside what's
+我们必须在 do 结构
 
 26
 00:01:32,459 --> 00:01:37,729
 called a do construct. So we have to say do{, and
+里面使用 try。所以我们需要写 do {
 
 27
 00:01:37,798 --> 00:01:42,800
 then some code that has some tries in it. And then} catch,
+然后再里面写一些有 try 的代码。然后是 } catch
 
 28
 00:01:42,869 --> 00:01:47,338
 then let error is going to allow us to grab the thrown
+之后的 let error 允许我们将抛出的错误
 
 29
 00:01:47,407 --> 00:01:50,242
 error into a variable, in this case called error.
+放到一个变量中，在这种情况下叫做 error
 
 30
 00:01:50,310 --> 00:01:53,311
 We could say, let any variable name we want.
+变量名我们可以随便起
 
 31
 00:01:53,380 --> 00:01:55,880
 That's gonna be the variable that has the error in it.
+这个变量里面装的就是错误信息
 
 32
 00:01:55,949 --> 00:01:59,017
 And then in that curly brace, we handle the error. And
+我们在这个大括号里面处理错误
 
 33
 00:01:59,085 --> 00:02:01,853
 then after we've handled it, our code continues. So
+当我们处理完了之后，代码继续执行
 
 34
 00:02:01,922 --> 00:02:04,957
 we caught the error, we deal with it, we keep going.
+所以我们接住错误，解决错误，继续运行
 
 35
 00:02:05,025 --> 00:02:08,760
 It did, if we want to, and if our function throws,
+如果这个函数抛出了一个错误，如果我们想的话
 
 36
 00:02:08,829 --> 00:02:12,531
 we could re-throw the error by using the keyword throw there,
+我们可以在第二个大括号里面使用关键字 throw
 
 37
 00:02:12,599 --> 00:02:17,636
 in our second, little curly brace space. Now this error
+来再次抛出错误。这个丢给你的
 
 38
 00:02:17,704 --> 00:02:21,439
 that gets thrown to you, it does have to be of a certain
+错误有一个确定的类型
 
 39
 00:02:21,508 --> 00:02:25,744
 type. The type is called error. It's a protocol,
+这个类型叫做 Error。它是个协议（protocol）
 
 40
 00:02:25,813 --> 00:02:28,981
 which I'm gonna talk about later in this lecture, but
+协议我过一会儿会讲到
 
 41
 00:02:29,049 --> 00:02:31,082
 it's a pretty simple little type.
+它是个漂亮的简单的小巧的类型
 
 42
 00:02:31,151 --> 00:02:34,720
 And in UIKit, when UIKit methods throw an error,
+在 UIKit 中，UIKit 方法抛出的
 
 43
 00:02:34,788 --> 00:02:37,889
 they throw an error of this type NSError. So
+错误的类型是 NSError
 
 44
 00:02:37,958 --> 00:02:42,226
 you can go take a look in the documentation for NSError and
+你可以去看看 NSError 的文档
 
 45
 00:02:42,295 --> 00:02:46,498
 see what an NSError is. It has an error code, it has an error
+了解一下 NSError 是个啥东西。它有个错误代码，它还有个
 
 46
 00:02:46,567 --> 00:02:50,335
 domain, like where the error occurred. And it,
+错误域，例如这个错误发生的位置
 
 47
 00:02:50,404 --> 00:02:54,038
 even has some things like a description of what happened,
+它甚至还有对什么出错了，为什么出错了
 
 48
 00:02:54,107 --> 00:02:57,342
 why it failed, things like that.
+之类的东西的介绍
 
 49
 00:02:57,411 --> 00:03:00,812
 Now, sometimes we call a function that throws,
+现在我们调用一个可以抛出错误的的函数
 
 50
 00:03:00,881 --> 00:03:05,383
 and we know for sure it's not going to fail. This is
+并且我们确信它不会出错
 
 51
 00:03:05,452 --> 00:03:10,155
 rare that we know this, but if we're certain about it,
+我们很少能确信这一点，但是如果能保证不出错
 
 52
 00:03:10,224 --> 00:03:14,926
 we can use another version of try, which is try! And just
+我们就能用另一版本的 try，就是 try! 
 
 53
 00:03:14,994 --> 00:03:18,630
 like exclamation point means to force it in an optional,
+感叹号的意思就像是将它强行变成一个 Optional
 
 54
 00:03:18,699 --> 00:03:22,267
 exclamation point here means to force it essentially.
+这里的感叹号的意思实质上就是强迫它
 
 55
 00:03:22,336 --> 00:03:25,303
 And if we call context.save() right here,
+如果在这里调用 context.save()
 
 56
 00:03:25,372 --> 00:03:28,974
 whatever that function is, if we call it and it throws,
+不管这个函数是什么，如果我们调用它而它抛出了一个错误
 
 57
 00:03:29,043 --> 00:03:32,043
 our app will crash, okay. That's what the try!
+我们的应用就会崩溃。这就是 try! 的含义
 
 58
 00:03:32,111 --> 00:03:35,913
 means. It means try, I know this is not going to throw.
+它的意思是 try，我知道它不会抛出错误
 
 59
 00:03:35,982 --> 00:03:39,217
 If it does, crash my app. There's yet
+如果抛出了，崩掉我的应用
 
 60
 00:03:39,286 --> 00:03:44,189
 another try though, which is try?. Try?
+还有另一种 try，就是 try?
 
 61
 00:03:44,258 --> 00:03:48,994
 means try to call this method that throws, and
+意思是尝试调用这个可以抛出错误的方法
 
 62
 00:03:49,063 --> 00:03:51,763
 if it does throw, just give me back nil.
+如果它出错了，给我返回个 nil 就行了
 
 63
 00:03:52,832 --> 00:03:53,665
@@ -253,1582 +314,1978 @@ Well, for
 64
 00:03:53,734 --> 00:03:56,534
 that to work of course, the variable that we're
+为了让它能正常工作，我创建了个获得
 
 65
 00:03:56,603 --> 00:04:00,838
 assigning the result of this method, I called this one,
+方法结果的变量，我调用这个
 
 66
 00:04:00,907 --> 00:04:04,509
 errorProneFunctionThatReturns- AnInt. Whatever that returns,
+errorProneFunctionThatReturnsAnInt()。不管它返回的是啥
 
 67
 00:04:04,577 --> 00:04:07,145
 it's now gonna return an optional version of that.
+现在它返回的是返回值的 Optional 类型
 
 68
 00:04:07,213 --> 00:04:09,247
 So error prone function that returns an int,
+所以容易出错的函数会返回一个 Int
 
 69
 00:04:09,316 --> 00:04:11,483
 returns an int obviously. But x,
+返回的当然是个 Int。但是这个 x
 
 70
 00:04:11,552 --> 00:04:15,720
 this let x =, that x is gonna be an optional int for
+这个 let x =，这个 x 显然会是个 Optional Int
 
 71
 00:04:15,789 --> 00:04:18,589
 obvious reasons because if error prone function return
+因为如果容易出错的函数返回
 
 72
 00:04:18,658 --> 00:04:23,428
 an int throws, it has to throw nil back at us, okay? So
+一个错误，它需要给我们返回 nil，对吧？
 
 73
 00:04:23,496 --> 00:04:28,200
 that's what try? is. Try? is give it a try, if it fails,
+这就是 try? 的意义。try? 就是去尝试一下，如果失败了
 
 74
 00:04:28,268 --> 00:04:31,169
 just give me back nil. If I do this try, I don't get to
+就返回 nil。如果我用这种 try，我不会去
 
 75
 00:04:31,238 --> 00:04:33,271
 look at the error. I don't know what it is.
+关心错误。我不知道错误是啥
 
 76
 00:04:33,340 --> 00:04:37,642
 I'm ignoring the error here. I know there was an error, but
+我在这里无视了错误。我知道出错了，但是在 try? 的情况下
 
 77
 00:04:37,711 --> 00:04:42,213
 that's all I know in the try? case. So it's a very simple
+我只知道出错了。所以这是个非常简单的
 
 78
 00:04:42,282 --> 00:04:45,049
 error mechanism that works quite well.
+错误机制并且工作的非常好
 
 79
 00:04:45,118 --> 00:04:48,786
 In Swift they really learned the lessons of some other
+Swift 之外的一些语言
 
 80
 00:04:48,855 --> 00:04:52,891
 languages that have more overwrought, over complicated
+有一些过分细致，过分复杂
 
 81
 00:04:52,959 --> 00:04:56,728
 throwing of errors that are throwing up call stacks and
+的错误抛出，它们会吐出调用的栈以及
 
 82
 00:04:56,796 --> 00:05:00,398
 all these things, Swift is very straight forward,
+所有东西，在 Swift 这里便相当直观
 
 83
 00:05:00,467 --> 00:05:04,335
 sees the entirety of the error processing, all right?
+看这整个错误处理进程，对吧？
 
 84
 00:05:04,404 --> 00:05:07,572
 Now, another completely different topic, extensions.
+现在，另一个完全不同的话题，扩展（extension）
 
 85
 00:05:07,641 --> 00:05:12,109
 So, an extension allows you to add a method or a var,
+扩展可以让你给另一个类或结构枚举
 
 86
 00:05:12,178 --> 00:05:16,180
 even, to another class or structure enum, that you may
+添加方法或变量
 
 87
 00:05:16,249 --> 00:05:19,750
 not even have the code to, okay, it's called extension
+// todo，它叫做扩展
 
 88
 00:05:19,819 --> 00:05:23,822
 because it extends that class. So, here's a concrete example,
+是因为它扩展了那个类。这里是个具体的例子
 
 89
 00:05:23,891 --> 00:05:26,524
 I hope you understand why we might use an extension.
+我希望让你们理解为什么我们要用扩展
 
 90
 00:05:26,593 --> 00:05:29,360
 Remember when we did our app last time and
+记得上次我们写应用的时候
 
 91
 00:05:29,429 --> 00:05:33,064
 we went to our Storyboard and we wrapped the detail of
+去 Storyboard 将分屏控制器的 detail
 
 92
 00:05:33,133 --> 00:05:36,267
 the split view in a navigation controller and
+包裹在一个导航控制器里
 
 93
 00:05:36,336 --> 00:05:39,037
 it broke our code. Right, it broke our code and
+然后代码就崩了。它让我们的代码和
 
 94
 00:05:39,106 --> 00:05:41,572
 prepare for segue because that code was looking for
+prepareForSegue 崩溃的原因是代码视图试图找到
 
 95
 00:05:41,641 --> 00:05:44,509
 a Face View controller and it found a navigation controller
+FaceViewController 然而它找到了个导航控制器
 
 96
 00:05:44,578 --> 00:05:47,745
 instead. And the way we fix that is we just look to see if
+我们解决它的方法是先去看看是否
 
 97
 00:05:47,814 --> 00:05:50,348
 it was navigation controller first. And if it was, we look
+有个导航控制器。如果有
 
 98
 00:05:50,417 --> 00:05:53,150
 at the visible view controller of the navigation controller,
+我们去找这个导航控制器的可见的视图控制器
 
 99
 00:05:53,219 --> 00:05:56,654
 now we have our Face View controller back again. Now,
+这时我们就有了 FaceViewController
 
 100
 00:05:56,723 --> 00:06:01,092
 we could put that code into an extension of UIViewController
+现在我们就能把这些代码放到 UIViewController 的扩展里的
 
 101
 00:06:01,161 --> 00:06:04,228
 by creating a new var, you can see it right here
+一个新的变量中，你可以看到它在那里
 
 102
 00:06:04,297 --> 00:06:06,832
 called contentViewController, we can call the new var
+叫做 contentViewController，我们可以给这个新变量
 
 103
 00:06:06,900 --> 00:06:09,701
 anything we want, I like contentViewController cuz
+取任何名字，我喜欢 contentViewController 因为
 
 104
 00:06:09,769 --> 00:06:12,136
 if it's a navigation controller, it's the content.
+如果它是个导航控制器，它就是内容（content）
 
 105
 00:06:12,205 --> 00:06:14,338
 If it's not a navigation controller, it's just self.
+如果它不是导航控制器，它就是它自己
 
 106
 00:06:14,407 --> 00:06:15,606
 It's the view controller itself.
+就是视图控制器自己
 
 107
 00:06:15,675 --> 00:06:19,744
 It's its own content. And so I can add this, so
+它是它自己的内容（content）。所以我添加了这个
 
 108
 00:06:19,812 --> 00:06:23,448
 I'm adding this var actually to UIViewController. So now
+我在 UIViewController 中添加了这个变量
 
 109
 00:06:23,517 --> 00:06:28,085
 UIViewController understands this var, it has this new var.
+现在 UIViewController 理解这个变量，它有这个新的变量
 
 110
 00:06:28,154 --> 00:06:31,022
 Now I didn't subclass UIViewController to do it,
+我没有去写一个 UIViewController 的子类去实现它
 
 111
 00:06:31,091 --> 00:06:33,291
 I just extended UIViewController. So
+我只是扩展了 UIViewController
 
 112
 00:06:33,360 --> 00:06:36,961
 you UIViewController and all subclasses of UIViewController
+你的 UIViewController 和它的所有的子类
 
 113
 00:06:37,030 --> 00:06:40,298
 will now have this var. And it makes that code that we had in
+现在都会有这个变量。它使得我们的预处理代码
 
 114
 00:06:40,367 --> 00:06:42,867
 prepare, which looks something like this,
+看起来就像这样
 
 115
 00:06:42,936 --> 00:06:45,470
 the green part is the same in both places.
+这两块儿绿色的部分
 
 116
 00:06:45,539 --> 00:06:47,838
 It changes that code with all that to
+它把这些代码简化成了
 
 117
 00:06:47,907 --> 00:06:53,278
 just this simple line of code. The segue's destination,
+只有一行代码。segue.destination
 
 118
 00:06:53,346 --> 00:06:58,717
 contentViewController as my MVC. I think that slide says
+.contentViewController as? MyMVC。幻灯片上写的是
 
 119
 00:06:58,786 --> 00:07:00,985
 destinationViewController- that should be
+destinationViewController，它在这里其实
 
 120
 00:07:01,054 --> 00:07:05,423
 segue.destination.contentView- Controller there. So,
+应该是 segue.destination.contentViewController
 
 121
 00:07:05,492 --> 00:07:08,893
 it just cleans up our code and prepare for segue. But
+所以它会让我们的代码和 prepareForSegue 更加简洁
 
 122
 00:07:08,962 --> 00:07:10,995
 the extension that we have UIViewControllers,
+UIViewController 中的扩展
 
 123
 00:07:11,064 --> 00:07:12,731
 purely a UIViewController thing.
+仅仅是 UIViewController 的东西
 
 124
 00:07:12,799 --> 00:07:15,500
 It has nothing to do with our emotions view controller,
+它与我们的 EmotionsViewController 无关
 
 125
 00:07:15,569 --> 00:07:18,269
 anything like that. We purely extended UIViewController to
+我们仅仅扩展了 UIViewController 使它
 
 126
 00:07:18,338 --> 00:07:23,575
 have new functionality. Now, extensions inside their code,
+有了新的功能。现在，在扩展的代码中
 
 127
 00:07:23,644 --> 00:07:26,644
 they can refer to self. And when they refer to self,
+可以引用 self。当我们引用 self 时
 
 128
 00:07:26,713 --> 00:07:29,381
 they mean the class they're in. And so in this case,
+它代表的是我们当前所在的类。在这种情况下
 
 129
 00:07:29,450 --> 00:07:31,549
 the self means the UIViewController that
+这个 self 代表的就是正在执行这个
 
 130
 00:07:31,618 --> 00:07:33,718
 is executing this var which makes sense,
+变量的 UIViewController
 
 131
 00:07:33,786 --> 00:07:37,989
 right? There's some restrictions though with these
+对吧？扩展也有一些限制
 
 132
 00:07:38,057 --> 00:07:41,960
 extensions. So extensions are not a substitute for
+扩展不是面向对象中的子类和
 
 133
 00:07:42,029 --> 00:07:44,696
 everything object oriented like subclassing and
+类似于子类的东西
 
 134
 00:07:44,765 --> 00:07:48,132
 things like that. One thing is that you can't re-implement
+的替代品。有一点就是你不能重写
 
 135
 00:07:48,201 --> 00:07:51,903
 something that already is in there. So, you can't override
+已经存在的东西。所以你不能用扩展重写（Override）
 
 136
 00:07:51,971 --> 00:07:55,707
 or subclass with extensions. You can only add new things
+或者继承。你只能写新的、本来不存在的东西
 
 137
 00:07:55,775 --> 00:07:58,610
 that aren't there. And in fact, if UIViewController were
+事实上，如果 UIVIewController 已经
 
 138
 00:07:58,678 --> 00:08:01,479
 to have implemented this var contentViewController,
+有了变量 contentViewController
 
 139
 00:08:01,547 --> 00:08:04,181
 its version would win- the extension with not win.
+那么原本的变量会赢，而扩展中写的变量不会赢
 
 140
 00:08:04,250 --> 00:08:06,751
 In fact, it might even get an error when you try to add
+实际上，当你试着在扩展中添加原来已有的内容的时候
 
 141
 00:08:06,820 --> 00:08:08,853
 an extension to something already there.
+你甚至会得到一个错误
 
 142
 00:08:08,922 --> 00:08:10,621
 So its not our replacing or overriding or
+所以它不能取代或重写或者是
 
 143
 00:08:10,690 --> 00:08:13,658
 anything like that, it's for adding new things. And a huge
+类似的事情，它是用来添加新东西的
 
 144
 00:08:13,727 --> 00:08:18,763
 restriction to extensions is they cannot have any storage.
+扩展的一个很大的限制是它们没有任何存储空间
 
 145
 00:08:21,234 --> 00:08:25,403
 The only vars an extension can have have to be computed vars.
+扩展中唯一能存在的变量就是计算变量
 
 146
 00:08:25,472 --> 00:08:27,705
 They can't have any stored vars, okay,
+它们不能有任何储存变量
 
 147
 00:08:27,774 --> 00:08:30,975
 extensions have no storage. They are purely for
+扩展没有存储空间。它们存在的意义仅仅是
 
 148
 00:08:31,044 --> 00:08:35,880
 adding code, all right. Now, this feature of extensions is
+添加代码。扩展这个特性
 
 149
 00:08:35,949 --> 00:08:39,450
 easily abused especially by beginners to Swift.
+很容易被滥用，Swift 的初学者尤其是如此
 
 150
 00:08:39,519 --> 00:08:42,019
 They start saying, cool, I'll just add this code and
+他们会想，酷，我就把这些代码和扩展
 
 151
 00:08:42,088 --> 00:08:43,521
 extension here, I'll add new code and
+加到这儿，把新代码和扩展
 
 152
 00:08:43,590 --> 00:08:45,657
 an extension there and I'll add it over there.
+加到那儿，我会把它添加到这儿……
 
 153
 00:08:45,725 --> 00:08:48,359
 And you start getting this kind of messy situation where
+然后你的扩展使用的并不合理
 
 154
 00:08:48,428 --> 00:08:50,194
 the extensions don't really make sense for
+你的类的结构会因为这些扩展
 
 155
 00:08:50,263 --> 00:08:53,264
 the class you added them to. So I'm gonna suggest that you
+变得很混乱。所以我建议你
 
 156
 00:08:53,332 --> 00:08:56,134
 be kind of go slow and steady with the extensions.
+慢慢地小心地使用扩展
 
 157
 00:08:56,202 --> 00:08:59,904
 Don't use them too much. Now having said that, extensions
+不要过度使用它们。记好这一点
 
 158
 00:08:59,973 --> 00:09:04,075
 can be super powerful for architecting your code well.
+扩展将对你构筑代码非常有帮助
 
 159
 00:09:04,144 --> 00:09:06,611
 Okay, especially when I start talking about protocols.
+特别是当我开始谈论协议的时候
 
 160
 00:09:06,679 --> 00:09:09,280
 They can be a fundamental aspect of building
+// todo
 
 161
 00:09:09,349 --> 00:09:12,350
 like a functional programming approach to building your app.
+// todo
 
 162
 00:09:12,418 --> 00:09:15,052
 But I don't have time to teach all that to you. So
+但是我没时间把所以东西都教给你
 
 163
 00:09:15,121 --> 00:09:17,088
 you're only gonna know enough
+所以如果你对扩展
 
 164
 00:09:17,156 --> 00:09:18,489
 about extensions to get yourself in
+了解的不够的话，你会让自己
 
 165
 00:09:18,558 --> 00:09:21,459
 a little bit of trouble. So be careful with extensions, okay?
+陷入麻烦之中。所以小心使用扩展，好吧？
 
 166
 00:09:21,527 --> 00:09:23,695
 Use them lightly. But in the future when you start
+少用他们。但是在未来的某一天你
 
 167
 00:09:23,764 --> 00:09:26,631
 a becoming serious iOS developer someday you're gonna
+成为了专业的 iOS 开发者，你就应该
 
 168
 00:09:26,699 --> 00:09:28,966
 wanna learn how and you can use extensions to your
+学一学如何利用扩展的优点而
 
 169
 00:09:29,035 --> 00:09:34,238
 advantage without abusing them, all right? Next topic,
+不滥用它们了，好吧？下一个话题
 
 170
 00:09:34,307 --> 00:09:38,910
 protocols, super, duper important topic here.
+协议（Protocol），一个超级重要的话题
 
 171
 00:09:38,978 --> 00:09:41,545
 How many people have encountered protocols in
+有多少人在别的语言里遇到过协议？
 
 172
 00:09:41,614 --> 00:09:46,384
 other languages? Nobody, see? Well, one or two people.
+没人，看到了么？额，有一两个人
 
 173
 00:09:46,453 --> 00:09:50,121
 So it surprises me a little bit, but, protocols,
+这让我感到有点惊讶，但是，协议
 
 174
 00:09:50,190 --> 00:09:54,325
 while very simple, are also incredibly powerful. So,
+是很简单，并且极其强大的。
 
 175
 00:09:54,394 --> 00:09:58,296
 a protocol is a way to declare a type
+协议是声明一种类型的方式
 
 176
 00:09:58,365 --> 00:10:02,233
 that really just means these methods and vars with no
+这个类型里面一般包含了一些未被实现的
 
 177
 00:10:02,302 --> 00:10:06,937
 implementation generally. That's what a protocol is.
+方法和变量。这就是协议
 
 178
 00:10:07,006 --> 00:10:10,742
 A protocol, as you'll see, is a type. But you're essentially
+协议，你将会看到，是一种类型。但是你本质上
 
 179
 00:10:10,811 --> 00:10:14,712
 just defining a few methods. Or even some vars,
+其实就是定义了一些方法，或者变量
 
 180
 00:10:14,781 --> 00:10:17,982
 that are part of this protocol. Then we're gonna use
+这是协议的一部分。然后你将会看到
 
 181
 00:10:18,051 --> 00:10:21,052
 the protocol, as you'll see, to define our APIs better.
+我们会用这个协议去更好地定义 API
 
 182
 00:10:21,120 --> 00:10:26,557
 It allows you to create an API that lets the callers pass
+它允许你创建一个 API 使得调用者可以传递
 
 183
 00:10:26,626 --> 00:10:30,628
 anything they want- any class, or struct, or enum even,
+任何它想传递的东西，就像类，或者结构体，或者甚至是枚举
 
 184
 00:10:30,696 --> 00:10:34,866
 they want to this API that you create. But it allows you,
+// todo
 
 185
 00:10:34,934 --> 00:10:38,970
 who's receiving it, to ensure that that class, or
+// todo
 
 186
 00:10:39,039 --> 00:10:41,405
 enum, or struct, implements certain methods or
+// todo
 
 187
 00:10:41,474 --> 00:10:45,176
 vars that you need. So that's what this is all about.
+// todo
 
 188
 00:10:45,245 --> 00:10:47,912
 It's about API design. We want to build API so
+它与 API 的设计有关。我们想创建一个 API 所以
 
 189
 00:10:47,980 --> 00:10:51,282
 we can express in our API exactly what we want and
+我们需要表达在这个 API 里我们需要些什么
 
 190
 00:10:51,351 --> 00:10:54,318
 no more. Okay, just the methods and vars we need to do
+就是这些。仅仅是些我们需要的方法和变量
 
 191
 00:10:54,387 --> 00:10:57,288
 whatever this function is going to do or whatever, and
+和这个函数的功能之类的东西
 
 192
 00:10:57,357 --> 00:11:01,292
 not extra stuff. So, a protocol is just a collection
+没什么其他的东西。所以，协议就是个
 
 193
 00:11:01,361 --> 00:11:04,062
 of method and property declarations.
+方法和属性的声明的集合
 
 194
 00:11:04,130 --> 00:11:07,798
 That's what a protocol is. But a protocol is a type. It's
+这就是协议。但是协议是个类型
 
 195
 00:11:07,867 --> 00:11:11,202
 a full fledged type. It serves any place you can use a type,
+它是个完整的类型。任何一个可以用类型的地方
 
 196
 00:11:11,271 --> 00:11:15,506
 like a float. You can use a type that's a protocol.
+例如 Float，你都可以用协议这个类型
 
 197
 00:11:15,574 --> 00:11:19,243
 Protocols are first-class types. Absolutely first-class
+// todo
 
 198
 00:11:19,312 --> 00:11:23,781
 types. The implementation of the methods and vars under
+协议中的方法和变量的实现
 
 199
 00:11:23,850 --> 00:11:26,851
 protocol, since a protocol is just the declaration of them,
+由于协议仅仅是声明了它们
 
 200
 00:11:26,919 --> 00:11:29,554
 where does the implementation happen? Well, mostly
+那我们应该去哪里实现呢？大部分
 
 201
 00:11:29,622 --> 00:11:33,557
 it happens in classes and structs and enum that claim to
+实现的地方在声称要实现，或是我们称之为遵从
 
 202
 00:11:33,626 --> 00:11:36,827
 implement that protocol, or conform to that protocol,
+这个协议的类和结构体以及枚举里
 
 203
 00:11:36,896 --> 00:11:39,897
 we say. So if I'm a struct, and I wanna say yes,
+如果我是个结构体，我说：“是的，
 
 204
 00:11:39,966 --> 00:11:43,467
 I wanna conform to protocol x, then I have to implement
+我想遵从协议 x”，那么我必须实现
 
 205
 00:11:43,536 --> 00:11:46,938
 all the methods in vars that are in protocol x, right?
+协议 x 中的所有方法和变量，对吧？
 
 206
 00:11:47,006 --> 00:11:48,672
 Cuz protocol x is just a declaration of them,
+因为协议 x 仅仅是声明了它们
 
 207
 00:11:48,741 --> 00:11:50,708
 it's not an implementation. Now,
+并没有实现它们
 
 208
 00:11:50,777 --> 00:11:54,778
 you can also do implementation on a protocol in an extension,
+你也可以在扩展里实现协议
 
 209
 00:11:54,847 --> 00:11:56,714
 but I'm going to put that on the shelf for second and
+但是我打算先把它放到架子上一会儿然后
 
 210
 00:11:56,783 --> 00:11:59,016
 talk about that in a few more slides. But
+在几张幻灯片之后讲到它
 
 211
 00:11:59,085 --> 00:12:02,353
 primarily protocols, implementation happens in
+但是主要的协议的实现都发生在
 
 212
 00:12:02,422 --> 00:12:05,155
 conforming or implementing classes,
+遵循的类
 
 213
 00:12:05,224 --> 00:12:10,127
 structs and enums. Now, the three parts to a protocol.
+结构体和枚举中。这是协议的三个部分
 
 214
 00:12:10,196 --> 00:12:12,029
 One is the declaration of the protocol.
+第一个是协议的声明
 
 215
 00:12:12,098 --> 00:12:14,332
 That's really simple. It looks just like declaring a class,
+这非常简单。它看起来类似于声明一个类
 
 216
 00:12:14,400 --> 00:12:16,868
 a struct or an enum. But there's no implementation,
+结构体或是枚举。但是这里没有实现
 
 217
 00:12:16,936 --> 00:12:20,271
 okay. The second part is the class or structure or
+第二个部分是声称要遵循这个协议的
 
 218
 00:12:20,340 --> 00:12:23,608
 enum that claims to conform to that protocol.
+类或结构体或枚举
 
 219
 00:12:23,676 --> 00:12:25,943
 That claims that it implements that protocol. And
+它要求他要实现这个协议
 
 220
 00:12:26,012 --> 00:12:28,646
 then of course there's the actual code that that class,
+然后当然是类，结构体，枚举中的
 
 221
 00:12:28,715 --> 00:12:31,883
 struct, or enum, that claims to implement the protocol,
+真正实现协议的代码。
 
 222
 00:12:31,952 --> 00:12:33,785
 actually does implement the protocol. So that's it,
+确实实现了这个协议。所以这就是
 
 223
 00:12:33,853 --> 00:12:35,819
 those are the three part of using a protocol.
+协议的三个部分
 
 224
 00:12:35,888 --> 00:12:40,458
 Both the declaration and then the implementation. Now,
+先是声明然后是实现
 
 225
 00:12:40,527 --> 00:12:42,994
 I'm gonna talk about a feature with protocols,
+现在我要讲讲协议的一个特性
 
 226
 00:12:43,063 --> 00:12:45,563
 called optional methods. This is not optional,
+叫做可选方法（Optional Methods）。这不是像
 
 227
 00:12:45,632 --> 00:12:47,966
 like the optional type. This is different optional.
+可选类型一样的 Optional。这是个不同的 Optional
 
 228
 00:12:48,034 --> 00:12:51,502
 It means that the methods in the protocol, are optional,
+它的意思是协议中的方法是可选的
 
 229
 00:12:51,571 --> 00:12:53,071
 you don't have to implement them, and
+你不用非得实现它们
 
 230
 00:12:53,139 --> 00:12:55,906
 you can still say that you implement this protocol.
+而你依然可以声称要实现这个协议
 
 231
 00:12:55,975 --> 00:12:58,910
 Now this is an Objective-C thing. This is not a really
+这是个 Objective-C 的东西。这不是真正的
 
 232
 00:12:58,979 --> 00:13:01,946
 a Swift thing. In swift when you have a protocol and
+Swift 的东西。在 Swift 中当你写了个协议然后
 
 233
 00:13:02,015 --> 00:13:04,315
 it has a bunch of methods in it, if you're struct or
+里面有一串方法，如果你的结构体或
 
 234
 00:13:04,384 --> 00:13:06,784
 class and you wanna say you implemented that protocol,
+类想要实现这个协议时
 
 235
 00:13:06,852 --> 00:13:09,287
 you have to implement all of them,
+你需要实现所有的方法
 
 236
 00:13:09,355 --> 00:13:13,925
 all right. In Objective-C though that's not true,
+懂吧？在 Objective-C 中并非如此
 
 237
 00:13:13,993 --> 00:13:16,827
 in Objective-C some of the methods might be optional and
+在 Objective-C 中有些方法可能是可选的
 
 238
 00:13:16,896 --> 00:13:20,164
 in which case you can claim to implement the protocol and
+在这种情况下你依然可以声称要实现这个协议但
 
 239
 00:13:20,233 --> 00:13:23,868
 not implement those. So, if we have a protocol that has these
+不去实现这些方法。所以如果我们的协议里有一些可选的
 
 240
 00:13:23,937 --> 00:13:26,437
 optional things in it, it has to be marked objc.
+东西的话，协议需要用 @objc 标记
 
 241
 00:13:26,506 --> 00:13:30,408
 So you put this little @objc before the word protocol, and
+所以你需要把 @objc 放到 protocol 这个词的前边
 
 242
 00:13:30,477 --> 00:13:32,743
 that says this is an Objective-C protocol. And
+这表示这是个 Objective-C 协议
 
 243
 00:13:32,812 --> 00:13:35,346
 then inside the declaration you can put the word
+然后再里面声明的时候你可以把
 
 244
 00:13:35,414 --> 00:13:39,283
 "optional" in front of any funcs or var that you want to
+optional 放到任何一个你想让它变成可选的函数或变量前面
 
 245
 00:13:39,351 --> 00:13:44,154
 make optional. So this is going to be used for something
+这个东西。在代理中会用到这一点
 
 246
 00:13:44,223 --> 00:13:46,090
 called delegation which I'm gonna talk about in a few
+代理的内容我会在几张幻灯片之后讲到
 
 247
 00:13:46,159 --> 00:13:49,860
 slides which is an Objective-C thing that is brought forward.
+它是一个 Objective-C 提出的东西
 
 248
 00:13:49,929 --> 00:13:52,931
 Because it's in UIKit so extensively it's brought
+因为它在 UIKit 中被大量使用
 
 249
 00:13:52,999 --> 00:13:57,334
 forward into Swift using this @objc protocol, okay?
+当来到 Swift 中时需要用 @objc 协议
 
 250
 00:13:57,403 --> 00:13:59,971
 But back to protocols in general. So let's take a look
+让我们回到普通的协议上来。来看看
 
 251
 00:14:00,040 --> 00:14:01,705
 at what a protocol looks like to declare.
+协议的声明是什么样子的
 
 252
 00:14:01,774 --> 00:14:05,710
 So here's the declaration of a protocol called SomeProtocol.
+这里是一个叫做 SomeProtocol 的协议的声明
 
 253
 00:14:05,779 --> 00:14:07,612
 And you can see it looks just like declaring a class,
+你会发现它看起来就像是在声明一个类
 
 254
 00:14:07,681 --> 00:14:09,279
 a struct, or an enum, right.
+结构体，或是枚举，对吧？
 
 255
 00:14:09,348 --> 00:14:11,582
 You got the keyword which is protocol instead of class,
+你用关键字 protocol 代替了 class
 
 256
 00:14:11,651 --> 00:14:14,551
 struct, or enum. Then you got the name.
+struct，以及 enum。后面是它的名字
 
 257
 00:14:14,620 --> 00:14:19,991
 Now after that though there's a colon, and other protocols.
+之后是一个冒号，然后是其他的协议
 
 258
 00:14:20,060 --> 00:14:23,227
 These protocols are called inherited protocols.
+这些协议被称为被继承的协议
 
 259
 00:14:23,296 --> 00:14:26,331
 Some protocol inherits these two protocols. And
+SomeProtocol 继承了这两个协议
 
 260
 00:14:26,399 --> 00:14:28,532
 what it means is that anyone who wants to say yeah,
+意思就是谁想说：“耶，
 
 261
 00:14:28,601 --> 00:14:29,800
 I implement some protocol,
+我想实现 SomeProtocol”
 
 262
 00:14:29,869 --> 00:14:31,235
 they have to implement those too.
+那它就得吧这俩也给实现了
 
 263
 00:14:31,303 --> 00:14:33,704
 Okay, they're doing all three of these protocols.
+它们得把这仨协议都实现了
 
 264
 00:14:33,773 --> 00:14:37,074
 Some protocol, and its two inherited protocols.
+SomeProtocol，和这俩被继承的协议
 
 265
 00:14:37,143 --> 00:14:41,879
 So protocols essentially have multiple inheritance. How many
+所以协议支持多重继承
 
 266
 00:14:41,947 --> 00:14:45,482
 people know what multiple inheritance is in object
+这儿有多少人知道面向对象中的多重继承的？
 
 267
 00:14:45,551 --> 00:14:47,785
 oriented? So only a few of you. So multiple inheritance
+只有很小一部分。多重继承
 
 268
 00:14:47,854 --> 00:14:49,753
 just means like you could have two super classes, or
+多重继承就是说你可以有俩父类
 
 269
 00:14:49,822 --> 00:14:52,923
 three super classes. Some languages support that.
+或者仨父类。有些语言支持这个特性
 
 270
 00:14:52,992 --> 00:14:56,460
 Swift does not. But Swift does support multiple
+Swift 并不支持。但是 Swift 中支持
 
 271
 00:14:56,529 --> 00:15:00,764
 protocols that you can inherit from, okay?
+协议的多重继承
 
 272
 00:15:00,833 --> 00:15:04,768
 Now, the protocol inside, you can have properties and
+在协议里面，你可以写属性和
 
 273
 00:15:04,837 --> 00:15:09,440
 you can have funcs. And if you have a var, a property,
+函数。如果你写了个变量，一个属性
 
 274
 00:15:09,508 --> 00:15:12,376
 you have to say whether it's a get set property or
+你需要在大括号内指明
 
 275
 00:15:12,445 --> 00:15:15,112
 there's just get only and you do that in a curly brace get
+这是个可读可写的还是个
 
 276
 00:15:15,181 --> 00:15:18,582
 set. Curly brace get. So you have to put that curly
+只读的属性。所以你需要把这些东西放到
 
 277
 00:15:18,651 --> 00:15:21,752
 brace something in there that says whether you're gonna be
+大括号里面来表明你需要的是个
 
 278
 00:15:21,821 --> 00:15:27,224
 a get set var or whether you're just a get-only var.
+可读可写的变量还是仅仅是个可读的变量
 
 279
 00:15:27,293 --> 00:15:32,496
 Any function that the protocol expects would mutate the thing
+协议中的预计会改变要实现它的
 
 280
 00:15:32,565 --> 00:15:35,966
 implementing it, like if a struct were implementing it,
+例如要实现它的结构体的函数
 
 281
 00:15:36,035 --> 00:15:39,904
 you have to mark it mutating. Now if a class were to
+你需要用 mutating 标记它。如果是个类想要
 
 282
 00:15:39,972 --> 00:15:41,905
 implement this protocol, it wouldn't matter,
+实现这个协议就没关系
 
 283
 00:15:41,974 --> 00:15:44,775
 classes don't have to mark themselves mutating.
+类不用给它们自己标记 mutating
 
 284
 00:15:44,844 --> 00:15:46,877
 And in fact it's even possible to say,
+实际上你甚至可以限定
 
 285
 00:15:46,946 --> 00:15:49,847
 I want this protocol only to be implemented by classes.
+这个协议只能被类实现
 
 286
 00:15:49,916 --> 00:15:52,583
 And you do that by putting the word class right after
+你可以在冒号后面 class 这个词
 
 287
 00:15:52,651 --> 00:15:55,719
 the colon. See the yellow class right there SomeProtocol
+看那个黄色的 class，就是 SomeProtocol
 
 288
 00:15:55,788 --> 00:15:58,256
 : class- that means this SomeProtocol can only be
+: class 那个，意思是 SomeProtocol 只能被
 
 289
 00:15:58,324 --> 00:15:59,756
 implemented by reference types. And
+引用类型实现
 
 290
 00:15:59,825 --> 00:16:02,426
 in that case you don't have to put any mutatin's in there.
+在这种情况下你不需要写 mutating
 
 291
 00:16:02,495 --> 00:16:04,428
 But if you are gonna allow your protocol to
+但是如果你想让你的协议
 
 292
 00:16:04,497 --> 00:16:07,097
 be implemented by an enum, or especially by a struct,
+可以被枚举，尤其是被结构体实现
 
 293
 00:16:07,166 --> 00:16:09,934
 obviously you're gonna have to put mutating in there.
+显然你需要写 mutating
 
 294
 00:16:11,871 --> 00:16:15,973
 You can also specify in a protocol initializers.
+你还可以指定协议中的构造器
 
 295
 00:16:16,042 --> 00:16:16,940
 You're basically saying,
+如果你这么写了
 
 296
 00:16:17,009 --> 00:16:19,410
 anyone who wants to implement this SomeProtocol has to be be
+任何想要实现 SomeProtocol 的东西必须
 
 297
 00:16:19,478 --> 00:16:23,814
 able to be initialized with these arguments, all right?
+能够被这些参数初始化，懂吧？
 
 298
 00:16:23,883 --> 00:16:27,451
 If you do that, by the way, and you're a class,
+顺带一提，如果你是个类
 
 299
 00:16:27,520 --> 00:16:32,456
 okay, then you have to mark the initializer required. I'll
+你需要再构造器前面加个 required
 
 300
 00:16:32,525 --> 00:16:37,895
 show you that in a second. All right, so how does a class or
+我待会儿会给你展示。所以一个类，结构体或是枚举应该
 
 301
 00:16:37,964 --> 00:16:42,733
 a struct or an enum say yes, I implement SomeProtocol?
+如何声称自己要实现 SomeProtocol 呢？
 
 302
 00:16:42,802 --> 00:16:46,336
 It does it this way. A class, right after its superclass,
+它用的是这种方法。一个类，右边是它的父类
 
 303
 00:16:46,405 --> 00:16:48,639
 just puts a comma and the protocols'll do this.
+然后加个逗号，后面跟着协议
 
 304
 00:16:48,708 --> 00:16:51,208
 And you can implement any number of protocols there.
+并且你可以实现任何数目的协议
 
 305
 00:16:51,277 --> 00:16:54,244
 So this class called SomeClass has a SuperClass,
+这个类叫做 SomeClass，它有个父类
 
 306
 00:16:54,313 --> 00:16:57,247
 it's called SuperClass of some class, and it also implements
+叫做 SuperClassOfSomeClass，然后它还实现了
 
 307
 00:16:57,316 --> 00:17:00,984
 two protocols, SomeProtocol and AnotherProtocol.
+俩协议，SomeProtocol 和 AnotherProtocol
 
 308
 00:17:01,053 --> 00:17:03,721
 Now inside of SomeClass' implementations it must
+在 SomeClass 中它
 
 309
 00:17:03,790 --> 00:17:07,357
 implement all the methods and vars in those two protocols
+必须实现这俩协议中的所有的方法和和变量
 
 310
 00:17:07,426 --> 00:17:10,027
 unless it's an Objective-C protocol and they're marked
+除非它是个 Objective-C 协议并且被用 optional
 
 311
 00:17:10,096 --> 00:17:12,163
 optional. Okay, the methods in there are marked optional.
+标记了。被 optional 标记的方法
 
 312
 00:17:12,231 --> 00:17:16,600
 That's the only exception to that. All right. Structs or
+是唯一的例外。结构体和
 
 313
 00:17:16,669 --> 00:17:19,937
 enums. Exactly the same, it's just they have no superclass.
+枚举是完全相通的，他们都没有父类
 
 314
 00:17:20,006 --> 00:17:22,439
 So here's an enum saying, that it implements those two
+所以枚举就是声称自己要实现这俩
 
 315
 00:17:22,508 --> 00:17:24,975
 protocols, okay? And here is a struct saying that it
+协议，懂吧？然后结构体同样也是声称它要
 
 316
 00:17:25,044 --> 00:17:27,678
 implements those two protocols. Now,
+实现这俩协议
 
 317
 00:17:27,747 --> 00:17:32,482
 you can have any number of protocols implemented. And
+你可以实现任何数量的协议
 
 318
 00:17:32,551 --> 00:17:35,420
 as I said, inits have to be required. The reason that
+就像我刚说过的那样，init 前面需要加个 required
 
 319
 00:17:35,488 --> 00:17:38,322
 these inits have to be required here is that,
+init 需要 required 的理由是
 
 320
 00:17:38,391 --> 00:17:42,159
 what if a subclass, subclass is SomeClass right there, and
+// todo
 
 321
 00:17:42,228 --> 00:17:45,095
 it does all the initial exation games such as,
+// todo
 
 322
 00:17:45,164 --> 00:17:47,698
 this is no longer a good intializer.
+// todo
 
 323
 00:17:47,767 --> 00:17:48,665
 Because maybe this was required.
+// todo
 
 324
 00:17:48,734 --> 00:17:50,468
 You need an initializer, you need an override, so
+// todo
 
 325
 00:17:50,536 --> 00:17:52,569
 now you have your own new designated initializer,
+// todo
 
 326
 00:17:52,638 --> 00:17:55,072
 et cetera. Well, that would be bad, because that would mean
+// todo
 
 327
 00:17:55,141 --> 00:17:58,075
 the subclass of SomeClass would no longer conform to
+// todo
 
 328
 00:17:58,144 --> 00:18:00,945
 that protocol, and that is not allowed.
+// todo
 
 329
 00:18:01,014 --> 00:18:03,981
 If a class conforms to a protocol, like SomeProtocol,
+// todo
 
 330
 00:18:04,050 --> 00:18:06,884
 all of its subclasses have to continue to do that. And
+// todo
 
 331
 00:18:06,953 --> 00:18:10,721
 they'll inherit that from the superclass except for init,
+// todo
 
 332
 00:18:10,790 --> 00:18:14,191
 are the one thing that can be uninherited by the rules of
+// todo
 
 333
 00:18:14,259 --> 00:18:19,563
 init. Okay? One thing that's very interesting is that you
+懂吧？有件很有意思的事情就是
 
 334
 00:18:19,632 --> 00:18:22,499
 are allowed to add protocol conformance to a struct,
+你可以把协议添加到结构体
 
 335
 00:18:22,568 --> 00:18:26,403
 a class, or an enum using an extension. As long as you can
+类或者枚举的扩展中，只要不需要任何
 
 336
 00:18:26,472 --> 00:18:29,539
 do it without any storage. You can do it in the extension.
+存储空间就行。你可以在扩展中做这个事情
 
 337
 00:18:29,608 --> 00:18:32,443
 You just say, extension Something, where Something is
+你可以写，extension Something（Something 就是个
 
 338
 00:18:32,512 --> 00:18:35,312
 the class, struct or enum, colon, SomeProtocol.
+类，结构体或是枚举）: SomeProtocol
 
 339
 00:18:35,381 --> 00:18:38,182
 And that saying, I'm creating extension to that class,
+它的意思就是我要创建这个类，结构体或枚举的
 
 340
 00:18:38,251 --> 00:18:40,651
 struct or enum that implements this protocol.
+扩展来实现这个协议
 
 341
 00:18:40,720 --> 00:18:41,918
 And then inside that extension,
+然后在扩展内部
 
 342
 00:18:41,987 --> 00:18:45,790
 you have to implement all the methods of the protocol. Okay,
+你需要实现协议的所有方法
 
 343
 00:18:45,859 --> 00:18:50,727
 understand what I'm saying there? Let's
+理解我刚才说的内容吧？
 
 344
 00:18:50,796 --> 00:18:54,198
 talk about protocols being types. What do I mean when I
+现在来谈谈协议作为一种类型。我说的一个协议是一个类型
 
 345
 00:18:54,267 --> 00:18:56,867
 say a protocol is a type? So, I got an example here.
+是什么意思？所以我在这里给出了一个例子
 
 346
 00:18:56,936 --> 00:18:59,803
 I've got a protocol called Moveable and
+我创建了个叫做 Moveable 的协议
 
 347
 00:18:59,872 --> 00:19:02,439
 it just has one function in it, a mutating function called
+它里面只有一个函数，一个叫做 moveToPoint 的
 
 348
 00:19:02,508 --> 00:19:06,144
 move to point. Now, I have two data structures here.
+可变的函数。在这儿我有俩数据结构
 
 349
 00:19:06,212 --> 00:19:09,513
 One is a class called Car, and it's Moveable.
+一个是个类，叫做 Car，是 Moveable 类型的
 
 350
 00:19:09,582 --> 00:19:12,950
 Okay, the Car is Moveable, but the Car also has other methods
+Car 是 Moveable，但是这个 Car 也有其他的方法
 
 351
 00:19:13,018 --> 00:19:16,887
 like changeOil. You change the oil of the car. And
+例如 changeOil。你可以改变车的油量
 
 352
 00:19:16,956 --> 00:19:19,056
 similarly I have this struct called Shape.
+与此相类似的是个叫 Shape 的结构体
 
 353
 00:19:19,125 --> 00:19:22,259
-It also implements Moveabl. Look, see, mutating func
+It also implements Moveable. Look, see, mutating func
+它同样实现了 Moveable，看那儿，mutating func
 
 354
 00:19:22,328 --> 00:19:24,861
 move to point. It actually implements that. But it also
+moveToPoint。它的确实现了协议。但它还有个函数
 
 355
 00:19:24,930 --> 00:19:26,931
 has a function called draw. Because it is a shape and
+叫做 draw。因为它是个形状
 
 356
 00:19:26,999 --> 00:19:30,168
 it can be drawn on screen. All right, so all
+它可以被画在屏幕上
 
 357
 00:19:32,972 --> 00:19:35,539
 two of these classes implement this protocol move to.
+这俩类（和结构体）都实现了这个协议的 move(to: )
 
 358
 00:19:35,607 --> 00:19:39,343
 Do you see that? So do you see that they're all moveable?
+看到了么？所以你看懂他们都是 Moveable 了吧？
 
 359
 00:19:39,411 --> 00:19:41,612
 Okay, a car is moveable. A shape is moveable.
+Car 是 Moveable，Shape 也是 Moveable
 
 360
 00:19:41,681 --> 00:19:45,583
 That's how we would describe those. So I created two little
+这就是我们描述它们的方法。在下面我
 
 361
 00:19:45,651 --> 00:19:48,785
 vars down here. A Prius, which is of car of course,
+创建了俩比那两。一个事 prius，显然是个 Car
 
 362
 00:19:48,854 --> 00:19:51,322
 it equals a new car. And then I created a square,
+它等于个新的 Car。然后我创建了个 square
 
 363
 00:19:51,391 --> 00:19:53,991
 which is a shape, of course. So I've got a Prius and
+显然它是个 Shape。所以这里我有了个 prius
 
 364
 00:19:54,060 --> 00:19:56,360
 a square here. Let's see what we can do with the Prius and
+和 square。现在来看看我们能拿 prius 和
 
 365
 00:19:56,428 --> 00:20:00,497
 the square. First, I can create a var whose type is
+square 做些啥。首先，我可以创建一个变量，它的类型是
 
 366
 00:20:00,566 --> 00:20:05,936
 Moveable called thingToMove and I can assign it to Prius.
+Moveable，叫做 thingToMove，并且我可以把 prius 的值赋给它
 
 367
 00:20:06,005 --> 00:20:09,573
 Because a Prius is moveable. So if I have a var that
+因为 prius 是个 Moveable。所以如果我有个类型是
 
 368
 00:20:09,642 --> 00:20:12,776
 is of type moveable, of course a Prius can be put in there.
+Moveable 的变量，我当然可以把 prius 放到这儿
 
 369
 00:20:12,845 --> 00:20:17,681
 Everyone understand that? And I can even say, thingToMove,
+所有人都懂了么？然后我甚至可以写 thingToMove
 
 370
 00:20:17,750 --> 00:20:21,218
 move to this point, because thingToMove is a Moveable.
+.move(to: 这个点)，因为 thingToMove 是个 Moveable
 
 371
 00:20:21,287 --> 00:20:24,622
 So, if it's a Moveable, it has to implement move to point. So
+如果这是个 Moveable，它必须实现 moveToPoint
 
 372
 00:20:24,690 --> 00:20:29,092
 I can say that. However, I cannot say, thingToMove,
+因此我可以这样写。然而，我不能写 thingToMove
 
 373
 00:20:29,161 --> 00:20:32,929
 change oil. This is the critical thing to understand,
+.chageOil()。这是需要理解的很关键的一点
 
 374
 00:20:32,998 --> 00:20:39,636
 okay? Even though I put a Prius in thingToMove,
+好吧？尽管我把 prius 赋给了 thingToMove
 
 375
 00:20:39,705 --> 00:20:43,741
 that var is not a Car, it's a Moveable.
+这个变量也不是 Car，而是个 Moveable
 
 376
 00:20:43,809 --> 00:20:47,211
 And moveables don't know how to change the oil. Cars do.
+然而 Moveable 并不知道 changeOil 是个啥。Car 知道
 
 377
 00:20:47,279 --> 00:20:51,748
 But moveables don't. So what matters is the type when it
+但 Moveable 不知道。这也就是说传递信息的
 
 378
 00:20:51,817 --> 00:20:54,652
 comes to sending the messages, not what's actually in there.
+是类型，而不是真正在里面的东西
 
 379
 00:20:56,155 --> 00:20:59,923
 Everyone understand that? Now, of course, I could also say
+所有人都懂了吧？当然，我可以让
 
 380
 00:20:59,992 --> 00:21:02,759
 thingToMove = square. That's perfectly legal as well. Okay,
+thingToMove = square。这也是完全合法的
 
 381
 00:21:02,828 --> 00:21:05,062
 square is not even a class, it's a struct. Okay,
+square 甚至不是个类，它是个结构体
 
 382
 00:21:05,131 --> 00:21:08,031
 it's not a car, it's a shape. But they're both moveable so
+它不是个 Car，它是个 Shape。但是他们都是 Moveable
 
 383
 00:21:08,100 --> 00:21:10,601
 that var thingToMove which is of type Moveable can hold
+所以 Moveable 类型的变量 thingToMove 可以等于
 
 384
 00:21:10,669 --> 00:21:13,303
 either of those things. In fact, I can even create
+它们两个。实际上，我甚至可以创建
 
 385
 00:21:13,372 --> 00:21:18,376
 an array, thingsToMove, which is an array of Moveable and
+一个数组，thingsToMove，它是个 Moveable 类型的数组
 
 386
 00:21:18,444 --> 00:21:20,244
 then I can put a Prius and a square both in there,
+然后我可以把 prius 和 square 一起放到里面
 
 387
 00:21:20,312 --> 00:21:22,980
 even though they're completely different classes,
+尽管它们是完全不同的类
 
 388
 00:21:23,048 --> 00:21:24,781
 types of things.
+不同类的东西
 
 389
 00:21:24,850 --> 00:21:27,517
 They can both go in there cuz they're both moveables.
+他们能被一起放到这里因为他们都是 Moveable
 
 390
 00:21:27,586 --> 00:21:30,520
 So, the type of thing in that array is Moveable.
+所以这个数组里面的东西的类型是 Moveable
 
 391
 00:21:30,589 --> 00:21:34,091
 What it actually is, doesn't matter. Okay,
+它到底是个啥并不重要。懂吧？
 
 392
 00:21:34,160 --> 00:21:38,061
 everyone cool with that? All right, I could also have
+所有人都理解了吧？好了，我还可以
 
 393
 00:21:38,130 --> 00:21:40,964
 a function that takes a Moveable as an argument,
+写个函数使它的参数是一个 Moveable
 
 394
 00:21:41,033 --> 00:21:44,801
 like slide that takes a slider which is a Moveable, and
+就像这个 slide 有个参数叫 slider 而且它的类型是 Moveable
 
 395
 00:21:44,870 --> 00:21:48,271
 I can say, slider move to that position because the argument,
+我可以写，slider.moveTo(positionToSlideTo) 因为这个参数
 
 396
 00:21:48,340 --> 00:21:51,174
-slider, is a Moveable so we can say move too. And
+slider, is a Moveable so we can say move to. And
+slider 是个 Moveable，所以我们可以写 moveTo
 
 397
 00:21:51,243 --> 00:21:55,012
 I could say slide a Prius, slide a square.
+我可以写 slide(prius)，slide(square)
 
 398
 00:21:55,081 --> 00:21:58,816
 It works perfectly fine. By the way you can have arguments
+它可以运行的很好。通过这种方式你能指定
 
 399
 00:21:58,885 --> 00:22:01,419
 to functions that require multiple protocols.
+函数的参数需要实现多个协议
 
 400
 00:22:01,487 --> 00:22:03,320
 For example I could have a function, slip and
+例如我可以写个函数叫 slipAndSlide
 
 401
 00:22:03,389 --> 00:22:08,159
 slide which has a parameter x which is both Moveable,
+它有个参数 x，它同时是 Moveable
 
 402
 00:22:08,227 --> 00:22:10,160
 and another protocol, which I haven't showed here,
+和另一个我并没有在这里展示的协议
 
 403
 00:22:10,229 --> 00:22:12,563
 called Slippery. And that's what the ampersand means.
+Slippery。这就是 & 的意思
 
 404
 00:22:12,632 --> 00:22:14,932
 It means both of these protocols. So
+它的意思是两个协议
 
 405
 00:22:15,001 --> 00:22:17,968
 that inside slipAndSlide, I could send x Moveable things,
+在 slipAndSlide 里面我可以给 x 发送 Moveable 的东西
 
 406
 00:22:18,036 --> 00:22:20,070
 like move to, and I could also send it Slippery things,
+例如 moveTo，并且我还能给它发送 Slippery 的东西
 
 407
 00:22:20,139 --> 00:22:23,841
 whatever those are. Note that I can't say slipAndSlide
+不管它们是啥。注意我不能写 slipAndSlide(prius)
 
 408
 00:22:23,909 --> 00:22:27,711
 Prius, because Prius does not implement slippery, okay?
+因为 prius 没有实现 Slippery，对吧？
 
 409
 00:22:27,780 --> 00:22:31,548
 Prius does not conform to the Slippery protocol so cannot
+prius 并没有遵从 Slippery 协议所以它
 
 410
 00:22:31,617 --> 00:22:35,352
 pass in there, Swift would not even let me call that.
+在这里无法被传递，Swift 甚至不允许我调用它
 
 411
 00:22:35,421 --> 00:22:37,887
 Okay, everyone understand what I mean now by a protocol as
+所有人都理解我说的协议是个类型这句话的
 
 412
 00:22:37,956 --> 00:22:41,225
 a type? It's just a type, and anything that conforms to that
+意思了吧？它仅仅是个类型，任何遵循这个类型的东西
 
 413
 00:22:41,293 --> 00:22:43,927
 type can be stored in something, or passed through
+可以被储存在某些东西里，或者被传递给这个
 
 414
 00:22:43,996 --> 00:22:47,330
 in something of that type. Now I'm gonna take a couple slides
+类型的某些东西。现在我打算用两个幻灯片
 
 415
 00:22:47,399 --> 00:22:51,368
 here and talk about the advanced use of protocols. I'm
+来讲讲协议的高端用法
 
 416
 00:22:51,436 --> 00:22:54,771
 not gonna ask you to do that in the nine or ten weeks we
+我在 9 或 10 周内还不打算让你
 
 417
 00:22:54,840 --> 00:22:57,874
 have here because it is kinda advanced use. But I think it's
+这么用因为这种用法比较高端。但是我觉得
 
 418
 00:22:57,943 --> 00:23:00,944
 important that you understand that this exists because all
+让你们理解这种存在是很重要的，因为所有的
 
 419
 00:23:01,013 --> 00:23:05,015
 of Swift's standard library, arrays and dictionaries,
+Swift 的标准库，数组和字典
 
 420
 00:23:05,083 --> 00:23:09,886
 all that stuff, is all implemented using protocols.
+所有的东西，都是通过协议实现的
 
 421
 00:23:09,955 --> 00:23:13,124
 So, one thing that a protocol can do that I'm not gonna ask
+有件协议可以干但是我不打算让你们
 
 422
 00:23:13,192 --> 00:23:16,126
 you to do, is that it can restrict the type
+去干的事是他能限制泛型
 
 423
 00:23:16,195 --> 00:23:19,129
 of a generic. Everyone knows what a generic is, right?
+的类型。都有人都知道泛型是啥吧？
 
 424
 00:23:19,198 --> 00:23:21,832
 An array of angle bracket t.
+一个类型为 <T> 数组
 
 425
 00:23:21,901 --> 00:23:26,237
 It means the array can hold any type in there. But that t,
+它的意思是这个数组可以放任意类型的东西。但是这个 T
 
 426
 00:23:26,305 --> 00:23:29,206
 that array of t could be restricted to things that
+数组的 T 可以被限定为
 
 427
 00:23:29,275 --> 00:23:31,641
 implement a certain protocol. So here's an example,
+实现某个特定的协议。这里我用 Range
 
 428
 00:23:31,710 --> 00:23:36,580
 which is range. When I showed you range, a few lectures ago.
+作为例子。几节课之前我给你们展示 Range 的时候
 
 429
 00:23:36,649 --> 00:23:41,385
 I said it was sort of Range<T>. Okay,
+我说它是一种 Range<T>
 
 430
 00:23:41,454 --> 00:23:46,090
 the reason it was only sort of Range<T> was because
+它是一种 Range<T> 的原因是
 
 431
 00:23:46,158 --> 00:23:49,693
 actually range bound or T bound is just a variable name
+实际上 Range 的 Bound 或是 T 的 Bound 是个变量名
 
 432
 00:23:49,762 --> 00:23:52,862
 basically for that type, colon comparable.
+为那个类型的变量，: Comparable
 
 433
 00:23:52,931 --> 00:23:57,067
 Okay, so a range can only be a range of things that implement
+一个 Range 只能是一系列实现了协议 Comparable
 
 434
 00:23:57,136 --> 00:24:00,971
 the protocol Comparable. Luckily ints implement
+的东西。幸运的是 Int 实现了
 
 435
 00:24:01,040 --> 00:24:05,809
 Comparable. Floats implement Comparable. Characters and
+Comparable。Float 也实现了。Character 和
 
 436
 00:24:05,878 --> 00:24:08,612
 strings implement Comparable, etc. So these things all
+String 都实现了，等等。因为这些东西都
 
 437
 00:24:08,681 --> 00:24:10,981
 implement Comparable so you can have a range of ints,
+实现了 Comparable 所以你可以创建 Int 的 Range
+
 
 438
 00:24:11,050 --> 00:24:13,616
 a range of floats, whatever. Now,
+Float 的 Range，以及其他的 Range
 
 439
 00:24:13,685 --> 00:24:17,921
 why does range want the thing in its range to be comparable?
+那么为什么 Range 想让它里面的东西是可比较的呢？
 
 440
 00:24:17,990 --> 00:24:20,590
 Well it's because it wants to make sure that its lower bound
+因为它要确保它的下限（lowerBound）
 
 441
 00:24:20,659 --> 00:24:22,259
 is always less than its upper bound.
+永远小于它的上限（upperBound）
 
 442
 00:24:23,763 --> 00:24:25,529
 I think on the other slide, I said it was start index and
+在别的幻灯片我可能把它说成了开始端点和
 
 443
 00:24:25,597 --> 00:24:28,698
 end index. Which is actually not range, the range struct,
+终止端点。那并不是 Range 结构
 
 444
 00:24:28,767 --> 00:24:31,935
 that's countable range, and those kind of things have
+那是 CountableRange，它们同样需要实现
 
 445
 00:24:32,004 --> 00:24:36,540
 that. You rarely use just a straight range.
+那个协议。你很少用直接的 Range
 
 446
 00:24:36,609 --> 00:24:38,241
 You're almost always using the countable range,
+你大部分情况下都会用 CountableRange
 
 447
 00:24:38,310 --> 00:24:41,645
 or closed countable range, or one of those. But anyway, so
+或者 CloseCountableRange，或者它们中的一个。但是不管咋说
 
 448
 00:24:41,714 --> 00:24:45,081
 that's why it wants the type that it can be generic for
+这就是 Range 想让它的类型是可比较的
 
 449
 00:24:45,150 --> 00:24:46,717
 to be Comparable. So
+的原因
 
 450
 00:24:46,786 --> 00:24:50,220
 being able to restrict this generic types by some protocol
+用一些协议来限制泛型的类型
 
 451
 00:24:50,288 --> 00:24:54,558
 is really super powerful. Okay, because it allows you to
+是非常强大的。因为它允许你
 
 452
 00:24:54,627 --> 00:24:59,362
 build much a more wide variety of generic data structures.
+创建种类更加繁多的泛型数据结构
 
 453
 00:24:59,431 --> 00:25:00,297
 Because you can make it so
+因为你可以让它们
 
 454
 00:25:00,366 --> 00:25:02,833
 that they have to implement certain things to work.
+必须实现特定的协议来运作
 
 455
 00:25:02,901 --> 00:25:07,538
 All right. Now, also, you can use
+你还可以用
 
 456
 00:25:07,606 --> 00:25:11,875
 generics to declare protocols. So you can have protocols,
+泛型去声明协议。你可以写个协议
 
 457
 00:25:11,944 --> 00:25:16,947
 where the methods in vars might be a generic type. So,
+它的方法可能是个泛型
 
 458
 00:25:17,016 --> 00:25:18,849
 now you can have these protocols kind of meta.
+// meta 咋翻译？
 
 459
 00:25:18,917 --> 00:25:21,919
@@ -1845,162 +2302,202 @@ Or maybe work on generic types that implement certain
 462
 00:25:28,694 --> 00:25:32,496
 protocols. Now, this is probably hard for you to
+这对你们来说可能比较难想象是
 
 463
 00:25:32,564 --> 00:25:35,899
 imagine where this could go, but it really can go.
+是怎么做到的，但是它的确能做到
 
 464
 00:25:35,968 --> 00:25:39,036
 Okay, so you're really opening up a lot of power here
+通过添加泛型，限定泛型的类型
 
 465
 00:25:39,105 --> 00:25:42,973
 by adding generics. And constraining these generics
+你真的可以让协议变得
 
 466
 00:25:43,041 --> 00:25:47,144
 using protocols. Again remember that you kind
+非常强大。再给你们提醒一次
 
 467
 00:25:47,213 --> 00:25:49,913
 of get multiple inheritance with protocols. And I'm
+协议是有多重继承的
 
 468
 00:25:49,982 --> 00:25:51,948
 going to show you an example here with CountableRange.
+我在这里会用 CountableRange 给你们展示个例子
 
 469
 00:25:52,017 --> 00:25:55,852
 So CountableRange is the type of struct you get if you use
+如果你写 3..<5 你就得到了 CountableRange 这个类型
 
 470
 00:25:55,921 --> 00:26:00,490
-3..<5. Remember I showed you that. Like if you're doing a 4
+3..<5. Remember I showed you that. Like if you're doing a for
+还记得我给你们展示过么？例如你想写个 for in
 
 471
 00:26:00,559 --> 00:26:03,226
 in and you want to come forward to 5 non inclusive,
+直到 5 但不包括 5
 
 472
 00:26:03,295 --> 00:26:05,862
 use three dot dot five you get this countable range.
+用 ..<5 你就得到了这个 CountableRange
 
 473
 00:26:05,931 --> 00:26:08,365
-Well, le's think what CountableRange is.
+Well, let's think what CountableRange is.
+让我们思考一下 CountableRange 是个啥
 
 474
 00:26:08,434 --> 00:26:11,434
 CountableRange is a struct that implements a ton
+CountableRange 是个结构体，它实现了一大票
 
 475
 00:26:11,503 --> 00:26:13,070
 of protocols.
+协议
 
 476
 00:26:13,138 --> 00:26:14,771
 Here's some of the interesting ones it implements.
+这里是它实现的一些有意思的协议
 
 477
 00:26:14,840 --> 00:26:19,142
 IndexableBase which gives it start start index and end
+IndexableBase 提供了开始端点和结束端点
 
 478
 00:26:19,211 --> 00:26:22,012
 index which I showed you on that slide kind of erroneously
+我在幻灯片中给你们展示过的有点错误的 Range
 
 479
 00:26:22,081 --> 00:26:26,416
 as Range, it also implements this method index
+它也实现了这个叫做 index(after:)
 
 480
 00:26:26,485 --> 00:26:29,019
 after. So, a range can move forward cuz you can always
+的方法。所以一个 Range 可以向后遍历的原因是你一直都能
 
 481
 00:26:29,087 --> 00:26:31,955
 find the next index. And it also does subscripting,
+找到下一个索引。并且它还实现了 subscripting
 
 482
 00:26:32,023 --> 00:26:35,459
 so you can take a range and get subscript sub three, and
+因此你可以写个 Range[3]
 
 483
 00:26:35,528 --> 00:26:38,795
 it will get you the fourth one in there. Right,
+然后它会给你返回第四个元素
 
 484
 00:26:38,864 --> 00:26:41,331
 so that protocol's called IndexableBase. Then there's
+这个协议叫做 IndexableBase。然后是
 
 485
 00:26:41,399 --> 00:26:44,400
 another protocol called Indexable. Which actually
+另一个协议叫做 Indexable。它其实是
 
 486
 00:26:44,469 --> 00:26:48,505
 inherits from IndexableBase which has index offsetBy.
+继承了 IndexableBase。它有个 index(offsetBy:)
 
 487
 00:26:48,573 --> 00:26:51,274
 So now you can move through the range more than just to
+所以这样你就能在遍历的时候每次不只向后
 
 488
 00:26:51,343 --> 00:26:53,944
 the next one, you can move farther ahead.
+走一步，你的步子可以跨大一点
 
 489
 00:26:54,013 --> 00:26:56,780
 There's also BidirectionalIndexable.
+还有个 BidirectionalIndexable
 
 490
 00:26:56,849 --> 00:27:00,584
 Now you can go backwards, index before, okay. So
+它可以让你向前遍历，index(before:)
 
 491
 00:27:00,652 --> 00:27:03,253
 these things like startIndex, index after, index offset,
+所以例如 startIndex，index(after:)，index(offsetBy:)
 
 492
 00:27:03,321 --> 00:27:05,789
 index before, these are just methods in these protocols.
+index(before:) 这些东西都是协议中的方法
 
 493
 00:27:07,226 --> 00:27:10,527
 It also implements this very important protocol called
+它还实现了个叫做 Sequence 的很重要的
 
 494
 00:27:10,596 --> 00:27:14,798
 Sequence. And the main method in Sequence is makeIterator.
+协议。Sequence 的主要的方法是 makeIterator
 
 495
 00:27:14,866 --> 00:27:18,068
 Which gives back an object that can do the for in thing.
+它返回了个可以进行 for in 操作的对象
 
 496
 00:27:18,137 --> 00:27:20,837
 So a Range, that's why Range works with for in,
+所以这就是 Range 可以用在 for in 里的原因
 
 497
 00:27:20,906 --> 00:27:24,274
 because it implements the Sequence protocol. And
+因为它实现了 Sequence 协议
 
 498
 00:27:24,343 --> 00:27:26,210
 it also implements the Collection protocol.
+它还实现了 Collection 协议
 
 499
 00:27:26,278 --> 00:27:28,912
 But Collection is primarily just an indexable sequence.
+但是 Collection 主要就是个 Indexable Sequence
 
 500
 00:27:28,980 --> 00:27:31,381
 So it implements both those protocols- things that
+所以它同时实现了这俩协议
 
 501
 00:27:31,450 --> 00:27:34,250
 are collections implement both those protocols.
+Collection 同时实现了这些协议
 
 502
 00:27:34,319 --> 00:27:37,154
