@@ -4749,7 +4749,7 @@ that navigationController and only for
 950
 00:39:28,933 --> 00:39:30,367
 the thing we were segueing to.
-我们 sugue 的东西
+我们转场到的东西
 
 951
 00:39:35,139 --> 00:39:36,239
@@ -5709,7 +5709,7 @@ viewWillDisappear as matched, you know, one undoes
 1142
 00:47:09,760 --> 00:47:12,295
 the other, and then the same thing with viewWillAppear and
-另外一个做过的事情；viewWillAppear 
+另外一个做过的事情；viewWillAppear
 
 1143
 00:47:12,363 --> 00:47:15,498
@@ -6049,7 +6049,7 @@ Don't try to anticipate when they're going to be called.
 1210
 00:50:04,368 --> 00:50:06,735
 Just, whenever they're called, you do
-不管什么时候它们被调用 
+不管什么时候它们被调用
 
 1211
 00:50:06,803 --> 00:50:07,702
@@ -7003,7 +7003,7 @@ It's a subclass of UIViewController.
 
 1401
 00:57:40,424 --> 00:57:44,292
-VCLLoggingViewController. And it logs the VCL methods. 
+VCLLoggingViewController. And it logs the VCL methods.
 它会记录 VCL 的方法
 
 1402
@@ -7238,12 +7238,12 @@ EmotionViewController 先获得 viewDidLoad
 
 1448
 00:59:34,504 --> 00:59:37,371
-Then it gets viewwillAppear(animated = false)
-然后它有个 viewwillAppear(animated = false）
+Then it gets viewWillAppear(animated = false)
+然后它有个 viewWillAppear(animated = false）
 
 1449
 00:59:37,440 --> 00:59:38,990
-That's because we're 
+That's because we're
 这是因为
 
 1450
@@ -7294,12 +7294,12 @@ why i's doing that.
 1459
 00:59:59,563 --> 01:00:00,662
 But you don't care,
-但是你不必在意
+但是你不必在意原因
 
 1460
 01:00:00,730 --> 01:00:04,466
 just be careful that those layouts can happen repeatedly.
-只要注意，这些布局可能频繁的发生
+只要注意这些布局可能重复发生
 
 1461
 01:00:04,534 --> 01:00:06,902
@@ -7489,2026 +7489,2532 @@ go back to the master and watch what happens.
 1498
 01:01:53,009 --> 01:01:54,743
 Okay, so we go back to the master.
+好，我们回到主视图
 
 1499
 01:01:54,812 --> 01:01:57,812
 FaceViewController was told it would disappear,
+FaceViewController 得知自己要消失了
 
 1500
 01:01:57,881 --> 01:02:00,382
 of course, cuz it did, does disappear.
+确实它也消失了
 
 1501
 01:02:00,450 --> 01:02:02,718
 The emotions one is told that it will appear,
+EmotionViewController 得知即将出现
 
 1502
 01:02:02,786 --> 01:02:05,553
 it's laid out in this new tall arrangement.
+在这个更长的界面里完成了布局
 
 1503
 01:02:05,622 --> 01:02:07,154
 And then the face view controller told it,
+然后 FaceViewController 得知
 
 1504
 01:02:07,223 --> 01:02:08,623
 was disappeared and
+它消失了
 
 1505
 01:02:08,692 --> 01:02:10,759
-the emotion view controller was told it disappeared.
+the emotion view controller was told it just appeared.
+然后 EmotionViewController 已经出现了
 
 1506
 01:02:12,462 --> 01:02:14,829
 Now let's go, bring one back.
+让我们现在回到 FaceViewController
 
 1507
 01:02:14,898 --> 01:02:18,633
 You can see, look, FaceViewController(2).
+看，FaceViewController(2)
 
 1508
 01:02:18,702 --> 01:02:20,835
 A new FaceViewController was created,
+这是一个新建的控制器
 
 1509
 01:02:20,904 --> 01:02:24,138
 because we segued to it, so it created it.
+因为我们转场到哪里，所以就构造了个实例
 
 1510
 01:02:24,207 --> 01:02:25,139
 You see that?
+看到了吗？
 
 1511
 01:02:25,208 --> 01:02:28,676
 And in fact, if we go back and forth, we'll see that we're
+事实上，如果我们如此重复，我们可以看到
 
 1512
 01:02:28,745 --> 01:02:31,413
 getting new FaceViewControllers each time,
+每次都是一个新的 FaceViewController
 
 1513
 01:02:31,481 --> 01:02:33,148
 FaceView three.
+第三个 FaceViewController
 
 1514
 01:02:33,216 --> 01:02:35,984
 And look at the old one's, FaceViewController
+看看这个旧的 FaceViewController
 
 1515
 01:02:36,053 --> 01:02:39,254
 3 left heap, they're gonna thrown out beneath.
+第三个离开了堆，这些都被扔了
 
 1516
 01:02:41,191 --> 01:02:43,725
 So I'll be posting all this code.
+我之后会把代码发出来
 
 1517
 01:02:43,794 --> 01:02:45,693
 You can drop this logging view controller.
+你可以把这个负责记录的控制器加到项目里
 
 1518
 01:02:45,762 --> 01:02:48,162
 Actually you can drop it into your calculator,
+事实上你可以加到计算器里
 
 1519
 01:02:48,231 --> 01:02:50,899
 if you wanted, and try and watch it bring things on and
+如果你想的话，可以看到控制器
 
 1520
 01:02:50,967 --> 01:02:52,033
 off screen etc.
+显示和消失
 
 1521
 01:02:54,604 --> 01:02:58,439
 Let's go back to the slides here.
+我们回到幻灯片
 
 1522
 01:02:58,508 --> 01:03:02,243
 Let's talk about our next topic,
+我们接着讲下一个主题
 
 1523
 01:03:02,312 --> 01:03:06,214
 which is memory management.
+也就是内存管理
 
 1524
 01:03:06,282 --> 01:03:08,983
 We've kind of avoided this topic so far but
+我之前一直故意忽视这个主题
 
 1525
 01:03:09,052 --> 01:03:10,918
-i's an important topping topic.
+i's an important topic.
+但这是个很重要的主题
 
 1526
 01:03:10,987 --> 01:03:13,154
 If you have a reference counted data structure,
+如果你有个引用计数的数据结构
 
 1527
 01:03:13,223 --> 01:03:14,822
 a class tha's the only reference,
+类是唯一的一个引用
 
 1528
 01:03:14,891 --> 01:03:17,458
-well i's not the only data counting reference structure
+well i's not the only reference counting data structure
+啊，其实并不是唯一的
 
 1529
 01:03:17,527 --> 01:03:18,994
 as you'll see in a second.
+一会儿你就知道了
 
 1530
 01:03:19,062 --> 01:03:22,263
 But if you have a reference counting thing, and it lives
+但如果你有个被引用计数的实例
 
 1531
 01:03:22,332 --> 01:03:26,167
 in the heap, how do you know when to get rid of it?
+你怎么知道什么时候把它从堆上移出去？
 
 1532
 01:03:26,236 --> 01:03:29,136
 We saw in that demo I just did the faceview controller
+我们在之前的演示里看到，FaceViewConrtoller
 
 1533
 01:03:29,205 --> 01:03:30,505
 left the heap.
+离开了堆
 
 1534
 01:03:30,573 --> 01:03:32,507
 How did it know to leave the heap?
+他怎么知道该离开堆了呢？
 
 1535
 01:03:32,576 --> 01:03:35,810
 Because we don't do anything to tell it to leave the heap.
+我们并没有告诉他这么做啊？
 
 1536
 01:03:35,879 --> 01:03:37,645
 We just are using it, and
+我们只是使用它
 
 1537
 01:03:37,714 --> 01:03:40,147
 when we're not using it anymore it goes away.
+然后不再使用它时，就自己离开了
 
 1538
 01:03:40,216 --> 01:03:43,217
 Well, of course, you know one way to make things leave
+当然，你知道其中一种方法
 
 1539
 01:03:43,286 --> 01:03:45,419
 the heap, it's called garbage collection.
+Garbage Collection 能够让对象离开堆
 
 1540
 01:03:45,488 --> 01:03:47,021
 How many people know what garbage collection is,
+有多少人知道什么是垃圾回收？
 
 1541
 01:03:47,090 --> 01:03:48,890
 have heard that phrase before?
+或者是听说过？
 
 1542
 01:03:48,959 --> 01:03:51,225
 So, more than half of you, so that's good.
+比一半多一点，很好
 
 1543
 01:03:51,294 --> 01:03:55,330
 Runtimes like Java, do garbage collection.
+Java 运行时采用的就是垃圾回收
 
 1544
 01:03:55,398 --> 01:03:58,065
 It's a perfectly fine way to do it.
+这样做是完全没有问题的
 
 1545
 01:03:58,134 --> 01:03:59,767
 It involves going through the heap and
+它的做法是遍历堆
 
 1546
 01:03:59,836 --> 01:04:01,602
 kind of marking the use of everything and
+记录下每个对象的使用情况
 
 1547
 01:04:01,671 --> 01:04:02,804
 then sweeping through and
+然后清扫掉
 
 1548
 01:04:02,873 --> 01:04:05,740
 getting rid of stuff that's not used.
+把没有使用的都扔掉
 
 1549
 01:04:05,809 --> 01:04:08,376
 Swift doesn't do any of that, it uses a totally different
+Swift 并不这样；使用的是自动引用计数（ARC）
 
 1550
 01:04:08,445 --> 01:04:11,613
 mechanism called Automatic Reference Counting.
+完全不同的 Automatic Reference Counting
 
 1551
 01:04:11,682 --> 01:04:13,815
 Basically every time you create a var or
+简单来说，每当你创建一个变量或常量
 
 1552
 01:04:13,884 --> 01:04:16,551
 a let that points to something in a heap,
+指向的是堆上的一个对象
 
 1553
 01:04:16,619 --> 01:04:19,754
 Swift goes over somewhere and makes a mark.
+Swift 就会在某个地方做个记号
 
 1554
 01:04:19,823 --> 01:04:21,322
 And another one, there's another one.
+每有一个指向它的变量，就加个记号
 
 1555
 01:04:21,391 --> 01:04:24,025
 And it keeps track of it until there aren't anymore of those
+一直记录到没有更多的
 
 1556
 01:04:24,094 --> 01:04:25,426
 lets and vars.
+常量和变量指向它
 
 1557
 01:04:25,495 --> 01:04:28,629
 It erases them as those vars go away.
+当变量消失之后，Swift 就移除对应的标记
 
 1558
 01:04:28,698 --> 01:04:29,664
-Like, maybe they're
+Like, maybe there're
+比如
 
 1559
 01:04:29,733 --> 01:04:32,066
 a var in another object that leaves the heap.
+另一个对象里的变量离开了堆
 
 1560
 01:04:32,135 --> 01:04:34,735
 So now that var is no longer pointing to this other object.
+那个变量不再指向这个对象
 
 1561
 01:04:34,804 --> 01:04:37,438
 So it's basically keeping track of all the vars unless
+总之就是记录这些变量
 
 1562
 01:04:37,507 --> 01:04:38,539
 they point to something in the heap.
+因为他们指向了堆里的对象
 
 1563
 01:04:38,608 --> 01:04:40,475
 And when no one points to any more,
+当没有任何指针指向某个对象的时候
 
 1564
 01:04:40,544 --> 01:04:42,477
 it lets it out of the heap.
+Swift 就让它离开堆了
 
 1565
 01:04:42,545 --> 01:04:44,045
 Now why is this good?
+这有什么好处呢？
 
 1566
 01:04:44,114 --> 01:04:45,880
 It's very predictable memory usage.
+这种内存管理是可预测的
 
 1567
 01:04:45,949 --> 01:04:48,249
 You know exactly when things are gonna leave the heap.
+你能明确地知道什么时候对象会离开堆
 
 1568
 01:04:48,318 --> 01:04:51,519
 They leave the heap as soon as nobody points to them anymore.
+没人指向它的时候马上就离开了
 
 1569
 01:04:51,588 --> 01:04:53,821
 What's also great about it, is that you almost have to
+它的还有个好处是，你几乎
 
 1570
 01:04:53,890 --> 01:04:55,389
 do nothing in your code to make this work.
+不用写任何代码就行
 
 1571
 01:04:55,458 --> 01:04:56,657
 It's just automatic.
+这些都是自动完成的
 
 1572
 01:04:56,726 --> 01:04:59,293
 That's why it's called automatic reference counting.
+这就是为什么叫 自动 引用计数
 
 1573
 01:04:59,362 --> 01:05:01,262
 You can get involved however.
+但你是可以介入这个过程的
 
 1574
 01:05:01,330 --> 01:05:04,131
 And the way you can get involved is by influencing
+你能够参与的方法是
 
 1575
 01:05:04,200 --> 01:05:06,501
 the way that arc works.
+提示 ARC 如何处理
 
 1576
 01:05:06,569 --> 01:05:09,003
 And you do that with three keywords in Swift
+你可以使用 Swift 的关键字
 
 1577
 01:05:09,072 --> 01:05:12,072
 called strong, weak and unowned.
+分别是 strong、weak 和 unowned
 
 1578
 01:05:12,141 --> 01:05:14,876
 And I actually told you and I was gonna tell you about these
+我之前说过会给你们讲这个
 
 1579
 01:05:14,945 --> 01:05:17,445
 back in the very first lecture, you remember when we
+还记得第一节课我们
 
 1580
 01:05:17,514 --> 01:05:20,081
 made the outlet for display, it was weak.
+创建 display 出口的时候，有个 weak
 
 1581
 01:05:20,150 --> 01:05:20,615
 Remember that?
+还记得嘛？
 
 1582
 01:05:20,684 --> 01:05:22,850
 That's this weak right here.
+就是这里的 weak
 
 1583
 01:05:22,919 --> 01:05:24,619
-So the strong, weak and unknown.
+So the strong, weak and unowned.
+所以有 strong，weak 和 unowned 三种
 
 1584
 01:05:24,687 --> 01:05:26,287
 So let's talk about each of those.
+我们分别讲讲
 
 1585
 01:05:26,356 --> 01:05:29,390
 Strong, this is normal reference counting.
+strong 强引用是一般的引用计数
 
 1586
 01:05:29,459 --> 01:05:31,692
 If you have a strong var or
+如果你有个强引用变量或常量
 
 1587
 01:05:31,761 --> 01:05:34,629
 strong let to something in the heap, then that thing
+指向堆中的某个对象，那么
 
 1588
 01:05:34,697 --> 01:05:37,398
 will stay in the heap, as long as that var exists,
+只要变量还存在，那个对象就存在
 
 1589
 01:05:37,467 --> 01:05:40,968
 it's strongly holding that thing in the heap.
+会强制把那个对象保存在堆里
 
 1590
 01:05:41,037 --> 01:05:42,102
 This is the default.
+默认的就是这个
 
 1591
 01:05:42,171 --> 01:05:45,773
 You don't even ever type this keyword, cuz it's the default.
+你不用输入 strong，它也不是关键字；因为这是默认的
 
 1592
 01:05:45,842 --> 01:05:49,244
 Every var, unless you say it's weak, is going to be strong.
+所有没被 weak 等标记的变量都是强引用
 
 1593
 01:05:50,947 --> 01:05:51,913
 So it's simple.
+就这么简单
 
 1594
 01:05:51,981 --> 01:05:53,448
 Works magically.
+很神奇吧
 
 1595
 01:05:53,517 --> 01:05:54,215
 Then there's weak.
+然后是 weak，弱引用
 
 1596
 01:05:54,283 --> 01:05:57,652
 Now weak is a really interesting keyword in Swift.
+Swift 的这个关键字 weak 很有趣
 
 1597
 01:05:57,720 --> 01:06:01,188
 When you put weak on top of a var,
+如果你用 weak 修饰某个变量
 
 1598
 01:06:01,257 --> 01:06:05,193
 it says, well I'm looking at this thing in the heap but
+就是在说，我确实是要这个堆里的对象
 
 1599
 01:06:05,262 --> 01:06:07,762
 if no one else is interested in the heap then
+但没有其他人对这个对象感兴趣的话
 
 1600
 01:06:07,831 --> 01:06:10,298
 you can throw it out of the heap and set me to nil.
+就可以把那个对象从堆里面扔出去，然后变量的值改为 nil
 
 1601
 01:06:10,366 --> 01:06:13,034
 So weak only works with what type?
+所以 weak 变量只能是什么类型的？
 
 1602
 01:06:15,771 --> 01:06:17,372
 >> Optional. >> Optional, exactly,
+>> 可选类型。 >> 没错，就是可选类型
 
 1603
 01:06:17,441 --> 01:06:19,907
 cuz you have to be able to set it to nil.
+因为这个变量要能够是 nil
 
 1604
 01:06:19,976 --> 01:06:22,376
 So only optionals can be weak.
+所以只有可选类型的变量能是弱引用
 
 1605
 01:06:22,445 --> 01:06:26,514
 So the display outlet in your calculator,
+举个例子，你计算器里的出口变量 display
 
 1606
 01:06:26,583 --> 01:06:31,486
 it was a weak UI label exclamation point,
+就是那个 weak display: UILabel!
 
 1607
 01:06:31,555 --> 01:06:34,722
 which means it was an optional UI label.
+也就是个可选类型的 UILabel
 
 1608
 01:06:34,791 --> 01:06:35,523
 And so it was weak.
+同时也是 weak 标记的
 
 1609
 01:06:35,592 --> 01:06:36,357
 So what does that mean?
+这意味着什么？
 
 1610
 01:06:36,426 --> 01:06:38,326
 That means if that UI label for
+这意味着如果那个 UILabel
 
 1611
 01:06:38,395 --> 01:06:41,929
 some reason ever, everyone else threw it out,
+因为某种原因，其他所有人都不需要它了
 
 1612
 01:06:41,998 --> 01:06:46,167
 then that display var would be set to nil, automatically.
+那么那个 display 变量就会被自动设为 nil
 
 1613
 01:06:46,236 --> 01:06:50,138
 Now, why does that display var set itself weak?
+现在想想，为什么 display 变量要加 weak 关键字
 
 1614
 01:06:50,206 --> 01:06:51,672
 Why does it say weak?
+为什么要用弱引用呢？
 
 1615
 01:06:51,741 --> 01:06:54,442
 Well, because the thing it's pointing to is that view
+其实，这是因为这个变量指向的是
 
 1616
 01:06:54,510 --> 01:06:55,376
 hierarchy.
+那个视图结构（里的视图）
 
 1617
 01:06:55,445 --> 01:06:57,778
 The view hierarchy that has all the calculator buttons and
+那个视图结构里有计算器所有的按钮
 
 1618
 01:06:57,847 --> 01:06:59,013
 the display and all in there.
+显示屏等等
 
 1619
 01:06:59,082 --> 01:07:02,149
 And if that view hierarchy stops pointing to it,
+如果那个视图结构不再引用那个视图
 
 1620
 01:07:02,218 --> 01:07:06,020
 that means it's gone, and so the display outlet is no
+那个视图就消失了，出口 display 也就
 
 1621
 01:07:06,089 --> 01:07:09,457
 longer interested in trying to set numbers in it, and
+不再需要尝试更改它显示的数字
 
 1622
 01:07:09,526 --> 01:07:12,393
 things like that, because it's gone.
+也不用干其他的事情，因为那个视图已经没了
 
 1623
 01:07:12,461 --> 01:07:16,297
 So, when you have a var that points into a very strongly
+所以当你有个变量指向的已经是强引用
 
 1624
 01:07:16,366 --> 01:07:19,033
 held data structure that you completely depend on for
+而且如果那个对象所在的其他数据结构
 
 1625
 01:07:19,102 --> 01:07:21,702
 your semantic meaning to mean anything
+只有它才能决定变量存在的意义的话
 
 1626
 01:07:21,771 --> 01:07:22,670
 then you can make it weak.
+那就可以声明为弱引用
 
 1627
 01:07:24,808 --> 01:07:28,442
 And so we're perfectly fine if that display gets at the nil
+如果视图结构不再引用那个 UILabel
 
 1628
 01:07:28,511 --> 01:07:31,679
 if the view hierarchy no longer points to that UI label
+我们完全不介意 display 变为 nil
 
 1629
 01:07:31,748 --> 01:07:33,815
 because it's probably meaningless at that point.
+因为这样做是没有意义的
 
 1630
 01:07:36,153 --> 01:07:39,053
 So we don't usually use weak that much.
+所以我们不是很经常使用 weak
 
 1631
 01:07:39,122 --> 01:07:41,989
 A lot of times we'll use it to keep from having
+大部分时候我们使用若引用
 
 1632
 01:07:42,058 --> 01:07:44,159
 one object pointing to another strongly and
+是为了避免一个对象强引用某个对象
 
 1633
 01:07:44,227 --> 01:07:46,361
 having that object point back to this one strongly.
+同时那个对象也强引用这个对象
 
 1634
 01:07:47,530 --> 01:07:48,829
 That's very bad situation.
+遇到那种情况就糟糕了
 
 1635
 01:07:48,898 --> 01:07:51,365
 That's called a memory cycle.
+我们把它称为引用循环
 
 1636
 01:07:51,434 --> 01:07:54,101
 That's gonna keep both of those objects in the heap
+那会让两个对象同时被保存到堆里
 
 1637
 01:07:54,170 --> 01:07:57,304
 forever, because there's always gonna be a strong
+永远不会释放，因为总是会有一个
 
 1638
 01:07:57,373 --> 01:07:58,806
 pointer to each of them.
+强引用的指针指向它们
 
 1639
 01:07:58,874 --> 01:08:00,108
 Cuz they each point to each other.
+因为他们是互相引用的
 
 1640
 01:08:00,177 --> 01:08:01,776
 So either of them can leave the heap and
+都不能从堆中释放
 
 1641
 01:08:01,845 --> 01:08:03,210
 free up their pointer to the other one.
+从而释放对另一个的引用
 
 1642
 01:08:03,279 --> 01:08:04,245
 Unless you set one,
+除非你手动设置其中的一个
 
 1643
 01:08:04,314 --> 01:08:06,647
 like they're optionally set one to nil or something.
+你把其中的一个可选类型设为 nil
 
 1644
 01:08:06,716 --> 01:08:07,882
 So if you had a situation like that,
+如果你遇到了这种情形
 
 1645
 01:08:07,951 --> 01:08:10,018
 you could use weak to break that cycle by having one
+你可以用 weak 来打破引用循环
 
 1646
 01:08:10,086 --> 01:08:12,487
 of the pointers be a weak pointer.
+只要把其中一个换成弱引用就可以了
 
 1647
 01:08:12,556 --> 01:08:14,089
 That would allow it possibly to happen.
+这样就能够解决引用循环的问题了
 
 1648
 01:08:15,525 --> 01:08:17,024
 And I'm gonna show you an example here of another
+我还要给你展示另一种情况
 
 1649
 01:08:17,093 --> 01:08:20,928
 case where making that kind of memory cycle is super easy.
+那种情况更容易产生引用循环
 
 1650
 01:08:20,997 --> 01:08:21,929
 And that's bad that it's easy.
+更严重的是真的很容易出现
 
 1651
 01:08:21,998 --> 01:08:23,865
 Because you can get the cycles where things are being
+而且因此造成的引用循环
 
 1652
 01:08:23,933 --> 01:08:25,099
 held in memory.
+导致对象在内存里不能被释放
 
 1653
 01:08:25,168 --> 01:08:27,034
 The last one is unowned.
+最后一个是 unowned
 
 1654
 01:08:27,103 --> 01:08:30,471
 Unowned means, "Hey, automatic reference counter, Don't worry
+无主引用是说：“自动引用循环，不用担心”
 
 1655
 01:08:30,540 --> 01:08:33,708
 about this one, I'll take care of it, I'll make sure I never
+“不需要管这个变量，我会自己处理，我保证”
 
 1656
 01:08:33,776 --> 01:08:36,477
 use it when it's not pointing to something in the heap".
+“我绝不会在对象被释放之后使用这个变量”
 
 1657
 01:08:36,546 --> 01:08:38,746
 This one can be quite dangerous.
+无主引用很危险
 
 1658
 01:08:38,815 --> 01:08:40,381
 We almost never use this.
+所以我们几乎不用它
 
 1659
 01:08:40,449 --> 01:08:42,916
 It would really only be used to break one of these memory
+唯一的用处就是用来破坏引用循环
 
 1660
 01:08:42,985 --> 01:08:45,586
 cycles, and it can only be used to make a memory cycle
+而且只能是某些引用循环
 
 1661
 01:08:45,655 --> 01:08:48,723
 when you're 100% sure that you know who's
+因为你必须要确信
 
 1662
 01:08:48,791 --> 01:08:51,292
 using that pointer, because automatic reference counting
+究竟谁负责保留那个引用
 
 1663
 01:08:51,361 --> 01:08:53,694
 is not going to be counting it as a strong reference, and
+因为自动引用计数不会把它算作强引用
 
 1664
 01:08:53,763 --> 01:08:55,296
 it's also not going to check.
+也不会去检查这个引用是否有效
 
 1665
 01:08:55,364 --> 01:08:58,099
 And so if you use it, and that thing you're pointing to
+如果你使用的无主引用
 
 1666
 01:08:58,168 --> 01:09:01,702
 has left the heap, it will crash your program.
+已经被释放了，你的程序就会崩溃
 
 1667
 01:09:01,771 --> 01:09:02,970
 So that's what unowned is.
+这就是无主引用
 
 1668
 01:09:03,039 --> 01:09:05,206
 Now, since unowned just crashes your program if you
+既然无主引用的对象
 
 1669
 01:09:05,275 --> 01:09:06,474
 try to use it and it's not in the heap,
+被释放了的话就直接崩溃程序
 
 1670
 01:09:06,542 --> 01:09:07,108
 it's not an optional.
+所以变量不是可选类型
 
 1671
 01:09:07,177 --> 01:09:09,344
 There is no setting to nil,
+不会赋值为 nil
 
 1672
 01:09:09,412 --> 01:09:11,479
 it's always assumed to not be nil.
+总是把它当作非空值
 
 1673
 01:09:11,548 --> 01:09:12,980
 And if it's ever nil and
+如果实际上是 nil（被释放了）
 
 1674
 01:09:13,049 --> 01:09:15,716
 that code executes, bam, it crashes.
+运行代码就炸了，直接崩溃
 
 1675
 01:09:15,785 --> 01:09:17,018
 So unowned,
+所以无主引用
 
 1676
 01:09:17,087 --> 01:09:18,987
 I will show you how we use unowned in a moment.
+我等会儿给你们演示如何使用 unowned
 
 1677
 01:09:20,256 --> 01:09:21,890
 It's only to break cycles.
+再次强调只是用来避免引用循环
 
 1678
 01:09:23,026 --> 01:09:26,927
 Now, closures have an interesting attribute
+现在我们谈谈闭包有趣的特性
 
 1679
 01:09:26,996 --> 01:09:29,530
 about them, which hopefully you read about in your reading
+最好你们做了作业，已经读了这部分
 
 1680
 01:09:29,599 --> 01:09:32,867
 assignment, that really has a lot to do with this strong,
+这个特性和 strong
 
 1681
 01:09:32,936 --> 01:09:35,369
 weak, and unowned business.
+weak 和 unowned 有很大的关系
 
 1682
 01:09:35,438 --> 01:09:38,839
 And then what goes on inside of a closure is that a closure
+对于闭包里使用的变量
 
 1683
 01:09:38,908 --> 01:09:44,678
 captures all the references inside of it.
+闭包会捕获所有的引用变量
 
 1684
 01:09:44,747 --> 01:09:48,983
 It captures them, and makes a strong pointer to them.
+捕获的意思是强引用它们
 
 1685
 01:09:49,052 --> 01:09:51,219
 So, if you reference something inside a closure,
+如果你在比闭包里使用了某个变量
 
 1686
 01:09:51,288 --> 01:09:52,954
 remember what closures are.
+如果你不记得什么是闭包
 
 1687
 01:09:53,022 --> 01:09:53,821
 Open curly braces, and
+闭包就是在大括号里面
 
 1688
 01:09:53,889 --> 01:09:55,557
 we have some code in there like we had in our
+有一些代码，就比方说
 
 1689
 01:09:57,093 --> 01:09:59,093
 operations table of our calculator brain.
+CalculatorBrain 里 operations 字典的值
 
 1690
 01:09:59,162 --> 01:10:00,294
 So inside that closure,
+所以在闭包里面
 
 1691
 01:10:00,363 --> 01:10:03,597
 inside those curly braces you reference some reference type,
+你在大括号里引用那些引用类型
 
 1692
 01:10:03,666 --> 01:10:05,066
 something that's in the heap.
+那些存储在堆里的对象
 
 1693
 01:10:05,135 --> 01:10:07,968
 That closure is itself a reference type.
+与此同时，闭包本身也是引用类型
 
 1694
 01:10:08,037 --> 01:10:09,737
 It lives in the heap and
+闭包是存储在堆里的
 
 1695
 01:10:09,805 --> 01:10:12,573
 it's going to keep a strong pointer to the other thing.
+闭包会持有对其他对象的强引用
 
 1696
 01:10:12,642 --> 01:10:15,142
 And the problem comes if that other thing has a strong
+我们需要担心的是其他对象
 
 1697
 01:10:15,211 --> 01:10:17,378
 pointer back to that closure.
+也有个变量强引用了这个闭包
 
 1698
 01:10:17,447 --> 01:10:18,846
 Because now you have a memory cycle.
+因为那样我们就造成了引用循环
 
 1699
 01:10:18,915 --> 01:10:21,148
 The closure is keeping that object in and that object that
+那个闭包不让对象被释放
 
 1700
 01:10:21,217 --> 01:10:23,350
 has a pointer to the closure is keeping the closure in.
+那个对象指向闭包的变量不让闭包被释放
 
 1701
 01:10:23,419 --> 01:10:25,119
 They are keeping each other in memory.
+它们互相让对方被留在堆中
 
 1702
 01:10:25,188 --> 01:10:27,422
 Now neither of them can ever leave.
+谁也不能被释放
 
 1703
 01:10:27,490 --> 01:10:31,392
 It's called a memory cycle and it's really easier memory
+这就是引用循环，而且还挺容易形成的
 
 1704
 01:10:31,460 --> 01:10:33,928
 cycle in a closure, as you'll see.
+就像你们看到的，闭包很造成内存泄漏
 
 1705
 01:10:33,997 --> 01:10:36,463
 So, here is an example with our calculator.
+这里我们拿计算器举例子
 
 1706
 01:10:36,532 --> 01:10:39,466
 Let's say I added a new method to my calculator brain called
+我们给 CalculatorBrain 添加一个方法
 
 1707
 01:10:39,535 --> 01:10:42,469
 addUnaryOperation where I allow people to
+addUnaryOperation 方法让人们可以
 
 1708
 01:10:42,538 --> 01:10:45,072
 add new operations to my operations table.
+定义新运算到我的字典里
 
 1709
 01:10:45,140 --> 01:10:47,941
 Right now we don't allow that because it's all private.
+没有这个方法之前这是无法实现的，因为所有变量都是私有的
 
 1710
 01:10:48,010 --> 01:10:50,344
 But let's say I had a public method, addUnaryOperation.
+但假如有了 addUnaryOperation 这个公开的方法
 
 1711
 01:10:50,413 --> 01:10:51,846
 You could add a new operation.
+你就能添加一个新的运算
 
 1712
 01:10:51,914 --> 01:10:52,680
 Wouldn't that be cool?
+那不是很好吗？
 
 1713
 01:10:53,816 --> 01:10:55,449
 Yeah, that would be cool.
+听起来是挺不错的
 
 1714
 01:10:55,518 --> 01:10:56,917
 Let's see what it would like for
+我们来看看究竟会怎样
 
 1715
 01:10:56,986 --> 01:10:58,953
 a view controller that wanted to, for
+比如有个视图控制器想要
 
 1716
 01:10:59,021 --> 01:11:02,523
 example, add a unary operation which is square root, but
+添加平方根这个运算
 
 1717
 01:11:02,592 --> 01:11:04,192
 it turns the display green.
+同时让显示器变成绿色
 
 1718
 01:11:05,195 --> 01:11:06,794
 I call it green square root.
+我把它叫做“绿色平方根”
 
 1719
 01:11:06,862 --> 01:11:08,963
 So, what will it look like to write something like that?
+那写成代码是什么样的呢？
 
 1720
 01:11:09,032 --> 01:11:11,598
 Well, I would call addUnaryOperation,
+我就调用 addUnaryOperation
 
 1721
 01:11:11,667 --> 01:11:12,967
 give it some symbol.
+用某个符号代表它
 
 1722
 01:11:13,036 --> 01:11:15,636
 I'm gonna have it look like a green square root but
+我选了一个看起来像绿色平方根的
 
 1723
 01:11:15,705 --> 01:11:19,139
 it's pushing it there but it's kind of what it looks like.
+有点牵强，但足够像了
 
 1724
 01:11:19,208 --> 01:11:21,742
 And it would pass in the operation for
+然后 operation 传入
 
 1725
 01:11:21,811 --> 01:11:23,110
 green square root.
+绿色平方根的代码
 
 1726
 01:11:23,179 --> 01:11:26,213
 Now just a couple of cleanup things before that here.
+现在我们先来简化下代码
 
 1727
 01:11:26,282 --> 01:11:28,783
 This is that operation argument to addUnary
+这个闭包是 addUnaryOperation
 
 1728
 01:11:28,851 --> 01:11:29,816
 operation.
+的 operation 参数
 
 1729
 01:11:29,885 --> 01:11:34,755
 And as we know, we could use trailing
+我们知道，我们可以使用
 
 1730
 01:11:34,824 --> 01:11:38,626
 closure syntax here to get rid of that operation colon.
+尾随闭包的语法，从而省略 operation:
 
 1731
 01:11:38,695 --> 01:11:41,328
 We just close it, and since the closure is the last
+我们可以直接小括号结束参数列表
 
 1732
 01:11:41,397 --> 01:11:43,464
 argument, we just put it after the end of the parenthesis.
+作为最后一个参数的闭包就放在括号后面
 
 1733
 01:11:43,533 --> 01:11:46,033
 Remember that from when I talked about filter and map?
+还记得我讲 filter 和 map 的时候讲的这些不？
 
 1734
 01:11:46,102 --> 01:11:48,102
 So we could do that here, so that cleans it up.
+我们这里也可以这样做，看起来更简洁
 
 1735
 01:11:48,170 --> 01:11:49,871
 Also, of course,
+还有，当然
 
 1736
 01:11:49,939 --> 01:11:55,709
 we could let Swift infer the types here and just use $0.
+我们可以让 Swift 推导类型，直接用 $0 代替
 
 1737
 01:11:55,778 --> 01:11:57,311
 Everyone understand this code up here?
+大家都明白这里的代码吧？
 
 1738
 01:11:57,380 --> 01:11:58,446
 Could not be simpler, right?
+没有比这个更简单的了吧？
 
 1739
 01:11:58,514 --> 01:12:01,282
 I'm just adding this Unary operation, green square root.
+我就是添加了个一元运算符，绿色平方根
 
 1740
 01:12:01,350 --> 01:12:03,851
 And all it's doing is setting, this, I'm doing this from
+它的作用就是，把调用这个方法的
 
 1741
 01:12:03,920 --> 01:12:06,387
 my view controller, so it's setting the displays color to
+视图控制器的 display 的字体颜色
 
 1742
 01:12:06,455 --> 01:12:08,021
 green And returning square roots,
+设为绿色，然后返回参数的平方根
 
 1743
 01:12:08,090 --> 01:12:10,458
 the same as square root, but the display is just green.
+就是平方根，加上把字变绿的功能
 
 1744
 01:12:10,527 --> 01:12:11,859
 Now, this will not compile.
+现在这个还编译不了
 
 1745
 01:12:13,229 --> 01:12:14,528
 Why will this not compile?
+为什么没法通过编译呢？
 
 1746
 01:12:14,597 --> 01:12:16,263
 Let us look and see why not.
+让我们来看看为什么
 
 1747
 01:12:16,332 --> 01:12:21,035
 It's because it's gonna say you have to explicitly say
+原因是，Swift 会要求你明确说明
 
 1748
 01:12:21,103 --> 01:12:25,072
 self dot there because I want you to understand that you
+通过在前面加上 self. 才行。这是在提醒你
 
 1749
 01:12:25,141 --> 01:12:32,113
 are capturing a strong pointer to yourself In this closure.
+你是明确想要在闭包里强引用 self
 
 1750
 01:12:32,181 --> 01:12:37,618
 So that in case somehow you point to this closure,
+如果 self 最后真引用了这个闭包
 
 1751
 01:12:37,687 --> 01:12:39,353
 which our view controller does,
+确实这个视图控制器这么做了
 
 1752
 01:12:39,422 --> 01:12:41,388
 because our view controller has the calculator brain,
+因为视图控制器强引用了 CalculatorBrain
 
 1753
 01:12:41,457 --> 01:12:43,224
 calculator brain has the operations table,
+CalculatorBrain 强引用了 operations 字典
 
 1754
 01:12:43,292 --> 01:12:45,493
 the operations table has this closure in it.
+operations 字典里强引用了闭包
 
 1755
 01:12:47,630 --> 01:12:49,363
 So I'm pointing to that indirectly
+所以我不知不觉中强引用了那个闭包
 
 1756
 01:12:49,432 --> 01:12:52,333
 from my View Controller, and it's pointing now back at me.
+那个闭包同时又捕获了这个视图控制器
 
 1757
 01:12:52,401 --> 01:12:54,702
 Self dot, it's gonna capture self.
+self. 的作用是提示你闭包强引用了 self
 
 1758
 01:12:54,771 --> 01:12:57,371
 Self is a pointer to myself, my own View Controller.
+self 是指向我这个对象的指针
 
 1759
 01:12:57,440 --> 01:12:58,338
 Now I've created a memory cycle.
+现在我就有了引用循环
 
 1760
 01:12:58,407 --> 01:13:00,007
 Yep.
+是的
 
 1761
 01:13:00,076 --> 01:13:01,476
 Everyone understand what's going on there?
+大家都明白这里发生了什么吧？
 
 1762
 01:13:02,612 --> 01:13:03,810
 The closure lives in the heap.
+闭包是存储在堆里的
 
 1763
 01:13:03,879 --> 01:13:05,279
 The View Controller lives in the heap.
+视图控制器也是
 
 1764
 01:13:05,347 --> 01:13:06,547
 They're now pointing to each other.
+它们现在互相引用
 
 1765
 01:13:07,784 --> 01:13:09,049
 The closure's pointing directly to the view
+闭包直接强引用视图控制器
 
 1766
 01:13:09,118 --> 01:13:10,717
 controller and the view controller's indirectly
+同时视图控制器间接
 
 1767
 01:13:10,786 --> 01:13:12,453
 pointing to the closure through the calculator brain,
+通过 CalculatorBrain 强引用了闭包
 
 1768
 01:13:12,522 --> 01:13:13,721
 through the operations table.
+因为闭包在 operations 字典里
 
 1769
 01:13:15,758 --> 01:13:18,092
 This operation they've gotta add in.
+它们要加入这个运算就会导致这个结果
 
 1770
 01:13:18,160 --> 01:13:19,794
 So let's talk about how we break this cycle
+我们现在讲讲怎么解决这个问题
 
 1771
 01:13:19,862 --> 01:13:20,628
 because since it's so
+既然造成引用循环很容易
 
 1772
 01:13:20,697 --> 01:13:23,231
 easy to do we need to be able to break it easily as well.
+我们也应该能够轻易解决这个问题
 
 1773
 01:13:24,300 --> 01:13:26,167
 Well first thing we're going to do,
+首先我们需要做的就是
 
 1774
 01:13:26,235 --> 01:13:29,670
 is we're going to create a special local variable.
+我们来创建一个特殊的局部变量
 
 1775
 01:13:29,738 --> 01:13:32,973
 So closures allow you to before the word in,
+闭包是允许你在关键字 in 前面
 
 1776
 01:13:33,042 --> 01:13:36,177
 put open square bracket, a list of special variables.
+在中括号里申明一系列特殊的变量
 
 1777
 01:13:36,245 --> 01:13:38,479
 These are just little local variables that just live for
+这些局部变量的作用域
 
 1778
 01:13:38,548 --> 01:13:40,580
 this closure only.
+是只在闭包里有效
 
 1779
 01:13:40,649 --> 01:13:42,650
 Now these variables can have any name.
+这些变量的名字你可以随便取
 
 1780
 01:13:42,719 --> 01:13:45,353
 And you can set them to any value you want that's in
+赋的值也随你便，就设为
 
 1781
 01:13:45,421 --> 01:13:46,554
 the scope here.
+你想要它在闭包里的值
 
 1782
 01:13:46,623 --> 01:13:48,922
 So I've created a local variable called me and
+所以我这里声明了叫 me 的局部变量
 
 1783
 01:13:48,991 --> 01:13:50,691
 I've set it equal to self.
+我让它的值为 self
 
 1784
 01:13:52,128 --> 01:13:54,161
 So that's fine, "me" is a local variable,
+这没什么问题，me 是个局部变量
 
 1785
 01:13:54,230 --> 01:13:56,430
 it's going to be of type view controller,
+类型是视图控制器
 
 1786
 01:13:56,499 --> 01:13:58,866
-it's added to myself and so now I can use me in there and
+I've set it to myself and so now I can use me in there
+赋值为了 self，现在我就可以使用 me
 
 1787
 01:13:58,935 --> 01:14:01,702
-you already used self so I've replaced self with me.
+anywhere I used self so I've replaced self with me.
+用 me 代替我所有使用的 self
 
 1788
 01:14:01,771 --> 01:14:03,704
 That doesn't help break our cycle at all.
+但这并不能打破引用循环
 
 1789
 01:14:03,773 --> 01:14:08,442
 However, what if I made that me variable,
+但是，如果我让 me 那个变量
 
 1790
 01:14:08,511 --> 01:14:10,711
 not self but me, be unowned?
+不是 self，如果是无主引用 me？
 
 1791
 01:14:12,281 --> 01:14:14,615
 If I make that thing be unowned,
+如果我在 me 前加上 unowned
 
 1792
 01:14:14,683 --> 01:14:17,652
 now it's not going to create that strong pointer.
+就不会有那个强引用指针指向 self 了
 
 1793
 01:14:18,755 --> 01:14:21,488
 Because me It lives in the heap, but
+虽然 me 也是存储在堆里的
 
 1794
 01:14:21,557 --> 01:14:24,024
 automatic reference counting doesn't reference count it, so
+但自动引用计数并不会把它算作一个引用
 
 1795
 01:14:24,093 --> 01:14:25,592
 it pays no attention to it.
+并不会在意它
 
 1796
 01:14:25,661 --> 01:14:27,294
 Now what that would mean though,
+但这也同时意味着
 
 1797
 01:14:27,363 --> 01:14:30,397
 is that if this code were executed, and me,
+如果我们运行这段代码
 
 1798
 01:14:30,466 --> 01:14:33,133
 which is the view controller cuz I set it equal to self, if
+然后 me 这个本来是 self 的视图控制器
 
 1799
 01:14:33,202 --> 01:14:36,570
 the view controller were out of the heap, this would crash.
+这个视图控制器被释放了的话，程序就会崩溃
 
 1800
 01:14:36,639 --> 01:14:37,838
 But that's perfectly fine here.
+但在这里是没问题的
 
 1801
 01:14:37,907 --> 01:14:40,207
 Do you see why that's fine?
+你知道为什么吗？
 
 1802
 01:14:40,275 --> 01:14:43,511
 When would a calculator operation ever be executed
+如果这个视图控制器都被释放了
 
 1803
 01:14:43,580 --> 01:14:45,846
 if the view controller is not even in the heap?
+我们怎么可能还会进行计算呢？
 
 1804
 01:14:45,914 --> 01:14:46,814
 It's impossible.
+这是不可能的
 
 1805
 01:14:46,882 --> 01:14:49,450
 The view controller provides all the UI that causes this
+只用通过视图控制器提供的界面
 
 1806
 01:14:49,518 --> 01:14:50,284
 thing to be executed.
+我们才能进行这些运算
 
 1807
 01:14:50,353 --> 01:14:52,286
 There's absolutely no way that can happen, so
+所以不可能被释放之后还调用
 
 1808
 01:14:52,355 --> 01:14:55,122
 it's perfectly fine to say unowned here.
+所以这里用 unowned 是没有问题的
 
 1809
 01:14:55,191 --> 01:14:57,891
 And that would break the cycle nicely.
+这样我们就完美解决了问题
 
 1810
 01:14:57,960 --> 01:15:00,194
 But let's talk about another way to do it.
+但我们还要讲讲另一种方法
 
 1811
 01:15:00,263 --> 01:15:02,396
 By the way, it doesn't have to be called 'me',
+还有，不一定非要叫做 me
 
 1812
 01:15:02,465 --> 01:15:04,531
-I could say 'unknown self' equals 'self'.
+I could say 'unowned self' equals 'self'.
+我还可以用 unowned self = self
 
 1813
 01:15:04,600 --> 01:15:06,600
 In other words, the local variable can shadow or
+也就是局部变量可以遮盖
 
 1814
 01:15:06,669 --> 01:15:09,804
 have the same name as the more global variable 'self'.
+也就是可以和全局变量 self 的名字一样
 
 1815
 01:15:09,872 --> 01:15:11,972
-So I could say unknown self equals self, and
+So I could say unowned self equals self, and
+所以我可以用 unowned self = self
 
 1816
 01:15:12,041 --> 01:15:14,508
-in fact if I just say unknown self that's the same as
+in fact if I just say unowned self that's the same as
+其实如果我只用 unowned self
 
 1817
 01:15:14,576 --> 01:15:16,344
-saying 'unknown self equals self.
+saying 'unowned self equals self.
+同样也表示 self 变量无主引用 self
 
 1818
 01:15:16,412 --> 01:15:18,245
 So this is a lot of times how we'll break a cycle,
+大部分情况我们都这样避免引用循环
 
 1819
 01:15:18,314 --> 01:15:20,815
-we'll say unknown self and that basically means inside
+we'll say unowned self and that basically means inside
+我们用 unowned self，表示
 
 1820
 01:15:20,883 --> 01:15:24,385
-this enclosure, you can assume that self is in the heap.
+this closure, you can assume that self is in the heap.
+在闭包里可以认为 self 是存在的
 
 1821
 01:15:27,356 --> 01:15:29,190
 Now let's talk about breaking it with weak.
+让我们来谈谈如何用 weak 来避免引用循环
 
 1822
 01:15:29,259 --> 01:15:32,293
 So I can also say weak self.
+所以我这里也可以用 weak self
 
 1823
 01:15:32,361 --> 01:15:35,062
 And that means that self is now a local variable in this
+它的意思是 self 这个局部变量
 
 1824
 01:15:35,131 --> 01:15:37,964
 closure that's an optional view controller.
+在闭包里是可选类型的视图控制器
 
 1825
 01:15:38,033 --> 01:15:41,935
 And if it's not, if that view controller is not in the heap,
+如果视图控制器不再堆里
 
 1826
 01:15:42,004 --> 01:15:45,872
-this variable self, which is different from the global cell
+this variable self, which is different from the global self
+这个不是全局变量的 self
 
 1827
 01:15:45,941 --> 01:15:47,107
 is going to be nil.
+就会被设为 nil
 
 1828
 01:15:47,176 --> 01:15:48,875
 So this is a safe way to do it.
+所以这是更保险的做法
 
 1829
 01:15:48,944 --> 01:15:51,111
 But of course since it's an optional,
+但同时，既然 self 是可选类型
 
 1830
 01:15:51,180 --> 01:15:53,147
 we can't just say self.display,
+我们就不能用 self.display 了
 
 1831
 01:15:53,215 --> 01:15:56,617
-right there we have to say optional chained self.display.
+right there we have to say optional chained self?.display.
+我们就要用可选链接 self?.display
 
 1832
 01:15:56,686 --> 01:15:58,385
 So that if this closure executes and
+然后运行这个闭包里代码的时候
 
 1833
 01:15:58,454 --> 01:16:01,288
 the view controller is not in the heap, self question mark
+即使视图控制器被释放了，self? 的值
 
 1834
 01:16:01,357 --> 01:16:04,792
 will be nil and it will not execute the rest of that line.
+就是 nil，这一行就不会运行了
 
 1835
 01:16:04,860 --> 01:16:06,093
 It'll still return the square root,
+但依然会计算平方根
 
 1836
 01:16:06,162 --> 01:16:08,695
 but it won't turn the thing green because
+但不会让 display 变绿
 
 1837
 01:16:08,764 --> 01:16:10,031
 this view controller's not even there.
+因为视图控制器都不在了
 
 1838
 01:16:11,567 --> 01:16:13,867
 So that's how we can use weak to do it.
+这就是我们用 weak 破坏引用循环的方法
 
 1839
 01:16:13,936 --> 01:16:16,604
 And sometimes we use weak, and we could create anther
+通常我们用弱引用的时候
 
 1840
 01:16:16,672 --> 01:16:18,071
 variable, and often we'll do this.
+我们通常会换一个变量名
 
 1841
 01:16:18,140 --> 01:16:19,907
 This might be the most common way to do it right here,
+这应该是我们最通常的做法
 
 1842
 01:16:19,976 --> 01:16:22,877
-is to say weak weakself equals self.
+is to say weak weakSelf equals self.
+我们用 weak weakSelf = self
 
 1843
 01:16:22,945 --> 01:16:25,045
-And so, weakself is this Argument,
+And so, weakSelf is this Argument,
+所以 weakSelf 就是
 
 1844
 01:16:25,114 --> 01:16:27,514
 is this local variable inside the closure only
+在这个闭包里的局部变量
 
 1845
 01:16:27,583 --> 01:16:29,216
-that is a weak version of Self.
+that is a weak version of self.
+那是无主引用的 self
 
 1846
 01:16:30,320 --> 01:16:31,819
 Okay, that's kind of clearer
+这样子会更加明确
 
 1847
 01:16:31,888 --> 01:16:33,687
 what's going on than if you just say weakSelf.
+因为这样我们就会用 weakSelf
 
 1848
 01:16:33,756 --> 01:16:36,290
 Then it's like self is an optional, it's weird.
+哦，这是个可选类型的 self，有点奇怪
 
 1849
 01:16:36,358 --> 01:16:37,791
 Now at least you have a different variable called
+不过至少这个变量名字不一样
 
 1850
 01:16:37,860 --> 01:16:40,927
 weakSelf, all right.
+叫做 weakSelf
 
 1851
 01:16:40,996 --> 01:16:43,130
 Okay, so let's go in the last couple minutes and
+我们剩下几分钟时间
 
 1852
 01:16:43,199 --> 01:16:44,464
 just do this in the Calculator.
+就到计算器里实际操作下
 
 1853
 01:16:44,533 --> 01:16:47,334
 Let's do exactly what I talked about, this green square root.
+我们把讲的“绿色平方根”加进去
 
 1854
 01:16:47,403 --> 01:16:50,437
 I'm just gonna go back to our calculator here.
+我们回到计算器
 
 1855
 01:16:50,506 --> 01:16:52,173
 Where is our calculator?
+我把计算器工程放哪里了？
 
 1856
 01:16:52,241 --> 01:16:53,474
 Here somewhere.
+应该在这里的
 
 1857
 01:16:53,543 --> 01:16:54,708
 There it is.
+哦，在这呢
 
 1858
 01:16:54,777 --> 01:16:55,943
 We haven't seen this code in a while.
+我们好长时间没看到这些代码了
 
 1859
 01:16:56,011 --> 01:16:57,011
 You've seen it a lot.
+你们倒是经常看见
 
 1860
 01:16:57,079 --> 01:16:58,712
 I haven't seen it in a long time.
+我是很长时间没动过了
 
 1861
 01:16:58,781 --> 01:16:59,946
 All right, so here's our calculator, and
+好，这是我们的计算器
 
 1862
 01:17:00,015 --> 01:17:03,483
 I told you I'm just going to add this new func.
+就像我说的，我们添加这个 func
 
 1863
 01:17:03,552 --> 01:17:05,886
 Add unary operation.
+addUnaryOperation
 
 1864
 01:17:07,023 --> 01:17:11,124
 And it's going to take the symbol that we
+第一个参数是 symbol
 
 1865
 01:17:11,193 --> 01:17:13,660
 want to have it be this in there, so it's gonna be like
+代表这个运算的符号
 
 1866
 01:17:13,729 --> 01:17:16,564
 the green square root, or whatever we call it there.
+比如我们这里的绿色平方根等
 
 1867
 01:17:16,632 --> 01:17:19,033
 And actually, probably we wanna say something like named
+其实我们最好用 named symbol
 
 1868
 01:17:19,101 --> 01:17:21,902
 symbol, that's probably be a little better naming there,
+这样命名会更好
 
 1869
 01:17:21,971 --> 01:17:23,136
 and that's a string.
+这个参数的类型是字符串
 
 1870
 01:17:23,205 --> 01:17:25,439
 And it's going to take an argument,
+这个方法还有一个参数
 
 1871
 01:17:25,508 --> 01:17:28,976
 let's make more space here, which is the operation.
+（我把这个隐藏起来）第二个参数是 operation
 
 1872
 01:17:29,045 --> 01:17:31,111
 We don't really need to have an external name because we're
+也就是实际的运算，这个我们不需要实参标签
 
 1873
 01:17:31,180 --> 01:17:36,416
 probably gonna use trailing closure syntax there to do it.
+因为多半我们会用尾随闭包实现
 
 1874
 01:17:36,485 --> 01:17:39,887
 But this is just a Double, returns a Double function.
+这个函数的参数为一个 Double，返回一个 Double
 
 1875
 01:17:39,956 --> 01:17:43,256
 Hopefully, you're all very familiar by now with using
+最好你现在已经习惯了
 
 1876
 01:17:43,325 --> 01:17:45,493
 a function just as a type right there.
+像这里这样使用函数类型
 
 1877
 01:17:46,829 --> 01:17:48,061
 So we have this UnaryOperation.
+我们这里有了一元运算符
 
 1878
 01:17:48,130 --> 01:17:50,564
 And all we need to do to make this work is
+要实现这个功能，我们要做的就是
 
 1879
 01:17:50,633 --> 01:17:52,366
 we have our operations table down here.
+我们的 operations 字典就在下面
 
 1880
 01:17:52,435 --> 01:17:57,304
 I'm just gonna say operations sub that symbol =
+我就是需要用 operations[symbol] = 
 
 1881
 01:17:57,373 --> 01:18:00,541
-Operation.unary operation,
+Operation.unaryOperation,
+Operation.UnaryOperation
 
 1882
 01:18:00,610 --> 01:18:04,978
 where this operation is the argument.
+然后传入这个 operation 参数
 
 1883
 01:18:05,047 --> 01:18:06,680
 I mean, it couldn't be simpler.
+说实话，这个再简单不过了
 
 1884
 01:18:06,749 --> 01:18:09,383
 Really, that was so simple because we built such a good
+当然，这么简单的原因是我们已经
 
 1885
 01:18:09,451 --> 01:18:12,786
 data structure here to store all of our operations.
+构建了很好的数据结构来存储这些运算
 
 1886
 01:18:12,855 --> 01:18:15,388
 Now notice we have an error here.
+但是我们看到这里有个错误
 
 1887
 01:18:15,457 --> 01:18:17,424
 You see this has an error.
+你看这里报错了
 
 1888
 01:18:17,493 --> 01:18:18,124
 What's it saying?
+它说是什么原因？
 
 1889
 01:18:18,193 --> 01:18:19,660
 Mark this method mutating.
+要标记这个方法为 mutating
 
 1890
 01:18:19,729 --> 01:18:20,895
 Okay, why is that?
+为什么呢？
 
 1891
 01:18:20,963 --> 01:18:23,663
 Well that's because we're changing this operations table
+这是因为我们修改了 operations
 
 1892
 01:18:23,732 --> 01:18:25,499
 so of course that has to be mutating.
+那当然要标记为 mutating 了
 
 1893
 01:18:26,936 --> 01:18:28,635
 But that's not the only error, we've got another error.
+但这并不是唯一的错误，这又有另外一个
 
 1894
 01:18:28,704 --> 01:18:29,837
 What's this saying?
+这又说了什么？
 
 1895
 01:18:29,906 --> 01:18:33,173
 It's saying here that this parameter operation
+它说这个参数 operation
 
 1896
 01:18:33,242 --> 01:18:34,508
 Is "escaping".
+逃逸了
 
 1897
 01:18:34,577 --> 01:18:38,011
 What that does that mean, it's escaping?
+逃逸？这是什么意思？
 
 1898
 01:18:38,080 --> 01:18:39,613
 Let's go ahead and fix it.
+让我们解决这个问题
 
 1899
 01:18:39,682 --> 01:18:43,417
 It puts this word in here, @escaping.
+只需要在这里插入 @escaping
 
 1900
 01:18:43,485 --> 01:18:46,753
 Escaping means that this function,
+逃逸的意思是这个函数
 
 1901
 01:18:46,822 --> 01:18:50,558
 is escaping these curly braces.
+会跑到大括号之外的地方
 
 1902
 01:18:52,895 --> 01:18:54,128
 It is in fact escaping.
+没错，它从这里跑出去了
 
 1903
 01:18:54,196 --> 01:18:55,362
 Where is it escaping?
+逃到哪里去了呢？
 
 1904
 01:18:55,431 --> 01:18:56,497
 It's jumping into here.
+它跑到这里面去了
 
 1905
 01:18:58,333 --> 01:19:01,602
 Anytime you have a function that you pass in, and
+任何时候你传入了某个函数
 
 1906
 01:19:01,670 --> 01:19:04,338
 it gets put in some other data structure, in other words,
+然后这个函数被存储到了另外的数据结构里
 
 1907
 01:19:04,407 --> 01:19:08,208
 it escapes out of the curly braces of the method it's in,
+换句话说就是跑出了当前方法的大括号
 
 1908
 01:19:08,277 --> 01:19:11,344
 you have to mark it escaping so that you understand and
+你就必须用 @escaping 修饰它，这样
 
 1909
 01:19:11,413 --> 01:19:14,682
 swift understands that you are storing that somewhere.
+你和 Swift 都知道你把它存到其他地方了
 
 1910
 01:19:14,750 --> 01:19:16,750
 And that's because it might create a memory cycle
+这样做是因为存到其他地方
 
 1911
 01:19:16,818 --> 01:19:18,785
 if you do that.
+有可能造成引用循环
 
 1912
 01:19:18,854 --> 01:19:20,954
 So fix it will automatically remind you about this so
+这个的话 Fix-it 会自动提醒你
 
 1913
 01:19:21,023 --> 01:19:22,790
 you don't have to remember that so much.
+你并不需要自己盯着
 
 1914
 01:19:22,859 --> 01:19:24,691
 We've got this nice cool new feature and
+我们加上了这个很酷的新功能
 
 1915
 01:19:24,760 --> 01:19:27,962
 let's go to our view controller and add it.
+让我们到 ViewController 里把新功能加上
 
 1916
 01:19:28,030 --> 01:19:30,431
 Hey how about we use view did load.
+嘿，要不我们用 viewDidLoad
 
 1917
 01:19:31,767 --> 01:19:34,201
 Here's view did load, super dot view did load.
+在 viewDidLoad 里，先 super.viewDidLoad()
 
 1918
 01:19:34,270 --> 01:19:36,002
 I never want to forget that.
+千万别忘了这个
 
 1919
 01:19:36,071 --> 01:19:38,738
 So that's going to happen we're all initialized,
+这个方法会在一切都初始化好了
 
 1920
 01:19:38,807 --> 01:19:40,140
 our outlets are set.
+出口都关联上了之后被调用
 
 1921
 01:19:40,208 --> 01:19:43,143
 Let's just go ahead and call that addUnaryOperation here.
+让我们在这里调用 addUnaryOperation
 
 1922
 01:19:43,212 --> 01:19:49,182
 Let's call it brain addUnaryOperation.
+通过 brain.addUnaryOperation
 
 1923
 01:19:49,251 --> 01:19:50,984
 Is that what I called it?
+我是取的这个名字吧？
 
 1924
 01:19:51,053 --> 01:19:55,522
 addUnaryOperation, I don't know why that's not,
+我不知道为什么没有自动补全 addUnaryOperation
 
 1925
 01:19:55,590 --> 01:19:56,357
 there it did it.
+哦，现在出来了
 
 1926
 01:19:57,426 --> 01:19:58,692
 It's just a little slow.
+Xcode 有点卡
 
 1927
 01:19:58,760 --> 01:20:03,263
 addUnaryOperation takes the symbol which is named.
+addUnaryOperation 第一个参数是运算的符号
 
 1928
 01:20:03,332 --> 01:20:04,631
 And I'm gonna go ahead and
+我现在要去把
 
 1929
 01:20:04,700 --> 01:20:09,036
 do that green exclamation point if I can find it here.
+绿色的感叹号（注：平方根）符号找出来
 
 1930
 01:20:10,005 --> 01:20:11,372
 Where is that thing?
+在哪里呢？
 
 1931
 01:20:13,609 --> 01:20:16,843
 It's probably pictograph, maybe, no.
+很有可能是 象形文字，欸，不在 Pictographs 里
 
 1932
 01:20:16,912 --> 01:20:18,712
 Anyone know where that would be?
+谁知道在哪里？
 
 1933
 01:20:18,781 --> 01:20:20,814
 Let's try, what's it called, checkmark or something.
+让我们试着搜索一下 checkmark，或者 勾号
 
 1934
 01:20:20,883 --> 01:20:21,948
 There it is.
+哦，在这里
 
 1935
 01:20:22,017 --> 01:20:25,152
 There's our nice symbol right there.
+✅ 就是我要找的符号
 
 1936
 01:20:25,220 --> 01:20:26,953
 And let's go and add that to our UI as well.
+让我们把它也加到用户界面里
 
 1937
 01:20:27,022 --> 01:20:28,522
 Let's go over here to our story board,
+让我们到 Storyboard 里
 
 1938
 01:20:28,591 --> 01:20:30,824
 we'll add it instead of Pi.
+把 π 替换成它
 
 1939
 01:20:30,893 --> 01:20:33,661
 So, we'll get rid of Pi instead we'll put that
+我们把 π 删掉，取而代之的是
 
 1940
 01:20:34,863 --> 01:20:35,830
 operation in there.
+✅ 这个符号
 
 1941
 01:20:37,132 --> 01:20:38,866
 What was it called again?
+那叫做什么来着？
 
 1942
 01:20:38,935 --> 01:20:39,500
 Check.
+check，勾号
 
 1943
 01:20:41,837 --> 01:20:46,406
 Oops, two of them.
+哦，不小心多放了一个
 
 1944
 01:20:46,475 --> 01:20:48,775
 We've got this new green square root.
+我们添加了这个绿色平方根
 
 1945
 01:20:48,844 --> 01:20:51,144
 We still have the old square root as well.
+我们依然保留了普通的平方根
 
 1946
 01:20:51,213 --> 01:20:52,813
 But we have to add this operation and
+接着我们实现要添加的运算
 
 1947
 01:20:52,881 --> 01:20:57,550
 I'm gonna use that trailing closure syntax right there.
+这里我要用尾随闭包的语法
 
 1948
 01:20:57,619 --> 01:21:01,154
 And of course we know this is, it's a double takes a double.
+当然，我们知道这个闭包参数是一个 Double，返回一个 Double
 
 1949
 01:21:01,223 --> 01:21:05,025
 And this would be where the stuff goes in there.
+然后在这里写代码
 
 1950
 01:21:05,094 --> 01:21:09,830
 But we can let Swift infer this, and just use $0,
+但我们可以让 Swift 自动推导类型，直接使用 $0
 
 1951
 01:21:09,899 --> 01:21:11,899
 square root of $0.
+用 sqrt($0) 计算平方根
 
 1952
 01:21:11,968 --> 01:21:15,035
 So we've done everything except for the green.
+我们实现了基本功能，就剩改成绿色了
 
 1953
 01:21:15,104 --> 01:21:18,004
 Does everyone agree with this?
+大家都同意吧？
 
 1954
 01:21:18,073 --> 01:21:21,174
 I'm adding the unary Operation named this symbol and here is
+我添加了个一元运算符，叫做这个符号
 
 1955
 01:21:21,243 --> 01:21:24,578
 the second argument put on the trailing closure there.
+然后第二个参数是这里的尾随闭包
 
 1956
 01:21:24,647 --> 01:21:25,479
 So how do we turn it green?
+那我们怎么把字换成绿色的呢？
 
 1957
 01:21:25,548 --> 01:21:28,315
 Well, we just say display.textColor.
+我们只需要用 display.textColor
 
 1958
 01:21:28,383 --> 01:21:34,121
 Turns out UILabel has a text color = UIColor.green.
+事实证明可以把 UILabel 文字颜色这个属性设为 UIColor.green
 
 1959
 01:21:34,190 --> 01:21:36,222
 Now, when we put this in here like this,
+但像现在我们这样写
 
 1960
 01:21:36,291 --> 01:21:37,790
 it's gonna complain.
+Xcode 是会报错的
 
 1961
 01:21:37,859 --> 01:21:38,792
 Why?
+为什么呢？
 
 1962
 01:21:38,861 --> 01:21:41,428
-Because, reference to property display and
+Because, reference to property display in
+因为对属性 display 的引用
 
 1963
 01:21:41,497 --> 01:21:44,097
 closure requires an explicit self dot
+在闭包中要求显式 self. 
 
 1964
 01:21:44,166 --> 01:21:47,300
 to make the capture semantics explicit.
+来明确你有捕获的意图
 
 1965
 01:21:47,369 --> 01:21:49,837
 This is Swift saying watch out.
+这是 Swift 提醒你注意
 
 1966
 01:21:49,905 --> 01:21:53,040
 If you do this, you're going to capture self right here.
+如果你这样做的话，你会捕获 self
 
 1967
 01:21:54,243 --> 01:21:56,176
 And that is going to create a memory cycle.
+那很有可能造成引用循环
 
 1968
 01:21:59,281 --> 01:22:00,714
 This closure right here,
+这里的这个闭包
 
 1969
 01:22:00,782 --> 01:22:03,550
 which lives in the heap, is pointing to self.
+是存储在堆中的，同时指向了 self
 
 1970
 01:22:03,619 --> 01:22:05,786
-This addUnary operation is going to cause it,
+This addUnaryOperation is going to cause it,
+addUnaryOperation 这个方法会导致
 
 1971
 01:22:05,854 --> 01:22:08,422
 this closure, to be put in the operations table which is
+这个闭包被放到 operations 字典里
 
 1972
 01:22:08,490 --> 01:22:09,689
 pointed to by the View Controller.
+那个字典是被 ViewController 实例引用了的
 
 1973
 01:22:09,758 --> 01:22:12,692
 Now they point at each other.
+现在它们就互相引用了
 
 1974
 01:22:12,761 --> 01:22:15,262
 Let's see, what else did I forget here.
+让我看看我忘了什么
 
 1975
 01:22:15,330 --> 01:22:16,230
 Missing return.
+没有 return
 
 1976
 01:22:17,466 --> 01:22:19,065
 Yes.
+是的
 
 1977
 01:22:19,134 --> 01:22:21,468
 Return square root.
+要返回计算的平方根
 
 1978
 01:22:24,806 --> 01:22:25,772
 Everybody cool with that?
+大家没问题吧？
 
 1979
 01:22:25,840 --> 01:22:32,513
 Now, to break that cycle, we could say, unowned self in.
+为了破坏引用循环，我们可以用 [unowned self] in
 
 1980
 01:22:32,581 --> 01:22:34,915
 That's one way to break the cycle.
+无主引用是解决问题的一种方法
 
 1981
 01:22:34,983 --> 01:22:40,888
-We could say, weakSelf = self, if we do this
+We could say, weak weakSelf = self, if we do this
+我们还可以用 weak weakSelf = self，但这样的话
 
 1982
 01:22:40,956 --> 01:22:45,491
 one though we're gonna have to go here and say weakSelf?
+我们需要把这里 self 改成 weakSelf?
 
 1983
 01:22:45,560 --> 01:22:47,026
 Either of those will break this cycle.
+这两种方法都能避免引用循环
 
 1984
 01:22:47,095 --> 01:22:50,597
 In your homework, I've updated your homework to say you
+我改了下你们作业的要求
 
 1985
 01:22:50,666 --> 01:22:54,167
 cannot have any of these cycles in your homework.
+你们交的程序不能有任何引用循环
 
 1986
 01:22:54,236 --> 01:22:56,303
 Okay, in assignment three.
+也就是你们的作业三
 
 1987
 01:22:56,372 --> 01:22:58,572
 It's in the evaluation criteria down there.
+我加到了评分标准里面
 
 1988
 01:22:58,641 --> 01:23:00,774
 So I put, posted it on the forum for that too.
+我也在论坛里说了
 
 1989
 01:23:00,843 --> 01:23:02,109
 So let's go see if this works.
+让我们来看看实现没有
 
 1990
 01:23:05,180 --> 01:23:08,248
 By the way, what happens if we don't break that cycle,
+顺便一提，如果不管引用循环会怎样？
 
 1991
 01:23:08,316 --> 01:23:12,019
 view controllers will just start accumulating in memory.
+就会有越来越多的 ViewController 实例在内存里
 
 1992
 01:23:12,088 --> 01:23:13,921
 Because they'll be keeping,
+因为这些闭包
 
 1993
 01:23:13,989 --> 01:23:15,956
 these closures will be keeping them on our memory.
+总是会把视图控制器留在内存里
 
 1994
 01:23:16,024 --> 01:23:19,193
 If you, for example, had a CalculatorViewController
+举个例子，你计算器的一个 ViewController
 
 1995
 01:23:19,261 --> 01:23:22,028
-that was being pushed on to you know segue two and
+that was being pushed on to you know segue to and
+通过 push 转场到了界面上，之后
 
 1996
 01:23:22,097 --> 01:23:25,465
 then segue away from, it would not go into out of the heap,
+转场回之前界面，那个 ViewController 不会被释放
 
 1997
 01:23:25,533 --> 01:23:27,467
 it would stay in heap in that case.
+那种情况下它会留在内存里
 
 1998
 01:23:27,536 --> 01:23:29,736
 Right here is our calculator.
+好，我们的计算器出来了
 
 1999
 01:23:29,805 --> 01:23:32,906
 So 81 square root is 9 green square root?
+好，81 的平方根是 9，再绿色平方根呢？
 
 2000
 01:23:32,975 --> 01:23:33,640
 Woo hoo.
+很好！
 
 2001
 01:23:33,709 --> 01:23:34,842
 Square root and turned to green.
+算出来是 3，字也变绿了
 
 2002
 01:23:36,444 --> 01:23:39,279
 Okay, that's it, see you next time.
+好，今天就到这里，下次课见
 
 2003
 01:23:41,516 --> 01:23:43,784
 If you guys have any questions, I'm here as always.
+如果你们（斯坦福的学生）有问题，我随时都在这里
 
 2004
 01:23:46,021 --> 01:23:56,629

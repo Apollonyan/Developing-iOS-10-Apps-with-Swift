@@ -33,6 +33,7 @@
 	- [课程专辑封面](http://a2.mzstatic.com/us/r30/CobaltPublic122/v4/6b/66/d0/6b66d0af-d47f-37d6-9993-9c5237401a49/d3_64_2x.png)
 	- [首页推广图片](http://a2.mzstatic.com/us/r30/Features122/v4/79/cb/ce/79cbce27-b961-9dfb-f044-21686543edf8/flowcase_1360_520_2x.jpeg)
 - CS 193P 课程地址：[CS 193P iPhone Application Development](http://web.stanford.edu/class/cs193p/cgi-bin/drupal/)
+- Paul Hegarty：[piazza](https://piazza.com/professors/show/paul_hegarty)
 
 #### 项目相关资源
 
@@ -43,14 +44,6 @@
 
 ----
 
-<script async defer src="https://buttons.github.io/buttons.js">/*请忽略这段代码*/</script>
-<script type="text/javascript">
-  window.onload = function () {
-    var realH1 = document.getElementById("developing-ios-10-apps-with-swift-字幕简体中文翻译项目");
-    document.getElementsByClassName("project-name")[0].innerHTML = realH1.innerHTML;
-    realH1.style.display="none";
-  }
-</script>
 
 ## Contributors
 
@@ -80,4 +73,13 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/Developing-iOS-10-Apps-with-Swift/sponsor/8/website" target="_blank"><img src="https://opencollective.com/Developing-iOS-10-Apps-with-Swift/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/Developing-iOS-10-Apps-with-Swift/sponsor/9/website" target="_blank"><img src="https://opencollective.com/Developing-iOS-10-Apps-with-Swift/sponsor/9/avatar.svg"></a>
 
+----
 
+<script async defer src="https://buttons.github.io/buttons.js">/*请忽略这段代码*/</script>
+<script type="text/javascript">
+  window.onload = function () {
+    var realH1 = document.getElementById("developing-ios-10-apps-with-swift-字幕简体中文翻译项目");
+    document.getElementsByClassName("project-name")[0].innerHTML = realH1.innerHTML;
+    realH1.style.display="none";
+  }
+</script>
