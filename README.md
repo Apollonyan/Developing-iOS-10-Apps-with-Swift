@@ -1,5 +1,9 @@
 # Developing iOS 10 Apps with Swift 字幕简体中文翻译项目
 
+## iOS 11 已出，请大家移步 [https://github.com/ApolloZhu/Developing-iOS-11-Apps-with-Swift](https://github.com/ApolloZhu/Developing-iOS-11-Apps-with-Swift)
+
+----
+
 [English Version (Outdated)](./en/README.md)
 
 [![Backers on Open Collective](https://opencollective.com/Developing-iOS-10-Apps-with-Swift/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/Developing-iOS-10-Apps-with-Swift/sponsors/badge.svg)](#sponsors)
@@ -14,7 +18,7 @@
 
 如果您感兴趣，有能力，我们欢迎您参与翻译/校对本项目。详情见 [任务相关说明](./CONTRIBUTING.md)（[失效备份](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/blob/master/CONTRIBUTING.md)）。
 
-翻译进度: 翻译第四集中。关于如何获得更新，请查看 [常见问题与解答](./SUPPORT.md) 中的字幕更新章节。
+翻译进度: ![翻译七集中](http://progressed.io/bar/7?scale=17&suffix=%E9%9B%86)。关于如何获得更新，请查看 [常见问题与解答](./SUPPORT.md) 中的字幕更新章节。
 
 如果您想支持我们，请点击项目右上角的 <a class="github-button" href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift" data-icon="octicon-star" data-show-count="true" aria-label="Star ApolloZhu/Developing-iOS-10-Apps-with-Swift on GitHub">Star</a> 按钮来 Star 本项目。其他如分享和打赏等方式请查看 [常见问题与解答](./SUPPORT.md) 中的支持我们章节。
 
