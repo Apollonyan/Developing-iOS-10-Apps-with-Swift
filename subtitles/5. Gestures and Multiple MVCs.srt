@@ -2051,7 +2051,7 @@ target，处理事件的目标对象
 411
 00:19:47,186 --> 00:19:50,354
 the action is what method is going to handle it.
-action，是传入具体负责处理方法的存根
+action，是传入具体负责处理方法的选择器
 
 412
 00:19:50,423 --> 00:19:51,989
@@ -2101,7 +2101,7 @@ And the action, you notice you have to say #selector to
 421
 00:20:15,347 --> 00:20:16,914
 specify the method.
-来指定是哪个方法的存根
+来构造一个选择器，指定是哪个方法
 
 422
 00:20:16,983 --> 00:20:19,750
@@ -2116,12 +2116,12 @@ type, a type that is a function and
 424
 00:20:22,221 --> 00:20:24,755
 an actual method in a class.
-和类里的一个实际的方法
+和引用类里的一个实际的方法
 
 425
 00:20:24,824 --> 00:20:28,292
 We use #selector to say this is a method,
-我们用 #selector 表示这是个方法
+我们用 #selector 选择这个方法
 
 426
 00:20:28,361 --> 00:20:32,229
