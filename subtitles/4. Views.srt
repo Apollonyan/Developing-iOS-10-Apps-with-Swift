@@ -3795,7 +3795,7 @@ Old style integer, not string.index.
 760
 00:31:57,950 --> 00:32:01,117
 So this makes for a lot of trouble when you're using
-所以在 Swfit 中用富文本字符串
+所以在 Swift 中用富文本字符串
 
 761
 00:32:01,186 --> 00:32:03,653
