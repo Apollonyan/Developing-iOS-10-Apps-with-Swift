@@ -1,3 +1,8 @@
+<details>
+<summary>
+已完成前六集翻译，<a href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/archive/master.zip">点此下载</a>（字幕在 <code>subtitles</code> 文件夹里），其他课程录像和资料等可以查看<a href="./tools/download.md">下载列表</a>。但本项目在 <a href="https://github.com/ApolloZhu/Developing-iOS-11-Apps-with-Swift">iOS 11 翻译</a> 完成前不再继续翻译。如有需要可以参考其他项目提供的机器翻译，比如 <a href="https://github.com/iam36/Translate-Developing-iOS-10-Apps-with-Swift">有道字典机翻</a> 和 <a href="https://github.com/JaminZhou/Developing-iOS-10-Apps-with-Swift">另一个机翻+粗校</a>。<strong><u>本项目不对机器翻译内容负责。</u></strong>
+</summary>
+
 # 常见问题与解答
 
 如果您阅读完后还是有问题，请通过 “联系我们” 中提供的方式咨询。
@@ -26,12 +31,6 @@
 
 如果您想收到每集翻译完成的更新，请订阅 [RSS源](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/releases.atom)。如果您想要更密切地获得最新动态，您也可以 [关注（Watch）项目的更新](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/subscription)。
 
-### 好长时间没更新了/这个项目你们还翻译不翻译了？
-
-<del>不翻了，补番了</del> 开个玩笑。<span style="color:red;font-size:2em;">翻。</span>
-
-目前的详细进度可以 [查看进度跟踪看板](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/projects/1)。如果您等不及，有其他的项目提供了 [机器翻译（有道字典）](https://github.com/iam36/Translate-Developing-iOS-10-Apps-with-Swift)，本项目不对翻译内容负责。
-
 ## 支持我们
 
 在此先感谢所有关注、分享和参与本项目的所有人！
@@ -43,3 +42,5 @@
 ### 为什么捐助一直在拖？
 
 十分感谢大家的好意，我们之后应该会支持微信、支付宝和其他平台的打赏。资金的用途尚未定，但一定会保持公开透明。可以理解大家的心情，先不论我们不是为了盈利，但是现在翻译还没有完成（而且还经常被催），接受大家的善意会于心有愧。
+
+</details>

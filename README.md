@@ -2,7 +2,10 @@
 
 ## iOS 11 已出，请大家移步 [https://github.com/ApolloZhu/Developing-iOS-11-Apps-with-Swift](https://github.com/ApolloZhu/Developing-iOS-11-Apps-with-Swift)
 
-----
+<details>
+<summary>
+已完成前六集翻译，<a href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/archive/master.zip">点此下载</a>（字幕在 <code>subtitles</code> 文件夹里），其他课程录像和资料等可以查看<a href="./tools/download.md">下载列表</a>。但本项目在 <a href="https://github.com/ApolloZhu/Developing-iOS-11-Apps-with-Swift">iOS 11 翻译</a> 完成前不再继续翻译。如有需要可以参考其他项目提供的机器翻译，比如 <a href="https://github.com/iam36/Translate-Developing-iOS-10-Apps-with-Swift">有道字典机翻</a> 和 <a href="https://github.com/JaminZhou/Developing-iOS-10-Apps-with-Swift">另一个机翻+粗校</a>。<strong><u>本项目不对机器翻译内容负责。</u></strong>
+</summary>
 
 [English Version (Outdated)](./en/README.md)
 
@@ -18,13 +21,13 @@
 
 如果您感兴趣，有能力，我们欢迎您参与翻译/校对本项目。详情见 [任务相关说明](./CONTRIBUTING.md)（[失效备份](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/blob/master/CONTRIBUTING.md)）。
 
-翻译进度: ![翻译七集中](http://progressed.io/bar/7?scale=17&suffix=%E9%9B%86)。关于如何获得更新，请查看 [常见问题与解答](./SUPPORT.md) 中的字幕更新章节。
+关于如何获得更新，请查看 [常见问题与解答](./SUPPORT.md) 中的字幕更新章节。
 
 如果您想支持我们，请点击项目右上角的 <a class="github-button" href="https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift" data-icon="octicon-star" data-show-count="true" aria-label="Star ApolloZhu/Developing-iOS-10-Apps-with-Swift on GitHub">Star</a> 按钮来 Star 本项目。其他如分享和打赏等方式请查看 [常见问题与解答](./SUPPORT.md) 中的支持我们章节。
 
 ### 下载
 
-课程录像等可以查看[下载列表](./tools/download.md)（从 iTunes U 提取），其中点击 `中英字幕` 就可以下载已经翻译好了的字幕。另一个方案是 [下载整个项目](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/archive/master.zip)。`subtitles` 文件夹中是中英字幕（不一定都翻译了），`en/subtitles` 文件夹中是纯英文字幕。
+（从 iTunes U 提取），其中点击 `中英字幕` 就可以下载已经翻译好了的字幕。另一个方案是 [下载整个项目](https://github.com/ApolloZhu/Developing-iOS-10-Apps-with-Swift/archive/master.zip)。`subtitles` 文件夹中是中英字幕（不一定都翻译了），`en/subtitles` 文件夹中是纯英文字幕。
 
 字幕的格式是 `.srt`，所以您可能需要用带外挂字幕功能的视频播放器，比如 [VLC](http://www.videolan.org/vlc/index.zh.html) 或 [IINA](https://lhc70000.github.io/iina/zh-cn/) 等才可使用。其他字幕使用问题的解答请查看 [常见问题与解答](./SUPPORT.md) 的字幕使用章节。
 
@@ -77,8 +80,6 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/Developing-iOS-10-Apps-with-Swift/sponsor/8/website" target="_blank"><img src="https://opencollective.com/Developing-iOS-10-Apps-with-Swift/sponsor/8/avatar.svg"></a>
 <a href="https://opencollective.com/Developing-iOS-10-Apps-with-Swift/sponsor/9/website" target="_blank"><img src="https://opencollective.com/Developing-iOS-10-Apps-with-Swift/sponsor/9/avatar.svg"></a>
 
-----
-
 <script async defer src="https://buttons.github.io/buttons.js">/*请忽略这段代码*/</script>
 <script type="text/javascript">
   window.onload = function () {
@@ -87,3 +88,4 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
     realH1.style.display="none";
   }
 </script>
+</details>
