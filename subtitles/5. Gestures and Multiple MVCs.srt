@@ -1036,7 +1036,7 @@ didSet 可以用在（几乎）所有的变量上
 208
 00:10:16,717 --> 00:10:19,417
 if it changes, you can execute some code.
-如果值发生了改变，就运行里面的代码 
+如果值发生了改变，就运行里面的代码
 
 209
 00:10:19,486 --> 00:10:22,019
@@ -3282,7 +3282,7 @@ it behaves almost exactly like a discrete gesture.
 657
 00:29:55,260 --> 00:29:57,828
 So hopefully this will make a lot more sense when we show in
-希望这些解释可以在之后的 Demo 中变得更有意义 
+希望这些解释可以在之后的 Demo 中变得更有意义
 
 658
 00:29:57,896 --> 00:30:00,563
@@ -3382,7 +3382,7 @@ it can be handled by the view.
 677
 00:30:40,906 --> 00:30:42,839
 So le's actually go over to our view and
-我们切换到视图 
+我们切换到视图
 
 678
 00:30:42,908 --> 00:30:48,044
@@ -3417,7 +3417,7 @@ Which will be UI pinch recognizer,
 684
 00:31:10,001 --> 00:31:14,904
 pinch gesture recognizer, there we go.
-UIPinchGestureRecognizer，好了 
+UIPinchGestureRecognizer，好了
 
 685
 00:31:14,973 --> 00:31:17,440
@@ -3732,7 +3732,7 @@ target 传入 faceView
 747
 00:34:11,950 --> 00:34:14,083
 it's gonna handle this thing itself, and
- faceView 它自己会处理这个手势
+faceView 它自己会处理这个手势
 
 748
 00:34:14,152 --> 00:34:15,786
@@ -4722,7 +4722,7 @@ So I'm gonna have a func called increaseHappiness.
 945
 00:43:23,535 --> 00:43:26,135
 It's just going to set the expression equal to
-它会把 expression 设置为 
+它会把 expression 设置为
 
 946
 00:43:26,204 --> 00:43:28,071
@@ -4817,7 +4817,7 @@ Why do these handlers not have an argument,
 964
 00:44:13,251 --> 00:44:15,551
 like this ByReactingTo guy down here.
-像下面这个 byReactingTo 
+像下面这个 byReactingTo
 
 965
 00:44:15,620 --> 00:44:17,786
@@ -4872,7 +4872,7 @@ Again, the target is myself because it affects the model.
 975
 00:44:49,386 --> 00:44:53,522
 And I'm gonna have this be the selector increaseHappiness
-我要把 increaseHappiness 作为 selector 
+我要把 increaseHappiness 作为 selector
 
 976
 00:44:53,591 --> 00:44:55,958
@@ -5047,7 +5047,7 @@ Not just our calculator MVC, but multiple MVCs.
 1010
 00:46:36,460 --> 00:46:39,528
 Not just our face view controller MVC, but
- 不仅仅只有一个 FaceViewController 的 MVC
+不仅仅只有一个 FaceViewController 的 MVC
 
 1011
 00:46:39,597 --> 00:46:41,230
@@ -5477,12 +5477,12 @@ which is split view controller.
 1096
 00:50:58,222 --> 00:51:03,025
 So split view controllers is two MVCs side by side.
-分屏控制器是两个并排的 MVC 
+分屏控制器是两个并排的 MVC
 
 1097
 00:51:03,094 --> 00:51:05,694
 You get to see them both on screen at the same time,
-也就是能在屏幕上同时看到的两个 MVC 
+也就是能在屏幕上同时看到的两个 MVC
 
 1098
 00:51:05,763 --> 00:51:07,262
@@ -5492,7 +5492,7 @@ at least in landscape you do.
 1099
 00:51:07,331 --> 00:51:10,866
 This one on the left here is a calculator MVC.
-这里左边的这个是一个计算器的 MVC 
+这里左边的这个是一个计算器的 MVC
 
 1100
 00:51:10,935 --> 00:51:12,735
@@ -5502,7 +5502,7 @@ It doesn't look much like yours but
 1101
 00:51:12,804 --> 00:51:15,037
 you can imagine that's a calculator MVC.
-你可以把它当作一个计算器的 MVC 
+你可以把它当作一个计算器的 MVC
 
 1102
 00:51:15,105 --> 00:51:15,837
@@ -5512,12 +5512,12 @@ That MVC,
 1103
 00:51:15,906 --> 00:51:20,409
 we call the master MVC of the split view controller.
-在分屏控制器中我们把它叫做主 MVC 
+在分屏控制器中我们把它叫做主 MVC
 
 1104
 00:51:20,477 --> 00:51:23,044
 And then on the other side there's a whole different MVC,
-然后另一边有一个完全不一样的 MVC 
+然后另一边有一个完全不一样的 MVC
 
 1105
 00:51:23,113 --> 00:51:24,713
@@ -5567,12 +5567,12 @@ so pay attention.
 1114
 00:51:42,099 --> 00:51:43,098
 So that we call a detail.
-右边那一个 MVC 我们叫它细节 MVC 
+右边那一个 MVC 我们叫它细节 MVC
 
 1115
 00:51:43,167 --> 00:51:44,699
 The reason we call that a detail,
-我们之所以叫它细节 MVC 
+我们之所以叫它细节 MVC
 
 1116
 00:51:44,768 --> 00:51:46,568
@@ -5637,7 +5637,7 @@ But what if you switch over to portrait?
 1128
 00:52:14,699 --> 00:52:17,632
 Well, in portrait it just shows you the detail, but
-竖屏模式下它只会显示细节 MVC 
+竖屏模式下它只会显示细节 MVC
 
 1129
 00:52:17,701 --> 00:52:22,204
@@ -5741,17 +5741,17 @@ Another MVC that uses other MVCs in its view.
 1149
 00:53:12,423 --> 00:53:16,358
 So, here we see two MVCs on this screen,
-这个屏幕上有两个 MVC 
+这个屏幕上有两个 MVC
 
 1150
 00:53:16,427 --> 00:53:19,027
 navigation controller based MVC.
-基于导航控制器的 MVC 
+基于导航控制器的 MVC
 
 1151
 00:53:19,096 --> 00:53:22,231
 And in it, it's showing another MVC,
-和它里面显示的另一个 MVC 
+和它里面显示的另一个 MVC
 
 1152
 00:53:22,300 --> 00:53:24,700
@@ -5781,7 +5781,7 @@ The gray bar, which is actually transparent and
 1157
 00:53:35,913 --> 00:53:38,214
 showing the all settings MVC behind it.
-并且它显示了在它后面的所有设置 MVC 
+并且它显示了在它后面的所有设置 MVC
 
 1158
 00:53:39,216 --> 00:53:41,450
@@ -5821,7 +5821,7 @@ The view from another MVC,
 1165
 00:53:56,666 --> 00:53:58,734
 in this case the all settings MVC.
-在这个情况下，也就是这个所有设置 MVC 
+在这个情况下，也就是这个所有设置 MVC
 
 1166
 00:54:02,906 --> 00:54:05,107
@@ -5961,17 +5961,17 @@ So now we have three MVCs involved in this
 1193
 00:55:20,150 --> 00:55:23,185
 Navigation Controller, the Navigation Controllers' MVC,
-有三个涉及到的 MVC，一个是导航控制器 MVC 
+有三个涉及到的 MVC，一个是导航控制器 MVC
 
 1194
 00:55:23,253 --> 00:55:26,788
 the all setting ones that is now in the back of this one,
-一个是在这个正在显示的 MVC 的后面的所有设置 MVC 
+一个是在这个正在显示的 MVC 的后面的所有设置 MVC
 
 1195
 00:55:26,857 --> 00:55:31,059
 and this one, the General Settings MVC.
-最后是这个，通用设置 MVC 
+最后是这个，通用设置 MVC
 
 1196
 00:55:31,128 --> 00:55:32,494
@@ -6081,7 +6081,7 @@ And if I click on Larger Text in here, I get yet
 1217
 00:56:24,248 --> 00:56:25,013
 another MVC..
-我又得到了另一个 MVC 
+我又得到了另一个 MVC
 
 1218
 00:56:25,081 --> 00:56:27,015
@@ -6111,7 +6111,7 @@ And of course if we start pressing the back button
 1223
 00:56:37,661 --> 00:56:40,862
 up there on the left, it goes back to the previous one.
-它就返回到了先前的一个 MVC 
+它就返回到了先前的一个 MVC
 
 1224
 00:56:40,931 --> 00:56:43,698
@@ -6136,7 +6136,7 @@ And we can go all the way back to the all settings at
 1228
 00:56:51,575 --> 00:56:52,207
 the very top.
-所有设置 MVC 
+所有设置 MVC
 
 1229
 00:56:52,275 --> 00:56:53,675
@@ -6281,7 +6281,7 @@ as you'll see in a moment.
 1257
 00:57:54,271 --> 00:57:55,938
 So I have two MVC's now,
-那么我现在有两个 MVC 
+那么我现在有两个 MVC
 
 1258
 00:57:56,006 --> 00:57:59,941
@@ -6306,7 +6306,7 @@ And so here's a NavigationController,
 1262
 00:58:04,982 --> 00:58:07,281
 it's just a MVC.
-就是个 MVC 
+就是个 MVC
 
 1263
 00:58:07,350 --> 00:58:11,586
@@ -6351,7 +6351,7 @@ You just set that to something, and
 1271
 00:58:28,739 --> 00:58:29,471
 now you'll have an MVC.
-然后你就有了一个 MVC 
+然后你就有了一个 MVC
 
 1272
 00:58:29,540 --> 00:58:31,839
@@ -6421,7 +6421,7 @@ MVCs on the right, it creates it at that moment.
 1285
 00:59:00,437 --> 00:59:02,804
 As soon as you touch it, it creates a new one.
-一旦你点击它的时候，它就会创建一个新的 MVC 
+一旦你点击它的时候，它就会创建一个新的 MVC
 
 1286
 00:59:02,873 --> 00:59:05,273
@@ -6466,7 +6466,7 @@ This activity of going to a new one is called segueing.
 1294
 00:59:18,755 --> 00:59:23,891
 This particular segue's called a show or a push segue.
-这个特殊 segue 被称为 show segue 或者 push segue 
+这个特殊 segue 被称为 show segue 或者 push segue
 
 1295
 00:59:23,960 --> 00:59:26,561
@@ -6476,7 +6476,7 @@ Which just means a segue in a navigation control with
 1296
 00:59:26,630 --> 00:59:28,463
 the stack of cards.
-导航控制器里的 segue 
+导航控制器里的 segue
 
 1297
 00:59:28,531 --> 00:59:31,199
@@ -6596,7 +6596,7 @@ And so that's why it's showing something new.
 1320
 01:00:24,521 --> 01:00:27,189
 Or it's an MVC that showed something new every time.
-或者这是个每次显示新的东西的 MVC 
+或者这是个每次显示新的东西的 MVC
 
 1321
 01:00:28,758 --> 01:00:31,627
@@ -6665,12 +6665,12 @@ which one you're in.
 
 1334
 01:00:59,125 --> 01:01:03,194
-so for example, in the tab bar, this is all the MVCs for each tab, with 
-那么举例来说，在标签栏中，所有的 MVC 各自对应一个标签 
+so for example, in the tab bar, this is all the MVCs for each tab, with
+那么举例来说，在标签栏中，所有的 MVC 各自对应一个标签
 
 1335
 01:01:03,363 --> 01:01:09,032
-the left most tab's MVC's at 0 and then 1, 2, 3, 4 is just the 
+the left most tab's MVC's at 0 and then 1, 2, 3, 4 is just the
 最左边的 MVC 在 0 号位然后接下来就是 1 号，2 号，3 号，4 号
 
 1336
@@ -6786,7 +6786,7 @@ the one you are in.
 1358
 01:02:18,936 --> 01:02:21,702
 And if you're not in one, it will return nil.
-如果你不在里面的话，它就会返回 nil 
+如果你不在里面的话，它就会返回 nil
 
 1359
 01:02:21,771 --> 01:02:22,604
@@ -6866,7 +6866,7 @@ my detail, which is fine cuz it would be nil if I'm not in
 1374
 01:02:49,933 --> 01:02:51,666
 a split view controller obviously there's no detail.
-也就是没有细节控制器的话，结果的确会是 nil 
+也就是没有细节控制器的话，结果的确会是 nil
 
 1375
 01:02:54,237 --> 01:02:55,904

@@ -857,7 +857,7 @@ this, display.text = s ?? " ". That means if s is nil, use
 00:09:11,685 --> 00:09:15,788
 this other thing. It's like the default in case s is nil.
 就用另一个东西，也就是 s 为空时的默认值
- 
+
 173
 00:09:17,191 --> 00:09:20,993
 We will use this all the time as well. Everybody got that?
@@ -901,7 +901,7 @@ So I had you skip tuples in reading assignment one, but
 181
 00:09:38,812 --> 00:09:41,947
 you'll be reading about them in reading assignment two.
-但你们将会在任务二中读到它们 
+但你们将会在任务二中读到它们
 
 182
 00:09:42,015 --> 00:09:42,848
@@ -1016,7 +1016,7 @@ look, I've named each of them,
 204
 00:10:57,524 --> 00:11:00,992
 I called the string part w, I called the int part i, and
-我把 String 部分叫做 w，把 Int 部分叫做 i，
+我把 String 部分叫做 w，把 Int 部分叫做 i
 
 205
 00:11:01,061 --> 00:11:04,262
@@ -1496,7 +1496,7 @@ dot dot. And then the less than 1 would be exclusive,
 300
 00:16:10,203 --> 00:16:13,672
 so that's why the d wouldn't be included in that one. So
-所以这就是为什么在这一个 d 不会被包括。
+所以这就是为什么在这一个 d 不会被包括
 
 301
 00:16:13,740 --> 00:16:16,508
@@ -2438,7 +2438,7 @@ frontier in iOS, because for however long, 20 years,
 488
 00:26:26,119 --> 00:26:28,120
 really, or 30 years, really, if you consider all the way
-或者是 30 年，如果把给 iOS 
+或者是 30 年，如果把给 iOS
 
 489
 00:26:28,188 --> 00:26:31,723
@@ -2468,7 +2468,7 @@ enums, and especially when you throw in protocols, (which I
 494
 00:26:46,173 --> 00:26:47,939
 told you I was gonna tell you that are very important, but
-现在不能给你讲的那个东西），
+现在不能给你讲的那个东西）
 
 495
 00:26:48,008 --> 00:26:51,843
@@ -2563,7 +2563,7 @@ you know, there is a huge advantage of programming in
 513
 00:27:49,669 --> 00:27:52,504
 a different way; it requires a real mindset change.
-会带来巨大的好处。这需要观念上的改变。
+会带来巨大的好处。这需要观念上的改变
 
 514
 00:27:52,572 --> 00:27:55,440
@@ -2578,7 +2578,7 @@ class is functional programming,
 516
 00:27:56,710 --> 00:27:58,110
 and really you'll get a feel for it.
-这样你们就会对这个概念有一定认识了。
+这样你们就会对这个概念有一定认识了
 
 517
 00:27:58,179 --> 00:28:00,245
@@ -3928,7 +3928,7 @@ four strings and I said animals dot append ostrich,
 786
 00:42:24,544 --> 00:42:28,147
 well append appends something onto the array, now the thing
-append 这个方法会将一些东西加入到数组中，
+append 这个方法会将一些东西加入到数组中
 
 787
 00:42:28,215 --> 00:42:30,616
@@ -6358,7 +6358,7 @@ It has a string that takes another string if you want to
 1272
 01:08:09,956 --> 01:08:12,190
 make a copy of the string it turns out. It takes an Int.
-如果你要一份原字符串的拷贝就可以用这个构造器。
+如果你要一份原字符串的拷贝就可以用这个构造器
 
 1273
 01:08:12,259 --> 01:08:14,727

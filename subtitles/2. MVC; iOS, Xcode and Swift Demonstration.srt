@@ -1,4 +1,4 @@
-﻿1
+1
 00:00:00,401 --> 00:00:04,869
 本字幕由志愿者义务贡献，采用许可协议
 知识共享 署名-非商业性使用-相同方式共享 3.0 美国
@@ -2791,7 +2791,7 @@ Says I cannot assign to this property, because self is
 559
 00:28:13,827 --> 00:28:18,296
 immutable. Self meaning the calculator brain is immutable.
- self is immutable”。说因为 self 不能被修改
+self is immutable”。说因为 self 不能被修改
 
 560
 00:28:18,365 --> 00:28:21,834
@@ -3851,7 +3851,7 @@ in this table, I had, like pi and double dot pi. And then,
 771
 00:39:18,692 --> 00:39:22,060
 maybe I had e's does everyone know what the constant e is.
-然后，应该还有常数 e，
+然后，应该还有常数 e
 
 772
 00:39:22,129 --> 00:39:24,262
@@ -4281,7 +4281,7 @@ I'm gonna make it a private type that's embedded inside my
 857
 00:43:46,126 --> 00:43:49,127
 CalculatorBrain, so you can have types within types and
- CalculatorBrain 的内部
+CalculatorBrain 的内部
 
 858
 00:43:49,196 --> 00:43:51,563
@@ -5246,7 +5246,7 @@ let's go here. Edit, Okay, we need something for
 1050
 00:54:01,675 --> 00:54:03,942
 changeSign, I think I have one here, this one, okay?
-找一个符号代表 changeSign，
+找一个符号代表 changeSign
 
 1051
 00:54:04,011 --> 00:54:06,445
@@ -5436,7 +5436,7 @@ Put the change sign in there. So we'll put those in there
 1088
 00:56:17,544 --> 00:56:19,144
 and that's all we need to do in my UI.
-目前对 UI 做出的改动 
+目前对 UI 做出的改动
 
 1089
 00:56:19,213 --> 00:56:21,046

@@ -1221,7 +1221,7 @@ system is in the upper left of the screen.
 245
 00:10:47,280 --> 00:10:50,481
 It's not Cartesian coordinates which the origin would be in
-这和笛卡尔坐标系不同，
+这和笛卡尔坐标系不同
 
 246
 00:10:50,550 --> 00:10:52,716
@@ -2726,7 +2726,7 @@ You get a color, and you send it a message,
 546
 00:23:26,038 --> 00:23:27,237
 set that as my fill color.
-设置那个颜色作为我的填充色，
+设置那个颜色作为我的填充色
 
 547
 00:23:27,306 --> 00:23:28,104
@@ -2996,7 +2996,7 @@ that's made from a pattern.
 600
 00:25:30,095 --> 00:25:31,794
 So that when you draw with that color,
-那么在你绘制那个颜色的时候，
+那么在你绘制那个颜色的时候
 
 601
 00:25:31,863 --> 00:25:33,296
@@ -4915,7 +4915,7 @@ Xcode 会询问你想把它放在哪
 984
 00:41:02,260 --> 00:41:04,360
 I'm gonna put it in the same place the calculator is,
-我要把它和计算器放在同一个地方，
+我要把它和计算器放在同一个地方
 
 985
 00:41:04,428 --> 00:41:05,094
@@ -5539,7 +5539,7 @@ And now I've made this a FaceView.
 
 1109
 00:45:55,586 --> 00:45:57,119
-So now, all the code I put in my draw 
+So now, all the code I put in my draw
 现在，我放在绘制方法里的所有代码
 
 1110
@@ -8489,7 +8489,7 @@ be down here somewhere, on both sides of his chin.
 1699
 01:12:04,821 --> 01:12:06,087
 the line is gonna start here,
-这条线会从这里开始，
+这条线会从这里开始
 
 1700
 01:12:06,088 --> 01:12:07,354
@@ -9113,7 +9113,7 @@ Or every time eyes open, eyes closed.
 
 1824
 01:17:54,002 --> 01:17:56,204
-Back and forth. Wouldn't it be cool, if I could 
+Back and forth. Wouldn't it be cool, if I could
 这样来回切换。如果我能够直接在
 
 1825
@@ -9448,7 +9448,7 @@ Alright, that's it! Next time,
 
 1891
 01:21:12,034 --> 01:21:13,367
-what we're gonna do is we're gonna 
+what we're gonna do is we're gonna
 剩下的就是我们要
 
 1892

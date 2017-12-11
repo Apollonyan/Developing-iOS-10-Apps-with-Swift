@@ -9399,7 +9399,7 @@ we have our operations table down here.
 1880
 01:17:52,435 --> 01:17:57,304
 I'm just gonna say operations sub that symbol =
-我就是需要用 operations[symbol] = 
+我就是需要用 operations[symbol] =
 
 1881
 01:17:57,373 --> 01:18:00,541
@@ -9814,7 +9814,7 @@ Because, reference to property display in
 1963
 01:21:41,497 --> 01:21:44,097
 closure requires an explicit self dot
-在闭包中要求显式 self. 
+在闭包中要求显式 self.
 
 1964
 01:21:44,166 --> 01:21:47,300

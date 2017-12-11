@@ -256,7 +256,7 @@ rare that we know this, but if we're certain about it,
 52
 00:03:10,224 --> 00:03:14,926
 we can use another version of try, which is try! And just
-我们就能用另一版本的 try，就是 try! 
+我们就能用另一版本的 try，就是 try!
 
 53
 00:03:14,994 --> 00:03:18,630
@@ -865,7 +865,7 @@ So it surprises me a little bit, but, protocols,
 174
 00:09:50,190 --> 00:09:54,325
 while very simple, are also incredibly powerful. So,
-是很简单，并且极其强大的。
+是很简单，并且极其强大的
 
 175
 00:09:54,394 --> 00:09:58,296
@@ -1010,7 +1010,7 @@ implement that protocol, or conform to that protocol,
 203
 00:11:36,896 --> 00:11:39,897
 we say. So if I'm a struct, and I wanna say yes,
-如果我是个结构体，我说：“是的，
+如果我是个结构体，我说：“是的
 
 204
 00:11:39,966 --> 00:11:43,467
@@ -1100,7 +1100,7 @@ then of course there's the actual code that that class,
 221
 00:12:28,715 --> 00:12:31,883
 struct, or enum, that claims to implement the protocol,
-真正实现协议的代码。
+真正实现协议的代码
 
 222
 00:12:31,952 --> 00:12:33,785
@@ -1295,7 +1295,7 @@ SomeProtocol 继承了这两个协议
 260
 00:14:26,399 --> 00:14:28,532
 what it means is that anyone who wants to say yeah,
-意思就是谁想说：“耶，
+意思就是谁想说：“耶
 
 261
 00:14:28,601 --> 00:14:29,800

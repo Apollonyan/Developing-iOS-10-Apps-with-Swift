@@ -366,7 +366,7 @@ using object oriented API. But this is still non UI layer,
 74
 00:03:34,581 --> 00:03:38,283
 right? It's still kinda closer to the hardware. So I'll
-这层离硬件还算近的，
+这层离硬件还算近的
 
 75
 00:03:38,351 --> 00:03:40,619
@@ -391,7 +391,7 @@ call it. This is a huge layer, which has 3D graphics, and
 79
 00:03:51,331 --> 00:03:55,533
 audio playback and recording, image processing, video,
-音频播放，录音，图像处理，视频等相关的功能。
+音频播放，录音，图像处理，视频等相关的功能
 
 80
 00:03:55,602 --> 00:03:58,470
@@ -741,7 +741,7 @@ complicated that I can't do an entire calculator, basically,
 149
 00:07:09,997 --> 00:07:13,131
 in two lectures, okay, start to finish. All these topics up
-我没法在两堂课内讲完。
+我没法在两堂课内讲完
 
 150
 00:07:13,200 --> 00:07:14,933
@@ -1141,7 +1141,7 @@ Xcode, this is probably not going to be a pull down list.
 229
 00:10:54,555 --> 00:10:57,021
 It's gonna be a button that says Add Account or
-你会看到一个写着 Add Account 
+你会看到一个写着 Add Account
 
 230
 00:10:57,090 --> 00:11:00,925
@@ -1541,7 +1541,7 @@ your console, which is a place where you can log
 309
 00:14:56,663 --> 00:14:59,631
 strings out to while you're debugging, on the right. And
-用来展示你程序 log，输出的信息。
+用来展示你程序 log，输出的信息
 
 310
 00:14:59,700 --> 00:15:03,335
@@ -1751,7 +1751,7 @@ drag some things out. We're gonna use some inspectors to
 351
 00:16:59,719 --> 00:17:03,188
 set the objects we want. The way we want them. That's how
-自定义对象的属性。
+自定义对象的属性
 
 352
 00:17:03,256 --> 00:17:06,024
@@ -1821,7 +1821,7 @@ us. Later in the quarter. So, I'm gonna hide that.
 365
 00:17:37,925 --> 00:17:39,858
 That's this little button down here is. It hides and
-下面这个按钮可以显示／隐藏这个大纲。
+下面这个按钮可以显示／隐藏这个大纲
 
 366
 00:17:39,926 --> 00:17:42,026
@@ -1846,7 +1846,7 @@ if I zoom in on a little bit here,
 370
 00:17:49,169 --> 00:17:52,671
 or zoom out rather. You can see I start to see something
-可以缩小。现在看起来，
+可以缩小。现在看起来
 
 371
 00:17:52,739 --> 00:17:55,941
@@ -2741,7 +2741,7 @@ Manual，手动选择你想要打开的文件
 549
 00:27:00,820 --> 00:27:03,721
 but most of the times you're leave this on automatic. And
-通常情况选 Automatic 
+通常情况选 Automatic
 
 550
 00:27:03,790 --> 00:27:06,525
@@ -2851,7 +2851,7 @@ MVC 的时候你就明白了。盎然我们也能
 571
 00:28:04,151 --> 00:28:07,753
 import too, like map kit, things like that. All right,
-import 其它的库，比如 MapKit。
+import 其它的库，比如 MapKit
 
 572
 00:28:07,821 --> 00:28:11,190
@@ -2980,7 +2980,7 @@ Hopefully everyone knows what an instance variable
 
 597
 00:29:25,499 --> 00:29:27,199
-and a method is, right? 
+and a method is, right?
 什么是实例方法，对吧？
 
 598
@@ -3541,7 +3541,7 @@ So this would be the return value, okay?
 709
 00:35:34,201 --> 00:35:36,501
 All right, now, let's look at touchDigit though,
-回到正题，touchDigit 
+回到正题，touchDigit
 
 710
 00:35:36,570 --> 00:35:40,205
@@ -3556,7 +3556,7 @@ The external one is _, okay?
 712
 00:35:43,477 --> 00:35:47,212
 So does that mean I call it by saying, touchDigit_:
-难道我要这样写么？touchDigit(_: 
+难道我要这样写么？touchDigit(_:
 
 713
 00:35:47,281 --> 00:35:51,783
@@ -3702,7 +3702,7 @@ we have multiple of them. This is the first parameter here,
 741
 00:37:11,732 --> 00:37:15,100
 first and only. It's type is a UIButton because of course,
-有且仅有的一个。参数类型为 UIButton 显而易见的，
+有且仅有的一个。参数类型为 UIButton 显而易见的
 
 742
 00:37:15,169 --> 00:37:18,470
@@ -3817,12 +3817,12 @@ Does everyone understand what's happening here,
 764
 00:38:24,771 --> 00:38:26,538
 how we've hooked up this method to the button? Really,
-怎么关连 UI 和代码的，
+怎么关连 UI 和代码的
 
 765
 00:38:26,606 --> 00:38:30,042
 really straightforward. All right, now that we have that
-应该都挺好理解的。
+应该都挺好理解的
 
 766
 00:38:30,110 --> 00:38:33,612
@@ -4067,7 +4067,7 @@ that's sending me the message. So this guy,
 814
 00:41:09,369 --> 00:41:12,037
 which is a button I want to ask what its title is.
-正是这个按钮                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+正是这个按钮
 
 815
 00:41:12,106 --> 00:41:15,473
@@ -4352,7 +4352,7 @@ It's a variable, var. It's called currentTitle,
 871
 00:43:45,192 --> 00:43:49,194
 of course. It's type is, string?
-类型是 String? 
+类型是 String?
 
 872
 00:43:51,565 --> 00:43:54,032
@@ -4902,7 +4902,7 @@ Swift 知道你希望那是个常量
 981
 00:49:13,320 --> 00:49:17,656
 you know, error. So it's a way to tell Swift what you intend.
-于是会告诉你出错了。所以 let 是为了告诉 Swift 你的意图。
+于是会告诉你出错了。所以 let 是为了告诉 Swift 你的意图
 
 982
 00:49:17,724 --> 00:49:21,093
@@ -4922,7 +4922,7 @@ an immutable one, is huge. Because if you pa, arrays and
 985
 00:49:26,533 --> 00:49:30,869
 Swift are passed around by copy. Arrays are passed by
-数组是通过拷贝来实现值传递，
+数组是通过拷贝来实现值传递
 
 986
 00:49:30,938 --> 00:49:33,438
@@ -5727,7 +5727,7 @@ it up for you, and now it's set forever after that. And
 1146
 00:57:42,162 --> 00:57:45,397
 that's important that it's set forever, and we'll see it has
-之后一直都是有值的。
+之后一直都是有值的
 
 1147
 00:57:45,465 --> 00:57:47,966
@@ -6932,7 +6932,7 @@ things hooked up like this. This is obviously an error.
 1387
 01:10:31,631 --> 01:10:35,000
 This is causing a problem. So let's fix it. How do we do
-导致程序出了问题，所以我们需要解决这个问题。
+导致程序出了问题，所以我们需要解决这个问题
 
 1388
 01:10:35,068 --> 01:10:37,502
