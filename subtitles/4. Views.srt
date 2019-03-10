@@ -5705,7 +5705,7 @@ you see that min function right there?
 1142
 00:47:14,198 --> 00:47:16,799
 It's generic-typed like an array.
-像数组一样，使用了范型
+像数组一样，使用了泛型
 
 1143
 00:47:16,868 --> 00:47:18,200
